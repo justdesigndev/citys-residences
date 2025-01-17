@@ -16,13 +16,14 @@
 
   .content {
     color: var(--foreground);
+    padding: 0 desktop-vw(40px);
     position: relative;
     z-index: 30;
   }
 
   &:before {
     content: "";
-    background: linear-gradient(to bottom, #000000 30%, transparent);
+    background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.3) 30%, hsla(0, 0%, 0%, 0));
     height: desktop-vw(300px);
     left: 0;
     position: absolute;
@@ -30,33 +31,70 @@
     top: 0;
     transition: 400ms all ease;
     z-index: 5;
+
+    @include-media ('mobile') {
+      height: mobile-vw(100px);
+    }
   }
 
   .logoC {
-    background-color: var(--bright-moon);
-    border: 1px solid var(--pine-needle);
     bottom: auto;
-    height: desktop-vw(190px);
+    height: desktop-vw(150px);
     left: 50%;
-    padding: desktop-vw(8px);
     position: absolute;
     right: auto;
-    top: 50%;
-    transform: translateX(-50%) translateY(-15%);
+    top: desktop-vw(-6px);
+    transform: translateX(-50%);
     transform-origin: top center;
     transition: 400ms all ease;
-    width: desktop-vw(280px);
     z-index: 30;
+
+    @include-media ('mobile') {
+      height: mobile-vw(100px);
+      top: mobile-vw(-6px);
+    }
   }
 
   .trigger {
+    font-family: var(--font-halenoir);
     z-index: 1600;
 
-    @include mobile {
-      margin-left: auto;
-      z-index: 200;
-      width: mobile-vw(24px);
-      height: mobile-vw(24px);
+    .text {
+      display: grid;
+      font-size: desktop-vw(12px);
+      overflow: hidden;
+
+      @include-media ('mobile') {
+        font-size: mobile-vw(12px);
+      }
+
+      > div {
+        grid-area: 1/1;
+        transition: 600ms transform ease;
+
+        &:first-child {
+          transform: translateY(-100%);
+        }
+      }
+
+      &.active {
+        > div {
+          &:first-child {
+            transform: translateY(0%);
+          }
+
+          &:last-child {
+            transform: translateY(100%);
+          }
+        }
+      }
+
+      @include mobile {
+        margin-left: auto;
+        z-index: 200;
+        width: mobile-vw(24px);
+        height: mobile-vw(24px);
+      }
     }
   }
 
@@ -65,29 +103,11 @@
     position: relative;
     z-index: 20;
 
-    @include mobile {
-      bottom: 0;
-      left: 0;
-      opacity: 0;
-      padding: mobile-vw(16px);
-      pointer-events: none;
-      position: fixed;
-      right: 0;
-      top: 0;
-      transition: 400ms opacity ease;
-      z-index: 100;
-
-      &.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-    }
-
     .navItem {
-      font-size: desktop-vw(14px);
+      font-size: desktop-vw(12px);
       font-weight: 400;
 
-      @include mobile {
+      @include-media ('mobile') {
         font-size: mobile-vw(18px);
       }
     }

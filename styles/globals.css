@@ -9,7 +9,7 @@
   --header-height: desktop-vw(84px);
   --header-height-v2: desktop-vw(90px);
 
-  @include mobile {
+  @include-media ('mobile') {
     --header-height: mobile-vw(64px);
     --header-height-v2: mobile-vw(60px);
   }

@@ -8,8 +8,6 @@
   z-index: 1000;
 
   clip-path: inset(0% 10% 100%);
-
-  border: 1px solid red;
 }
 
 .wrapper {
@@ -18,8 +16,6 @@
   left: 0;
   top: 0;
   right: 0;
-
-  border: 1px solid blue;
 }
 
 .menu {
@@ -30,8 +26,6 @@
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-
-  border: 1px solid green;
 
   .backdrop {
     position: absolute;
@@ -54,8 +48,19 @@
     position: relative;
     z-index: 1400;
 
+    @include-media ('mobile') {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     .imgC {
-      height: desktop-vw(650px);
+      height: desktop-vw(600px);
+
+      @include-media ('mobile') {
+        display: none;
+      }
     }
 
     .mask {
@@ -69,6 +74,49 @@
 
     .nav {
       margin-bottom: desktop-vw(120px);
+
+      @include-media ('hover') {
+        &:hover {
+          .navItem {
+            opacity: 0.2;
+          }
+        }
+      }
+
+      .navItem {
+        font-family: var(--font-halenoir);
+        font-size: desktop-vw(18px);
+        font-weight: 300;
+        transition: 300ms opacity ease;
+
+        @include-media ('mobile') {
+          font-size: mobile-vw(18px);
+          text-align: center;
+        }
+
+        @include-media ('hover') {
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .logoC {
+      height: desktop-vw(150px);
+      left: 50%;
+      position: absolute;
+      right: auto;
+      top: desktop-vw(20px);
+      transform: translateX(-50%);
+      transform-origin: top center;
+      transition: 400ms all ease;
+      z-index: 30;
+
+      @include-media ('mobile') {
+        height: mobile-vw(100px);
+        top: mobile-vw(10px);
+      }
     }
   }
 }
