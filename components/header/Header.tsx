@@ -2,7 +2,6 @@
 
 import s from "./header.module.css"
 
-import { gsap } from "@/lib/gsap"
 import cn from "clsx"
 import Lenis from "lenis"
 import { useLenis } from "lenis/react"
@@ -32,7 +31,7 @@ import { initialScroll } from "@/lib/constants"
 // type HeaderVariantsProps = VariantProps<typeof headerVariants>
 
 export default function Header() {
-// { variant }: HeaderVariantsProps
+  // { variant }: HeaderVariantsProps
   const lenis = useLenis()
   const [menuOpen, setMenuOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -68,20 +67,6 @@ export default function Header() {
 
     return () => lenis?.off("scroll", handleEvents)
   }, [lenis])
-
-  function handleContact() {
-    gsap.to("body", {
-      opacity: 0,
-      onComplete: () => {
-        lenis?.scrollTo(`#footer`, { immediate: true })
-        setHidden(true)
-        gsap.to("body", {
-          opacity: 1,
-          delay: 0.3,
-        })
-      },
-    })
-  }
 
   return (
     <>
@@ -135,10 +120,7 @@ export default function Header() {
           <Menu open={menuOpen} />
           <nav className={cn(s.nav, "flex flex-col gap-10 lg:flex-row items-center")}>
             <div className={"flex flex-col lg:flex-row items-center gap-10"}>
-              <div
-                className={cn(s.navItem, "cursor-pointer hidden lg:block animated-underline-single")}
-                onClick={handleContact}
-              >
+              <div className={cn(s.navItem, "cursor-pointer hidden lg:block animated-underline-single")}>
                 {t("contact")}
               </div>
               <div className={cn(s.navItem, "cursor-pointer")}>

@@ -73,7 +73,7 @@
     }
 
     .nav {
-      margin-bottom: desktop-vw(120px);
+      margin-bottom: desktop-vw(200px);
 
       @include-media ('hover') {
         &:hover {
@@ -85,7 +85,7 @@
 
       .navItem {
         font-family: var(--font-halenoir);
-        font-size: desktop-vw(18px);
+        font-size: desktop-vw(32px);
         font-weight: 300;
         transition: 300ms opacity ease;
 
@@ -103,7 +103,7 @@
     }
 
     .logoC {
-      height: desktop-vw(150px);
+      height: desktop-vw(110px);
       left: 50%;
       position: absolute;
       right: auto;

@@ -6,10 +6,10 @@ import { gsap } from "@/lib/gsap"
 import cn from "clsx"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
+import { Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Link, Link as LocalizedLink } from "@/i18n/routing"
 import { initialScroll } from "@/lib/constants"
-import { Logo } from "../icons"
 import VerticalCutReveal, { VerticalCutRevealRef } from "../vertical-cut-reveal"
 
 const navigationItems = [
@@ -97,8 +97,8 @@ export default function Menu({ open }: MenuProps) {
                 </div>
               </div>
             </div>
-            <nav className={cn(s.nav, "col-start-10 col-span-5")}>
-              <ul className="flex flex-col items-center lg:items-start gap-4 lg:gap-4">
+            <nav className={cn(s.nav, "col-start-10 col-span-16")}>
+              <ul className="flex flex-col flex-wrap items-center lg:items-start gap-4 lg:gap-4 h-[400px]">
                 {navigationItems.map((item) => (
                   <li className={cn(s.navItem)} key={item}>
                     <Link className="cursor-pointer" href={`/`}>
