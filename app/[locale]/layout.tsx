@@ -1,5 +1,12 @@
-import { getMessages } from "next-intl/server"
+import { SmoothScroll } from "@/components/smooth-scroll"
+
+import { Locale } from "@/i18n/routing"
+import { StyleVariables } from "@/lib/style-variables"
+import { colors, themes } from "@/styles/config.mjs"
+import { NextIntlClientProvider } from "next-intl"
+import { getMessages, getTranslations } from "next-intl/server"
 import localFont from "next/font/local"
+
 import "@/styles/globals.css"
 
 const halenoir = localFont({
@@ -48,12 +55,6 @@ const halenoir = localFont({
   variable: "--font-halenoir",
 })
 
-import { NextIntlClientProvider } from "next-intl"
-import { getTranslations } from "next-intl/server"
-
-import { Locale } from "@/i18n/routing"
-import { SmoothScroll } from "@/components/smooth-scroll"
-
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }) {
   const t = await getTranslations({ locale, namespace: "metadata.default" })
 
@@ -84,6 +85,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <StyleVariables colors={colors} themes={themes} />
+      </head>
       <body className={`${halenoir.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <SmoothScroll root={true} />
