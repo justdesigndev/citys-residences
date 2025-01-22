@@ -1,0 +1,114 @@
+.container {
+  position: relative;
+}
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  outline: 25px solid var(--bricky-brick);
+  outline-offset: -25px;
+  pointer-events: none;
+  z-index: 100;
+}
+.text {
+  color: var(--white);
+  font-family: var(--font-halenoir);
+  font-size: desktop-vw(100px);
+  font-weight: 700;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 150;
+}
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .img {
+    transform: scale(1);
+    transform-origin: center center;
+  }
+}
+.infoCard {
+  border-radius: desktop-vw(8px);
+  color: var(--white);
+  width: desktop-vw(450px);
+  height: desktop-vw(170px);
+  position: absolute;
+  left: 100px;
+  bottom: 100px;
+  overflow: hidden;
+  padding: desktop-vw(32px);
+  isolation: isolate;
+
+  .infoText {
+    color: var(--white);
+    font-size: desktop-vw(16px);
+    font-weight: 400;
+    font-family: var(--font-halenoir);
+    line-height: 1.5;
+    position: relative;
+    width: desktop-vw(300px);
+    z-index: 150;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 200%;
+    border-radius: desktop-vw(8px);
+    background: hsla(0, 0%, 0%, 0.3);
+    pointer-events: none;
+    backdrop-filter: blur(16px);
+    mask-image: hsla(0, 0%, 0%, 0.3);
+    z-index: 50;
+  }
+}
+.container {
+  width: 500%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.panel {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.panel.gray {
+  background-color: #777;
+}
+.panel.blue {
+  background-color: #2c7ad2;
+}
+.panel.orange {
+  background-color: #e77614;
+}
+.panel.red {
+  background-color: #c82736;
+}
+.panel.simple {
+  background-image: none !important;
+}
