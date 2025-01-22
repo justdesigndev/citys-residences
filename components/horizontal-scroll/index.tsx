@@ -14,7 +14,7 @@ export function HorizontalScroll() {
     () => {
       gsap.registerPlugin(ScrollTrigger)
 
-      const sections = gsap.utils.toArray(`.${s.panel}`)
+      const sections = gsap.utils.toArray(`.panel`)
 
       const scrollTween = gsap.to(sections, {
         xPercent: -100 * (sections.length - 1),
@@ -22,12 +22,16 @@ export function HorizontalScroll() {
         scrollTrigger: {
           trigger: `.${s.container}`,
           pin: true,
-          scrub: true,
+          scrub: 1,
           end: "+=5000",
+          snap: {
+            snapTo: 1 / (sections.length - 1),
+            duration: 0.05,
+          },
         },
       })
 
-      ScrollTrigger.defaults({ markers: { startColor: "white", endColor: "white" } })
+      // ScrollTrigger.defaults({ markers: { startColor: "white", endColor: "white" } })
 
       // const textWrappers = gsap.utils.toArray(`.text`) as HTMLElement[]
       // const texts = gsap.utils.toArray(`.t`) as HTMLElement[]
@@ -93,33 +97,20 @@ export function HorizontalScroll() {
       // })
 
       // only show the relevant section's markers at any given time
-      gsap.set(".gsap-marker-start, .gsap-marker-end, .gsap-marker-scroller-start, .gsap-marker-scroller-end", {
-        autoAlpha: 0,
-      })
+      // gsap.set(".gsap-marker-start, .gsap-marker-end, .gsap-marker-scroller-start, .gsap-marker-scroller-end", {
+      //   autoAlpha: 0,
+      // })
 
-      Array.from(["blue", "red", "gray", "purple"]).forEach((triggerClass, i) => {
-        ScrollTrigger.create({
-          trigger: `.${triggerClass}`,
-          containerAnimation: scrollTween,
-          start: "left 30%",
-          end: i === 3 ? "right right" : "right 30%",
-          markers: false,
-          onToggle: (self) => gsap.to(`.marker-${i + 1}`, { duration: 0.25, autoAlpha: self.isActive ? 1 : 0 }),
-        })
-      })
-
-      // helper function for causing the sections to always snap in the direction of the scroll (next section) rather than whichever section is "closest" when scrolling stops.
-      // function directionalSnap(increment: number) {
-      //   const snapFunc = gsap.utils.snap(increment)
-      //   return (raw: number, self: any) => {
-      //     const n = snapFunc(raw)
-      //     return Math.abs(n - raw) < 1e-4 || n < raw === self.direction < 0
-      //       ? n
-      //       : self.direction < 0
-      //       ? n - increment
-      //       : n + increment
-      //   }
-      // }
+      // Array.from(["blue", "red", "gray", "purple"]).forEach((triggerClass, i) => {
+      //   ScrollTrigger.create({
+      //     trigger: `.${triggerClass}`,
+      //     containerAnimation: scrollTween,
+      //     start: "left 30%",
+      //     end: i === 3 ? "right right" : "right 30%",
+      //     markers: false,
+      //     onToggle: (self) => gsap.to(`.marker-${i + 1}`, { duration: 0.25, autoAlpha: self.isActive ? 1 : 0 }),
+      //   })
+      // })
     },
     {
       scope: ref,
@@ -139,10 +130,11 @@ export function HorizontalScroll() {
             </p>
           </div>
         </div>
-        <section className={cn(s.panel, s.blue, "blue")}>
+        <section className={cn(s.panel, s.blue, "panel blue")}>
           <div className={cn(s.bgImage, "bg-image")}>
             <Image
-              src="/img/horizontal-scroll/1.jpg"
+              // src="/img/horizontal-scroll/1.jpg"
+              src="https://images.unsplash.com/photo-1470075801209-17f9ec0cada6"
               alt="Aerial view of City's Residences"
               fill
               className={cn(s.img, "img object-cover")}
@@ -151,10 +143,11 @@ export function HorizontalScroll() {
             />
           </div>
         </section>
-        <section className={cn(s.panel, s.red, "red")}>
+        <section className={cn(s.panel, s.red, "panel red")}>
           <div className={cn(s.bgImage, "bg-image")}>
             <Image
-              src="/img/horizontal-scroll/2.jpg"
+              // src="/img/horizontal-scroll/2.jpg"
+              src="https://images.unsplash.com/photo-1487958449943-2429e8be8625"
               alt="Aerial view of City's Residences"
               fill
               className={cn(s.img, "img object-cover")}
@@ -163,10 +156,11 @@ export function HorizontalScroll() {
             />
           </div>
         </section>
-        <section className={cn(s.panel, s.gray, "gray")}>
+        <section className={cn(s.panel, s.gray, "panel gray")}>
           <div className={cn(s.bgImage, "bg-image")}>
             <Image
-              src="/img/horizontal-scroll/3.jpg"
+              // src="/img/horizontal-scroll/3.jpg"
+              src="https://images.unsplash.com/photo-1486325212027-8081e485255e"
               alt="Aerial view of City's Residences"
               fill
               className={cn(s.img, "img object-cover")}
@@ -175,10 +169,11 @@ export function HorizontalScroll() {
             />
           </div>
         </section>
-        <section className={cn(s.panel, s.purple, "purple")}>
+        <section className={cn(s.panel, s.purple, "panel purple")}>
           <div className={cn(s.bgImage, "bg-image")}>
             <Image
-              src="/img/horizontal-scroll/4.jpg"
+              // src="/img/horizontal-scroll/4.jpg"
+              src="https://images.unsplash.com/photo-1478860409698-8707f313ee8b"
               alt="Aerial view of City's Residences"
               fill
               className={cn(s.img, "img object-cover")}

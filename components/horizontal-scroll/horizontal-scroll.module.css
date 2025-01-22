@@ -41,7 +41,7 @@
   }
 
   .img {
-    transform: scale(1);
+    transform: scale(1.33);
     transform-origin: center center;
   }
 }
