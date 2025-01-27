@@ -30,10 +30,6 @@
     .logoC {
       opacity: 0;
     }
-
-    .nav {
-      opacity: 0;
-    }
   }
 
   .content {
@@ -124,7 +120,7 @@
   .nav {
     color: var(--foreground);
     position: relative;
-    z-index: 20;
+    z-index: 2000;
 
     .navItem {
       font-size: desktop-vw(12px);

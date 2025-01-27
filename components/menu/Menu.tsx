@@ -2,26 +2,30 @@
 
 import s from "./menu.module.css"
 
-import { gsap } from "@/lib/gsap"
+import { gsap, useGSAP } from "@/lib/gsap"
 import cn from "clsx"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
-import { Link, Link as LocalizedLink } from "@/i18n/routing"
+// import { Link, Link as LocalizedLink } from "@/i18n/routing"
 import { initialScroll } from "@/lib/constants"
 import VerticalCutReveal, { VerticalCutRevealRef } from "../vertical-cut-reveal"
+import Link from "next/link"
 
-const navigationItems = [
-  "Konutlar",
-  "City's Park",
-  "City's Club House",
-  "Konum",
-  "Yeme İçme",
-  "Alışveriş",
-  "Justwork Campus",
-  "Performans Sanatları Merkezi",
-  "City's Club Ayrıcalıkları",
+const navigationItems: Array<{
+  title: string
+  href: string
+}> = [
+  { title: "Konutlar", href: "/" },
+  { title: "City's Park", href: "/" },
+  { title: "City's Club House", href: "/" },
+  { title: "Konum", href: "/" },
+  { title: "Yeme İçme", href: "/" },
+  { title: "Alışveriş", href: "/" },
+  { title: "Justwork Campus", href: "/" },
+  { title: "Performans Sanatları Merkezi", href: "/" },
+  { title: "City's Club Ayrıcalıkları", href: "/" },
 ]
 
 interface MenuProps {
@@ -30,60 +34,86 @@ interface MenuProps {
 
 export default function Menu({ open }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const tl = useRef<GSAPTimeline>()
+  const menuTL = useRef<gsap.core.Timeline>()
+  const maskTL = useRef<gsap.core.Timeline>()
 
-  const [animateText, setAnimateText] = useState(false)
+  const [animateLinks, setAnimateLinks] = useState(false)
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      tl.current = gsap.timeline({
+  const animateLinksForwards = () => setAnimateLinks(true)
+  const animateLinksBackwards = () => setAnimateLinks(false)
+
+  useGSAP(
+    () => {
+      menuTL.current = gsap.timeline({
         paused: true,
-        onComplete: () => {
-          setAnimateText(true)
-        },
         onReverseComplete: () => {
-          setAnimateText(false)
+          maskTL.current?.reverse()
+          animateLinksBackwards()
         },
       })
+      maskTL.current = gsap.timeline({ paused: true })
 
-      tl.current
-        .fromTo(
-          ref.current,
-          { clipPath: "inset(0% 10% 100%)" },
-          { clipPath: "inset(0% 0% 0%)", duration: 1.2, ease: "expo.inOut" }
-        )
-        .fromTo(
-          ".mask",
-          { clipPath: "inset(100% 0% 0%)" },
-          {
-            clipPath: "inset(0% 0% 0%)",
-            duration: 1,
-            ease: "expo.inOut",
+      menuTL.current?.fromTo(
+        ref.current,
+        { clipPath: "inset(0% 10% 100%)" },
+        { clipPath: "inset(0% 0% 0%)", duration: 1.2, ease: "expo.inOut" }
+      )
+
+      maskTL.current?.fromTo(
+        ".mask",
+        {
+          clipPath: "inset(100% 0% 0%)",
+        },
+        {
+          clipPath: "inset(0% 0% 0%)",
+          duration: 0.8,
+          delay: 1.2,
+          ease: "expo.inOut",
+          onStart: () => {
+            animateLinksForwards()
           },
-          "-=0.5"
-        )
-    }, ref)
+        },
+        "-=0.5"
+      )
+    },
 
-    return () => ctx.revert()
+    {
+      scope: ref,
+      revertOnUpdate: true,
+    }
+  )
+
+  useGSAP(
+    () => {
+      if (open) {
+        menuTL.current?.play()
+        maskTL.current?.play()
+      } else {
+        menuTL.current?.reverse()
+      }
+    },
+    {
+      dependencies: [open],
+      revertOnUpdate: true,
+    }
+  )
+
+  useEffect(() => {
+    return () => {
+      menuTL.current?.kill()
+      maskTL.current?.kill()
+    }
   }, [])
 
-  useLayoutEffect(() => {
-    if (open) {
-      tl.current?.play()
-    } else {
-      tl.current?.reverse()
-    }
-  }, [open])
-
   return (
-    <div className={s.frame} ref={ref}>
+    <div className={cn(s.frame, "z-30")} ref={ref}>
       <div className={cn(s.wrapper, "wrapper")}>
         <div className={cn(s.menu, "menu")}>
           <div className={s.backdrop}></div>
           <div className={cn(s.content, "w-full h-full")}>
-            <LocalizedLink className={cn(s.logoC, "cursor-pointer")} href="/" scroll={initialScroll}>
+            <Link className={cn(s.logoC, "cursor-pointer")} href="/" scroll={initialScroll}>
               <Logo fill="var(--foreground)" small />
-            </LocalizedLink>
+            </Link>
             <div className="col-span-8">
               <div className={cn(s.imgC, "img-c relative overflow-hidden")}>
                 <div className={cn(s.mask, "w-full h-full mask overflow-hidden")}>
@@ -99,10 +129,10 @@ export default function Menu({ open }: MenuProps) {
             </div>
             <nav className={cn(s.nav, "col-start-10 col-span-16")}>
               <ul className="flex flex-col flex-wrap items-center lg:items-start gap-4 lg:gap-4 h-[400px]">
-                {navigationItems.map((item) => (
-                  <li className={cn(s.navItem)} key={item}>
-                    <Link className="cursor-pointer" href={`/`}>
-                      <AnimatedLink animate={animateText}>{item}</AnimatedLink>
+                {navigationItems.map(({ title, href }) => (
+                  <li className={cn(s.navItem)} key={title}>
+                    <Link className="cursor-pointer" href={href}>
+                      <AnimatedLink animate={animateLinks}>{title}</AnimatedLink>
                     </Link>
                   </li>
                 ))}
@@ -119,10 +149,16 @@ const AnimatedLink = ({ children, animate }: { children: React.ReactNode; animat
   const textRef = useRef<VerticalCutRevealRef>(null)
 
   useEffect(() => {
+    const currentRef = textRef.current
+
     if (animate) {
-      textRef.current?.startAnimation()
+      currentRef?.startAnimation()
     } else {
-      textRef.current?.reset()
+      currentRef?.reset()
+    }
+
+    return () => {
+      currentRef?.reset()
     }
   }, [animate])
 

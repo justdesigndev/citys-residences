@@ -113,8 +113,8 @@ export default function Header() {
               />
             </div>
             <div className={cn(s.text, "cursor-pointer", { [s.active]: menuOpen })}>
-              <div className="cursor-pointer">CLOSE</div>
-              <div className="cursor-pointer">MENU</div>
+              <div className="cursor-pointer">KAPAT</div>
+              <div className="cursor-pointer">MENÜ</div>
             </div>
           </div>
           <Menu open={menuOpen} />
