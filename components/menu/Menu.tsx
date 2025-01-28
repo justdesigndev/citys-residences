@@ -123,6 +123,7 @@ export default function Menu({ open }: MenuProps) {
                     fill
                     className={cn(s.img, "object-cover absolute bottom-0 left-0 right-0")}
                     priority
+                    sizes="30vw"
                   />
                 </div>
               </div>

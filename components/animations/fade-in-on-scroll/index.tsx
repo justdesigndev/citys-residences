@@ -24,5 +24,9 @@ export function FadeInOnScroll({ children }: { children: React.ReactNode }) {
     })
   })
 
-  return <div ref={ref}>{children}</div>
+  return (
+    <div className="w-full h-full" ref={ref}>
+      {children}
+    </div>
+  )
 }
