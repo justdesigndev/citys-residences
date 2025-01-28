@@ -89,7 +89,7 @@ export function VerticalParallaxSections({ title, description }: { title: string
         animation: maskTL,
         trigger: ref.current,
         start: "top bottom",
-        markers: true,
+        markers: false,
         scrub: true,
       })
 
