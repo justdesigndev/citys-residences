@@ -115,3 +115,8 @@ sup {
 .add-header-height {
   margin-top: var(--header-height);
 }
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
