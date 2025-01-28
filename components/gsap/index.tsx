@@ -4,8 +4,11 @@ import gsap from "gsap"
 import { useLayoutEffect } from "react"
 import Tempus from "tempus"
 import { ScrollTriggerConfig } from "./scroll-trigger"
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
+import { CustomEase } from "gsap/all"
 
-export function GSAP({ scrollTrigger = false }) {
+function GSAP({ scrollTrigger = false }) {
   useLayoutEffect(() => {
     gsap.defaults({ ease: "none" })
 
@@ -18,3 +21,5 @@ export function GSAP({ scrollTrigger = false }) {
 
   return scrollTrigger ? <ScrollTriggerConfig /> : null
 }
+
+export { ScrollTrigger, gsap, useGSAP, CustomEase, GSAP }

@@ -2,7 +2,7 @@
 
 import s from "./horizontal-scroll.module.css"
 
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
 import cn from "clsx"
 import Image from "next/image"
 import { useRef } from "react"

@@ -1,6 +1,6 @@
 "use client"
 
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
 import { useRef } from "react"
 
 import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/animations/vertical-cut-reveal"

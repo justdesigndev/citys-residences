@@ -1,6 +1,6 @@
 "use client"
 
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
 import React, { useRef } from "react"
 import { useWindowSize } from "@darkroom.engineering/hamo"
 

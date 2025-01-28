@@ -2,16 +2,16 @@
 
 import s from "./menu.module.css"
 
-import { gsap, useGSAP } from "@/lib/gsap"
 import cn from "clsx"
 import { useEffect, useRef, useState } from "react"
 
+import { gsap, useGSAP } from "@/components/gsap"
 import { Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 // import { Link, Link as LocalizedLink } from "@/i18n/routing"
 import { initialScroll } from "@/lib/constants"
-import VerticalCutReveal, { VerticalCutRevealRef } from "../animations/vertical-cut-reveal"
 import Link from "next/link"
+import VerticalCutReveal, { VerticalCutRevealRef } from "../animations/vertical-cut-reveal"
 
 const navigationItems: Array<{
   title: string

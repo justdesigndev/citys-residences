@@ -2,7 +2,7 @@
 
 import s from "./scale-grid.module.css"
 
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
 import cn from "clsx"
 import { useRef } from "react"
 

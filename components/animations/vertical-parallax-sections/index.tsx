@@ -2,7 +2,7 @@
 
 import s from "./vertical-parallax-sections.module.css"
 
-import { ScrollTrigger, gsap, useGSAP } from "@/lib/gsap"
+import { ScrollTrigger, gsap, useGSAP } from "@/components/gsap"
 import cn from "clsx"
 import Image from "next/image"
 import { useRef } from "react"
