@@ -17,6 +17,7 @@
   position: absolute;
   top: 50px;
   left: 50px;
+  white-space: nowrap;
   z-index: 150;
 }
 .bgImage {
@@ -42,17 +43,22 @@
     transform-origin: center center;
   }
 }
+.infoCardC {
+  position: absolute;
+  left: desktop-vw(100px);
+  bottom: desktop-vw(100px);
+  width: desktop-vw(500px);
+  height: desktop-vw(150px);
+}
 .infoCard {
   border-radius: desktop-vw(8px);
   color: var(--white);
-  width: desktop-vw(450px);
-  height: desktop-vw(170px);
-  position: absolute;
-  left: 100px;
-  bottom: 100px;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
-  padding: desktop-vw(32px);
+  padding: desktop-vw(24px);
   isolation: isolate;
+  display: flex;
 
   .infoText {
     color: var(--white);
@@ -61,12 +67,12 @@
     font-family: var(--font-halenoir);
     line-height: 1.5;
     position: relative;
-    width: desktop-vw(300px);
+    text-align: left;
+    width: desktop-vw(400px);
     z-index: 150;
   }
 
-  &:after {
-    content: "";
+  .backdrop {
     position: absolute;
     top: 0;
     left: 0;
@@ -74,12 +80,10 @@
     bottom: 0;
     height: 100%;
     border-radius: desktop-vw(8px);
-    /* background: hsla(0, 0%, 0%, 0.3); */
-    background: hsla(10, 66%, 43%, 0.5);
+    background: hsla(10, 66%, 43%, 0.6);
     pointer-events: none;
     backdrop-filter: blur(16px);
-    /* mask-image: hsla(0, 0%, 0%, 0.3); */
-    mask-image: hsla(10, 66%, 43%, 0.5);
+    mask-image: hsla(10, 66%, 43%, 0.6);
     z-index: 50;
   }
 }

@@ -95,36 +95,33 @@ export function VerticalParallaxSections({ title, description }: { title: string
 
       const textTL = gsap.timeline({ paused: true })
 
-      textTL.from(".text", {
-        yPercent: 0,
-        autoAlpha: 0,
-        duration: 2,
-        ease: "expo.out",
+      textTL.from(".gsap-text", {
+        yPercent: -100,
+        ease: "power3.inOut",
+        duration: 1,
       })
 
       ScrollTrigger.create({
         animation: textTL,
-        trigger: ref.current,
+        trigger: ".gsap-text-container",
         start: "center center",
-        toggleActions: "play pause reverse pause",
-        // markers: true,
+        toggleActions: "play none none reverse",
       })
 
       const cardTL = gsap.timeline({ paused: true })
 
       cardTL.from(".gsap-info-card", {
-        yPercent: 0,
-        autoAlpha: 0,
-        duration: 2,
-        ease: "expo.out",
+        yPercent: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.inOut",
       })
 
       ScrollTrigger.create({
         animation: cardTL,
-        trigger: ref.current,
+        trigger: ".gsap-info-card-c",
         start: "center center",
-        toggleActions: "play pause reverse pause",
-        // markers: true,
+        toggleActions: "play none none reverse",
       })
     },
     {
@@ -137,9 +134,12 @@ export function VerticalParallaxSections({ title, description }: { title: string
       <div className={cn(s.wrppr, "wrppr relative")}>
         <div className={cn(s.mask, "gsap-mask overflow-hidden")}>
           <div className={cn(s.frame)}>
-            <div className={cn(s.text, s.text1, "text text-1 overflow-hidden gsap-title")}>{title}</div>
+            <div className={cn(s.text, "gsap-text-container overflow-hidden")}>
+              <div className="gsap-text">{title}</div>
+            </div>
             <div className={cn(s.infoCardC, "gsap-info-card-c")}>
               <div className={cn(s.infoCard, "gsap-info-card")}>
+                <div className={s.backdrop}></div>
                 <p className={s.infoText}>{description}</p>
               </div>
             </div>

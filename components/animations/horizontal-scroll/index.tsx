@@ -62,25 +62,36 @@ export function HorizontalScroll({ title, description }: { title: string; descri
         )
       })
 
-      // texts.forEach((text, index) => {
-      //   if (index === 0) return
+      const textTL = gsap.timeline({ paused: true })
 
-      //   gsap.set(text, { y: -300 })
-      // })
+      textTL.from(".gsap-text", {
+        yPercent: -100,
+        ease: "power3.inOut",
+        duration: 1,
+      })
 
-      // texts.forEach((text, index) => {
-      //   if (index === 0) return
+      ScrollTrigger.create({
+        animation: textTL,
+        trigger: ".gsap-text-container",
+        start: "center center",
+        toggleActions: "play none none reverse",
+      })
 
-      //   gsap.to(text, {
-      //     y: 0,
-      //     ease: "none",
-      //     scrollTrigger: {
-      //       trigger: textWrappers[index - 1],
-      //       containerAnimation: scrollTween,
-      //       scrub: true,
-      //     },
-      //   })
-      // })
+      const cardTL = gsap.timeline({ paused: true })
+
+      cardTL.from(".gsap-info-card", {
+        yPercent: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.inOut",
+      })
+
+      ScrollTrigger.create({
+        animation: cardTL,
+        trigger: ".gsap-info-card-c",
+        start: "center center",
+        toggleActions: "play none none reverse",
+      })
 
       // green section
       // ScrollTrigger.create({
@@ -121,11 +132,14 @@ export function HorizontalScroll({ title, description }: { title: string; descri
     <div ref={ref}>
       <div className={s.container}>
         <div className={cn(s.frame)}>
-          <div className={cn(s.text, s.text1, "text text-1 overflow-hidden")}>
-            <div className="t">{title}</div>
+          <div className={cn(s.text, "gsap-text-container overflow-hidden")}>
+            <div className="gsap-text">{title}</div>
           </div>
-          <div className={s.infoCard}>
-            <p className={s.infoText}>{description}</p>
+          <div className={cn(s.infoCardC, "gsap-info-card-c")}>
+            <div className={cn(s.infoCard, "gsap-info-card")}>
+              <div className={s.backdrop}></div>
+              <p className={s.infoText}>{description}</p>
+            </div>
           </div>
         </div>
         <section className={cn(s.panel, s.blue, "panel blue")}>
