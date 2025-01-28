@@ -5,7 +5,6 @@ import s from "./header.module.css"
 import cn from "clsx"
 import Lenis from "lenis"
 import { useLenis } from "lenis/react"
-import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -37,7 +36,7 @@ export default function Header() {
   const [hidden, setHidden] = useState(false)
   const [slim, setSlim] = useState(false)
   const pathname = usePathname()
-  const t = useTranslations("routes")
+  // const t = useTranslations("routes")
   // const locale = useLocale()
 
   useEffect(() => {
@@ -120,9 +119,9 @@ export default function Header() {
           <Menu open={menuOpen} />
           <nav className={cn(s.nav, "flex flex-col gap-10 lg:flex-row items-center")}>
             <div className={"flex flex-col lg:flex-row items-center gap-10"}>
-              <div className={cn(s.navItem, "cursor-pointer hidden lg:block animated-underline-single")}>
+              {/* <div className={cn(s.navItem, "cursor-pointer hidden lg:block animated-underline-single")}>
                 {t("contact")}
-              </div>
+              </div> */}
               <div className={cn(s.navItem, "cursor-pointer")}>
                 <LocaleSwitcher />
               </div>

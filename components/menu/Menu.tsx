@@ -10,7 +10,7 @@ import { Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 // import { Link, Link as LocalizedLink } from "@/i18n/routing"
 import { initialScroll } from "@/lib/constants"
-import VerticalCutReveal, { VerticalCutRevealRef } from "../vertical-cut-reveal"
+import VerticalCutReveal, { VerticalCutRevealRef } from "../animations/vertical-cut-reveal"
 import Link from "next/link"
 
 const navigationItems: Array<{

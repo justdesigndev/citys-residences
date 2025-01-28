@@ -1,9 +1,9 @@
 "use client"
 
-import { ScrollTrigger, useGSAP } from "@/lib/gsap"
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
 import { useRef } from "react"
 
-import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/vertical-cut-reveal"
+import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/animations/vertical-cut-reveal"
 
 interface TextRevealOnScrollProps {
   children: React.ReactNode
@@ -15,6 +15,8 @@ export function TextRevealOnScroll({ children, staggerDuration = 0.005 }: TextRe
   const textRef = useRef<VerticalCutRevealRef>(null)
 
   useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
     ScrollTrigger.create({
       trigger: ref.current,
       onEnter: () => textRef.current?.startAnimation(),

@@ -22,7 +22,7 @@ export function HorizontalScroll({ title, description }: { title: string; descri
         scrollTrigger: {
           trigger: `.${s.container}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.5,
           end: "+=5000",
           snap: {
             snapTo: 1 / (sections.length - 1),
@@ -170,8 +170,8 @@ export function HorizontalScroll({ title, description }: { title: string; descri
         <section className={cn(s.panel, s.purple, "panel purple")}>
           <div className={cn(s.bgImage, "bg-image")}>
             <Image
-              // src="/img/horizontal-scroll/4.jpg"
-              src="https://images.unsplash.com/photo-1478860409698-8707f313ee8b"
+              src="/img/horizontal-scroll/4.jpg"
+              // src="https://images.unsplash.com/photo-1478860409698-8707f313ee8b"
               alt="Aerial view of City's Residences"
               fill
               className={cn(s.img, "img object-cover")}

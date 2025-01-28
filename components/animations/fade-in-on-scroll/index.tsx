@@ -3,10 +3,12 @@
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
 import { useRef } from "react"
 
-export default function FadeInOnScroll({ children }: { children: React.ReactNode }) {
+export function FadeInOnScroll({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
     const tl = gsap.timeline({ paused: true })
 
     tl.from(ref.current, {

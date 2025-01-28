@@ -2,15 +2,14 @@ import s from "./home.module.css"
 
 import cn from "clsx"
 
-import FadeInOnScroll from "@/components/fade-in-on-scroll"
-import { HorizontalScroll } from "@/components/horizontal-scroll"
-import { ScaleOut } from "@/components/scale-out"
-import { TextRevealOnScroll } from "@/components/text-reveal-on-scroll"
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
+import { HorizontalScroll } from "@/components/animations/horizontal-scroll"
+import { ScaleOut } from "@/components/animations/scale-out"
+import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
+import { VerticalParallaxSections } from "@/components/animations/vertical-parallax-sections"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
-import { VerticalParallaxSections } from "@/components/vertical-parallax-sections"
 import { MainLayout } from "@/layouts/main-layout"
-import { ScaleIn } from "@/components/scale-in"
 
 export default function Home() {
   return (
@@ -31,51 +30,49 @@ export default function Home() {
         </ScaleOut>
       </section>
       <section className="z-20 relative">
-        <ScaleIn>
-          <section className="bg-stone-100  font-halenoir py-12 md:py-24">
-            <div className="container  mx-auto py-12 md:py-24 relative flex flex-col items-center">
-              <div className="flex flex-col items-center text-center">
-                <h1 className="text-bricky-brick text-5xl md:text-8xl font-medium tracking-widest">
-                  <TextRevealOnScroll staggerDuration={0.05}>YAŞAMA</TextRevealOnScroll>
-                </h1>
-                <div className={cn(s.sanati, "h-[300px] w-[1300px] relative")}>
-                  <FadeInOnScroll>
-                    <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" />
-                  </FadeInOnScroll>
-                  <span className="sr-only">SANATI</span>
-                </div>
-                <p className="text-bricky-brick text-lg md:text-2xl font-normal tracking-widest">
-                  <TextRevealOnScroll staggerDuration={0.01}>
-                    Zamanı yönetmek yaşamı sanata dönüştürmektir
-                  </TextRevealOnScroll>
-                </p>
+        <section className="bg-stone-100 font-halenoir py-12 md:py-12">
+          <div className="container  mx-auto py-12 md:py-24 relative flex flex-col items-center">
+            <div className="flex flex-col items-center text-center">
+              <h1 className="text-bricky-brick text-5xl md:text-8xl font-medium tracking-widest">
+                <TextRevealOnScroll staggerDuration={0.05}>YAŞAMA</TextRevealOnScroll>
+              </h1>
+              <div className={cn(s.sanati, "h-[300px] w-[1300px] relative")}>
+                <FadeInOnScroll>
+                  <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" />
+                </FadeInOnScroll>
+                <span className="sr-only">SANATI</span>
               </div>
-              <FadeInOnScroll>
-                <div className="flex flex-col md:flex-row gap-8 mt-16 bg-stone-200 p-8 rounded-lg max-w-5xl">
-                  <div className="text-center flex-1">
-                    <h2 className="text-bricky-brick font-medium text-xl mb-4">DAHA ÇOK YAŞA</h2>
-                    <p className="text-gray-600 leading-relaxed">
-                      Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata
-                      dönüştürmektir.
-                    </p>
-                  </div>
-                  <div className="text-center flex-1">
-                    <h2 className="text-bricky-brick font-medium text-xl mb-4">DAHA HUZURLU YAŞA</h2>
-                    <p className="text-gray-600 leading-relaxed">
-                      Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.
-                    </p>
-                  </div>
-                  <div className="text-center flex-1">
-                    <h2 className="text-bricky-brick font-medium text-xl mb-4">DAHA DOLU YAŞA</h2>
-                    <p className="text-gray-600 leading-relaxed">
-                      Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.
-                    </p>
-                  </div>
-                </div>
-              </FadeInOnScroll>
+              <p className="text-bricky-brick text-lg md:text-2xl font-normal tracking-widest">
+                <TextRevealOnScroll staggerDuration={0.01}>
+                  Zamanı yönetmek yaşamı sanata dönüştürmektir
+                </TextRevealOnScroll>
+              </p>
             </div>
-          </section>
-        </ScaleIn>
+            <FadeInOnScroll>
+              <div className="flex flex-col md:flex-row gap-8 mt-16 bg-stone-200 p-8 rounded-lg max-w-5xl">
+                <div className="text-center flex-1">
+                  <h2 className="text-bricky-brick font-medium text-xl mb-4">DAHA ÇOK YAŞA</h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata
+                    dönüştürmektir.
+                  </p>
+                </div>
+                <div className="text-center flex-1">
+                  <h2 className="text-bricky-brick font-medium text-xl mb-4">DAHA HUZURLU YAŞA</h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.
+                  </p>
+                </div>
+                <div className="text-center flex-1">
+                  <h2 className="text-bricky-brick font-medium text-xl mb-4">DAHA DOLU YAŞA</h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.
+                  </p>
+                </div>
+              </div>
+            </FadeInOnScroll>
+          </div>
+        </section>
       </section>
       <section className="relative">
         <HorizontalScroll
@@ -99,7 +96,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative p-10 pt-0 bg-stone-100">
+      <section className="bg-stone-100 relative p-10 pt-0">
         <VerticalParallaxSections
           title="DAHA HUZURLU YAŞA"
           description="Estetik ve kaliteyi, yeşile cömertçe davet eden peyzaj tasarımıyla harmanlayan City's Residences, sizlere fonksiyonel ve konforlu bir yaşam sunuyor."
@@ -134,18 +131,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section> */}
-      {/* <section>
-        <ScaleGrid
-          images={[
-            "https://images.unsplash.com/photo-1470075801209-17f9ec0cada6",
-            "https://images.unsplash.com/photo-1511818966892-d7d671e672a2",
-            "https://images.unsplash.com/photo-1486325212027-8081e485255e",
-            "https://images.unsplash.com/photo-1478860409698-8707f313ee8b",
-            "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
-            "https://images.unsplash.com/photo-1464146072230-91cabc968266",
-          ]}
-        />
       </section> */}
       <section className="h-screen w-screen bg-stone-100"></section>
       <section className="h-screen w-screen bg-stone-200"></section>

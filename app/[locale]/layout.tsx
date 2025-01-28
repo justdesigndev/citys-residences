@@ -1,4 +1,4 @@
-import { SmoothScroll } from "@/components/smooth-scroll"
+import "@/styles/globals.css"
 
 import { Locale } from "@/i18n/routing"
 import { StyleVariables } from "@/lib/style-variables"
@@ -7,7 +7,9 @@ import { NextIntlClientProvider } from "next-intl"
 import { getMessages, getTranslations } from "next-intl/server"
 import localFont from "next/font/local"
 
-import "@/styles/globals.css"
+import { GSAP } from "@/components/gsap"
+import { SmoothScroll } from "@/components/smooth-scroll"
+import { StickyBadge } from "@/components/sticky-badge"
 
 const halenoir = localFont({
   src: [
@@ -89,8 +91,10 @@ export default async function LocaleLayout({
         <StyleVariables colors={colors} themes={themes} />
       </head>
       <body className={`${halenoir.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <GSAP scrollTrigger={true} />
         <SmoothScroll root={true} />
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <StickyBadge />
       </body>
     </html>
   )

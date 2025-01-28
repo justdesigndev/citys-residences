@@ -1,7 +1,6 @@
 "use client"
 
-import { gsap, ScrollTrigger } from "@/lib/gsap"
-import { useGSAP } from "@gsap/react"
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap"
 import React, { useRef } from "react"
 import { useWindowSize } from "@darkroom.engineering/hamo"
 
@@ -27,12 +26,13 @@ export function ScaleOut({ children }: ScaleOutProps) {
       })
 
       tl.fromTo(
-        scaleOut,
+        ".gsap-scale-out-inner",
         {
-          marginBottom: "0px",
+          yPercent: 0,
         },
         {
-          marginBottom: -"100px",
+          yPercent: -50,
+          opacity: 0.75,
         }
       )
 
@@ -54,8 +54,8 @@ export function ScaleOut({ children }: ScaleOutProps) {
   )
 
   return (
-    <div ref={scaleOutRef} className="scale-out">
-      {children}
+    <div ref={scaleOutRef} className="gsap-scale-out">
+      <div className="gsap-scale-out-inner">{children}</div>
     </div>
   )
 }
