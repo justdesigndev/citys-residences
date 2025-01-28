@@ -26,7 +26,7 @@ export function HorizontalScroll({ title, description }: { title: string; descri
           end: "+=5000",
           snap: {
             snapTo: 1 / (sections.length - 1),
-            duration: 0.05,
+            duration: 1,
           },
         },
       })
