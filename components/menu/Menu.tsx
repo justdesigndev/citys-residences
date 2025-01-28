@@ -106,7 +106,7 @@ export default function Menu({ open }: MenuProps) {
   }, [])
 
   return (
-    <div className={cn(s.frame, "z-30")} ref={ref}>
+    <div className={cn(s.frame)} ref={ref}>
       <div className={cn(s.wrapper, "wrapper")}>
         <div className={cn(s.menu, "menu")}>
           <div className={s.backdrop}></div>

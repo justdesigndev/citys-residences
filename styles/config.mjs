@@ -2,22 +2,22 @@
 const colors = {
   black: "#000000",
   white: "#ffffff",
-  red: "#e30613",
+  "bricky-brick": "#b73d25",
 }
 
 const themes = {
   light: {
     primary: colors.white,
     secondary: colors.black,
-    contrast: colors.red,
+    contrast: colors["bricky-brick"],
   },
   dark: {
     primary: colors.black,
     secondary: colors.white,
-    contrast: colors.red,
+    contrast: colors["bricky-brick"],
   },
-  red: {
-    primary: colors.red,
+  "bricky-brick": {
+    primary: colors["bricky-brick"],
     secondary: colors.black,
     contrast: colors.white,
   },

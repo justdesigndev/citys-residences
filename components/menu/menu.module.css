@@ -1,57 +1,56 @@
 .frame {
-  position: fixed;
   bottom: 0;
-  left: 0;
-  top: 0;
-  right: 0;
-  overflow: hidden;
-  z-index: 1000;
-
   clip-path: inset(0% 10% 100%);
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 150;
 }
 
 .wrapper {
-  position: absolute;
   bottom: 0;
   left: 0;
-  top: 0;
+  position: absolute;
   right: 0;
+  top: 0;
 }
 
 .menu {
+  height: 100vh;
+  left: 50%;
   position: absolute;
   top: 0;
-  left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
   width: 100vw;
-  height: 100vh;
+  z-index: 150;
 
   .backdrop {
-    position: absolute;
-    inset: 0;
-    height: 200%;
-    border-radius: 4px;
-    background: hsla(10, 66%, 43%, 0.8);
-    pointer-events: none;
     backdrop-filter: blur(16px);
+    background: hsla(10, 66%, 43%, 0.8);
+    border-radius: 4px;
+    height: 200%;
+    inset: 0;
     mask-image: linear-gradient(to bottom, var(--bricky-brick) 0, var(--bricky-brick) 50%, transparent 50%);
+    pointer-events: none;
+    position: absolute;
     z-index: 1390;
   }
 
   .content {
-    display: grid;
-    grid-template-columns: repeat(24, minmax(0, 1fr));
     align-items: end;
+    display: grid;
     gap: desktop-vw(32px);
+    grid-template-columns: repeat(24, minmax(0, 1fr));
     padding: desktop-vw(40px);
     position: relative;
     z-index: 1400;
 
     @include-media ('mobile') {
+      align-items: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
     }
 
@@ -64,8 +63,8 @@
     }
 
     .mask {
-      position: relative;
       clip-path: inset(0% 10% 100%);
+      position: relative;
     }
 
     .img {
@@ -84,6 +83,7 @@
       }
 
       .navItem {
+        color: var(--white);
         font-family: var(--font-halenoir);
         font-size: desktop-vw(32px);
         font-weight: 300;
@@ -111,7 +111,7 @@
       transform: translateX(-50%);
       transform-origin: top center;
       transition: 400ms all ease;
-      z-index: 30;
+      z-index: 130;
 
       @include-media ('mobile') {
         height: mobile-vw(100px);

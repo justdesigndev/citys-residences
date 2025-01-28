@@ -34,7 +34,7 @@ export default function Header() {
   const lenis = useLenis()
   const [menuOpen, setMenuOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
-  const [slim, setSlim] = useState(false)
+  const [atTop, setAtTop] = useState(true)
   const pathname = usePathname()
   // const t = useTranslations("routes")
   // const locale = useLocale()
@@ -50,9 +50,9 @@ export default function Header() {
   useEffect(() => {
     const handleEvents = (e: Lenis) => {
       if (e.className && e.actualScroll < 10) {
-        setSlim(false)
+        setAtTop(true)
       } else {
-        setSlim(true)
+        setAtTop(false)
       }
 
       if (lenis?.direction === 1 && e.actualScroll > window.innerHeight / 2) {
@@ -72,22 +72,24 @@ export default function Header() {
       <header
         className={cn(s.header, "flex items-center", {
           [s.hidden]: hidden,
-          [s.slim]: slim,
+          [s.atTop]: atTop,
+          [s.menuOpen]: menuOpen,
         })}
       >
         <div
           className={cn(s.content, "flex items-center justify-between flex-1", {
-            [s.slim]: slim,
+            [s.atTop]: atTop,
           })}
         >
           <LocalizedLink className={cn(s.logoC, "cursor-pointer")} href="/" scroll={initialScroll}>
             <Logo fill="var(--foreground)" />
           </LocalizedLink>
-          <div
+          <button
             className={cn(s.trigger, "cursor-pointer flex items-center gap-2 lg:gap-4", {
               [s.active]: menuOpen,
             })}
             onClick={() => setMenuOpen((prev) => !prev)}
+            type="button"
           >
             <div className={cn(s.cross, "cursor-pointer")}>
               <MenuX
@@ -115,8 +117,7 @@ export default function Header() {
               <div>KAPAT</div>
               <div>MENÜ</div>
             </div>
-          </div>
-          <Menu open={menuOpen} />
+          </button>
           <nav className={cn(s.nav, "flex flex-col gap-10 lg:flex-row items-center")}>
             <div className={"flex flex-col lg:flex-row items-center gap-10"}>
               {/* <div className={cn(s.navItem, "cursor-pointer hidden lg:block animated-underline-single")}>
@@ -127,6 +128,7 @@ export default function Header() {
               </div>
             </div>
           </nav>
+          <Menu open={menuOpen} />
         </div>
       </header>
     </>
