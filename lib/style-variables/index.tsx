@@ -4,22 +4,30 @@ type StyleVariablesProps = {
 }
 
 export function StyleVariables({ colors = {}, themes = {} }: StyleVariablesProps) {
+  const cssText = `
+    :root {
+      ${Object.entries(colors)
+        .map(([key, value]) => `--${key}: ${value};`)
+        .join("\n      ")}
+    }
+    ${Object.entries(themes)
+      .map(
+        ([key, colors]) => `
+    [data-theme='${key}'], .theme-${key} {
+      ${Object.entries(colors)
+        .map(([key, value]) => `--theme-${key}: ${value};`)
+        .join("\n      ")}
+    }`
+      )
+      .join("\n")}
+  `.trim()
+
+  console.log(cssText)
+
   return (
     <style
-      // biome-ignore lint/security/noDangerouslySetInnerHtml: idk let's find a better way
-      dangerouslySetInnerHTML={{
-        __html: `:root {${Object.entries(colors)
-          .map(([key, value]) => `--${key}: ${value};`)
-          .join("")}}${Object.entries(themes)
-          .map(
-            ([key, colors]) =>
-              `[data-theme='${key}'], .theme-${key} {${Object.entries(colors)
-                .map(([key, value]) => `--theme-${key}: ${value};`)
-                .join("")}}`
-          )
-          .join("")}
-                `,
-      }}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: CSS variables injection
+      dangerouslySetInnerHTML={{ __html: cssText }}
     />
   )
 }

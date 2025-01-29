@@ -7,6 +7,7 @@ import cn from "clsx"
 import type { LenisOptions } from "lenis"
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
+import Script from "next/script"
 
 import { Header } from "@/components/header"
 import { SmoothScroll } from "@/components/smooth-scroll"
@@ -17,10 +18,9 @@ interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   webgl?: boolean | object
 }
 
-export function Wrapper({ children, theme = "dark", className, lenis, ...props }: WrapperProps) {
+export function Wrapper({ children, theme = "light", className, lenis, ...props }: WrapperProps) {
   const pathname = usePathname()
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to trigger on path change
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme)
   }, [pathname, theme])
@@ -30,7 +30,7 @@ export function Wrapper({ children, theme = "dark", className, lenis, ...props }
       <Header />
       <main className={cn(s.main, className)} {...props}>
         {children}
-        <script>{`document.documentElement.setAttribute('data-theme', '${theme}');`}</script>
+        <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script>
       </main>
       {lenis && <SmoothScroll root />}
     </>
