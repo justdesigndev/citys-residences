@@ -21,12 +21,16 @@ export function ScaleOut({ children }: ScaleOutProps) {
 
     const tl = gsap.timeline({
       paused: true,
+      defaults: {
+        ease: "none",
+      },
     })
 
     tl.fromTo(
-      ".gsap-scale-out-inner",
+      scaleOut.querySelector(".gsap-scale-out-inner"),
       {
         yPercent: 0,
+        opacity: 1,
       },
       {
         yPercent: -50,
@@ -44,7 +48,7 @@ export function ScaleOut({ children }: ScaleOutProps) {
       pinSpacing: false,
       scrub: true,
     })
-  })
+  }, [])
 
   return (
     <div ref={scaleOutRef} className="gsap-scale-out">
