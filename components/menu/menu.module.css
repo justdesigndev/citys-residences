@@ -91,7 +91,7 @@
       margin-bottom: mobile-vw(100px);
 
       @include-media ('desktop') {
-        margin-bottom: desktop-vw(50px);
+        margin-bottom: desktop-vw(150px);
       }
 
       .navList {
@@ -99,9 +99,21 @@
         gap: mobile-vw(16px);
 
         @include-media ('desktop') {
-          height: desktop-vw(400px);
-          column-gap: desktop-vw(40px);
-          row-gap: desktop-vw(16px);
+          height: desktop-vw(350px);
+          column-gap: desktop-vw(120px);
+          row-gap: desktop-vw(14px);
+        }
+
+        @include-media ('hover') {
+          &:hover {
+            .navItem {
+              opacity: 0.5;
+            }
+
+            .navItem:hover {
+              opacity: 1;
+            }
+          }
         }
       }
 
