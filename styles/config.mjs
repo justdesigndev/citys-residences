@@ -3,6 +3,8 @@ const colors = {
   black: "#000000",
   white: "#ffffff",
   "bricky-brick": "#b73d25",
+  "namara-grey": "#7b7b7b",
+  "moon-veil": "#8B9BB1",
 }
 
 const themes = {

@@ -27,7 +27,7 @@ export default function LocaleSwitcher() {
 
   return (
     <Select value={locale} onValueChange={setLocale}>
-      <SelectTrigger className={cn(s.selectTrigger, "text-foreground")}>
+      <SelectTrigger className={cn(s.selectTrigger, "text-foreground rounded-md")}>
         <SelectValue placeholder={locale.toUpperCase()} />
       </SelectTrigger>
       <SelectContent className={cn(s.selectContent, "text-foreground")}>
