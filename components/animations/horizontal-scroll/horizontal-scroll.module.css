@@ -4,8 +4,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  outline: desktop-vw(25px) solid var(--bricky-brick);
-  outline-offset: desktop-vw(-25px);
+  outline: desktop-vw(15px) solid var(--bricky-brick);
+  outline-offset: desktop-vw(-15px);
   pointer-events: none;
   z-index: 100;
 }
