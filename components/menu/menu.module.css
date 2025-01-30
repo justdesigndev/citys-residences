@@ -27,14 +27,16 @@
   z-index: 150;
 
   .backdrop {
-    backdrop-filter: blur(16px);
-    background: hsla(10, 66%, 43%, 0.85);
-    border-radius: 4px;
-    height: 200%;
-    inset: 0;
-    mask-image: hsla(10, 66%, 43%, 0.85);
-    pointer-events: none;
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: hsla(10, 66%, 43%, 0.8);
+    pointer-events: none;
+    backdrop-filter: blur(16px);
+    mask-image: hsla(10, 66%, 43%, 0.8);
     z-index: 1390;
   }
 
