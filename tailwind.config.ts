@@ -47,6 +47,7 @@ const config: Config = {
         "span-24": "span 24 / span 24",
       },
       colors: {
+        "bricky-brick-light": "rgba(183, 61, 37, 0.15)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

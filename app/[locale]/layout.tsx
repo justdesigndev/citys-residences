@@ -10,6 +10,7 @@ import localFont from "next/font/local"
 import { GSAP } from "@/components/gsap"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { StickyBadge } from "@/components/sticky-badge"
+import { ReactQueryProvider } from "@/components/react-query-provider"
 
 const halenoir = localFont({
   src: [
@@ -91,10 +92,14 @@ export default async function LocaleLayout({
         <StyleVariables colors={colors} themes={themes} />
       </head>
       <body className={`${halenoir.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ReactQueryProvider>
+            {children}
+            <StickyBadge />
+          </ReactQueryProvider>
+        </NextIntlClientProvider>
         <GSAP scrollTrigger={true} />
         <SmoothScroll root={true} />
-        <StickyBadge />
       </body>
     </html>
   )
