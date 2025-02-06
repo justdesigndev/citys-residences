@@ -9,9 +9,10 @@ interface TextRevealOnScrollProps {
   children: React.ReactNode
   staggerDuration?: number
   splitBy?: "words" | "characters" | "lines" | string
+  className?: string
 }
 
-export function TextRevealOnScroll({ children, staggerDuration = 0.005 }: TextRevealOnScrollProps) {
+export function TextRevealOnScroll({ children, staggerDuration = 0.005, className }: TextRevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null)
   const textRef = useRef<VerticalCutRevealRef>(null)
 
@@ -26,7 +27,7 @@ export function TextRevealOnScroll({ children, staggerDuration = 0.005 }: TextRe
   })
 
   return (
-    <span ref={ref}>
+    <span className={className} ref={ref}>
       <VerticalCutReveal
         autoStart={false}
         splitBy="characters"

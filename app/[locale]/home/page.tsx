@@ -43,8 +43,10 @@ export default function Home() {
       <section className="bg-white font-halenoir py-12 dt:py-12 z-20 relative">
         <div className="container mx-auto py-12 dt:py-24 relative flex flex-col items-center">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-bricky-brick text-5xl dt:text-8xl font-medium tracking-widest">
-              <TextRevealOnScroll staggerDuration={0.05}>YAŞAMA</TextRevealOnScroll>
+            <h1 className="font-lexend-giga text-bricky-brick text-5xl dt:text-8xl font-medium tracking-widest">
+              <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
+                YAŞAMA
+              </TextRevealOnScroll>
             </h1>
             <div className={s.sanati}>
               <FadeInOnScroll>
