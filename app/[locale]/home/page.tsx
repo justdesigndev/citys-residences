@@ -99,7 +99,7 @@ export default function Home() {
       <section className="z-20 relative font-halenoir">
         <ZoomMap />
       </section>
-      <section className="relative">
+      <section className="relative py-24">
         <ParallaxImagesSection />
       </section>
       <section className="relative">
