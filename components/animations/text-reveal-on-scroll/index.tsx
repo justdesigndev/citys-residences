@@ -8,6 +8,7 @@ import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/animations
 interface TextRevealOnScrollProps {
   children: React.ReactNode
   staggerDuration?: number
+  splitBy?: "words" | "characters" | "lines" | string
 }
 
 export function TextRevealOnScroll({ children, staggerDuration = 0.005 }: TextRevealOnScrollProps) {

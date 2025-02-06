@@ -6,12 +6,8 @@ import cn from "clsx"
 import { useEffect, useRef, useState } from "react"
 
 import { gsap, useGSAP } from "@/components/gsap"
-import { Logo } from "@/components/icons"
-import { Img } from "@/components/utility/img"
-// import { Link, Link as LocalizedLink } from "@/i18n/routing"
-import { initialScroll } from "@/lib/constants"
 import Link from "next/link"
-import VerticalCutReveal, { VerticalCutRevealRef } from "../animations/vertical-cut-reveal"
+import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/animations/vertical-cut-reveal"
 
 const navigationItems: Array<{
   title: string
@@ -35,7 +31,7 @@ interface MenuProps {
 export default function Menu({ open }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
-  const maskTL = useRef<gsap.core.Timeline>()
+  // const maskTL = useRef<gsap.core.Timeline>()
   // const blurTL = useRef<gsap.core.Timeline>()
 
   const [animateLinks, setAnimateLinks] = useState(false)
@@ -99,38 +95,41 @@ export default function Menu({ open }: MenuProps) {
       menuTL.current = gsap.timeline({
         paused: true,
         onReverseComplete: () => {
-          maskTL.current?.reverse()
+          // maskTL.current?.reverse()
           animateLinksBackwards()
         },
       })
-      maskTL.current = gsap.timeline({ paused: true })
+      // maskTL.current = gsap.timeline({ paused: true })
 
       menuTL.current?.fromTo(
         ref.current,
-        { clipPath: "inset(0% 10% 100%)" },
+        { clipPath: "inset(0% 100% 0% 0%)" },
         {
-          clipPath: "inset(0% 0% 0%)",
+          clipPath: "inset(0% 0% 0% 0%)",
           duration: 1.2,
           ease: "expo.inOut",
+          onEnd: () => {
+            animateLinksForwards()
+          },
         }
       )
 
-      maskTL.current?.fromTo(
-        ".mask",
-        {
-          clipPath: "inset(100% 0% 0%)",
-        },
-        {
-          clipPath: "inset(0% 0% 0%)",
-          duration: 0.8,
-          delay: 1.2,
-          ease: "expo.inOut",
-          onStart: () => {
-            animateLinksForwards()
-          },
-        },
-        "-=0.5"
-      )
+      // maskTL.current?.fromTo(
+      //   ".mask",
+      //   {
+      //     clipPath: "inset(100% 0% 0%)",
+      //   },
+      //   {
+      //     clipPath: "inset(0% 0% 0%)",
+      //     duration: 0.8,
+      //     delay: 1.2,
+      //     ease: "expo.inOut",
+      //     onStart: () => {
+      //       animateLinksForwards()
+      //     },
+      //   },
+      //   "-=0.5"
+      // )
     },
 
     {
@@ -142,11 +141,10 @@ export default function Menu({ open }: MenuProps) {
   useGSAP(
     () => {
       if (open) {
+        // maskTL.current?.revert()
         animateLinksBackwards()
-        maskTL.current?.revert()
-
         menuTL.current?.play()
-        maskTL.current?.play()
+        // maskTL.current?.play()
         // blurTL.current?.play()
         // addBlur()
       } else {
@@ -167,10 +165,10 @@ export default function Menu({ open }: MenuProps) {
         <div className={cn(s.menu, "menu")}>
           <div className={s.backdrop}></div>
           <div className={cn(s.content, "flex items-center dd:items-end w-full h-full")}>
-            <Link className={cn(s.logoC, "cursor-pointer")} href="/" scroll={initialScroll}>
+            {/* <Link className={cn(s.logoC, "cursor-pointer")} href="/" scroll={initialScroll}>
               <Logo fill="var(--white)" small />
-            </Link>
-            <div className={cn(s.imgC, "img-c relative overflow-hidden")}>
+            </Link> */}
+            {/* <div className={cn(s.imgC, "img-c relative overflow-hidden")}>
               <div className={cn(s.mask, "w-full h-full mask overflow-hidden")}>
                 <Img
                   src="/img/menu.jpg"
@@ -181,9 +179,9 @@ export default function Menu({ open }: MenuProps) {
                   sizes="30vw"
                 />
               </div>
-            </div>
+            </div> */}
             <nav className={cn(s.nav)}>
-              <ul className={cn("flex flex-col flex-wrap items-center dt:items-start", s.navList)}>
+              <ul className={cn("flex flex-col flex-wrap items-center dt:items-start justify-center", s.navList)}>
                 {navigationItems.map(({ title, href }) => (
                   <li className={cn(s.navItem)} key={title}>
                     <Link className="cursor-pointer" href={href}>

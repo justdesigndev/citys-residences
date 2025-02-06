@@ -13,17 +13,16 @@
   bottom: 0;
   left: 0;
   position: absolute;
-  right: 0;
+  right: auto;
   top: 0;
 }
 
 .menu {
   height: 100vh;
-  left: 50%;
+  left: 0;
   position: absolute;
   top: 0;
-  transform: translateX(-50%);
-  width: 100vw;
+  width: 35vw;
   z-index: 150;
 
   .backdrop {
@@ -35,7 +34,7 @@
     height: 100%;
     background: hsla(10, 66%, 43%, 0.8);
     pointer-events: none;
-    /* backdrop-filter: blur(16px); */
+    backdrop-filter: blur(16px);
     mask-image: hsla(10, 66%, 43%, 0.8);
     z-index: 1390;
   }
@@ -56,7 +55,7 @@
       padding: desktop-vw(40px);
     }
 
-    .mask {
+    /* .mask {
       clip-path: inset(0% 10% 100%);
       position: relative;
     }
@@ -87,21 +86,19 @@
       @include-media ('desktop') {
         height: desktop-vw(650px);
       }
-    }
+    } */
 
     .nav {
-      margin-bottom: mobile-vw(100px);
+      /* margin-bottom: mobile-vw(100px); */
 
-      @include-media ('desktop') {
+      /* @include-media ('desktop') {
         margin-bottom: desktop-vw(150px);
-      }
+      } */
 
       .navList {
-        height: auto;
         gap: mobile-vw(16px);
 
         @include-media ('desktop') {
-          height: desktop-vw(350px);
           column-gap: desktop-vw(120px);
           row-gap: desktop-vw(14px);
         }
@@ -133,7 +130,7 @@
         }
 
         @include-media ('desktop') {
-          font-size: desktop-vw(32px);
+          font-size: desktop-vw(24px);
         }
       }
     }

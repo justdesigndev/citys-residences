@@ -1,5 +1,6 @@
 "use client"
 
+import { ResponsiveLetterSpacing } from "@/components/responsive-letter-spacing"
 import s from "./horizontal-scroll.module.css"
 
 import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
@@ -75,7 +76,7 @@ export function HorizontalScroll({
 
       textTL.from(".gsap-text", {
         yPercent: -100,
-        ease: "expo.inOut",
+        ease: "expo.out",
         duration: 1.5,
       })
 
@@ -113,7 +114,9 @@ export function HorizontalScroll({
       <div className={s.container}>
         <div className={cn(s.frame)}>
           <div className={cn(s.text, "gsap-text-container overflow-hidden")}>
-            <div className="gsap-text">{title}</div>
+            <div className="gsap-text">
+              <ResponsiveLetterSpacing text={title} />
+            </div>
           </div>
           <div className={cn(s.infoCardC, "gsap-info-card-c")}>
             <div className={cn(s.infoCard, "gsap-info-card")}>

@@ -8,9 +8,17 @@ import { getMessages, getTranslations } from "next-intl/server"
 import localFont from "next/font/local"
 
 import { GSAP } from "@/components/gsap"
+import { ReactQueryProvider } from "@/components/react-query-provider"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { StickyBadge } from "@/components/sticky-badge"
-import { ReactQueryProvider } from "@/components/react-query-provider"
+
+import { Lexend_Giga } from "next/font/google"
+
+const lexendGiga = Lexend_Giga({
+  subsets: ["latin"],
+  variable: "--font-lexend-giga",
+  weight: ["400", "500", "600", "700", "800"],
+})
 
 const halenoir = localFont({
   src: [
@@ -91,7 +99,7 @@ export default async function LocaleLayout({
       <head>
         <StyleVariables colors={colors} themes={themes} />
       </head>
-      <body className={`${halenoir.variable} antialiased`}>
+      <body className={`${halenoir.variable} ${lexendGiga.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
             {children}
