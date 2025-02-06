@@ -3,11 +3,11 @@
 import s from "./menu.module.css"
 
 import cn from "clsx"
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
-import { gsap, useGSAP } from "@/components/gsap"
-import Link from "next/link"
 import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/animations/vertical-cut-reveal"
+import { gsap, useGSAP } from "@/components/gsap"
 
 const navigationItems: Array<{
   title: string
@@ -31,75 +31,20 @@ interface MenuProps {
 export default function Menu({ open }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
-  // const maskTL = useRef<gsap.core.Timeline>()
-  // const blurTL = useRef<gsap.core.Timeline>()
 
   const [animateLinks, setAnimateLinks] = useState(false)
 
   const animateLinksForwards = () => setAnimateLinks(true)
-  const animateLinksBackwards = () => setAnimateLinks(false)
-
-  // useGSAP(
-  //   () => {
-  //     const blurElements = Array.from(document.querySelectorAll(".gsap-blur"))
-
-  //     blurElements.forEach((element) => {
-  //       element.style.filter = "blur(16px)"
-  //     })
-
-  //     // if (blurElements.length === 0) return
-
-  //     // blurTL.current = gsap.timeline({
-  //     //   paused: true,
-  //     // })
-
-  //     // blurTL.current?.fromTo(
-  //     //   blurElements,
-  //     //   {
-  //     //     filter: "blur(0px)",
-  //     //     ease: "power1.inOut",
-  //     //   },
-  //     //   {
-  //     //     filter: "blur(16px)",
-  //     //     delay: 0.4,
-  //     //     duration: 1.2,
-  //     //     ease: "power1.inOut",
-  //     //   }
-  //     // )
-  //   },
-  //   {
-  //     dependencies: [],
-  //   }
-  // )
-
-  // function addBlur() {
-  //   const blurElements = Array.from(document.querySelectorAll(".gsap-blur"))
-
-  //   blurElements.forEach((element) => {
-  //     element.style.filter = "blur(16px)"
-  //     element.style.transition = "filter 0.8s ease-in-out"
-  //   })
-  // }
-
-  // function removeBlur() {
-  //   const blurElements = Array.from(document.querySelectorAll(".gsap-blur"))
-
-  //   blurElements.forEach((element) => {
-  //     element.style.filter = "blur(0px)"
-  //     element.style.transition = "filter 0.8s ease-in-out"
-  //   })
-  // }
+  // const animateLinksBackwards = () => setAnimateLinks(false)
 
   useGSAP(
     () => {
       menuTL.current = gsap.timeline({
         paused: true,
-        onReverseComplete: () => {
-          // maskTL.current?.reverse()
-          animateLinksBackwards()
-        },
+        // onReverseComplete: () => {
+        //   animateLinksBackwards()
+        // },
       })
-      // maskTL.current = gsap.timeline({ paused: true })
 
       menuTL.current?.fromTo(
         ref.current,
@@ -113,92 +58,55 @@ export default function Menu({ open }: MenuProps) {
           },
         }
       )
-
-      // maskTL.current?.fromTo(
-      //   ".mask",
-      //   {
-      //     clipPath: "inset(100% 0% 0%)",
-      //   },
-      //   {
-      //     clipPath: "inset(0% 0% 0%)",
-      //     duration: 0.8,
-      //     delay: 1.2,
-      //     ease: "expo.inOut",
-      //     onStart: () => {
-      //       animateLinksForwards()
-      //     },
-      //   },
-      //   "-=0.5"
-      // )
     },
 
     {
       scope: ref,
-      revertOnUpdate: true,
     }
   )
 
   useGSAP(
     () => {
       if (open) {
-        // maskTL.current?.revert()
-        animateLinksBackwards()
         menuTL.current?.play()
-        // maskTL.current?.play()
-        // blurTL.current?.play()
-        // addBlur()
       } else {
         menuTL.current?.reverse()
-        // blurTL.current?.reverse()
-        // removeBlur()
       }
     },
     {
       dependencies: [open],
-      revertOnUpdate: true,
     }
   )
 
   return (
     <div className={cn(s.frame)} ref={ref}>
-      <div className={cn(s.wrapper, "wrapper")}>
-        <div className={cn(s.menu, "menu")}>
-          <div className={s.backdrop}></div>
-          <div className={cn(s.content, "flex items-center dd:items-end w-full h-full")}>
-            {/* <Link className={cn(s.logoC, "cursor-pointer")} href="/" scroll={initialScroll}>
-              <Logo fill="var(--white)" small />
-            </Link> */}
-            {/* <div className={cn(s.imgC, "img-c relative overflow-hidden")}>
-              <div className={cn(s.mask, "w-full h-full mask overflow-hidden")}>
-                <Img
-                  src="/img/menu.jpg"
-                  alt="Aerial view of City's Residences"
-                  fill
-                  className={cn(s.img, "object-cover absolute bottom-0 left-0 right-0")}
-                  priority
-                  sizes="30vw"
-                />
-              </div>
-            </div> */}
-            <nav className={cn(s.nav)}>
-              <ul className={cn("flex flex-col flex-wrap items-center dt:items-start justify-center", s.navList)}>
-                {navigationItems.map(({ title, href }) => (
-                  <li className={cn(s.navItem)} key={title}>
-                    <Link className="cursor-pointer" href={href}>
-                      <AnimatedLink animate={animateLinks}>{title}</AnimatedLink>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </div>
+      <div className={cn(s.menu, "menu")} onClick={() => animateLinksForwards()}>
+        <div className={s.backdrop}></div>
+        <nav className={cn(s.nav)}>
+          <ul className={cn("flex flex-col flex-wrap items-center dt:items-start justify-center", s.navList)}>
+            {navigationItems.map(({ title, href }) => (
+              <li className={cn(s.navItem)} key={title}>
+                <Link className="cursor-pointer" href={href}>
+                  <AnimatedLink animate={animateLinks}>{title}</AnimatedLink>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   )
 }
 
-const AnimatedLink = ({ children, animate }: { children: React.ReactNode; animate: boolean }) => {
+const AnimatedLink = ({
+  children,
+  animate,
+  reset,
+}: {
+  children: React.ReactNode
+  animate: boolean
+  reset?: boolean
+}) => {
   const textRef = useRef<VerticalCutRevealRef>(null)
 
   useEffect(() => {
@@ -215,11 +123,17 @@ const AnimatedLink = ({ children, animate }: { children: React.ReactNode; animat
     }
   }, [animate])
 
+  useEffect(() => {
+    if (reset) {
+      textRef.current?.reset()
+    }
+  }, [reset])
+
   return (
     <VerticalCutReveal
       autoStart={false}
       splitBy="characters"
-      staggerDuration={0.003}
+      staggerDuration={0.005}
       transition={{
         type: "spring",
         stiffness: 130,
