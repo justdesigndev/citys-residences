@@ -18,27 +18,27 @@ export function MPImg(props: MPImgProps) {
       const tl = gsap.timeline({ paused: true })
 
       tl.fromTo(
-        ".gsap-parallax-img-c",
+        ref.current,
         {
-          yPercent: -10,
+          yPercent: -5,
         },
         {
-          yPercent: 10,
+          yPercent: 5,
         },
         "s"
       )
         .fromTo(
           ".gsap-parallax-img",
           {
-            yPercent: -20,
+            yPercent: -10,
           },
           {
-            yPercent: 20,
+            yPercent: 10,
           },
           "s"
         )
-        .from(
-          ".gsap-parallax-img",
+        .to(
+          ".gsap-parallax-img-overlay",
           {
             opacity: 0,
             duration: 0.25,
@@ -59,16 +59,13 @@ export function MPImg(props: MPImgProps) {
   )
 
   return (
-    <div className="w-3/4 aspect-square" ref={ref}>
-      <div className={cn("gsap-parallax-img-c relative overflow-hidden rounded-lg w-full h-full")}>
-        <div className="absolute top-0 left-0 right-0 bottom-0 gsap-overlay z-10 bg-bricky-brick"></div>
-        <Image
-          src={props.imgSrc}
-          alt="Parallax Image"
-          fill
-          className="object-cover gsap-parallax-img mix-blend-overlay z-20"
-        />
-        <Image src={props.imgSrc} alt="Parallax Image" fill className="object-cover gsap-parallax-img z-30" />
+    <div className={cn("gsap-parallax-img-c rounded-lg w-full h-full overflow-hidden")} ref={ref}>
+      <div className="relative w-full h-[110%] gsap-parallax-img">
+        <div className="absolute top-0 left-0 right-0 bottom-0 z-50 isolate gsap-parallax-img-overlay">
+          <div className="bg-bricky-brick absolute w-full h-full z-10"></div>
+          <Image src={props.imgSrc} alt="Parallax Image" fill className="object-cover mix-blend-overlay z-20" />
+        </div>
+        <Image src={props.imgSrc} alt="Parallax Image" fill className="object-cover z-40" />
       </div>
     </div>
   )

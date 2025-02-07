@@ -1,5 +1,7 @@
 import s from "./home.module.css"
 
+import cn from "clsx"
+
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { HorizontalScroll } from "@/components/animations/horizontal-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
@@ -22,6 +24,22 @@ export default function Home() {
     "/img/slides-3/4.jpg",
     "/img/slides-3/5.jpg",
     "/img/slides-3/6.jpg",
+  ]
+
+  const moreSectionData = [
+    {
+      title: "DAHA HUZURLU YAŞA",
+      description: "Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.",
+    },
+    {
+      title: "DAHA ÇOK YAŞA",
+      description:
+        "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir.",
+    },
+    {
+      title: "DAHA DOLU YAŞA",
+      description: "Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.",
+    },
   ]
 
   return (
@@ -62,32 +80,26 @@ export default function Home() {
               </TextRevealOnScroll>
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-8">
-            <div className="col-span-1 space-y-4 text-center mt-60">
-              <MPImg imgSrc="/img/menu.jpg" />
-              <h2 className="font-lexend-giga font-medium text-3xl text-bricky-brick">DAHA HUZURLU YAŞA</h2>
-              <p className="font-halenoir text-xl">
-                Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.
-              </p>
-            </div>
-            <div className="col-span-1 space-y-4 text-center">
-              <div className="relative overflow-hidden rounded-lg w-4/5 aspect-w-3 aspect-h-4 mx-auto">
-                <MPImg imgSrc="/img/menu.jpg" />
+          <div className="grid grid-cols-3 gap-8 mt-24">
+            {moreSectionData.map((item, index) => (
+              <div
+                key={index}
+                className={cn(
+                  "col-span-1 space-y-8 text-center",
+                  index === 0 && "mt-60",
+                  index === 1 && "mt-0",
+                  index === 2 && "mt-32"
+                )}
+              >
+                <div className="relative w-4/5 aspect-w-10 aspect-h-11 mx-auto">
+                  <MPImg imgSrc="/img/menu.jpg" />
+                </div>
+                <div className="space-y-4">
+                  <h2 className="font-lexend-giga font-medium text-3xl text-bricky-brick">{item.title}</h2>
+                  <p className="font-halenoir text-xl">{item.description}</p>
+                </div>
               </div>
-              <h2 className="font-lexend-giga font-medium text-3xl text-bricky-brick">DAHA ÇOK YAŞA</h2>
-              <p className="font-halenoir text-xl">
-                Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir.
-              </p>
-            </div>
-            <div className="col-span-1 space-y-4 text-center mt-32">
-              <div className="relative overflow-hidden rounded-lg w-4/5 aspect-w-3 aspect-h-4 mx-auto">
-                <MPImg imgSrc="/img/menu.jpg" />
-              </div>
-              <h2 className="font-lexend-giga font-medium text-3xl text-bricky-brick">DAHA DOLU YAŞA</h2>
-              <p className="font-halenoir text-xl">
-                Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
