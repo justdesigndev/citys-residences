@@ -31,7 +31,7 @@ export function HorizontalScroll({
         scrollTrigger: {
           trigger: `.${s.container}`,
           pin: true,
-          scrub: 0.5,
+          scrub: true,
           end: "+=5000",
           snap: {
             snapTo: 1 / (sections.length - 1),
