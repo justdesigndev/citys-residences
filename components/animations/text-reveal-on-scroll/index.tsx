@@ -22,7 +22,8 @@ export function TextRevealOnScroll({ children, staggerDuration = 0.005, classNam
     ScrollTrigger.create({
       trigger: ref.current,
       onEnter: () => textRef.current?.startAnimation(),
-      markers: false,
+      start: "top-=100px bottom",
+      markers: true,
     })
   })
 
