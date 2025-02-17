@@ -23,7 +23,7 @@ export function HorizontalScroll({
     () => {
       gsap.registerPlugin(ScrollTrigger)
 
-      const sections = gsap.utils.toArray(`.panel`)
+      const sections = gsap.utils.toArray(`.gsap-panel`)
 
       const scrollTween = gsap.to(sections, {
         xPercent: -100 * (sections.length - 1),
@@ -74,7 +74,7 @@ export function HorizontalScroll({
 
       const textTL = gsap.timeline({ paused: true })
 
-      textTL.from(".gsap-text", {
+      textTL.from(".gsap-title", {
         yPercent: -100,
         ease: "expo.out",
         duration: 1.5,
@@ -82,14 +82,14 @@ export function HorizontalScroll({
 
       ScrollTrigger.create({
         animation: textTL,
-        trigger: ".gsap-text-container",
+        trigger: ".gsap-title-c",
         start: "center center",
         toggleActions: "play none none reverse",
       })
 
       const cardTL = gsap.timeline({ paused: true })
 
-      cardTL.from(".gsap-info-card", {
+      cardTL.from(".gsap-description", {
         yPercent: 30,
         opacity: 0,
         ease: "expo.inOut",
@@ -98,7 +98,7 @@ export function HorizontalScroll({
 
       ScrollTrigger.create({
         animation: cardTL,
-        trigger: ".gsap-info-card-c",
+        trigger: ".gsap-description-c",
         start: "center center",
         toggleActions: "play none none reverse",
       })
@@ -111,22 +111,46 @@ export function HorizontalScroll({
 
   return (
     <div className="overflow-hidden" ref={ref}>
-      <div className={s.container}>
+      <div className={cn(s.container)}>
         <div className={cn(s.frame)}>
-          <div className={cn(s.text, "gsap-text-container overflow-hidden")}>
-            <div className="gsap-text">
+          <div
+            className={cn(
+              s.title,
+              "gsap-title-c",
+              "font-lexend-giga text-white font-bold text-2xl bt:text-4xl bd:text-6xl leading-tight text-center overflow-hidden"
+            )}
+          >
+            <div className="gsap-title">
               <ResponsiveLetterSpacing text={title} />
             </div>
           </div>
-          <div className={cn(s.infoCardC, "gsap-info-card-c")}>
-            <div className={cn(s.infoCard, "gsap-info-card")}>
-              <div className={s.backdrop}></div>
-              <p className={s.infoText}>{description}</p>
+          <div className={cn(s.descriptionC, "gsap-description-c")}>
+            <div
+              className={cn(
+                s.description,
+                "gsap-description w-full h-full rounded-md overflow-hidden p-4 bd:p-8 text-white flex isolate"
+              )}
+            >
+              <p
+                className={cn(
+                  s.infoText,
+                  "font-halenoir text-base text-white font-normal leading-relaxed text-center bd:text-left"
+                )}
+              >
+                {description}
+              </p>
             </div>
           </div>
         </div>
         {items.map((src, index) => (
-          <section key={index} className={cn(s.panel, "panel")}>
+          <section
+            key={index}
+            className={cn(
+              s.panel,
+              "gsap-panel",
+              "min-h-screen h-screen w-screen flex items-center justify-center flex-shrink-0"
+            )}
+          >
             <div className={cn(s.bgImage, "bg-image")}>
               <Image
                 src={src}

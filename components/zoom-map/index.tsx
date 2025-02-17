@@ -38,8 +38,13 @@ export function ZoomMap() {
   )
 
   return (
-    <div className="w-screen h-screen flex gap-24 items-center justify-center" ref={ref}>
-      <div className={cn(s.mapC, "relative rounded-full overflow-hidden z-10")}>
+    <div className="w-screen h-screen flex flex-col bd:flex-row gap-8 bd:gap-4 items-center justify-center" ref={ref}>
+      <div className="max-w-xs mb-0 bd:mb-64">
+        <h2 className="text-halenoir text-xl bd:text-3xl font-normal leading-relaxed text-black text-center bd:text-left">
+          İstanbul&apos;un kalbinde, Kozyatağı&apos;nın prestijli lokasyonunda
+        </h2>
+      </div>
+      <div className={cn(s.mapC, "relative rounded-full overflow-hidden z-10 flex-shrink-0")}>
         <Image
           src="/img/map.jpg"
           alt="City's Residences Istanbul"
@@ -50,10 +55,9 @@ export function ZoomMap() {
           width={8000}
         />
       </div>
-      <div className="max-w-xl">
-        <h2 className="text-halenoir text-3xl font-normal leading-relaxed text-black">
-          İstanbul&apos;un kalbinde, Kozyatağının prestijli lokasyonunda, şehri ve zamanı kendi ritminize göre yaşama
-          fırsatı edinin.
+      <div className="max-w-xs mb-0 bd:mb-32 bd:ml-8">
+        <h2 className="text-halenoir text-xl bd:text-3xl font-normal leading-relaxed text-black text-center bd:text-left">
+          şehri ve zamanı kendi ritminize göre yaşama fırsatı edinin.
         </h2>
       </div>
     </div>

@@ -70,7 +70,7 @@
   }
 
   .logoC {
-    height: desktop-vw(110px);
+    height: mobile-vw(64px);
     left: 50%;
     opacity: 0;
     pointer-events: none;
@@ -82,27 +82,35 @@
     transition: 400ms all ease;
     z-index: 130;
 
-    @include-media ('mobile') {
-      height: mobile-vw(100px);
-      top: mobile-vw(-6px);
+    @include-media ('tablet') {
+      height: tablet-vw(80px);
+    }
+
+    @include-media ('desktop') {
+      height: desktop-vw(110px);
     }
   }
 
   .trigger {
-    color: var(--white);
-    font-family: var(--font-halenoir);
     z-index: 200;
 
     .text {
       display: grid;
-      font-size: desktop-vw(12px);
+      font-size: mobile-vw(14px);
       overflow: hidden;
+      transform: translateY(2px);
 
-      @include-media ('mobile') {
-        font-size: mobile-vw(12px);
+      @include-media ('tablet') {
+        font-size: tablet-vw(12px);
       }
 
-      > div {
+      @include-media ('desktop') {
+        font-size: desktop-vw(14px);
+      }
+
+      > span {
+        display: block;
+        line-height: 1.25;
         grid-area: 1/1;
         transition: 600ms transform ease;
 
@@ -112,7 +120,7 @@
       }
 
       &.active {
-        > div {
+        > span {
           &:first-child {
             transform: translateY(0%);
           }
@@ -121,13 +129,6 @@
             transform: translateY(100%);
           }
         }
-      }
-
-      @include mobile {
-        height: mobile-vw(24px);
-        margin-left: auto;
-        width: mobile-vw(24px);
-        z-index: 200;
       }
     }
   }

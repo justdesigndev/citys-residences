@@ -109,7 +109,7 @@ const FormSelect = ({
       <FormItem>
         <FormControl>
           <Select onValueChange={field.onChange} value={field.value?.toString() || ""}>
-            <SelectTrigger className="h-11 border border-bricky-brick-light rounded-md text-neutral-900 cursor-pointer">
+            <SelectTrigger className="h-11 text-sm border border-bricky-brick-light rounded-md text-neutral-900 cursor-pointer">
               <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent className="text-neutral-900">
@@ -275,15 +275,18 @@ export function ContactForm() {
             ]}
           />
         </div>
-        <div className="grid grid-flow-col rounded-md border border-bricky-brick-light">
+        <div className="grid grid-flow-col">
           <FormField
             control={form.control}
             name="message"
             render={({ field }) => (
               <FormItem className="space-y-0 pt-2">
-                <FormLabel className="text-neutral-900 pl-4 leading-none">MESAJINIZ</FormLabel>
+                <FormLabel className="text-neutral-900 font-normal pl-4 leading-none">MESAJINIZ</FormLabel>
                 <FormControl>
-                  <Textarea {...field} className={`${commonInputStyles} min-h-[140px] border-none p-4 pt-0`} />
+                  <Textarea
+                    {...field}
+                    className={`${commonInputStyles} min-h-[140px] border-none p-4 pt-0 rounded-md border border-bricky-brick-light`}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -304,7 +307,7 @@ export function ContactForm() {
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
-                  <FormLabel className="text-neutral-900 font-light leading-snug cursor-pointer">
+                  <FormLabel className="text-neutral-900 font-light leading-snug cursor-pointer max-w-[90%]">
                     Bize Ulaşın uygulaması kapsamında paylaşacağım kişisel verilere ilişkin Aydınlatma Metni&apos;ni
                     okudum ve aydınlatma metni kapsamında paylaşacağım kişisel verilere ilişkin Açık Rıza Metni&apos;ni
                     okudum, kabul ediyorum.

@@ -30,14 +30,16 @@ const config = {
     "postcss-nesting": {},
     "postcss-include-media": {
       breakpoints: {
-        dt: `${_breakpoints.dt}px`,
-        dd: `${_breakpoints.dd}px`,
+        bm: `${_breakpoints.breakpointMobile}px`,
+        bt: `${_breakpoints.breakpointTablet}px`,
       },
       mediaExpressions: {
         hover: "(hover: hover)",
-        mobile: `(max-width: ${_breakpoints.dt - 1}px)`,
-        tablet: `(min-width: ${_breakpoints.dt}px)`,
-        desktop: `(min-width: ${_breakpoints.dd}px)`,
+        mobile: `(max-width: ${_breakpoints.breakpointMobile - 1}px)`,
+        tablet: `(min-width: ${_breakpoints.breakpointMobile}px) and (max-width: ${
+          _breakpoints.breakpointTablet - 1
+        }px)`,
+        desktop: `(min-width: ${_breakpoints.breakpointTablet}px)`,
         "reduced-motion": "(prefers-reduced-motion: reduce)",
       },
     },

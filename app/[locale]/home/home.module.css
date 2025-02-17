@@ -1,4 +1,21 @@
+.intro {
+  height: mobile-vw(300px);
+
+  @include-media ('tablet') {
+    height: tablet-vw(500px);
+  }
+
+  @include-media ('desktop') {
+    height: 100vh;
+  }
+}
+
 .sanati {
-  height: desktop-vw(240px);
-  width: desktop-vw(1100px);
+  height: mobile-vw(100px);
+  width: mobile-vw(360px);
+
+  @include-media ('desktop') {
+    height: desktop-vw(240px);
+    width: desktop-vw(1100px);
+  }
 }

@@ -51,8 +51,8 @@ export function ScaleOut({ children }: ScaleOutProps) {
   }, [])
 
   return (
-    <div ref={scaleOutRef} className="gsap-scale-out">
-      <div className="gsap-scale-out-inner">{children}</div>
+    <div ref={scaleOutRef} className="gsap-scale-out h-full w-full">
+      <div className="gsap-scale-out-inner h-full w-full">{children}</div>
     </div>
   )
 }

@@ -1,27 +1,24 @@
 .stickyBadge {
-  background-color: var(--bricky-brick);
-  height: desktop-vw(200px);
-  width: desktop-vw(38px);
+  border-radius: desktop-vw(4px);
+  color: var(--white);
+  font-family: var(--font-lexend-giga);
+  height: desktop-vw(40px);
+  opacity: 1;
+  pointer-events: auto;
   position: fixed;
-  right: 0;
-  top: 50%;
+  top: calc(var(--header-height) / 2);
   transform: translateY(-50%);
-  z-index: 1000;
-  border-top-left-radius: desktop-vw(20px);
-  border-bottom-left-radius: desktop-vw(20px);
-  overflow: hidden;
+  transition: 400ms all ease;
+  right: desktop-vw(40px);
+  width: desktop-vw(160px);
+  z-index: 200;
 
-  > span {
-    color: var(--white);
-    display: block;
-    font-family: var(--font-halenoir);
-    font-size: desktop-vw(18px);
-    font-weight: 500;
-    left: 50%;
-    position: absolute;
-    transform: translate(-47.5%, -50%) rotate(-90deg);
-    transform-origin: center center;
-    top: 50%;
-    white-space: nowrap;
+  background: hsla(10, 66%, 43%, 0.8);
+  backdrop-filter: blur(16px);
+  mask-image: hsla(10, 66%, 43%, 0.8);
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 }

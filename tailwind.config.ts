@@ -22,8 +22,8 @@ const config: Config = {
       },
     },
     screens: {
-      dt: `${breakpoints.dt}px`,
-      dd: `${breakpoints.dt}px`,
+      bt: `${breakpoints.breakpointMobile}px`,
+      bd: `${breakpoints.breakpointTablet}px`,
       sm: "40rem",
       md: "48rem",
       lg: "64rem",

@@ -10,38 +10,63 @@
   border-radius: desktop-vw(5px);
   padding: var(--padding);
 
+  @include-media ('mobile') {
+    --padding: mobile-vw(4px);
+    --height: mobile-vw(36px);
+    --width: mobile-vw(180px);
+
+    .text {
+      font-size: mobile-vw(12px);
+    }
+  }
+
+  @include-media ('tablet') {
+    --padding: mobile-vw(2px);
+    --height: mobile-vw(30px);
+    --width: mobile-vw(150px);
+
+    .text {
+      font-size: mobile-vw(10px);
+    }
+  }
+
+  @include-media ('desktop') {
+    --padding: desktop-vw(6px);
+    --height: desktop-vw(42px);
+    --width: desktop-vw(200px);
+
+    .text {
+      font-size: desktop-vw(14px);
+    }
+  }
+
   @include-media ('hover') {
     &:hover {
-      .text {
-        color: var(--white);
-        transform: translateX(50%);
-      }
     }
   }
 
   .text {
+    color: var(--bricky-brick);
     font-family: var(--font-halenoir);
     font-size: desktop-vw(14px);
     font-weight: 500;
-    padding-left: var(--padding);
+    line-height: 1;
     white-space: nowrap;
-    transition: 0.8s color ease, 0.8s transform ease;
+    padding-top: 2px;
   }
 
   .iconC {
     height: calc(var(--height) - var(--padding) * 2);
     width: calc(var(--height) - var(--padding) * 2);
-    position: relative;
-
-    .transformC {
-      height: 100%;
-      width: 100%;
-      will-change: transform;
-    }
 
     .icon {
       height: desktop-vw(15px);
       width: desktop-vw(15px);
+
+      @include-media ('mobile') {
+        height: mobile-vw(12px);
+        width: mobile-vw(12px);
+      }
     }
   }
 }

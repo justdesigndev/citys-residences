@@ -1,4 +1,15 @@
 .mapC {
-  height: desktop-vw(600px);
-  width: desktop-vw(600px);
+  --cutoff: mobile-vw(20px);
+  height: calc(100vw - var(--cutoff));
+  width: calc(100vw - var(--cutoff));
+
+  @include-media ('tablet') {
+    --cutoff: tablet-vw(150px);
+  }
+
+  @include-media ('desktop') {
+    --cutoff: desktop-vw(150px);
+    height: calc(100vh - var(--cutoff));
+    width: calc(100vh - var(--cutoff));
+  }
 }

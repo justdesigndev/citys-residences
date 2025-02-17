@@ -10,9 +10,15 @@ interface TextRevealOnScrollProps {
   staggerDuration?: number
   splitBy?: "words" | "characters" | "lines" | string
   className?: string
+  textAlign?: "left" | "center" | "right"
 }
 
-export function TextRevealOnScroll({ children, staggerDuration = 0.005, className }: TextRevealOnScrollProps) {
+export function TextRevealOnScroll({
+  children,
+  staggerDuration = 0.005,
+  className,
+  textAlign = "left",
+}: TextRevealOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null)
   const textRef = useRef<VerticalCutRevealRef>(null)
 
@@ -38,6 +44,13 @@ export function TextRevealOnScroll({ children, staggerDuration = 0.005, classNam
           stiffness: 190,
           damping: 42,
         }}
+        containerClassName={
+          {
+            center: "justify-center",
+            right: "justify-end",
+            left: "justify-start",
+          }[textAlign]
+        }
         ref={textRef}
       >
         {children}

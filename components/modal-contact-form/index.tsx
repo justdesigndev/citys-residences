@@ -58,12 +58,11 @@ export default function ModalContactForm({ open }: ModalContactFormProps) {
     <div className={cn(s.frame)} ref={ref}>
       <div className={cn(s.wrapper, "wrapper")}>
         <div className={cn(s.menu, "menu")}>
-          <div className={s.backdrop}></div>
           <div className={cn(s.content, "flex items-center justify-center w-full h-full")}>
             <div className={cn(s.box, "rounded-2xl overflow-hidden")}>
               <div className="bg-white grid grid-cols-2 w-full h-full">
-                <div className="col-span-1 p-10 space-y-16 flex flex-col justify-center">
-                  <h1 className="text-bricky-brick text-2xl font-normal font-halenoir max-w-xl">
+                <div className="col-span-1 flex flex-col justify-center gap-10 px-12">
+                  <h1 className="text-2xl font-normal font-halenoir max-w-xl">
                     Lütfen iletişim bilgilerinizi giriniz. Satış ekibimiz kısa süre içinde sizinle iletişime geçecektir.
                   </h1>
                   <ContactForm />

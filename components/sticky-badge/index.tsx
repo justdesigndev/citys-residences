@@ -7,13 +7,20 @@ import { useState } from "react"
 
 import ModalContactForm from "@/components/modal-contact-form"
 
-export function StickyBadge() {
+interface StickyBadgeProps {
+  hidden: boolean
+}
+
+export function StickyBadge({ hidden }: StickyBadgeProps) {
   const [open, setOpen] = useState(false)
 
   return (
     <>
-      <div className={cn(s.stickyBadge, "cursor-pointer")} onClick={() => setOpen((prev) => !prev)}>
-        <span className="text-foreground text-xl">{open ? "KAPAT" : "RANDEVU AL"}</span>
+      <div
+        className={cn(s.stickyBadge, "flex items-center justify-center cursor-pointer", { [s.hidden]: !hidden })}
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        <span className="text-foreground text-base">{open ? "KAPAT" : "RANDEVU AL"}</span>
       </div>
       <ModalContactForm open={open} />
     </>

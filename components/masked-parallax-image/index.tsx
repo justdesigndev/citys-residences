@@ -76,7 +76,7 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParal
 
   return (
     <div className="px-10 py-28" ref={ref}>
-      <div className={cn("grid grid-cols-24 items-center")}>
+      <div className={cn("flex flex-col bt:grid bt:grid-cols-24 bt:items-center")}>
         <div
           className={cn(
             "gsap-parallax-text col-span-6",

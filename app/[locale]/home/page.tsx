@@ -59,9 +59,9 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <section className="h-screen w-screen bg-bricky-brick relative z-10 overflow-hidden">
+      <section className={cn(s.intro, "bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
-          <div>
+          <div className="h-full w-full">
             <Video
               primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
               autoPlay
@@ -73,10 +73,10 @@ export default function Home() {
           </div>
         </ScaleOut>
       </section>
-      <section className="bg-white font-halenoir py-12 dt:py-12 z-20 relative">
-        <div className="container mx-auto py-12 dt:py-24 relative flex flex-col items-center">
+      <section className="bg-white font-halenoir py-6 bt:py-12 z-20 relative">
+        <div className="container mx-auto py-6 bt:py-12 relative flex flex-col items-center">
           <div className="flex flex-col items-center text-center">
-            <h1 className="font-lexend-giga text-bricky-brick text-5xl dt:text-8xl font-medium tracking-widest">
+            <h1 className="font-lexend-giga text-bricky-brick text-5xl bt:text-8xl font-medium tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
                 YAŞAMA
               </TextRevealOnScroll>
@@ -84,34 +84,34 @@ export default function Home() {
             <div className={s.sanati}>
               <FadeInOnScroll>
                 <div className="relative w-full h-full">
-                  <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="80vw" />
+                  <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="90vw" />
                 </div>
               </FadeInOnScroll>
               <span className="sr-only">SANATI</span>
             </div>
-            <p className="text-bricky-brick text-lg dt:text-3xl font-normal tracking-widest">
-              <TextRevealOnScroll staggerDuration={0.01}>
+            <p className="text-bricky-brick text-xl bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
+              <TextRevealOnScroll textAlign="center" staggerDuration={0.01}>
                 Zamanı yönetmek yaşamı sanata dönüştürmektir
               </TextRevealOnScroll>
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-16 mt-24">
+          <div className="flex flex-col gap-16 bt:grid bt:grid-cols-3 bt:gap-16 mt-24">
             {moreSectionData.map((item, index) => (
               <div
                 key={index}
                 className={cn(
                   "col-span-1 space-y-8 text-center",
-                  index === 0 && "mt-60",
-                  index === 1 && "mt-0",
-                  index === 2 && "mt-32"
+                  index === 0 && "bt:mt-60",
+                  index === 1 && "bt:mt-0",
+                  index === 2 && "bt:mt-32"
                 )}
               >
-                <div className="relative w-3/5 aspect-w-10 aspect-h-8 mx-auto">
+                <div className="relative w-full aspect-w-10 aspect-h-14 mx-auto">
                   <MPImg imgSrc={item.imgSrc} />
                 </div>
                 <div className="space-y-4">
                   <h2 className="font-lexend-giga font-normal text-3xl text-bricky-brick">{item.title}</h2>
-                  <p className="font-halenoir text-xl">{item.description}</p>
+                  <p className="font-halenoir text-base bt:text-xl">{item.description}</p>
                 </div>
               </div>
             ))}

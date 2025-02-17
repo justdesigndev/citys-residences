@@ -80,12 +80,20 @@ export default function Menu({ open }: MenuProps) {
 
   return (
     <div className={cn(s.frame)} ref={ref}>
-      <div className={cn(s.menu, "menu")} onClick={() => animateLinksForwards()}>
-        <div className={s.backdrop}></div>
-        <nav className={cn(s.nav)}>
-          <ul className={cn("flex flex-col flex-wrap items-center dt:items-start justify-center", s.navList)}>
+      <div
+        className={cn(s.menu, "menu", "absolute top-0 left-0 w-full h-full flex items-center justify-start p-10")}
+        onClick={() => animateLinksForwards()}
+      >
+        <nav>
+          <ul className={cn(s.navList, "flex flex-col flex-wrap items-center bt:items-start justify-center gap-6")}>
             {navigationItems.map(({ title, href }) => (
-              <li className={cn(s.navItem)} key={title}>
+              <li
+                className={cn(
+                  s.navItem,
+                  "font-halenoir font-light text-white text-base bt:text-4xl text-center bt:text-left"
+                )}
+                key={title}
+              >
                 <Link className="cursor-pointer" href={href}>
                   <AnimatedLink animate={animateLinks}>{title}</AnimatedLink>
                 </Link>

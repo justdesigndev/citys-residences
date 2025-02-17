@@ -12,6 +12,7 @@ import { Logo } from "@/components/icons"
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Menu } from "@/components/menu"
 import { MenuX } from "@/components/menu-x"
+import { StickyBadge } from "@/components/sticky-badge"
 import { Link as LocalizedLink } from "@/i18n/routing"
 import { initialScroll } from "@/lib/constants"
 
@@ -93,7 +94,7 @@ export default function Header() {
           >
             <div className={cn(s.cross, "cursor-pointer")}>
               <MenuX
-                className="hidden dt:block"
+                className="hidden bt:block"
                 isOpen={menuOpen}
                 onClick={() => setMenuOpen(!menuOpen)}
                 strokeWidth="1"
@@ -103,19 +104,19 @@ export default function Header() {
                 height="6"
               />
               <MenuX
-                className="block dt:hidden"
+                className="block bt:hidden"
                 isOpen={menuOpen}
                 onClick={() => setMenuOpen(!menuOpen)}
                 strokeWidth="1"
                 color="#fff"
                 transition={{ type: "spring", stiffness: 260, damping: 40 }}
-                width="25"
+                width="35"
                 height="6"
               />
             </div>
-            <div className={cn(s.text, "cursor-pointer", { [s.active]: menuOpen })}>
-              <div>KAPAT</div>
-              <div>MENÜ</div>
+            <div className={cn(s.text, "cursor-pointer text-white font-halenoir", { [s.active]: menuOpen })}>
+              <span>KAPAT</span>
+              <span>MENÜ</span>
             </div>
           </button>
           <nav className={cn(s.nav, "flex flex-col gap-10 lg:flex-row items-center")}>
@@ -131,6 +132,7 @@ export default function Header() {
           <Menu open={menuOpen} />
         </div>
       </header>
+      <StickyBadge hidden={hidden} />
     </>
   )
 }

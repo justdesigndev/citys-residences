@@ -26,8 +26,8 @@ const themes = {
 }
 
 const breakpoints = {
-  dt: 800,
-  dd: 1200,
+  breakpointMobile: 800,
+  breakpointTablet: 1200,
 }
 
 const screens = {
