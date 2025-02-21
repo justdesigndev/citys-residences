@@ -12,6 +12,7 @@ import { ReactQueryProvider } from "@/components/react-query-provider"
 import { SmoothScroll } from "@/components/smooth-scroll"
 
 import { Lexend_Giga } from "next/font/google"
+import { RealViewport } from "@/components/real-viewport"
 
 const lexendGiga = Lexend_Giga({
   subsets: ["latin"],
@@ -99,6 +100,7 @@ export default async function LocaleLayout({
         <StyleVariables colors={colors} themes={themes} />
       </head>
       <body className={`${halenoir.variable} ${lexendGiga.variable} antialiased`}>
+        <RealViewport />
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>{children}</ReactQueryProvider>
         </NextIntlClientProvider>
