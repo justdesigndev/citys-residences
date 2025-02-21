@@ -64,7 +64,7 @@ export function ParallaxImagesSection() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-8 bt:gap-0">
         <MaskedParallaxImage />
         <MaskedParallaxImage horizontalAlignment="rtl" />
         <MaskedParallaxImage />

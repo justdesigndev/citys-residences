@@ -2,11 +2,13 @@
 
 import { useGSAP } from "@gsap/react"
 import cn from "clsx"
+import { useWindowSize } from "hamo"
 import { useRef } from "react"
 
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { gsap, ScrollTrigger } from "@/components/gsap"
 import { MPImg } from "@/components/mp-img"
+import { breakpoints } from "@/styles/config.mjs"
 
 export interface MaskedParallaxImageProps {
   horizontalAlignment?: "rtl" | "ltr"
@@ -14,10 +16,13 @@ export interface MaskedParallaxImageProps {
 
 export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null)
-  // const textRef = useRef<VerticalCutRevealRef>(null)
+  const { width } = useWindowSize()
 
   useGSAP(
     () => {
+      if (!width) return
+      if (width < breakpoints.breakpointMobile) return
+
       const tl = gsap.timeline({ paused: true })
 
       tl.fromTo(
@@ -30,37 +35,6 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParal
         },
         "s"
       )
-      // .fromTo(
-      //   ".gsap-parallax-img-c",
-      //   {
-      //     yPercent: -10,
-      //   },
-      //   {
-      //     yPercent: 10,
-      //   },
-      //   "s"
-      // )
-      // .fromTo(
-      //   ".gsap-parallax-img",
-      //   {
-      //     yPercent: -20,
-      //   },
-      //   {
-      //     yPercent: 20,
-      //     onStart: () => {
-      //       textRef.current?.startAnimation()
-      //     },
-      //   },
-      //   "s"
-      // )
-      // .from(
-      //   ".gsap-parallax-img",
-      //   {
-      //     opacity: 0,
-      //     duration: 0.25,
-      //   },
-      //   "s"
-      // )
 
       ScrollTrigger.create({
         animation: tl,
@@ -71,20 +45,27 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParal
     },
     {
       scope: ref,
+      dependencies: [width],
     }
   )
 
   return (
-    <div className="px-10 py-28" ref={ref}>
-      <div className={cn("flex flex-col bt:grid bt:grid-cols-24 bt:items-center")}>
+    <div className="px-4 bt:px-10 py-4 bt:py-28" ref={ref}>
+      <div className={cn("flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-8 bt:gap-0")}>
         <div
           className={cn(
             "gsap-parallax-text col-span-6",
-            horizontalAlignment === "ltr" ? "col-start-1 order-1" : "col-start-[18] order-2"
+            horizontalAlignment === "ltr" ? "col-start-1 order-2 bt:order-1" : "col-start-[18] order-1 bt:order-2"
           )}
         >
-          <p>
-            <TextRevealOnScroll splitBy="lines">
+          <p className="hidden bt:block">
+            <TextRevealOnScroll splitBy="lines" textAlign="left">
+              Şehrin yoğunluğundan sıyrılıp eve atılan ilk adımdaki huzur cömertçe sunan City’s Residences, yemyeşil
+              alanları ve zamana meydan okuyan tasarımıyla sizi dinginliğin tam kalbine taşır.
+            </TextRevealOnScroll>
+          </p>
+          <p className="block bt:hidden">
+            <TextRevealOnScroll splitBy="lines" textAlign="center">
               Şehrin yoğunluğundan sıyrılıp eve atılan ilk adımdaki huzur cömertçe sunan City’s Residences, yemyeşil
               alanları ve zamana meydan okuyan tasarımıyla sizi dinginliğin tam kalbine taşır.
             </TextRevealOnScroll>
@@ -92,18 +73,10 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParal
         </div>
         <div
           className={cn(
-            "aspect-h-10 aspect-w-9 relative overflow-hidden col-span-16 gsap-parallax-img-c",
+            "aspect-h-11 aspect-w-9 relative col-span-16 gsap-parallax-img-c",
             horizontalAlignment === "ltr" ? "col-start-9 order-2" : "col-start-1 order-1"
           )}
         >
-          {/* <div className="absolute top-0 left-0 right-0 bottom-0 gsap-overlay z-10 bg-bricky-brick"></div>
-          <Image
-            src="/img/menu.jpg"
-            alt="Parallax Image"
-            fill
-            className="object-cover gsap-parallax-img mix-blend-overlay z-20"
-          />
-          <Image src="/img/menu.jpg" alt="Parallax Image" fill className="object-cover gsap-parallax-img z-30" /> */}
           <MPImg imgSrc="/img/menu.jpg" />
         </div>
       </div>

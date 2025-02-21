@@ -5,8 +5,8 @@
   width: 100vw;
   height: 100vh;
   height: var(--lvh-calc);
-  outline: mobile-vw(15px) solid var(--bricky-brick);
-  outline-offset: mobile-vw(-15px);
+  outline: mobile-vw(4px) solid var(--bricky-brick);
+  outline-offset: mobile-vw(-4px);
   pointer-events: none;
   z-index: 100;
 
