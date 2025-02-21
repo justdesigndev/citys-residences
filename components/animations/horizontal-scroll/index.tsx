@@ -144,14 +144,7 @@ export function HorizontalScroll({
           </div>
         </div>
         {items.map((src, index) => (
-          <section
-            key={index}
-            className={cn(
-              s.panel,
-              "gsap-panel",
-              "min-h-screen h-screen w-screen flex items-center justify-center flex-shrink-0"
-            )}
-          >
+          <section key={index} className={cn(s.panel, "gsap-panel", "flex items-center justify-center flex-shrink-0")}>
             <div className={cn(s.bgImage, "bg-image")}>
               <Image
                 src={src}

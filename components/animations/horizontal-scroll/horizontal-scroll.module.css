@@ -4,6 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   outline: mobile-vw(15px) solid var(--bricky-brick);
   outline-offset: mobile-vw(-15px);
   pointer-events: none;
@@ -18,6 +19,13 @@
     outline: desktop-vw(15px) solid var(--bricky-brick);
     outline-offset: desktop-vw(-15px);
   }
+}
+.panel {
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 .title {
   position: absolute;
