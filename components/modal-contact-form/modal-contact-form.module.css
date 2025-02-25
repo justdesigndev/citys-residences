@@ -22,120 +22,20 @@
   top: 0;
   transform: translateX(-50%);
   width: 100vw;
-  z-index: 150;
+  z-index: var(--z-index-menu);
 
-  .content {
-    position: relative;
-    z-index: 1400;
+  .box {
+    height: var(--svh-calc);
+    width: 100vw;
 
     @include-media ('tablet') {
+      height: auto;
+      width: tablet-vw(700px);
     }
 
     @include-media ('desktop') {
-    }
-
-    .box {
       height: desktop-vw(700px);
       width: desktop-vw(1300px);
-    }
-
-    .mask {
-      clip-path: inset(0% 10% 100%);
-      position: relative;
-    }
-
-    .imgC {
-      display: none;
-
-      @include-media ('tablet') {
-        display: block;
-        height: tablet-vw(650px);
-        width: tablet-vw(400px);
-      }
-
-      @include-media ('desktop') {
-        height: desktop-vw(600px);
-        width: desktop-vw(400px);
-      }
-    }
-
-    .img {
-      display: none;
-
-      @include-media ('tablet') {
-        display: block;
-        height: tablet-vw(650px);
-      }
-
-      @include-media ('desktop') {
-        height: desktop-vw(650px);
-      }
-    }
-
-    .nav {
-      margin-bottom: mobile-vw(100px);
-
-      @include-media ('desktop') {
-        margin-bottom: desktop-vw(150px);
-      }
-
-      .navList {
-        height: auto;
-        gap: mobile-vw(16px);
-
-        @include-media ('desktop') {
-          height: desktop-vw(350px);
-          column-gap: desktop-vw(120px);
-          row-gap: desktop-vw(14px);
-        }
-
-        @include-media ('hover') {
-          &:hover {
-            .navItem {
-              opacity: 0.5;
-            }
-
-            .navItem:hover {
-              opacity: 1;
-            }
-          }
-        }
-      }
-
-      .navItem {
-        color: var(--white);
-        font-family: var(--font-halenoir);
-        font-size: mobile-vw(18px);
-        font-weight: 300;
-        text-align: center;
-        transition: 300ms opacity ease;
-
-        @include-media ('tablet') {
-          font-size: tablet-vw(24px);
-          text-align: left;
-        }
-
-        @include-media ('desktop') {
-          font-size: desktop-vw(32px);
-        }
-      }
-    }
-
-    .logoC {
-      height: mobile-vw(100px);
-      left: 50%;
-      position: absolute;
-      right: auto;
-      top: mobile-vw(10px);
-      transform: translateX(-50%);
-      transform-origin: top center;
-      transition: 400ms all ease;
-      z-index: 130;
-
-      @include-media ('desktop') {
-        height: desktop-vw(110px);
-        top: desktop-vw(20px);
-      }
     }
   }
 }

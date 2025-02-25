@@ -2,36 +2,22 @@
 
 import s from "./header.module.css"
 
+import { Link as LocalizedLink } from "@/i18n/routing"
+import { initialScroll } from "@/lib/constants"
 import cn from "clsx"
 import Lenis from "lenis"
 import { useLenis } from "lenis/react"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
+import { AnimatedButton } from "@/components/animated-button"
 import { Logo } from "@/components/icons"
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Menu } from "@/components/menu"
 import { MenuX } from "@/components/menu-x"
-import { StickyBadge } from "@/components/sticky-badge"
-import { Link as LocalizedLink } from "@/i18n/routing"
-import { initialScroll } from "@/lib/constants"
-
-// const headerVariants = cva("w-full flex items-center justify-between", {
-//   variants: {
-//     variant: {
-//       v1: s.v1,
-//       v2: s.slim,
-//     },
-//   },
-//   defaultVariants: {
-//     variant: "v1",
-//   },
-// })
-
-// type HeaderVariantsProps = VariantProps<typeof headerVariants>
+import { ModalContactForm } from "@/components/modal-contact-form"
 
 export default function Header() {
-  // { variant }: HeaderVariantsProps
   const lenis = useLenis()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollState, setScrollState] = useState({
@@ -40,8 +26,6 @@ export default function Header() {
     sticky: false,
   })
   const pathname = usePathname()
-  // const t = useTranslations("routes")
-  // const locale = useLocale()
 
   useEffect(() => {
     return menuOpen ? lenis?.stop() : lenis?.start()
@@ -63,6 +47,16 @@ export default function Header() {
     lenis?.on("scroll", handleEvents)
     return () => lenis?.off("scroll", handleEvents)
   }, [lenis])
+
+  const [modalOpen, setModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (modalOpen) {
+      return lenis?.stop()
+    }
+
+    lenis?.start()
+  }, [lenis, modalOpen])
 
   return (
     <>
@@ -130,9 +124,14 @@ export default function Header() {
               </div>
               <div className={cn(s["sticky-badge"], s["nav-item"], "cursor-pointer")}>
                 <div className="hidden bt:block">
-                  <StickyBadge hidden={true} />
+                  <div className={cn(s.stickyBadge)} onClick={() => setModalOpen((prev) => !prev)}>
+                    <AnimatedButton text="RANDEVU AL" size="sm" theme="secondary" />
+                  </div>
                 </div>
-                <div className="block bt:hidden font-lexend-giga font-light text-white text-[0.7rem] text-center blur-bg-bricky-brick py-2 px-2 rounded-sm">
+                <div
+                  className="block bt:hidden font-lexend-giga font-light text-white text-[0.7rem] text-center blur-bg-bricky-brick py-2 px-2 rounded-sm"
+                  onClick={() => setModalOpen((prev) => !prev)}
+                >
                   RANDEVU AL
                 </div>
               </div>
@@ -141,6 +140,7 @@ export default function Header() {
           <Menu open={menuOpen} />
         </div>
       </header>
+      <ModalContactForm open={modalOpen} setOpen={setModalOpen} />
     </>
   )
 }

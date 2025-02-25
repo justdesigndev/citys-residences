@@ -14,23 +14,23 @@ interface StickyBadgeProps {
 }
 
 export function StickyBadge({ hidden }: StickyBadgeProps) {
-  const [open, setOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const lenis = useLenis()
 
   useEffect(() => {
-    if (open) {
+    if (modalOpen) {
       return lenis?.stop()
     }
 
     lenis?.start()
-  }, [lenis, open])
+  }, [lenis, modalOpen])
 
   return (
     <>
-      <div className={cn(s.stickyBadge, { [s.hidden]: !hidden })} onClick={() => setOpen((prev) => !prev)}>
+      <div className={cn(s.stickyBadge, { [s.hidden]: !hidden })} onClick={() => setModalOpen((prev) => !prev)}>
         <AnimatedButton text="RANDEVU AL" size="sm" theme="secondary" />
       </div>
-      <ModalContactForm open={open} setOpen={setOpen} />
+      <ModalContactForm open={modalOpen} setOpen={setModalOpen} />
     </>
   )
 }

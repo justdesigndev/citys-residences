@@ -163,21 +163,24 @@ export function ModalContactForm({ open, setOpen }: ModalContactFormProps) {
       <div className={cn(s.wrapper, "wrapper")}>
         <div className={cn(s.menu, "menu")}>
           <div className={cn(s.content, "flex items-center justify-center w-full h-full")}>
-            <div className={cn(s.box, "relative rounded-lg overflow-hidden h-full")}>
+            <div className={cn(s.box, "relative rounded-none bt:rounded-lg overflow-hidden h-full")}>
               <button
                 className={cn(
                   s.close,
-                  "absolute top-4 right-4 w-10 h-10 z-10 bg-white rounded-full p-2 text-bricky-brick"
+                  "absolute top-2 bt:top-4 right-2 bt:right-4 w-10 h-10 z-10 bg-white rounded-full p-2 text-bricky-brick"
                 )}
                 onClick={() => setOpen(false)}
                 type="button"
               >
                 <X />
               </button>
-              <div className="bg-white grid grid-cols-2 w-full h-full" onClick={(e) => e.stopPropagation()}>
-                <div className="col-span-1 flex flex-col justify-center gap-10 px-12 h-full overflow-hidden">
+              <div
+                className="bg-white flex flex-col bd:grid grid-cols-2 w-full h-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="bd:col-span-1 flex h-full overflow-hidden">
                   <ScrollableBox>
-                    <div className="py-16 space-y-8">
+                    <div className="px-4 bt:px-12 py-14 bt:py-16 space-y-8">
                       <h2 className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal">
                         {t.rich("description", {
                           br: () => <br className="hidden bt:block" />,
@@ -187,7 +190,7 @@ export function ModalContactForm({ open, setOpen }: ModalContactFormProps) {
                     </div>
                   </ScrollableBox>
                 </div>
-                <div className="col-span-1 bg-slate-400">
+                <div className="hidden bd:block col-span-1">
                   <Video
                     primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
                     autoPlay
