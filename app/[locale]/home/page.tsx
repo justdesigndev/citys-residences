@@ -73,7 +73,7 @@ export default function Home() {
           </div>
         </ScaleOut>
       </section>
-      <section className="bg-white font-halenoir py-6 bt:py-12 z-20 relative">
+      <section className="bg-white font-halenoir pt-6 bt:pt-12 z-20 relative">
         <div className="container mx-auto py-6 bt:py-12 relative flex flex-col items-center">
           <div className="flex flex-col items-center text-center">
             <h1 className="font-lexend-giga text-bricky-brick text-5xl bt:text-8xl font-medium tracking-widest">
