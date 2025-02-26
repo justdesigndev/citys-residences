@@ -72,7 +72,7 @@ export function Footer() {
               {/* İletişim Section */}
               <div className="bt:col-span-8">
                 <h2 className="text-base font-normal mb-6 border-b border-grenadier pb-2">İletişim</h2>
-                <div className="grid grid-cols-1 bt:grid-cols-2 gap-6 mr-24">
+                <div className="grid grid-cols-1 bt:grid-cols-2 gap-6 mr-12">
                   {menuItems.iletisim.map((office) => (
                     <div key={office.title} className="space-y-2">
                       <h3 className="text-sm font-medium">{office.title}</h3>
@@ -106,7 +106,7 @@ export function Footer() {
               {/* Menü Section */}
               <div className="bt:col-span-8">
                 <h2 className="text-base font-normal mb-6 border-b border-grenadier pb-2">Menü</h2>
-                <div className="flex flex-col bt:grid grid-cols-2 gap-y-2 gap-x-6 mr-24">
+                <div className="flex flex-col bt:grid grid-cols-2 gap-y-2 gap-x-6 mr-12">
                   {menuItems.menu.map((item, i) => (
                     <Link key={i} href={item.href} className="text-sm text-white/60 hover:text-white transition-colors">
                       {item.title}
