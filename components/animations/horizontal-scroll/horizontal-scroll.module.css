@@ -16,8 +16,8 @@
   }
 
   @include-media ('desktop') {
-    outline: desktop-vw(15px) solid var(--bricky-brick);
-    outline-offset: desktop-vw(-15px);
+    outline: desktop-vw(8px) solid var(--bricky-brick);
+    outline-offset: desktop-vw(-8px);
   }
 }
 .panel {
