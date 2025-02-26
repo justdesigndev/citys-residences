@@ -125,7 +125,7 @@ export default function Header() {
               <div className={cn(s["sticky-badge"], s["nav-item"], "cursor-pointer")}>
                 <div className="hidden bt:block">
                   <div className={cn(s.stickyBadge)} onClick={() => setModalOpen((prev) => !prev)}>
-                    <AnimatedButton text="RANDEVU AL" size="sm" theme="secondary" />
+                    <AnimatedButton text="RANDEVU AL" size="sm" theme="tertiary" />
                   </div>
                 </div>
                 <div

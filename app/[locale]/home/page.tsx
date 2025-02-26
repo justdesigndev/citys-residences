@@ -11,6 +11,7 @@ import { ParallaxImagesSection } from "@/components/parallax-images-section"
 import { ParallaxVideoPanel } from "@/components/parallax-video-panel"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
+import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { ZoomMap } from "@/components/zoom-map"
 
@@ -147,11 +148,7 @@ export default function Home() {
       </section>
       <section className="relative container py-10">
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
-          <Video
-            primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891#t=0.01"
-            className="w-full h-full object-cover"
-            controls
-          />
+          <VideoWithPlayButton primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891#t=0.01" />
         </div>
       </section>
     </Wrapper>
