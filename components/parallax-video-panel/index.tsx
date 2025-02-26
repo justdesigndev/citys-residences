@@ -84,12 +84,10 @@ export function ParallaxVideoPanel() {
         <div
           className={cn(
             s["video-panel-c"],
-            "gsap-video-panel-c w-screen h-[var(--lvh-calc)] flex items-center justify-center"
+            "gsap-video-panel-c container h-[var(--lvh-calc)] flex items-center justify-center"
           )}
         >
-          <div className="w-screen aspect-video bd:aspect-none bd:h-[var(--lvh-calc)] overflow-hidden relative z-10 flex items-center justify-center">
-            {video}
-          </div>
+          <div className="w-full h-auto overflow-hidden relative z-10 flex items-center justify-center">{video}</div>
         </div>
       </div>
     </>
