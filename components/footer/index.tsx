@@ -20,34 +20,16 @@ const menuItems = {
     { title: "X", icon: <div></div> },
   ],
   menu: [
-    {
-      title: "Konutlar",
-      href: "#",
-    },
-    {
-      title: "City's Park",
-      href: "#",
-    },
-    {
-      title: "City's Club House",
-      href: "#",
-    },
-    {
-      title: "Konum",
-      href: "#",
-    },
-    {
-      title: "Yeme İçme",
-      href: "#",
-    },
-    {
-      title: "Alışveriş",
-      href: "#",
-    },
-    {
-      title: "Justwork Campus",
-      href: "#",
-    },
+    { title: "Konutlar", href: "/" },
+    { title: "City's Park", href: "/" },
+    { title: "City's Club House", href: "/" },
+    { title: "Konum", href: "/" },
+    { title: "Yeme İçme", href: "/" },
+    { title: "Alışveriş", href: "/" },
+    { title: "Justwork Campus", href: "/" },
+    { title: "Performans Sanatları Merkezi", href: "/" },
+    { title: "City's Club Ayrıcalıkları", href: "/" },
+    { title: "İletişim", href: "/" },
   ],
   bilgilendirme: [
     {
