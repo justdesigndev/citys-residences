@@ -7,6 +7,7 @@ const colors = {
   "moon-veil": "#8B9BB1",
   "bengala-red": "#932d19",
   grenadier: "#c24e37",
+  tabasco: "#A02912",
 }
 
 const themes = {

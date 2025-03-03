@@ -2,15 +2,15 @@
     "metadata": {
         "default": {
             "title": "City's Residences",
-            "description": "Mustafa V. Koç Golf Sahası, titizlikle tasarlanmış fairway’leri ve yemyeşil manzaraları bir araya getirerek golf tutkunları için eşsiz bir deneyim sunuyor."
+            "description": "Mustafa V. Koç Golf Sahası, titizlikle tasarlanmış fairway'leri ve yemyeşil manzaraları bir araya getirerek golf tutkunları için eşsiz bir deneyim sunuyor."
         },
         "about": {
             "title": "Hakkımızda | City's Residences",
-            "description": "Mustafa V. Koç Golf Sahası, titizlikle tasarlanmış fairway’leri ve yemyeşil manzaraları bir araya getirerek golf tutkunları için eşsiz bir deneyim sunuyor."
+            "description": "Mustafa V. Koç Golf Sahası, titizlikle tasarlanmış fairway'leri ve yemyeşil manzaraları bir araya getirerek golf tutkunları için eşsiz bir deneyim sunuyor."
         },
         "gallery": {
             "title": "Galeri | City's Residences",
-            "description": "Mustafa V. Koç Golf Sahası, titizlikle tasarlanmış fairway’leri ve yemyeşil manzaraları bir araya getirerek golf tutkunları için eşsiz bir deneyim sunuyor."
+            "description": "Mustafa V. Koç Golf Sahası, titizlikle tasarlanmış fairway'leri ve yemyeşil manzaraları bir araya getirerek golf tutkunları için eşsiz bir deneyim sunuyor."
         }
     },
     "localeSwitcher": {
@@ -124,5 +124,71 @@
                 }
             }
         }
+    },
+    "home": {
+        "section1": {
+            "title1": "YAŞAMA",
+            "title2": "SANATI",
+            "title3": "Zamanı yönetmek yaşamı sanata dönüştürmektir...",
+            "p1": {
+                "title": "DAHA<br>HUZURLU</br>YAŞA",
+                "description": "Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.",
+                "button": "İNCELE"
+            },
+            "p2": {
+                "title": "DAHA<br>ÇOK</br>YAŞA",
+                "description": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir.",
+                "button": "İNCELE"
+            },
+            "p3": {
+                "title": "DAHA<br>DOLU</br>YAŞA",
+                "description": "Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.",
+                "button": "İNCELE"
+            }
+        },
+        "live": {
+            "p1": {
+                "title": "DAHA ÇOK YAŞA",
+                "description": "Lüks and zerafetin buluştuğu, zamana meydan okuyan bir yaşam alanı, her biri kendine özgü karakteri ve hikayesiyle eşsiz bir koleksiyon..."
+            },
+            "p2": {
+                "title": "DAHA HUZURLU YAŞA",
+                "t1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                "t2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                "t3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                "t4": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+            },
+            "p3": {
+                "title": "DAHA DOLU YAŞA",
+                "description": "Citys Residences, İstanbul'un eşsiz sosyal olanaklarıyla donatılmış bir yaşam sunuyor. Havuzlar, yürüyüş parkurları ve dinlenme alanlarıyla her anı keyifle yaşayın."
+            }
+        }
+    },
+    "common": {
+        "navigation": {
+            "residences": "Konutlar",
+            "citysPark": "City's Park",
+            "citysClubHouse": "City's Club House",
+            "location": "Konum",
+            "dining": "Yeme İçme",
+            "shopping": "Alışveriş",
+            "justworkCampus": "Justwork Kampüs",
+            "performanceArtsCenter": "Performans Sanatları Merkezi",
+            "citysClub": "City's Club Ayrıcalıkları",
+            "contact": "Contact"
+        },
+        "close": "KAPAT",
+        "open": "MENÜ",
+        "inquiry": "RANDEVU AL",
+        "contact": "İletişim",
+        "socialMedia": "Sosyal Medya",
+        "menu": "Menü",
+        "legal": "Yasal",
+        "copyright": "2025 © City's Residences - Tüm hakları saklıdır.",
+        "kvkk": "KVKK",
+        "commercialElectronicMessage": "Ticari Elektronik İleti Aydınlatma Metni",
+        "explicitConsent": "Açık Rıza Metni",
+        "kvkRelatedInformation": "KVKK İlişkin Aydınlatma Metni",
+        "cookiePolicy": "Çerez Politikası"
     }
 }

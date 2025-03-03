@@ -9,9 +9,10 @@ import { useRef } from "react"
 import { gsap, ScrollTrigger } from "@/components/gsap"
 import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { ResponsiveLetterSpacing } from "@/components/responsive-letter-spacing"
-
+import { useTranslations } from "next-intl"
 export function ParallaxImagesSection() {
   const ref = useRef<HTMLDivElement>(null)
+  const t = useTranslations("home.live.p2")
 
   useGSAP(
     () => {
@@ -56,16 +57,16 @@ export function ParallaxImagesSection() {
           )}
         >
           <div className="gsap-title hidden bd:block">
-            <ResponsiveLetterSpacing text="DAHA HUZURLU YAŞA" />
+            <ResponsiveLetterSpacing text={t("title")} />
           </div>
-          <div className="gsap-title block bd:hidden">DAHA HUZURLU YAŞA</div>
+          <div className="gsap-title block bd:hidden">{t("title")}</div>
         </div>
       </div>
       <div className="flex flex-col gap-8 bt:gap-0">
-        <MaskedParallaxImage />
-        <MaskedParallaxImage horizontalAlignment="rtl" />
-        <MaskedParallaxImage />
-        <MaskedParallaxImage horizontalAlignment="rtl" />
+        <MaskedParallaxImage text={t("t1")} imgSrc="/img/menu.jpg" />
+        <MaskedParallaxImage horizontalAlignment="rtl" text={t("t2")} imgSrc="/img/menu.jpg" />
+        <MaskedParallaxImage text={t("t3")} imgSrc="/img/menu.jpg" />
+        <MaskedParallaxImage horizontalAlignment="rtl" text={t("t4")} imgSrc="/img/menu.jpg" />
       </div>
     </div>
   )

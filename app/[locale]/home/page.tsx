@@ -1,6 +1,7 @@
 import s from "./home.module.css"
 
 import cn from "clsx"
+import { useTranslations } from "next-intl"
 
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { HorizontalScroll } from "@/components/animations/horizontal-scroll"
@@ -16,6 +17,8 @@ import { Wrapper } from "@/components/wrapper"
 import { ZoomMap } from "@/components/zoom-map"
 
 export default function Home() {
+  const t = useTranslations("home")
+
   const slides1 = ["/img/slides-1/1.jpg", "/img/slides-1/2.jpg", "/img/slides-1/3.jpg", "/img/slides-1/4.jpg"]
   // const slides2 = ["/img/slides-2/1.jpg", "/img/slides-2/2.jpg", "/img/slides-2/3.jpg", "/img/slides-2/4.jpg"]
   const slides3 = [
@@ -30,31 +33,24 @@ export default function Home() {
   const moreSectionData = [
     {
       imgSrc: "/img/aol-1.jpg",
-      title: (
-        <>
-          DAHA <br /> HUZURLU YAŞA
-        </>
-      ),
-      description: "Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.",
+      title: t.rich("section1.p1.title", {
+        br: () => <br></br>,
+      }),
+      description: t("section1.p1.description"),
     },
     {
       imgSrc: "/img/aol-2.jpg",
-      title: (
-        <>
-          DAHA ÇOK <br /> YAŞA
-        </>
-      ),
-      description:
-        "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir.",
+      title: t.rich("section1.p2.title", {
+        br: () => <br></br>,
+      }),
+      description: t("section1.p2.description"),
     },
     {
       imgSrc: "/img/aol-3.jpg",
-      title: (
-        <>
-          DAHA DOLU <br /> YAŞA
-        </>
-      ),
-      description: "Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.",
+      title: t.rich("section1.p3.title", {
+        br: () => <br></br>,
+      }),
+      description: t("section1.p3.description"),
     },
   ]
 
@@ -79,7 +75,7 @@ export default function Home() {
           <div className="flex flex-col items-center text-center">
             <h1 className="font-lexend-giga text-bricky-brick text-5xl bt:text-8xl font-medium tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
-                YAŞAMA
+                {t("section1.title1")}
               </TextRevealOnScroll>
             </h1>
             <div className={s.sanati}>
@@ -88,11 +84,11 @@ export default function Home() {
                   <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="90vw" />
                 </div>
               </FadeInOnScroll>
-              <span className="sr-only">SANATI</span>
+              <span className="sr-only">{t("section1.title2")}</span>
             </div>
             <p className="text-bricky-brick text-xl bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
               <TextRevealOnScroll textAlign="center" staggerDuration={0.01}>
-                Zamanı yönetmek yaşamı sanata dönüştürmektir
+                {t("section1.title3")}
               </TextRevealOnScroll>
             </p>
           </div>
@@ -124,11 +120,7 @@ export default function Home() {
         </div>
       </section>
       <section className="relative">
-        <HorizontalScroll
-          title="DAHA ÇOK YAŞA"
-          description="Lüks ve zerafetin buluştuğu, zamana meydan okuyan bir yaşam alanı, her biri kendine özgü karakteri ve hikayesiyle eşsiz bir koleksiyon..."
-          items={slides1}
-        />
+        <HorizontalScroll title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />
       </section>
       <section className="z-20 relative font-halenoir">
         <ZoomMap />
@@ -140,11 +132,7 @@ export default function Home() {
         <ParallaxVideoPanel />
       </section>
       <section className="relative">
-        <HorizontalScroll
-          title="DAHA DOLU YAŞA"
-          description="Citys Residences, İstanbul'un eşsiz sosyal olanaklarıyla donatılmış bir yaşam sunuyor. Havuzlar, yürüyüş parkurları ve dinlenme alanlarıyla her anı keyifle yaşayın."
-          items={slides3}
-        />
+        <HorizontalScroll title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
       </section>
       <section className="relative container py-10">
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">

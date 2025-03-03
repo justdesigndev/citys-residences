@@ -12,9 +12,11 @@ import { breakpoints } from "@/styles/config.mjs"
 
 export interface MaskedParallaxImageProps {
   horizontalAlignment?: "rtl" | "ltr"
+  text: string
+  imgSrc: string
 }
 
-export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParallaxImageProps) {
+export function MaskedParallaxImage({ horizontalAlignment = "ltr", text, imgSrc }: MaskedParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
 
@@ -60,14 +62,12 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParal
         >
           <p className="hidden bt:block bt:text-2xl bd:text-3xl">
             <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0005}>
-              Şehrin yoğunluğundan sıyrılıp eve atılan ilk adımdaki huzur cömertçe sunan City’s Residences, yemyeşil
-              alanları ve zamana meydan okuyan tasarımıyla sizi dinginliğin tam kalbine taşır.
+              {text}
             </TextRevealOnScroll>
           </p>
           <p className="block bt:hidden">
             <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0005}>
-              Şehrin yoğunluğundan sıyrılıp eve atılan ilk adımdaki huzur cömertçe sunan City’s Residences, yemyeşil
-              alanları ve zamana meydan okuyan tasarımıyla sizi dinginliğin tam kalbine taşır.
+              {text}
             </TextRevealOnScroll>
           </p>
         </div>
@@ -77,7 +77,7 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr" }: MaskedParal
             horizontalAlignment === "ltr" ? "col-start-9 order-2" : "col-start-1 order-1"
           )}
         >
-          <MPImg imgSrc="/img/menu.jpg" />
+          <MPImg imgSrc={imgSrc} />
         </div>
       </div>
     </div>

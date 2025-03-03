@@ -124,5 +124,71 @@
                 }
             }
         }
+    },
+    "home": {
+        "section1": {
+            "title1": "THE ART",
+            "title2": "OF LIVING",
+            "title3": "Managing time is transforming life into art...",
+            "p1": {
+                "title": "LIVE<br>MORE</br>PEACEFULLY",
+                "description": "Peace is the privilege of living in harmony with generous nature and endless security in quiet luxurious architecture.",
+                "button": "EXPLORE"
+            },
+            "p2": {
+                "title": "LIVE<br>MORE</br>FULLY",
+                "description": "Being able to dedicate time to yourself and your loved ones at the heart of life is transforming life into art.",
+                "button": "EXPLORE"
+            },
+            "p3": {
+                "title": "LIVE<br>MORE</br>RICHLY",
+                "description": "A life where sports, art, entertainment and more come together makes every moment precious.",
+                "button": "EXPLORE"
+            }
+        },
+        "live": {
+            "p1": {
+                "title": "LIVE FULLY",
+                "description": "A living space where luxury and elegance meet, defying time - a unique collection with each piece having its own character and story..."
+            },
+            "p2": {
+                "title": "LIVE PEACEFULLY",
+                "t1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                "t2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                "t3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                "t4": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+            },
+            "p3": {
+                "title": "LIVE RICHLY",
+                "description": "City's Residences offers a life equipped with Istanbul's unique social amenities. Enjoy every moment with pools, walking tracks, and relaxation areas."
+            }
+        }
+    },
+    "common": {
+        "navigation": {
+            "residences": "Residences",
+            "citysPark": "City's Park",
+            "citysClubHouse": "City's Club House",
+            "location": "Location",
+            "dining": "Dining",
+            "shopping": "Shopping",
+            "justworkCampus": "Justwork Campus",
+            "performanceArtsCenter": "Performance Arts Center",
+            "citysClub": "City's Club Privileges",
+            "contact": "İletişim"
+        },
+        "close": "CLOSE",
+        "open": "MENU",
+        "inquiry": "INQUIRY",
+        "contact": "Contact",
+        "socialMedia": "Social Media",
+        "menu": "Menu",
+        "legal": "Legal",
+        "copyright": "2025 © City's Residences - All rights reserved.",
+        "kvkk": "Personal Data Protection Law",
+        "commercialElectronicMessage": "Commercial Electronic Message",
+        "explicitConsent": "Explicit Consent",
+        "kvkRelatedInformation": "PDPL Related Information",
+        "cookiePolicy": "Cookie Policy"
     }
 }

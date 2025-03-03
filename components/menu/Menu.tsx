@@ -9,28 +9,19 @@ import { useEffect, useRef, useState } from "react"
 
 import VerticalCutReveal, { VerticalCutRevealRef } from "@/components/animations/vertical-cut-reveal"
 import { gsap, useGSAP } from "@/components/gsap"
-import { LocaleSwitcher } from "../locale-switcher"
+import { LocaleSwitcher } from "@/components/locale-switcher"
 
-const navigationItems: Array<{
+interface MenuItem {
   title: string
   href: string
-}> = [
-  { title: "Konutlar", href: "/" },
-  { title: "City's Park", href: "/" },
-  { title: "City's Club House", href: "/" },
-  { title: "Konum", href: "/" },
-  { title: "Yeme İçme", href: "/" },
-  { title: "Alışveriş", href: "/" },
-  { title: "Justwork Campus", href: "/" },
-  { title: "Performans Sanatları Merkezi", href: "/" },
-  { title: "City's Club Ayrıcalıkları", href: "/" },
-]
+}
 
 interface MenuProps {
   open: boolean
+  items: MenuItem[]
 }
 
-export default function Menu({ open }: MenuProps) {
+export default function Menu({ open, items }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
   const lenis = useLenis()
@@ -38,7 +29,6 @@ export default function Menu({ open }: MenuProps) {
   const [animateLinks, setAnimateLinks] = useState(false)
 
   const animateLinksForwards = () => setAnimateLinks(true)
-  // const animateLinksBackwards = () => setAnimateLinks(false)
 
   useGSAP(
     () => {
@@ -59,7 +49,6 @@ export default function Menu({ open }: MenuProps) {
         }
       )
     },
-
     {
       scope: ref,
     }
@@ -93,7 +82,7 @@ export default function Menu({ open }: MenuProps) {
         <ul
           className={cn(s.navList, "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-6 pt-24 bt:pt-0")}
         >
-          {navigationItems.map(({ title, href }) => (
+          {items.map(({ title, href }) => (
             <li
               className={cn(
                 s.navItem,

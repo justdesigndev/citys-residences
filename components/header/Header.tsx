@@ -9,6 +9,7 @@ import Lenis from "lenis"
 import { useLenis } from "lenis/react"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useTranslations } from "next-intl"
 
 import { AnimatedButton } from "@/components/animated-button"
 import { Logo } from "@/components/icons"
@@ -16,6 +17,7 @@ import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Menu } from "@/components/menu"
 import { MenuX } from "@/components/menu-x"
 import { ModalContactForm } from "@/components/modal-contact-form"
+import { colors } from "@/styles/config.mjs"
 
 export default function Header() {
   const lenis = useLenis()
@@ -26,6 +28,19 @@ export default function Header() {
     sticky: false,
   })
   const pathname = usePathname()
+  const t = useTranslations("common")
+
+  const navigationItems = [
+    { title: t("navigation.residences"), href: "/" },
+    { title: t("navigation.citysPark"), href: "/" },
+    { title: t("navigation.citysClubHouse"), href: "/" },
+    { title: t("navigation.location"), href: "/" },
+    { title: t("navigation.dining"), href: "/" },
+    { title: t("navigation.shopping"), href: "/" },
+    { title: t("navigation.justworkCampus"), href: "/" },
+    { title: t("navigation.performanceArtsCenter"), href: "/" },
+    { title: t("navigation.citysClub"), href: "/" },
+  ]
 
   useEffect(() => {
     return menuOpen ? lenis?.stop() : lenis?.start()
@@ -79,7 +94,7 @@ export default function Header() {
             scroll={initialScroll}
             aria-label="Home"
           >
-            <Logo fill="var(--foreground)" />
+            <Logo fill={colors.white} />
           </LocalizedLink>
           <button
             className={cn(s.trigger, "cursor-pointer flex items-center gap-2 bt:gap-4", {
@@ -113,8 +128,8 @@ export default function Header() {
               />
             </div>
             <div className={cn(s.text, "cursor-pointer text-white font-halenoir", { [s.active]: menuOpen })}>
-              <span>KAPAT</span>
-              <span>MENÜ</span>
+              <span>{t("close")}</span>
+              <span>{t("open")}</span>
             </div>
           </button>
           <nav className={cn(s["nav"], "flex gap-10 items-center text-white")} role="navigation">
@@ -125,19 +140,19 @@ export default function Header() {
               <div className={cn(s["sticky-badge"], s["nav-item"], "cursor-pointer")}>
                 <div className="hidden bt:block">
                   <div className={cn(s.stickyBadge)} onClick={() => setModalOpen((prev) => !prev)}>
-                    <AnimatedButton text="RANDEVU AL" size="sm" theme="tertiary" />
+                    <AnimatedButton text={t("inquiry")} size="fit-content" theme="tertiary" />
                   </div>
                 </div>
                 <div
                   className="block bt:hidden font-lexend-giga font-light text-white text-[0.7rem] text-center blur-bg-bricky-brick py-2 px-2 rounded-sm"
                   onClick={() => setModalOpen((prev) => !prev)}
                 >
-                  RANDEVU AL
+                  {t("inquiry")}
                 </div>
               </div>
             </div>
           </nav>
-          <Menu open={menuOpen} />
+          <Menu open={menuOpen} items={navigationItems} />
         </div>
       </header>
       <ModalContactForm open={modalOpen} setOpen={setModalOpen} />
