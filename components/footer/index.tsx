@@ -5,8 +5,8 @@ import { Logo } from "@/components/icons"
 
 export function Footer() {
   const t = useTranslations("common")
-  const menuItems = {
-    iletisim: [
+  const footerItems = {
+    contact: [
       {
         title: "City's Istanbul Satış Ofisi",
         items: ["İçerenköy, Çayır Cd No: 1,\n34752 Ataşehir/Istanbul", "info@citysresidences.com", "(0216) 225 50 00"],
@@ -16,7 +16,7 @@ export function Footer() {
         items: ["İçerenköy, Çayır Cd No: 1,\n34752 Ataşehir/Istanbul", "info@citysresidences.com", "(0216) 225 50 00"],
       },
     ],
-    sosyalMedya: [{ title: "LinkedIn" }, { title: "Instagram" }, { title: "Youtube" }, { title: "X" }],
+    socialMedia: [{ title: "LinkedIn" }, { title: "Instagram" }, { title: "Youtube" }, { title: "X" }],
     menu: [
       { title: t("navigation.citysPark"), href: "#" },
       { title: t("navigation.citysClubHouse"), href: "#" },
@@ -28,7 +28,7 @@ export function Footer() {
       { title: t("navigation.citysClub"), href: "#" },
       { title: t("navigation.contact"), href: "#" },
     ],
-    bilgilendirme: [
+    legal: [
       {
         title: t("kvkk"),
         href: "#",
@@ -63,13 +63,13 @@ export function Footer() {
             </div>
           </div>
           <div className="bt:col-span-16">
-            {/* Top Section: İletişim and Sosyal Medya */}
+            {/* Top Section: Contact and Social Media */}
             <div className="bt:col-span-9 grid grid-cols-1 gap-10 bt:gap-0 bt:grid-cols-12">
-              {/* İletişim Section */}
+              {/* Contact Section */}
               <div className="bt:col-span-8">
                 <h2 className="text-base font-normal mb-6 border-b border-grenadier pb-2">{t("contact")}</h2>
                 <div className="grid grid-cols-1 bt:grid-cols-2 gap-6 mr-12">
-                  {menuItems.iletisim.map((office) => (
+                  {footerItems.contact.map((office) => (
                     <div key={office.title} className="space-y-2">
                       <h3 className="text-sm font-medium">{office.title}</h3>
                       {office.items.map((item, index) => (
@@ -81,11 +81,11 @@ export function Footer() {
                   ))}
                 </div>
               </div>
-              {/* Sosyal Medya Section */}
+              {/* Social Media Section */}
               <div className="bt:col-span-4 bt:col-start-9">
                 <h2 className="text-base font-normal mb-6 border-b border-grenadier pb-2">{t("socialMedia")}</h2>
                 <div className="space-y-2">
-                  {menuItems.sosyalMedya.map((item) => (
+                  {footerItems.socialMedia.map((item) => (
                     <Link
                       key={item.title}
                       href="#"
@@ -97,24 +97,24 @@ export function Footer() {
                 </div>
               </div>
             </div>
-            {/* Bottom Section: Menü and Bilgilendirme */}
+            {/* Bottom Section: Menu and Legal */}
             <div className="grid grid-cols-1 bt:grid-cols-12 gap-10 bt:gap-0 pt-8 mt-0 bd:mt-10">
-              {/* Menü Section */}
+              {/* Menu Section */}
               <div className="bt:col-span-8">
                 <h2 className="text-base font-normal mb-6 border-b border-grenadier pb-2">{t("menu")}</h2>
                 <div className="flex flex-col bt:grid grid-cols-2 gap-y-2 gap-x-6 mr-12">
-                  {menuItems.menu.map((item, i) => (
+                  {footerItems.menu.map((item, i) => (
                     <Link key={i} href={item.href} className="text-sm text-white/60 hover:text-white transition-colors">
                       {item.title}
                     </Link>
                   ))}
                 </div>
               </div>
-              {/* Bilgilendirme Section */}
+              {/* Legal Section */}
               <div className="bt:col-span-4 bt:col-start-9">
                 <h2 className="text-base font-normal mb-6 border-b border-grenadier pb-2">{t("legal")}</h2>
                 <div className="space-y-2">
-                  {menuItems.bilgilendirme.map((item, i) => (
+                  {footerItems.legal.map((item, i) => (
                     <Link
                       key={i}
                       href={item.href}

@@ -39,7 +39,6 @@ const UNSELECTED_ITEM_STYLES = "border border-neutral-200 text-neutral-950"
 const CHECKBOX_SELECTED_STYLES = "bg-bricky-brick"
 const CHECKBOX_UNSELECTED_STYLES = "bg-transparent group-hover:opacity-30"
 
-// Convert to forwardRef
 export const DropdownMenuCheckboxesHear = forwardRef<DropdownMenuCheckboxesRef, DropdownMenuCheckboxesProps>(
   ({ placeholder, selectedItems = [], options, defaultValues = {}, onChange, className }, ref) => {
     const handleCheckedChange = (id: string, checked: Checked) => {

@@ -60,12 +60,14 @@ export function AnimatedButton({ size = "md", text = "Button Text", theme = "pri
         s.button,
         themes[theme].bgColorClassName,
         themes[theme].borderColorClassName,
-        "relative flex items-center justify-center gap-6 cursor-pointer rounded-md overflow-hidden",
+        "relative flex items-center cursor-pointer rounded-md overflow-hidden",
         {
           [s.sm]: size === "sm",
           [s.md]: size === "md",
           [s.lg]: size === "lg",
           [s["fit-content"]]: size === "fit-content",
+          "justify-center gap-6": size === "fit-content",
+          "justify-between": size !== "fit-content",
         }
       )}
       onMouseEnter={toggleSwitch}
