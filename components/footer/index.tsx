@@ -2,6 +2,7 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 import { Logo } from "@/components/icons"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 export function Footer() {
   const t = useTranslations("common")
@@ -53,7 +54,8 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-bricky-brick text-white px-4 py-12 bd:py-14 bd:pb-8 font-halenoir">
+    <footer className="relative bg-bricky-brick text-white px-4 py-12 bd:py-14 bd:pb-8 font-halenoir">
+      <ScrollToTop />
       <div className="container flex flex-col">
         <div className="flex flex-col items-stretch bd:grid grid-cols-1 bd:grid-cols-24 gap-16 bt:gap-24 bd:gap-8 mb-12">
           {/* Logo Section */}
