@@ -75,6 +75,42 @@ export default function Header() {
 
   return (
     <>
+      <button
+        className={cn(s.trigger, "cursor-pointer flex items-center gap-2 bt:gap-4", {
+          [s.active]: menuOpen,
+        })}
+        onClick={() => setMenuOpen((prev) => !prev)}
+        type="button"
+        aria-expanded={menuOpen}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+      >
+        <div className={cn(s.cross, "cursor-pointer")}>
+          <MenuX
+            className="hidden bt:block"
+            isOpen={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
+            strokeWidth="1"
+            color="#fff"
+            transition={{ type: "spring", stiffness: 260, damping: 40 }}
+            width="50"
+            height="6"
+          />
+          <MenuX
+            className="block bt:hidden"
+            isOpen={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
+            strokeWidth="1"
+            color="#fff"
+            transition={{ type: "spring", stiffness: 260, damping: 40 }}
+            width="35"
+            height="6"
+          />
+        </div>
+        <div className={cn(s.text, "cursor-pointer text-white font-halenoir")}>
+          <span>{t("close")}</span>
+          <span>{t("open")}</span>
+        </div>
+      </button>
       <header
         className={cn(s.header, "flex items-center", {
           [s.hidden]: scrollState.hidden,
@@ -84,7 +120,7 @@ export default function Header() {
         role="banner"
       >
         <div
-          className={cn(s.content, "flex items-center justify-between flex-1", {
+          className={cn(s.content, "flex items-center justify-end flex-1", {
             [s.atTop]: scrollState.atTop,
           })}
         >
@@ -96,42 +132,7 @@ export default function Header() {
           >
             <Logo fill={colors.white} />
           </LocalizedLink>
-          <button
-            className={cn(s.trigger, "cursor-pointer flex items-center gap-2 bt:gap-4", {
-              [s.active]: menuOpen,
-            })}
-            onClick={() => setMenuOpen((prev) => !prev)}
-            type="button"
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-          >
-            <div className={cn(s.cross, "cursor-pointer")}>
-              <MenuX
-                className="hidden bt:block"
-                isOpen={menuOpen}
-                onClick={() => setMenuOpen(!menuOpen)}
-                strokeWidth="1"
-                color="#fff"
-                transition={{ type: "spring", stiffness: 260, damping: 40 }}
-                width="50"
-                height="6"
-              />
-              <MenuX
-                className="block bt:hidden"
-                isOpen={menuOpen}
-                onClick={() => setMenuOpen(!menuOpen)}
-                strokeWidth="1"
-                color="#fff"
-                transition={{ type: "spring", stiffness: 260, damping: 40 }}
-                width="35"
-                height="6"
-              />
-            </div>
-            <div className={cn(s.text, "cursor-pointer text-white font-halenoir", { [s.active]: menuOpen })}>
-              <span>{t("close")}</span>
-              <span>{t("open")}</span>
-            </div>
-          </button>
+
           <nav className={cn(s["nav"], "flex gap-10 items-center text-white")} role="navigation">
             <div className={"flex items-center gap-6"}>
               <div className={cn(s["locale-switcher"], s["nav-item"], "cursor-pointer hidden bt:block")}>
