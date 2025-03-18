@@ -4,17 +4,15 @@ import cn from "clsx"
 import { useTranslations } from "next-intl"
 
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
-import { HorizontalScroll } from "@/components/animations/horizontal-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
-import { MPImg } from "@/components/mp-img"
+import { FullScreenSlider } from "@/components/full-screen-slider"
 import { ParallaxImagesSection } from "@/components/parallax-images-section"
 import { ParallaxVideoPanel } from "@/components/parallax-video-panel"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
-import { ZoomMap } from "@/components/zoom-map"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -98,17 +96,9 @@ export default function Home() {
         <div className="py-6 bt:py-12 relative flex flex-col items-center">
           <div className="w-full flex flex-col gap-16 bt:grid bt:grid-cols-3 bt:gap-6 bt:pb-16">
             {moreSectionData.map((item, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "col-span-1 space-y-5 bt:space-y-6 bd:space-y-16 text-center",
-                  index === 0 && "bt:mt-60",
-                  index === 1 && "bt:mt-0",
-                  index === 2 && "bt:mt-96"
-                )}
-              >
-                <div className="relative aspect-w-10 aspect-h-10 bt:aspect-h-14 bd:aspect-h-16 mx-auto">
-                  <MPImg imgSrc={item.imgSrc} />
+              <div key={index} className="col-span-1 space-y-5 bt:space-y-6 bd:space-y-16 text-center">
+                <div className="relative aspect-w-10 aspect-h-10 bt:aspect-h-14 bd:aspect-h-16 mx-auto rounded-2xl overflow-hidden">
+                  <Img src={item.imgSrc} alt="City's Lifestyle" fill className="object-cover" sizes="30vw" />
                 </div>
                 <div className="space-y-6 bt:space-y-4 bd:space-y-6">
                   <h2 className="font-lexend-giga font-normal text-4xl text-bricky-brick mx-auto">{item.title}</h2>
@@ -120,10 +110,28 @@ export default function Home() {
         </div>
       </section>
       <section className="relative">
-        <HorizontalScroll title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />
+        <FullScreenSlider title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />
+        {/* <HorizontalScroll title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} /> */}
       </section>
-      <section className="z-20 relative font-halenoir">
-        <ZoomMap />
+      <section className="flex items-center justify-center gap-16 py-24">
+        {/* <ZoomMap /> */}
+        <div className="max-w-96">
+          <h2 className="font-halenoir text-3xl">TEST</h2>
+          <p className="font-halenoir text-xl">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ad eveniet tenetur iure dolor
+            dignissimos nihil quis perferendis, suscipit mollitia eligendi assumenda explicabo, sapiente veniam.
+          </p>
+        </div>
+        <div className={cn(s.circleVideoC, "overflow-hidden rounded-full")}>
+          <Video
+            primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
       </section>
       <section className="relative py-4 bt:py-24">
         <ParallaxImagesSection />
@@ -132,7 +140,8 @@ export default function Home() {
         <ParallaxVideoPanel />
       </section>
       <section className="relative">
-        <HorizontalScroll title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
+        <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
+        {/* <HorizontalScroll title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} /> */}
       </section>
       <section className="relative container py-10">
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">

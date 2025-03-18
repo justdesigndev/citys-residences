@@ -1,0 +1,13 @@
+.embla-button {
+  align-items: center;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: desktop-vw(50px);
+  justify-content: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  width: desktop-vw(50px);
+  z-index: 1;
+}
