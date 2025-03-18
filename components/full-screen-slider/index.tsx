@@ -36,7 +36,6 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
         trigger: ".gsap-title-c",
         start: "center center",
         toggleActions: "play none none pause",
-        markers: true,
       })
 
       const cardTL = gsap.timeline({ paused: true })
@@ -51,7 +50,6 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
         animation: cardTL,
         trigger: ".gsap-description-c",
         toggleActions: "play none none pause",
-        markers: true,
       })
     },
     {
