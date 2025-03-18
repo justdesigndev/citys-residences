@@ -105,9 +105,7 @@ export function AnimatedButton({ size = "md", text = "Button Text", theme = "pri
               <ArrowRight className={cn(s.icon)} />
             </motion.span>
           </span>
-          <span className={cn(s["text-c"], "font-lexend-giga font-normal whitespace-nowrap text-[0.8rem]")}>
-            {text}
-          </span>
+          <span className={cn(s["text-c"], "font-lexend-giga font-normal whitespace-nowrap")}>{text}</span>
         </motion.span>
       </span>
       {/* icon right */}

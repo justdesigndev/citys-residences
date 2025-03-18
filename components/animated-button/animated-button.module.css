@@ -32,6 +32,26 @@
 
     @include-media ("desktop") {
       --padding: desktop-vw(8px);
+      font-size: desktop-vw(18px);
+    }
+
+    .icon-c {
+      padding: var(--padding);
+
+      .icon {
+        height: mobile-vw(12px);
+        width: mobile-vw(12px);
+
+        @include-media ("tablet") {
+          height: tablet-vw(12px);
+          width: tablet-vw(12px);
+        }
+
+        @include-media ("desktop") {
+          height: desktop-vw(18px);
+          width: desktop-vw(18px);
+        }
+      }
     }
   }
 

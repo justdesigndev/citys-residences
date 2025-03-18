@@ -4,12 +4,13 @@ import s from "./parallax-images-section.module.css"
 
 import { useGSAP } from "@gsap/react"
 import cn from "clsx"
+import { useTranslations } from "next-intl"
 import { useRef } from "react"
 
 import { gsap, ScrollTrigger } from "@/components/gsap"
 import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { ResponsiveLetterSpacing } from "@/components/responsive-letter-spacing"
-import { useTranslations } from "next-intl"
+
 export function ParallaxImagesSection() {
   const ref = useRef<HTMLDivElement>(null)
   const t = useTranslations("home.live.p2")
@@ -66,7 +67,12 @@ export function ParallaxImagesSection() {
         <MaskedParallaxImage text={t("t1")} imgSrc="/img/menu.jpg" />
         <MaskedParallaxImage horizontalAlignment="rtl" text={t("t2")} imgSrc="/img/menu.jpg" />
         <MaskedParallaxImage text={t("t3")} imgSrc="/img/menu.jpg" />
-        <MaskedParallaxImage horizontalAlignment="rtl" text={t("t4")} imgSrc="/img/menu.jpg" />
+        <MaskedParallaxImage
+          horizontalAlignment="rtl"
+          text={t("t4")}
+          imgSrc="/img/menu.jpg"
+          link={{ url: "/test", text: "TEST" }}
+        />
       </div>
     </div>
   )

@@ -1,62 +1,64 @@
 "use client"
 
-import { useGSAP } from "@gsap/react"
 import cn from "clsx"
-import { useWindowSize } from "hamo"
 import { useRef } from "react"
 
+import { AnimatedButton } from "@/components/animated-button"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
-import { gsap, ScrollTrigger } from "@/components/gsap"
 import { MPImg } from "@/components/mp-img"
-import { breakpoints } from "@/styles/config.mjs"
+import { Link } from "@/components/utility/link"
 
 export interface MaskedParallaxImageProps {
   horizontalAlignment?: "rtl" | "ltr"
   text: string
   imgSrc: string
+  link?: {
+    url: string
+    text: string
+  }
 }
 
-export function MaskedParallaxImage({ horizontalAlignment = "ltr", text, imgSrc }: MaskedParallaxImageProps) {
+export function MaskedParallaxImage({ horizontalAlignment = "ltr", text, imgSrc, link }: MaskedParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const { width } = useWindowSize()
+  // const { width } = useWindowSize()
 
-  useGSAP(
-    () => {
-      if (!width) return
-      if (width < breakpoints.breakpointMobile) return
+  // useGSAP(
+  //   () => {
+  //     if (!width) return
+  //     if (width < breakpoints.breakpointMobile) return
 
-      const tl = gsap.timeline({ paused: true })
+  //     const tl = gsap.timeline({ paused: true })
 
-      // tl.fromTo(
-      //   ".gsap-parallax-text",
-      //   {
-      //     yPercent: 600,
-      //   },
-      //   {
-      //     yPercent: 200,
-      //   },
-      //   "s"
-      // )
+  //     // tl.fromTo(
+  //     //   ".gsap-parallax-text",
+  //     //   {
+  //     //     yPercent: 600,
+  //     //   },
+  //     //   {
+  //     //     yPercent: 200,
+  //     //   },
+  //     //   "s"
+  //     // )
 
-      ScrollTrigger.create({
-        animation: tl,
-        trigger: ref.current,
-        // markers: true,
-        scrub: true,
-      })
-    },
-    {
-      scope: ref,
-      dependencies: [width],
-    }
-  )
+  //     ScrollTrigger.create({
+  //       animation: tl,
+  //       trigger: ref.current,
+  //       // markers: true,
+  //       scrub: true,
+  //     })
+  //   },
+  //   {
+  //     scope: ref,
+  //     dependencies: [width],
+  //   }
+  // )
 
   return (
     <div className="px-4 bt:px-10 py-4 bt:py-14 bd:py-28" ref={ref}>
       <div className={cn("flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-8 bt:gap-0")}>
         <div
           className={cn(
-            "gsap-parallax-text col-span-6",
+            "gsap-parallax-text col-span-6 flex flex-col gap-12",
             horizontalAlignment === "ltr" ? "col-start-1 order-2 bt:order-1" : "col-start-[18] order-1 bt:order-2"
           )}
         >
@@ -70,6 +72,11 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr", text, imgSrc 
               {text}
             </TextRevealOnScroll>
           </p>
+          {link && (
+            <Link className="w-56" href={link.url}>
+              <AnimatedButton text={link.text} size="lg" theme="tertiary" />
+            </Link>
+          )}
         </div>
         <div
           className={cn(
