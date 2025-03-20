@@ -50,7 +50,7 @@ export function ParallaxVideoPanel() {
         trigger: ref.current,
         scrub: true,
         pin: true,
-        end: "+=3500",
+        end: "+=2500",
       })
     },
     {
