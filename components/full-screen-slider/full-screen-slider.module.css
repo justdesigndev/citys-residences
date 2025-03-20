@@ -7,7 +7,7 @@
   overflow: hidden;
   z-index: 100;
 
-  &:after {
+  /* &:after {
     content: "";
     position: absolute;
     top: 0;
@@ -26,7 +26,7 @@
       outline: desktop-vw(8px) solid var(--bricky-brick);
       outline-offset: desktop-vw(-8px);
     }
-  }
+  } */
 }
 .title {
   left: 50%;

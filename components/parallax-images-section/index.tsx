@@ -64,14 +64,14 @@ export function ParallaxImagesSection() {
         </div>
       </div>
       <div className="flex flex-col gap-8 bt:gap-0">
-        <MaskedParallaxImage text={t("t1")} imgSrc="/img/menu.jpg" />
-        <MaskedParallaxImage horizontalAlignment="rtl" text={t("t2")} imgSrc="/img/menu.jpg" />
-        <MaskedParallaxImage text={t("t3")} imgSrc="/img/menu.jpg" />
+        <MaskedParallaxImage text={t("t1")} imgSrc="/img/slides-2/1.jpg" />
+        <MaskedParallaxImage horizontalAlignment="rtl" text={t("t2")} imgSrc="/img/slides-2/2.jpg" />
+        <MaskedParallaxImage text={t("t3")} imgSrc="/img/slides-2/3.jpg" />
         <MaskedParallaxImage
           horizontalAlignment="rtl"
           text={t("t4")}
-          imgSrc="/img/menu.jpg"
-          link={{ url: "/test", text: "TEST" }}
+          imgSrc="/img/slides-2/4.jpg"
+          // link={{ url: "/test", text: "TEST" }}
         />
       </div>
     </div>

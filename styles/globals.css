@@ -79,6 +79,12 @@ body {
   mask-image: hsla(10, 66%, 43%, 0.8);
 }
 
+.blur-bg-bricky-brick-light {
+  background: hsla(10, 66%, 43%, 0.5);
+  backdrop-filter: blur(16px);
+  mask-image: hsla(10, 66%, 43%, 0.5);
+}
+
 .blur-bg-white {
   background: hsla(0, 0%, 98%, 0.1);
   backdrop-filter: blur(16px);

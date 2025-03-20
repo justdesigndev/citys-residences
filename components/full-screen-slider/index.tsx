@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 import { useGSAP } from "@gsap/react"
 import { useRef } from "react"
 
-import { ResponsiveLetterSpacing } from "@/components/responsive-letter-spacing"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 
 export interface FullScreenSliderProps {
@@ -68,7 +67,9 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
         )}
       >
         <div className={cn("hidden bd:block", "gsap-title")}>
-          <ResponsiveLetterSpacing text={title} />
+          <h2 className="text-white font-bold text-5xl bt:text-8xl bd:text-7xl leading-none overflow-hidden py-2 text-left">
+            {title}
+          </h2>
         </div>
         <div className={cn("block bd:hidden", "gsap-title")}>{title}</div>
       </div>
@@ -77,7 +78,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
           className={cn(
             s.description,
             "gsap-description",
-            "w-full h-full rounded-lg overflow-hidden p-4 bd:p-8 text-white flex isolate blur-bg-bricky-brick"
+            "w-full h-full rounded-lg overflow-hidden p-4 bd:p-8 text-white flex isolate blur-bg-bricky-brick-light"
           )}
         >
           <p

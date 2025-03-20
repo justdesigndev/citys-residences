@@ -1,12 +1,13 @@
 "use client"
 
+import { gsap, ScrollTrigger } from "@/components/gsap"
+import { breakpoints } from "@/styles/config.mjs"
 import { useGSAP } from "@gsap/react"
 import cn from "clsx"
-import Image from "next/image"
-import { useRef } from "react"
-import { gsap, ScrollTrigger } from "@/components/gsap"
 import { useWindowSize } from "hamo"
-import { breakpoints } from "@/styles/config.mjs"
+import { useRef } from "react"
+
+import { Img } from "@/components/utility/img"
 
 export interface MPImgProps {
   imgSrc: string
@@ -73,9 +74,15 @@ export function MPImg(props: MPImgProps) {
       <div className="relative w-full h-[120%] gsap-parallax-img">
         <div className="absolute top-0 left-0 right-0 bottom-0 z-50 isolate gsap-parallax-img-overlay hidden bd:block">
           <div className="bg-bricky-brick absolute w-full h-full z-10"></div>
-          <Image src={props.imgSrc} alt="Parallax Image" fill className="object-cover mix-blend-overlay z-20" />
+          <Img
+            src={props.imgSrc}
+            alt="Parallax Image"
+            className="object-cover mix-blend-overlay z-20"
+            width={2000}
+            height={2000}
+          />
         </div>
-        <Image src={props.imgSrc} alt="Parallax Image" fill className="object-cover z-40" />
+        <Img src={props.imgSrc} alt="Parallax Image" className="object-cover z-40" width={2000} height={2000} />
       </div>
     </div>
   )

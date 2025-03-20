@@ -29,12 +29,6 @@
     "cursor": {
         "view": "Videoyu İzleyin"
     },
-    "facilities": {
-        "title": "TESİSLER"
-    },
-    "gallery": {
-        "title": "GALERİ"
-    },
     "contact": {
         "description": "City's Residences projesine gösterdiğiniz ilgi için teşekkür ederiz. <br></br> Ekibimizin sizinle iletişime geçebilmesi için lütfen aşağıdaki kayıt formunu doldurunuz.",
         "form": {
@@ -149,18 +143,18 @@
         "live": {
             "p1": {
                 "title": "DAHA ÇOK YAŞA",
-                "description": "Lüks and zerafetin buluştuğu, zamana meydan okuyan bir yaşam alanı, her biri kendine özgü karakteri ve hikayesiyle eşsiz bir koleksiyon..."
+                "description": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırarak keyifle, yaşamı sanata dönüştürerek daha çok yaşa."
             },
             "p2": {
                 "title": "DAHA HUZURLU YAŞA",
-                "t1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-                "t2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-                "t3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-                "t4": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+                "t1": "Zaman senin sanat eserin. İstanbul'un kalbinde, kendine ayırdığın her an bir ayrıcalığa dönüşür.",
+                "t2": "Şehir seni çevrelerken, sen kendini keşfeder, hayatın en anlamlı anlarını yaratırsın.",
+                "t3": "Konforlu, dingin ve  zarif bir yaşamın kapılarını arala.",
+                "t4": "Cömert doğayla iç içe yaşamanın ayrıcalığıyla, yaşamı sanata dönüştür."
             },
             "p3": {
                 "title": "DAHA DOLU YAŞA",
-                "description": "Citys Residences, İstanbul'un eşsiz sosyal olanaklarıyla donatılmış bir yaşam sunuyor. Havuzlar, yürüyüş parkurları ve dinlenme alanlarıyla her anı keyifle yaşayın."
+                "description": "Spor, sanat, kültür, alışveriş, eğlence ve çok daha fazlasını bir araya getiren yeni bir yaşam dizaynı ile daha dolu yaşa."
             }
         }
     },

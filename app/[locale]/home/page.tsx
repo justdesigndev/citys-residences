@@ -116,10 +116,9 @@ export default function Home() {
       <section className="flex items-center justify-center gap-16 py-24">
         {/* <ZoomMap /> */}
         <div className="max-w-96">
-          <h2 className="font-halenoir text-3xl">TEST</h2>
           <p className="font-halenoir text-xl">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae ad eveniet tenetur iure dolor
-            dignissimos nihil quis perferendis, suscipit mollitia eligendi assumenda explicabo, sapiente veniam.
+            İstanbul’un kalbinde, Kozyatağı’nın prestijli lokasyonunda şehri ve zamanı kendi ritminize göre
+            şekillendirme ayrıcalığına sahip olun.
           </p>
         </div>
         <div className={cn(s.circleVideoC, "overflow-hidden rounded-full")}>
