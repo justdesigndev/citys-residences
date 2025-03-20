@@ -63,12 +63,12 @@ export function MaskedParallaxImage({ horizontalAlignment = "ltr", text, imgSrc,
           )}
         >
           <p className="hidden bt:block bt:text-2xl bd:text-3xl">
-            <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0005}>
+            <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0075}>
               {text}
             </TextRevealOnScroll>
           </p>
           <p className="block bt:hidden">
-            <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0005}>
+            <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0075}>
               {text}
             </TextRevealOnScroll>
           </p>
