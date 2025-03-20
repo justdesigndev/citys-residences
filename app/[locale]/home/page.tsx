@@ -31,7 +31,6 @@ export default function Home() {
       <Img src="/img/slides-1/4.jpg" alt="Slide 4" fill className="object-cover" sizes="100vw" />
     </div>,
   ]
-  // const slides2 = ["/img/slides-2/1.jpg", "/img/slides-2/2.jpg", "/img/slides-2/3.jpg", "/img/slides-2/4.jpg"]
   const slides3 = [
     <div className="relative w-screen h-screen" key={1}>
       <Img src="/img/slides-3/1.jpg" alt="Slide 1" fill className="object-cover" sizes="100vw" />

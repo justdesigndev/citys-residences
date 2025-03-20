@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl"
 import { useRef } from "react"
 
 import { gsap, ScrollTrigger } from "@/components/gsap"
-import { MaskedParallaxImage } from "@/components/masked-parallax-image"
+import { MaskedParallaxImageSection } from "@/components/masked-parallax-image-section"
 import { ResponsiveLetterSpacing } from "@/components/responsive-letter-spacing"
 
 export function ParallaxImagesSection() {
@@ -64,15 +64,32 @@ export function ParallaxImagesSection() {
         </div>
       </div>
       <div className="flex flex-col gap-8 bt:gap-0">
-        <MaskedParallaxImage text={t("t1")} imgSrc="/img/slides-2/1.jpg" />
-        <MaskedParallaxImage horizontalAlignment="rtl" text={t("t2")} imgSrc="/img/slides-2/2.jpg" />
-        <MaskedParallaxImage text={t("t3")} imgSrc="/img/slides-2/3.jpg" />
-        <MaskedParallaxImage
-          horizontalAlignment="rtl"
-          text={t("t4")}
-          imgSrc="/img/slides-2/4.jpg"
-          // link={{ url: "/test", text: "TEST" }}
-        />
+        {[
+          { text: t("t1"), imgSrc: "/img/slides-2/3.jpg", horizontalAlignment: "ltr" as const },
+          { text: t("t2"), imgSrc: "/img/slides-2/4.jpg", horizontalAlignment: "rtl" as const },
+          { text: t("t3"), imgSrc: "/img/slides-2/2.jpg", horizontalAlignment: "ltr" as const },
+          { text: t("t4"), imgSrc: "/img/slides-2/1.jpg", horizontalAlignment: "rtl" as const },
+          // Uncomment if needed
+          // { text: t("t4"), imgSrc: "/img/slides-2/4.jpg", horizontalAlignment: "rtl" as const, link: { url: "/test", text: "TEST" } },
+        ].map(
+          (
+            item: {
+              text: string
+              imgSrc: string
+              horizontalAlignment: "ltr" | "rtl"
+              link?: { url: string; text: string }
+            },
+            index
+          ) => (
+            <MaskedParallaxImageSection
+              key={index}
+              text={item.text}
+              imgSrc={item.imgSrc}
+              horizontalAlignment={item.horizontalAlignment}
+              {...(item.link && { link: item.link })}
+            />
+          )
+        )}
       </div>
     </div>
   )
