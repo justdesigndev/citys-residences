@@ -34,7 +34,8 @@
     }
 
     @include-media ('desktop') {
-      height: desktop-vw(700px);
+      max-height: calc(100vh - desktop-vw(100px));
+      height: 100%;
       width: desktop-vw(1300px);
     }
   }

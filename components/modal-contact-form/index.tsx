@@ -6,13 +6,14 @@ import { useGSAP } from "@gsap/react"
 import cn from "clsx"
 import { X } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 import { ContactForm } from "@/components/form-contact"
 import { gsap } from "@/components/gsap"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { Video } from "@/components/utility/video"
 import { FormTranslations } from "@/types"
+import { useEsc } from "@/hooks/useEsc"
 
 interface ModalContactFormProps {
   open: boolean
@@ -107,19 +108,7 @@ export function ModalContactForm({ open, setOpen }: ModalContactFormProps) {
 
   const menuTL = useRef<gsap.core.Timeline>()
 
-  useEffect(() => {
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && open) {
-        setOpen(false)
-      }
-    }
-
-    document.addEventListener("keydown", handleEscapeKey)
-
-    return () => {
-      document.removeEventListener("keydown", handleEscapeKey)
-    }
-  }, [open, setOpen])
+  useEsc(() => setOpen(false), open)
 
   useGSAP(
     () => {
