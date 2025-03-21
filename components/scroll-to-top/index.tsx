@@ -1,10 +1,13 @@
 "use client"
 
 import { useLenis } from "lenis/react"
-import { gsap } from "../gsap"
+import { useTranslations } from "next-intl"
+
+import { gsap } from "@/components/gsap"
 
 export function ScrollToTop() {
   const lenis = useLenis()
+  const t = useTranslations("common")
 
   const handleScrollToTop = () => {
     gsap.to("body", {
@@ -18,12 +21,14 @@ export function ScrollToTop() {
       },
     })
   }
+
   return (
-    <div
+    <button
       onClick={handleScrollToTop}
-      className="absolute top-4 right-4 font-halenoir font-bold text-sm bg-white text-black px-4 py-2 rounded-full cursor-pointer flex items-center justify-center"
+      className="font-halenoir font-normal text-sm text-white opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
+      type="button"
     >
-      SCROLL TO TOP
-    </div>
+      {t("scrollToTop")}
+    </button>
   )
 }

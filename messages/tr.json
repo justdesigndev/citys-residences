@@ -22,10 +22,6 @@
         "gallery": "GALERİ",
         "contact": "İLETİŞİM"
     },
-    "footer": {
-        "address": "Golf Sahası",
-        "copyright": "© Mustafa V. Koç Golf Sahası 2024"
-    },
     "cursor": {
         "view": "Videoyu İzleyin"
     },
@@ -164,28 +160,26 @@
     "common": {
         "navigation": {
             "residences": "Konutlar",
-            "citysPark": "City's Park",
-            "citysClubHouse": "City's Club House",
             "location": "Konum",
-            "dining": "Yeme İçme",
-            "shopping": "Alışveriş",
-            "justworkCampus": "Justwork Kampüs",
-            "performanceArtsCenter": "Performans Sanatları Merkezi",
-            "citysClub": "City's Club Ayrıcalıkları",
-            "contact": "Contact"
+            "citysPark": "City's Park",
+            "citysMembersClub": "City's Members Club",
+            "citysLifePrivileges": "City's Life Ayrıcalıkları",
+            "citysIstanbul": "City's İstanbul"
         },
+        "contactInfo": "City's İstanbul Satış Ofisi / <br></br> City's Sales Gallery",
         "close": "KAPAT",
         "open": "MENÜ",
         "inquiry": "RANDEVU AL",
         "contact": "İletişim",
         "socialMedia": "Sosyal Medya",
         "menu": "Menü",
-        "legal": "Yasal",
-        "copyright": "2025 © City's Residences - Tüm hakları saklıdır.",
+        "legal": "KVKK",
+        "copyright": "2025 © City's Istanbul Residences - Tüm hakları saklıdır.",
         "kvkk": "KVKK",
         "commercialElectronicMessage": "Ticari Elektronik İleti Aydınlatma Metni",
         "explicitConsent": "Açık Rıza Metni",
         "kvkRelatedInformation": "KVKK İlişkin Aydınlatma Metni",
-        "cookiePolicy": "Çerez Politikası"
+        "cookiePolicy": "Çerez Politikası",
+        "scrollToTop": "En üste dön"
     }
 }

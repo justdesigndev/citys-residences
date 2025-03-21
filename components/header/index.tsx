@@ -32,14 +32,11 @@ export function Header() {
 
   const navigationItems = [
     { title: t("navigation.residences"), href: "/" },
-    { title: t("navigation.citysPark"), href: "/" },
-    { title: t("navigation.citysClubHouse"), href: "/" },
     { title: t("navigation.location"), href: "/" },
-    { title: t("navigation.dining"), href: "/" },
-    { title: t("navigation.shopping"), href: "/" },
-    { title: t("navigation.justworkCampus"), href: "/" },
-    { title: t("navigation.performanceArtsCenter"), href: "/" },
-    { title: t("navigation.citysClub"), href: "/" },
+    { title: t("navigation.citysPark"), href: "/" },
+    { title: t("navigation.citysMembersClub"), href: "/" },
+    { title: t("navigation.citysLifePrivileges"), href: "/" },
+    { title: t("navigation.citysIstanbul"), href: "/" },
   ]
 
   useEffect(() => {
