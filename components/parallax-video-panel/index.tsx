@@ -69,10 +69,11 @@ export function ParallaxVideoPanel() {
       >
         <div className="gsap-img-c w-screen h-[var(--lvh-calc)] relative inset-0">
           <Image
-            src="/img/slides-2/1.jpg"
+            src="/img/video-bg.jpg"
             alt="Parallax Image"
             fill
             className="gsap-img object-cover gsap-parallax-img z-30"
+            sizes="100vw"
           />
         </div>
         <div

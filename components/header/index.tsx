@@ -9,11 +9,10 @@ import Lenis from "lenis"
 import { useLenis } from "lenis/react"
 import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { AnimatedButton } from "@/components/animated-button"
 import { Logo } from "@/components/icons"
-import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Menu } from "@/components/menu"
 import { MenuX } from "@/components/menu-x"
 import { ModalContactForm } from "@/components/modal-contact-form"
@@ -144,12 +143,12 @@ export function Header() {
 
           <nav className={cn(s["nav"], "flex gap-10 items-center text-white")} role="navigation">
             <div className={"flex items-center gap-6"}>
-              <div className={cn(s["locale-switcher"], s["nav-item"], "cursor-pointer hidden bt:block")}>
+              {/* <div className={cn(s["locale-switcher"], s["nav-item"], "cursor-pointer hidden bt:block")}>
                 <LocaleSwitcher />
-              </div>
+              </div> */}
               <div className={cn(s["sticky-badge"], s["nav-item"], "cursor-pointer")}>
                 <div className="hidden bt:block">
-                  <div className={s.stickyBadge} onClick={() => setModalOpen((prev) => !prev)}>
+                  <div className={cn(s.stickyBadge, "cursor-pointer")} onClick={() => setModalOpen((prev) => !prev)}>
                     <AnimatedButton text={t("inquiry")} size="fit-content" theme="tertiary" />
                   </div>
                 </div>

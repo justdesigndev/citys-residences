@@ -76,11 +76,11 @@
   }
 
   &.fit-content {
-    --padding: desktop-vw(5px);
+    --padding: desktop-vw(7px);
   }
 
   .text-c {
-    padding-left: calc(var(--padding) * 2);
+    padding: calc(var(--padding));
   }
 
   .icon-c {

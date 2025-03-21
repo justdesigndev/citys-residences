@@ -9,8 +9,7 @@ import { useRef } from "react"
 
 import { gsap, useGSAP } from "@/components/gsap"
 import { socialIcons } from "@/components/icons"
-import { LocaleSwitcher } from "@/components/locale-switcher"
-import { AnimatedButton } from "../animated-button"
+import { AnimatedButton } from "@/components/animated-button"
 
 interface MenuItem {
   title: string
@@ -124,9 +123,9 @@ export function Menu({ open, items }: MenuProps) {
               <AnimatedButton theme="transparent" size="sm" text="Satış Ofisi Konum" fontFamily="halenoir" />
             </a>
           </li>
-          <li className={cn(s.navItem, "block bt:hidden")}>
+          {/* <li className={cn(s.navItem, "block bt:hidden")}>
             <LocaleSwitcher />
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>
