@@ -81,16 +81,13 @@ export function Menu({ open, items }: MenuProps) {
         // onClick={() => animateLinksForwards()}
       >
         <ul
-          className={cn(
-            s.navList,
-            "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-6 border-t border-white/20 py-14 w-full"
-          )}
+          className={cn(s.navList, "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-6 py-12 w-full")}
         >
           {items.map(({ title, href }) => (
             <li
               className={cn(
                 s.navItem,
-                "font-halenoir font-light text-white text-2xl bt:text-4xl bd:text-3xl text-center bd:text-left"
+                "font-halenoir font-light text-white text-2xl bt:text-4xl bd:text-2xl text-center bd:text-left"
               )}
               key={title}
             >
@@ -99,7 +96,7 @@ export function Menu({ open, items }: MenuProps) {
               </Link>
             </li>
           ))}
-          <li className="w-full flex flex-col my-10">
+          <li className="w-full flex flex-col my-4">
             <p className="w-full font-halenoir font-normal text-white text-base py-2 border-b border-white/30">
               Bizi Takip Edin
             </p>

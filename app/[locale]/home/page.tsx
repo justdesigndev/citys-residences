@@ -116,21 +116,77 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section className="bg-white font-halenoir px-4 bd:px-8 py-6 bd:py-12 pt-0 z-20 relative">
         <div className="py-6 bt:py-12 relative flex flex-col items-center">
-          <div className="w-full flex flex-col gap-16 bt:grid bt:grid-cols-3 bt:gap-6 bt:pb-16">
-            {moreSectionData.map((item, index) => (
-              <div key={index} className="col-span-1 space-y-5 bt:space-y-6 bd:space-y-16 text-center">
-                <div className="relative aspect-w-10 aspect-h-10 bt:aspect-h-14 bd:aspect-h-16 mx-auto rounded-2xl overflow-hidden">
-                  <Img src={item.imgSrc} alt="City's Lifestyle" fill className="object-cover" sizes="30vw" />
-                </div>
-                <div className="space-y-6 bt:space-y-4 bd:space-y-6">
-                  <h2 className="font-lexend-giga font-normal text-4xl text-bricky-brick mx-auto">{item.title}</h2>
-                  <p className="font-halenoir text-base bt:text-xl max-w-sm mx-auto">{item.description}</p>
-                </div>
+          <div className="w-full h-[var(--svh-calc)] flex flex-col gap-16 bt:grid bt:grid-cols-3 bt:gap-6 bt:pb-16">
+            <div
+              className={cn(
+                "group",
+                "hover:scale-95 transition-all duration-700",
+                "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
+                'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-t before:from-white before:to-transparent before:z-10'
+              )}
+            >
+              <div className="w-full h-full relative group-hover:scale-110 transition-all duration-700">
+                <Img
+                  src={moreSectionData[0].imgSrc}
+                  alt="City's Lifestyle"
+                  fill
+                  className="object-cover"
+                  sizes="30vw"
+                />
               </div>
-            ))}
+              <div className="absolute left-0 bottom-0 right-0 space-y-6 bt:space-y-4 bd:space-y-8 text-left text-black px-8 py-14 z-20">
+                <h2 className="font-lexend-giga font-normal text-4xl">{moreSectionData[0].title}</h2>
+                <p className="font-halenoir text-base bt:text-xl max-w-sm">{moreSectionData[0].description}</p>
+              </div>
+            </div>
+
+            <div
+              className={cn(
+                "group",
+                "hover:scale-95 transition-all duration-700",
+                "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
+                'before:content-[""] before:absolute before:left-0 before:top-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-b before:from-white before:to-transparent before:z-10'
+              )}
+            >
+              <div className="w-full h-full relative group-hover:scale-110 transition-all duration-700">
+                <Img
+                  src={moreSectionData[1].imgSrc}
+                  alt="City's Lifestyle"
+                  fill
+                  className="object-cover object-bottom"
+                  sizes="30vw"
+                />
+              </div>
+              <div className="absolute left-0 top-0 right-0 space-y-6 bt:space-y-4 bd:space-y-8 text-left text-black px-8 py-14 z-20">
+                <h2 className="font-lexend-giga font-normal text-4xl">{moreSectionData[1].title}</h2>
+                <p className="font-halenoir text-base bt:text-xl max-w-sm">{moreSectionData[1].description}</p>
+              </div>
+            </div>
+
+            <div
+              className={cn(
+                "group",
+                "hover:scale-95 transition-all duration-700",
+                "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
+                'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-1/2 before:w-full before:bg-gradient-to-t before:from-black before:to-transparent before:z-10'
+              )}
+            >
+              <div className="w-full h-full relative group-hover:scale-110 transition-all duration-700">
+                <Img
+                  src={moreSectionData[2].imgSrc}
+                  alt="City's Lifestyle"
+                  fill
+                  className="object-cover"
+                  sizes="30vw"
+                />
+              </div>
+              <div className="absolute left-0 bottom-0 right-0 space-y-6 bt:space-y-4 bd:space-y-8 text-left text-white px-8 py-14 z-20">
+                <h2 className="font-lexend-giga font-normal text-4xl">{moreSectionData[2].title}</h2>
+                <p className="font-halenoir text-base bt:text-xl max-w-sm">{moreSectionData[2].description}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -121,17 +121,17 @@
             "title2": "SANATI",
             "title3": "Zamanı yönetmek yaşamı sanata dönüştürmektir...",
             "p1": {
-                "title": "DAHA<br>HUZURLU</br>YAŞA",
+                "title": "DAHA<br></br> HUZURLU YAŞA",
                 "description": "Huzur, sessiz lüks mimaride sonsuz bir güvenle ve cömert doğayla iç içe yaşama ayrıcalığıdır.",
                 "button": "İNCELE"
             },
             "p2": {
-                "title": "DAHA<br>ÇOK</br>YAŞA",
+                "title": "DAHA ÇOK<br></br>YAŞA",
                 "description": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir.",
                 "button": "İNCELE"
             },
             "p3": {
-                "title": "DAHA<br>DOLU</br>YAŞA",
+                "title": "DAHA DOLU<br></br>YAŞA",
                 "description": "Sporun, sanatın, eğlencenin ve daha fazlasının bir araya geldiği bir yaşam, her anı değerli kılar.",
                 "button": "İNCELE"
             }
