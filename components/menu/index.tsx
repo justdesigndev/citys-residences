@@ -95,8 +95,8 @@ export function Menu({ open, items }: MenuProps) {
               </Link>
             </li>
           ))}
-          <li className="w-full flex flex-col my-6">
-            <p className="w-full font-halenoir font-normal text-white text-base py-2 border-b border-white/30">
+          <li className="w-full flex flex-col items-center bt:items-start my-4  bt:my-6">
+            <p className="w-full font-halenoir font-normal text-white text-sm bt:text-base py-2 border-b border-white/30 text-center bt:text-left">
               Bizi Takip Edin
             </p>
             <div className="flex gap-4 py-4">

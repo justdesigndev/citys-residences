@@ -1,21 +1,26 @@
 .button {
   &.sm {
     --padding: mobile-vw(6px);
+    font-size: mobile-vw(14px);
 
     @include-media ("tablet") {
       --padding: tablet-vw(6px);
+      font-size: tablet-vw(14px);
     }
 
     @include-media ("desktop") {
       --padding: desktop-vw(6px);
+      font-size: desktop-vw(14px);
     }
   }
 
   &.md {
     --padding: mobile-vw(7px);
+    font-size: mobile-vw(16px);
 
     @include-media ("tablet") {
       --padding: tablet-vw(7px);
+      font-size: tablet-vw(16px);
     }
 
     @include-media ("desktop") {
