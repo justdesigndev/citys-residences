@@ -395,7 +395,7 @@ export function ContactForm({ translations }: FormContactProps) {
 
           <ConsentCheckboxes form={form} control={form.control} />
 
-          <button type="submit" disabled={mutation.isPending} className="flex relative w-52">
+          <button type="submit" disabled={mutation.isPending} className="flex relative w-56">
             <AnimatedButton text={translations.submit.default} theme="secondary" size="lg" />
             {mutation.isPending && (
               <span className="absolute top-1/2 -right-4 -translate-y-1/2 translate-x-full flex items-center justify-center w-6 h-6">

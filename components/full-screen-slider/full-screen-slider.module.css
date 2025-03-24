@@ -32,12 +32,10 @@
   transform: translate(-50%, -100%);
   width: 96%;
   z-index: 150;
-
   @include-media ('tablet') {
     width: tablet-vw(600px);
   }
   @include-media ('desktop') {
-    letter-spacing: desktop-vw(20em);
     left: desktop-vw(100px);
     top: desktop-vw(100px);
     transform: translate(0, 0);

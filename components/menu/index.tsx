@@ -10,6 +10,7 @@ import { useRef } from "react"
 import { gsap, useGSAP } from "@/components/gsap"
 import { socialIcons } from "@/components/icons"
 import { AnimatedButton } from "@/components/animated-button"
+import { useClickAway } from "react-use"
 
 interface MenuItem {
   title: string
@@ -18,13 +19,21 @@ interface MenuItem {
 
 interface MenuProps {
   open: boolean
+  setOpen: (open: boolean) => void
   items: MenuItem[]
 }
 
-export function Menu({ open, items }: MenuProps) {
+export function Menu({ open, setOpen, items }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
   const lenis = useLenis()
+
+  useClickAway(ref, (e) => {
+    if ((e.target as HTMLElement).closest("[data-ignore-click-away]")) {
+      return
+    }
+    setOpen(false)
+  })
 
   //   const [animateLinks, setAnimateLinks] = useState(false)
 

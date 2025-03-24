@@ -9,7 +9,6 @@ import { useRef } from "react"
 
 import { gsap, ScrollTrigger } from "@/components/gsap"
 import { MaskedParallaxImageSection } from "@/components/masked-parallax-image-section"
-import { ResponsiveLetterSpacing } from "@/components/responsive-letter-spacing"
 
 export function ParallaxImagesSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -57,10 +56,14 @@ export function ParallaxImagesSection() {
             "font-lexend-giga text-bricky-brick font-bold text-5xl bt:text-7xl bd:text-6xl leading-tight text-center overflow-hidden py-2"
           )}
         >
-          <div className="gsap-title hidden bd:block">
-            <ResponsiveLetterSpacing text={t("title")} />
-          </div>
-          <div className="gsap-title block bd:hidden">{t("title")}</div>
+          <h2
+            className={cn(
+              "gsap-title",
+              "text-bricky-brick font-bold text-5xl bt:text-8xl bd:text-7xl leading-none tracking-[0.3em] overflow-hidden py-2 text-left bt:text-center"
+            )}
+          >
+            {t("title")}
+          </h2>
         </div>
       </div>
       <div className="flex flex-col gap-12 bt:gap-12 bd:gap-48 py-12 bt:py-16 bd:py-32">

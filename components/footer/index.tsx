@@ -17,7 +17,7 @@ export function Footer() {
     ],
     legal: [
       {
-        title: t("kvkk"),
+        title: t("kvkRelatedInformation"),
         href: "#",
       },
       {
@@ -26,10 +26,6 @@ export function Footer() {
       },
       {
         title: t("explicitConsent"),
-        href: "#",
-      },
-      {
-        title: t("kvkRelatedInformation"),
         href: "#",
       },
       {
@@ -76,10 +72,10 @@ export function Footer() {
                   info@citysresidences.com
                 </a>
                 <a
-                  href="tel:+902162255000"
+                  href="tel:+902162666600"
                   className="block text-sm bt:text-xs bd:text-sm text-white opacity-50 hover:opacity-100 transition-opacity whitespace-pre-line"
                 >
-                  +90 (216) 225 50 00
+                  +90 (216) 266 66 00
                 </a>
               </div>
             </div>
@@ -121,7 +117,7 @@ export function Footer() {
         </div>
         {/* Copyright Section */}
         <div className="flex flex-col bt:flex-row justify-between items-center gap-5 pt-5 bt:grid bt:grid-cols-24 bt:gap-2 bd:gap-8 border-t border-grenadier">
-          <div className="bt:col-span-9 bd:col-span-8 text-center bt:text-left order-3 bt:order-1 text-sm bt:text-xs bd:text-sm">
+          <div className="bt:col-span-9 bd:col-span-8 text-center bt:text-left order-3 bt:order-1 text-[0.8rem] bt:text-xs bd:text-sm">
             <span>{t("copyright")}</span>
           </div>
           <div className="bt:col-span-8 bd:col-span-10 flex gap-4 order-1 bt:order-2">
@@ -139,7 +135,7 @@ export function Footer() {
             </div>
           </div>
           <div className="bt:col-span-7 bd:col-span-6 flex flex-col-reverse bt:flex-row justify-between gap-5 order-2 bt:order-3">
-            <span className="flex-shrink-0 text-sm bt:text-xs bd:text-sm">
+            <span className="flex-shrink-0 text-[0.8rem] bt:text-xs bd:text-sm">
               Made by{" "}
               <Link href="https://justdesignfx.com" target="_blank" rel="noopener noreferrer" className="underline">
                 JUST DESIGN FX

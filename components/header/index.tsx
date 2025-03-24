@@ -91,6 +91,7 @@ export function Header() {
         type="button"
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close menu" : "Open menu"}
+        data-ignore-click-away
       >
         <div className={cn(s.cross, "cursor-pointer")}>
           <MenuX
@@ -161,7 +162,7 @@ export function Header() {
               </div>
             </div>
           </nav>
-          <Menu open={menuOpen} items={navigationItems} />
+          <Menu open={menuOpen} setOpen={setMenuOpen} items={navigationItems} />
         </div>
       </header>
       {memoizedModal}

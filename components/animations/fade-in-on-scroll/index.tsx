@@ -13,7 +13,7 @@ export function FadeInOnScroll({ children }: { children: React.ReactNode }) {
 
     tl.from(ref.current, {
       autoAlpha: 0,
-      delay: 0.5,
+      delay: 0.2,
     })
 
     ScrollTrigger.create({

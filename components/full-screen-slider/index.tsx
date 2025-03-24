@@ -66,12 +66,14 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
           "font-lexend-giga text-white font-bold text-5xl bt:text-8xl bd:text-6xl leading-none text-center overflow-hidden py-2"
         )}
       >
-        <div className={cn("hidden bd:block", "gsap-title")}>
-          <h2 className="text-white font-bold text-5xl bt:text-8xl bd:text-7xl leading-none overflow-hidden py-2 text-left">
-            {title}
-          </h2>
-        </div>
-        <div className={cn("block bd:hidden", "gsap-title")}>{title}</div>
+        <h2
+          className={cn(
+            "gsap-title",
+            "text-white font-bold text-5xl bt:text-8xl bd:text-7xl leading-none tracking-[0.3em] overflow-hidden py-2 text-left"
+          )}
+        >
+          {title}
+        </h2>
       </div>
       <div className={cn(s.descriptionC, "gsap-description-c")}>
         <div
