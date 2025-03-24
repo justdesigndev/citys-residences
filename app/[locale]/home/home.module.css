@@ -18,7 +18,7 @@
 }
 
 .circleVideoC {
-  --cutoff: mobile-vw(60px);
+  --cutoff: mobile-vw(20px);
   height: calc(100vw - var(--cutoff));
   width: calc(100vw - var(--cutoff));
 

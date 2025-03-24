@@ -18,16 +18,16 @@ export default function Home() {
   const t = useTranslations("home")
 
   const slides1 = [
-    <div className="relative w-screen h-[105vh]" key={1}>
+    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={1}>
       <Img src="/img/slides-1/1.jpg" alt="Slide 1" fill className="object-cover" sizes="100vw" />
     </div>,
-    <div className="relative w-screen h-[105vh]" key={2}>
+    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={2}>
       <Img src="/img/slides-1/2.jpg" alt="Slide 2" fill className="object-cover" sizes="100vw" />
     </div>,
-    <div className="relative w-screen h-[105vh]" key={3}>
+    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={3}>
       <Img src="/img/slides-1/3.jpg" alt="Slide 3" fill className="object-cover" sizes="100vw" />
     </div>,
-    <div className="relative w-screen h-[105vh]" key={4}>
+    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={4}>
       <Img src="/img/slides-1/4.jpg" alt="Slide 4" fill className="object-cover" sizes="100vw" />
     </div>,
   ]
@@ -116,30 +116,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex items-center justify-center gap-16 py-24">
-        {/* <ZoomMap /> */}
-        <div className="max-w-lg">
-          <p className="font-halenoir text-3xl">
-            <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.005}>
-              {t("map.title")}
-            </TextRevealOnScroll>
-          </p>
-        </div>
-        <div className={cn(s.circleVideoC, "overflow-hidden rounded-full")}>
-          <Video
-            primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </section>
-      <section className="relative">
-        <FullScreenSlider title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />
-        {/* <HorizontalScroll title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} /> */}
-      </section>
       <section className="bg-white font-halenoir px-4 bd:px-8 py-6 bd:py-12 pt-0 z-20 relative">
         <div className="py-6 bt:py-12 relative flex flex-col items-center">
           <div className="w-full h-[var(--svh-calc)] flex flex-col gap-16 bt:grid bt:grid-cols-3 bt:gap-6 bt:pb-16">
@@ -214,8 +190,35 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="flex flex-col-reverse bt:flex-row items-center justify-center gap-8 bt:gap-16 py-12 bt:py-24">
+        {/* <ZoomMap /> */}
+        <div className="max-w-sm bt:max-w-lg px-4 bt:px-0">
+          <p className="font-halenoir text-2xl bt:text-3xl text-center">
+            <TextRevealOnScroll className="hidden bt:block" splitBy="lines" textAlign="left" staggerDuration={0.005}>
+              {t("map.title")}
+            </TextRevealOnScroll>
+            <TextRevealOnScroll className="block bt:hidden" splitBy="lines" textAlign="center" staggerDuration={0.005}>
+              {t("map.title")}
+            </TextRevealOnScroll>
+          </p>
+        </div>
+        <div className={cn(s.circleVideoC, "overflow-hidden rounded-full")}>
+          <Video
+            primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
       <section className="relative">
         <ParallaxVideoPanel />
+      </section>
+      <section className="relative">
+        <FullScreenSlider title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />
+        {/* <HorizontalScroll title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} /> */}
       </section>
       <section className="relative py-4 bt:py-24">
         <ParallaxImagesSection />

@@ -4,10 +4,19 @@
   border-radius: 50%;
   cursor: pointer;
   display: flex;
-  height: desktop-vw(50px);
+  height: mobile-vw(40px);
   justify-content: center;
   text-decoration: none;
   touch-action: manipulation;
-  width: desktop-vw(50px);
+  width: mobile-vw(40px);
   z-index: 1;
+
+  @include-media ('tablet') {
+    height: tablet-vw(50px);
+    width: tablet-vw(50px);
+  }
+  @include-media ('desktop') {
+    height: desktop-vw(50px);
+    width: desktop-vw(50px);
+  }
 }

@@ -94,7 +94,7 @@ export function Menu({ open, items }: MenuProps) {
               key={title}
             >
               <Link className="cursor-pointer" href={href}>
-                <Link href="#">{title}</Link>
+                {title}
               </Link>
             </li>
           ))}
