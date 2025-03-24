@@ -103,16 +103,16 @@ export function Menu({ open, items }: MenuProps) {
               Bizi Takip Edin
             </p>
             <div className="flex gap-4 justify-center bt:justify-start py-3 bt:py-4">
-              <div className="h-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.instagram}
               </div>
-              <div className="h-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.facebook}
               </div>
-              <div className="h-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.tiktok}
               </div>
-              <div className="h-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.youtube}
               </div>
             </div>
