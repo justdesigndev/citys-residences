@@ -80,7 +80,10 @@ export function Menu({ open, items }: MenuProps) {
         // onClick={() => animateLinksForwards()}
       >
         <ul
-          className={cn(s.navList, "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-6 py-12 w-full")}
+          className={cn(
+            s.navList,
+            "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-6 py-16 bt:py-12 w-full"
+          )}
         >
           {items.map(({ title, href }) => (
             <li
@@ -95,11 +98,11 @@ export function Menu({ open, items }: MenuProps) {
               </Link>
             </li>
           ))}
-          <li className="w-full flex flex-col items-center bt:items-start my-4  bt:my-6">
+          <li className="w-full flex flex-col items-center bt:items-start mt-5 mb-0 bt:my-6">
             <p className="w-full font-halenoir font-normal text-white text-sm bt:text-base py-2 border-b border-white/30 text-center bt:text-left">
               Bizi Takip Edin
             </p>
-            <div className="flex gap-4 py-4">
+            <div className="flex gap-4 items-center bt:items-start py-3 bt:py-4">
               <div className="h-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.instagram}
               </div>
