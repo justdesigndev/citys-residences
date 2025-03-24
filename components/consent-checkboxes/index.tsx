@@ -52,7 +52,7 @@ export function ConsentCheckboxes({ control, className, form }: ConsentCheckboxe
         name="consent"
         render={({ field }) => (
           <FormItem>
-            <div className="flex flex-row gap-3 space-y-0 group">
+            <div className="flex flex-row gap-2 space-y-0 group">
               <FormControl>
                 <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
@@ -101,7 +101,7 @@ export function ConsentCheckboxes({ control, className, form }: ConsentCheckboxe
           name="consentElectronicMessage"
           render={({ field }) => (
             <FormItem>
-              <div className="flex flex-row gap-3 space-y-0 group">
+              <div className="flex flex-row gap-2 space-y-0 group">
                 <FormControl>
                   <Checkbox
                     checked={field.value}
@@ -138,7 +138,7 @@ export function ConsentCheckboxes({ control, className, form }: ConsentCheckboxe
               name={name}
               render={({ field }) => (
                 <FormItem>
-                  <div className="flex flex-row gap-1.5 space-y-0 group">
+                  <div className="flex flex-row gap-2 space-y-0 group">
                     <FormControl>
                       <Checkbox
                         checked={field.value}
