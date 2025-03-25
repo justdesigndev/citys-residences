@@ -50,6 +50,7 @@ export function TextRevealOnScroll({
             left: "justify-start",
           }[textAlign]
         }
+        elementLevelClassName="leading-normal"
         ref={textRef}
       >
         {children}

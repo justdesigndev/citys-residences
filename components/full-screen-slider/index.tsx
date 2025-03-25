@@ -22,6 +22,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
     () => {
       gsap.registerPlugin(ScrollTrigger)
 
+      // text timeline
       const textTL = gsap.timeline({ paused: true })
 
       textTL.from(".gsap-title", {
@@ -37,6 +38,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
         toggleActions: "play none none pause",
       })
 
+      // card timeline
       const cardTL = gsap.timeline({ paused: true })
 
       cardTL.from(".gsap-description", {
@@ -57,21 +59,10 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
   )
 
   return (
-    <div className={s.container} ref={ref}>
+    <div className="relative w-screen overflow-hidden z-[100]" ref={ref}>
       <EmblaCarousel slides={items} options={{ duration: 35, loop: true }} />
-      <div
-        className={cn(
-          s.title,
-          "gsap-title-c",
-          "font-lexend-giga text-white font-bold text-5xl bt:text-8xl bd:text-6xl leading-none text-center overflow-hidden py-2"
-        )}
-      >
-        <h2
-          className={cn(
-            "gsap-title",
-            "text-white font-bold text-5xl bt:text-8xl bd:text-7xl leading-none tracking-[0.3em] overflow-hidden py-2 text-left"
-          )}
-        >
+      <div className={cn(s["title-c"], "gsap-title-c", "overflow-hidden py-3 z-[150]")}>
+        <h2 className={cn(s.title, "gsap-title", "text-white font-lexend-giga font-bold leading-none text-left")}>
           {title}
         </h2>
       </div>
@@ -80,13 +71,13 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
           className={cn(
             s.description,
             "gsap-description",
-            "w-full h-full rounded-lg overflow-hidden p-4 bd:p-8 text-white flex isolate blur-bg-bricky-brick-light"
+            "w-full h-full rounded-lg overflow-hidden blur-bg-bricky-brick-light"
           )}
         >
           <p
             className={cn(
               s.infoText,
-              "font-halenoir text-base bt:text-2xl bd:text-base text-white font-normal leading-relaxed text-center bd:text-left"
+              "font-halenoir text-white font-normal leading-relaxed text-center bd:text-left z-[150]"
             )}
           >
             {description}

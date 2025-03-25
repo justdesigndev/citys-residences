@@ -49,17 +49,12 @@ export function ParallaxImagesSection() {
   return (
     <div className="relative" ref={ref}>
       <div className={cn(s.frame, "frame")}>
-        <div
-          className={cn(
-            s.title,
-            "gsap-title-c",
-            "font-lexend-giga text-bricky-brick font-bold text-5xl bt:text-7xl bd:text-6xl leading-tight text-center overflow-hidden py-2"
-          )}
-        >
+        <div className={cn(s["title-c"], "gsap-title-c", "overflow-hidden py-2")}>
           <h2
             className={cn(
+              s.title,
               "gsap-title",
-              "text-bricky-brick font-bold text-5xl bt:text-8xl bd:text-7xl leading-none tracking-[0.3em] overflow-hidden py-2 text-left bt:text-center"
+              "font-lexend-giga text-bricky-brick font-bold leading-none overflow-hidden py-2 text-left bt:text-center"
             )}
           >
             {t("title")}

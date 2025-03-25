@@ -1,13 +1,12 @@
 "use client"
 
-import { gsap, ScrollTrigger } from "@/components/gsap"
-import { breakpoints } from "@/styles/config.mjs"
 import { useGSAP } from "@gsap/react"
-import cn from "clsx"
 import { useWindowSize } from "hamo"
 import { useRef } from "react"
 
+import { gsap, ScrollTrigger } from "@/components/gsap"
 import { Img } from "@/components/utility/img"
+import { breakpoints } from "@/styles/config.mjs"
 
 export interface MaskedParallaxImageProps {
   imgSrc: string
@@ -71,10 +70,8 @@ export function MaskedParallaxImage({ imgSrc, sizes = "100vw" }: MaskedParallaxI
   )
 
   return (
-    <div className={cn("w-full h-full")} ref={ref}>
-      <div
-        className={cn("gsap-parallax-img-c rounded-lg w-full h-full flex items-center justify-center overflow-hidden")}
-      >
+    <div className="w-full h-full" ref={ref}>
+      <div className="gsap-parallax-img-c rounded-lg w-full h-full flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-[120%] gsap-parallax-img">
           <div className="absolute top-0 left-0 right-0 bottom-0 z-50 isolate gsap-parallax-img-overlay hidden bd:block">
             <div className="bg-bengala-red absolute w-full h-full z-10 opacity-70"></div>

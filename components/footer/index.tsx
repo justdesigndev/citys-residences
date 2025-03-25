@@ -18,15 +18,15 @@ export function Footer() {
     legal: [
       {
         title: t("kvkRelatedInformation"),
-        href: "#",
+        href: "/pdf/citys-residences-kvkk-aydinlatma-metni.pdf",
       },
       {
         title: t("commercialElectronicMessage"),
-        href: "#",
+        href: "/pdf/citys-residences-ticari-elektronik-ileti-aydinlatma-metni.pdf",
       },
       {
         title: t("explicitConsent"),
-        href: "#",
+        href: "/pdf/citys-residences-acik-riza-metni.pdf",
       },
       {
         title: t("cookiePolicy"),
@@ -105,6 +105,8 @@ export function Footer() {
             <div className="space-y-2">
               {footerItems.legal.map((item, i) => (
                 <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={i}
                   href={item.href}
                   className="block text-sm bt:text-xs bd:text-sm text-white/60 hover:text-white transition-colors"
