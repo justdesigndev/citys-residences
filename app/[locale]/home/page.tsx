@@ -12,6 +12,7 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
+import { mainVideoDesktop, mainVideoMobile } from "@/lib/constants"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -81,12 +82,20 @@ export default function Home() {
         <ScaleOut>
           <div className="h-full w-full">
             <Video
-              primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
+              primaryVideoUrl={mainVideoDesktop}
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover hidden bd:block"
+            />
+            <Video
+              primaryVideoUrl={mainVideoMobile}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover block bd:hidden"
             />
           </div>
         </ScaleOut>

@@ -134,3 +134,9 @@ export const countryPhoneCodes = {
     { name: "Vietnam", code: "+84" },
   ],
 }
+
+export const mainVideoDesktop =
+  "https://player.vimeo.com/progressive_redirect/playback/1069157386/rendition/1080p/file.mp4?loc=external&log_user=0&signature=38cdf58d9bdde6efcaddd7fb7000a3f74e01614b50844df0dbdb1e1e1d4a42db"
+
+export const mainVideoMobile =
+  "https://player.vimeo.com/progressive_redirect/playback/1069157052/rendition/720p/file.mp4?loc=external&log_user=0&signature=945b3b810a60f09ffa0ee94b493692906c12f48e65854f6d6ff501f18d7a41ac"
