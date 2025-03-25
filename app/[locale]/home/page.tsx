@@ -194,7 +194,7 @@ export default function Home() {
         </div>
         <div className={cn(s.circleVideoC, "overflow-hidden rounded-full")}>
           <Video
-            primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
+            primaryVideoUrl={mainVideoDesktop}
             autoPlay
             loop
             muted
@@ -206,7 +206,7 @@ export default function Home() {
       <section className="relative container py-20">
         {/* <ParallaxVideoPanel /> */}
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
-          <VideoWithPlayButton primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891#t=0.01" />
+          <VideoWithPlayButton primaryVideoUrl={mainVideoDesktop} />
         </div>
       </section>
       <section className="relative">
@@ -222,7 +222,7 @@ export default function Home() {
       </section>
       <section className="relative container py-20">
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
-          <VideoWithPlayButton primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891#t=0.01" />
+          <VideoWithPlayButton primaryVideoUrl={mainVideoDesktop} />
         </div>
       </section>
     </Wrapper>

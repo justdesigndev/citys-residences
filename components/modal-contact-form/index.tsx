@@ -14,6 +14,7 @@ import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { Video } from "@/components/utility/video"
 import { FormTranslations } from "@/types"
 import { useEsc } from "@/hooks/useEsc"
+import { mainVideoDesktop } from "@/lib/constants"
 
 interface ModalContactFormProps {
   open: boolean
@@ -135,11 +136,7 @@ export function ModalContactForm({ open, setOpen }: ModalContactFormProps) {
 
   useGSAP(
     () => {
-      if (open) {
-        menuTL.current?.play()
-      } else {
-        menuTL.current?.reverse()
-      }
+      return open ? menuTL.current?.play() : menuTL.current?.reverse()
     },
     {
       dependencies: [open],
@@ -181,7 +178,7 @@ export function ModalContactForm({ open, setOpen }: ModalContactFormProps) {
                 </div>
                 <div className="hidden bd:block col-span-1">
                   <Video
-                    primaryVideoUrl="https://player.vimeo.com/progressive_redirect/playback/1050026684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=fda1ef0d723ecd6a77745792fc70643e9bc8e0cce3e4b8e3cf266d25613fb891"
+                    primaryVideoUrl={mainVideoDesktop}
                     autoPlay
                     loop
                     muted
