@@ -1,5 +1,0 @@
-.text {
-  @include-media ("desktop") {
-    font-size: desktop-vw(24px);
-  }
-}

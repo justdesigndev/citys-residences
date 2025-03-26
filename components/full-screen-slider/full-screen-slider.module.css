@@ -1,10 +1,17 @@
 .title-c {
   left: 50%;
+  font-size: mobile-vw(45px);
+  letter-spacing: 0em;
   position: absolute;
-  top: 30%;
+  top: mobile-vw(200px);
   transform: translate(-50%, -100%);
   width: 96%;
-  @include-media ('desktop') {
+  @include-media ("tablet") {
+    font-size: tablet-vw(45px);
+    letter-spacing: 0.3em;
+    top: tablet-vw(150px);
+  }
+  @include-media ("desktop") {
     font-size: desktop-vw(70px);
     letter-spacing: 0.3em;
     left: desktop-vw(100px);
@@ -13,23 +20,27 @@
     white-space: nowrap;
   }
   .title {
-    filter: drop-shadow(-0.5px 0 0 black) drop-shadow(0.5px 0 0 black) drop-shadow(0 -0.5px 0 black)
-      drop-shadow(0 0.5px 0 black);
+    /* filter: drop-shadow(-0.5px 0 0 black) drop-shadow(0.5px 0 0 black) drop-shadow(0 -0.5px 0 black)
+      drop-shadow(0 0.5px 0 black); */
+
+    text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
   }
 }
 .descriptionC {
   bottom: mobile-vw(50px);
   left: 50%;
+  font-size: mobile-vw(14px);
   position: absolute;
   transform: translateX(-50%);
   width: mobile-vw(300px);
   @include-media ("tablet") {
     bottom: tablet-vw(150px);
+    font-size: tablet-vw(16px);
     width: tablet-vw(400px);
   }
   @include-media ("desktop") {
     bottom: desktop-vw(100px);
-    font-size: desktop-vw(16px);
+    font-size: desktop-vw(15px);
     left: desktop-vw(100px);
     transform: translateX(0);
     width: desktop-vw(500px);

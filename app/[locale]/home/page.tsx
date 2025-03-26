@@ -17,40 +17,19 @@ import { mainVideoDesktop, mainVideoMobile } from "@/lib/constants"
 export default function Home() {
   const t = useTranslations("home")
 
-  const slides1 = [
-    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={1}>
-      <Img src="/img/slides-1/1.jpg" alt="Slide 1" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={2}>
-      <Img src="/img/slides-1/2.jpg" alt="Slide 2" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={3}>
-      <Img src="/img/slides-1/3.jpg" alt="Slide 3" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[50vh] bt:h-[105vh]" key={4}>
-      <Img src="/img/slides-1/4.jpg" alt="Slide 4" fill className="object-cover" sizes="100vw" />
-    </div>,
-  ]
-  const slides3 = [
-    <div className="relative w-screen h-[105vh]" key={1}>
-      <Img src="/img/slides-3/1.jpg" alt="Slide 1" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[105vh]" key={2}>
-      <Img src="/img/slides-3/2.jpg" alt="Slide 2" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[105vh]" key={3}>
-      <Img src="/img/slides-3/3.jpg" alt="Slide 3" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[105vh]" key={4}>
-      <Img src="/img/slides-3/4.jpg" alt="Slide 4" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[105vh]" key={5}>
-      <Img src="/img/slides-3/5.jpg" alt="Slide 5" fill className="object-cover" sizes="100vw" />
-    </div>,
-    <div className="relative w-screen h-[105vh]" key={6}>
-      <Img src="/img/slides-3/6.jpg" alt="Slide 6" fill className="object-cover" sizes="100vw" />
-    </div>,
-  ]
+  const createSlide = (imgSrc: string, index: number) => (
+    <div className="relative w-screen h-[80vh] bt:h-[105vh]" key={index}>
+      <Img src={imgSrc} alt={`Slide ${index}`} fill className="object-cover" sizes="100vw" />
+    </div>
+  )
+
+  const slideImages = {
+    slides1: [1, 2, 3, 4].map((num) => `/img/slides-1/${num}.jpg`),
+    slides3: [1, 2, 3, 4, 5, 6].map((num) => `/img/slides-3/${num}.jpg`),
+  }
+
+  const slides1 = slideImages.slides1.map((src, index) => createSlide(src, index + 1))
+  const slides3 = slideImages.slides3.map((src, index) => createSlide(src, index + 1))
 
   const moreSectionData = [
     {
@@ -103,7 +82,7 @@ export default function Home() {
       <section className="bg-white font-halenoir pt-6 bt:pt-12 z-20 relative">
         <div className="container mx-auto py-6 bt:py-28 bd:py-40 relative flex flex-col items-center">
           <div className="flex flex-col items-center text-center">
-            <h1 className="font-lexend-giga text-bricky-brick text-5xl bt:text-8xl font-medium tracking-widest">
+            <h1 className="font-lexend-giga text-bricky-brick text-4xl bt:text-8xl font-medium tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
                 {t("section1.title1")}
               </TextRevealOnScroll>
@@ -116,7 +95,7 @@ export default function Home() {
               </FadeInOnScroll>
               <span className="sr-only">{t("section1.title2")}</span>
             </div>
-            <p className="text-bricky-brick text-xl bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
+            <p className="text-bricky-brick text-md bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
               <TextRevealOnScroll textAlign="center" staggerDuration={0.01}>
                 {t("section1.title3")}
               </TextRevealOnScroll>

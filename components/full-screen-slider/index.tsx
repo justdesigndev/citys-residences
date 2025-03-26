@@ -61,8 +61,14 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
   return (
     <div className="relative w-screen overflow-hidden z-[100]" ref={ref}>
       <EmblaCarousel slides={items} options={{ duration: 35, loop: true }} />
-      <div className={cn(s["title-c"], "gsap-title-c", "overflow-hidden py-3 z-[150]")}>
-        <h2 className={cn(s.title, "gsap-title", "text-white font-lexend-giga font-bold leading-none text-left")}>
+      <div className={cn(s["title-c"], "gsap-title-c", "overflow-hidden py-5 z-[150]")}>
+        <h2
+          className={cn(
+            s.title,
+            "gsap-title",
+            "text-white font-lexend-giga font-bold leading-tight bt:leading-none text-center bd:text-left"
+          )}
+        >
           {title}
         </h2>
       </div>

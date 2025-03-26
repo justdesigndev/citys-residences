@@ -30,12 +30,12 @@ export function Header() {
   const t = useTranslations("common")
 
   const navigationItems = [
-    { title: t("navigation.residences"), href: "/" },
-    { title: t("navigation.location"), href: "/" },
-    { title: t("navigation.citysPark"), href: "/" },
-    { title: t("navigation.citysMembersClub"), href: "/" },
-    { title: t("navigation.citysLifePrivileges"), href: "/" },
-    { title: t("navigation.citysIstanbul"), href: "/" },
+    { title: t("navigation.residences"), href: "#" },
+    { title: t("navigation.location"), href: "#" },
+    { title: t("navigation.citysPark"), href: "#" },
+    { title: t("navigation.citysMembersClub"), href: "#" },
+    { title: t("navigation.citysLifePrivileges"), href: "#" },
+    { title: t("navigation.citysIstanbul"), href: "#" },
   ]
 
   useEffect(() => {
@@ -148,13 +148,13 @@ export function Header() {
                 <LocaleSwitcher />
               </div> */}
               <div className={cn(s["sticky-badge"], s["nav-item"], "cursor-pointer")}>
-                <div className="hidden bt:block">
+                <div className="hidden bd:block">
                   <div className={cn(s.stickyBadge, "cursor-pointer")} onClick={() => setModalOpen((prev) => !prev)}>
                     <AnimatedButton text={t("inquiry")} size="fit-content" theme="tertiary" />
                   </div>
                 </div>
                 <div
-                  className="block bt:hidden font-lexend-giga font-light text-white text-[0.7rem] text-center blur-bg-bricky-brick py-2 px-2 rounded-sm"
+                  className="block bd:hidden font-lexend-giga font-light text-white text-[0.7rem] bt:text-base text-center blur-bg-bricky-brick py-1 bt:py-2 px-2 bt:px-4 rounded-sm bt:rounded-md"
                   onClick={() => setModalOpen((prev) => !prev)}
                 >
                   {t("inquiry")}

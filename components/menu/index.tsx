@@ -107,11 +107,11 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               </Link>
             </li>
           ))}
-          <li className="w-full flex flex-col items-center bt:items-start mt-5 mb-0 bt:my-6">
-            <p className="w-full font-halenoir font-normal text-white text-sm bt:text-base py-2 border-b border-white/30 text-center bt:text-left">
+          <li className="w-full flex flex-col items-center bd:items-start mt-5 bt:mt-10 bd:mt-5 mb-0 bd:my-6">
+            <p className="w-full font-halenoir font-normal text-white text-sm bd:text-base py-2 bd:border-b bd:border-white/30 text-center bd:text-left">
               Bizi Takip Edin
             </p>
-            <div className="flex gap-4 justify-center bt:justify-start py-3 bt:py-4">
+            <div className="flex gap-4 justify-center bd:justify-start py-3 bd:py-4">
               <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.instagram}
               </div>
