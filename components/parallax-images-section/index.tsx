@@ -124,7 +124,7 @@ export function ParallaxImagesSection() {
           </h2>
         </div>
       </div>
-      <div className="flex flex-col gap-12 bt:gap-12 bd:gap-48 py-12 bt:py-16 bd:py-32">
+      <div className="flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-16 bd:py-32">
         {[
           { text: t("t1"), imgSrc: "/img/slides-2/3.jpg", horizontalAlignment: "ltr" as const },
           { text: t("t2"), imgSrc: "/img/slides-2/4.jpg", horizontalAlignment: "rtl" as const },
