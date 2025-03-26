@@ -12,7 +12,7 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
-import { mainVideoDesktop, mainVideoMobile } from "@/lib/constants"
+import { mainVideoDesktop, mainVideoMobile, muratKaderVideo } from "@/lib/constants"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -201,7 +201,7 @@ export default function Home() {
       </section>
       <section className="relative container py-20">
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
-          <VideoWithPlayButton primaryVideoUrl={mainVideoDesktop} />
+          <VideoWithPlayButton primaryVideoUrl={muratKaderVideo} />
         </div>
       </section>
     </Wrapper>

@@ -140,3 +140,6 @@ export const mainVideoDesktop =
 
 export const mainVideoMobile =
   "https://player.vimeo.com/progressive_redirect/playback/1069157052/rendition/720p/file.mp4?loc=external&log_user=0&signature=945b3b810a60f09ffa0ee94b493692906c12f48e65854f6d6ff501f18d7a41ac"
+
+export const muratKaderVideo =
+  "https://player.vimeo.com/progressive_redirect/playback/1069589082/rendition/1080p/file.mp4?loc=external&log_user=0&signature=25c90edaf980d511d0c8c9d3a5d642084e7c29f194fa0e054a140c6815d06c35"
