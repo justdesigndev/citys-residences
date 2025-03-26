@@ -171,14 +171,14 @@ export default function Home() {
             </TextRevealOnScroll>
           </p>
         </div>
-        <div className={cn(s.circleVideoC, "overflow-hidden rounded-full")}>
+        <div className={cn(s.circleVideoC, "overflow-hidden rounded-full z-20")}>
           <Video
             primaryVideoUrl={mainVideoDesktop}
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className="relative w-full h-full object-cover z-0"
           />
         </div>
       </section>
