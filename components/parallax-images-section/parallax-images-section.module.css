@@ -38,7 +38,7 @@
 }
 
 .text {
-  font-size: mobile-vw(16px);
+  font-size: mobile-vw(18px);
   @include-media ("tablet") {
     font-size: tablet-vw(18px);
   }

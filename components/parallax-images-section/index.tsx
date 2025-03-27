@@ -32,7 +32,7 @@ export function MaskedParallaxImageSection({
 }: MaskedParallaxImageSectionProps) {
   return (
     <div className="px-4 bt:px-10">
-      <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-4 bt:gap-0">
+      <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-6 bt:gap-0">
         <div
           className={cn(
             "gsap-parallax-text col-span-7 flex flex-col gap-12",
@@ -45,7 +45,7 @@ export function MaskedParallaxImageSection({
                 {text}
               </TextRevealOnScroll>
             </p>
-            <p className="block bt:hidden">
+            <p className="block bt:hidden max-w-xs mx-auto">
               <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0075}>
                 {text}
               </TextRevealOnScroll>
