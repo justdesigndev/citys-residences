@@ -30,11 +30,9 @@ export function ScaleOut({ children }: ScaleOutProps) {
       scaleOut.querySelector(".gsap-scale-out-inner"),
       {
         yPercent: 0,
-        opacity: 1,
       },
       {
         yPercent: -50,
-        opacity: 0.75,
       }
     )
 
