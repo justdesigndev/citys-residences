@@ -34,25 +34,24 @@ export function MaskedParallaxImage({ imgSrc, sizes = "100vw" }: MaskedParallaxI
           y: `${distance}px`,
         },
         "s"
+      ).fromTo(
+        ".gsap-parallax-img",
+        {
+          y: `-${distance * 1.5}px`,
+        },
+        {
+          y: `${distance * 1.5}px`,
+        },
+        "s"
       )
-        .fromTo(
-          ".gsap-parallax-img",
-          {
-            y: `-${distance * 1.5}px`,
-          },
-          {
-            y: `${distance * 1.5}px`,
-          },
-          "s"
-        )
-        .to(
-          ".gsap-parallax-img-overlay",
-          {
-            opacity: 0,
-            duration: 0.25,
-          },
-          "s"
-        )
+      // .to(
+      //   ".gsap-parallax-img-overlay",
+      //   {
+      //     opacity: 0,
+      //     duration: 0.25,
+      //   },
+      //   "s"
+      // )
 
       ScrollTrigger.create({
         animation: tl,
@@ -72,11 +71,11 @@ export function MaskedParallaxImage({ imgSrc, sizes = "100vw" }: MaskedParallaxI
   return (
     <div className="w-full h-full" ref={ref}>
       <div className="gsap-parallax-img-c rounded-lg w-full h-full flex items-center justify-center overflow-hidden">
-        <div className="relative w-full h-[120%] gsap-parallax-img">
-          <div className="absolute top-0 left-0 right-0 bottom-0 z-50 isolate gsap-parallax-img-overlay hidden bt:block">
+        <div className="gsap-parallax-img relative w-full h-[120%]">
+          {/* <div className="absolute top-0 left-0 right-0 bottom-0 z-50 isolate gsap-parallax-img-overlay hidden bt:block">
             <div className="bg-bengala-red absolute w-full h-full z-10 opacity-70"></div>
             <Img src={imgSrc} alt="Parallax Image" className="object-cover mix-blend-overlay z-20" fill sizes={sizes} />
-          </div>
+          </div> */}
           <Img src={imgSrc} alt="Parallax Image" className="object-cover z-40" fill sizes={sizes} />
         </div>
       </div>
