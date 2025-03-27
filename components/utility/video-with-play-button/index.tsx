@@ -23,7 +23,7 @@ export function VideoWithPlayButton(props: IVideoWithPlayButtonProps) {
   }
 
   return (
-    <div className="group relative w-full h-full">
+    <div className="group relative w-full h-full rounded-md overflow-hidden">
       <Video
         className="w-full h-full object-cover"
         primaryVideoUrl={props.primaryVideoUrl}
