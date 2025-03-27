@@ -5,7 +5,7 @@ import s from "./menu.module.css"
 import cn from "clsx"
 import { useLenis } from "lenis/react"
 import Link from "next/link"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 import { gsap, useGSAP } from "@/components/gsap"
 import { socialIcons } from "@/components/icons"
@@ -78,6 +78,9 @@ export function Menu({ open, setOpen, items }: MenuProps) {
     }
   )
 
+  const [hover, setHover] = useState(false)
+  const [active, setActive] = useState<number | null>(null)
+
   return (
     <div className={cn(s.frame, "blur-bg-bricky-brick-light")} ref={ref}>
       <nav
@@ -91,18 +94,31 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         <ul
           className={cn(
             s.navList,
-            "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-6 py-0 pt-20 pb-0 bt:py-12 w-full"
+            "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-0 py-0 pt-20 pb-0 bt:py-12 w-full"
           )}
         >
-          {items.map(({ title, href }) => (
+          {items.map(({ title, href }, i) => (
             <li
               className={cn(
                 s.navItem,
-                "font-halenoir font-medium text-white text-2xl bt:text-4xl bd:text-2xl text-center bd:text-left"
+                "font-halenoir font-light text-white text-2xl bt:text-4xl bd:text-2xl text-center bd:text-left",
+                "transition-all duration-300 ease-in-out",
+                {
+                  "opacity-30": hover && active !== i,
+                  "font-normal": active === i,
+                }
               )}
               key={title}
+              onMouseEnter={() => {
+                setHover(true)
+                setActive(i)
+              }}
+              onMouseLeave={() => {
+                setHover(false)
+                setActive(null)
+              }}
             >
-              <Link className="cursor-pointer" href={href}>
+              <Link className="cursor-pointer block bd:py-2" href={href}>
                 {title}
               </Link>
             </li>

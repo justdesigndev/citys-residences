@@ -20,11 +20,12 @@
 .menu {
   z-index: var(--z-menu);
 
-  .navList {
+  /* .navList {
+
     .navItem {
       transition: 300ms opacity ease;
     }
-
+    
     @include-media ('hover') {
       &:hover {
         .navItem {
@@ -36,7 +37,7 @@
         }
       }
     }
-  }
+  } */
 
   .logoC {
     height: mobile-vw(100px);
