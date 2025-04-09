@@ -210,7 +210,7 @@ export default function Home() {
         </div>
       </section>
       <section className="relative container py-8 bt:py-20">
-        <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
+        <div className="w-full h-[350px] bt:h-auto bt:aspect-video overflow-hidden relative z-10 flex items-center justify-center bg-black rounded-md">
           <VideoWithPlayButton primaryVideoUrl={kolajVideo} thumbnail="/img/thumbnail-kolaj-video.jpg" />
         </div>
       </section>
@@ -224,7 +224,7 @@ export default function Home() {
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
       </section>
       <section className="relative container py-20">
-        <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
+        <div className="w-full h-[350px] bt:h-auto bt:aspect-video overflow-hidden relative z-10 flex items-center justify-center bg-black rounded-md">
           <VideoWithPlayButton primaryVideoUrl={muratKaderVideo} thumbnail="/img/thumbnail-murat-kader.jpg" />
         </div>
       </section>

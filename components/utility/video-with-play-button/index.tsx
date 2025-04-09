@@ -23,9 +23,9 @@ export function VideoWithPlayButton(props: IVideoWithPlayButtonProps) {
   }
 
   return (
-    <div className="group relative w-full h-full rounded-md overflow-hidden">
+    <div className="group relative w-full h-full rounded-md overflow-hidden flex items-center justify-center">
       <Video
-        className="w-full h-full object-cover"
+        className="w-full h-auto bt:h-full"
         primaryVideoUrl={props.primaryVideoUrl}
         ref={videoRef}
         controls={isPlaying}
