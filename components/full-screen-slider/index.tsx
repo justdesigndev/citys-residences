@@ -22,21 +22,21 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
     () => {
       gsap.registerPlugin(ScrollTrigger)
 
-      // text timeline
-      const textTL = gsap.timeline({ paused: true })
+      // // text timeline
+      // const textTL = gsap.timeline({ paused: true })
 
-      textTL.from(".gsap-title", {
-        yPercent: -150,
-        ease: "expo.out",
-        duration: 1.5,
-      })
+      // textTL.from(".gsap-title", {
+      //   yPercent: -150,
+      //   ease: "expo.out",
+      //   duration: 1.5,
+      // })
 
-      ScrollTrigger.create({
-        animation: textTL,
-        trigger: ".gsap-title-c",
-        start: "center center",
-        toggleActions: "play none none pause",
-      })
+      // ScrollTrigger.create({
+      //   animation: textTL,
+      //   trigger: ".gsap-title-c",
+      //   start: "center center",
+      //   toggleActions: "play none none pause",
+      // })
 
       // card timeline
       const cardTL = gsap.timeline({ paused: true })
@@ -44,7 +44,8 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
       cardTL.from(".gsap-description", {
         yPercent: 30,
         opacity: 0,
-        duration: 0.5,
+        ease: "expo.out",
+        duration: 1.5,
       })
 
       ScrollTrigger.create({

@@ -157,6 +157,38 @@
             }
         }
     },
+    "citys-life": {
+        "items": {
+            "i1": {
+                "title": "HER ŞEYİN BAŞLADIĞI NOKTA: RESEPSİYON & CONCIERGE HİZMETLERİ",
+                "text": "City’s Life’ın kalbi, hayatınızı kolaylaştıran Resepsiyon ve Cocierge Hizmetleri’nde atıyor. Misafirlerinizi profesyonel bir karşılama ile ağırlayabilir, gün içindeki ihtiyaçlarınızı tek bir noktadan yönetebilirsiniz."
+            },
+            "i2": {
+                "title": "VALE & OTOPARK HİZMETLERİ İLE DAHA ÇOK ZAMAN",
+                "text": "Şehirde zaman her şeydir. Vale & Otopark hizmetlerimiz sayesinde aracınızı düşünmeden, her anınıza daha fazla vakit ayırabilirsiniz."
+            },
+            "i3": {
+                "title": "KARGO TESLİM SERVİSİ İLE BEKLEMEDEN TESLİMAT",
+                "text": "Yoğun bir iş günü, uzun toplantılar ve şehir trafiği... Tüm bunların arasında kargonuzu beklemek zorunda değilsiniz! kargo teslim Servisimiz, paketlerinizi sizin yerinize alır ve istediğiniz zaman teslim eder."
+            },
+            "i4": {
+                "title": "YENİ NESİL ÇALIŞMA ALANI: JUSTWORK",
+                "text": "Eski ofis anlayışı geride kaldı. Artık iş hayatı, esneklik ve yaratıcılık gerektiriyor. Paylaşımlı Ofis ve Toplantı Salınlarımız hem bireysel çalışmaya hem de ekip çalışmalarına uygun şekilde tasarlandı. JUSTWork ile verimli ve ilham dolu bir çalışma ortamı sizi bekliyor."
+            },
+            "i5": {
+                "title": "MODERN KONAKLAMA DENEYİMİ: JUST STAY",
+                "text": "Misafirleriniz için konforlu, şık ve modern bir alan mı arıyorsunuz? Yeni nesil otel odalarımız, klasik otel deneyiminden çok daha fazlasını sunuyor. JUSTStay ile kendinizi evinizde hissedeceğiniz bir konaklama deneyimi yaşabilirsiniz."
+            },
+            "i6": {
+                "title": "SANATIN VE ETKİNLİKLERİN BULUŞMA NOKTASI: JUST EVENTS",
+                "text": "Sanatın ve performansın bir araya geldiği anlarımızda, yaratıcılığınızı keşfetmeye hazır olun. etkinlikler, gösteriler ve sanat atölyeleriyle dolu JUSTEvents, sosyal hayatınızı renklendirecek."
+            },
+            "i7": {
+                "title": "EVCİL DOSTLARINIZA ÖZEL: PET HOTEL & PET HOSPITAL",
+                "text": "Şehir hayatının temposunda evcil dostlarınız da hak ettiği ilgili görmeli. City’s Residences’ta onların konforu için özel bir alan oluşturduk. Pet Hotel sayesinde seyahatteyken gözünüz arkada kalmaz, Pet Hospital ile patili dostlarınıza sağlıklı ve mutlu bir yaşam sunarak her an yanlarında olabilirsiniz."
+            }
+        }
+    },
     "common": {
         "navigation": {
             "residences": "Residences",

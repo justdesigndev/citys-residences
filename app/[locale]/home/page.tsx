@@ -7,7 +7,6 @@ import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { FullScreenSlider } from "@/components/full-screen-slider"
-import { ParallaxImagesSection } from "@/components/parallax-images-section"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
@@ -25,10 +24,12 @@ export default function Home() {
 
   const slideImages = {
     slides1: [1, 2, 3, 4].map((num) => `/img/slides-1/${num}.jpg`),
+    slides2: [1, 2, 3, 4].map((num) => `/img/slides-2/${num}.jpg`),
     slides3: [1, 2, 3, 4, 5, 6].map((num) => `/img/slides-3/${num}.jpg`),
   }
 
   const slides1 = slideImages.slides1.map((src, index) => createSlide(src, index + 1))
+  const slides2 = slideImages.slides2.map((src, index) => createSlide(src, index + 1))
   const slides3 = slideImages.slides3.map((src, index) => createSlide(src, index + 1))
 
   const moreSectionData = [
@@ -41,6 +42,7 @@ export default function Home() {
     },
     {
       imgSrc: "/img/aol-2.jpg",
+      imgSrcMobile: "/img/aol-2-mobile.jpg",
       title: t.rich("section1.p2.title", {
         br: () => <br></br>,
       }),
@@ -109,11 +111,18 @@ export default function Home() {
             "group",
             "hover:scale-95 transition-all duration-700",
             "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
-            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-t before:from-white before:to-transparent before:z-10'
+            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-t before:from-white before:to-transparent before:z-10',
+            "order-2 bt:order-none"
           )}
         >
-          <div className="w-full h-[420px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
-            <Img src={moreSectionData[0].imgSrc} alt="City's Lifestyle" fill className="object-cover" sizes="30vw" />
+          <div className="w-full h-[360px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
+            <Img
+              src={moreSectionData[0].imgSrc}
+              alt="City's Lifestyle"
+              fill
+              className="object-cover"
+              sizes="100vw bt:30vw"
+            />
           </div>
           <div className="absolute left-0 bottom-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-black px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
             <h2 className="font-lexend-giga font-normal text-3xl bt:text-2xl bd:text-4xl">
@@ -127,13 +136,25 @@ export default function Home() {
             "group",
             "hover:scale-95 transition-all duration-700",
             "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
-            'before:content-[""] before:absolute before:left-0 before:top-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-b before:from-white before:to-transparent before:z-10'
+            'before:content-[""] before:absolute before:left-0 before:bottom-0 bt:before:top-0 bt:before:bottom-auto before:right-0 before:h-4/5 before:w-full  before:bg-gradient-to-t bt:before:bg-gradient-to-b before:from-white before:to-transparent before:z-10',
+            "order-1 bt:order-none"
           )}
         >
-          <div className="w-full h-[420px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
+          {/* desktop */}
+          <div className="w-full h-[360px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700 hidden bt:block">
             <Img src={moreSectionData[1].imgSrc} alt="City's Lifestyle" fill className="object-cover" sizes="30vw" />
           </div>
-          <div className="absolute left-0 top-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-black px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
+          {/* mobile */}
+          <div className="w-full h-[360px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700 block bt:hidden">
+            <Img
+              src={moreSectionData[1].imgSrcMobile as string}
+              alt="City's Lifestyle"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          <div className="absolute left-0 bottom-0 bt:bottom-auto bt:top-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-black px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
             <h2 className="font-lexend-giga font-normal text-3xl bt:text-2xl bd:text-4xl">
               {moreSectionData[1].title}
             </h2>
@@ -145,11 +166,18 @@ export default function Home() {
             "group",
             "hover:scale-95 transition-all duration-700",
             "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
-            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-1/2 before:w-full before:bg-gradient-to-t before:from-black before:to-transparent before:z-10'
+            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-1/2 before:w-full before:bg-gradient-to-t before:from-black before:to-transparent before:z-10',
+            "order-3 bt:order-none"
           )}
         >
-          <div className="w-full h-[420px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
-            <Img src={moreSectionData[2].imgSrc} alt="City's Lifestyle" fill className="object-cover" sizes="30vw" />
+          <div className="w-full h-[360px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
+            <Img
+              src={moreSectionData[2].imgSrc}
+              alt="City's Lifestyle"
+              fill
+              className="object-cover"
+              sizes="100vw bt:30vw"
+            />
           </div>
           <div className="absolute left-0 bottom-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-white px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
             <h2 className="font-lexend-giga font-normal text-3xl bt:text-2xl bd:text-4xl">
@@ -159,7 +187,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col-reverse bt:flex-row items-center justify-center gap-8 bt:gap-0 bd:gap-16 py-12 bt:py-24">
+      <section className="flex flex-col-reverse bt:flex-row items-center justify-center gap-12 bt:gap-0 bd:gap-16 py-6 bt:py-24">
         <div className="max-w-sm bt:max-w-md bd:max-w-lg px-4 bt:px-0">
           <p className="font-halenoir text-3xl bt:text-2xl bd:text-3xl text-center">
             <TextRevealOnScroll className="hidden bt:block" splitBy="lines" textAlign="left" staggerDuration={0.005}>
@@ -181,7 +209,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="relative container py-20">
+      <section className="relative container py-8 bt:py-20">
         <div className="w-full aspect-video overflow-hidden relative z-10 flex items-center justify-center">
           <VideoWithPlayButton primaryVideoUrl={kolajVideo} thumbnail="/img/thumbnail-kolaj-video.jpg" />
         </div>
@@ -190,7 +218,7 @@ export default function Home() {
         <FullScreenSlider title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />
       </section>
       <section className="relative py-4 bt:py-24">
-        <ParallaxImagesSection />
+        <FullScreenSlider title={t("live.p2.title")} description={t("live.p1.description")} items={slides2} />
       </section>
       <section className="relative">
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
