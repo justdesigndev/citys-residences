@@ -22,8 +22,8 @@
   height: calc(100vw - var(--cutoff));
   width: calc(100vw - var(--cutoff));
   @include-media ('tablet') {
-    height: tablet-vw(350px);
-    width: tablet-vw(350px);
+    height: tablet-vw(650px);
+    width: tablet-vw(650px);
   }
   @include-media ('desktop') {
     --cutoff: desktop-vw(100px);

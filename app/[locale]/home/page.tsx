@@ -111,31 +111,6 @@ export default function Home() {
             "group",
             "hover:scale-95 transition-all duration-700",
             "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
-            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-t before:from-white before:to-transparent before:z-10',
-            "order-2 bt:order-none"
-          )}
-        >
-          <div className="w-full h-[360px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
-            <Img
-              src={moreSectionData[0].imgSrc}
-              alt="City's Lifestyle"
-              fill
-              className="object-cover"
-              sizes="100vw bt:30vw"
-            />
-          </div>
-          <div className="absolute left-0 bottom-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-black px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
-            <h2 className="font-lexend-giga font-normal text-3xl bt:text-2xl bd:text-4xl">
-              {moreSectionData[0].title}
-            </h2>
-            <p className="font-halenoir text-base bt:text-md bd:text-xl max-w-sm">{moreSectionData[0].description}</p>
-          </div>
-        </div>
-        <div
-          className={cn(
-            "group",
-            "hover:scale-95 transition-all duration-700",
-            "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
             'before:content-[""] before:absolute before:left-0 before:bottom-0 bt:before:top-0 bt:before:bottom-auto before:right-0 before:h-4/5 before:w-full  before:bg-gradient-to-t bt:before:bg-gradient-to-b before:from-white before:to-transparent before:z-10',
             "order-1 bt:order-none"
           )}
@@ -166,7 +141,32 @@ export default function Home() {
             "group",
             "hover:scale-95 transition-all duration-700",
             "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
-            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-1/2 before:w-full before:bg-gradient-to-t before:from-black before:to-transparent before:z-10',
+            'before:content-[""] before:absolute before:left-0 before:bottom-0 before:right-0 before:h-4/5 before:w-full before:bg-gradient-to-t before:from-white before:to-transparent before:z-10',
+            "order-2 bt:order-none"
+          )}
+        >
+          <div className="w-full h-[360px] bt:h-[500px] bd:h-[700px] relative group-hover:scale-110 transition-all duration-700">
+            <Img
+              src={moreSectionData[0].imgSrc}
+              alt="City's Lifestyle"
+              fill
+              className="object-cover"
+              sizes="100vw bt:30vw"
+            />
+          </div>
+          <div className="absolute left-0 bottom-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-black px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
+            <h2 className="font-lexend-giga font-normal text-3xl bt:text-2xl bd:text-4xl">
+              {moreSectionData[0].title}
+            </h2>
+            <p className="font-halenoir text-base bt:text-md bd:text-xl max-w-sm">{moreSectionData[0].description}</p>
+          </div>
+        </div>
+        <div
+          className={cn(
+            "group",
+            "hover:scale-95 transition-all duration-700",
+            "relative col-span-1 rounded-2xl overflow-hidden border-2 border-neutral-100",
+            'before:content-[""] before:absolute before:left-0 before:top-0 before:right-0 before:h-1/2 before:w-full before:bg-gradient-to-b before:from-white before:to-transparent before:z-10',
             "order-3 bt:order-none"
           )}
         >
@@ -179,7 +179,7 @@ export default function Home() {
               sizes="100vw bt:30vw"
             />
           </div>
-          <div className="absolute left-0 bottom-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-white px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
+          <div className="absolute left-0 top-0 right-0 space-y-4 bt:space-y-4 bd:space-y-8 text-left text-black px-4 bt:px-4 bd:px-8 py-5 bt:py-8 bd:py-12 z-20">
             <h2 className="font-lexend-giga font-normal text-3xl bt:text-2xl bd:text-4xl">
               {moreSectionData[2].title}
             </h2>
@@ -187,13 +187,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col-reverse bt:flex-row items-center justify-center gap-12 bt:gap-0 bd:gap-16 py-6 bt:py-24">
-        <div className="max-w-sm bt:max-w-md bd:max-w-lg px-4 bt:px-0">
-          <p className="font-halenoir text-3xl bt:text-2xl bd:text-3xl text-center">
-            <TextRevealOnScroll className="hidden bt:block" splitBy="lines" textAlign="left" staggerDuration={0.005}>
+      <section className="flex flex-col-reverse bd:flex-row items-center justify-center gap-12 bt:gap-20 bd:gap-16 py-6 bt:py-24">
+        <div className="max-w-sm bt:max-w-xl bd:max-w-lg px-4 bt:px-0">
+          <p className="font-halenoir text-3xl bt:text-4xl bd:text-3xl text-center">
+            <TextRevealOnScroll className="hidden bd:block" splitBy="lines" textAlign="left" staggerDuration={0.005}>
               {t("map.title")}
             </TextRevealOnScroll>
-            <TextRevealOnScroll className="block bt:hidden" splitBy="lines" textAlign="center" staggerDuration={0.005}>
+            <TextRevealOnScroll className="block bd:hidden" splitBy="lines" textAlign="center" staggerDuration={0.005}>
               {t("map.title")}
             </TextRevealOnScroll>
           </p>
