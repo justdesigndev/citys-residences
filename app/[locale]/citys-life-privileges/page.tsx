@@ -1,6 +1,8 @@
-import cn from "clsx"
+import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 
+import { ScaleOut } from "@/components/animations/scale-out"
+import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { MaskedParallaxImageSection } from "@/components/parallax-images-section"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
@@ -10,28 +12,47 @@ export default function Page() {
   const t = useTranslations("citys-life")
   return (
     <Wrapper>
-      <section className={cn("h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
-        <div className="h-full w-full">
-          <Video
-            primaryVideoUrl={mainVideoDesktop}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover hidden bd:block"
-          />
-          <Video
-            primaryVideoUrl={mainVideoMobile}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover block bd:hidden"
-          />
-        </div>
+      <section className={cn("relative h-screen bg-bricky-brick z-10 overflow-hidden")}>
+        <ScaleOut>
+          <div className="h-full w-full">
+            <Video
+              primaryVideoUrl={mainVideoDesktop}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover hidden bd:block"
+            />
+            <Video
+              primaryVideoUrl={mainVideoMobile}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover block bd:hidden"
+            />
+          </div>
+          <div className="absolute top-0 left-0 w-full h-full bg-black/50">
+            <div className="container flex flex-col h-full">
+              <h1 className="max-w-xl block font-lexend-giga leading-snug text-white text-4xl font-medium mt-auto mb-8">
+                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
+                  CITY&apos;S LIFE:
+                </TextRevealOnScroll>
+                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
+                  KONFOR VE SOSYAL YAŞAMIN YENİ ADRESİ
+                </TextRevealOnScroll>
+              </h1>
+              <p className="max-w-lg block font-halenoir leading-snug text-white text-lg font-normal mb-20">
+                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
+                  Hayatın en seçkin anlarını yaşamak için ayrıcalıklı dünyamıza adım adım yaklaşıyorsunuz.
+                </TextRevealOnScroll>
+              </p>
+            </div>
+          </div>
+        </ScaleOut>
       </section>
-      <section className="relative">
-        <div className="flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-16 bd:py-32">
+      <section className="relative z-20 bg-white">
+        <div className="container flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-16 bd:py-40">
           {[
             {
               title: t("items.i1.title"),

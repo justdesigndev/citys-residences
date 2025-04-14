@@ -43,7 +43,7 @@
     font-size: tablet-vw(32px);
   }
   @include-media ("desktop") {
-    font-size: desktop-vw(30px);
+    font-size: desktop-vw(25px);
   }
 }
 
@@ -53,6 +53,6 @@
     font-size: tablet-vw(18px);
   }
   @include-media ("desktop") {
-    font-size: desktop-vw(22px);
+    font-size: desktop-vw(18px);
   }
 }
