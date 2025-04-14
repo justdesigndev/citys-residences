@@ -148,4 +148,10 @@ export const kolajVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1069860586/rendition/1080p/file.mp4?loc=external&log_user=0&signature=93ffcc3ffcfe4a4ca2624cdbaef95fab5777741b7c5ab98d9e3f9bddf9f6062a"
 
 export const locationVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1074612382/rendition/1080p/file.mp4?loc=external&log_user=0&signature=9d387ae5fb1b99d57a7af70e46db2e677d0a998d95d48a091222dc25c56e190d"
+  "https://player.vimeo.com/progressive_redirect/playback/1075227281/rendition/1080p/file.mp4?loc=external&log_user=0&signature=e94628db4c71fb1b3df16982b43bab866fd59bf6acee6473cc76d8f819f844ee"
+
+export const mustafaTonerVideo =
+  "https://player.vimeo.com/progressive_redirect/playback/1075255861/rendition/1080p/file.mp4?loc=external&log_user=0&signature=1abc5acb3a5d8594e35e691cf33fa1628d69dedba59d984dd53e193e39a95365"
+
+export const melihBulgurVideo =
+  "https://player.vimeo.com/progressive_redirect/playback/1075255386/rendition/1080p/file.mp4?loc=external&log_user=0&signature=c6aad5bf569510d16ed3ad971bb39bfcd3db136def88dfbda50c38dd8b5ec1cf"
