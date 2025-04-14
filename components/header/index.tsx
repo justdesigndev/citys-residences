@@ -148,13 +148,13 @@ export function Header() {
                 <LocaleSwitcher />
               </div> */}
               <div className={cn(s["sticky-badge"], s["nav-item"], "cursor-pointer")}>
-                <div className="hidden bd:block">
+                <div className="hidden bt:block">
                   <div className={cn(s.stickyBadge, "cursor-pointer")} onClick={() => setModalOpen((prev) => !prev)}>
                     <AnimatedButton text={t("inquiry")} size="fit-content" theme="tertiary" />
                   </div>
                 </div>
                 <div
-                  className="block bd:hidden font-lexend-giga font-light text-white text-[0.7rem] bt:text-base text-center blur-bg-bricky-brick py-1 bt:py-2 px-2 bt:px-4 rounded-sm bt:rounded-md"
+                  className="block bt:hidden fixed left-4 bottom-4 font-lexend-giga font-light text-white text-lg text-center blur-bg-bricky-brick py-1.5 px-4 rounded-md"
                   onClick={() => setModalOpen((prev) => !prev)}
                 >
                   {t("inquiry")}

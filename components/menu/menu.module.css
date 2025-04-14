@@ -5,8 +5,8 @@
   overflow: hidden;
   position: fixed;
   top: 0;
-  z-index: var(--z-menu);
   width: 100vw;
+  z-index: var(--z-menu);
 
   @include-media ('tablet') {
     width: 100vw;

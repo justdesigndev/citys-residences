@@ -4,13 +4,13 @@ import s from "./menu.module.css"
 
 import cn from "clsx"
 import { useLenis } from "lenis/react"
-import Link from "next/link"
 import { useRef, useState } from "react"
+import { useClickAway } from "react-use"
 
+import { AnimatedButton } from "@/components/animated-button"
 import { gsap, useGSAP } from "@/components/gsap"
 import { socialIcons } from "@/components/icons"
-import { AnimatedButton } from "@/components/animated-button"
-import { useClickAway } from "react-use"
+import { Link } from "@/components/utility/link"
 
 interface MenuItem {
   title: string
@@ -101,7 +101,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             <li
               className={cn(
                 s.navItem,
-                "font-halenoir text-white text-2xl bt:text-4xl bd:text-2xl text-center bd:text-left",
+                "font-halenoir text-white text-2xl bt:text-4xl bd:text-3xl text-center bd:text-left",
                 "transition-opacity duration-300 ease-in-out",
                 {
                   "opacity-30": hover && active !== i,
@@ -129,23 +129,23 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               Bizi Takip Edin
             </p>
             <div className="flex gap-4 justify-center bd:justify-start py-3 bd:py-4">
-              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.instagram}
               </div>
-              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.facebook}
               </div>
-              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.tiktok}
               </div>
-              <div className="h-5 w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
                 {socialIcons.youtube}
               </div>
             </div>
           </li>
           <li
             className={cn(
-              "font-halenoir font-light text-white text-2xl bt:text-4xl bd:text-base text-center bd:text-left"
+              "font-halenoir font-light text-white text-2xl bt:text-4xl bd:text-3xl text-center bd:text-left"
             )}
           >
             <a
@@ -154,7 +154,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <AnimatedButton theme="transparent" size="sm" text="Satış Ofisi Konum" fontFamily="halenoir" />
+              <AnimatedButton theme="transparent" size="lg" text="Satış Ofisi Konum" fontFamily="halenoir" />
             </a>
           </li>
           {/* <li className={cn(s.navItem, "block bt:hidden")}>

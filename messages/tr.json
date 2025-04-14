@@ -191,12 +191,12 @@
     },
     "common": {
         "navigation": {
-            "residences": "Konutlar",
+            "residences": "Daireler",
             "location": "Konum",
             "citysPark": "City's Park",
             "citysMembersClub": "City's Members Club",
             "citysLifePrivileges": "City's Life Ayrıcalıkları",
-            "citysIstanbul": "City's İstanbul"
+            "citysIstanbul": "City's İstanbul AVM"
         },
         "contactInfo": "City's İstanbul Satış Ofisi / <br></br> City's Sales Gallery",
         "close": "KAPAT",

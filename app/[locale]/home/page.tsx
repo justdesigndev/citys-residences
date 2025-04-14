@@ -11,7 +11,7 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
-import { kolajVideo, locationVideo, mainVideoDesktop, mainVideoMobile, muratKaderVideo } from "@/lib/constants"
+import { kolajVideo, locationVideo, mainVideoDesktop, muratKaderVideo } from "@/lib/constants"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -59,7 +59,7 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <section className={cn(s.intro, "bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className={cn(s.intro, "h-[50vh] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
           <div className="h-full w-full">
             <Video
@@ -68,16 +68,16 @@ export default function Home() {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover hidden bd:block"
+              className="w-full h-full object-cover"
             />
-            <Video
-              primaryVideoUrl={mainVideoMobile}
+            {/* <Video
+              primaryVideoUrl={mainVideoDesktop}
               autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover block bd:hidden"
-            />
+            /> */}
           </div>
         </ScaleOut>
       </section>
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-white px-4 bd:px-12 py-12 bt:pb-16 bd:py-12 z-20 relative flex flex-col bt:grid bt:grid-cols-3 gap-4 bt:gap-6 ">
+      <section className="bg-white px-4 bd:px-12 py-12 bt:pb-16 bd:py-12 z-20 relative flex-col hidden bt:grid bt:grid-cols-3 gap-4 bt:gap-6">
         <div
           className={cn(
             "group",
@@ -213,6 +213,13 @@ export default function Home() {
         <div className="w-full h-[350px] bt:h-auto bt:aspect-video overflow-hidden relative z-10 flex items-center justify-center bg-black rounded-md">
           <VideoWithPlayButton primaryVideoUrl={kolajVideo} thumbnail="/img/thumbnail-kolaj-video.jpg" />
         </div>
+      </section>
+      <section className="relative container py-12 bt:py-40">
+        <h3 className="font-halenoir text-black text-4xl bt:text-7xl font-black tracking-widest text-center">
+          <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.005}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+          </TextRevealOnScroll>
+        </h3>
       </section>
       <section className="relative">
         <FullScreenSlider title={t("live.p1.title")} description={t("live.p1.description")} items={slides1} />

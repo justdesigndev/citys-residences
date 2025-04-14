@@ -57,7 +57,7 @@
 
     @include-media ("desktop") {
       --padding: desktop-vw(7px);
-      font-size: desktop-vw(16px);
+      font-size: desktop-vw(24px);
     }
 
     .icon-c {
@@ -81,8 +81,36 @@
   }
 
   &.fit-content {
-    --padding: desktop-vw(10px);
-    font-size: desktop-vw(16px);
+    --padding: mobile-vw(8px);
+
+    @include-media ("tablet") {
+      --padding: tablet-vw(8px);
+      font-size: tablet-vw(20px);
+    }
+
+    @include-media ("desktop") {
+      --padding: desktop-vw(10px);
+      font-size: desktop-vw(22px);
+    }
+
+    .icon-c {
+      padding: var(--padding);
+
+      .icon {
+        height: mobile-vw(12px);
+        width: mobile-vw(12px);
+
+        @include-media ("tablet") {
+          height: tablet-vw(20px);
+          width: tablet-vw(20px);
+        }
+
+        @include-media ("desktop") {
+          height: desktop-vw(24px);
+          width: desktop-vw(24px);
+        }
+      }
+    }
   }
 
   .text-c {

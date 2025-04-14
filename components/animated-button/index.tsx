@@ -74,7 +74,7 @@ export function AnimatedButton({
         themes[theme].bgColorClassName,
         themes[theme].borderColorClassName,
         fontFamily === "lexend-giga" ? "font-lexend-giga" : "font-halenoir",
-        "relative flex items-center cursor-pointer rounded-md overflow-hidden",
+        "relative flex items-center cursor-pointer rounded-lg overflow-hidden",
         {
           [s.sm]: size === "sm",
           [s.md]: size === "md",
