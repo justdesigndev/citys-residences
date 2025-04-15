@@ -12,7 +12,7 @@ export default function Page() {
   const t = useTranslations("citys-life")
   return (
     <Wrapper>
-      <section className={cn("relative h-screen bg-bricky-brick z-10 overflow-hidden")}>
+      <section className={cn("relative h-[var(--svh-calc)] bd:h-screen bg-bricky-brick z-10 overflow-hidden")}>
         <ScaleOut>
           <div className="h-full w-full">
             <Video
