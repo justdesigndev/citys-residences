@@ -21,7 +21,7 @@ export function MaskedParallaxImage({ imgSrc, sizes = "100vw" }: MaskedParallaxI
     () => {
       if (!width) return
 
-      const distance = width < breakpoints.breakpointMobile ? 50 : 100
+      const distance = width < breakpoints.breakpointMobile ? 20 : 100
 
       const tl = gsap.timeline({ paused: true })
 
