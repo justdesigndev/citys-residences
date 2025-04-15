@@ -38,9 +38,9 @@
 }
 
 .title {
-  font-size: mobile-vw(32px);
+  font-size: mobile-vw(24px);
   @include-media ("tablet") {
-    font-size: tablet-vw(24px);
+    font-size: tablet-vw(18px);
   }
   @include-media ("desktop") {
     font-size: desktop-vw(25px);
@@ -48,9 +48,9 @@
 }
 
 .text {
-  font-size: mobile-vw(18px);
+  font-size: mobile-vw(14px);
   @include-media ("tablet") {
-    font-size: tablet-vw(18px);
+    font-size: tablet-vw(12px);
   }
   @include-media ("desktop") {
     font-size: desktop-vw(18px);

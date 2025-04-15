@@ -33,59 +33,59 @@ export function MaskedParallaxImageSection({
   link,
 }: MaskedParallaxImageSectionProps) {
   return (
-    <div className="px-4 bt:px-10">
-      <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-6 bt:gap-0">
-        <div
-          className={cn(
-            "col-span-7 flex flex-col gap-12",
-            horizontalAlignment === "ltr" ? "col-start-1 order-2 bt:order-1" : "col-start-[18] order-1 bt:order-2"
-          )}
-        >
-          {title && (
-            <>
-              <div className={cn(s.title, "font-lexend-giga font-normal leading-none text-bricky-brick")}>
-                <h3 className="hidden bt:block">
-                  <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0025}>
-                    {title}
-                  </TextRevealOnScroll>
-                </h3>
-                <h3 className="block bt:hidden max-w-xs mx-auto">
-                  <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0025}>
-                    {title}
-                  </TextRevealOnScroll>
-                </h3>
-              </div>
-            </>
-          )}
-          <div className={s.text}>
-            <p className="hidden bt:block">
-              <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0025}>
-                {text}
-              </TextRevealOnScroll>
-            </p>
-            <p className="block bt:hidden max-w-xs mx-auto">
-              <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0025}>
-                {text}
-              </TextRevealOnScroll>
-            </p>
-          </div>
-          {link && (
-            <Link className="w-56" href={link.url}>
-              <AnimatedButton text={link.text} size="lg" theme="tertiary" />
-            </Link>
-          )}
+    <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-6 bt:gap-0 px-4 bt:px-4 bd:px-10">
+      <div
+        className={cn(
+          "bt:col-span-9 bd:col-span-7 flex flex-col gap-4 bt:gap-6 bd:gap-12",
+          horizontalAlignment === "ltr"
+            ? "col-start-1 order-2 bt:order-1"
+            : "bt:col-start-[16] bd:col-start-[18] order-1 bt:order-2"
+        )}
+      >
+        {title && (
+          <>
+            <div className={cn(s.title, "font-lexend-giga font-normal leading-none text-bricky-brick")}>
+              <h3 className="hidden bt:block">
+                <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0025}>
+                  {title}
+                </TextRevealOnScroll>
+              </h3>
+              <h3 className="block bt:hidden max-w-xs mx-auto">
+                <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0025}>
+                  {title}
+                </TextRevealOnScroll>
+              </h3>
+            </div>
+          </>
+        )}
+        <div className={s.text}>
+          <p className="hidden bt:block">
+            <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.0025}>
+              {text}
+            </TextRevealOnScroll>
+          </p>
+          <p className="block bt:hidden max-w-xs mx-auto">
+            <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0025}>
+              {text}
+            </TextRevealOnScroll>
+          </p>
         </div>
-        <div
-          className={cn(
-            "aspect-h-11 aspect-w-9 relative col-span-16 gsap-parallax-img-c",
-            horizontalAlignment === "ltr" ? "col-start-9 order-2" : "col-start-1 order-1"
-          )}
-        >
-          <MaskedParallaxImage
-            imgSrc={imgSrc}
-            sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}
-          />
-        </div>
+        {link && (
+          <Link className="w-56" href={link.url}>
+            <AnimatedButton text={link.text} size="lg" theme="tertiary" />
+          </Link>
+        )}
+      </div>
+      <div
+        className={cn(
+          "aspect-h-11 aspect-w-9 relative bt:col-span-14 bd:col-span-16 gsap-parallax-img-c",
+          horizontalAlignment === "ltr" ? "bt:col-start-11 bd:col-start-9 order-2" : "col-start-1 order-1"
+        )}
+      >
+        <MaskedParallaxImage
+          imgSrc={imgSrc}
+          sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}
+        />
       </div>
     </div>
   )

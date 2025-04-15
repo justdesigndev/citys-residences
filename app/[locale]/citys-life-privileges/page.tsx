@@ -34,7 +34,7 @@ export default function Page() {
           </div>
           <div className="absolute top-0 left-0 w-full h-full bg-black/50">
             <div className="container flex flex-col h-full">
-              <h1 className="max-w-xl block font-lexend-giga leading-snug text-white text-4xl font-medium mt-auto mb-8">
+              <h1 className="max-w-xl block font-lexend-giga leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-8">
                 <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
                   CITY&apos;S LIFE:
                 </TextRevealOnScroll>
@@ -42,7 +42,7 @@ export default function Page() {
                   KONFOR VE SOSYAL YAŞAMIN YENİ ADRESİ
                 </TextRevealOnScroll>
               </h1>
-              <p className="max-w-lg block font-halenoir leading-snug text-white text-lg font-normal mb-20">
+              <p className="max-w-lg block font-halenoir leading-snug text-white text-base bt:text-lg font-normal mb-20">
                 <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
                   Hayatın en seçkin anlarını yaşamak için ayrıcalıklı dünyamıza adım adım yaklaşıyorsunuz.
                 </TextRevealOnScroll>
@@ -52,7 +52,7 @@ export default function Page() {
         </ScaleOut>
       </section>
       <section className="relative z-20 bg-white">
-        <div className="container flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-16 bd:py-40">
+        <div className="container flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-36 bd:py-40">
           {[
             {
               title: t("items.i1.title"),
