@@ -45,16 +45,16 @@ export default function Page() {
               className="w-full h-full object-cover"
             />
           </div>
-        </ScaleOut>
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50">
-          <div className="container flex h-full">
-            <h1 className="block font-lexend-giga text-white text-2xl bt:text-4xl font-medium mt-auto mb-20">
-              <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
-                CITY&apos;S PARK
-              </TextRevealOnScroll>
-            </h1>
+          <div className="absolute top-0 left-0 w-full h-full bg-black/50">
+            <div className="container flex h-full">
+              <h1 className="block font-lexend-giga text-white text-2xl bt:text-4xl font-medium mt-auto mb-20">
+                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
+                  CITY&apos;S PARK
+                </TextRevealOnScroll>
+              </h1>
+            </div>
           </div>
-        </div>
+        </ScaleOut>
       </section>
       <ImagesSection images={images} />
     </Wrapper>
