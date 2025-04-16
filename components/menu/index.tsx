@@ -7,7 +7,6 @@ import { useLenis } from "lenis/react"
 import { useRef, useState } from "react"
 import { useClickAway } from "react-use"
 
-import { AnimatedButton } from "@/components/animated-button"
 import { gsap, useGSAP } from "@/components/gsap"
 import { socialIcons } from "@/components/icons"
 import { Link } from "@/components/utility/link"
@@ -149,12 +148,18 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             )}
           >
             <a
-              className="flex -ml-2"
               href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
               target="_blank"
               rel="noopener noreferrer"
+              className={cn(
+                s.navItem,
+                "font-halenoir text-white text-2xl bt:text-4xl bd:text-3xl text-center bd:text-left",
+                "transition-opacity duration-300 ease-in-out",
+                "hover:font-medium"
+              )}
             >
-              <AnimatedButton theme="transparent" size="lg" text="Satış Ofisi Konum" fontFamily="halenoir" />
+              {/* <AnimatedButton theme="transparent" size="lg" text="Satış Ofisi Konum" fontFamily="halenoir" /> */}
+              CR Satış Ofisi Konum
             </a>
           </li>
           {/* <li className={cn(s.navItem, "block bt:hidden")}>
