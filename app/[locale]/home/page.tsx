@@ -12,6 +12,7 @@ import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { kolajVideo, locationVideo, mainVideoDesktop, muratKaderVideo } from "@/lib/constants"
+import { Logo } from "@/components/icons"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -82,7 +83,7 @@ export default function Home() {
         </ScaleOut>
       </section>
       <section className="bg-white font-halenoir pt-6 bt:pt-12 z-20 relative">
-        <div className="container mx-auto py-6 bt:py-28 bd:py-40 relative flex flex-col items-center">
+        <div className="container mx-auto py-6 bt:py-28 bd:pt-40 bd:pb-8 relative flex flex-col items-center">
           <div className="flex flex-col items-center text-center">
             <h1 className="font-lexend-giga text-bricky-brick text-4xl bt:text-8xl font-medium tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
@@ -102,6 +103,9 @@ export default function Home() {
                 {t("section1.title3")}
               </TextRevealOnScroll>
             </p>
+            <div className="w-48 h-48 bt:w-72 bt:h-72 mt-12">
+              <Logo fill={"var(--bricky-brick)"} />
+            </div>
           </div>
         </div>
       </section>
