@@ -6,28 +6,43 @@ import { ScaleOut } from "@/components/animations/scale-out"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
-import { mainVideoDesktop } from "@/lib/constants"
+import { mainVideoDesktop, muratKaderVideo } from "@/lib/constants"
 import { ImagesSection } from "./images-section"
+import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 
 export default function Page() {
   const images = [
     {
-      url: "/img/slides-3/1.jpg",
+      url: "/img/citys-park/01.jpg",
+      fullWidth: true,
     },
     {
-      url: "/img/slides-3/2.jpg",
+      url: "/img/citys-park/02-01.jpg",
+      fullWidth: false,
     },
     {
-      url: "/img/slides-3/3.jpg",
+      url: "/img/citys-park/02-02.jpg",
+      fullWidth: false,
     },
     {
-      url: "/img/slides-3/4.jpg",
+      url: "/img/citys-park/04.jpg",
+      fullWidth: true,
     },
     {
-      url: "/img/slides-3/5.jpg",
+      url: "/img/citys-park/05.jpg",
+      fullWidth: true,
     },
     {
-      url: "/img/slides-3/6.jpg",
+      url: "/img/citys-park/06-01.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/06-02.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/08.jpg",
+      fullWidth: true,
     },
   ]
 
@@ -56,7 +71,18 @@ export default function Page() {
           </div>
         </ScaleOut>
       </section>
-      <ImagesSection images={images} />
+      <section className="relative bg-white pt-16 bt:pt-24 bd:pt-32 z-20">
+        <ImagesSection images={images} />
+      </section>
+      <section className="relative container py-16 bt:py-20 bd:py-32">
+        <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
+          <VideoWithPlayButton
+            primaryVideoUrl={muratKaderVideo}
+            thumbnail="/img/thumbnail-murat-kader.jpg"
+            title="Pınar & Cemil Akbaş Video"
+          />
+        </div>
+      </section>
     </Wrapper>
   )
 }

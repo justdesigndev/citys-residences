@@ -1,19 +1,25 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { useRef, useState } from "react"
-import cn from "clsx"
 
-import { Video } from "@/components/utility/video"
 import { IconPlay } from "@/components/icons"
-import { Img } from "../img"
+import { Img } from "@/components/utility/img"
+import { Video } from "@/components/utility/video"
 
 export interface IVideoWithPlayButtonProps {
   primaryVideoUrl: string
   primaryVideoType?: string
   thumbnail?: string
+  title?: string
 }
 
-export function VideoWithPlayButton(props: IVideoWithPlayButtonProps) {
+export function VideoWithPlayButton({
+  primaryVideoUrl,
+  primaryVideoType = "video/mp4",
+  thumbnail,
+  title = "Lorem ipsum dolor sit.",
+}: IVideoWithPlayButtonProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -23,10 +29,11 @@ export function VideoWithPlayButton(props: IVideoWithPlayButtonProps) {
   }
 
   return (
-    <div className="group relative w-full h-full rounded-md overflow-hidden flex items-center justify-center">
+    <div className="group relative w-full h-full flex items-center justify-center">
       <Video
         className="w-full h-auto bt:h-full"
-        primaryVideoUrl={props.primaryVideoUrl}
+        primaryVideoUrl={primaryVideoUrl}
+        primaryVideoType={primaryVideoType}
         ref={videoRef}
         controls={isPlaying}
       />
@@ -36,9 +43,9 @@ export function VideoWithPlayButton(props: IVideoWithPlayButtonProps) {
         })}
         onClick={handlePlay}
       >
-        {props.thumbnail && (
+        {thumbnail && (
           <div className="absolute top-0 left-0 w-full h-full">
-            <Img src={props.thumbnail} alt="Thumbnail" className="w-full h-full object-cover" fill sizes="100vw" />
+            <Img src={thumbnail} alt="Thumbnail" className="w-full h-full object-cover" fill sizes="100vw" />
           </div>
         )}
         <div
@@ -57,6 +64,13 @@ export function VideoWithPlayButton(props: IVideoWithPlayButtonProps) {
           <IconPlay fill="var(--white)" />
         </button>
       </div>
+      {title && (
+        <div className="absolute bottom-0 translate-y-full left-1/2 -translate-x-1/2 w-full flex bg-white">
+          <article className="text-black font-halenoir text-md bt:text-2xl font-medium mx-auto py-3 bt:py-4">
+            {title}
+          </article>
+        </div>
+      )}
     </div>
   )
 }
