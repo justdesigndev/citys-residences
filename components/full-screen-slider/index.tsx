@@ -6,8 +6,6 @@ import { cn } from "@/lib/utils"
 import { useRef } from "react"
 
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
-import { useWindowSize } from "react-use"
-import { breakpoints } from "@/styles/config.mjs"
 
 export interface FullScreenSliderProps {
   title: string
@@ -17,7 +15,6 @@ export interface FullScreenSliderProps {
 
 export function FullScreenSlider({ title, description, items }: FullScreenSliderProps) {
   const ref = useRef(null)
-  const { width } = useWindowSize()
 
   // useGSAP(
   //   () => {
@@ -77,11 +74,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
         <EmblaCarousel autoplay={true} autoplayDelay={5000} slides={items} options={{ duration: 35, loop: true }} />
       </div>
       <div className={cn(s.descriptionC, "gsap-description-c")}>
-        <div
-          className={cn(s.description, "gsap-description", "w-full h-full rounded-lg overflow-hidden", {
-            "blur-bg-bricky-brick-lighter": width > breakpoints.breakpointTablet - 1,
-          })}
-        >
+        <div className={cn(s.description, "gsap-description", "w-full h-full rounded-lg overflow-hidden")}>
           <p
             className={cn(
               s.infoText,
