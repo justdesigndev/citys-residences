@@ -33,7 +33,7 @@ export function MaskedParallaxImageSection({
   link,
 }: MaskedParallaxImageSectionProps) {
   return (
-    <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-6 bt:gap-0 px-4 bt:px-4 bd:px-10">
+    <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-6 bt:gap-0">
       <div
         className={cn(
           "bt:col-span-9 bd:col-span-7 flex flex-col gap-4 bt:gap-6 bd:gap-12",
@@ -78,7 +78,7 @@ export function MaskedParallaxImageSection({
       </div>
       <div
         className={cn(
-          "aspect-h-11 aspect-w-9 relative bt:col-span-14 bd:col-span-16 gsap-parallax-img-c",
+          "aspect-h-6 aspect-w-9 relative bt:col-span-14 bd:col-span-16 gsap-parallax-img-c",
           horizontalAlignment === "ltr" ? "bt:col-start-11 bd:col-start-9 order-2" : "col-start-1 order-1"
         )}
       >
