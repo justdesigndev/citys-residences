@@ -135,23 +135,23 @@ export const countryPhoneCodes = {
   ],
 }
 
-export const mainVideoDesktop =
-  "https://player.vimeo.com/progressive_redirect/playback/1069157386/rendition/1080p/file.mp4?loc=external&log_user=0&signature=38cdf58d9bdde6efcaddd7fb7000a3f74e01614b50844df0dbdb1e1e1d4a42db"
-
-export const mainVideoMobile =
-  "https://player.vimeo.com/progressive_redirect/playback/1069157052/rendition/720p/file.mp4?loc=external&log_user=0&signature=945b3b810a60f09ffa0ee94b493692906c12f48e65854f6d6ff501f18d7a41ac"
-
 export const muratKaderVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1069589082/rendition/1080p/file.mp4?loc=external&log_user=0&signature=25c90edaf980d511d0c8c9d3a5d642084e7c29f194fa0e054a140c6815d06c35"
+  "https://player.vimeo.com/progressive_redirect/playback/1076668374/rendition/1080p/file.mp4?loc=external&log_user=0&signature=9cb5431c29179de45c2a9528e203a341f2aa92b6c95641659f2de5e74791354f"
+
+export const mainVideoDesktop =
+  "https://player.vimeo.com/progressive_redirect/playback/1076676620/rendition/1080p/file.mp4?loc=external&log_user=0&signature=c03831c6797fba1aa5fb5ba19069a72fff340518a5ba6a4e38e119e1e321eb45"
 
 export const kolajVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1069860586/rendition/1080p/file.mp4?loc=external&log_user=0&signature=93ffcc3ffcfe4a4ca2624cdbaef95fab5777741b7c5ab98d9e3f9bddf9f6062a"
 
 export const locationVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1075227281/rendition/1080p/file.mp4?loc=external&log_user=0&signature=e94628db4c71fb1b3df16982b43bab866fd59bf6acee6473cc76d8f819f844ee"
+  "https://player.vimeo.com/progressive_redirect/playback/1076654767/rendition/1080p/file.mp4?loc=external&log_user=0&signature=e051d94ef10aad5d5d1e207d6eb90156b96b1813ae50304a8b0cd0cf1d361fb9"
 
 export const mustafaTonerVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1075255861/rendition/1080p/file.mp4?loc=external&log_user=0&signature=1abc5acb3a5d8594e35e691cf33fa1628d69dedba59d984dd53e193e39a95365"
+  "https://player.vimeo.com/progressive_redirect/playback/1076668805/rendition/1080p/file.mp4?loc=external&log_user=0&signature=07ec8e59081ba6f5ddd518f08fb4101cbb62b5164e9eb3b299de7a4ab94afc4c"
 
 export const melihBulgurVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1075255386/rendition/1080p/file.mp4?loc=external&log_user=0&signature=c6aad5bf569510d16ed3ad971bb39bfcd3db136def88dfbda50c38dd8b5ec1cf"
+  "https://player.vimeo.com/progressive_redirect/playback/1076669668/rendition/1080p/file.mp4?loc=external&log_user=0&signature=6c1df00cb3eb08578ce6ec9b08be5b2149abe995908dec33a8939cd2eff8506c"
+
+export const pinarVeCemilAktasVideo =
+  "https://player.vimeo.com/progressive_redirect/playback/1076669307/rendition/1080p/file.mp4?loc=external&log_user=0&signature=7ae58e9ab6d78fb58ee636c7702acb47f7202f7f7a129974894b28abecc11ba6"
