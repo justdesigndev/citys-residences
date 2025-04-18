@@ -9,17 +9,15 @@ import Lenis from "lenis"
 import { useLenis } from "lenis/react"
 import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Logo } from "@/components/icons"
 import { Menu } from "@/components/menu"
 import { MenuX } from "@/components/menu-x"
-import { ModalContactForm } from "@/components/modal-contact-form"
 import { colors } from "@/styles/config.mjs"
 
 export function Header() {
   const lenis = useLenis()
-  const [modalOpen, setModalOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrollState, setScrollState] = useState({
     hidden: false,
@@ -67,18 +65,6 @@ export function Header() {
     lenis?.on("scroll", handleEvents)
     return () => lenis?.off("scroll", handleEvents)
   }, [lenis])
-
-  useEffect(() => {
-    if (modalOpen) {
-      return lenis?.stop()
-    }
-
-    lenis?.start()
-  }, [lenis, modalOpen])
-
-  const memoizedModal = useMemo(() => {
-    return <ModalContactForm open={modalOpen} setOpen={setModalOpen} />
-  }, [modalOpen, setModalOpen])
 
   return (
     <>
@@ -154,18 +140,11 @@ export function Header() {
                 </div>
            
               </div> */}
-              <div
-                className="fixed top-auto bd:top-0 left-0 bd:left-auto right-0 bottom-0 font-lexend-giga font-light text-white text-lg bd:text-2xl text-center blur-bg-bricky-brick px-4 flex items-center justify-center w-full bd:w-16 h-14 bd:h-full opacity-70 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
-                onClick={() => setModalOpen((prev) => !prev)}
-              >
-                <span className="block bd:-rotate-90 whitespace-nowrap">{t("inquiry")}</span>
-              </div>
             </div>
           </nav>
           <Menu open={menuOpen} setOpen={setMenuOpen} items={navigationItems} />
         </div>
       </header>
-      {memoizedModal}
     </>
   )
 }
