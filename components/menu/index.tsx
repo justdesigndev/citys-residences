@@ -155,7 +155,8 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               className={cn(
                 s.navItem,
                 "font-halenoir font-normal text-white text-2xl bt:text-4xl bd:text-3xl text-center bd:text-left",
-                "transition-opacity duration-300 ease-in-out"
+                "transition-opacity duration-300 ease-in-out",
+                "opacity-100 hover:opacity-70"
                 // "hover:font-medium"
               )}
             >
