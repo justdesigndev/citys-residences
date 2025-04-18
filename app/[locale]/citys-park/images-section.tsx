@@ -36,7 +36,7 @@ export function ImagesSection({ images }: ImagesSectionProps) {
             )}
             onClick={() => handleImageClick(images, i)}
           >
-            <Img src={image.url} fill sizes="100vw" alt="City's Park" className="object-cover" />
+            <Img src={image.url} fill sizes="100vw" alt="City's Park" className="object-cover" loading="lazy" />
           </div>
         ))}
       </div>

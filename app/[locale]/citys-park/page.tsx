@@ -17,11 +17,11 @@ export default function Page() {
       fullWidth: true,
     },
     {
-      url: "/img/citys-park/02-01.jpg",
+      url: "/img/citys-park/02.jpg",
       fullWidth: false,
     },
     {
-      url: "/img/citys-park/02-02.jpg",
+      url: "/img/citys-park/03.jpg",
       fullWidth: false,
     },
     {
@@ -33,15 +33,115 @@ export default function Page() {
       fullWidth: true,
     },
     {
-      url: "/img/citys-park/06-01.jpg",
+      url: "/img/citys-park/06.jpg",
       fullWidth: false,
     },
     {
-      url: "/img/citys-park/06-02.jpg",
+      url: "/img/citys-park/07.jpg",
       fullWidth: false,
     },
     {
       url: "/img/citys-park/08.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/09.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/10.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/11.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/12.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/13.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/14.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/15.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/16.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/17.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/18.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/19.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/20.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/21.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/22.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/23.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/24.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/25.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/26.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/27.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/28.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/29.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/30.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/31.jpg",
+      fullWidth: false,
+    },
+    {
+      url: "/img/citys-park/32.jpg",
+      fullWidth: true,
+    },
+    {
+      url: "/img/citys-park/33.jpg",
       fullWidth: true,
     },
   ]
