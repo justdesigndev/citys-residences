@@ -25,6 +25,7 @@
   --z-header: z-stack();
   --z-header-content: z-stack();
   --z-popup: z-stack();
+  --z-sticky: z-stack();
   --z-modal: z-stack();
   --z-gsap-markers: z-stack();
 }

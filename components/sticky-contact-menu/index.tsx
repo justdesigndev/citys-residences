@@ -127,7 +127,7 @@ export default function StickyContactMenu() {
   return (
     <>
       <div
-        className="font-montserrat fixed left-0 bottom-0 right-0 bg-bricky-brick grid grid-cols-3 z-[10] bt:hidden"
+        className="font-montserrat fixed left-0 bottom-0 right-0 bg-bricky-brick grid grid-cols-3 z-[var(--z-sticky)] bt:hidden"
         ref={ref}
       >
         <Link
