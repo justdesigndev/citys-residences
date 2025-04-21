@@ -85,7 +85,7 @@ export default function Home() {
       <section className="bg-white font-halenoir pt-6 bt:pt-12 z-20 relative">
         <div className="container mx-auto py-6 bt:py-28 bd:pt-40 bd:pb-8 relative flex flex-col items-center">
           <div className="flex flex-col items-center text-center">
-            <h1 className="font-montserrat text-bricky-brick text-4xl bt:text-8xl font-medium tracking-widest">
+            <h1 className="font-montserrat text-bricky-brick text-4xl bt:text-8xl font-semibold tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
                 {t("section1.title1")}
               </TextRevealOnScroll>
@@ -198,9 +198,29 @@ export default function Home() {
           </div>
         </div>
       </section> */}
-      <section className="container flex flex-col-reverse bd:flex-row items-center justify-between gap-12 bt:gap-20 bd:gap-16 py-6 bt:py-24">
-        <div className="max-w-sm bt:max-w-xl bd:max-w-xl px-4 bt:px-0">
-          <p className="font-halenoir text-3xl bt:text-4xl bd:text-4xl text-center">
+      <section className="container flex flex-col-reverse bd:flex-row items-center justify-between gap-10 bt:gap-20 bd:gap-16 py-6 bt:py-24">
+        <div className="px-4 bt:px-0 flex flex-col items-center justify-center bd:items-start">
+          <h2 className="font-montserrat font-bold bt:font-semibold text-bricky-brick text-4xl bt:text-7xl bd:text-7xl mb-5 bt:mb-10">
+            <TextRevealOnScroll
+              className="hidden bd:block"
+              elementLevelClassName="leading-relaxed"
+              splitBy="lines"
+              textAlign="left"
+              staggerDuration={0.005}
+            >
+              DAHA ÇOK YAŞA
+            </TextRevealOnScroll>
+            <TextRevealOnScroll
+              className="block bd:hidden"
+              elementLevelClassName="leading-relaxed"
+              splitBy="lines"
+              textAlign="center"
+              staggerDuration={0.005}
+            >
+              DAHA ÇOK YAŞA
+            </TextRevealOnScroll>
+          </h2>
+          <p className="font-halenoir text-md bt:text-4xl bd:text-3xl text-center max-w-sm bt:max-w-xl bd:max-w-xl bd:leading-normal">
             <TextRevealOnScroll
               className="hidden bd:block"
               elementLevelClassName="leading-relaxed"
@@ -220,6 +240,9 @@ export default function Home() {
               {t("map.title")}
             </TextRevealOnScroll>
           </p>
+          <div className="w-40 h-40 mx-auto bt:hidden">
+            <Logo fill={"var(--bricky-brick)"} />
+          </div>
         </div>
         <div className={cn(s.circleVideoC, "overflow-hidden rounded-full z-20")}>
           <Video
