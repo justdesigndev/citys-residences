@@ -194,7 +194,8 @@ export function ModalContactForm() {
                 "font-montserrat font-light text-white text-lg bd:text-2xl blur-bg-bricky-brick",
                 "rounded-bl-2xl rounded-tl-2xl",
                 "inline-flex items-center justify-center",
-                "cursor-pointer"
+                "cursor-pointer",
+                "opacity-80"
               )}
               onClick={() => setOpen((prev) => !prev)}
             >
