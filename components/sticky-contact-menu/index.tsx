@@ -145,7 +145,9 @@ export default function StickyContactMenu() {
             </div>
           </DialogTrigger>
           <DialogContent>
-            <ContactForm translations={formTranslations} />
+            <div className="h-[400px] overflow-y-scroll">
+              <ContactForm translations={formTranslations} />
+            </div>
           </DialogContent>
         </Dialog>
         <Link
