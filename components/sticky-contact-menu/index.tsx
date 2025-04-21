@@ -155,7 +155,7 @@ export default function StickyContactMenu() {
             <X className="fixed top-4 right-4 w-6 h-6 text-white" />
             <span className="sr-only">Close</span>
           </DialogClose> */}
-          <div className="h-full overflow-y-scroll">
+          <div className="h-[80vh] overflow-y-scroll">
             <p className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal mt-5">
               {t.rich("description", {
                 br: () => <br className="hidden bt:block" />,
