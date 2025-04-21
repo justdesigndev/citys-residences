@@ -4,6 +4,7 @@ import s from "./modal-contact-form.module.css"
 
 import { cn } from "@/lib/utils"
 import { useGSAP } from "@gsap/react"
+import { useLenis } from "lenis/react"
 import { X } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useRef, useState } from "react"
@@ -13,7 +14,6 @@ import { gsap } from "@/components/gsap"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { useEsc } from "@/hooks/useEsc"
 import { FormTranslations } from "@/types"
-import { useLenis } from "lenis/react"
 
 export function ModalContactForm() {
   const [open, setOpen] = useState(false)
@@ -164,13 +164,13 @@ export function ModalContactForm() {
   return (
     <>
       <div
-        className={cn("fixed top-0 left-0 w-full h-full blur-bg opacity-0 z-[150]", {
+        className={cn("fixed top-0 left-0 w-full h-full blur-bg opacity-0 z-[150] hidden lg:block", {
           "pointer-events-none": !open,
         })}
         ref={bgRef}
         onClick={() => setOpen(false)}
       ></div>
-      <div className={cn(s.form)}>
+      <div className={cn(s.form, "hidden lg:block")}>
         <div className={cn("relative box bg-white h-full w-0")} onClick={(e) => e.stopPropagation()} ref={formRef}>
           <div className="absolute top-0 left-0 w-[700px] h-full flex right-0">
             <button
