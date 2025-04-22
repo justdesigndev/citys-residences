@@ -273,7 +273,7 @@ export default function Home() {
           <VideoWithPlayButton
             primaryVideoUrl={muratKaderVideo}
             thumbnail="/img/thumbnail-murat-kader.jpg"
-            title="Mimari: 'Bir Düşünceden Doğan Yaşam'"
+            title="Mimari: Bir Düşünceden Doğan Yaşam"
           />
         </div>
       </section>

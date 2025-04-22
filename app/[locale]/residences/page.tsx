@@ -75,7 +75,7 @@ export default function Page() {
             <VideoWithPlayButton
               primaryVideoUrl={mustafaTonerVideo}
               thumbnail="/img/thumbnail-toners.jpg"
-              title="İç Mimari: 'Doğal Olanın Sessiz Dili "
+              title="İç Mimari: Doğal Olanın Sessiz Dili"
             />
           </div>
         </div>

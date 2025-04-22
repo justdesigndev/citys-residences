@@ -50,7 +50,11 @@ export function VideoWithPlayButton({
         )}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-neutral-900/70 to-neutral-900/40 z-20" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-8 z-30">
-          {title && <article className="text-white font-montserrat text-md bt:text-4xl font-medium">{title}</article>}
+          {title && (
+            <article className="text-white font-montserrat text-md bt:text-4xl font-medium whitespace-nowrap">
+              {title}
+            </article>
+          )}
           <button
             type="button"
             className={cn(
