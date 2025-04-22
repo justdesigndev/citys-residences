@@ -19,6 +19,7 @@ export default function Page() {
           url: "/img/residences/1+1/interior.jpg",
         },
       ],
+      bg: "#fbfbfb",
     },
     {
       title: "2+1",
@@ -30,6 +31,7 @@ export default function Page() {
           url: "/img/residences/2+1/interior.jpg",
         },
       ],
+      bg: "#fffdfd",
     },
     {
       title: "3+1",
@@ -41,6 +43,7 @@ export default function Page() {
           url: "/img/residences/3+1/interior.jpg",
         },
       ],
+      bg: "#ffffff",
     },
   ]
 
@@ -86,7 +89,7 @@ export default function Page() {
       <section>
         <StackingCards items={items} />
       </section>
-      <section className="py-32 bg-white z-20">
+      <section className="pb-32 bg-white z-20">
         <div className="relative container">
           <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton

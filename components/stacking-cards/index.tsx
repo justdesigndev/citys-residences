@@ -14,6 +14,7 @@ export interface StackingCardsProps {
     images: {
       url: string
     }[]
+    bg: string
   }[]
 }
 
@@ -26,16 +27,35 @@ export function StackingCards({ items }: StackingCardsProps) {
       const tl = gsap.timeline()
       const cards: HTMLElement[] = gsap.utils.toArray(".gsap-stacking-card")
 
-      cards.forEach((card, index) => {
-        gsap.set(card, { yPercent: card.clientHeight * index * -1 })
-        tl.fromTo(card, { yPercent: () => (index === 0 ? 0 : 150) }, { yPercent: 15 * index })
-        // .to(card, { opacity: 0 }, `s_${index}`)
+      cards.forEach((card, i) => {
+        if (i === 0) return
+
+        gsap.set(card, { yPercent: 150 })
       })
+
+      tl.to(
+        cards[0],
+        {
+          scale: 0.9,
+          opacity: 0,
+        },
+        "a"
+      )
+        .to(cards[1], { yPercent: 0 }, "a")
+        .to(
+          cards[1],
+          {
+            scale: 0.9,
+            opacity: 0,
+          },
+          "b"
+        )
+        .to(cards[2], { yPercent: 0 }, "b")
 
       ScrollTrigger.create({
         animation: tl,
         trigger: ".gsap-stacking-cards-container",
-        start: "top top+=15%",
+        start: "center center",
         pin: true,
         scrub: true,
         end: "+=1500px",
@@ -63,6 +83,7 @@ export function StackingCards({ items }: StackingCardsProps) {
             className={cn(
               "gsap-stacking-card absolute left-0 w-full h-full overflow-hidden border-t bg-white p-3 bt:p-10 flex items-end justify-end"
             )}
+            style={{ backgroundColor: item.bg }}
             key={i}
           >
             <h2 className="absolute top-0 left-0 font-halenoir text-3xl bt:text-5xl font-normal p-3 bt:p-5 tracking-widest">
