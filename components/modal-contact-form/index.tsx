@@ -202,7 +202,7 @@ export function ModalContactForm() {
               <span className="block bd:-rotate-90 whitespace-nowrap pointer-events-none">{commonT("inquiry")}</span>
             </div>
             <ScrollableBox className="h-full">
-              <div className="px-4 bt:px-12 py-14 bt:py-16 space-y-8">
+              <div className="px-4 bt:px-8 py-14 bt:py-8 space-y-8">
                 <h2 className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal">
                   {t.rich("description", {
                     br: () => <br className="hidden bt:block" />,
