@@ -86,7 +86,7 @@ export default function Page() {
       <section className="relative h-screen bg-white z-20 flex items-center justify-center">
         <span className="text-8xl font-black text-center">3D</span>
       </section>
-      <section>
+      <section className="bg-white z-30">
         <StackingCards items={items} />
       </section>
       <section className="pb-32 bg-white z-20">
