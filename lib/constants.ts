@@ -35,7 +35,6 @@ export const routes = {
         description: "City's Residences",
       },
     },
-
     notFound: {
       ariaLabel: "Sayfa Bulunamadı",
       name: "not-found",
