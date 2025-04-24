@@ -1,4 +1,4 @@
-export const baseUrl = "mvkgolfcourse.com"
+export const baseUrl = "citysresidences.com"
 export const initialScroll = true
 
 export const routes = {
@@ -9,18 +9,8 @@ export const routes = {
       path: "",
       ui: "Home",
       seo: {
-        title: "mvkgolfcourse",
-        description: "MVK golf course!",
-      },
-    },
-    about: {
-      ariaLabel: "About Us",
-      name: "about",
-      path: "about-us",
-      ui: "About Us",
-      seo: {
-        title: "About Us | mvkgolfcourse",
-        description: "MVK golf course!",
+        title: "City's Residences",
+        description: "City's Residences",
       },
     },
     notFound: {
@@ -41,20 +31,11 @@ export const routes = {
       path: "",
       ui: "Anasayfa",
       seo: {
-        title: "mvkgolfcourse",
-        description: "MVK golf course!",
+        title: "City's Residences",
+        description: "City's Residences",
       },
     },
-    about: {
-      ariaLabel: "Hakkımızda",
-      name: "about",
-      path: "hakkimizda",
-      ui: "Hakkımızda",
-      seo: {
-        title: "Hakkımızda | mvkgolfcourse",
-        description: "MVK golf course!",
-      },
-    },
+
     notFound: {
       ariaLabel: "Sayfa Bulunamadı",
       name: "not-found",
