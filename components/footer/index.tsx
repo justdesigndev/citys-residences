@@ -58,8 +58,10 @@ export function Footer() {
 
     if (observer?.isIntersecting) {
       aloTech?.style.setProperty("opacity", "0")
+      aloTech?.style.setProperty("pointer-events", "none")
     } else if (!observer?.isIntersecting) {
       aloTech?.style.setProperty("opacity", "1")
+      aloTech?.style.setProperty("pointer-events", "auto")
     }
   }, [observer])
 
