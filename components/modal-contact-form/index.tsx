@@ -138,7 +138,6 @@ export function ModalContactForm() {
           "s"
         )
     },
-
     {
       revertOnUpdate: true,
     }
@@ -146,25 +145,38 @@ export function ModalContactForm() {
 
   useGSAP(
     () => {
+      const aloTech = document.querySelector("#Click2ConnectPackageFrame") as HTMLIFrameElement
+
       if (open) {
         menuTL.current?.play()
+        if (aloTech) {
+          gsap.to(aloTech, {
+            opacity: 0,
+            duration: 0.3,
+          })
+        }
         lenis?.stop()
       } else {
-        menuTL.current?.reverse()
+        menuTL.current?.reverse().then(() => {
+          if (aloTech) {
+            gsap.to(aloTech, {
+              opacity: 1,
+              duration: 0.3,
+            })
+          }
+        })
         lenis?.start()
       }
     },
-
     {
       dependencies: [open, lenis],
-      revertOnUpdate: true,
     }
   )
 
   return (
     <>
       <div
-        className={cn("fixed top-0 left-0 w-full h-full blur-bg opacity-0 z-[150] hidden bt:block", {
+        className={cn(s.bg, "fixed top-0 left-0 w-full h-full blur-bg opacity-0 hidden bt:block", {
           "pointer-events-none": !open,
         })}
         ref={bgRef}
@@ -190,8 +202,8 @@ export function ModalContactForm() {
             <div
               className={cn(
                 "absolute top-1/2 left-0 bottom-0 -translate-x-full -translate-y-1/2",
-                "h-72 w-16",
-                "font-montserrat font-normal text-white text-lg bd:text-2xl blur-bg-bricky-brick",
+                "h-72 w-14",
+                "font-montserrat font-normal text-white text-lg bd:text-4xl blur-bg-bricky-brick",
                 "rounded-bl-2xl rounded-tl-2xl",
                 "inline-flex items-center justify-center",
                 "cursor-pointer",
