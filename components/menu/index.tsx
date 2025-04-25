@@ -37,10 +37,6 @@ export function Menu({ open, setOpen, items }: MenuProps) {
     setOpen(false)
   })
 
-  //   const [animateLinks, setAnimateLinks] = useState(false)
-
-  //   const animateLinksForwards = () => setAnimateLinks(true)
-
   useGSAP(
     () => {
       menuTL.current = gsap.timeline({
@@ -54,9 +50,6 @@ export function Menu({ open, setOpen, items }: MenuProps) {
           clipPath: "inset(0% 0% 0% 0%)",
           duration: 1.2,
           ease: "expo.inOut",
-          //   onEnd: () => {
-          //     animateLinksForwards()
-          //   },
         }
       )
     },
@@ -85,22 +78,15 @@ export function Menu({ open, setOpen, items }: MenuProps) {
       <nav
         className={cn(
           s.menu,
-          "menu",
           "absolute top-0 left-0 w-full h-full p-4 bt:p-10 flex items-center justify-center bd:justify-start"
         )}
-        // onClick={() => animateLinksForwards()}
       >
-        <ul
-          className={cn(
-            s.navList,
-            "flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-0 py-0 pt-20 pb-0 bt:py-12 w-full"
-          )}
-        >
+        <ul className="flex flex-col items-center bd:items-start gap-3 bt:gap-10 bd:gap-0 py-0 pt-20 pb-0 bt:py-12 w-full">
           {items.map(({ title, href }, i) => (
             <li
               className={cn(
                 s.navItem,
-                "font-halenoir text-white text-2xl bt:text-4xl bd:text-3xl text-center bd:text-left",
+                "font-halenoir text-white text-center bd:text-left",
                 "transition-opacity duration-300 ease-in-out",
                 "font-normal",
                 {
@@ -151,7 +137,6 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                s.navItem,
                 "font-halenoir font-normal text-white text-2xl bt:text-4xl bd:text-2xl text-center bd:text-left bd:leading-none",
                 "transition-opacity duration-300 ease-in-out",
                 "opacity-100 hover:opacity-70",

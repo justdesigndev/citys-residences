@@ -33,4 +33,14 @@
       top: desktop-vw(20px);
     }
   }
+
+  .navItem {
+    font-size: mobile-vw(18px);
+    @include-media ('tablet') {
+      font-size: tablet-vw(26px);
+    }
+    @include-media ('desktop') {
+      font-size: desktop-vw(26px);
+    }
+  }
 }
