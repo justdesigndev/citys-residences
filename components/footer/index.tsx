@@ -1,9 +1,13 @@
+"use client"
+
 import { useTranslations } from "next-intl"
-import Link from "next/link"
 
 import { Logo, socialIcons } from "@/components/icons"
 import { ScrollToTop } from "@/components/scroll-to-top"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Link } from "@/components/utility/link"
+import { useIntersection } from "react-use"
+import { useEffect, useRef } from "react"
 
 export function Footer() {
   const t = useTranslations("common")
@@ -36,8 +40,31 @@ export function Footer() {
     ],
   }
 
+  const footerRef = useRef<HTMLDivElement>(null)
+
+  const observer = useIntersection(footerRef, {
+    rootMargin: "0px",
+    threshold: 0.5,
+  })
+
+  useEffect(() => {
+    console.log("isVisible", observer?.isIntersecting)
+
+    const aloTech = document.querySelector("#Click2ConnectPackageFrame") as HTMLIFrameElement
+
+    if (!aloTech) return
+
+    aloTech.style.transition = "opacity 200ms ease"
+
+    if (observer?.isIntersecting) {
+      aloTech?.style.setProperty("opacity", "0")
+    } else if (!observer?.isIntersecting) {
+      aloTech?.style.setProperty("opacity", "1")
+    }
+  }, [observer])
+
   return (
-    <footer className="relative bg-bricky-brick text-white py-12 bd:py-14 bd:pb-8 font-halenoir">
+    <footer className="relative bg-bricky-brick text-white py-12 bd:py-14 bd:pb-8 font-halenoir" ref={footerRef}>
       <div className="container px-2 bt:px-0flex flex-col">
         <div className="flex flex-col items-stretch bt:items-start bt:grid bt:grid-cols-24 gap-4 bt:gap-4 bd:gap-8 mb-7 bt:mb-14">
           {/* Logo Section */}
