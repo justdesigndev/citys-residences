@@ -44,19 +44,29 @@ const Sequenced = () => {
 
   return (
     <div ref={ref}>
-      <div className={cn("gsap-sequence", "relative h-screen w-screen overflow-hidden pointer-events-none")}>
+      <div
+        className={cn(
+          "gsap-sequence",
+          "relative h-[60vh] bt:h-[60vh] bd:h-screen w-screen overflow-hidden pointer-events-none"
+        )}
+      >
         {Array.from({ length: 24 }).map((_, i) => {
           return (
             <div
-              className={cn("gsap-sequence-item", "absolute top-0 left-0 bottom-0 right-0 opacity-0", {
-                "opacity-100": phase === i,
-              })}
+              className={cn(
+                "gsap-sequence-item",
+                "absolute top-0 left-0 bottom-0 right-0 scale-125 bt:scale-100",
+                "opacity-0",
+                {
+                  "opacity-100": phase === i,
+                }
+              )}
               key={i}
             >
               <Img
+                className="w-full h-full object-contain"
                 src={`/img/residences/3d/${String(i + 1).padStart(2, "0")}.png`}
                 alt="Residence 3D View"
-                style={{ objectFit: "contain" }}
                 fill
                 priority={true}
                 sizes="70vw"

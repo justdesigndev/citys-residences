@@ -55,16 +55,14 @@ export default function Page() {
     <Wrapper>
       <section className={cn("h-[var(--svh-calc)] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
-          <div className="h-full w-full">
-            <Video
-              primaryVideoUrl={residencesVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Video
+            primaryVideoUrl={residencesVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
           {/* <div className="container flex h-full">
               <h1 className="block font-montserrat text-white text-2xl bt:text-4xl font-medium mt-auto mb-20">
                 <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
@@ -74,7 +72,7 @@ export default function Page() {
             </div> */}
         </ScaleOut>
       </section>
-      <section className="py-32 bg-white z-20">
+      <section className="py-16 bt:py-32 bg-white z-20">
         <div className="relative container">
           <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton
@@ -88,10 +86,10 @@ export default function Page() {
       <section className="relative">
         <Sequenced />
       </section>
-      <section className="bg-white z-30">
+      <section className="bg-white z-30 mb-16 bt:mb-32">
         <StackingCards items={items} />
       </section>
-      <section className="pb-32 bg-white z-20">
+      <section className="pb-16 bt:pb-24 bd:pb-32 bg-white z-20">
         <div className="relative container">
           <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton
