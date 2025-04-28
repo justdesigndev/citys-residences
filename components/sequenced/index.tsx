@@ -39,6 +39,7 @@ const Sequenced = () => {
     },
     {
       scope: ref,
+      revertOnUpdate: true,
     }
   )
 
@@ -55,7 +56,7 @@ const Sequenced = () => {
             <div
               className={cn(
                 "gsap-sequence-item",
-                "absolute top-0 left-0 bottom-0 right-0 scale-125 bt:scale-100",
+                "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-screen w-screen scale-125 bt:scale-100",
                 "opacity-0",
                 {
                   "opacity-100": phase === i,
