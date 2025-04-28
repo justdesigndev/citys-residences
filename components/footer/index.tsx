@@ -15,7 +15,7 @@ export function Footer() {
     menu: [
       { title: t("navigation.residences"), href: "/residences" },
       { title: t("navigation.location"), href: "/location" },
-      { title: t("navigation.citysPark"), href: "/cityspark" },
+      { title: t("navigation.citysPark"), href: "/citys-park" },
       { title: t("navigation.citysMembersClub"), href: "/citys-members-club" },
       { title: t("navigation.citysLifePrivileges"), href: "/citys-life-privileges" },
       { title: t("navigation.citysIstanbul"), href: "https://citys-istanbul.com/" },
