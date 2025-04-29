@@ -52,7 +52,7 @@ export function Header() {
       const atTop = Boolean(e.className) && e.actualScroll < 10
       const hidden = lenis?.direction === 1 && e.actualScroll > window.innerHeight / 2
 
-      if (prevDirection !== lenis?.direction || prevAtTop !== atTop) {
+      if (prevDirection !== lenis?.direction || prevAtTop !== atTop || e.actualScroll > window.innerHeight / 2) {
         prevDirection = lenis?.direction || 0
         prevAtTop = atTop
 
@@ -72,6 +72,7 @@ export function Header() {
       <button
         className={cn(s.trigger, "cursor-pointer flex items-center gap-2 bt:gap-4", {
           [s.active]: menuOpen,
+          [s.hidden]: scrollState.hidden,
         })}
         onClick={() => setMenuOpen((prev) => !prev)}
         type="button"

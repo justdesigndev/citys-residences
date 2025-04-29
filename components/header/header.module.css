@@ -116,6 +116,7 @@
 
 .trigger {
   left: desktop-vw(40px);
+  opacity: 1;
   position: fixed;
   top: calc(var(--header-height) / 2);
   transform: translateY(-50%);
@@ -136,6 +137,10 @@
         }
       }
     }
+  }
+
+  &.hidden {
+    opacity: 0;
   }
 
   .text {
