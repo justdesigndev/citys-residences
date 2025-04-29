@@ -47,13 +47,13 @@ export function StackingCards({ items }: StackingCardsProps) {
         },
         "a"
       )
-        .to(
-          cards[0].querySelector(".gsap-card-content"),
-          {
-            opacity: 0.25,
-          },
-          "a"
-        )
+        // .to(
+        //   cards[0].querySelector(".gsap-card-content"),
+        //   {
+        //     opacity: 0.25,
+        //   },
+        //   "a"
+        // )
         .to(cards[1], { yPercent: -20 }, "a")
         .to(
           cards[1],
@@ -62,13 +62,13 @@ export function StackingCards({ items }: StackingCardsProps) {
           },
           "b"
         )
-        .to(
-          cards[1].querySelector(".gsap-card-content"),
-          {
-            opacity: 0.5,
-          },
-          "b"
-        )
+        // .to(
+        //   cards[1].querySelector(".gsap-card-content"),
+        //   {
+        //     opacity: 0.5,
+        //   },
+        //   "b"
+        // )
         .to(cards[2], { yPercent: 0 }, "b")
 
       ScrollTrigger.create({
