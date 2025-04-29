@@ -77,7 +77,7 @@ export function StackingCards({ items }: StackingCardsProps) {
         pin: true,
         scrub: true,
         end: "+=1500px",
-        refreshPriority: 200,
+        refreshPriority: 100,
       })
     },
     {

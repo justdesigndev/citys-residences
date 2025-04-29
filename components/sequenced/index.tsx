@@ -35,7 +35,7 @@ const Sequenced = () => {
         onUpdate: ({ progress }) => {
           setImgRecursively(progress, document.querySelectorAll(".gsap-sequence-item"), phase)
         },
-        refreshPriority: 300,
+        refreshPriority: 200,
       })
     },
     {
