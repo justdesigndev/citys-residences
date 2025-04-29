@@ -70,7 +70,7 @@ const Sequenced = () => {
                 alt="Residence 3D View"
                 fill
                 priority={true}
-                sizes="70vw"
+                sizes="80vw"
               />
             </div>
           )

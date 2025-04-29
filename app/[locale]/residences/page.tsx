@@ -84,7 +84,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="relative">
+      <section className="relative mb-16 bt:mb-32">
         <Sequenced />
       </section>
       <section className="bg-white z-30 mb-16 bt:mb-32">
