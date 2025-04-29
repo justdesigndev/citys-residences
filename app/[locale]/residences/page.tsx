@@ -13,7 +13,7 @@ export default function Page() {
   const items = [
     {
       title: "1+1",
-      description: "Tek kişilik yaşamdan çok daha fazlası",
+      description: "“Şehir hayatına doğadan konforlu bir dokunuş: Kendi köşen, kendi ritmin.”",
       images: [
         {
           url: "/img/residences/1+1/plan.jpg",
@@ -26,7 +26,7 @@ export default function Page() {
     },
     {
       title: "2+1",
-      description: "Kendi ritmine alan aç",
+      description: "“Modern profesyoneller için hem çalışmaya hem yaşamaya ilham veren bir düzen.”",
       images: [
         {
           url: "/img/residences/2+1/plan.jpg",
@@ -39,7 +39,7 @@ export default function Page() {
     },
     {
       title: "3+1",
-      description: "Yaşamın farklı çizgilerine yer ver",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",

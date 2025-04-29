@@ -10,7 +10,7 @@ import { LinkToPage } from "@/components/link-to-page"
 export default function Page() {
   const items = [
     {
-      title: "Spor ve Sağlık",
+      title: "SPOR VE SAĞLIK",
       description: "Tek kişilik yaşamdan çok daha fazlası",
       images: [
         {
@@ -29,7 +29,7 @@ export default function Page() {
       bg: "#fbfbfb",
     },
     {
-      title: "Kids Club",
+      title: "KIDS CLUB",
       description: "Kendi ritmine alan aç",
       images: [
         {
@@ -48,7 +48,7 @@ export default function Page() {
       bg: "#fffdfd",
     },
     {
-      title: "Eğlence ve Sanat",
+      title: "EĞLENCE VE SANAT",
       description: "Yaşamın farklı çizgilerine yer ver",
       images: [
         {

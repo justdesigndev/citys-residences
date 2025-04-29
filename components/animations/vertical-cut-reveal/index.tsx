@@ -27,7 +27,7 @@ export interface VerticalCutRevealRef {
 }
 
 interface WordObject {
-  characters: string[]
+  characters: (string | React.ReactNode)[]
   needsSpace: boolean
 }
 
@@ -60,7 +60,11 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
     const [isAnimating, setIsAnimating] = useState(false)
 
     // handy function to split text into characters with support for unicode and emojis
-    const splitIntoCharacters = (text: string): string[] => {
+    const splitIntoCharacters = (text: string | React.ReactNode): (string | React.ReactNode)[] => {
+      if (typeof text !== "string") {
+        return [text]
+      }
+
       if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
         const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" })
         return Array.from(segmenter.segment(text), ({ segment }) => segment)
@@ -71,15 +75,29 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
 
     // Split text based on splitBy parameter
     const elements = useMemo(() => {
-      const words = text.split(" ")
-      if (splitBy === "characters") {
-        return words.map((word, i) => ({
-          characters: splitIntoCharacters(word),
-          needsSpace: i !== words.length - 1,
-        }))
+      if (typeof children === "string") {
+        const words = children.split(" ")
+        if (splitBy === "characters") {
+          return words.map((word, i) => ({
+            characters: splitIntoCharacters(word),
+            needsSpace: i !== words.length - 1,
+          }))
+        }
+        return splitBy === "words"
+          ? children.split(" ")
+          : splitBy === "lines"
+          ? children.split("\n")
+          : children.split(splitBy)
       }
-      return splitBy === "words" ? text.split(" ") : splitBy === "lines" ? text.split("\n") : text.split(splitBy)
-    }, [text, splitBy])
+
+      // Handle React nodes (like br tags)
+      return [
+        {
+          characters: [children],
+          needsSpace: false,
+        },
+      ]
+    }, [children, splitBy])
 
     // Calculate stagger delays based on staggerFrom
     const getStaggerDelay = useCallback(
@@ -144,10 +162,9 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
         {...props}
       >
         <span className="sr-only">{text}</span>
-
         {(splitBy === "characters"
           ? (elements as WordObject[])
-          : (elements as string[]).map((el, i) => ({
+          : (elements as (string | React.ReactNode)[]).map((el, i) => ({
               characters: [el],
               needsSpace: i !== elements.length - 1,
             }))

@@ -149,32 +149,32 @@
     "citys-life": {
         "items": {
             "i1": {
-                "title": "HER ŞEYİN BAŞLADIĞI NOKTA: RESEPSİYON & CONCIERGE HİZMETLERİ",
-                "text": "City’s Life’ın kalbi, hayatınızı kolaylaştıran Resepsiyon ve Cocierge Hizmetleri’nde atıyor. Misafirlerinizi profesyonel bir karşılama ile ağırlayabilir, gün içindeki ihtiyaçlarınızı tek bir noktadan yönetebilirsiniz."
+                "title": "RESEPSİYON & CONCIERGE HİZMETLERİ",
+                "text": "-Günün her anında destek. <br></br><br></br> Rezervasyonlardan günlük ihtiyaçlara kadar her detayı sizin yerinize düşünen bir yaşam destek sistemi."
             },
             "i2": {
-                "title": "VALE & OTOPARK HİZMETLERİ İLE DAHA ÇOK ZAMAN",
-                "text": "Şehirde zaman her şeydir. Vale & Otopark hizmetlerimiz sayesinde aracınızı düşünmeden, her anınıza daha fazla vakit ayırabilirsiniz."
+                "title": "VALE & OTOPARK HİZMETLERİ",
+                "text": "-Aracınız için her zaman bir yer var. <br></br><br></br> City’s Residences’da konfor sadece evin içinde değil; aracınızı bıraktığınız ilk anda başlar."
             },
             "i3": {
-                "title": "KARGO TESLİM SERVİSİ İLE BEKLEMEDEN TESLİMAT",
-                "text": "Yoğun bir iş günü, uzun toplantılar ve şehir trafiği... Tüm bunların arasında kargonuzu beklemek zorunda değilsiniz! kargo teslim Servisimiz, paketlerinizi sizin yerinize alır ve istediğiniz zaman teslim eder."
+                "title": "KARGO TESLİM SERVİSİ",
+                "text": "-Gelen her paket doğru adrese ulaşır. <br></br><br></br> Kargolarınız profesyonel ekip tarafından teslim alınır ve size güvenle ulaştırılır."
             },
             "i4": {
-                "title": "YENİ NESİL ÇALIŞMA ALANI: JUSTWORK",
-                "text": "Eski ofis anlayışı geride kaldı. Artık iş hayatı, esneklik ve yaratıcılık gerektiriyor. Paylaşımlı Ofis ve Toplantı Salınlarımız hem bireysel çalışmaya hem de ekip çalışmalarına uygun şekilde tasarlandı. JUSTWork ile verimli ve ilham dolu bir çalışma ortamı sizi bekliyor."
+                "title": "JUSTWORK | OFFICE CAMPUS",
+                "text": "-Çalışmak, evinizden uzaklaşmadan mümkün. <br></br><br></br> Günlük, haftalık veya dönemsel çalışma ihtiyaçlarınıza uyum sağlayan modern ofis alanları bir adım uzağınızda."
             },
             "i5": {
-                "title": "MODERN KONAKLAMA DENEYİMİ: JUST STAY",
-                "text": "Misafirleriniz için konforlu, şık ve modern bir alan mı arıyorsunuz? Yeni nesil otel odalarımız, klasik otel deneyiminden çok daha fazlasını sunuyor. JUSTStay ile kendinizi evinizde hissedeceğiniz bir konaklama deneyimi yaşabilirsiniz."
+                "title": "JUST STAY | MODERN KONAKLAMA DENEYİMİ",
+                "text": "-Misafirleriniz için ev konforunda, otel şıklığında kısa konaklama seçenekleri. <br></br><br></br> Seyahat eden dostlarınız ve yakınlarınız için, City’s ruhunu yansıtan bir misafirlik deneyimi."
             },
             "i6": {
-                "title": "SANATIN VE ETKİNLİKLERİN BULUŞMA NOKTASI: JUST EVENTS",
-                "text": "Sanatın ve performansın bir araya geldiği anlarımızda, yaratıcılığınızı keşfetmeye hazır olun. etkinlikler, gösteriler ve sanat atölyeleriyle dolu JUSTEvents, sosyal hayatınızı renklendirecek."
+                "title": "JUST EVENTS",
+                "text": "-Hayatı kutlamak için her zaman bir alan var. <br></br><br></br> Özel etkinlikler, davetler ve sosyal buluşmalar için tasarlanmış esnek etkinlik alanları."
             },
             "i7": {
-                "title": "EVCİL DOSTLARINIZA ÖZEL: PET HOTEL & PET HOSPITAL",
-                "text": "Şehir hayatının temposunda evcil dostlarınız da hak ettiği ilgili görmeli. City’s Residences’ta onların konforu için özel bir alan oluşturduk. Pet Hotel sayesinde seyahatteyken gözünüz arkada kalmaz, Pet Hospital ile patili dostlarınıza sağlıklı ve mutlu bir yaşam sunarak her an yanlarında olabilirsiniz."
+                "title": "PET HOTEL & PET HOSPITAL",
+                "text": "-Evcil dostlarınız da bu yaşamın bir parçası. <br></br><br></br> Pet Hotel ve Pet Hospital hizmetleriyle, onların konforu ve sağlığı da City’s Life ayrıcalıkları arasında."
             }
         }
     },
@@ -182,11 +182,11 @@
         "items": {
             "i1": {
                 "title": "CITY'S LOUNGE",
-                "text": "Bir araya gelmenin doğal hali; içeride bir dünya, dışarıda bir ritim ve nefes."
+                "text": "City’s Lounge, günlük buluşmalardan özel davetlere kadar her anınıza uyum sağlayan ayrıcalıklı bir sosyal alandır; ister doğanın içinde bir masa etrafında buluşun, ister zarif bir etkinliğe ev sahipliği yapın."
             },
             "i2": {
                 "title": "HAVUZ X BAR",
-                "text": "Günün akışını yavaşlatan, suyun kenarında sosyal bir hafiflik."
+                "text": "City’s Residences atmosferinde, günün ritmine uyum sağlayan bir kaçış: serinlik, güneş ve sohbet istediğiniz her an sizinle."
             },
             "i3": {
                 "title": "ÇOCUK PARKLARI",
@@ -194,11 +194,11 @@
             },
             "i4": {
                 "title": "YÜRÜYÜŞ PARKURLARI",
-                "text": "Gökyüzü kadar geniş bir hareket alanı."
+                "text": "Gökyüzü kadar geniş bir hareket alanı; nefesinizi ve ritminizi doğaya bırakın."
             },
             "i5": {
                 "title": "AÇIK SPOR ALANLARI",
-                "text": "Açık havada kendinle buluşmanın en doğal hali."
+                "text": "Açıkhavada kendinle buluşmanın en doğal hali."
             },
             "i6": {
                 "title": "AÇIKHAVA MEYDANLARI",

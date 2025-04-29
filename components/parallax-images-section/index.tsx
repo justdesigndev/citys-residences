@@ -3,17 +3,17 @@
 import s from "./parallax-images-section.module.css"
 
 import { cn } from "@/lib/utils"
+import { ReactNode } from "react"
 
 import { AnimatedButton } from "@/components/animated-button"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { Link } from "@/components/utility/link"
 import { breakpoints } from "@/styles/config.mjs"
-
 export interface MaskedParallaxImageSectionProps {
   horizontalAlignment?: "rtl" | "ltr"
   title?: string
-  text: string
+  text: ReactNode
   imgSrc: string
   link?: {
     url: string

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
+import { ReactNode } from "react"
 
 import { ScaleOut } from "@/components/animations/scale-out"
 import { MaskedParallaxImageSection } from "@/components/parallax-images-section"
@@ -43,43 +44,57 @@ export default function Page() {
           {[
             {
               title: t("items.i1.title"),
-              text: t("items.i1.text"),
+              text: t.rich("items.i1.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/01.jpg",
               horizontalAlignment: "ltr" as const,
             },
             {
               title: t("items.i2.title"),
-              text: t("items.i2.text"),
+              text: t.rich("items.i2.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/02.jpg",
               horizontalAlignment: "rtl" as const,
             },
             {
               title: t("items.i3.title"),
-              text: t("items.i3.text"),
+              text: t.rich("items.i3.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/03.jpg",
               horizontalAlignment: "ltr" as const,
             },
             {
               title: t("items.i4.title"),
-              text: t("items.i4.text"),
+              text: t.rich("items.i4.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/04.jpg",
               horizontalAlignment: "rtl" as const,
             },
             {
               title: t("items.i5.title"),
-              text: t("items.i5.text"),
+              text: t.rich("items.i5.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/05.jpg",
               horizontalAlignment: "ltr" as const,
             },
             {
               title: t("items.i6.title"),
-              text: t("items.i6.text"),
+              text: t.rich("items.i6.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/06.jpg",
               horizontalAlignment: "rtl" as const,
             },
             {
               title: t("items.i7.title"),
-              text: t("items.i7.text"),
+              text: t.rich("items.i7.text", {
+                br: () => <br />,
+              }),
               imgSrc: "/img/citys-life/07.jpg",
               horizontalAlignment: "ltr" as const,
             },
@@ -87,7 +102,7 @@ export default function Page() {
             (
               item: {
                 title: string
-                text: string
+                text: ReactNode
                 imgSrc: string
                 horizontalAlignment: "ltr" | "rtl"
                 link?: { url: string; text: string }

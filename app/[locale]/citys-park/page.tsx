@@ -51,16 +51,14 @@ export default function Page() {
     <Wrapper>
       <section className={cn("h-[var(--svh-calc)] bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
-          <div className="h-full w-full">
-            <Video
-              primaryVideoUrl={citysParkVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Video
+            primaryVideoUrl={citysParkVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
           {/* <div className="container flex h-full">
               <h1 className="block font-montserrat text-white text-2xl bt:text-4xl font-medium mt-auto mb-20">
                 <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
