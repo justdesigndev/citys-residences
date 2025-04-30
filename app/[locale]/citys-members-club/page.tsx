@@ -71,7 +71,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[var(--svh-calc)] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className={cn("h-[50vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
           <Video
             primaryVideoUrl={residencesVideo}
@@ -91,7 +91,7 @@ export default function Page() {
         </ScaleOut>
       </section>
       <section className="relative z-20 bg-white">
-        <div className="w-full h-16 bt:h-64 mx-auto my-32">
+        <div className="w-full h-32 bt:h-64 mx-auto my-12 bt:my-32">
           <IconCitysMembersClubLogo fill="#000000" />
         </div>
       </section>
