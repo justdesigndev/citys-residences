@@ -6,6 +6,7 @@ import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { residencesVideo } from "@/lib/constants"
 import { LinkToPage } from "@/components/link-to-page"
+import { IconCitysMembersClubLogo } from "@/components/icons"
 
 export default function Page() {
   const items = [
@@ -72,16 +73,14 @@ export default function Page() {
     <Wrapper>
       <section className={cn("h-[var(--svh-calc)] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
-          <div className="h-full w-full">
-            <Video
-              primaryVideoUrl={residencesVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Video
+            primaryVideoUrl={residencesVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
           {/* <div className="container flex h-full">
               <h1 className="block font-montserrat text-white text-2xl bt:text-4xl font-medium mt-auto mb-20">
                 <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
@@ -90,6 +89,11 @@ export default function Page() {
               </h1>
             </div> */}
         </ScaleOut>
+      </section>
+      <section className="relative z-20 bg-white">
+        <div className="w-full h-16 bt:h-64 mx-auto my-32">
+          <IconCitysMembersClubLogo fill="#000000" />
+        </div>
       </section>
       <section className="bg-white z-30">
         <AccordionStackingCards items={items} />
