@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils"
 
 import { AccordionStackingCards } from "@/components/accordion-stacking-cards"
 import { ScaleOut } from "@/components/animations/scale-out"
+import { IconCitysMembersClubLogo } from "@/components/icons"
+import { LinkToPage } from "@/components/link-to-page"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
-import { residencesVideo } from "@/lib/constants"
-import { LinkToPage } from "@/components/link-to-page"
-import { IconCitysMembersClubLogo } from "@/components/icons"
+import { membersClubVideo } from "@/lib/constants"
 
 export default function Page() {
   const items = [
@@ -74,7 +74,7 @@ export default function Page() {
       <section className={cn("h-[50vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
           <Video
-            primaryVideoUrl={residencesVideo}
+            primaryVideoUrl={membersClubVideo}
             autoPlay
             loop
             muted

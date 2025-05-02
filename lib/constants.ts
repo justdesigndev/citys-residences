@@ -143,4 +143,7 @@ export const citysLifeVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1078304401/rendition/1080p/file.mp4?loc=external&log_user=0&signature=aacb4e5afe166d0e590fa2a8d26f6dfa536d13bacb6cedcc1781d787244ad857"
 
 export const citysParkVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1079831610/rendition/1080p/file.mp4?loc=external&log_user=0&signature=81754666ef16089e510188f2e7ef911d19be58647e5604d384f0362f04d3e16d"
+  "https://player.vimeo.com/progressive_redirect/playback/1080760627/rendition/1080p/file.mp4?loc=external&log_user=0&signature=21b9ff3b33571e0a66c877465f0b2dc33b2de6a1e6a23eb2e654fc0c2b03bba1"
+
+export const membersClubVideo =
+  "https://player.vimeo.com/progressive_redirect/playback/1080760684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=f3cf12828b22d135b93eac19906ba33c50f6449135a428833e33ecb58bcbdda9"
