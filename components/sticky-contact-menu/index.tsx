@@ -145,7 +145,7 @@ export function StickyContactMenu() {
         </DialogContent>
       </Dialog>
       <Link
-        href="https://wa.me/02162666600"
+        href="https://wa.me/+9002162666600"
         className="py-3 text-white flex flex-col items-center justify-center gap-2"
       >
         <IconWhatsapp className="w-6 h-6" />
