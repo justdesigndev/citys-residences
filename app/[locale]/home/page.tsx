@@ -63,21 +63,11 @@ export default function Home() {
     <Wrapper>
       <section className={cn(s.intro, "h-[50vh] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
-          <div className="h-full w-full">
-            <Video primaryVideoUrl={mainVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-            {/* <Video
-              primaryVideoUrl={mainVideoDesktop}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover block bd:hidden"
-            /> */}
-          </div>
+          <Video primaryVideoUrl={mainVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </ScaleOut>
       </section>
       <section className="bg-white font-halenoir pt-0 bt:pt-12 z-20 relative">
-        <div className="container mx-auto py-16 bt:py-28 bd:pt-40 bd:pb-8 relative flex flex-col items-center">
+        <div className="bd:container mx-auto py-16 bt:py-28 bd:pt-40 bd:pb-8 relative flex flex-col items-center px-4 bt:px-10">
           <div className="flex flex-col items-center text-center">
             <h1 className="font-montserrat text-bricky-brick text-4xl bt:text-8xl font-semibold tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
@@ -282,7 +272,7 @@ export default function Home() {
           <Logo fill={"var(--bricky-brick)"} />
         </div>
       </section>
-      <section className="relative container py-12 bt:py-20 px-4 bt:px-10">
+      <section className="relative bd:container py-12 bt:py-20 px-4 bt:px-10">
         <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
           <VideoWithPlayButton
             primaryVideoUrl={muratKaderVideo}
