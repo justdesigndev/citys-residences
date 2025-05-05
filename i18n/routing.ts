@@ -15,7 +15,7 @@ export const routing = defineRouting({
       en: "/location",
     },
     "/residences": {
-      tr: "/konutlar",
+      tr: "/daireler",
       en: "/residences",
     },
     "/citys-members-club": {

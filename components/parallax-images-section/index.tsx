@@ -60,8 +60,8 @@ export function MaskedParallaxImageSection({
               {text}
             </TextRevealOnScroll>
           </p>
-          <p className="block bt:hidden max-w-xs mx-auto">
-            <TextRevealOnScroll splitBy="lines" textAlign="center" staggerDuration={0.0025}>
+          <p className="block bt:hidden mx-auto">
+            <TextRevealOnScroll splitBy="lines" elementLevelClassName="text-center text-base" staggerDuration={0.0025}>
               {text}
             </TextRevealOnScroll>
           </p>

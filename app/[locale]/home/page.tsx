@@ -287,10 +287,7 @@ export default function Home() {
           <Logo fill={"var(--bricky-brick)"} />
         </div>
       </section>
-      <LinkToPage
-        previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
-        next={{ title: "Konutlar", href: "/residences" }}
-      />
+      <LinkToPage next={{ title: "Daireler", href: "/residences" }} />
     </Wrapper>
   )
 }

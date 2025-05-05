@@ -7,12 +7,13 @@ import { MaskedParallaxImageSection } from "@/components/parallax-images-section
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysLifeVideo } from "@/lib/constants"
+import { IconCitysLifeLogo } from "@/components/icons"
 
 export default function Page() {
   const t = useTranslations("citys-life")
   return (
     <Wrapper>
-      <section className={cn("relative h-[var(--svh-calc)] bd:h-screen bg-bricky-brick z-10 overflow-hidden")}>
+      <section className={cn("relative h-[50vh] bd:h-screen bg-bricky-brick z-10 overflow-hidden")}>
         <ScaleOut>
           <Video
             primaryVideoUrl={citysLifeVideo}
@@ -22,25 +23,15 @@ export default function Page() {
             playsInline
             className="w-full h-full object-cover"
           />
-          {/* <div className="container flex flex-col h-full">
-              <h1 className="max-w-xl block font-montserrat leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-8">
-                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
-                  CITY&apos;S LIFE:
-                </TextRevealOnScroll>
-                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
-                  KONFOR VE SOSYAL YAŞAMIN YENİ ADRESİ
-                </TextRevealOnScroll>
-              </h1>
-              <p className="max-w-lg block font-halenoir leading-snug text-white text-base bt:text-lg font-normal mb-20">
-                <TextRevealOnScroll splitBy="characters" textAlign="left" staggerDuration={0.005}>
-                  Hayatın en seçkin anlarını yaşamak için ayrıcalıklı dünyamıza adım adım yaklaşıyorsunuz.
-                </TextRevealOnScroll>
-              </p>
-            </div> */}
         </ScaleOut>
       </section>
       <section className="relative z-20 bg-white">
-        <div className="container flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-36 bd:py-40">
+        <div className="w-full h-32 bt:h-64 mx-auto my-12 bt:my-32">
+          <IconCitysLifeLogo fill="#000000" />
+        </div>
+      </section>
+      <section className="relative z-20 bg-white">
+        <div className="bd:container flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-24 bd:py-40 px-4 bt:px-10 bd:px-16">
           {[
             {
               title: t("items.i1.title"),

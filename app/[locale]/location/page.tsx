@@ -1,4 +1,3 @@
-import { LinkToPage } from "@/components/link-to-page"
 import { Wrapper } from "@/components/wrapper"
 
 export default function Page() {
@@ -11,10 +10,6 @@ export default function Page() {
           allowFullScreen
         />
       </section>
-      <LinkToPage
-        previous={{ title: "Konutlar", href: "/residences" }}
-        next={{ title: "City's Park", href: "/citys-park" }}
-      />
     </Wrapper>
   )
 }
