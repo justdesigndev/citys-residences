@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils"
 
 import { ScaleOut } from "@/components/animations/scale-out"
+import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { Sequenced } from "@/components/sequenced"
@@ -9,7 +10,6 @@ import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
-import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 
 export default function Page() {
   const items = [
@@ -56,7 +56,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[var(--svh-calc)] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className={cn("h-[50vh] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
           <Video
             primaryVideoUrl={residencesVideo}
@@ -68,7 +68,12 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="bg-white z-20 pt-16 bt:pt-32 pb-8 bt:pb-16 px-4 bt:px-10 bd:px-16">
+      <section className="relative z-20 bg-white">
+        <div className="w-full h-40 bt:h-64 mx-auto my-12 bt:my-32">
+          <Logo fill="var(--bricky-brick)" />
+        </div>
+      </section>
+      <section className="bg-white z-20 px-4 bt:px-10 bd:px-16">
         <div className="relative bd:container">
           <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton
@@ -78,9 +83,6 @@ export default function Page() {
             />
           </div>
         </div>
-      </section>
-      <section className="w-60 h-60 bt:w-72 bt:h-72 mx-auto">
-        <Logo fill={"var(--bricky-brick)"} />
       </section>
       <section className="mt-16 bt:mt-32">
         <div className="flex flex-col items-center justify-center px-4 bt:px-10 bd:px-16 max-w-4xl mx-auto">
