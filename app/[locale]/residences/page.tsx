@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils"
 
 import { ScaleOut } from "@/components/animations/scale-out"
+import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { Sequenced } from "@/components/sequenced"
 import { StackingCards } from "@/components/stacking-cards"
@@ -8,6 +9,7 @@ import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
+import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 
 export default function Page() {
   const items = [
@@ -66,7 +68,7 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="bg-white z-20 py-16 bt:py-32 px-4 bt:px-10 bd:px-16">
+      <section className="bg-white z-20 pt-16 bt:pt-32 pb-8 bt:pb-16 px-4 bt:px-10 bd:px-16">
         <div className="relative bd:container">
           <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton
@@ -77,7 +79,47 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="w-60 h-60 bt:w-72 bt:h-72 mx-auto">
+        <Logo fill={"var(--bricky-brick)"} />
+      </section>
+      <section className="mt-16 bt:mt-32">
+        <div className="flex flex-col items-center justify-center px-4 bt:px-10 bd:px-16 max-w-4xl mx-auto">
+          <h2 className="font-montserrat font-normal text-bricky-brick text-4xl bt:text-7xl bd:text-6xl mb-5 bt:mb-10 text-center">
+            <TextRevealOnScroll
+              className="text-center"
+              elementLevelClassName="leading-relaxed text-center"
+              splitBy="lines"
+              textAlign="center"
+              staggerDuration={0.005}
+            >
+              YAŞAMA ALAN AÇAN PLANLAMA
+            </TextRevealOnScroll>
+          </h2>
+          <p className="font-halenoir text-md bt:text-4xl bd:text-2xl font-bold mb-4">
+            <TextRevealOnScroll
+              className="text-center"
+              elementLevelClassName="leading-relaxed"
+              splitBy="lines"
+              textAlign="center"
+              staggerDuration={0.005}
+            >
+              Her metrekaresi düşünülerek tasarlanmış, <br />
+              içeriye değil hayata açılan bir plan
+            </TextRevealOnScroll>
+          </p>
+          <p className="font-halenoir text-md bt:text-4xl bd:text-xl font-normal">
+            <TextRevealOnScroll
+              className="text-center"
+              elementLevelClassName="leading-relaxed"
+              splitBy="lines"
+              textAlign="center"
+              staggerDuration={0.005}
+            >
+              Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
+              tasarlandı. Sade, akılcı ve her güne eşlik edecek bir düzen.
+            </TextRevealOnScroll>
+          </p>
+        </div>
         <Sequenced />
       </section>
       <section className="bg-white z-30 mb-16 bt:mb-32 px-4 bt:px-10 bd:px-16">

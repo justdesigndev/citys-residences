@@ -93,7 +93,7 @@ export function StackingCards({ items }: StackingCardsProps) {
                   <div
                     key={i}
                     className={cn(
-                      "relative rounded-md overflow-hidden cursor-pointer h-[64vw] bt:h-[33.5vw] flex-shrink-0 bt:flex-1",
+                      "relative rounded-md overflow-hidden cursor-pointer h-[64vw] bt:h-[35vw] flex-shrink-0 bt:flex-1",
                       "hover:opacity-90 transition-opacity"
                     )}
                     onClick={() => handleImageClick(item.images, i)}
@@ -103,7 +103,7 @@ export function StackingCards({ items }: StackingCardsProps) {
                       alt={item.title}
                       fill
                       sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, 50vw`}
-                      className="object-cover"
+                      className={cn(i === 0 ? "object-contain" : "object-cover")}
                     />
                   </div>
                 ))}
