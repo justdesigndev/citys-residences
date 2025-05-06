@@ -66,7 +66,7 @@ export default function Page() {
         <div className="w-full h-[40vh] bt:h-[35vh] bd:h-[80vh]">
           <IconCitysParkBgLogo fill="#5D7261" />
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-16 bt:h-40">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-40">
           <IconCitysParkLogo fill="#5D7261" />
         </div>
       </section>
