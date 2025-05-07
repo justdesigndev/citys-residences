@@ -206,13 +206,7 @@ export default function Page() {
             reverse
           />
         </div>
-        <div className="mb-40">
-          <AccordionStackingCards
-            title={kidsAndFamily.title}
-            items={kidsAndFamily.items}
-            images={kidsAndFamily.images}
-          />
-        </div>
+        <AccordionStackingCards title={kidsAndFamily.title} items={kidsAndFamily.items} images={kidsAndFamily.images} />
       </section>
       <LinkToPage
         previous={{ title: "City's Park", href: "/citys-park" }}

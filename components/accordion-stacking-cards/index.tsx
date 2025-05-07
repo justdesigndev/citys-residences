@@ -109,11 +109,11 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
   return (
     <div className="w-full h-[80vh]" ref={ref}>
       <div className="gsap-stacking-cards-container h-full relative">
-        <h2 className="absolute top-0 left-0 font-montserrat text-3xl bt:text-4xl bd:text-5xl font-medium text-bricky-brick max-w-lg bd:leading-tight">
-          {title}
-        </h2>
         <div className={cn("absolute top-0 left-0 w-full h-full flex gap-10")}>
           <div className={cn("relative basis-4/12", reverse && "order-last")}>
+            <h2 className="font-montserrat text-3xl bt:text-4xl bd:text-5xl font-medium text-bricky-brick bd:leading-tight">
+              {title}
+            </h2>
             {items.map((item, itemIndex) => (
               <div
                 className={cn(
