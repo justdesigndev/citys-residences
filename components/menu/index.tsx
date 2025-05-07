@@ -137,7 +137,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "font-halenoir font-normal text-white text-base bt:text-4xl bd:text-2xl text-center bd:text-left bd:leading-none",
+                "font-halenoir font-normal text-white text-base lg:text-4xl xl:text-xl 2xl:text-2xl text-center bd:text-left bd:leading-none",
                 "transition-opacity duration-300 ease-in-out",
                 "opacity-100 hover:opacity-70",
                 "flex items-center gap-2"

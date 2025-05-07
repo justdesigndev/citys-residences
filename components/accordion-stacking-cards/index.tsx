@@ -117,14 +117,14 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
             {items.map((item, itemIndex) => (
               <div
                 className={cn(
-                  `gsap-stacking-card-text-${itemIndex} absolute top-0 left-0 w-full h-full flex flex-col items-start justify-start pt-96`
+                  `gsap-stacking-card-text-${itemIndex} absolute top-0 left-0 w-full h-full flex flex-col items-start justify-start xl:pt-80 2xl:pt-96`
                 )}
                 key={itemIndex}
               >
                 <h3 className="font-montserrat text-3xl bt:text-4xl bd:text-3xl font-medium text-bricky-brick mb-8">
                   {item.title}
                 </h3>
-                <div className="pr-16">
+                <div className="xl:pr-8 2xl:pr-16">
                   <p className="font-montserrat text-base bt:text-lg bd:text-xl font-bold text-black">
                     {item.subtitle}
                   </p>
