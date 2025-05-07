@@ -72,7 +72,7 @@ export default function Home() {
           <VideoWithPlayButton
             primaryVideoUrl={kolajVideo}
             thumbnail="/img/thumbnail-kolaj-video.jpg"
-            title="Karma yaşamın mimarisi"
+            title="Denge Mimarisi: Karma Yaşam Tasarımı"
           />
         </div>
       </section>

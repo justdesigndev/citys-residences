@@ -15,7 +15,7 @@ export default function Page() {
   const items = [
     {
       title: "1+1",
-      description: "“Şehir hayatına doğadan konforlu bir dokunuş: Kendi köşen, kendi ritmin.”",
+      description: "“Şehir hayatına konforlu bir dokunuş: Kendi köşen, kendi ritmin.”",
       images: [
         {
           url: "/img/residences/1+1/plan.jpg",
@@ -94,7 +94,7 @@ export default function Page() {
               textAlign="center"
               staggerDuration={0.005}
             >
-              YAŞAMA ALAN AÇAN PLANLAMA
+              YAŞAMA ALAN AÇAN PERSPEKTİF
             </TextRevealOnScroll>
           </h2>
           <p className="font-halenoir text-md bt:text-4xl bd:text-2xl font-bold mb-4">
@@ -105,8 +105,7 @@ export default function Page() {
               textAlign="center"
               staggerDuration={0.005}
             >
-              Her metrekaresi düşünülerek tasarlanmış, <br />
-              içeriye değil hayata açılan bir plan
+              Her metrekaresi düşünülerek tasarlanmış, içeriye değil hayata açılan bir plan
             </TextRevealOnScroll>
           </p>
           <p className="font-halenoir text-md bt:text-4xl bd:text-xl font-normal">
@@ -118,7 +117,7 @@ export default function Page() {
               staggerDuration={0.005}
             >
               Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
-              tasarlandı. Sade, akılcı ve her güne eşlik edecek bir düzen.
+              tasarlandı.
             </TextRevealOnScroll>
           </p>
         </div>
