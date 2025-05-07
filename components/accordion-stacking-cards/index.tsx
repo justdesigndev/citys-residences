@@ -16,9 +16,10 @@ export interface AccordionStackingCardsProps {
   images: {
     url: string
   }[]
+  reverse?: boolean
 }
 
-export function AccordionStackingCards({ title, items, images }: AccordionStackingCardsProps) {
+export function AccordionStackingCards({ title, items, images, reverse = false }: AccordionStackingCardsProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(
@@ -111,17 +112,19 @@ export function AccordionStackingCards({ title, items, images }: AccordionStacki
         <h2 className="absolute top-0 left-0 font-montserrat text-3xl bt:text-4xl bd:text-5xl font-medium text-bricky-brick max-w-lg bd:leading-tight">
           {title}
         </h2>
-        <div className="absolute top-0 left-0 w-full h-full grid grid-cols-12">
-          <div className="relative col-span-4">
+        <div className={cn("absolute top-0 left-0 w-full h-full flex gap-10")}>
+          <div className={cn("relative basis-4/12", reverse && "order-last")}>
             {items.map((item, itemIndex) => (
               <div
-                className={`gsap-stacking-card-text-${itemIndex} absolute top-0 left-0 w-full h-full flex flex-col items-start justify-end`}
+                className={cn(
+                  `gsap-stacking-card-text-${itemIndex} absolute top-0 left-0 w-full h-full flex flex-col items-start justify-start pt-96`
+                )}
                 key={itemIndex}
               >
                 <h3 className="font-montserrat text-3xl bt:text-4xl bd:text-3xl font-medium text-bricky-brick mb-8">
                   {item.title}
                 </h3>
-                <div className="pr-20">
+                <div className="pr-16">
                   <p className="font-montserrat text-base bt:text-lg bd:text-xl font-bold text-black">
                     {item.subtitle}
                   </p>
@@ -132,7 +135,7 @@ export function AccordionStackingCards({ title, items, images }: AccordionStacki
               </div>
             ))}
           </div>
-          <div className="col-span-8 relative overflow-hidden">
+          <div className={cn("relative overflow-hidden basis-8/12")}>
             {images.map((image, imageIndex) => (
               <div
                 key={imageIndex}

@@ -94,7 +94,7 @@ export default function Page() {
         description: "Dış uyaranlardan izole edilmiş, içe dönüşe alan tanıyan akustik düzenlemeli meditasyon odası.",
       },
       {
-        title: "ÖZEL SINEMASALONU",
+        title: "ÖZEL SINEMA SALONU",
         subtitle: "Filmi paylaşmak, deneyimi derinleştirir",
         description: "Yüksek çözünürlüklü görüntü ve çevresel ses sistemiyle donatılmış özel sinema alanı.",
       },
@@ -203,6 +203,7 @@ export default function Page() {
             title={eventsAndEntertainment.title}
             items={eventsAndEntertainment.items}
             images={eventsAndEntertainment.images}
+            reverse
           />
         </div>
         <div className="mb-40">
