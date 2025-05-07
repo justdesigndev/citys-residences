@@ -166,7 +166,16 @@ export default function Page() {
     ],
     images: [
       {
-        url: "/img/members-club/02/02.jpg",
+        url: "/img/members-club/03/01.jpg",
+      },
+      {
+        url: "/img/members-club/03/02.jpg",
+      },
+      {
+        url: "/img/members-club/03/03.jpg",
+      },
+      {
+        url: "/img/members-club/03/04.jpg",
       },
     ],
   }
