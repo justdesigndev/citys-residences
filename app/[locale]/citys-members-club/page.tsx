@@ -155,7 +155,7 @@ export default function Page() {
   }
 
   const kidsAndFamily = {
-    title: "ÇOCUK & AİLE",
+    title: "KIDS CLUB",
     items: [
       {
         title: "KIDS CLUB",
