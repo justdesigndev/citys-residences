@@ -1,5 +1,7 @@
 "use client"
 
+import s from "./sticky-contact-menu.module.css"
+
 import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
 import { useTranslations } from "next-intl"
@@ -7,7 +9,6 @@ import { useEffect, useRef, useState } from "react"
 
 import { ContactForm } from "@/components/form-contact"
 import { IconInquiry, IconTelephone, IconWhatsapp } from "@/components/icons"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Link } from "@/components/utility/link"
 import { useVisibilityStore } from "@/lib/store/visibility"
 import { FormTranslations } from "@/types"
@@ -106,51 +107,61 @@ export function StickyContactMenu() {
   }, [isOpen, lenis])
 
   return (
-    <div
-      className={cn(
-        "font-montserrat fixed left-0 bottom-0 right-0 blur-bg-bricky-brick-light grid grid-cols-3 z-[var(--z-sticky)] bt:hidden",
-        "transition-opacity duration-300 ease-in-out",
-        {
-          "opacity-100": isStickyContactMenuVisible,
-          "opacity-0": !isStickyContactMenuVisible,
-        }
-      )}
-      ref={ref}
-    >
-      <Link
-        href="tel:+902162666600"
-        className="py-3 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+    <>
+      <div
+        className={cn(
+          "font-montserrat fixed left-0 bottom-0 right-0 blur-bg-bricky-brick-light grid grid-cols-3 z-[var(--z-sticky)] bt:hidden",
+          "transition-opacity duration-300 ease-in-out",
+          {
+            "opacity-100": isStickyContactMenuVisible,
+            "opacity-0": !isStickyContactMenuVisible,
+          }
+        )}
+        ref={ref}
       >
-        <IconTelephone className="w-6 h-6" />
-        <div className="text-sm font-medium leading-none">Telefon</div>
-      </Link>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger asChild>
-          <div className="py-3 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15">
-            <IconInquiry className="w-6 h-6" />
-            <div className="text-sm font-medium leading-none">Randevu Al</div>
-          </div>
-        </DialogTrigger>
-        <DialogContent className="py-0 px-4 w-[96vw] rounded-tr-3xl rounded-tl-3xl h-screen mt-10 z-[var(--z-modal)] overflow-y-scroll">
-          {/* <DialogClose>
+        <Link
+          href="tel:+902162666600"
+          className="py-3 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+        >
+          <IconTelephone className="w-6 h-6" />
+          <div className="text-sm font-medium leading-none">Telefon</div>
+        </Link>
+        <div
+          className="py-3 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+          onClick={() => setIsOpen(true)}
+        >
+          <IconInquiry className="w-6 h-6" />
+          <div className="text-sm font-medium leading-none">Randevu Al</div>
+        </div>
+
+        <Link
+          href="https://wa.me/+9002162666600"
+          className="py-3 text-white flex flex-col items-center justify-center gap-2"
+        >
+          <IconWhatsapp className="w-6 h-6" />
+          <div className="text-sm font-medium leading-none">Whatsapp</div>
+        </Link>
+      </div>
+      <div
+        className={cn(s.dModal, "blur-bg", {
+          [s.active]: isOpen,
+        })}
+        onClick={() => setIsOpen(false)}
+      >
+        {/* <DialogClose>
             <X className="fixed top-4 right-4 w-6 h-6 text-white" />
             <span className="sr-only">Close</span>
           </DialogClose> */}
+        {/* <div className="fixed top-0 left-0 w-full h-full blur-bg"></div> */}
+        <div className={cn(s.dContent, "px-4 pb-20")} onClick={(e) => e.stopPropagation()}>
           <p className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal mt-5">
             {t.rich("description", {
               br: () => <br className="hidden bt:block" />,
             })}
           </p>
           <ContactForm translations={formTranslations} />
-        </DialogContent>
-      </Dialog>
-      <Link
-        href="https://wa.me/+9002162666600"
-        className="py-3 text-white flex flex-col items-center justify-center gap-2"
-      >
-        <IconWhatsapp className="w-6 h-6" />
-        <div className="text-sm font-medium leading-none">Whatsapp</div>
-      </Link>
-    </div>
+        </div>
+      </div>
+    </>
   )
 }

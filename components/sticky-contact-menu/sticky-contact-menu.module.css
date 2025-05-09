@@ -1,0 +1,39 @@
+.dModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* z-index: var(--z-contact-form-mobile); */
+  z-index: var(--z-modal);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.dContent {
+  border-top-left-radius: mobile-vw(20px);
+  border-top-right-radius: mobile-vw(20px);
+  background-color: var(--white);
+  height: 90vh;
+  width: 96vw;
+
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch;
+
+  z-index: var(--z-modal);
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  transition: transform 0.3s ease-in-out;
+  transition-delay: 0.3s;
+}
