@@ -12,6 +12,7 @@ import { IconInquiry, IconTelephone, IconWhatsapp } from "@/components/icons"
 import { Link } from "@/components/utility/link"
 import { useVisibilityStore } from "@/lib/store/visibility"
 import { FormTranslations } from "@/types"
+import { X } from "lucide-react"
 
 export function StickyContactMenu() {
   const t = useTranslations("contact")
@@ -110,11 +111,13 @@ export function StickyContactMenu() {
     <>
       <div
         className={cn(
-          "font-montserrat fixed left-0 bottom-0 right-0 blur-bg-bricky-brick-light grid grid-cols-3 z-[var(--z-sticky)] bt:hidden",
-          "transition-opacity duration-300 ease-in-out",
+          s.stickyContactMenu,
+          "font-montserrat fixed left-0 bottom-0 right-0 blur-bg-bricky-brick-light grid grid-cols-3 bt:hidden",
+          "transition-all duration-300 ease-in-out",
           {
             "opacity-100": isStickyContactMenuVisible,
             "opacity-0": !isStickyContactMenuVisible,
+            [s.active]: isOpen,
           }
         )}
         ref={ref}
@@ -148,11 +151,10 @@ export function StickyContactMenu() {
         })}
         onClick={() => setIsOpen(false)}
       >
-        {/* <DialogClose>
-            <X className="fixed top-4 right-4 w-6 h-6 text-white" />
-            <span className="sr-only">Close</span>
-          </DialogClose> */}
-        {/* <div className="fixed top-0 left-0 w-full h-full blur-bg"></div> */}
+        <div className="absolute top-4 right-4 w-6 h-6">
+          <X className="text-white" />
+          <span className="sr-only">Close</span>
+        </div>
         <div className={cn(s.dContent, "px-4 pb-20")} onClick={(e) => e.stopPropagation()}>
           <p className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal mt-5">
             {t.rich("description", {
