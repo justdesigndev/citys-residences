@@ -26,7 +26,7 @@ export default function Page() {
         </ScaleOut>
       </section>
       <section className="relative z-20 bg-white">
-        <div className="w-full h-32 bt:h-64 mx-auto my-12 bt:my-32">
+        <div className="w-full h-32 xl:h-64 2xl:h-72 my-12 xl:my-12 2xl:my-16 mx-auto">
           <IconCitysLifeLogo fill="#000000" />
         </div>
       </section>

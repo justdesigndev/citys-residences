@@ -1,15 +1,14 @@
 import { cn } from "@/lib/utils"
 
 import { ScaleOut } from "@/components/animations/scale-out"
-import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
-import { Sequenced } from "@/components/sequenced"
 import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
+import { Sequenced } from "@/components/sequenced"
 
 export default function Page() {
   const items = [
@@ -84,43 +83,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="mt-16 bt:mt-32">
-        <div className="flex flex-col items-center justify-center px-4 bt:px-10 bd:px-16 max-w-4xl mx-auto">
-          <h2 className="font-montserrat font-normal text-bricky-brick text-4xl bt:text-7xl bd:text-6xl mb-5 bt:mb-10 text-center">
-            <TextRevealOnScroll
-              className="text-center"
-              elementLevelClassName="leading-relaxed text-center"
-              splitBy="lines"
-              textAlign="center"
-              staggerDuration={0.005}
-            >
-              YAŞAMA ALAN AÇAN PERSPEKTİF
-            </TextRevealOnScroll>
-          </h2>
-          <p className="font-halenoir text-md bt:text-4xl bd:text-2xl font-bold mb-4">
-            <TextRevealOnScroll
-              className="text-center"
-              elementLevelClassName="leading-relaxed"
-              splitBy="lines"
-              textAlign="center"
-              staggerDuration={0.005}
-            >
-              Her metrekaresi düşünülerek tasarlanmış, içeriye değil hayata açılan bir plan
-            </TextRevealOnScroll>
-          </p>
-          <p className="font-halenoir text-md bt:text-4xl bd:text-xl font-normal">
-            <TextRevealOnScroll
-              className="text-center"
-              elementLevelClassName="leading-relaxed"
-              splitBy="lines"
-              textAlign="center"
-              staggerDuration={0.005}
-            >
-              Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
-              tasarlandı.
-            </TextRevealOnScroll>
-          </p>
-        </div>
+      <section className="bg-white z-30 mb-16 bt:mb-32 px-4 bt:px-10 bd:px-16">
         <Sequenced />
       </section>
       <section className="bg-white z-30 mb-16 bt:mb-32 px-4 bt:px-10 bd:px-16">
