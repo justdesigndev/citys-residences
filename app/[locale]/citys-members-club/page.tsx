@@ -158,7 +158,7 @@ export default function Page() {
     title: "KIDS CLUB",
     items: [
       {
-        title: "KIDS CLUB",
+        title: "",
         subtitle: "Oyun, gelişimin en doğal hali",
         description:
           "Yaş gruplarına özel kurgulanmış bu güvenli alan; çocukların enerjisini yönlendirirken ebeveynlere de rahat bir nefes alanı sunar.",

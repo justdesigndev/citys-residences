@@ -1,8 +1,9 @@
 "use client"
 
-import { ScrollTrigger, gsap, useGSAP } from "@/components/gsap"
+import { ScrollTrigger, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
-import { useRef } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useRef, useState } from "react"
 
 import { Img } from "@/components/utility/img"
 
@@ -21,90 +22,55 @@ export interface AccordionStackingCardsProps {
 
 export function AccordionStackingCards({ title, items, images, reverse = false }: AccordionStackingCardsProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const [currentText, setCurrentText] = useState(0)
+  const [currentImage, setCurrentImage] = useState(0)
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
 
   useGSAP(
     () => {
-      const tl = gsap.timeline()
-      const tlText = gsap.timeline()
-
-      const images: HTMLElement[] = gsap.utils.toArray(ref.current?.querySelectorAll(`.gsap-stacking-card-image`) ?? [])
-
-      images.forEach((image, imageIndex) => {
-        if (imageIndex === 0) return
-
-        gsap.set(image, {
-          yPercent: imageIndex === 0 ? 0 : 100,
-        })
-
-        gsap.set(image.querySelector(".gsap-image") as HTMLElement, {
-          scale: 1.5,
-        })
-      })
-
-      images.forEach((image, imageIndex) => {
-        if (imageIndex === 0) return
-
-        // const prevImage = images[imageIndex - 1] as HTMLElement
-
-        tl.to(
-          image,
-          {
-            duration: 1,
-            yPercent: 0,
-          },
-          `s-${imageIndex}`
-        ).to(
-          image.querySelector(".gsap-image") as HTMLElement,
-          {
-            duration: 1,
-            scale: 1,
-          },
-          `s-${imageIndex}`
-        )
-        // .to(
-        //   prevImage,
-        //   {
-        //     duration: 1,
-        //     yPercent: -50,
-        //     delay: -1,
-        //   },
-        //   `ss-${imageIndex}`
-        // )
-      })
-
-      items.forEach((_, index) => {
-        if (index === 0) {
-          // First item starts visible, no initial animation needed
-          return
-        } else if (index === items.length - 1) {
-          // Last item only needs to fade in
-          tlText
-            .fromTo(`.gsap-stacking-card-text-${index - 1}`, { opacity: 1 }, { opacity: 0, duration: 0.5 })
-            .fromTo(`.gsap-stacking-card-text-${index}`, { opacity: 0 }, { opacity: 1, duration: 0.5 })
-        } else {
-          // Middle items need both fade out of previous and fade in of current
-          tlText
-            .fromTo(`.gsap-stacking-card-text-${index - 1}`, { opacity: 1 }, { opacity: 0, duration: 0.5 })
-            .fromTo(`.gsap-stacking-card-text-${index}`, { opacity: 0 }, { opacity: 1, duration: 0.5 })
-        }
-      })
-
-      const masterTl = gsap.timeline()
-      masterTl.add(tl, 0).add(tlText, 0)
-
-      ScrollTrigger.create({
-        animation: masterTl,
+      scrollTriggerRef.current = ScrollTrigger.create({
         trigger: ref.current,
         pin: true,
-        scrub: 1,
-        end: `+=${items.length * 1000}px`,
+        scrub: 0.1,
+        end: `+=${images.length * 1000}px`,
         start: "center center",
+        snap: {
+          snapTo: Array.from({ length: images.length }, (_, i) => i / (images.length - 1)),
+          duration: { min: 0.1, max: 0.15 },
+          delay: 0,
+          ease: "power2.inOut",
+          inertia: false,
+        },
+        onUpdate: ({ progress }) => {
+          // Calculate image progress
+          const imageProgress = progress * images.length
+          const newImageIndex = Math.min(Math.floor(imageProgress), images.length - 1)
+          setCurrentImage(newImageIndex)
+
+          // Calculate text progress (only if we have text items)
+          if (items.length > 0) {
+            const textProgress = progress * items.length
+            const newTextIndex = Math.min(Math.floor(textProgress), items.length - 1)
+            setCurrentText(newTextIndex)
+          }
+        },
       })
     },
     {
       scope: ref,
     }
   )
+
+  const handleItemClick = (index: number) => {
+    setCurrentText(index)
+    if (scrollTriggerRef.current) {
+      // Calculate progress based on image index since that's what controls the scroll
+      const progress = index / (images.length - 1)
+      const startPosition = scrollTriggerRef.current.start
+      const scrollAmount = startPosition + progress * (scrollTriggerRef.current.end - startPosition)
+      scrollTriggerRef.current.scroll(scrollAmount)
+    }
+  }
 
   return (
     <div className="w-full h-[80vh]" ref={ref}>
@@ -114,41 +80,65 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
             <h2 className="font-montserrat text-3xl bt:text-4xl bd:text-5xl font-medium text-bricky-brick bd:leading-tight">
               {title}
             </h2>
-            {items.map((item, itemIndex) => (
-              <div
-                className={cn(
-                  `gsap-stacking-card-text-${itemIndex} absolute top-0 left-0 w-full h-full flex flex-col items-start justify-start xl:pt-80 2xl:pt-96`
-                )}
-                key={itemIndex}
-              >
-                <h3 className="font-montserrat text-3xl bt:text-4xl bd:text-3xl font-medium text-bricky-brick mb-8">
+            <div className="flex flex-col items-start justify-start gap-2 pt-4">
+              {items.map((item, itemIndex) => (
+                <motion.div
+                  key={itemIndex}
+                  className={cn(
+                    "whitespace-nowrap relative font-montserrat text-base bt:text-lg bd:text-base font-normal text-black cursor-pointer",
+                    {
+                      "opacity-100": currentText === itemIndex,
+                      "opacity-50": currentText !== itemIndex,
+                      "font-bold": currentText === itemIndex,
+                    }
+                  )}
+                  onClick={() => handleItemClick(itemIndex)}
+                  whileHover={{ x: 10 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
                   {item.title}
-                </h3>
-                <div className="xl:pr-8 2xl:pr-16">
-                  <p className="font-montserrat text-base bt:text-lg bd:text-xl font-bold text-black">
-                    {item.subtitle}
-                  </p>
-                  <p className="font-montserrat text-base bt:text-lg bd:text-xl font-normal text-black">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
+            <div className="relative xl:pt-80 2xl:pt-24">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentText}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="font-montserrat text-3xl bt:text-4xl bd:text-3xl font-medium text-bricky-brick mb-8">
+                    {items[currentText].title}
+                  </h3>
+                  <div className="xl:pr-8 2xl:pr-16">
+                    <p className="font-montserrat text-base bt:text-lg bd:text-xl font-bold text-black">
+                      {items[currentText].subtitle}
+                    </p>
+                    <p className="font-montserrat text-base bt:text-lg bd:text-xl font-normal text-black">
+                      {items[currentText].description}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
           <div className={cn("relative overflow-hidden basis-8/12")}>
-            {images.map((image, imageIndex) => (
-              <div
-                key={imageIndex}
-                className={cn(
-                  "gsap-stacking-card-image",
-                  "absolute left-1/2 -translate-x-1/2 w-full h-full overflow-hidden"
-                )}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentImage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute left-0 top-0 w-full h-full overflow-hidden"
               >
-                <div className="gsap-image absolute top-0 left-0 w-full h-full">
-                  <Img src={image.url} alt="Members Club" fill sizes="100vw" className="object-cover" />
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <Img src={images[currentImage].url} alt="Members Club" fill sizes="100vw" className="object-cover" />
                 </div>
-              </div>
-            ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
