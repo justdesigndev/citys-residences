@@ -83,16 +83,23 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
                 <motion.div
                   key={itemIndex}
                   className={cn(
-                    "whitespace-nowrap relative font-montserrat text-base lg:text-lg xl:text-sm 2xl:text-base font-normal text-black cursor-pointer",
-                    {
-                      "opacity-100": currentText === itemIndex,
-                      "opacity-50": currentText !== itemIndex,
-                      "font-bold": currentText === itemIndex,
-                    }
+                    "whitespace-nowrap relative font-montserrat text-base lg:text-lg xl:text-sm 2xl:text-base text-black cursor-pointer"
                   )}
+                  initial={{ opacity: 0.5, fontWeight: 400 }}
+                  animate={{
+                    opacity: currentText === itemIndex ? 1 : 0.5,
+                    fontWeight: currentText === itemIndex ? 700 : 400,
+                    x: currentText === itemIndex ? 5 : 0,
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: "easeInOut",
+                  }}
                   onClick={() => handleItemClick(itemIndex)}
-                  whileHover={{ x: 10 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  whileHover={{
+                    x: currentText === itemIndex ? 5 : 10,
+                    transition: { duration: 0.2 },
+                  }}
                 >
                   {item.title}
                 </motion.div>
