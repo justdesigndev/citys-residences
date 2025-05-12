@@ -100,7 +100,7 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
                 </motion.div>
               ))}
             </div>
-            <div className="relative xl:pt-80 2xl:pt-24">
+            <div className="relative pt-20">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentText}
