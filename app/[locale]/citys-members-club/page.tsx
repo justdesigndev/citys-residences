@@ -47,7 +47,7 @@ export default function Page() {
           "Yüksek hassasiyetli sistemlerle donatılmış iç mekân golf deneyimi; bireysel gelişim ve keyifli anlar için.",
       },
       {
-        title: "MASA TENİS",
+        title: "MASA TENİSİ",
         subtitle: "Kısa oyun, uzun sohbet",
         description: "Rahatça erişilebilen masa tenisi alanı, gündelik hareket ve spontane rekabet için tasarlandı.",
       },
@@ -89,12 +89,12 @@ export default function Page() {
     title: "ETKİNLİK & EĞLENCE",
     items: [
       {
-        title: "MEDITASYON ODASI",
+        title: "MEDİTASYON ODASI",
         subtitle: "Sessizliği planladık",
         description: "Dış uyaranlardan izole edilmiş, içe dönüşe alan tanıyan akustik düzenlemeli meditasyon odası.",
       },
       {
-        title: "ÖZEL SINEMA SALONU",
+        title: "ÖZEL SİNEMA SALONU",
         subtitle: "Filmi paylaşmak, deneyimi derinleştirir",
         description: "Yüksek çözünürlüklü görüntü ve çevresel ses sistemiyle donatılmış özel sinema alanı.",
       },
@@ -111,7 +111,7 @@ export default function Page() {
           "Seramikten tuvale farklı üretim biçimlerine açık bu atölye, teknikten ifadeye çok amaçlı alan tanır.",
       },
       {
-        title: "MÜZİK & KARAOKESİ",
+        title: "MÜZİK & KARAOKE STÜDYOSU",
         subtitle: "Sesini açmak için profesyonel bir zemin",
         description:
           "Bireysel kayıt, arkadaşlarla eğlence ya da özel müzik etkinlikleri… Bu akustik altyapılı stüdyo, yaratıcı ve sosyal tüm buluşmalara açık.",
