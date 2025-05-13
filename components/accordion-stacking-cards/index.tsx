@@ -31,7 +31,7 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: ref.current,
         pin: true,
-        scrub: 0.1,
+        scrub: true,
         end: `+=${images.length * 500}px`,
         start: "center center",
         // snap: {
@@ -58,7 +58,6 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
     },
     {
       scope: ref,
-      revertOnUpdate: true,
     }
   )
 
