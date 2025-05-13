@@ -2,7 +2,7 @@
 
 import { ScrollTrigger, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { useRef, useState } from "react"
 
 import { Img } from "@/components/utility/img"
@@ -32,7 +32,7 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
         trigger: ref.current,
         pin: true,
         scrub: 0.1,
-        end: `+=${images.length * 1000}px`,
+        end: `+=${images.length * 500}px`,
         start: "center center",
         // snap: {
         //   snapTo: Array.from({ length: images.length }, (_, i) => i / (images.length - 1)),
@@ -58,6 +58,7 @@ export function AccordionStackingCards({ title, items, images, reverse = false }
     },
     {
       scope: ref,
+      revertOnUpdate: true,
     }
   )
 
