@@ -45,7 +45,6 @@ export function ScaleOut({ children }: ScaleOutProps) {
       pin: true,
       pinSpacing: false,
       scrub: true,
-      refreshPriority: 300,
     })
   }, [])
 

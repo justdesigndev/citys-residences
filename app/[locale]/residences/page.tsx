@@ -1,14 +1,12 @@
-import { cn } from "@/lib/utils"
-
 import { ScaleOut } from "@/components/animations/scale-out"
 import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
+import { Sequenced } from "@/components/sequenced"
 import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
-import { Sequenced } from "@/components/sequenced"
 
 export default function Page() {
   const items = [
@@ -55,7 +53,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[50vh] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className="h-[50vh] bt:h-screen bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
             primaryVideoUrl={residencesVideo}
@@ -74,7 +72,7 @@ export default function Page() {
       </section>
       <section className="bg-white z-20 px-4 bt:px-10 bd:px-16">
         <div className="relative bd:container">
-          <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
+          <div className="w-full h-[350px] bt:h-[90vh] relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton
               primaryVideoUrl={mustafaTonerVideo}
               thumbnail="/img/thumbnail-toners.jpg"
@@ -83,15 +81,15 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="bg-white z-30 mb-16 bt:mb-32 px-4 bt:px-10 bd:px-16">
+      <section className="bg-white z-30 px-4 bt:px-10 bd:px-16">
         <Sequenced />
       </section>
-      <section className="bg-white z-30 mb-16 bt:mb-32 px-4 bt:px-10 bd:px-16">
+      <section className="bg-white z-30 px-4 bt:px-10 bd:px-16 pb-16 bt:pb-72">
         <StackingCards items={items} />
       </section>
       <section className="px-4 bt:px-10 bd:px-16">
         <div className="relative bd:container">
-          <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
+          <div className="w-full h-[350px] bt:h-[90vh] relative z-10 flex items-center justify-center bg-black">
             <VideoWithPlayButton
               primaryVideoUrl={melihBulgurVideo}
               thumbnail="/img/thumbnail-melih-bulgur.jpg"
