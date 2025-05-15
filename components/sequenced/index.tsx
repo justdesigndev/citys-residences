@@ -94,7 +94,7 @@ const Sequenced = () => {
           <div
             className={cn(
               "gsap-sequence-item",
-              "absolute top-1/2 right-0 translate-x-20 -translate-y-1/2 h-screen w-9/12 scale-125 bt:scale-100"
+              "absolute top-1/2 right-0 translate-x-32 -translate-y-1/2 h-screen w-9/12 scale-125 bt:scale-100"
             )}
             key={i}
           >
