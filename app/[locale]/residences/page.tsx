@@ -18,7 +18,7 @@ export default function Page() {
           url: "/img/residences/1+1/plan.jpg",
         },
         {
-          url: "/img/residences/3+1/interior.jpg",
+          url: "/img/residences/1+1/interior.jpg",
         },
       ],
       bg: "#fbfbfb",
