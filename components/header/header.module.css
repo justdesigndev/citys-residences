@@ -23,7 +23,6 @@
   &.atTop {
     &:before {
       opacity: 1;
-      pointer-events: auto;
     }
 
     .logo-c {
