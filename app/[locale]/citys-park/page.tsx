@@ -4,13 +4,13 @@ import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 
 import { ScaleOut } from "@/components/animations/scale-out"
+import { IconCitysParkBgLogo, IconCitysParkLogo } from "@/components/icons"
+import { LinkToPage } from "@/components/link-to-page"
 import { MaskedParallaxImageSection } from "@/components/parallax-images-section"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { citysParkVideo, pinarVeCemilAktasVideo } from "@/lib/constants"
-import { LinkToPage } from "@/components/link-to-page"
-import { IconCitysParkBgLogo, IconCitysParkLogo } from "@/components/icons"
 
 export default function Page() {
   const t = useTranslations("citys-park")
@@ -62,11 +62,11 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white">
+      <section className="relative z-20 bg-white pt-8 mb-20">
         <div className="w-full h-[40vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
           <IconCitysParkBgLogo fill="#5D7261" />
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-40">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-60">
           <IconCitysParkLogo fill="#5D7261" />
         </div>
       </section>

@@ -7,7 +7,7 @@ import { MaskedParallaxImageSection } from "@/components/parallax-images-section
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysLifeVideo } from "@/lib/constants"
-import { IconCitysLifeLogo } from "@/components/icons"
+import { IconCitysLifeLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 
 export default function Page() {
@@ -26,8 +26,11 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white">
-        <div className="w-full h-32 xl:h-64 2xl:h-72 my-12 xl:my-12 2xl:my-16 mx-auto">
+      <section className="relative z-20 bg-white pt-8 mb-20">
+        <div className="w-full h-[40vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
+          <IconCitysParkBgLogo fill="#000" />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-60">
           <IconCitysLifeLogo fill="#000000" />
         </div>
       </section>

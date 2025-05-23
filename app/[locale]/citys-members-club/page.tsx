@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 
 import { AccordionStackingCards } from "@/components/accordion-stacking-cards"
 import { ScaleOut } from "@/components/animations/scale-out"
-import { IconCitysMembersClubLogo } from "@/components/icons"
+import { IconCitysMembersClubLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
@@ -194,8 +194,11 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white">
-        <div className="w-full h-32 bt:h-64 mx-auto my-20 bt:my-32">
+      <section className="relative z-20 bg-white pt-8 mb-20">
+        <div className="w-full h-[40vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
+          <IconCitysParkBgLogo fill="#000" />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-60">
           <IconCitysMembersClubLogo fill="#000000" />
         </div>
       </section>
