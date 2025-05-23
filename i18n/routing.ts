@@ -34,6 +34,10 @@ export const routing = defineRouting({
       tr: "/citys-life-privileges",
       en: "/citys-life-privileges",
     },
+    "/citys-istanbul-avm": {
+      tr: "/citys-istanbul-avm",
+      en: "/citys-istanbul-avm",
+    },
     "/explicit-consent": {
       tr: "/acik-riza-metni",
       en: "/explicit-consent",
