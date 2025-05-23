@@ -8,6 +8,7 @@ import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysLifeVideo } from "@/lib/constants"
 import { IconCitysLifeLogo } from "@/components/icons"
+import { LinkToPage } from "@/components/link-to-page"
 
 export default function Page() {
   const t = useTranslations("citys-life")
@@ -119,6 +120,10 @@ export default function Page() {
           )}
         </div>
       </section>
+      <LinkToPage
+        previous={{ title: "City's Members Club", href: "/citys-members-club" }}
+        next={{ title: "City's İstanbul AVM", href: "/citys-istanbul-avm" }}
+      />
     </Wrapper>
   )
 }
