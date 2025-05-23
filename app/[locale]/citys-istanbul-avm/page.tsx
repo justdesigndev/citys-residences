@@ -1,4 +1,7 @@
+import { cn } from "@/lib/utils"
+
 import { ScaleOut } from "@/components/animations/scale-out"
+import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { ImageSlider } from "@/components/image-slider"
 import { LinkToPage } from "@/components/link-to-page"
@@ -6,7 +9,6 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysParkVideo } from "@/lib/constants"
-import { cn } from "@/lib/utils"
 
 export default function Page() {
   const slideImages = {
@@ -25,6 +27,21 @@ export default function Page() {
             playsInline
             className="w-full h-full object-cover"
           />
+          <div className="absolute top-0 left-0 w-full h-full bg-black/50">
+            <div className="flex flex-col h-full bd:container py-8 bt:py-8 px-4 bt:px-10 bd:px-16">
+              <h1 className="max-w-lg block font-montserrat leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-8">
+                <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.005}>
+                  ŞEHİR HAYATI BİR ASANSÖR UZAKLIKTA
+                </TextRevealOnScroll>
+              </h1>
+              <p className="max-w-lg block font-halenoir leading-snug text-white text-base bt:text-lg font-normal mb-20">
+                <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.005}>
+                  City’s Residences sakinleri için alışveriş, yeme-içme ve günlük ihtiyaçlar, şehrin merkezinde ama ev
+                  rahatlığında. AVM hayatı, yaşam kurgusunun doğal bir parçası.
+                </TextRevealOnScroll>
+              </p>
+            </div>
+          </div>
         </ScaleOut>
       </section>
       <section className="relative z-20 bg-white pt-8 mb-20">
