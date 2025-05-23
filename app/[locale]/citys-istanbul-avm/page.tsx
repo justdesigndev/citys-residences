@@ -115,8 +115,8 @@ export default function Page() {
         />
       </section>
       <LinkToPage
-        previous={{ title: "City's Life Privileges", href: "/citys-life-privileges" }}
-        next={{ title: "Daireler", href: "/residences" }}
+        previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
+        next={{ title: "Anasayfa", href: "/" }}
       />
     </Wrapper>
   )
