@@ -3,7 +3,13 @@
 import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
 import { useRef } from "react"
 
-export function FadeInOnScroll({ children }: { children: React.ReactNode }) {
+interface FadeInOnScrollProps {
+  children: React.ReactNode
+  duration?: number
+  delay?: number
+}
+
+export function FadeInOnScroll({ children, duration = 0.5, delay = 0.2 }: FadeInOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
@@ -13,7 +19,8 @@ export function FadeInOnScroll({ children }: { children: React.ReactNode }) {
 
     tl.from(ref.current, {
       autoAlpha: 0,
-      delay: 0.2,
+      duration: duration,
+      delay: delay,
     })
 
     ScrollTrigger.create({
