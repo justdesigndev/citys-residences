@@ -3,7 +3,7 @@
 import { ScrollTrigger, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion } from "framer-motion"
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
+import { ArrowLeftIcon, ArrowRightIcon, MoveDownIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 import { Img } from "@/components/utility/img"
@@ -19,9 +19,10 @@ export interface ListCarouselProps {
     url: string
   }[]
   reverse?: boolean
+  withMoveDown?: boolean
 }
 
-export function ListCarousel({ title, items, images, reverse = false }: ListCarouselProps) {
+export function ListCarousel({ title, items, images, reverse = false, withMoveDown = false }: ListCarouselProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAutoplaying, setIsAutoplaying] = useState(false) // Initialized to false
@@ -107,7 +108,7 @@ export function ListCarousel({ title, items, images, reverse = false }: ListCaro
   }
 
   return (
-    <div className="w-full h-[80vh]" ref={ref}>
+    <div className="relative w-full h-[80vh]" ref={ref}>
       <div className="gsap-stacking-cards-container h-full relative">
         <div className={cn("absolute top-0 left-0 w-full h-full flex gap-10 xl:gap-10 2xl:gap-10")}>
           <div className={cn("relative basis-4/12", reverse && "order-last")}>
@@ -197,6 +198,17 @@ export function ListCarousel({ title, items, images, reverse = false }: ListCaro
           </div>
         </div>
       </div>
+      {withMoveDown && (
+        <div
+          className={cn(
+            "absolute -bottom-4 translate-y-1/2 right-32 cursor-pointer p-16 rounded-full border-2 border-black",
+            reverse && "right-auto left-32"
+          )}
+          onClick={() => goToIndex(activeIndex + 1)}
+        >
+          <MoveDownIcon className="w-12 h-12" />
+        </div>
+      )}
     </div>
   )
 }

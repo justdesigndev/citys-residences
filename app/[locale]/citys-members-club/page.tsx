@@ -4,6 +4,7 @@ import { ScaleOut } from "@/components/animations/scale-out"
 import { IconCitysMembersClubLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { ListCarousel } from "@/components/list-carousel"
+import { ScrollDownLottie } from "@/components/scroll-down-lottie"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { membersClubVideo } from "@/lib/constants"
@@ -212,7 +213,12 @@ export default function Page() {
       </section>
       <section className="bg-white z-30 px-4 bt:px-10 bd:px-16">
         <div className="mb-40 mt-20">
-          <ListCarousel title={sportsAndHealth.title} items={sportsAndHealth.items} images={sportsAndHealth.images} />
+          <ListCarousel
+            title={sportsAndHealth.title}
+            items={sportsAndHealth.items}
+            images={sportsAndHealth.images}
+            withMoveDown
+          />
         </div>
         <div className="mb-40">
           <ListCarousel
@@ -220,6 +226,7 @@ export default function Page() {
             items={eventsAndEntertainment.items}
             images={eventsAndEntertainment.images}
             reverse
+            withMoveDown
           />
         </div>
         <ListCarousel title={kidsAndFamily.title} items={kidsAndFamily.items} images={kidsAndFamily.images} />
@@ -228,6 +235,9 @@ export default function Page() {
         previous={{ title: "City's Park", href: "/citys-park" }}
         next={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
       />
+      <div className="fixed left-1/2 bottom-10 -translate-x-1/2 z-[999999999]">
+        <ScrollDownLottie />
+      </div>
     </Wrapper>
   )
 }
