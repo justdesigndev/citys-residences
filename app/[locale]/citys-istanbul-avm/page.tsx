@@ -11,14 +11,22 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysParkVideo } from "@/lib/constants"
+import { getBrandsData } from "@/lib/api/queries"
 
-export default function Page() {
+export default async function Page() {
+  // Fetch brands data
+  const brands = await getBrandsData()
+
+  // Filter brands by category
+  const shoppingBrands = brands.filter((brand) => brand.category === "alisveris")
+  const foodBrands = brands.filter((brand) => brand.category === "yemeIcme")
+
   const slides = [
     {
       image: "/img/citys-istanbul-avm/slide-1.jpg",
       title: "HER STİLİN, HER İHTİYACIN MERKEZİ",
       description:
-        "Şehrin temposuna ayak uyduran yeme-içme alanları ve stil sahibi markalar… City’s İstanbul AVM; zamansız markalar, yeni sezon koleksiyonlar ve şehirli yaşamın ritmine uygun mağazalarla alışveriş deneyimini rutinin bir adım ötesine taşıyor.",
+        "Şehrin temposuna ayak uyduran yeme-içme alanları ve stil sahibi markalar… City's İstanbul AVM; zamansız markalar, yeni sezon koleksiyonlar ve şehirli yaşamın ritmine uygun mağazalarla alışveriş deneyimini rutinin bir adım ötesine taşıyor.",
     },
     {
       image: "/img/citys-istanbul-avm/slide-2.jpg",
@@ -72,191 +80,63 @@ export default function Page() {
       <section className="relative z-20 bg-white bd:container py-8 bt:py-8">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
         <AutoScrollCarousel>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/01.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/02.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/03.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/04.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/05.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/01.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/02.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/03.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/04.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/alisveris/05.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
+          {shoppingBrands.map((brand, index) => (
+            <div key={`${brand.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
+              <Img
+                src={brand.logo}
+                alt={brand.name}
+                className="w-full h-full object-contain"
+                height={400}
+                width={400}
+              />
+            </div>
+          ))}
+          {/* Duplicate for seamless scrolling */}
+          {shoppingBrands.map((brand, index) => (
+            <div
+              key={`${brand.name}-duplicate-${index}`}
+              className="flex items-center justify-center py-14 px-16 w-64 h-full"
+            >
+              <Img
+                src={brand.logo}
+                alt={brand.name}
+                className="w-full h-full object-contain"
+                height={400}
+                width={400}
+              />
+            </div>
+          ))}
         </AutoScrollCarousel>
       </section>
       <section className="relative z-20 bg-white bd:container py-8 bt:py-8">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">YEME - İÇME</h2>
         <AutoScrollCarousel>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/01.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/02.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/03.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/04.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/05.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/01.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/02.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/03.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/04.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
-          <div className="flex items-center justify-center py-14 px-16 w-64 h-full">
-            <Img
-              src="/img/citys-istanbul-avm/yemek/05.png"
-              alt="City's Istanbul AVM"
-              className="w-full h-full object-contain"
-              height={400}
-              width={400}
-            />
-          </div>
+          {foodBrands.map((brand, index) => (
+            <div key={`${brand.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
+              <Img
+                src={brand.logo}
+                alt={brand.name}
+                className="w-full h-full object-contain"
+                height={400}
+                width={400}
+              />
+            </div>
+          ))}
+          {/* Duplicate for seamless scrolling */}
+          {foodBrands.map((brand, index) => (
+            <div
+              key={`${brand.name}-duplicate-${index}`}
+              className="flex items-center justify-center py-14 px-16 w-64 h-full"
+            >
+              <Img
+                src={brand.logo}
+                alt={brand.name}
+                className="w-full h-full object-contain"
+                height={400}
+                width={400}
+              />
+            </div>
+          ))}
         </AutoScrollCarousel>
       </section>
       <section className="relative z-20 bg-white py-8 bt:py-8 mb-20">

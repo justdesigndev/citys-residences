@@ -254,3 +254,13 @@ export interface FormTranslations {
     }
   }
 }
+
+export interface Brand {
+  name: string
+  category: string
+  logo: string
+}
+
+export interface BrandsResponse {
+  brands: Brand[]
+}
