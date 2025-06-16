@@ -86,7 +86,7 @@ export default async function Page() {
       </section>
       <section className="relative z-20 bg-white">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
-        <AutoScrollCarousel>
+        <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {shoppingBrands.map((brand, index) => (
             <div key={`${brand.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
               <Img
@@ -117,7 +117,7 @@ export default async function Page() {
       </section>
       <section className="relative z-20 bg-white">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">YEME - İÇME</h2>
-        <AutoScrollCarousel>
+        <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {foodBrands.map((brand, index) => (
             <div key={`${brand.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
               <Img
@@ -138,7 +138,7 @@ export default async function Page() {
               <Img
                 src={brand.logo}
                 alt={brand.name}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain grayscale"
                 height={400}
                 width={400}
               />
@@ -148,13 +148,13 @@ export default async function Page() {
       </section>
       <section className="relative z-20 bg-white">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">HİZMETLER</h2>
-        <AutoScrollCarousel>
+        <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {services.map((service, index) => (
             <div key={`${service.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
               <Img
                 src={service.logo}
                 alt="Service Logo"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain grayscale"
                 height={400}
                 width={400}
               />
@@ -169,7 +169,7 @@ export default async function Page() {
               <Img
                 src={service.logo}
                 alt="Service Logo"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain grayscale"
                 height={400}
                 width={400}
               />
