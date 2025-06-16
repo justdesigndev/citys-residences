@@ -201,8 +201,8 @@ export function ListCarousel({ title, items, images, reverse = false, withMoveDo
       {withMoveDown && (
         <div
           className={cn(
-            "absolute -bottom-4 translate-y-full left-0 p-5 rounded-full border-2 border-black",
-            reverse && "left-auto right-0"
+            "absolute -bottom-4 translate-y-full right-0 p-5 rounded-full border-2 border-black",
+            reverse && "right-auto left-0"
           )}
           onClick={() => goToIndex(activeIndex + 1)}
         >
