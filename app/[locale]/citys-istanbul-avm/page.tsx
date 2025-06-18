@@ -5,7 +5,6 @@ import { ScaleOut } from "@/components/animations/scale-out"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { AutoScrollCarousel } from "@/components/auto-scroll-carousel"
 import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
-import { ImageSlider } from "@/components/image-slider"
 import { LinkToPage } from "@/components/link-to-page"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
@@ -45,7 +44,7 @@ export default async function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[50vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className={cn("h-[60vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
         <ScaleOut>
           <Video
             primaryVideoUrl={citysIstanbulAvmVideo}
@@ -55,15 +54,15 @@ export default async function Page() {
             playsInline
             className="w-full h-full object-cover"
           />
-          <div className="absolute top-0 left-0 w-full h-full bg-black/50">
+          <div className="absolute top-0 left-0 w-full h-full bg-black/30">
             <div className="flex flex-col h-full bd:container py-8 bt:py-8 px-4 bt:px-10 bd:px-16">
-              <h1 className="max-w-lg block font-montserrat leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-8">
-                <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.005}>
+              <h1 className="max-w-lg block font-montserrat leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-2 bd:mb-8">
+                <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
                   ŞEHİR HAYATI BİR ASANSÖR UZAKLIKTA
                 </TextRevealOnScroll>
               </h1>
-              <p className="max-w-lg block font-halenoir leading-snug text-white text-base bt:text-lg font-normal mb-20">
-                <TextRevealOnScroll splitBy="lines" textAlign="left" staggerDuration={0.005}>
+              <p className="max-w-lg block font-halenoir leading-snug text-white text-base bt:text-lg font-normal mb-0 bd:mb-20">
+                <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
                   City&apos;s Residences sakinleri için alışveriş, yeme-içme ve günlük ihtiyaçlar, şehrin merkezinde ama
                   ev rahatlığında. AVM hayatı, yaşam kurgusunun doğal bir parçası.
                 </TextRevealOnScroll>
@@ -72,23 +71,26 @@ export default async function Page() {
           </div>
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white pt-8">
-        <div className="w-full h-[40vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
+      <section className="relative z-20 bg-white">
+        <div className="w-full h-[30vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
           <FadeInOnScroll duration={1.5}>
             <IconCitysParkBgLogo fill="#000" />
           </FadeInOnScroll>
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-40">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-16 bt:h-40">
           <FadeInOnScroll duration={0.5}>
             <IconCitysIstanbulLogo fill="#000" />
           </FadeInOnScroll>
         </div>
       </section>
-      <section className="relative z-20 bg-white">
+      <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {[...shoppingBrands, ...shoppingBrands].map((brand, index) => (
-            <div key={`${brand.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
+            <div
+              key={`${brand.name}-${index}`}
+              className="flex items-center justify-center px-8 bt:px-16 w-64 h-32 bt:h-full"
+            >
               <Img
                 src={brand.logo}
                 alt={brand.name}
@@ -100,11 +102,14 @@ export default async function Page() {
           ))}
         </AutoScrollCarousel>
       </section>
-      <section className="relative z-20 bg-white">
+      <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">YEME - İÇME</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {[...foodBrands, ...foodBrands].map((brand, index) => (
-            <div key={`${brand.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
+            <div
+              key={`${brand.name}-${index}`}
+              className="flex items-center justify-center px-8 bt:px-16 w-64 h-32 bt:h-full"
+            >
               <Img
                 src={brand.logo}
                 alt={brand.name}
@@ -116,11 +121,14 @@ export default async function Page() {
           ))}
         </AutoScrollCarousel>
       </section>
-      <section className="relative z-20 bg-white">
+      <section className="relative z-20 bg-white mt-10 bd:mt-20 mb-20">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">HİZMETLER</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {[...services, ...services].map((service, index) => (
-            <div key={`${service.name}-${index}`} className="flex items-center justify-center py-14 px-16 w-64 h-full">
+            <div
+              key={`${service.name}-${index}`}
+              className="flex items-center justify-center px-8 bt:px-16 w-64 h-32 bt:h-full"
+            >
               <Img
                 src={service.logo}
                 alt="Service Logo"
@@ -132,8 +140,33 @@ export default async function Page() {
           ))}
         </AutoScrollCarousel>
       </section>
-      <section className="relative z-20 bg-white py-8 bt:py-8 mb-20">
-        <ImageSlider
+      <section className="relative z-20 bg-white">
+        <div className="flex flex-col bd:grid bd:grid-cols-2 gap-4 bd:gap-8 bd:container py-0 bt:py-8 px-4 bt:px-10 bd:px-16">
+          {slides.map((slide, index) => (
+            <div key={index} className={cn("h-[120vw] bd:h-[40vw] w-full relative")}>
+              <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                <Img
+                  src={slide.image}
+                  alt={`Slide ${index}`}
+                  fill
+                  className="w-full h-full object-cover"
+                  sizes="100vw"
+                />
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="flex flex-col h-full py-8 bt:py-8 px-4 bt:px-10 bd:px-8">
+                    <h1 className="max-w-lg block font-montserrat leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-6">
+                      {slide.title}
+                    </h1>
+                    <p className="max-w-lg block font-halenoir leading-snug text-white text-base bt:text-lg font-normal">
+                      {slide.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* <ImageSlider
           items={slides.map((slide, index) => (
             <div
               key={index}
@@ -164,7 +197,7 @@ export default async function Page() {
               </div>
             </div>
           ))}
-        />
+        /> */}
       </section>
       <LinkToPage
         previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
