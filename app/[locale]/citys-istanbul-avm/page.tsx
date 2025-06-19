@@ -25,6 +25,7 @@ export default async function Page() {
     { logo: "/img/citys-istanbul-avm/hizmetler/03.png", name: "HİZMETLER" },
     { logo: "/img/citys-istanbul-avm/hizmetler/04.png", name: "HİZMETLER" },
     { logo: "/img/citys-istanbul-avm/hizmetler/05.png", name: "HİZMETLER" },
+    { logo: "/img/citys-istanbul-avm/hizmetler/06.png", name: "HİZMETLER" },
   ]
 
   const slides = [

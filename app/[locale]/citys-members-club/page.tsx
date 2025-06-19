@@ -202,6 +202,18 @@ export default function Page() {
       {
         url: "/img/members-club/03/04.jpg",
       },
+      {
+        url: "/img/members-club/03/05.jpg",
+      },
+      {
+        url: "/img/members-club/03/06.jpg",
+      },
+      {
+        url: "/img/members-club/03/07.jpg",
+      },
+      {
+        url: "/img/members-club/03/08.jpg",
+      },
     ],
   }
 
