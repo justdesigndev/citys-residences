@@ -119,7 +119,7 @@ export const muratKaderVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1076668374/rendition/1080p/file.mp4?loc=external&log_user=0&signature=9cb5431c29179de45c2a9528e203a341f2aa92b6c95641659f2de5e74791354f"
 
 export const mainVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1080118540/rendition/1080p/file.mp4?loc=external&log_user=0&signature=8e3d39f3203d41297dd8e4da7de98b9f180d07cbca6fe5a63e8cfae46fd805f2"
+  "https://player.vimeo.com/progressive_redirect/playback/1094341190/rendition/1080p/file.mp4?loc=external&log_user=0&signature=6f327be3de9041e9edfb760f121f07510e7c832d0c56eb7eb2187634fc427675"
 
 export const kolajVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1069860586/rendition/1080p/file.mp4?loc=external&log_user=0&signature=93ffcc3ffcfe4a4ca2624cdbaef95fab5777741b7c5ab98d9e3f9bddf9f6062a"
@@ -137,16 +137,16 @@ export const pinarVeCemilAktasVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1076669307/rendition/1080p/file.mp4?loc=external&log_user=0&signature=7ae58e9ab6d78fb58ee636c7702acb47f7202f7f7a129974894b28abecc11ba6"
 
 export const residencesVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1079831509/rendition/1080p/file.mp4?loc=external&log_user=0&signature=e241a7e40c7a2ea7942c99b95c0e94d75abe2242451645926e84e9b42cd1dcd9"
+  "https://player.vimeo.com/progressive_redirect/playback/1094341762/rendition/1080p/file.mp4?loc=external&log_user=0&signature=a1f5bd2a23cc5274e9f246ac320cd3995270f1e304eb92e6f1b2ed21c945ca9a"
 
 export const citysLifeVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1078304401/rendition/1080p/file.mp4?loc=external&log_user=0&signature=aacb4e5afe166d0e590fa2a8d26f6dfa536d13bacb6cedcc1781d787244ad857"
+  "https://player.vimeo.com/progressive_redirect/playback/1094342078/rendition/1080p/file.mp4?loc=external&log_user=0&signature=378b7d6a3a88fb46dd4b7a5180b208ee90be202ad37d858d4f2124f65bc87d64"
 
 export const citysParkVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1080760627/rendition/1080p/file.mp4?loc=external&log_user=0&signature=21b9ff3b33571e0a66c877465f0b2dc33b2de6a1e6a23eb2e654fc0c2b03bba1"
+  "https://player.vimeo.com/progressive_redirect/playback/1094342685/rendition/1080p/file.mp4?loc=external&log_user=0&signature=4fc9f6ec58c5d656752a416e12db6fc6705dd889f6df9d27acd0a829aa34dbaa"
 
 export const membersClubVideo =
-  "https://player.vimeo.com/progressive_redirect/playback/1080760684/rendition/1080p/file.mp4?loc=external&log_user=0&signature=f3cf12828b22d135b93eac19906ba33c50f6449135a428833e33ecb58bcbdda9"
+  "https://player.vimeo.com/progressive_redirect/playback/1094342384/rendition/1080p/file.mp4?loc=external&log_user=0&signature=3fd50cf28bdac362b7bdb1ea7c44fd8b41fb25c521c03b9f693e388fabf59059"
 
 export const citysIstanbulAvmVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1090029618/rendition/1080p/file.mp4?loc=external&log_user=0&signature=f1d3f003fc9827566caaea65487458e20ce21ad51846208b95045b77f6875b34"
