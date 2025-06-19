@@ -31,6 +31,17 @@ export default function Page() {
           "Sauna, buhar odası ve masaj alanlarını içeren wellness bölümü; beden kadar zihni de rahatlatmak için kurgulandı.",
       },
       {
+        title: "HAMAM",
+        subtitle: "Zamansız bir ritüelin yeniden yorumu",
+        description: "Yüzyıllardır süregelen bir ritüelin izinde; su, buhar ve sessizlikle bedenin hafifliğini hisset.",
+      },
+      {
+        title: "SAUNA",
+        subtitle: "Sıcaklığın içsel bir dengeye dönüştüğü alan",
+        description:
+          "Doğal dokularla şekillenen zarif bir denge içinde tasarlanan sauna, bedenin fazlalıklardan arınmasını ve zihnin hafiflemesini destekler.",
+      },
+      {
         title: "BASKETBOL SAHASI",
         subtitle: "Sınırlar içinde özgürlük",
         description: "Tam ölçülerde tasarlanmış, bireysel antrenman veya dostça oyunlar için açık basketbol sahası.",
@@ -72,6 +83,12 @@ export default function Page() {
       },
       {
         url: "/img/members-club/01/03.jpg",
+      },
+      {
+        url: "/img/members-club/01/10.jpg",
+      },
+      {
+        url: "/img/members-club/01/11.jpg",
       },
       {
         url: "/img/members-club/01/04.jpg",
