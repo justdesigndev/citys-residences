@@ -295,7 +295,7 @@ export function ContactForm({ translations }: FormContactProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
-          className="font-halenoir space-y-6 bt:space-y-6 py-10 bt:py-0"
+          className="font-suisse-intl space-y-6 bt:space-y-6 py-10 bt:py-0"
           noValidate
         >
           <div className="flex flex-col bt:grid grid-flow-col gap-6 bt:gap-4 bt:grid-cols-2">
@@ -404,7 +404,7 @@ export function ContactForm({ translations }: FormContactProps) {
         </form>
       </Form>
       <Dialog open={successDialog} onOpenChange={setSuccessDialog}>
-        <DialogContent className="font-halenoir flex flex-col items-center justify-center py-8">
+        <DialogContent className="font-suisse-intl flex flex-col items-center justify-center py-8">
           <DialogHeader>
             <DialogTitle className="text-neutral-950 font-medium leading-none text-base bt:text-2xl flex flex-col items-center gap-2 text-center mb-2">
               <div className="w-9 h-9 flex items-center justify-center">

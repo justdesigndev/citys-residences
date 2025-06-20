@@ -78,7 +78,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
           <p
             className={cn(
               s.infoText,
-              "font-halenoir text-black bt:text-white font-normal leading-relaxed text-center bd:text-left z-[150]"
+              "font-suisse-intl text-black bt:text-white font-normal leading-relaxed text-center bd:text-left z-[150]"
             )}
           >
             {description}

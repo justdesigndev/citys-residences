@@ -144,6 +144,7 @@ const config: Config = {
       fontFamily: {
         halenoir: "var(--font-halenoir)",
         montserrat: "var(--font-montserrat)",
+        "suisse-intl": "var(--font-suisse-intl)",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -68,13 +68,13 @@ export function StickyContactMenu() {
       },
       message: { placeholder: t("form.inputs.message.placeholder") },
       consent: {
-        placeholder: t("form.inputs.consent.placeholder"),
+        placeholder: "", // This is handled by ConsentCheckboxes component with t.rich()
         errors: {
           required: t("form.inputs.consent.errors.required"),
         },
       },
       consentElectronicMessage: {
-        placeholder: t("form.inputs.consentElectronicMessage.placeholder"),
+        placeholder: "", // This is handled by ConsentCheckboxes component with t.rich()
         errors: {
           required: t("form.inputs.consentElectronicMessage.errors.required"),
         },
@@ -159,7 +159,7 @@ export function StickyContactMenu() {
         </div>
         <div className={cn(s.dContent, "px-4 pb-20")} onClick={(e) => e.stopPropagation()}>
           <ScrollableBox>
-            <p className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal mt-5">
+            <p className="text-neutral-900 text-base bt:text-sm font-normal font-suisse-intl text-left bt:text-center bd:text-left leading-normal mt-5">
               {t.rich("description", {
                 br: () => <br className="hidden bt:block" />,
               })}

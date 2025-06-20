@@ -102,7 +102,7 @@ export function Header() {
             height="6"
           />
         </div>
-        <div className={cn(s.text, "cursor-pointer text-white font-halenoir")}>
+        <div className={cn(s.text, "cursor-pointer text-white font-suisse-intl")}>
           <span>{t("close")}</span>
           <span>{t("open")}</span>
         </div>

@@ -40,8 +40,8 @@ export default function Home() {
           <Video primaryVideoUrl={mainVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </ScaleOut>
       </section>
-      <section className="bg-white font-halenoir pt-0 bt:pt-12 z-20 relative">
-        <div className="bd:container mx-auto py-16 bt:py-28 bd:pt-40 bd:pb-8 relative flex flex-col items-center px-4 bt:px-10 bd:px-16">
+      <section className="bg-white font-suisse-intl pt-0 bt:pt-12 z-20 relative">
+        <div className="bd:container mx-auto py-16 bt:py-28 bd:pt-40 bd:pb-8 relative flex flex-col items-center px-2 bt:px-10 bd:px-16">
           <div className="flex flex-col items-center text-center">
             <h1 className="font-montserrat text-bricky-brick text-4xl bt:text-8xl font-semibold tracking-widest">
               <TextRevealOnScroll className="leading-tight" staggerDuration={0.05}>
@@ -65,7 +65,7 @@ export default function Home() {
       <section className="w-64 h-64 mx-auto hidden bt:block">
         <Logo fill={"var(--bricky-brick)"} />
       </section>
-      <section className="relative bd:container py-8 bt:py-20 px-4 bt:px-10 bd:px-16">
+      <section className="relative bd:container py-8 bt:py-20 px-2 bt:px-10 bd:px-16">
         <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
           <VideoWithPlayButton
             primaryVideoUrl={kolajVideo}
@@ -74,7 +74,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="bd:container flex flex-col-reverse bd:flex-row items-center justify-between gap-10 bt:gap-20 bd:gap-4 py-6 bt:py-24 px-4 bt:px-10 bd:px-16">
+      <section className="bd:container flex flex-col-reverse bd:flex-row items-center justify-between gap-10 bt:gap-20 bd:gap-4 py-6 bt:py-24 px-2 bt:px-10 bd:px-16">
         <div className="px-4 bt:px-0 flex flex-col items-center justify-center bd:items-start">
           {/* desktop title */}
           <h2 className="font-montserrat font-normal text-bricky-brick text-4xl md:text-7xl xl:text-6xl 2xl:text-7xl mb-5 bt:mb-10 hidden bd:block text-center xl:text-left">
@@ -82,7 +82,7 @@ export default function Home() {
               {t("live.p1.title")}
             </TextRevealOnScroll>
           </h2>
-          <p className="font-halenoir text-md bt:text-4xl bd:text-2xl max-w-sm bt:max-w-xl bd:max-w-xl bd:leading-normal text-center xl:text-left">
+          <p className="font-suisse-intl text-md bt:text-4xl bd:text-2xl max-w-sm bt:max-w-xl bd:max-w-xl bd:leading-normal text-center xl:text-left">
             <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
               {t("live.p1.description")}
             </TextRevealOnScroll>
@@ -124,7 +124,7 @@ export default function Home() {
           <Logo fill={"var(--bricky-brick)"} />
         </div>
       </section>
-      <section className="relative bd:container py-12 bt:py-20 px-4 bt:px-10 bd:px-16">
+      <section className="relative bd:container py-12 bt:py-20 px-2 bt:px-10 bd:px-16">
         <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
           <VideoWithPlayButton
             primaryVideoUrl={muratKaderVideo}

@@ -239,7 +239,7 @@ export default function Page() {
           <IconCitysMembersClubLogo fill="#000000" />
         </div>
       </section>
-      <section className="bg-white z-30 px-4 bt:px-10 bd:px-16">
+      <section className="bg-white z-30 px-2 bt:px-10 bd:px-16">
         <div className="mb-40 mt-20">
           <ListCarousel
             title={sportsAndHealth.title}

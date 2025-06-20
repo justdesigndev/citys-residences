@@ -25,7 +25,7 @@ export function ScrollToTop() {
   return (
     <button
       onClick={handleScrollToTop}
-      className="font-halenoir font-normal text-sm text-white opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
+      className="font-suisse-intl font-normal text-sm text-white opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
       type="button"
     >
       {t("scrollToTop")}

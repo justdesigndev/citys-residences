@@ -9,7 +9,7 @@
 }
 .text {
   color: var(--white);
-  font-family: var(--font-halenoir);
+  font-family: var(--font-suisse-intl);
   font-size: desktop-vw(100px);
   font-weight: 700;
   left: 50%;
@@ -65,7 +65,7 @@
 
   .infoText {
     color: var(--white);
-    font-family: var(--font-halenoir);
+    font-family: var(--font-suisse-intl);
     font-size: desktop-vw(16px);
     font-weight: 400;
     line-height: 1.5;

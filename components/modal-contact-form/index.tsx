@@ -70,13 +70,13 @@ export function ModalContactForm() {
       },
       message: { placeholder: t("form.inputs.message.placeholder") },
       consent: {
-        placeholder: t("form.inputs.consent.placeholder"),
+        placeholder: "", // This is handled by ConsentCheckboxes component with t.rich()
         errors: {
           required: t("form.inputs.consent.errors.required"),
         },
       },
       consentElectronicMessage: {
-        placeholder: t("form.inputs.consentElectronicMessage.placeholder"),
+        placeholder: "", // This is handled by ConsentCheckboxes component with t.rich()
         errors: {
           required: t("form.inputs.consentElectronicMessage.errors.required"),
         },
@@ -214,7 +214,7 @@ export function ModalContactForm() {
             </div>
             <ScrollableBox className="h-full">
               <div className="px-4 bt:px-8 py-14 bt:py-8 space-y-8">
-                <h2 className="text-neutral-900 text-base bt:text-sm font-normal font-halenoir text-left bt:text-center bd:text-left leading-normal">
+                <h2 className="text-neutral-900 text-base bt:text-sm font-normal font-suisse-intl text-left bt:text-center bd:text-left leading-normal">
                   {t.rich("description", {
                     br: () => <br className="hidden bt:block" />,
                   })}

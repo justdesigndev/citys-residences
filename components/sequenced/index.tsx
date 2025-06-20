@@ -65,12 +65,12 @@ const Sequenced = () => {
             YAŞAMA ALAN AÇAN DETAYLAR
           </TextRevealOnScroll>
         </h2>
-        <p className="font-halenoir text-md lg:text-4xl xl:text-2xl font-bold mb-4 text-center xl:text-left">
+        <p className="font-suisse-intl text-md lg:text-4xl xl:text-2xl font-bold mb-4 text-center xl:text-left">
           <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
             Her metrekaresi ince tasarlanmış, ferah bir hayata açılan çizgiler
           </TextRevealOnScroll>
         </p>
-        <p className="font-halenoir text-md lg:text-4xl xl:text-xl font-normal text-center xl:text-left">
+        <p className="font-suisse-intl text-md lg:text-4xl xl:text-xl font-normal text-center xl:text-left">
           <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
             Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
             tasarlandı.
