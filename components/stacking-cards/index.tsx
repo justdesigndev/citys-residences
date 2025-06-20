@@ -7,7 +7,6 @@ import { useWindowSize } from "react-use"
 
 import { Img } from "@/components/utility/img"
 import { useImageGalleryStore } from "@/lib/store/image-gallery"
-import InnerImageZoom from "react-inner-image-zoom"
 import styles from "./stacking-cards.module.css"
 import { breakpoints } from "@/styles/config.mjs"
 
@@ -60,8 +59,7 @@ export function StackingCards({ items }: StackingCardsProps) {
   const handleImageClick = (itemImages: { url: string }[], index: number) => {
     const slides = itemImages.map((image) => (
       <div key={image.url} className="h-[90vh] w-[100vw] relative">
-        {/* <Img src={image.url} fill sizes="100vw" alt="Residence" className="object-contain" /> */}
-        <InnerImageZoom src={image.url} zoomSrc={image.url} zoomScale={1.5} />
+        <Img src={image.url} fill sizes="100vw" alt="Residence" className="object-contain" />
       </div>
     ))
     openModal(slides, index)
