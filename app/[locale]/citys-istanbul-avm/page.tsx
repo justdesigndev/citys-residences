@@ -4,6 +4,7 @@ import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
 import { AutoScrollCarousel } from "@/components/auto-scroll-carousel"
+import { BrandCarouselItem } from "@/components/brand-carousel-item"
 import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { Img } from "@/components/utility/img"
@@ -87,57 +88,24 @@ export default async function Page() {
       <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
-          {[...shoppingBrands, ...shoppingBrands].map((brand, index) => (
-            <div
-              key={`${brand.name}-${index}`}
-              className="flex items-center justify-center px-8 bt:px-16 w-64 h-32 bt:h-full"
-            >
-              <Img
-                src={brand.logo}
-                alt={brand.name}
-                className="w-full h-full object-contain grayscale"
-                height={400}
-                width={400}
-              />
-            </div>
+          {[...shoppingBrands, ...shoppingBrands].map((item, index) => (
+            <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
           ))}
         </AutoScrollCarousel>
       </section>
       <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">YEME - İÇME</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
-          {[...foodBrands, ...foodBrands].map((brand, index) => (
-            <div
-              key={`${brand.name}-${index}`}
-              className="flex items-center justify-center px-8 bt:px-16 w-64 h-32 bt:h-full"
-            >
-              <Img
-                src={brand.logo}
-                alt={brand.name}
-                className="w-full h-full object-contain grayscale"
-                height={400}
-                width={400}
-              />
-            </div>
+          {[...foodBrands, ...foodBrands].map((item, index) => (
+            <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
           ))}
         </AutoScrollCarousel>
       </section>
       <section className="relative z-20 bg-white mt-10 bd:mt-20 mb-20">
         <h2 className="font-montserrat text-3xl font-regular text-center mb-8">HİZMETLER</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
-          {[...services, ...services].map((service, index) => (
-            <div
-              key={`${service.name}-${index}`}
-              className="flex items-center justify-center px-8 bt:px-16 w-64 h-32 bt:h-full"
-            >
-              <Img
-                src={service.logo}
-                alt="Service Logo"
-                className="w-full h-full object-contain grayscale"
-                height={400}
-                width={400}
-              />
-            </div>
+          {[...services, ...services].map((item, index) => (
+            <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
           ))}
         </AutoScrollCarousel>
       </section>
