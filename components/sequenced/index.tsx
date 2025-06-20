@@ -8,7 +8,6 @@ import { ScrollTrigger, useGSAP, gsap } from "@/components/gsap"
 import { Img } from "@/components/utility/img"
 
 const Sequenced = () => {
-  const mobileRef = useRef(null)
   const desktopRef = useRef(null)
 
   useGSAP(
@@ -45,17 +44,6 @@ const Sequenced = () => {
         pin: true,
         scrub: true,
         trigger: desktopRef.current,
-        onUpdate: (self) => {
-          setImgRecursively(self.progress)
-        },
-      })
-
-      ScrollTrigger.create({
-        end: `+=1500px`,
-        start: "center center",
-        pin: true,
-        scrub: true,
-        trigger: mobileRef.current,
         onUpdate: (self) => {
           setImgRecursively(self.progress)
         },
@@ -132,7 +120,7 @@ const Sequenced = () => {
           </p>
         </div>
         <div className="w-full xl:w-1/2">
-          <div className="relative w-full h-[80vw] lg:h-[90vw] xl:h-full" ref={mobileRef}>
+          <div className="relative w-full h-[80vw] lg:h-[90vw] xl:h-full">
             {Array.from({ length: 24 }).map((_, i) => {
               return (
                 <div

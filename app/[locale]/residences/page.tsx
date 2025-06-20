@@ -81,7 +81,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="bg-white z-30 px-4 bt:px-10 bd:px-16 py-12 bd:py-0">
+      <section className="hidden xl:block bg-white z-30 px-4 bt:px-10 bd:px-16 py-12 bd:py-0">
         <Sequenced />
       </section>
       <section className="bg-white z-30 px-4 bt:px-10 bd:px-16 pb-16 bt:pb-72">
