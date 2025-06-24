@@ -184,13 +184,13 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                   </motion.div>
                 )}
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 left-1.5 lg:left-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border-2 border-black"
+                  className="absolute top-1/2 -translate-y-1/2 left-1.5 lg:left-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border border-black"
                   onClick={() => goToIndex(activeIndex - 1)}
                 >
                   <ArrowLeftIcon className="w-4 h-4 lg:w-6 lg:h-6" />
                 </div>
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 right-1.5 lg:right-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border-2 border-black"
+                  className="absolute top-1/2 -translate-y-1/2 right-1.5 lg:right-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border border-black"
                   onClick={() => goToIndex(activeIndex + 1)}
                 >
                   <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
