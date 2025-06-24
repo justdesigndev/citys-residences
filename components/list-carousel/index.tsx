@@ -7,7 +7,7 @@ import { ArrowLeftIcon, ArrowRightIcon, MoveDownIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 import { Img } from "@/components/utility/img"
-import { ScrollableBox } from "../utility/scrollable-box"
+import { ScrollableBox } from "@/components/utility/scrollable-box"
 
 export interface ListCarouselProps {
   title: string

@@ -258,7 +258,6 @@ export default function Page() {
             title={eventsAndEntertainment.title}
             items={eventsAndEntertainment.items}
             images={eventsAndEntertainment.images}
-            reverse
             withMoveDown
           />
         </div>
