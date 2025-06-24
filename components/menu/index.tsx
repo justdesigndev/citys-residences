@@ -85,8 +85,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
           {items.map(({ title, href }, i) => (
             <li
               className={cn(
-                s.navItem,
-                "text-lg lg:text-4xl xl:text-3xl",
+                "text-lg lg:text-3xl xl:text-2xl 2xl:text-3xl",
                 "font-suisse-intl text-white text-center xl:text-left",
                 "transition-opacity duration-300 ease-in-out",
                 "font-normal",
