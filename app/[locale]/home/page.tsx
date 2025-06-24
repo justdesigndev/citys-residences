@@ -46,7 +46,7 @@ export default function Home() {
             <Logo fill={"var(--bricky-brick)"} />
           </div>
           <div className="flex flex-col items-center">
-            <h1 className="font-halenoir text-bricky-brick text-4xl bt:text-8xl font-semibold tracking-widest text-center">
+            <h1 className="font-montserrat text-bricky-brick text-4xl bt:text-8xl font-semibold tracking-widest text-center">
               <TextRevealOnScroll staggerDuration={0.05}>{t("section1.title1")}</TextRevealOnScroll>
             </h1>
             <div className={s.sanati}>
@@ -57,7 +57,7 @@ export default function Home() {
               </FadeInOnScroll>
               <span className="sr-only">{t("section1.title2")}</span>
             </div>
-            <p className="font-halenoir text-bricky-brick text-md bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
+            <p className="font-montserrat text-bricky-brick text-md bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
               <TextRevealOnScroll staggerDuration={0.01}>{t("section1.title3")}</TextRevealOnScroll>
             </p>
           </div>
