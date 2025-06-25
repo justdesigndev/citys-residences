@@ -150,36 +150,33 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                 </AnimatePresence>
               </div>
               <div className="relative overflow-hidden h-[70vw] lg:h-[40vw] w-full lg:w-8/12">
-                {images[activeIndex] && (
+                {images.map((image, imageIndex) => (
                   <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: [0.5, 1] }}
+                    key={imageIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: imageIndex === activeIndex ? 1 : 0,
+                    }}
                     transition={{
-                      duration: 0.8,
-                      times: [0, 1],
+                      duration: 0.6,
+                      ease: "easeInOut",
                     }}
                     className="absolute left-0 top-0 w-full h-full overflow-hidden"
+                    style={{ zIndex: imageIndex === activeIndex ? 2 : 1 }}
                   >
                     <div className="absolute top-0 left-0 w-full h-full">
-                      <Img
-                        src={images[activeIndex].url}
-                        alt="Members Club"
-                        fill
-                        sizes="100vw"
-                        className="object-cover"
-                      />
+                      <Img src={image.url} alt="Members Club" fill sizes="100vw" className="object-cover" />
                     </div>
                   </motion.div>
-                )}
+                ))}
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 left-1.5 lg:left-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border border-black"
+                  className="absolute top-1/2 -translate-y-1/2 left-1.5 lg:left-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border border-black z-10"
                   onClick={() => goToIndex(activeIndex - 1)}
                 >
                   <ArrowLeftIcon className="w-4 h-4 lg:w-6 lg:h-6" />
                 </div>
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 right-1.5 lg:right-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border border-black"
+                  className="absolute top-1/2 -translate-y-1/2 right-1.5 lg:right-4 cursor-pointer blur-bg-white p-2 lg:p-4 rounded-full border border-black z-10"
                   onClick={() => goToIndex(activeIndex + 1)}
                 >
                   <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
