@@ -25,24 +25,15 @@ export interface ListCarouselProps {
 export function ListCarousel({ title, items, images, withMoveDown = false }: ListCarouselProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isAutoplaying, setIsAutoplaying] = useState(false) // Initialized to false
+  const [isAutoplaying, setIsAutoplaying] = useState(false)
 
   const actualItemsLength = items?.length || 0
   const actualImagesLength = images?.length || 0
 
-  // Determine the length for looping/iteration.
-  // If there's only one item, loop through images if available. Otherwise, loop through items.
   const loopLength = actualItemsLength === 1 && actualImagesLength > 0 ? actualImagesLength : actualItemsLength
 
-  // Determine which item's text content to display.
-  // If there's only one item, always display its content. Otherwise, display content of the activeIndex.
   const itemIndexForDisplay = actualItemsLength === 1 ? 0 : activeIndex
 
-  useEffect(() => {
-    // Animations based on activeIndex (handled by framer-motion)
-  }, [activeIndex, items, images])
-
-  // Autoplay interval useEffect
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null
 
@@ -71,7 +62,7 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
     () => {
       if (!items || items.length === 0) return
 
-      const st = ScrollTrigger.create({
+      ScrollTrigger.create({
         trigger: ref.current,
         start: "top bottom",
         end: "bottom top",
@@ -81,10 +72,6 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
         onLeaveBack: () => setIsAutoplaying(false),
         // markers: true, // For debugging
       })
-
-      return () => {
-        st.kill() // Kill the specific ScrollTrigger instance
-      }
     },
     { scope: ref, dependencies: [items, setIsAutoplaying] }
   )
@@ -94,14 +81,13 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
     let newIndex = targetIndex
 
     if (loopLength > 0) {
-      // Ensure loopLength is positive before modulo
       if (newIndex < 0) {
-        newIndex = loopLength - 1 // Loop to the last item
+        newIndex = loopLength - 1
       } else if (newIndex >= loopLength) {
-        newIndex = 0 // Loop to the first item
+        newIndex = 0
       }
     } else {
-      newIndex = 0 // Default to 0 if no items/images to loop
+      newIndex = 0
     }
 
     setActiveIndex(newIndex)
@@ -110,12 +96,12 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
   return (
     <div className="relative w-full" ref={ref}>
       <div className="h-full relative">
-        <div className={"w-full h-full flex flex-col lg:flex-row gap-10 xl:gap-10 2xl:gap-10"}>
-          <div className={"flex flex-col gap-4 w-full"}>
+        <div className="w-full h-full flex flex-col lg:flex-row gap-10 xl:gap-10 2xl:gap-10">
+          <div className="flex flex-col gap-2 lg:gap-4 w-full">
             <h2 className="font-suisse-intl text-3xl lg:text-4xl xl:text-5xl font-normal text-bricky-brick">{title}</h2>
-            <div className="w-full">
-              <ScrollableBox scrollTo={activeIndex ? `#item${activeIndex}Button` : null} orientation="horizontal">
-                {items.length > 0 && items[0].title && (
+            {items.length > 0 && items[0].title && (
+              <div className="w-full">
+                <ScrollableBox scrollTo={activeIndex ? `#item${activeIndex}Button` : null} orientation="horizontal">
                   <div className="flex flex-row pt-4">
                     {items.map((item, itemIndex) => (
                       <motion.div
@@ -134,11 +120,11 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                       </motion.div>
                     ))}
                   </div>
-                )}
-              </ScrollableBox>
-            </div>
-            <div className="relative mt-5 lg:mt-8 flex flex-row items-center gap-4 w-full">
-              <div className="relative w-4/12">
+                </ScrollableBox>
+              </div>
+            )}
+            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-4 w-full mt-5 lg:mt-8">
+              <div className="w-full lg:w-4/12 pt-0 lg:pt-32 xl:pt-64">
                 <AnimatePresence mode="wait">
                   {items[itemIndexForDisplay] && (
                     <motion.div
@@ -148,14 +134,14 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h3 className="font-suisse-intl text-2xl lg:text-4xl xl:text-3xl 2xl:text-4xl font-normal text-bricky-brick mb-2 lg:mb-6">
+                      <h3 className="font-suisse-intl text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-bricky-brick mb-2 lg:mb-3 xl:mb-6">
                         {items[itemIndexForDisplay].title}
                       </h3>
                       <div className="xl:pr-8 2xl:pr-16">
-                        <p className="font-suisse-intl text-base lg:text-lg xl:text-base 2xl:text-lg font-bold text-black">
+                        <p className="font-suisse-intl text-base lg:text-sm xl:text-base 2xl:text-lg font-bold text-black">
                           {items[itemIndexForDisplay].subtitle}
                         </p>
-                        <p className="font-suisse-intl text-base lg:text-lg xl:text-base 2xl:text-lg font-normal text-black">
+                        <p className="font-suisse-intl text-base lg:text-sm xl:text-base 2xl:text-lg font-normal text-black">
                           {items[itemIndexForDisplay].description}
                         </p>
                       </div>
@@ -163,13 +149,16 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                   )}
                 </AnimatePresence>
               </div>
-              <div className={cn("relative overflow-hidden h-[40vw] w-8/12")}>
+              <div className="relative overflow-hidden h-[70vw] lg:h-[40vw] w-full lg:w-8/12">
                 {images[activeIndex] && (
                   <motion.div
                     key={activeIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: [0.5, 1] }}
+                    transition={{
+                      duration: 0.8,
+                      times: [0, 1],
+                    }}
                     className="absolute left-0 top-0 w-full h-full overflow-hidden"
                   >
                     <div className="absolute top-0 left-0 w-full h-full">
