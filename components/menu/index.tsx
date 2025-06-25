@@ -5,11 +5,12 @@ import s from "./menu.module.css"
 import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
 import { useRef, useState } from "react"
-import { useClickAway } from "react-use"
+import { useClickAway, useWindowSize } from "react-use"
 
 import { gsap, useGSAP } from "@/components/gsap"
 import { IconPin, socialIcons } from "@/components/icons"
 import { Link } from "@/components/utility/link"
+import { breakpoints } from "@/styles/config.mjs"
 
 interface MenuItem {
   title: string
@@ -26,6 +27,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   const ref = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
   const lenis = useLenis()
+  const { width } = useWindowSize()
 
   const [hover, setHover] = useState(false)
   const [active, setActive] = useState<number | null>(null)
@@ -95,12 +97,16 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               )}
               key={title}
               onMouseEnter={() => {
-                setHover(true)
-                setActive(i)
+                if (width > breakpoints.breakpointTablet) {
+                  setHover(true)
+                  setActive(i)
+                }
               }}
               onMouseLeave={() => {
-                setHover(false)
-                setActive(null)
+                if (width > breakpoints.breakpointTablet) {
+                  setHover(false)
+                  setActive(null)
+                }
               }}
             >
               <Link className="cursor-pointer block xl:py-1" href={href}>
