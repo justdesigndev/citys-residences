@@ -1,20 +1,19 @@
-import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 import { ReactNode } from "react"
 
 import { ScaleOut } from "@/components/animations/scale-out"
+import { IconCitysLifeLogo, IconCitysParkBgLogo } from "@/components/icons"
+import { LinkToPage } from "@/components/link-to-page"
 import { MaskedParallaxImageSection } from "@/components/parallax-images-section"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysLifeVideo } from "@/lib/constants"
-import { IconCitysLifeLogo, IconCitysParkBgLogo } from "@/components/icons"
-import { LinkToPage } from "@/components/link-to-page"
 
 export default function Page() {
   const t = useTranslations("citys-life")
   return (
     <Wrapper>
-      <section className={cn("relative h-[50vh] bd:h-screen bg-bricky-brick z-10 overflow-hidden")}>
+      <section className="relative h-screen bg-bricky-brick z-10 overflow-hidden">
         <ScaleOut>
           <Video
             primaryVideoUrl={citysLifeVideo}

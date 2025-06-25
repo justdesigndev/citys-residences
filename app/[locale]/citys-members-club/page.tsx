@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils"
-
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { IconCitysMembersClubLogo, IconCitysParkBgLogo } from "@/components/icons"
@@ -220,7 +218,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[50vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className="h-screen bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
             primaryVideoUrl={membersClubVideo}

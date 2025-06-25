@@ -1,6 +1,5 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 
 import { ScaleOut } from "@/components/animations/scale-out"
@@ -50,7 +49,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[50vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className="h-screen bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
             primaryVideoUrl={citysParkVideo}

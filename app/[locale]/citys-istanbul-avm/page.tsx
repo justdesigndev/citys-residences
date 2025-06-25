@@ -46,7 +46,7 @@ export default async function Page() {
 
   return (
     <Wrapper>
-      <section className={cn("h-[60vh] bd:h-screen bg-bricky-brick relative z-10 overflow-hidden")}>
+      <section className="h-screen bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
             primaryVideoUrl={citysIstanbulAvmVideo}
