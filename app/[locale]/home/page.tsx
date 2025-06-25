@@ -14,6 +14,7 @@ import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { kolajVideo, locationVideo, mainVideo, muratKaderVideo } from "@/lib/constants"
+import { colors } from "@/styles/config.mjs"
 
 export default function Home() {
   const t = useTranslations("home")
@@ -41,9 +42,9 @@ export default function Home() {
         </ScaleOut>
       </section>
       <section className="bg-white pt-0 bt:pt-12 z-20 relative">
-        <div className="bd:container mx-auto py-16 bt:py-28 bd:pt-16 bd:pb-8 relative flex flex-col items-center px-6 bt:px-10 bd:px-16">
+        <div className="bd:container mx-auto py-12 bt:py-28 bd:pt-16 bd:pb-8 relative flex flex-col items-center px-6 bt:px-10 bd:px-16">
           <div className="w-64 h-64 mx-auto hidden bt:block mb-10">
-            <Logo fill={"var(--bricky-brick)"} />
+            <Logo fill={colors["bricky-brick"]} />
           </div>
           <div className="flex flex-col items-center">
             <h1 className="font-montserrat text-bricky-brick text-4xl bt:text-8xl font-semibold tracking-widest text-center">
@@ -72,9 +73,9 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="bd:container flex flex-col bd:flex-row items-center justify-between gap-10 bt:gap-20 bd:gap-4 py-12 bt:py-24 px-6 bt:px-10 bd:px-16">
+      <section className="bd:container flex flex-col bd:flex-row items-center justify-between gap-10 bt:gap-20 bd:gap-4 py-6 bt:py-24 px-6 bt:px-10 bd:px-16">
         <div className="px-4 bt:px-0 flex flex-col items-center justify-center bd:items-start">
-          <h2 className="font-suisse-intl font-normal text-bricky-brick text-4xl md:text-7xl xl:text-6xl 2xl:text-7xl mb-5 bt:mb-10 text-center xl:text-left">
+          <h2 className="font-suisse-intl font-medium text-bricky-brick text-4xl md:text-7xl xl:text-6xl 2xl:text-7xl mb-5 bt:mb-10 text-center xl:text-left">
             <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
               {t("live.p1.title")}
             </TextRevealOnScroll>
@@ -96,13 +97,13 @@ export default function Home() {
           />
         </div>
       </section>
-      <section>
+      <section className="py-6 bt:py-24">
         <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
         <div className="w-40 h-40 mx-auto bt:hidden">
-          <Logo fill={"var(--bricky-brick)"} />
+          <Logo fill={colors["bricky-brick"]} />
         </div>
       </section>
-      <section className="relative bd:container py-12 bt:py-20 px-6 bt:px-10 bd:px-16">
+      <section className="relative bd:container py-8 bt:py-20 px-6 bt:px-10 bd:px-16">
         <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
           <VideoWithPlayButton
             primaryVideoUrl={muratKaderVideo}
@@ -114,7 +115,7 @@ export default function Home() {
       <section>
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
         <div className="w-40 h-40 mx-auto bt:hidden">
-          <Logo fill={"var(--bricky-brick)"} />
+          <Logo fill={colors["bricky-brick"]} />
         </div>
       </section>
       <LinkToPage next={{ title: "Daireler", href: "/residences" }} />
