@@ -74,7 +74,13 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
         <EmblaCarousel autoplay={true} autoplayDelay={5000} slides={items} options={{ duration: 35, loop: true }} />
       </div>
       <div className={cn(s.descriptionC, "gsap-description-c")}>
-        <div className={cn(s.description, "gsap-description", "w-full h-full rounded-lg overflow-hidden")}>
+        <div
+          className={cn(
+            s.description,
+            "gsap-description",
+            "w-full h-full rounded-lg overflow-hidden blur-bg-bricky-brick-light"
+          )}
+        >
           <p
             className={cn(
               s.infoText,
