@@ -128,6 +128,11 @@
                 "button": "İNCELE"
             }
         },
+        "section2": {
+            "title1": "YAŞAMIN",
+            "title2": "TAM",
+            "title3": "MERKEZİNDE"
+        },
         "map": {
             "title": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir."
         },

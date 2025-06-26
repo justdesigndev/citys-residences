@@ -8,6 +8,7 @@ const colors = {
   "bengala-red": "#932d19",
   grenadier: "#c24e37",
   tabasco: "#A02912",
+  unbleached: "#FCFAF5",
 }
 
 const themes = {

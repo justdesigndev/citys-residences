@@ -11,7 +11,7 @@ import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
-import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
+import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
 import { kolajVideo, locationVideo, mainVideo, muratKaderVideo } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
@@ -41,7 +41,7 @@ export default function Home() {
           <Video primaryVideoUrl={mainVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </ScaleOut>
       </section>
-      <section className="bg-white pt-0 bt:pt-12 z-20 relative">
+      <section className="bg-white py-0 bt:py-12 z-20 relative">
         <div className=" mx-auto py-16 bt:py-28 bd:pt-16 bd:pb-8 relative flex flex-col items-center px-0 bt:px-10 bd:px-16">
           <div className="w-64 h-64 mx-auto hidden bt:block mb-10 lg:mb-20">
             <Logo fill={colors["bricky-brick"]} />
@@ -60,36 +60,57 @@ export default function Home() {
               <span className="sr-only">{t("section1.title2")}</span>
             </article>
             <article className="font-montserrat text-bricky-brick text-md bt:text-3xl font-normal tracking-wide bt:tracking-widest text-center">
-              <TextRevealOnScroll splitBy="chars" staggerDuration={0.01}>
+              <TextRevealOnScroll splitBy="lines" staggerDuration={0.01}>
                 {t("section1.title3")}
               </TextRevealOnScroll>
             </article>
           </div>
         </div>
       </section>
-      <section className="relative  py-8 bt:py-20 section-container">
-        <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
-          <VideoWithPlayButton
-            primaryVideoUrl={kolajVideo}
-            thumbnail="/img/thumbnail-kolaj-video.jpg"
-            title="Denge Mimarisi: Karma Yaşam Tasarımı"
-          />
+      <section className="bg-unbleached py-0 bt:py-12 z-20 relative">
+        <div className=" mx-auto py-16 bt:py-28 bd:pt-16 bd:pb-8 relative flex flex-col items-center px-0 bt:px-10 bd:px-16">
+          <div className="flex flex-col items-center gap-4 lg:gap-8">
+            <article className="font-montserrat text-bricky-brick text-4xl bt:text-6xl font-semibold leading-relaxed tracking-wide bt:tracking-widest text-center">
+              <TextRevealOnScroll splitBy="characters" staggerDuration={0.01}>
+                {t("section2.title1")}
+              </TextRevealOnScroll>
+              <span className="sr-only">{t("section2.title1")}</span>
+            </article>
+            <article className="relative w-screen h-24 lg:h-44 xl:h-64">
+              <FadeInOnScroll>
+                <Img src="/img/tam.png" alt="Tam" fill className="object-contain" sizes="100vw" />
+              </FadeInOnScroll>
+              <span className="sr-only">{t("section2.title2")}</span>
+            </article>
+            <article className="font-montserrat text-bricky-brick text-4xl bt:text-7xl font-semibold leading-relaxed tracking-wide bt:tracking-widest text-center">
+              <TextRevealOnScroll splitBy="characters" staggerDuration={0.01}>
+                {t("section2.title3")}
+              </TextRevealOnScroll>
+            </article>
+          </div>
         </div>
       </section>
-      <section className=" flex flex-col bd:flex-row items-center justify-between gap-10 bt:gap-20 bd:gap-4 py-6 bt:py-24 section-container">
-        <div className="px-4 bt:px-0 flex flex-col items-center justify-center bd:items-start">
-          <h2 className="font-suisse-intl font-medium text-bricky-brick text-4xl md:text-7xl xl:text-6xl 2xl:text-7xl mb-5 bt:mb-10 text-center xl:text-left">
-            <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
+      <section className="relative  py-8 bt:py-20 section-container">
+        <VideoSection
+          primaryVideoUrl={kolajVideo}
+          thumbnail="/img/thumbnail-kolaj-video.jpg"
+          title="Denge Mimarisi: Karma Yaşam Tasarımı"
+        />
+      </section>
+      <section className=" flex flex-col-reverse xl:flex-row items-center justify-between gap-4 lg:gap-20 xl:gap-4 py-6 bt:py-24 section-container">
+        <div className="flex flex-col gap-2 lg:gap-8">
+          <h2 className="font-suisse-intl font-medium text-bricky-brick text-3xl md:text-7xl xl:text-6xl 2xl:text-7xl text-left">
+            <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
               {t("live.p1.title")}
             </TextRevealOnScroll>
           </h2>
-          <p className="font-suisse-intl text-md bt:text-4xl bd:text-2xl max-w-sm bt:max-w-xl bd:max-w-xl bd:leading-normal text-center xl:text-left">
-            <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
+          <p className="font-suisse-intl text-base bt:text-4xl bd:text-2xl lg:max-w-xl xl:max-w-xl bd:leading-normal">
+            <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
               {t("live.p1.description")}
             </TextRevealOnScroll>
           </p>
         </div>
-        <div className={cn(s.circleVideoC, "overflow-hidden rounded-full z-20")}>
+        <div className={cn(s.circleVideoC, "overflow-hidden rounded-sm lg:rounded-full z-20")}>
           <Video
             primaryVideoUrl={locationVideo}
             autoPlay
@@ -102,24 +123,23 @@ export default function Home() {
       </section>
       <section className="py-6 bt:py-24">
         <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
-        <div className="w-40 h-40 mx-auto bt:hidden">
+        {/* <div className="w-40 h-40 mx-auto bt:hidden">
           <Logo fill={colors["bricky-brick"]} />
-        </div>
+        </div> */}
       </section>
-      <section className="relative  py-8 bt:py-20 section-container">
-        <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
-          <VideoWithPlayButton
-            primaryVideoUrl={muratKaderVideo}
-            thumbnail="/img/thumbnail-murat-kader.jpg"
-            title="Mimari: Bir Düşünceden Doğan Yaşam"
-          />
-        </div>
+      <section className="relative py-8 bt:py-20 section-container">
+        <VideoSection
+          primaryVideoUrl={muratKaderVideo}
+          thumbnail="/img/thumbnail-murat-kader.jpg"
+          title="Mimari: Bir Düşünceden Doğan Yaşam"
+          className="rounded-sm overflow-hidden"
+        />
       </section>
       <section>
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
-        <div className="w-40 h-40 mx-auto bt:hidden">
+        {/* <div className="w-40 h-40 mx-auto bt:hidden">
           <Logo fill={colors["bricky-brick"]} />
-        </div>
+        </div> */}
       </section>
       <LinkToPage next={{ title: "Daireler", href: "/residences" }} />
     </Wrapper>

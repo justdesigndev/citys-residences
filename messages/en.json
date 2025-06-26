@@ -128,6 +128,11 @@
                 "button": "EXPLORE"
             }
         },
+        "section2": {
+            "title1": "YAŞAMIN",
+            "title2": "TAM",
+            "title3": "MERKEZİNDE"
+        },
         "map": {
             "title": "In the heart of Istanbul, in the prestigious location of Kozyatağı, have the privilege of shaping the city and time according to your own rhythm."
         },

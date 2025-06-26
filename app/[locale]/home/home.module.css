@@ -1,7 +1,6 @@
 .circleVideoC {
-  --cutoff: mobile-vw(20px);
-  height: calc(100vw - var(--cutoff));
-  width: calc(100vw - var(--cutoff));
+  height: mobile-vw(300px);
+  width: 100%;
   @include-media ('tablet') {
     height: tablet-vw(650px);
     width: tablet-vw(650px);
