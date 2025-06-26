@@ -6,11 +6,7 @@ import { useRef } from "react"
 
 interface TextRevealOnScrollProps extends TextProps {
   children: React.ReactNode
-  staggerDuration?: number
-  splitBy?: "words" | "characters" | "lines" | string
   className?: string
-  containerLevelClassName?: string
-  elementLevelClassName?: string
 }
 
 export function TextRevealOnScroll({
