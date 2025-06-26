@@ -13,16 +13,21 @@ export interface ListCarouselProps {
   title: string
   items: {
     title?: string
-    subtitle: string
-    description: string
+    subtitle?: string
+    description?: string
+    logos?: {
+      url: string
+    }[]
   }[]
   images: {
     url: string
   }[]
+
   withMoveDown?: boolean
+  variant?: "default" | "v2"
 }
 
-export function ListCarousel({ title, items, images, withMoveDown = false }: ListCarouselProps) {
+export function ListCarousel({ title, items, images, withMoveDown = false, variant = "default" }: ListCarouselProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAutoplaying, setIsAutoplaying] = useState(false)
@@ -123,8 +128,14 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                 </ScrollableBox>
               </div>
             )}
-            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-4 w-full mt-5 lg:mt-8">
-              <div className="w-full lg:w-4/12 pt-0 lg:pt-32 xl:pt-64">
+            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 lg:gap-4 w-full mt-5 lg:mt-8">
+              <div
+                className={cn(
+                  "w-full lg:w-4/12 space-y-12",
+                  variant === "default" && "pt-0 lg:pt-32 xl:pt-64",
+                  variant === "v2" && "pt-0"
+                )}
+              >
                 <AnimatePresence mode="wait">
                   {items[itemIndexForDisplay] && (
                     <motion.div
@@ -134,7 +145,7 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h3 className="font-suisse-intl text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-normal text-bricky-brick mb-2 lg:mb-3 xl:mb-6">
+                      <h3 className="font-suisse-intl text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-medium text-bricky-brick mb-3 xl:mb-6">
                         {items[itemIndexForDisplay].title}
                       </h3>
                       <div className="xl:pr-8 2xl:pr-16">
@@ -148,6 +159,26 @@ export function ListCarousel({ title, items, images, withMoveDown = false }: Lis
                     </motion.div>
                   )}
                 </AnimatePresence>
+                {items[itemIndexForDisplay] && (
+                  <AnimatePresence mode="wait">
+                    {items[itemIndexForDisplay] && (
+                      <motion.div
+                        className="flex flex-row flex-wrap gap-4"
+                        key={`text-${itemIndexForDisplay}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {items[itemIndexForDisplay].logos?.map((logo, logoIndex) => (
+                          <div key={logoIndex} className="w-3/12 h-12 relative">
+                            <Img src={logo.url} alt="Members Club" fill sizes="10vw" className="object-contain" />
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
               </div>
               <div className="relative overflow-hidden h-[70vw] lg:h-[40vw] w-full lg:w-8/12">
                 {images.map((image, imageIndex) => (

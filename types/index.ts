@@ -258,9 +258,12 @@ export interface FormTranslations {
 export interface Brand {
   name: string
   category: string
+  subCategory: string | null
   logo: string
 }
 
 export interface BrandsResponse {
-  brands: Brand[]
+  items: Brand[]
+  categories: Record<string, string>
+  subCategories: Record<string, string>
 }

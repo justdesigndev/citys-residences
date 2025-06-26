@@ -1,6 +1,6 @@
-import { Brand } from "@/types"
+import { BrandsResponse } from "@/types"
 
-export async function getBrandsData(): Promise<Brand[]> {
+export async function getBrandsData(): Promise<BrandsResponse> {
   "use server"
 
   try {
@@ -16,9 +16,20 @@ export async function getBrandsData(): Promise<Brand[]> {
     }
 
     const data = await response.json()
-    return data.brands || []
+
+    // Return the expected BrandsResponse structure
+    return {
+      items: data.items || [],
+      categories: data.categories || {},
+      subCategories: data.subCategories || {},
+    }
   } catch (error) {
     console.error("Error fetching brands data:", error)
-    throw error
+    // Return a fallback structure that matches BrandsResponse
+    return {
+      items: [],
+      categories: {},
+      subCategories: {},
+    }
   }
 }

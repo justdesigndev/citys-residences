@@ -1,48 +1,53 @@
-import { cn } from "@/lib/utils"
-
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
-import { AutoScrollCarousel } from "@/components/auto-scroll-carousel"
-import { BrandCarouselItem } from "@/components/brand-carousel-item"
 import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
-import { Img } from "@/components/utility/img"
+import { ListCarousel } from "@/components/list-carousel"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
 
+function toTitleCase(str: string): string {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+}
+
 export default async function Page() {
-  // Fetch brands data
   const brands = await getBrandsData()
 
-  // Filter brands by category
-  const shoppingBrands = brands.filter((brand) => brand.category === "alisveris")
-  const foodBrands = brands.filter((brand) => brand.category === "yemeIcme")
-  const services = [
-    { logo: "/img/citys-istanbul-avm/hizmetler/01.png", name: "HİZMETLER" },
-    { logo: "/img/citys-istanbul-avm/hizmetler/02.png", name: "HİZMETLER" },
-    { logo: "/img/citys-istanbul-avm/hizmetler/03.png", name: "HİZMETLER" },
-    { logo: "/img/citys-istanbul-avm/hizmetler/04.png", name: "HİZMETLER" },
-    { logo: "/img/citys-istanbul-avm/hizmetler/05.png", name: "HİZMETLER" },
-    { logo: "/img/citys-istanbul-avm/hizmetler/06.png", name: "HİZMETLER" },
-  ]
+  const shoppingBrands = brands.items?.filter((brand) => brand.category === "alisveris" && brand.subCategory) || []
 
-  const slides = [
-    {
-      image: "/img/citys-istanbul-avm/slide-1.jpg",
-      title: "HER STİLİN, HER İHTİYACIN MERKEZİ",
-      description:
-        "Şehrin temposuna ayak uyduran yeme-içme alanları ve stil sahibi markalar… City's İstanbul AVM; zamansız markalar, yeni sezon koleksiyonlar ve şehirli yaşamın ritmine uygun mağazalarla alışveriş deneyimini rutinin bir adım ötesine taşıyor.",
-    },
-    {
-      image: "/img/citys-istanbul-avm/slide-2.jpg",
-      title: "GÜNLÜK YAŞAMIN TÜM İHTİYAÇLARI BİR ARADA",
-      description:
-        "Espressonuzdan eczanenize, kargonuzdan kişisel bakımınıza kadar her şey birkaç adım ötede. Şehrin temposunu kolaylaştıran, pratik ama şık bir yaşam akışı.",
-    },
-  ]
+  // Group brands by subcategory
+  const brandsBySubCategory = shoppingBrands.reduce((acc, brand) => {
+    const subCat = brand.subCategory!
+    if (!acc[subCat]) {
+      acc[subCat] = []
+    }
+    acc[subCat].push(brand)
+    return acc
+  }, {} as Record<string, typeof shoppingBrands>)
+
+  const alisveris = {
+    title: brands.categories?.alisveris || "Alışveriş",
+    items: Object.entries(brandsBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
+      title: toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
+      // subtitle: `${brandsInCategory.length} marka`,
+      // description: `${toTitleCase(
+      //   brands.subCategories?.[subCategoryKey] || subCategoryKey
+      // )} kategorisinde bulunan markalar`,
+      logos: brandsInCategory.map((brand) => ({
+        url: brand.logo,
+      })),
+    })),
+    images: Array.from({ length: Object.keys(brandsBySubCategory).length }, (_, index) => ({
+      url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
+    })),
+  }
 
   return (
     <Wrapper>
@@ -85,31 +90,40 @@ export default async function Page() {
           </FadeInOnScroll>
         </div>
       </section>
-      <section className="relative z-20 bg-white mt-10 bd:mt-20">
+      <section className="bg-white z-30 section-container my-10 lg:my-20">
+        <ListCarousel
+          title={alisveris.title}
+          items={alisveris.items}
+          images={alisveris.images}
+          withMoveDown
+          variant="v2"
+        />
+      </section>
+      {/* <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-suisse-intl text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {[...shoppingBrands, ...shoppingBrands].map((item, index) => (
             <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
           ))}
         </AutoScrollCarousel>
-      </section>
-      <section className="relative z-20 bg-white mt-10 bd:mt-20">
+      </section> */}
+      {/* <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-suisse-intl text-3xl font-regular text-center mb-8">YEME - İÇME</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {[...foodBrands, ...foodBrands].map((item, index) => (
             <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
           ))}
         </AutoScrollCarousel>
-      </section>
-      <section className="relative z-20 bg-white mt-10 bd:mt-20 mb-20">
+      </section> */}
+      {/* <section className="relative z-20 bg-white mt-10 bd:mt-20 mb-20">
         <h2 className="font-suisse-intl text-3xl font-regular text-center mb-8">HİZMETLER</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
           {[...services, ...services].map((item, index) => (
             <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
           ))}
         </AutoScrollCarousel>
-      </section>
-      <section className="relative z-20 bg-white">
+      </section> */}
+      {/* <section className="relative z-20 bg-white">
         <div className="flex flex-col bd:grid bd:grid-cols-2 gap-4 bd:gap-8  py-0 bt:py-8 section-container">
           {slides.map((slide, index) => (
             <div key={index} className={cn("h-[120vw] bd:h-[40vw] w-full relative")}>
@@ -135,39 +149,7 @@ export default async function Page() {
             </div>
           ))}
         </div>
-        {/* <ImageSlider
-          items={slides.map((slide, index) => (
-            <div
-              key={index}
-              className={cn(
-                "h-[40vw] w-full pl-8 relative",
-                index === slides.length - 1 && "pr-16",
-                index === 0 && "pl-16"
-              )}
-            >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                <Img
-                  src={slide.image}
-                  alt={`Slide ${index}`}
-                  fill
-                  className="w-full h-full object-cover"
-                  sizes="100vw"
-                />
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/80 to-transparent">
-                  <div className="flex flex-col h-full py-8 bt:py-8 px-4 bt:px-10 bd:px-8">
-                    <h1 className="max-w-lg block font-suisse-intl leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-6">
-                      {slide.title}
-                    </h1>
-                    <p className="max-w-lg block font-suisse-intl leading-snug text-white text-base bt:text-lg font-normal">
-                      {slide.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        /> */}
-      </section>
+      </section> */}
       <LinkToPage
         previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
         next={{ title: "Anasayfa", href: "/" }}
