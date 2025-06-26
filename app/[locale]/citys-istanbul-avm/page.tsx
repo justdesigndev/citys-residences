@@ -20,31 +20,68 @@ function toTitleCase(str: string): string {
 export default async function Page() {
   const brands = await getBrandsData()
 
+  // Helper function to group brands by subcategory
+  const groupBySubCategory = (brandsInCategory: typeof brands.items) => {
+    return brandsInCategory.reduce((acc, brand) => {
+      const subCat = brand.subCategory || "other"
+      if (!acc[subCat]) {
+        acc[subCat] = []
+      }
+      acc[subCat].push(brand)
+      return acc
+    }, {} as Record<string, typeof brandsInCategory>)
+  }
+
+  // Filter brands by category
   const shoppingBrands = brands.items?.filter((brand) => brand.category === "alisveris" && brand.subCategory) || []
+  const diningBrands = brands.items?.filter((brand) => brand.category === "yemeIcme") || []
+  const serviceBrands = brands.items?.filter((brand) => brand.category === "hizmet") || []
 
-  // Group brands by subcategory
-  const brandsBySubCategory = shoppingBrands.reduce((acc, brand) => {
-    const subCat = brand.subCategory!
-    if (!acc[subCat]) {
-      acc[subCat] = []
-    }
-    acc[subCat].push(brand)
-    return acc
-  }, {} as Record<string, typeof shoppingBrands>)
+  // Group each category by subcategory
+  const shoppingBySubCategory = groupBySubCategory(shoppingBrands)
+  const diningBySubCategory = groupBySubCategory(diningBrands)
+  const servicesBySubCategory = groupBySubCategory(serviceBrands)
 
+  // Create data structures for each category
   const alisveris = {
     title: brands.categories?.alisveris || "Alışveriş",
-    items: Object.entries(brandsBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
+    items: Object.entries(shoppingBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
       title: toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
-      // subtitle: `${brandsInCategory.length} marka`,
-      // description: `${toTitleCase(
-      //   brands.subCategories?.[subCategoryKey] || subCategoryKey
-      // )} kategorisinde bulunan markalar`,
       logos: brandsInCategory.map((brand) => ({
         url: brand.logo,
       })),
     })),
-    images: Array.from({ length: Object.keys(brandsBySubCategory).length }, (_, index) => ({
+    images: Array.from({ length: Object.keys(shoppingBySubCategory).length }, (_, index) => ({
+      url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
+    })),
+  }
+
+  const yemeIcme = {
+    title: brands.categories?.yemeIcme || "Yeme & İçme",
+    items: Object.entries(diningBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
+      title:
+        subCategoryKey === "other" ? "Diğer" : toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
+      logos: brandsInCategory.map((brand) => ({
+        url: brand.logo,
+      })),
+    })),
+    images: Array.from({ length: Object.keys(diningBySubCategory).length }, (_, index) => ({
+      url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
+    })),
+  }
+
+  const hizmetler = {
+    title: brands.categories?.hizmet || "Hizmetler",
+    items: Object.entries(servicesBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
+      title:
+        subCategoryKey === "other"
+          ? "Diğer Hizmetler"
+          : toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
+      logos: brandsInCategory.map((brand) => ({
+        url: brand.logo,
+      })),
+    })),
+    images: Array.from({ length: Object.keys(servicesBySubCategory).length }, (_, index) => ({
       url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
     })),
   }
@@ -95,6 +132,24 @@ export default async function Page() {
           title={alisveris.title}
           items={alisveris.items}
           images={alisveris.images}
+          withMoveDown
+          variant="v2"
+        />
+      </section>
+      <section className="bg-white z-30 section-container my-10 lg:my-20">
+        <ListCarousel
+          title={yemeIcme.title}
+          items={yemeIcme.items}
+          images={yemeIcme.images}
+          withMoveDown
+          variant="v2"
+        />
+      </section>
+      <section className="bg-white z-30 section-container my-10 lg:my-20">
+        <ListCarousel
+          title={hizmetler.title}
+          items={hizmetler.items}
+          images={hizmetler.images}
           withMoveDown
           variant="v2"
         />
