@@ -22,25 +22,25 @@ export function MaskedParallaxImageSection({
   imgSrc,
 }: MaskedParallaxImageSectionProps) {
   return (
-    <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-4 bt:gap-0">
+    <div className="flex flex-col-reverse bt:grid bt:grid-cols-24 bt:items-center gap-6 bt:gap-0">
       <div
         className={cn(
-          "bt:col-span-9 bd:col-span-7 flex flex-col gap-4 bt:gap-6 bd:gap-12",
+          "bt:col-span-9 bd:col-span-7 flex flex-col gap-2 lg:gap-6 xl:gap-8",
           horizontalAlignment === "ltr"
             ? "col-start-1 order-2 bt:order-1"
             : "bt:col-start-[16] bd:col-start-[18] order-1 bt:order-2"
         )}
       >
         {title && (
-          <h3 className="font-suisse-intl font-normal leading-none text-bricky-brick text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl">
-            <TextRevealOnScroll splitBy="lines" staggerDuration={0.025}>
+          <h3 className="font-suisse-intl font-medium leading-relaxed text-bricky-brick text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl">
+            <TextRevealOnScroll splitBy="lines" staggerDuration={0.25}>
               {title}
             </TextRevealOnScroll>
           </h3>
         )}
         {text && (
           <p className="font-suisse-intl font-normal text-base lg:text-lg xl:text-base 2xl:text-lg text-black">
-            <TextRevealOnScroll splitBy="lines" staggerDuration={0.025}>
+            <TextRevealOnScroll splitBy="lines" staggerDuration={40.25}>
               {text}
             </TextRevealOnScroll>
           </p>
