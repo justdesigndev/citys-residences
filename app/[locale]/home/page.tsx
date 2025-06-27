@@ -121,7 +121,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="py-6 bt:py-24">
+      <section className="py-12 bt:py-24">
         <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
         {/* <div className="w-40 h-40 mx-auto bt:hidden">
           <Logo fill={colors["bricky-brick"]} />
