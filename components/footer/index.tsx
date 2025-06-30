@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useRef } from "react"
 import { useIntersection } from "react-use"
+import { cn } from "@/lib/utils"
 
 import { Logo, socialIcons } from "@/components/icons"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -10,6 +11,36 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Link as LocalizedLink } from "@/components/utility/link"
 import { useVisibilityStore } from "@/lib/store/visibility"
 import { Locale, routing } from "@/i18n/routing"
+
+// Reusable style patterns
+const styles = {
+  // Text size patterns
+  textSizes: {
+    linkText: "text-base lg:text-xs xl:text-lg",
+    headingText: "text-lg lg:text-sm xl:text-lg",
+    contactText: "text-base lg:text-sm xl:text-lg",
+    copyrightCredit: "text-[0.8rem] lg:text-xs xl:text-lg",
+    mobileAccordionLink: "text-base lg:text-xs xl:text-sm",
+    mobileAccordionHeading: "text-lg lg:text-sm xl:text-base",
+  },
+  // Interactive states
+  interactions: {
+    linkHover: "text-white/60 hover:text-white transition-colors",
+    opacityHover: "opacity-50 hover:opacity-100 transition-opacity",
+    socialIcon: "transition-opacity cursor-pointer",
+  },
+  // Layout patterns
+  layout: {
+    sectionHeader: "border-b border-grenadier pb-2",
+    mobileOnly: "block lg:hidden",
+    desktopOnly: "hidden lg:block",
+  },
+  // Icon sizes
+  iconSizes: {
+    social: "h-6 w-6 lg:h-4 lg:w-4 xl:h-8 xl:w-8",
+    accordion: "[&>svg]:text-white [&>svg]:w-5 [&>svg]:h-5",
+  },
+}
 
 export function Footer() {
   const t = useTranslations("common")
@@ -62,172 +93,216 @@ export function Footer() {
   }, [observer, setAloTechVisibility, setStickyContactMenuVisibility])
 
   return (
-    <footer className="relative bg-bricky-brick text-white py-12 bd:py-14 bd:pb-8 font-suisse-intl" ref={footerRef}>
-      <div className=" section-container flex flex-col">
-        <div className="flex flex-col items-stretch bt:items-start bt:grid bt:grid-cols-24 gap-4 bt:gap-4 bd:gap-8 mb-7 bt:mb-14">
+    <footer className="relative bg-bricky-brick text-white py-12 xl:py-14 xl:pb-8 font-suisse-intl" ref={footerRef}>
+      <div className="section-container flex flex-col">
+        <div className="flex flex-col items-stretch lg:flex-row lg:items-start">
           {/* Logo Section */}
-          <div className="order-2 bt:-order-none bt:col-span-9 bd:col-span-8 flex">
-            <LocalizedLink
-              href="/"
-              className="mx-auto bt:mx-0 bt:mb-auto bt:mr-auto w-[200px] bt:w-[200px] bd:w-[260px]"
-            >
+          <div className="w-4/12 order-2 lg:-order-none flex flex-col items-center justify-center gap-4 lg:gap-8">
+            <LocalizedLink href="/" className="w-[200px] lg:w-[200px] xl:w-[260px]">
               <Logo fill="var(--white)" />
             </LocalizedLink>
-          </div>
-          {/* Contact Section */}
-          <div className="order-1 bt:order-none bt:col-span-6 bd:col-span-5 py-10 bt:py-0">
-            <h2 className="text-lg bt:text-sm bd:text-base font-normal mb-5 border-b border-grenadier pb-2">
-              {t("contact")}
-            </h2>
-            <div className="flex flex-col items-stretch gap-6 mr-0 bd:mr-10">
-              <div className="space-y-2">
-                <span className="block text-base bt:text-sm bd:text-base text-white whitespace-pre-line">
-                  {t.rich("contactInfo", {
-                    br: () => <br />,
-                  })}
-                </span>
-                <a
-                  href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
-                  className="block text-base bt:text-xs bd:text-sm text-white opacity-50 hover:opacity-100 transition-opacity whitespace-pre-line"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  İçerenköy, Çayır Cd No: 1, 34752 Ataşehir/Istanbul
-                </a>
-                <a
-                  href="mailto:info@citysresidences.com"
-                  className="block text-base bt:text-xs bd:text-sm text-white opacity-50 hover:opacity-100 transition-opacity whitespace-pre-line"
-                >
-                  info@citysresidences.com
-                </a>
-                <a
-                  href="tel:+902162666600"
-                  className="block text-base bt:text-xs bd:text-sm text-white opacity-50 hover:opacity-100 transition-opacity whitespace-pre-line"
-                >
-                  +90 (216) 266 66 00
-                </a>
+            <div className="flex items-center justify-center gap-6 lg:gap-6">
+              <div
+                className={cn(
+                  styles.iconSizes.social,
+                  styles.interactions.opacityHover,
+                  styles.interactions.socialIcon
+                )}
+              >
+                {socialIcons.instagram}
+              </div>
+              <div
+                className={cn(
+                  styles.iconSizes.social,
+                  styles.interactions.opacityHover,
+                  styles.interactions.socialIcon
+                )}
+              >
+                {socialIcons.facebook}
+              </div>
+              <div
+                className={cn(
+                  styles.iconSizes.social,
+                  styles.interactions.opacityHover,
+                  styles.interactions.socialIcon
+                )}
+              >
+                {socialIcons.tiktok}
+              </div>
+              <div
+                className={cn(
+                  styles.iconSizes.social,
+                  styles.interactions.opacityHover,
+                  styles.interactions.socialIcon
+                )}
+              >
+                {socialIcons.youtube}
               </div>
             </div>
           </div>
-          {/* Menu Section */}
-          <div className="bt:col-span-5 bd:col-span-5">
-            {/* desktop */}
-            <div className="hidden bt:block">
-              <h2 className="text-lg bt:text-sm bd:text-base font-normal mb-5 border-b border-grenadier pb-2">
-                {t("menu")}
-              </h2>
-              <div className="flex flex-col gap-y-2 gap-x-6 mr-0 bd:mr-12">
-                {footerItems.menu.map((item, i) => (
-                  <LocalizedLink
-                    key={i}
-                    href={item.href}
-                    className="text-base bt:text-xs bd:text-sm text-white/60 hover:text-white transition-colors"
-                  >
-                    {item.title}
-                  </LocalizedLink>
-                ))}
-              </div>
-            </div>
-            {/* mobile */}
-            <Accordion className="block bt:hidden" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="[&>svg]:text-white [&>svg]:w-5 [&>svg]:h-5 border-b border-grenadier pb-2">
-                  <h2 className="text-lg bt:text-sm bd:text-base font-normal">{t("menu")}</h2>
-                </AccordionTrigger>
-                <AccordionContent className="py-4">
-                  <div className="flex flex-col gap-y-2 gap-x-6 mr-0 bd:mr-12">
-                    {footerItems.menu.map((item, i) => (
-                      <LocalizedLink
-                        key={i}
-                        href={item.href}
-                        className="text-base bt:text-xs bd:text-sm text-white/60 hover:text-white transition-colors"
-                      >
-                        {item.title}
-                      </LocalizedLink>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-          {/* Legal Section */}
-          <div className="w-full bt:col-span-4 bd:col-span-6">
-            {/* desktop */}
-            <div className="hidden bt:block">
-              <h2 className="text-lg bt:text-sm bd:text-base font-normal mb-5 border-b border-grenadier pb-2">
-                {t("legal")}
-              </h2>
-              <div className="space-y-2">
-                {footerItems.legal.map((item, i) => (
-                  <LocalizedLink
+          <div className="w-8/12 flex flex-col items-stretch lg:flex-row justify-between border-b border-grenadier pb-7 lg:pb-14">
+            {/* Contact Section */}
+            <div className="order-1 lg:order-none w-3/12 py-10 lg:py-0">
+              <h5 className={cn(styles.textSizes.headingText, "font-normal mb-5", styles.layout.sectionHeader)}>
+                {t("contact")}
+              </h5>
+              <div className="flex flex-col items-stretch gap-6 mr-0 xl:mr-10">
+                <div className="space-y-2">
+                  <span className={cn("block", styles.textSizes.contactText, "text-white whitespace-pre-line")}>
+                    {t.rich("contactInfo", {
+                      br: () => <br />,
+                    })}
+                  </span>
+                  <a
+                    href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
+                    className={cn(
+                      "block",
+                      styles.textSizes.linkText,
+                      "text-white whitespace-pre-line",
+                      styles.interactions.opacityHover
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    key={i}
-                    href={item.href}
-                    className="block text-base bt:text-xs bd:text-sm text-white/60 hover:text-white transition-colors"
                   >
-                    {item.title}
-                  </LocalizedLink>
-                ))}
+                    İçerenköy, Çayır Cd No: 1, 34752 Ataşehir/Istanbul
+                  </a>
+                  <a
+                    href="mailto:info@citysresidences.com"
+                    className={cn(
+                      "block",
+                      styles.textSizes.linkText,
+                      "text-white whitespace-pre-line",
+                      styles.interactions.opacityHover
+                    )}
+                  >
+                    info@citysresidences.com
+                  </a>
+                  <a
+                    href="tel:+902162666600"
+                    className={cn(
+                      "block",
+                      styles.textSizes.linkText,
+                      "text-white whitespace-pre-line",
+                      styles.interactions.opacityHover
+                    )}
+                  >
+                    +90 (216) 266 66 00
+                  </a>
+                </div>
               </div>
             </div>
-            {/* mobile */}
-            <Accordion className="w-full block bt:hidden" type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger className="[&>svg]:text-white [&>svg]:w-5 [&>svg]:h-5 border-b border-grenadier pb-2">
-                  <h2 className="text-lg bt:text-sm bd:text-base font-normal">{t("legal")}</h2>
-                </AccordionTrigger>
-                <AccordionContent className="py-4">
-                  <div className="space-y-2">
-                    {footerItems.legal.map((item, i) => (
-                      <LocalizedLink
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        key={i}
-                        href={item.href}
-                        className="block text-base bt:text-xs bd:text-sm text-white/60 hover:text-white transition-colors"
-                      >
-                        {item.title}
-                      </LocalizedLink>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            {/* Menu Section */}
+            <div className="w-3/12">
+              {/* desktop */}
+              <div className={styles.layout.desktopOnly}>
+                <h5 className={cn(styles.textSizes.headingText, "font-normal mb-5", styles.layout.sectionHeader)}>
+                  {t("menu")}
+                </h5>
+                <div className="flex flex-col gap-y-2 gap-x-6 mr-0 xl:mr-12">
+                  {footerItems.menu.map((item, i) => (
+                    <LocalizedLink
+                      key={i}
+                      href={item.href}
+                      className={cn(styles.textSizes.linkText, styles.interactions.linkHover)}
+                    >
+                      {item.title}
+                    </LocalizedLink>
+                  ))}
+                </div>
+              </div>
+              {/* mobile */}
+              <Accordion className={styles.layout.mobileOnly} type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className={cn(styles.iconSizes.accordion, styles.layout.sectionHeader)}>
+                    <h5 className={cn(styles.textSizes.mobileAccordionHeading, "font-normal")}>{t("menu")}</h5>
+                  </AccordionTrigger>
+                  <AccordionContent className="py-4">
+                    <div className="flex flex-col gap-y-2 gap-x-6 mr-0 xl:mr-12">
+                      {footerItems.menu.map((item, i) => (
+                        <LocalizedLink
+                          key={i}
+                          href={item.href}
+                          className={cn(styles.textSizes.mobileAccordionLink, styles.interactions.linkHover)}
+                        >
+                          {item.title}
+                        </LocalizedLink>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+            {/* Legal Section */}
+            <div className="w-3/12">
+              {/* desktop */}
+              <div className={styles.layout.desktopOnly}>
+                <h5
+                  className={cn(
+                    styles.textSizes.mobileAccordionHeading,
+                    "font-normal mb-5",
+                    styles.layout.sectionHeader
+                  )}
+                >
+                  {t("legal")}
+                </h5>
+                <div className="space-y-2">
+                  {footerItems.legal.map((item, i) => (
+                    <LocalizedLink
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      key={i}
+                      href={item.href}
+                      className={cn("block", styles.textSizes.linkText, styles.interactions.linkHover)}
+                    >
+                      {item.title}
+                    </LocalizedLink>
+                  ))}
+                </div>
+              </div>
+              {/* mobile */}
+              <Accordion className={cn("w-full", styles.layout.mobileOnly)} type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className={cn(styles.iconSizes.accordion, styles.layout.sectionHeader)}>
+                    <h5 className={cn(styles.textSizes.mobileAccordionHeading, "font-normal")}>{t("legal")}</h5>
+                  </AccordionTrigger>
+                  <AccordionContent className="py-4">
+                    <div className="space-y-2">
+                      {footerItems.legal.map((item, i) => (
+                        <LocalizedLink
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          key={i}
+                          href={item.href}
+                          className={cn("block", styles.textSizes.mobileAccordionLink, styles.interactions.linkHover)}
+                        >
+                          {item.title}
+                        </LocalizedLink>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </div>
         </div>
         {/* Copyright Section */}
-        <div className="flex flex-col bt:flex-row justify-between items-center gap-5 pt-5 bt:grid bt:grid-cols-24 bt:gap-2 bd:gap-8 bt:border-t bt:border-grenadier">
-          <div className="bt:col-span-9 bd:col-span-8 text-center bt:text-left order-2 bt:order-1 text-[0.8rem] bt:text-xs bd:text-sm">
-            <span>{t("copyright")}</span>
-          </div>
-          <div className="bt:col-span-8 bd:col-span-10 flex gap-6 bt:gap-4 order-1 bt:order-2">
-            <div className="h-6 w-6 bt:h-4 bt:w-4 bd:h-5 bd:w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-              {socialIcons.instagram}
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-5 pt-5 ">
+          <div className="w-8/12 ml-auto">
+            <div className="flex flex-col lg:flex-row justify-between gap-5">
+              <span>{t("copyright")}</span>
+              <span className={cn("flex-shrink-0", styles.textSizes.copyrightCredit)}>
+                Made by{" "}
+                <LocalizedLink
+                  href="https://justdesignfx.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  JUST DESIGN FX
+                </LocalizedLink>
+              </span>
+              <ScrollToTop />
             </div>
-            <div className="h-6 w-6 bt:h-4 bt:w-4 bd:h-5 bd:w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-              {socialIcons.facebook}
-            </div>
-            <div className="h-6 w-6 bt:h-4 bt:w-4 bd:h-5 bd:w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-              {socialIcons.tiktok}
-            </div>
-            <div className="h-6 w-6 bt:h-4 bt:w-4 bd:h-5 bd:w-5 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-              {socialIcons.youtube}
-            </div>
-          </div>
-          <div className="bt:col-span-7 bd:col-span-6 flex flex-col bt:flex-row justify-between gap-5 order-3 bt:order-3">
-            <span className="flex-shrink-0 text-[0.8rem] bt:text-xs bd:text-sm">
-              Made by{" "}
-              <LocalizedLink
-                href="https://justdesignfx.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                JUST DESIGN FX
-              </LocalizedLink>
-            </span>
-            <ScrollToTop />
           </div>
         </div>
       </div>
