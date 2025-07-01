@@ -3,8 +3,8 @@
 import { cn } from "@/lib/utils"
 import { useRef } from "react"
 
-import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
-import { ScrollTrigger, useGSAP, gsap } from "@/components/gsap"
+import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
+import { GsapSplitText } from "@/components/gsap-split-text"
 import { Img } from "@/components/utility/img"
 
 const SequencedMobile = () => {
@@ -59,20 +59,20 @@ const SequencedMobile = () => {
     <div className="flex xl:hidden flex-col xl:flex-row relative h-auto xl:h-[100vh] w-full overflow-hidden pointer-events-none">
       <div className="relative w-full xl:w-1/2 h-full flex flex-col items-start justify-center">
         <h2 className="font-suisse-intl font-normal text-bricky-brick text-4xl lg:text-7xl xl:text-6xl mb-5 lg:mb-10 text-center xl:text-left">
-          <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
+          <GsapSplitText splitBy="lines" stagger={0.005}>
             YAŞAMA ALAN AÇAN DETAYLAR
-          </TextRevealOnScroll>
+          </GsapSplitText>
         </h2>
         <p className="font-suisse-intl text-md lg:text-4xl xl:text-2xl font-bold mb-4 text-center xl:text-left">
-          <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
+          <GsapSplitText splitBy="lines" stagger={0.005}>
             Her metrekaresi ince tasarlanmış, ferah bir hayata açılan çizgiler
-          </TextRevealOnScroll>
+          </GsapSplitText>
         </p>
         <p className="font-suisse-intl text-md lg:text-4xl xl:text-xl font-normal text-center xl:text-left">
-          <TextRevealOnScroll elementLevelClassName="leading-relaxed" splitBy="lines" staggerDuration={0.005}>
+          <GsapSplitText splitBy="lines" stagger={0.005}>
             Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
             tasarlandı.
-          </TextRevealOnScroll>
+          </GsapSplitText>
         </p>
       </div>
       <div className="w-full xl:w-1/2">

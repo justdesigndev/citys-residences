@@ -1,6 +1,6 @@
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
-import { TextRevealOnScroll } from "@/components/animations/text-reveal-on-scroll"
+import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { ListCarousel } from "@/components/list-carousel"
@@ -101,15 +101,15 @@ export default async function Page() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/30">
             <div className="flex flex-col h-full py-8 bt:py-8 section-container">
               <h1 className="max-w-lg block font-suisse-intl leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-2 bd:mb-8">
-                <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
+                <GsapSplitText splitBy="lines" stagger={0.005}>
                   ŞEHİR HAYATI BİR ASANSÖR UZAKLIKTA
-                </TextRevealOnScroll>
+                </GsapSplitText>
               </h1>
               <p className="max-w-lg block font-suisse-intl leading-snug text-white text-base bt:text-lg font-normal mb-0 bd:mb-20">
-                <TextRevealOnScroll splitBy="lines" staggerDuration={0.005}>
+                <GsapSplitText splitBy="lines" stagger={0.005}>
                   City&apos;s Residences sakinleri için alışveriş, yeme-içme ve günlük ihtiyaçlar, şehrin merkezinde ama
                   ev rahatlığında. AVM hayatı, yaşam kurgusunun doğal bir parçası.
-                </TextRevealOnScroll>
+                </GsapSplitText>
               </p>
             </div>
           </div>
