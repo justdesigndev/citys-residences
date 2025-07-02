@@ -90,14 +90,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative  py-8 lg:py-20 section-container">
+      <section className="relative  py-8 lg:py-20 section-container gsap-global-fade-in">
         <VideoSection
           primaryVideoUrl={kolajVideo}
           thumbnail="/img/thumbnail-kolaj-video.jpg"
           title="Yaşam Yeniden Tasarlandı: City’s"
         />
       </section>
-      <section className=" flex flex-col-reverse xl:flex-row items-center justify-between gap-6 lg:gap-20 xl:gap-4 py-6 lg:py-24 section-container">
+      <section className=" flex flex-col-reverse xl:flex-row items-center justify-between gap-6 lg:gap-20 xl:gap-4 py-6 lg:py-24 section-container gsap-global-fade-in">
         <div className="flex flex-col gap-6 lg:gap-8">
           <h2 className="font-suisse-intl font-medium text-bricky-brick text-3xl lg:text-7xl xl:text-6xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center xl:text-left">
             <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
@@ -121,13 +121,13 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="py-12 lg:py-24">
+      <section className="py-12 lg:py-24 gsap-global-fade-in">
         <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
         {/* <div className="w-40 h-40 mx-auto lg:hidden">
           <Logo fill={colors["bricky-brick"]} />
         </div> */}
       </section>
-      <section className="relative py-8 lg:py-20 section-container">
+      <section className="relative py-8 lg:py-20 section-container gsap-global-fade-in">
         <VideoSection
           primaryVideoUrl={muratKaderVideo}
           thumbnail="/img/thumbnail-murat-kader.jpg"
@@ -135,7 +135,7 @@ export default function Home() {
           className="rounded-sm overflow-hidden"
         />
       </section>
-      <section>
+      <section className="gsap-global-fade-in">
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
         {/* <div className="w-40 h-40 mx-auto lg:hidden">
           <Logo fill={colors["bricky-brick"]} />

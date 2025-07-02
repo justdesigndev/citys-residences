@@ -1,16 +1,60 @@
 import { useTranslations } from "next-intl"
-import { ReactNode } from "react"
 
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { IconCitysLifeLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
-import { MaskedParallaxImageSection } from "@/components/parallax-images-section"
+import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { citysLifeVideo } from "@/lib/constants"
 
 export default function Page() {
   const t = useTranslations("citys-life")
+  const items = [
+    {
+      title: t("items.i1.title"),
+      subtitle: t("items.i1.spot"),
+      description: t("items.i1.text"),
+      url: ["/img/citys-life/01.jpg"],
+    },
+    {
+      title: t("items.i2.title"),
+      subtitle: t("items.i2.spot"),
+      description: t("items.i2.text"),
+      url: ["/img/citys-life/02.jpg"],
+    },
+    {
+      title: t("items.i3.title"),
+      subtitle: t("items.i3.spot"),
+      description: t("items.i3.text"),
+      url: ["/img/citys-life/03.jpg"],
+    },
+    {
+      title: t("items.i4.title"),
+      subtitle: t("items.i4.spot"),
+      description: t("items.i4.text"),
+      url: ["/img/citys-life/04.jpg"],
+    },
+    {
+      title: t("items.i5.title"),
+      subtitle: t("items.i5.spot"),
+      description: t("items.i5.text"),
+      url: ["/img/citys-life/05.jpg"],
+    },
+    {
+      title: t("items.i6.title"),
+      subtitle: t("items.i6.spot"),
+      description: t("items.i6.text"),
+      url: ["/img/citys-life/06.jpg"],
+    },
+    {
+      title: t("items.i7.title"),
+      subtitle: t("items.i7.spot"),
+      description: t("items.i7.text"),
+      url: ["/img/citys-life/07.jpg"],
+    },
+  ]
   return (
     <Wrapper>
       <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden">
@@ -25,90 +69,22 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white pt-8">
-        <div className="w-full h-[40vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
-          <IconCitysParkBgLogo fill="#000" />
+      <section className="relative z-20 bg-white py-5">
+        <div className="w-full h-[30vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
+          <FadeInOnScroll duration={1.5}>
+            <IconCitysParkBgLogo fill="#000" />
+          </FadeInOnScroll>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-60">
-          <IconCitysLifeLogo fill="#000000" />
+          <FadeInOnScroll duration={0.5}>
+            <IconCitysLifeLogo fill="#000000" />
+          </FadeInOnScroll>
         </div>
       </section>
       <section className="relative z-20 bg-white">
-        <div className=" flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-24 bd:py-40 section-container">
-          {[
-            {
-              title: t("items.i1.title"),
-              spot: t("items.i1.spot"),
-              text: t("items.i1.text"),
-              imgSrc: "/img/citys-life/01.jpg",
-              horizontalAlignment: "ltr" as const,
-            },
-            {
-              title: t("items.i2.title"),
-              spot: t("items.i2.spot"),
-              text: t("items.i2.text"),
-              imgSrc: "/img/citys-life/02.jpg",
-              horizontalAlignment: "rtl" as const,
-            },
-            {
-              title: t("items.i3.title"),
-              spot: t("items.i3.spot"),
-              text: t("items.i3.text"),
-              imgSrc: "/img/citys-life/03.jpg",
-              horizontalAlignment: "ltr" as const,
-            },
-            {
-              title: t("items.i4.title"),
-              spot: t("items.i4.spot"),
-              text: t("items.i4.text"),
-              imgSrc: "/img/citys-life/04.jpg",
-              horizontalAlignment: "rtl" as const,
-            },
-            {
-              title: t("items.i5.title"),
-              spot: t("items.i5.spot"),
-              text: t("items.i5.text"),
-              imgSrc: "/img/citys-life/05.jpg",
-              horizontalAlignment: "ltr" as const,
-            },
-            {
-              title: t("items.i6.title"),
-              spot: t("items.i6.spot"),
-              text: t("items.i6.text"),
-              imgSrc: "/img/citys-life/06.jpg",
-              horizontalAlignment: "rtl" as const,
-            },
-            {
-              title: t("items.i7.title"),
-              spot: t("items.i7.spot"),
-              text: t("items.i7.text"),
-              imgSrc: "/img/citys-life/07.jpg",
-              horizontalAlignment: "ltr" as const,
-            },
-          ].map(
-            (
-              item: {
-                title: string
-                spot?: ReactNode
-                text: ReactNode
-                imgSrc: string
-                horizontalAlignment: "ltr" | "rtl"
-                link?: { url: string; text: string }
-              },
-              index
-            ) => (
-              <MaskedParallaxImageSection
-                key={index}
-                title={item.title}
-                spot={item.spot}
-                text={item.text}
-                imgSrc={item.imgSrc}
-                horizontalAlignment={item.horizontalAlignment}
-                {...(item.link && { link: item.link })}
-              />
-            )
-          )}
-        </div>
+        {items.map((item, i) => (
+          <MembersClubItem key={i} item={item} align={i % 2 === 0 ? "ltr" : "rtl"} />
+        ))}
       </section>
       <LinkToPage
         previous={{ title: "City's Members Club", href: "/citys-members-club" }}
