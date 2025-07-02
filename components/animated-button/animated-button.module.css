@@ -10,7 +10,7 @@
 
     @include-media ("desktop") {
       --padding: desktop-vw(6px);
-      font-size: desktop-vw(14px);
+      font-size: desktop-vw(12px);
     }
   }
 
@@ -25,7 +25,7 @@
 
     @include-media ("desktop") {
       --padding: desktop-vw(7px);
-      font-size: desktop-vw(16px);
+      font-size: desktop-vw(14px);
     }
 
     .icon-c {
@@ -57,7 +57,7 @@
 
     @include-media ("desktop") {
       --padding: desktop-vw(7px);
-      font-size: desktop-vw(24px);
+      font-size: desktop-vw(20px);
     }
 
     .icon-c {

@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   z-index: 200;
@@ -24,4 +24,18 @@
   flex: 0 0 var(--slide-size);
   min-width: 0;
   padding-left: var(--slide-spacing);
+}
+
+/* Parallax styles */
+.embla-parallax {
+  height: 100%;
+  overflow: hidden;
+}
+
+.embla-parallax-layer {
+  position: relative;
+  height: 70vh;
+  width: calc(115% + (var(--slide-spacing) * 2));
+  display: flex;
+  justify-content: center;
 }

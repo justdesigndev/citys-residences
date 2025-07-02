@@ -46,19 +46,19 @@ export function GsapSplitText(props: GsapSplitTextProps) {
     if (triggerOn === "scroll") {
       ScrollTrigger.create({
         trigger: ref.current,
-        start: "center bottom",
+        start: "center bottom-=20%",
         onEnter: () => {
           animationRef.current?.play()
         },
-        onEnterBack: () => {
-          animationRef.current?.play()
-        },
-        onLeave: () => {
-          animationRef.current?.reverse()
-        },
-        onLeaveBack: () => {
-          animationRef.current?.reverse()
-        },
+        // onEnterBack: () => {
+        //   animationRef.current?.play()
+        // },
+        // onLeave: () => {
+        //   animationRef.current?.reverse()
+        // },
+        // onLeaveBack: () => {
+        //   animationRef.current?.reverse()
+        // },
       })
     } else if (triggerOn === "hover") {
       const handleMouseEnter = (): void => {

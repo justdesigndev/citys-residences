@@ -193,7 +193,7 @@ export default function Page() {
         <AnimatedLine direction="horizontal" />
         <div className="section-container py-20">
           <h2 className="font-suisse-intl font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl max-w-2xl">
-            <GsapSplitText stagger={0.1} splitBy="lines" duration={0.5}>
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
               Ayrıcalıklar dünyası City’s ile yeniden tasarlandı. Yaşamın tam merkezinde, size özel ayrıcalıklarla dolu
               bir deneyim.
             </GsapSplitText>

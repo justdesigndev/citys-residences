@@ -1,14 +1,13 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
-import { motion } from "motion/react"
+import { useRef } from "react"
 
 import { AnimatedLine } from "@/components/animated-line"
 import { GsapSplitText } from "@/components/gsap-split-text"
-import { Img } from "@/components/utility/img"
-import { useEffect, useRef, useState } from "react"
-import { gsap, ScrollTrigger, useGSAP } from "../gsap"
+import { MaskedParallaxImage } from "@/components/masked-parallax-image"
+import { EmblaCarousel } from "@/components/utility/embla-carousel"
+import { breakpoints } from "@/styles/config.mjs"
 
 interface MembersClubItemProps {
   item: {
@@ -22,103 +21,40 @@ interface MembersClubItemProps {
 
 export function MembersClubItem({ item, align = "ltr" }: MembersClubItemProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isAutoplaying, setIsAutoplaying] = useState(false)
-
-  // Store the length in a ref to avoid dependency issues
-  const urlLengthRef = useRef(item.url.length)
-  urlLengthRef.current = item.url.length
-
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout | null = null
-
-    // Autoplay only if there's more than one slide in the effective loop
-    if (isAutoplaying && urlLengthRef.current > 1) {
-      intervalId = setInterval(() => {
-        setActiveIndex((prevActiveIndex) => {
-          let nextIndex = prevActiveIndex + 1
-          if (nextIndex >= urlLengthRef.current) {
-            nextIndex = 0 // Loop to the first slide
-          }
-          return nextIndex
-        })
-      }, 4000)
-    }
-
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId)
-      }
-    }
-  }, [isAutoplaying]) // Only depend on isAutoplaying
-
-  // ScrollTrigger for viewport-based autoplay control
-  useGSAP(
-    () => {
-      gsap.registerPlugin(ScrollTrigger)
-
-      if (!item.url || item.url.length === 0) return
-
-      const scrollTrigger = ScrollTrigger.create({
-        trigger: ref.current,
-        start: "top bottom",
-        end: "bottom top",
-        onEnter: () => setIsAutoplaying(true),
-        onLeave: () => setIsAutoplaying(false),
-        onEnterBack: () => setIsAutoplaying(true),
-        onLeaveBack: () => setIsAutoplaying(false),
-        // markers: true, // For debugging
-      })
-
-      return () => {
-        scrollTrigger.kill()
-      }
-    },
-    { scope: ref }
-  )
-
-  const goToIndex = (targetIndex: number) => {
-    setIsAutoplaying(false)
-    let newIndex = targetIndex
-
-    if (item.url.length > 0) {
-      if (newIndex < 0) {
-        newIndex = item.url.length - 1
-      } else if (newIndex >= item.url.length) {
-        newIndex = 0
-      }
-    } else {
-      newIndex = 0
-    }
-
-    setActiveIndex(newIndex)
-  }
 
   return (
     <div className="gsap-global-fade-in" ref={ref}>
       <div
-        className={cn("flex gap-8 h-[80vh] py-8 section-container", align === "ltr" ? "flex-row" : "flex-row-reverse")}
+        className={cn(
+          "flex items-stretch gap-8 py-8 h-[80vh]",
+          align === "ltr" ? "flex-row" : "flex-row-reverse",
+          item.url.length > 1
+            ? align === "rtl"
+              ? "section-container-full-left"
+              : "section-container-full-right"
+            : "section-container"
+        )}
       >
-        <div className="flex flex-col items-start justify-center w-3/12 pr-10">
+        <div className="flex flex-col items-start justify-center w-3/12 pr-6">
           <h3 className="font-suisse-intl font-medium text-bricky-brick text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl mb-4">
-            <GsapSplitText stagger={0.1} splitBy="lines" duration={0.5}>
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
               {item.title}
             </GsapSplitText>
           </h3>
           <p className="font-suisse-intl font-semibold text-base lg:text-lg xl:text-base 2xl:text-lg text-black">
-            <GsapSplitText stagger={0.1} splitBy="lines" duration={0.5}>
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
               {item.subtitle}
             </GsapSplitText>
           </p>
           <p className="font-suisse-intl font-normal text-base lg:text-lg xl:text-base 2xl:text-lg text-black">
-            <GsapSplitText stagger={0.1} splitBy="lines" duration={0.5}>
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
               {item.description}
             </GsapSplitText>
           </p>
         </div>
         <AnimatedLine direction="vertical" />
-        <div className="flex flex-col w-9/12 relative flex-1">
-          {item.url.map((image, imageIndex) => (
+        <div className="flex flex-col w-9/12 relative flex-1 overflow-hidden">
+          {/* {item.url.map((image, imageIndex) => (
             <motion.div
               key={imageIndex}
               initial={{ opacity: 0 }}
@@ -133,7 +69,10 @@ export function MembersClubItem({ item, align = "ltr" }: MembersClubItemProps) {
               style={{ zIndex: imageIndex === activeIndex ? 2 : 1 }}
             >
               <div className="absolute top-0 left-0 w-full h-full">
-                <Img src={image} alt="Members Club" fill sizes="100vw" className="object-cover" />
+                <MaskedParallaxImage
+                  imgSrc={image}
+                  sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}
+                />
               </div>
             </motion.div>
           ))}
@@ -152,6 +91,31 @@ export function MembersClubItem({ item, align = "ltr" }: MembersClubItemProps) {
                 <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
               </div>
             </>
+          )} */}
+          {item.url.length > 1 ? (
+            <EmblaCarousel
+              autoplay={true}
+              autoplayDelay={5000}
+              slides={item.url.map((image, imageIndex) => (
+                <div key={imageIndex} className="relative h-[80vh] w-[70vw]">
+                  <MaskedParallaxImage
+                    imgSrc={image}
+                    sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}
+                  />
+                </div>
+              ))}
+              options={{ duration: 35, loop: true, align: align === "rtl" ? "end" : "start" }}
+              slideWidth="60vw"
+              slideSpacing="24px"
+              parallax={true}
+            />
+          ) : (
+            <div className="relative w-full h-[80vh]">
+              <MaskedParallaxImage
+                imgSrc={item.url[0]}
+                sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}
+              />
+            </div>
           )}
         </div>
       </div>

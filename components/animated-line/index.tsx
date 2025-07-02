@@ -10,10 +10,11 @@ export interface AnimatedLineProps {
 
 export function AnimatedLine({ direction }: AnimatedLineProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const barRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
-      const bar = ref.current?.querySelector(".bar") as HTMLDivElement
+      const bar = barRef.current
       if (!bar) return
       gsap.to(bar, {
         opacity: 1,
@@ -22,7 +23,7 @@ export function AnimatedLine({ direction }: AnimatedLineProps) {
         ...(direction === "horizontal" ? { scaleX: 1 } : { scaleY: 1 }),
         scrollTrigger: {
           trigger: ref.current,
-          start: "center center",
+          start: "center center+=35%",
         },
       })
     },
@@ -33,10 +34,11 @@ export function AnimatedLine({ direction }: AnimatedLineProps) {
   )
 
   return (
-    <div className={cn("relative", direction === "horizontal" ? "h-px w-full" : "h-full w-px")} ref={ref}>
+    <div className={cn("relative z-50", direction === "horizontal" ? "h-px w-full" : "h-full w-px")} ref={ref}>
       <div
         className={cn("bar h-full w-full bg-black opacity-0", direction === "horizontal" ? "scale-x-0" : "scale-y-0")}
         style={{ transformOrigin: direction === "horizontal" ? "left center" : "top center" }}
+        ref={barRef}
       ></div>
     </div>
   )

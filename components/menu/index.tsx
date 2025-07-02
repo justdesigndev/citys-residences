@@ -76,7 +76,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   )
 
   return (
-    <div className={cn(s.frame, "blur-bg-bricky-brick-light w-screen xl:w-[25vw] 2xl:w-[20vw]")} ref={ref}>
+    <div className={cn(s.frame, "blur-bg-bricky-brick-light w-screen xl:w-[25vw] 2xl:w-[21vw]")} ref={ref}>
       <nav
         className={cn(
           s.menu,
