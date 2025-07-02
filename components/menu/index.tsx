@@ -76,18 +76,18 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   )
 
   return (
-    <div className={cn(s.frame, "blur-bg-bricky-brick-light w-screen xl:w-[20vw]")} ref={ref}>
+    <div className={cn(s.frame, "blur-bg-bricky-brick-light w-screen xl:w-[25vw] 2xl:w-[21vw]")} ref={ref}>
       <nav
         className={cn(
           s.menu,
           "absolute top-0 left-0 w-full h-full lg:pl-16 lg:pr-6 flex items-center justify-center xl:justify-start"
         )}
       >
-        <ul className="flex flex-col items-center xl:items-start gap-3 lg:gap-10 xl:gap-2 py-0 pt-20 pb-0 lg:py-12 w-full">
+        <ul className="flex flex-col items-center xl:items-start gap-3 lg:gap-10 xl:gap-0 2xl:gap-2 py-0 pt-20 pb-0 lg:py-12 w-full">
           {items.map(({ title, href }, i) => (
             <li
               className={cn(
-                "text-lg lg:text-3xl xl:text-2xl 2xl:text-2xl",
+                "text-lg lg:text-3xl xl:text-xl 2xl:text-2xl",
                 "font-suisse-intl font-normal text-white text-center xl:text-left",
                 "transition-opacity duration-300 ease-in-out",
                 {

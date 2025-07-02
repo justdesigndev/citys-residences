@@ -28,15 +28,15 @@ export function Header() {
 
   const navigationItems = [
     { title: t("navigation.home"), href: "/" },
-    { title: t("navigation.project"), href: "/project" },
+    { title: t("navigation.project"), href: "/" },
     { title: t("navigation.location"), href: "/location" },
     { title: t("navigation.residences"), href: "/residences" },
     { title: t("navigation.citysPark"), href: "/citys-park" },
     { title: t("navigation.citysMembersClub"), href: "/citys-members-club" },
     { title: t("navigation.citysLifePrivileges"), href: "/citys-life-privileges" },
-    { title: t("navigation.citysPsm"), href: "/citys-psm" },
+    { title: t("navigation.citysPsm"), href: "/" },
     { title: t("navigation.citysIstanbul"), href: "/citys-istanbul-avm" },
-    { title: t("navigation.citysTimes"), href: "/citys-times" },
+    { title: t("navigation.citysTimes"), href: "/" },
   ]
 
   useEffect(() => {

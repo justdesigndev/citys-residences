@@ -1,49 +1,52 @@
-"use client"
-
 import { useTranslations } from "next-intl"
 
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { IconCitysParkBgLogo, IconCitysParkLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
-import { MaskedParallaxImageSection } from "@/components/parallax-images-section"
+import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
 import { citysParkVideo, pinarVeCemilAktasVideo } from "@/lib/constants"
+import { GsapSplitText } from "@/components/gsap-split-text"
+import { AnimatedLine } from "@/components/animated-line"
+import { MaskedParallaxImage } from "@/components/masked-parallax-image"
+import { breakpoints } from "@/styles/config.mjs"
 
 export default function Page() {
   const t = useTranslations("citys-park")
 
-  const sections = [
+  const items = [
     {
       title: t("items.i1.title"),
-      text: t("items.i1.text"),
-      imgSrc: "/img/citys-park/01.jpg",
+      description: t("items.i1.text"),
+      url: ["/img/citys-park/01.jpg"],
     },
     {
       title: t("items.i6.title"),
-      text: t("items.i6.text"),
-      imgSrc: "/img/citys-park/06.jpg",
+      description: t("items.i6.text"),
+      url: ["/img/citys-park/06.jpg"],
     },
     {
       title: t("items.i2.title"),
-      text: t("items.i2.text"),
-      imgSrc: "/img/citys-park/02.jpg",
+      description: t("items.i2.text"),
+      url: ["/img/citys-park/02.jpg"],
     },
     {
       title: t("items.i3.title"),
-      text: t("items.i3.text"),
-      imgSrc: "/img/citys-park/03.jpg",
+      description: t("items.i3.text"),
+      url: ["/img/citys-park/03.jpg"],
     },
     {
       title: t("items.i4.title"),
-      text: t("items.i4.text"),
-      imgSrc: "/img/citys-park/04.jpg",
+      description: t("items.i4.text"),
+      url: ["/img/citys-park/04.jpg"],
     },
     {
       title: t("items.i5.title"),
-      text: t("items.i5.text"),
-      imgSrc: "/img/citys-park/05.jpg",
+      description: t("items.i5.text"),
+      url: ["/img/citys-park/05.jpg"],
     },
   ]
 
@@ -61,28 +64,41 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white pt-8">
-        <div className="w-full h-[40vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
-          <IconCitysParkBgLogo fill="#5D7261" />
+      <section className="relative z-20 bg-white py-5">
+        <div className="w-full h-[30vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
+          <FadeInOnScroll duration={1.5}>
+            <IconCitysParkBgLogo fill="#000" />
+          </FadeInOnScroll>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bt:h-60">
-          <IconCitysParkLogo fill="#5D7261" />
+          <FadeInOnScroll duration={0.5}>
+            <IconCitysParkLogo fill="#5D7261" />
+          </FadeInOnScroll>
         </div>
       </section>
-      <section className="relative z-20 bg-white">
-        <div className=" flex flex-col gap-12 bt:gap-32 bd:gap-48 py-12 bt:py-36 bd:py-40 section-container">
-          {sections.map((section, index) => (
-            <MaskedParallaxImageSection
-              key={index}
-              title={section.title}
-              text={section.text}
-              imgSrc={section.imgSrc}
-              horizontalAlignment={index % 2 === 0 ? "ltr" : "rtl"}
+      <section>
+        <AnimatedLine direction="horizontal" />
+        <div className="section-container py-20 flex flex-col gap-20">
+          <h2 className="font-suisse-intl font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl max-w-2xl">
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
+              Ayrıcalıklar dünyası City’s ile yeniden tasarlandı. Yaşamın tam merkezinde, size özel ayrıcalıklarla dolu
+              bir deneyim.
+            </GsapSplitText>
+          </h2>
+          <div className="relative w-full h-[90vh]">
+            <MaskedParallaxImage
+              imgSrc={"/img/citys-park/01.jpg"}
+              sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
             />
-          ))}
+          </div>
         </div>
       </section>
-      <section className="relative  section-container">
+      <section className="relative z-20 bg-white mb-20">
+        {items.map((item, i) => (
+          <MembersClubItem key={i} item={item} align={i % 2 === 0 ? "ltr" : "rtl"} />
+        ))}
+      </section>
+      <section className="relative section-container">
         <div className="w-full h-[350px] bt:h-auto bt:aspect-video relative z-10 flex items-center justify-center bg-black">
           <VideoWithPlayButton
             primaryVideoUrl={pinarVeCemilAktasVideo}

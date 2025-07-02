@@ -18,7 +18,7 @@ const styles = {
     linkText: "text-base lg:text-xs xl:text-lg",
     headingText: "text-lg lg:text-sm xl:text-lg",
     contactText: "text-base lg:text-sm xl:text-lg",
-    copyrightCredit: "text-[0.8rem] lg:text-xs xl:text-base",
+    copyrightCredit: "text-[0.8rem] lg:text-xs xl:text-sm",
     mobileAccordionLink: "text-base lg:text-xs xl:text-sm",
     mobileAccordionHeading: "text-lg lg:text-sm xl:text-base",
   },
@@ -47,12 +47,15 @@ export function Footer() {
   const { setAloTechVisibility, setStickyContactMenuVisibility } = useVisibilityStore()
   const footerItems = {
     menu: [
-      { title: t("navigation.residences"), href: "/residences" },
+      { title: t("navigation.project"), href: "/" },
       { title: t("navigation.location"), href: "/location" },
+      { title: t("navigation.residences"), href: "/residences" },
       { title: t("navigation.citysPark"), href: "/citys-park" },
       { title: t("navigation.citysMembersClub"), href: "/citys-members-club" },
       { title: t("navigation.citysLifePrivileges"), href: "/citys-life-privileges" },
+      { title: t("navigation.citysPsm"), href: "/" },
       { title: t("navigation.citysIstanbul"), href: "/citys-istanbul-avm" },
+      { title: t("navigation.citysTimes"), href: "/" },
     ],
     legal: [
       {
@@ -92,7 +95,7 @@ export function Footer() {
   }, [observer, setAloTechVisibility, setStickyContactMenuVisibility])
 
   return (
-    <footer className="relative bg-bricky-brick text-white py-12 xl:py-28 xl:pb-12 font-suisse-intl" ref={footerRef}>
+    <footer className="relative bg-bricky-brick text-white py-12 xl:py-12 xl:pb-12 font-suisse-intl" ref={footerRef}>
       <div className="section-container flex flex-col gap-12 lg:gap-0">
         <div className="flex flex-col-reverse items-stretch lg:flex-row lg:items-center gap-12 lg:gap-0">
           {/* Logo Section */}
@@ -144,7 +147,7 @@ export function Footer() {
             <div className="w-full lg:w-4/12 py-10 lg:py-0">
               <h5 className={cn(styles.textSizes.headingText, styles.layout.sectionHeader)}>{t("contact")}</h5>
               <div className="flex flex-col items-stretch gap-6 mr-0 xl:mr-10 pr-10">
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <span className={cn("block", styles.textSizes.contactText, "text-white whitespace-pre-line")}>
                     {t.rich("contactInfo", {
                       br: () => <br />,
@@ -193,7 +196,7 @@ export function Footer() {
               {/* desktop */}
               <div className={styles.layout.desktopOnly}>
                 <h5 className={cn(styles.textSizes.headingText, styles.layout.sectionHeader)}>{t("menu")}</h5>
-                <div className="flex flex-col gap-y-4 gap-x-6 mr-0 xl:mr-12">
+                <div className="flex flex-col gap-y-2 gap-x-6 mr-0 xl:mr-12">
                   {footerItems.menu.map((item, i) => (
                     <LocalizedLink
                       key={i}
@@ -232,7 +235,7 @@ export function Footer() {
               {/* desktop */}
               <div className={styles.layout.desktopOnly}>
                 <h5 className={cn(styles.textSizes.headingText, styles.layout.sectionHeader)}>{t("legal")}</h5>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {footerItems.legal.map((item, i) => (
                     <LocalizedLink
                       target="_blank"

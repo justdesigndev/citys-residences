@@ -7,15 +7,17 @@ import { useGSAP } from "@gsap/react"
 import { useLenis } from "lenis/react"
 import { X } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { ContactForm } from "@/components/form-contact"
 import { gsap } from "@/components/gsap"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { useEsc } from "@/hooks/useEsc"
 import { FormTranslations } from "@/types"
+import { useVisibilityStore } from "@/lib/store/visibility"
 
 export function ModalContactForm() {
+  const stickyBadgeRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
 
   const bgRef = useRef<HTMLDivElement>(null)
@@ -173,6 +175,17 @@ export function ModalContactForm() {
     }
   )
 
+  const { isAloTechVisible } = useVisibilityStore()
+
+  useEffect(() => {
+    if (!stickyBadgeRef.current) return
+
+    stickyBadgeRef.current.style.transition = "opacity 200ms ease"
+
+    stickyBadgeRef.current.style.setProperty("opacity", isAloTechVisible ? "1" : "0")
+    stickyBadgeRef.current.style.setProperty("pointer-events", isAloTechVisible ? "auto" : "none")
+  }, [isAloTechVisible])
+
   return (
     <>
       <div
@@ -209,6 +222,7 @@ export function ModalContactForm() {
                 "cursor-pointer"
               )}
               onClick={() => setOpen((prev) => !prev)}
+              ref={stickyBadgeRef}
             >
               <span className="block xl:-rotate-90 whitespace-nowrap pointer-events-none">{commonT("inquiry")}</span>
             </div>

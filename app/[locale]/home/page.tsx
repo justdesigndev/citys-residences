@@ -1,18 +1,19 @@
-import s from "./home.module.css"
-
 import { cn } from "@/lib/utils"
 import { useTranslations } from "next-intl"
 
+import { AnimatedButton } from "@/components/animated-button"
+import { AnimatedLine } from "@/components/animated-line"
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
-import { GsapSplitText } from "@/components/gsap-split-text"
 import { FullScreenSlider } from "@/components/full-screen-slider"
+import { GsapSplitText } from "@/components/gsap-split-text"
 import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
+import { Link } from "@/i18n/routing"
 import { kolajVideo, locationVideo, mainVideo, muratKaderVideo } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
 
@@ -90,56 +91,58 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative  py-8 lg:py-20 section-container">
+      <section className="relative  py-8 lg:py-20 section-container gsap-global-fade-in">
         <VideoSection
           primaryVideoUrl={kolajVideo}
           thumbnail="/img/thumbnail-kolaj-video.jpg"
-          title="Yaşam Yeniden Tasarlandı: City’s"
+          title="Yaşam Yeniden Tasarlandı: City’s."
         />
       </section>
-      <section className=" flex flex-col-reverse xl:flex-row items-center justify-between gap-6 lg:gap-20 xl:gap-4 py-6 lg:py-24 section-container">
-        <div className="flex flex-col gap-6 lg:gap-8">
-          <h2 className="font-suisse-intl font-medium text-bricky-brick text-3xl lg:text-7xl xl:text-6xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center xl:text-left">
-            <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
-              {t("live.p1.title")}
-            </GsapSplitText>
-          </h2>
-          <p className="font-suisse-intl font-normal text-base lg:text-4xl xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed lg:max-w-2xl xl:max-w-xl text-left lg:text-center xl:text-left">
-            <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
-              {t("live.p1.description")}
-            </GsapSplitText>
-          </p>
+      <div className="gsap-global-fade-in">
+        <AnimatedLine direction="horizontal" />
+        <div className={cn("flex gap-8 h-[80vh] py-8 section-container")}>
+          <div className="flex flex-col items-start justify-center w-6/12 mb-auto">
+            <h2 className="font-suisse-intl font-medium text-bricky-brick text-3xl lg:text-7xl xl:text-6xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center xl:text-left mb-8">
+              <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                {t("live.p1.title")}
+              </GsapSplitText>
+            </h2>
+            <p className="font-suisse-intl font-normal text-base lg:text-4xl xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed lg:max-w-2xl xl:max-w-xl text-left lg:text-center xl:text-left mb-24">
+              <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                {t("live.p1.description")}
+              </GsapSplitText>
+            </p>
+            <Link className="w-48" href="/location">
+              <AnimatedButton text="KONUM" theme="secondary" size="md" />
+            </Link>
+          </div>
+          <AnimatedLine direction="vertical" />
+          <div className="flex flex-col w-6/12 relative flex-1">
+            <Video
+              primaryVideoUrl={locationVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="relative w-full h-full object-cover z-0"
+            />
+          </div>
         </div>
-        <div className={cn(s.circleVideoC, "overflow-hidden rounded-sm lg:rounded-full z-20")}>
-          <Video
-            primaryVideoUrl={locationVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="relative w-full h-full object-cover z-0"
-          />
-        </div>
-      </section>
-      <section className="py-12 lg:py-24">
+        <AnimatedLine direction="horizontal" />
+      </div>
+      <section className="py-12 lg:py-24 gsap-global-fade-in">
         <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
-        {/* <div className="w-40 h-40 mx-auto lg:hidden">
-          <Logo fill={colors["bricky-brick"]} />
-        </div> */}
       </section>
-      <section className="relative py-8 lg:py-20 section-container">
+      <section className="relative py-8 lg:py-20 section-container gsap-global-fade-in">
         <VideoSection
           primaryVideoUrl={muratKaderVideo}
           thumbnail="/img/thumbnail-murat-kader.jpg"
-          title="Mimari: Yaşamın Sanata Döndüğü bir Proje Yaptık"
+          title="Mimari: Yaşamın Sanata Döndüğü Bir Proje Yaptık."
           className="rounded-sm overflow-hidden"
         />
       </section>
-      <section>
+      <section className="gsap-global-fade-in">
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
-        {/* <div className="w-40 h-40 mx-auto lg:hidden">
-          <Logo fill={colors["bricky-brick"]} />
-        </div> */}
       </section>
       <LinkToPage next={{ title: "Daireler", href: "/residences" }} />
     </Wrapper>

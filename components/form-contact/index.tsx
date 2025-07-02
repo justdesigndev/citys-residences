@@ -27,6 +27,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { submitContactForm } from "@/lib/api/submit-contact-form"
 import { isPhoneValid } from "@/lib/utils"
 import { FormTranslations } from "@/types"
+import { colors } from "@/styles/config.mjs"
 
 const getFormSchema = (translations: FormTranslations) =>
   z
@@ -295,7 +296,7 @@ export function ContactForm({ translations }: FormContactProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
-          className="font-suisse-intl space-y-6 lg:space-y-6 py-10 lg:py-0"
+          className="font-suisse-intl flex flex-col gap-6 py-10 lg:py-0"
           noValidate
         >
           <div className="flex flex-col lg:grid grid-flow-col gap-6 lg:gap-4 lg:grid-cols-2">
@@ -393,11 +394,11 @@ export function ContactForm({ translations }: FormContactProps) {
             />
           </div>
           <ConsentCheckboxes form={form} control={form.control} />
-          <button type="submit" disabled={mutation.isPending} className="flex relative w-40 lg:w-48">
+          <button type="submit" disabled={mutation.isPending} className="flex relative w-40 lg:w-48 mt-8">
             <AnimatedButton text={translations.submit.default} theme="secondary" size="sm" />
             {mutation.isPending && (
               <span className="absolute top-1/2 -right-4 -translate-y-1/2 translate-x-full flex items-center justify-center w-6 h-6">
-                <IconLoading fill="var(--bricky-brick)" />
+                <IconLoading fill={colors["bricky-brick"]} />
               </span>
             )}
           </button>
