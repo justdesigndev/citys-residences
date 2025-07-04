@@ -16,14 +16,17 @@ export function AnimatedLine({ direction }: AnimatedLineProps) {
     () => {
       const bar = barRef.current
       if (!bar) return
+
+      const isHorizontal = direction === "horizontal"
+
       gsap.to(bar, {
         opacity: 1,
-        duration: 2,
+        duration: () => (isHorizontal ? 2.5 : 3.5),
         ease: "expo.out",
-        ...(direction === "horizontal" ? { scaleX: 1 } : { scaleY: 1 }),
+        ...(isHorizontal ? { scaleX: 1 } : { scaleY: 1 }),
         scrollTrigger: {
           trigger: ref.current,
-          start: "center center+=35%",
+          start: () => (isHorizontal ? "center center+=35%" : "center center+=40%"),
         },
       })
     },
