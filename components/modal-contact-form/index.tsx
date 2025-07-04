@@ -216,7 +216,7 @@ export function ModalContactForm() {
               className={cn(
                 "absolute top-1/2 left-0 bottom-0 -translate-x-full -translate-y-1/2",
                 "h-64 w-12",
-                "font-primary font-normal text-white text-lg xl:text-2xl blur-bg-bricky-brick-light",
+                "font-primary font-normal text-white text-lg xl:text-2xl blur-bg-bricky-brick",
                 "rounded-bl-2xl rounded-tl-2xl",
                 "inline-flex items-center justify-center",
                 "cursor-pointer"
