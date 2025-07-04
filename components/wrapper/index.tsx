@@ -46,6 +46,7 @@ export function Wrapper({ children, theme = "light", lenis = true, className, ..
     },
     {
       dependencies: [pathname, children],
+      revertOnUpdate: true,
     }
   )
 
