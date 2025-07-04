@@ -43,7 +43,7 @@ export default function Home() {
       </section>
       <section className="bg-white py-0 lg:py-12 z-20 relative">
         <div className=" mx-auto py-12 lg:py-28 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16">
-          <div className="w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20">
+          <div className={cn("w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20", gsapGlobalClasses.fadeIn)}>
             <Logo fill={colors["bricky-brick"]} />
           </div>
           <div className="flex flex-col items-center gap-4 lg:gap-8">
@@ -97,7 +97,7 @@ export default function Home() {
         <AnimatedLine direction="horizontal" />
         <div className={cn("flex gap-8 h-[80vh] py-8 section-container")}>
           <div className="flex flex-col items-start justify-center w-6/12 mb-auto">
-            <h2 className="font-primary font-medium text-bricky-brick text-3xl lg:text-7xl xl:text-6xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center xl:text-left mb-8">
+            <h2 className="font-primary text-bricky-brick text-3xl lg:text-7xl xl:text-6xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center xl:text-left mb-8">
               <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
                 {t("live.p1.title")}
               </GsapSplitText>
