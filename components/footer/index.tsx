@@ -47,6 +47,7 @@ export function Footer() {
   const { setAloTechVisibility, setStickyContactMenuVisibility } = useVisibilityStore()
   const footerItems = {
     menu: [
+      { title: t("navigation.home"), href: "/" },
       { title: t("navigation.project"), href: "/" },
       { title: t("navigation.location"), href: "/location" },
       { title: t("navigation.residences"), href: "/residences" },
