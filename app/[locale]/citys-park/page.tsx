@@ -81,7 +81,7 @@ export default function Page() {
         <AnimatedLine direction="horizontal" />
         <div className={cn("section-container py-20 flex flex-col gap-20", gsapGlobalClasses.fadeIn)}>
           <h2 className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl max-w-2xl">
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
               City’s Park ayrıcalıkları ile yepyeni bir deneyim sizi bekliyor. Şehrin merkezinde, sizin için
               oluşturulmuş huzur ve keyif dolu bir yaşam alanı.
             </GsapSplitText>
