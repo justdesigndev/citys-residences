@@ -18,6 +18,9 @@ export function GsapSplitText(props: GsapSplitTextProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
+    gsap.registerPlugin(SplitText)
+    gsap.registerPlugin(ScrollTrigger)
+
     if (!ref.current) return
 
     const splitConfig = {

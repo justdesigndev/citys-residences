@@ -1,6 +1,6 @@
+import { AnimatedLine } from "@/components/animated-line"
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
-import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { ListCarousel } from "@/components/list-carousel"
@@ -101,15 +101,15 @@ export default async function Page() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/30">
             <div className="flex flex-col h-full py-8 bt:py-8 section-container">
               <h1 className="max-w-lg block font-suisse-intl leading-snug text-white text-2xl bt:text-4xl font-medium mt-auto mb-2 bd:mb-8">
-                <GsapSplitText splitBy="lines" stagger={0.005}>
-                  ŞEHİR HAYATI BİR ASANSÖR UZAKLIKTA
-                </GsapSplitText>
+                {/* <GsapSplitText splitBy="lines" stagger={0.5} duration={1}> */}
+                ŞEHİR HAYATI BİR ASANSÖR UZAKLIKTA
+                {/* </GsapSplitText> */}
               </h1>
               <p className="max-w-lg block font-suisse-intl leading-snug text-white text-base bt:text-lg font-normal mb-0 bd:mb-20">
-                <GsapSplitText splitBy="lines" stagger={0.005}>
-                  City&apos;s Residences sakinleri için alışveriş, yeme-içme ve günlük ihtiyaçlar, şehrin merkezinde ama
-                  ev rahatlığında. AVM hayatı, yaşam kurgusunun doğal bir parçası.
-                </GsapSplitText>
+                {/* <GsapSplitText splitBy="lines" stagger={0.5} duration={1}> */}
+                City&#39;s Residences sakinleri için alışveriş, yeme-içme ve günlük ihtiyaçlar, şehrin merkezinde ama ev
+                rahatlığında. AVM hayatı, yaşam kurgusunun doğal bir parçası.
+                {/* </GsapSplitText> */}
               </p>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default async function Page() {
           </FadeInOnScroll>
         </div>
       </section>
-      <section className="bg-white z-30 section-container my-10 lg:my-20">
+      <section className="bg-white z-30 mb-10">
         <ListCarousel
           title={alisveris.title}
           items={alisveris.items}
@@ -136,7 +136,7 @@ export default async function Page() {
           variant="v2"
         />
       </section>
-      <section className="bg-white z-30 section-container my-10 lg:my-20">
+      <section className="bg-white z-30 mb-10">
         <ListCarousel
           title={yemeIcme.title}
           items={yemeIcme.items}
@@ -145,7 +145,7 @@ export default async function Page() {
           variant="v2"
         />
       </section>
-      <section className="bg-white z-30 section-container my-10 lg:my-20">
+      <section className="bg-white z-30 mb-10">
         <ListCarousel
           title={hizmetler.title}
           items={hizmetler.items}
@@ -154,6 +154,7 @@ export default async function Page() {
           variant="v2"
         />
       </section>
+      <AnimatedLine direction="horizontal" />
       {/* <section className="relative z-20 bg-white mt-10 bd:mt-20">
         <h2 className="font-suisse-intl text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
         <AutoScrollCarousel options={{ dragFree: true, loop: true }}>

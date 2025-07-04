@@ -2,13 +2,16 @@
 
 import { ScrollTrigger, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import { ArrowLeftIcon, ArrowRightIcon, MoveDownIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Img } from "@/components/utility/img"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { AnimatedLine } from "../animated-line"
+import { MaskedParallaxImage } from "../masked-parallax-image"
+import EmblaCarousel from "../utility/embla-carousel"
 
 export interface ListCarouselProps {
   title: string
@@ -28,7 +31,13 @@ export interface ListCarouselProps {
   variant?: "default" | "v2"
 }
 
-export function ListCarousel({ title, items, images, withMoveDown = false, variant = "default" }: ListCarouselProps) {
+export function ListCarousel({
+  title,
+  items,
+  images,
+  // withMoveDown = false,
+  variant = "default",
+}: ListCarouselProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAutoplaying, setIsAutoplaying] = useState(false)
@@ -102,8 +111,9 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
   return (
     <div className="relative w-full" ref={ref}>
       <div className="h-full relative">
-        <div className="w-full h-full flex flex-col lg:flex-row gap-10 xl:gap-10 2xl:gap-10">
-          <div className="flex flex-col gap-2 lg:gap-4 w-full">
+        <div className="w-full h-full flex flex-col gap-10 xl:gap-10 2xl:gap-10">
+          <AnimatedLine direction="horizontal" />
+          <div className="flex flex-col gap-2 lg:gap-4 section-container">
             <h2 className="font-suisse-intl text-3xl lg:text-4xl xl:text-5xl font-normal text-bricky-brick">{title}</h2>
             {variant === "default" && items.length > 0 && (
               <div className="w-full">
@@ -132,7 +142,7 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
             {variant === "v2" && items.length > 0 && (
               <div className="pt-4 w-full lg:w-96">
                 <Select value={activeIndex.toString()} onValueChange={(value) => goToIndex(parseInt(value))}>
-                  <SelectTrigger className="border border-bricky-brick rounded-lg bg-transparent font-suisse-intl text-sm 2xl:text-base text-bricky-brick">
+                  <SelectTrigger className="border border-bricky-brick rounded-lg bg-transparent font-suisse-intl text-sm 2xl:text-lg text-bricky-brick p-3">
                     <SelectValue placeholder="Select an item" />
                   </SelectTrigger>
                   <SelectContent>
@@ -145,11 +155,11 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
                 </Select>
               </div>
             )}
-            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 lg:gap-4 w-full mt-5 lg:mt-8">
+            <div className="flex flex-col-reverse lg:flex-col items-center lg:items-start gap-8 lg:gap-4 w-full">
               <div
                 className={cn(
-                  "w-full lg:w-4/12 space-y-12",
-                  variant === "default" && "pt-0 lg:pt-32 xl:pt-64",
+                  "w-full space-y-12",
+                  // variant === "default" && "pt-0 lg:pt-32 xl:pt-64",
                   variant === "v2" && "pt-0"
                 )}
               >
@@ -162,9 +172,9 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h3 className="font-suisse-intl text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-medium text-bricky-brick mb-3 xl:mb-6">
+                      {/* <h3 className="font-suisse-intl text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-medium text-bricky-brick mb-3 xl:mb-6">
                         {items[itemIndexForDisplay].title}
-                      </h3>
+                      </h3> */}
                       <div className="xl:pr-8 2xl:pr-16">
                         <p className="font-suisse-intl text-base lg:text-sm xl:text-base 2xl:text-lg font-bold text-black">
                           {items[itemIndexForDisplay].subtitle}
@@ -180,7 +190,7 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
                   <AnimatePresence mode="wait">
                     {items[itemIndexForDisplay] && (
                       <motion.div
-                        className="flex flex-row flex-wrap gap-4"
+                        className="flex flex-row flex-wrap gap-12"
                         key={`text-${itemIndexForDisplay}`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -188,7 +198,7 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
                         transition={{ duration: 0.3 }}
                       >
                         {items[itemIndexForDisplay].logos?.map((logo, logoIndex) => (
-                          <div key={logoIndex} className="w-3/12 h-12 relative">
+                          <div key={logoIndex} className="w-16 h-16 relative">
                             <Img src={logo.url} alt="Members Club" fill sizes="10vw" className="object-contain" />
                           </div>
                         ))}
@@ -197,7 +207,27 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
                   </AnimatePresence>
                 )}
               </div>
-              <div className="relative overflow-hidden h-[70vw] lg:h-[40vw] w-full lg:w-8/12">
+            </div>
+          </div>
+          <AnimatedLine direction="horizontal" />
+          <div className="relative overflow-hidden w-full">
+            {variant === "v2" && (
+              <EmblaCarousel
+                autoplay={true}
+                autoplayDelay={5000}
+                slides={[...images, ...images, ...images].map((image, imageIndex) => (
+                  <div key={imageIndex} className="relative h-[80vh] w-[70vw]">
+                    <MaskedParallaxImage imgSrc={image.url} sizes="100vw" />
+                  </div>
+                ))}
+                options={{ duration: 35, loop: true, align: "start" }}
+                slideWidth="60vw"
+                slideSpacing="24px"
+                parallax={true}
+              />
+            )}
+            {variant === "default" && (
+              <>
                 {images.map((image, imageIndex) => (
                   <motion.div
                     key={imageIndex}
@@ -229,16 +259,16 @@ export function ListCarousel({ title, items, images, withMoveDown = false, varia
                 >
                   <ArrowRightIcon className="w-4 h-4 lg:w-6 lg:h-6" />
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>
-      {withMoveDown && (
+      {/* {withMoveDown && (
         <div className={cn("hidden lg:block absolute bottom-0 left-0 p-5 rounded-full border border-black opacity-70")}>
           <MoveDownIcon className="w-8 h-8" />
         </div>
-      )}
+      )} */}
     </div>
   )
 }
