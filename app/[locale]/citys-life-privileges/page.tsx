@@ -89,7 +89,7 @@ export default function Page() {
       <section>
         <AnimatedLine direction="horizontal" />
         <div className={cn("section-container py-20 flex flex-col gap-20", gsapGlobalClasses.fadeIn)}>
-          <h2 className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl max-w-3xl">
+          <h2 className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl xl:max-w-3xl 2xl:max-w-5xl">
             <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
               City’s Life ayrıcalıklarıyla modern yaşam yeniden şekilleniyor. <br /> Şehrin merkezinde, concierge
               hizmetlerinden konaklamaya, ortak çalışma alanlarından sosyal imkanlara uzanan benzersiz bir deneyim sizi
