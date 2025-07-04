@@ -34,7 +34,6 @@
 
 .embla-parallax-layer {
   position: relative;
-  height: 70vh;
   width: calc(115% + (var(--slide-spacing) * 2));
   display: flex;
   justify-content: center;
