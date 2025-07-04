@@ -17,7 +17,7 @@ export function LegalLayout({ children }: LegalLayoutProps) {
         <div className="col-span-12 lg:col-span-4">
           <LegalTableOfContents />
         </div>
-        <div className="col-span-12 lg:col-span-8 font-suisse-intl prose">{children}</div>
+        <div className="col-span-12 lg:col-span-8 font-primary prose">{children}</div>
       </div>
     </>
   )

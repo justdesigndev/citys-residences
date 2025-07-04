@@ -34,7 +34,7 @@ export function LegalTableOfContents() {
             key={route.href}
             href={route.href}
             className={cn(
-              "font-suisse-intl text-lg py-1 px-2 transition-colors duration-200 cursor-pointer",
+              "font-primary text-lg py-1 px-2 transition-colors duration-200 cursor-pointer",
               isActive && "text-primary font-semibold"
             )}
           >

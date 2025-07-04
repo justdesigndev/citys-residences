@@ -21,7 +21,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
       <h2
         className={cn(
           s.title,
-          "text-bricky-brick lg:text-white text-3xl lg:text-7xl xl:text-7xl font-suisse-intl font-medium leading-tight lg:leading-none text-left lg:text-center z-50 section-container whitespace-nowrap"
+          "text-bricky-brick lg:text-white text-3xl lg:text-7xl xl:text-7xl font-primary font-medium leading-tight lg:leading-none text-left lg:text-center z-50 section-container whitespace-nowrap"
         )}
       >
         {title}
@@ -29,7 +29,7 @@ export function FullScreenSlider({ title, description, items }: FullScreenSlider
       <p
         className={cn(
           s.description,
-          "font-suisse-intl text-black lg:text-white text-base font-normal leading-relaxed",
+          "font-primary text-black lg:text-white text-base font-normal leading-relaxed",
           "w-full lg:w-6/12 xl:w-[27vw] px-6 lg:px-4 lg:py-4 rounded-xl"
         )}
       >

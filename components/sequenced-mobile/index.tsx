@@ -58,17 +58,17 @@ const SequencedMobile = () => {
   return (
     <div className="flex xl:hidden flex-col xl:flex-row relative h-auto xl:h-[100vh] w-full overflow-hidden pointer-events-none">
       <div className="relative w-full xl:w-1/2 h-full flex flex-col items-start justify-center">
-        <h2 className="font-suisse-intl font-normal text-bricky-brick text-4xl lg:text-7xl xl:text-6xl mb-5 lg:mb-10 text-center xl:text-left">
+        <h2 className="font-primary font-normal text-bricky-brick text-4xl lg:text-7xl xl:text-6xl mb-5 lg:mb-10 text-center xl:text-left">
           <GsapSplitText splitBy="lines" stagger={0.005}>
             YAŞAMA ALAN AÇAN DETAYLAR
           </GsapSplitText>
         </h2>
-        <p className="font-suisse-intl text-md lg:text-4xl xl:text-2xl font-bold mb-4 text-center xl:text-left">
+        <p className="font-primary text-md lg:text-4xl xl:text-2xl font-bold mb-4 text-center xl:text-left">
           <GsapSplitText splitBy="lines" stagger={0.005}>
             Her metrekaresi ince tasarlanmış, ferah bir hayata açılan çizgiler
           </GsapSplitText>
         </p>
-        <p className="font-suisse-intl text-md lg:text-4xl xl:text-xl font-normal text-center xl:text-left">
+        <p className="font-primary text-md lg:text-4xl xl:text-xl font-normal text-center xl:text-left">
           <GsapSplitText splitBy="lines" stagger={0.005}>
             Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
             tasarlandı.

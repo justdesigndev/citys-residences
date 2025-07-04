@@ -113,7 +113,7 @@ export function StickyContactMenu() {
       <div
         className={cn(
           s.stickyContactMenu,
-          "font-suisse-intl fixed left-0 bottom-0 right-0 blur-bg-bricky-brick-light grid grid-cols-3 bt:hidden",
+          "font-primary fixed left-0 bottom-0 right-0 blur-bg-bricky-brick-light grid grid-cols-3 bt:hidden",
           "transition-all duration-300 ease-in-out",
           {
             "opacity-100": isStickyContactMenuVisible,
@@ -159,7 +159,7 @@ export function StickyContactMenu() {
         </div>
         <div className={cn(s.dContent, "px-4 pb-20")} onClick={(e) => e.stopPropagation()}>
           <ScrollableBox>
-            <p className="text-neutral-900 text-base bt:text-sm font-normal font-suisse-intl text-left bt:text-center bd:text-left leading-normal mt-5">
+            <p className="text-neutral-900 text-base bt:text-sm font-normal font-primary text-left bt:text-center bd:text-left leading-normal mt-5">
               {t.rich("description", {
                 br: () => <br className="hidden bt:block" />,
               })}

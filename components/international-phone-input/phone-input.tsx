@@ -35,7 +35,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({ value, onChange, phoneIn
         const country = parseCountry(c)
         return (
           <SelectItem
-            className="focus:bg-neutral-50 focus:text-neutral-950 cursor-pointer px-4 py-2 font-suisse-intl text-base bt:text-sm"
+            className="focus:bg-neutral-50 focus:text-neutral-950 cursor-pointer px-4 py-2 font-primary text-base bt:text-sm"
             key={`${index}-${country.iso2}-${country.dialCode}`}
             value={country.iso2}
           >

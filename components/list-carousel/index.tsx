@@ -114,7 +114,7 @@ export function ListCarousel({
         <div className="w-full h-full flex flex-col gap-10 xl:gap-10 2xl:gap-10">
           <AnimatedLine direction="horizontal" />
           <div className="flex flex-col gap-2 lg:gap-4 section-container">
-            <h2 className="font-suisse-intl text-3xl lg:text-4xl xl:text-5xl font-normal text-bricky-brick">{title}</h2>
+            <h2 className="font-primary text-3xl lg:text-4xl xl:text-5xl font-normal text-bricky-brick">{title}</h2>
             {variant === "default" && items.length > 0 && (
               <div className="w-full">
                 <ScrollableBox scrollTo={activeIndex ? `#item${activeIndex}Button` : null} orientation="horizontal">
@@ -124,7 +124,7 @@ export function ListCarousel({
                         id={`item${itemIndex}Button`}
                         key={itemIndex}
                         className={cn(
-                          "whitespace-nowrap font-suisse-intl text-sm 2xl:text-base text-black cursor-pointer pr-4 transition-opacity duration-300",
+                          "whitespace-nowrap font-primary text-sm 2xl:text-base text-black cursor-pointer pr-4 transition-opacity duration-300",
                           itemIndex === items.length - 1 && "pr-0",
                           itemIndex === activeIndex && "underline",
                           itemIndex === activeIndex ? "opacity-100" : "opacity-50",
@@ -142,7 +142,7 @@ export function ListCarousel({
             {variant === "v2" && items.length > 0 && (
               <div className="pt-4 w-full lg:w-96">
                 <Select value={activeIndex.toString()} onValueChange={(value) => goToIndex(parseInt(value))}>
-                  <SelectTrigger className="border border-bricky-brick rounded-lg bg-transparent font-suisse-intl text-sm 2xl:text-lg text-bricky-brick p-3">
+                  <SelectTrigger className="border border-bricky-brick rounded-lg bg-transparent font-primary text-sm 2xl:text-lg text-bricky-brick p-3">
                     <SelectValue placeholder="Select an item" />
                   </SelectTrigger>
                   <SelectContent>
@@ -172,14 +172,14 @@ export function ListCarousel({
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {/* <h3 className="font-suisse-intl text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-medium text-bricky-brick mb-3 xl:mb-6">
+                      {/* <h3 className="font-primary text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-medium text-bricky-brick mb-3 xl:mb-6">
                         {items[itemIndexForDisplay].title}
                       </h3> */}
                       <div className="xl:pr-8 2xl:pr-16">
-                        <p className="font-suisse-intl text-base lg:text-sm xl:text-base 2xl:text-lg font-bold text-black">
+                        <p className="font-primary text-base lg:text-sm xl:text-base 2xl:text-lg font-bold text-black">
                           {items[itemIndexForDisplay].subtitle}
                         </p>
-                        <p className="font-suisse-intl text-base lg:text-sm xl:text-base 2xl:text-lg font-normal text-black">
+                        <p className="font-primary text-base lg:text-sm xl:text-base 2xl:text-lg font-normal text-black">
                           {items[itemIndexForDisplay].description}
                         </p>
                       </div>

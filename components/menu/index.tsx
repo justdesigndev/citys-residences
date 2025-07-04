@@ -88,7 +88,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             <li
               className={cn(
                 "text-lg lg:text-xl xl:text-xl 2xl:text-2xl",
-                "font-suisse-intl font-normal text-white text-center lg:text-left",
+                "font-primary font-normal text-white text-center lg:text-left",
                 "transition-opacity duration-300 ease-in-out",
                 {
                   "opacity-30": hover && active !== i,
@@ -114,7 +114,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             </li>
           ))}
           <li className="w-full flex flex-col items-center lg:items-start mt-2 lg:mt-10 xl:mt-5 mb-0 xl:my-6 order-last lg:order-none">
-            <p className="w-full font-suisse-intl font-normal text-white text-sm xl:text-base py-2 lg:border-b lg:border-white/30 text-center lg:text-left">
+            <p className="w-full font-primary font-normal text-white text-sm xl:text-base py-2 lg:border-b lg:border-white/30 text-center lg:text-left">
               Bizi Takip Edin
             </p>
             <div className="flex gap-4 justify-center xl:justify-start py-3 xl:py-4">
@@ -138,7 +138,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "font-suisse-intl font-normal text-white text-base lg:text-lg xl:text-xl 2xl:text-xl text-center lg:text-left xl:leading-none",
+                "font-primary font-normal text-white text-base lg:text-lg xl:text-xl 2xl:text-xl text-center lg:text-left xl:leading-none",
                 "transition-opacity duration-300 ease-in-out",
                 "opacity-100 hover:opacity-70",
                 "flex items-center gap-2"

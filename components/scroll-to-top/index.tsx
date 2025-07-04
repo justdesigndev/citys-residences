@@ -30,7 +30,7 @@ export function ScrollToTop({ className }: ScrollToTopProps) {
     <button
       onClick={handleScrollToTop}
       className={cn(
-        "font-suisse-intl font-normal text-lg text-white opacity-50 hover:opacity-100 transition-opacity cursor-pointer",
+        "font-primary font-normal text-lg text-white opacity-50 hover:opacity-100 transition-opacity cursor-pointer",
         className
       )}
       type="button"

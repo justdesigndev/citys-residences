@@ -106,10 +106,7 @@ export function Header() {
           />
         </div>
         <div
-          className={cn(
-            s.text,
-            "cursor-pointer text-white font-suisse-intl font-semibold text-sm lg:text-base xl:text-lg"
-          )}
+          className={cn(s.text, "cursor-pointer text-white font-primary font-semibold text-sm lg:text-base xl:text-lg")}
         >
           <span>{t("close")}</span>
           <span>{t("open")}</span>

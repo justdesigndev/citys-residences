@@ -95,7 +95,7 @@ export function Footer() {
   }, [observer, setAloTechVisibility, setStickyContactMenuVisibility])
 
   return (
-    <footer className="relative bg-bricky-brick text-white py-12 xl:py-12 xl:pb-12 font-suisse-intl" ref={footerRef}>
+    <footer className="relative bg-bricky-brick text-white py-12 xl:py-12 xl:pb-12 font-primary" ref={footerRef}>
       <div className="section-container flex flex-col gap-12 lg:gap-0">
         <div className="flex flex-col-reverse items-stretch lg:flex-row lg:items-center gap-12 lg:gap-0">
           {/* Logo Section */}

@@ -13,14 +13,14 @@ interface AnimatedButtonProps {
   size?: "sm" | "md" | "lg" | "fit-content"
   text: string
   theme?: "primary" | "secondary" | "tertiary" | "transparent"
-  fontFamily?: "font-halenoir" | "font-suisse-intl"
+  fontFamily?: "font-halenoir" | "font-primary"
 }
 
 export function AnimatedButton({
   size = "md",
   text = "Button Text",
   theme = "primary",
-  fontFamily = "font-suisse-intl",
+  fontFamily = "font-primary",
 }: AnimatedButtonProps) {
   const [isOn, setIsOn] = useState(false)
   const toggleSwitch = () => setIsOn(!isOn)

@@ -216,7 +216,7 @@ export function ModalContactForm() {
               className={cn(
                 "absolute top-1/2 left-0 bottom-0 -translate-x-full -translate-y-1/2",
                 "h-64 w-12",
-                "font-suisse-intl font-normal text-white text-lg xl:text-2xl blur-bg-bricky-brick-light",
+                "font-primary font-normal text-white text-lg xl:text-2xl blur-bg-bricky-brick-light",
                 "rounded-bl-2xl rounded-tl-2xl",
                 "inline-flex items-center justify-center",
                 "cursor-pointer"
@@ -229,7 +229,7 @@ export function ModalContactForm() {
             <div className="h-full flex flex-col justify-center">
               <ScrollableBox className="flex flex-grow-0">
                 <div className="px-4 lg:px-8 py-14 lg:py-8 space-y-8">
-                  <h2 className="text-neutral-900 text-base lg:text-sm font-normal font-suisse-intl text-left lg:text-center xl:text-left leading-normal">
+                  <h2 className="text-neutral-900 text-base lg:text-sm font-normal font-primary text-left lg:text-center xl:text-left leading-normal">
                     {t.rich("description", {
                       br: () => <br className="hidden lg:block" />,
                     })}

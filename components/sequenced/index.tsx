@@ -60,17 +60,17 @@ const Sequenced = () => {
       ref={ref}
     >
       <div className="relative w-full xl:w-4/12 h-full flex flex-col items-start justify-center">
-        <h2 className="font-suisse-intl font-normal text-bricky-brick text-4xl lg:text-7xl xl:text-4xl mb-5 lg:mb-10 text-center xl:text-left">
+        <h2 className="font-primary font-normal text-bricky-brick text-4xl lg:text-7xl xl:text-4xl mb-5 lg:mb-10 text-center xl:text-left">
           <GsapSplitText splitBy="lines" stagger={0.005}>
             Yaşama Alan Açan Detaylar
           </GsapSplitText>
         </h2>
-        <p className="font-suisse-intl text-md lg:text-4xl xl:text-base font-bold mb-4 text-center xl:text-left">
+        <p className="font-primary text-md lg:text-4xl xl:text-base font-bold mb-4 text-center xl:text-left">
           <GsapSplitText splitBy="lines" stagger={0.005}>
             Her metrekaresi ince tasarlanmış, ferah bir hayata açılan çizgiler
           </GsapSplitText>
         </p>
-        <p className="font-suisse-intl text-md lg:text-4xl xl:text-base font-normal text-center xl:text-left">
+        <p className="font-primary text-md lg:text-4xl xl:text-base font-normal text-center xl:text-left">
           <GsapSplitText splitBy="lines" stagger={0.005}>
             Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
             tasarlandı.
