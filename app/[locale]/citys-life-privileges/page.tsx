@@ -86,7 +86,7 @@ export default function Page() {
           </FadeInOnScroll>
         </div>
       </section>
-      <section>
+      <section className="relative z-20 bg-white">
         <AnimatedLine direction="horizontal" />
         <div className={cn("section-container py-20 flex flex-col gap-20", gsapGlobalClasses.fadeIn)}>
           <h2 className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl xl:max-w-3xl 2xl:max-w-5xl">
