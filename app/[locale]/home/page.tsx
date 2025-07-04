@@ -48,7 +48,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center gap-4 lg:gap-8">
             <article className="font-montserrat text-bricky-brick text-4xl lg:text-6xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.015} duration={1}>
+              <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
                 {t("section1.title1")}
               </GsapSplitText>
               <span className="sr-only">{t("section1.title1")}</span>
@@ -58,7 +58,7 @@ export default function Home() {
               <span className="sr-only">{t("section1.title2")}</span>
             </article>
             <article className="font-montserrat text-bricky-brick text-4xl lg:text-2xl font-regular leading-relaxed tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.005} duration={1}>
+              <GsapSplitText splitBy="chars" stagger={0.01} duration={1.5}>
                 {t("section1.title3")}
               </GsapSplitText>
             </article>
@@ -69,7 +69,7 @@ export default function Home() {
         <div className=" mx-auto py-12 lg:py-28 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16">
           <div className="flex flex-col items-center gap-4 lg:gap-8">
             <article className="font-montserrat text-bricky-brick text-4xl lg:text-6xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.015} duration={1}>
+              <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
                 {t("section2.title1")}
               </GsapSplitText>
               <span className="sr-only">{t("section2.title1")}</span>
@@ -79,7 +79,7 @@ export default function Home() {
               <span className="sr-only">{t("section2.title2")}</span>
             </article>
             <article className="font-montserrat text-bricky-brick text-4xl lg:text-7xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.015} duration={1}>
+              <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
                 {t("section2.title3")}
               </GsapSplitText>
             </article>
