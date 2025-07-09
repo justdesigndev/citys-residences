@@ -143,7 +143,7 @@ export function Footer() {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-8/12 flex flex-col items-stretch lg:flex-row lg:border-b lg:border-grenadier pb-7 lg:pb-14">
+          <div className="w-full lg:w-8/12 flex flex-col items-stretch lg:flex-row pb-7 lg:pb-14">
             {/* Contact Section */}
             <div className="w-full lg:w-4/12 py-10 lg:py-0">
               <h5 className={cn(styles.textSizes.headingText, styles.layout.sectionHeader)}>{t("contact")}</h5>
@@ -277,21 +277,23 @@ export function Footer() {
           </div>
         </div>
         {/* Copyright Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-5 pt-5 ">
-          <div className="w-full lg:w-8/12 ml-auto">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-5 pt-5 border-t border-grenadier">
+          <div className="w-full lg:w-3/12 flex justify-center">
+            <span className={styles.textSizes.copyrightCredit}>
+              Made by{" "}
+              <LocalizedLink
+                href="https://justdesignfx.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                JUST DESIGN FX
+              </LocalizedLink>
+            </span>
+          </div>
+          <div className="w-full lg:w-8/12">
             <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-5">
               <span className={styles.textSizes.copyrightCredit}>{t("copyright")}</span>
-              <span className={styles.textSizes.copyrightCredit}>
-                Made by{" "}
-                <LocalizedLink
-                  href="https://justdesignfx.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  JUST DESIGN FX
-                </LocalizedLink>
-              </span>
               <ScrollToTop className={styles.textSizes.copyrightCredit} />
             </div>
           </div>
