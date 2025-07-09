@@ -1,33 +1,16 @@
-.header {
-  height: var(--header-height-slim);
-  width: 100vw;
-
-  &.atTop {
-    height: var(--header-height);
+.logo-c {
+  height: mobile-vw(72px);
+  left: 50%;
+  position: absolute;
+  right: auto;
+  top: mobile-vw(10px);
+  transform: translateX(-50%);
+  @include-media ('tablet') {
+    top: tablet-vw(10px);
+    height: tablet-vw(90px);
   }
-
-  &.menuOpen {
-    .locale-switcher {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  .logo-c {
-    height: mobile-vw(72px);
-    left: 50%;
-    position: absolute;
-    right: auto;
-    top: mobile-vw(10px);
-    transform: translateX(-50%);
-    z-index: var(--z-header-content);
-    @include-media ('tablet') {
-      top: tablet-vw(10px);
-      height: tablet-vw(90px);
-    }
-    @include-media ('desktop') {
-      top: desktop-vw(10px);
-      height: desktop-vw(100px);
-    }
+  @include-media ('desktop') {
+    top: desktop-vw(10px);
+    height: desktop-vw(96px);
   }
 }

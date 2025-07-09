@@ -99,13 +99,12 @@ export function Header() {
     <>
       <header
         className={cn(
-          s.header,
           "fixed top-0 left-0 right-0 z-[var(--z-header)]",
           "flex items-center section-padding",
           "transition-all duration-300",
           {
-            "bg-white": !scrollState.atTop,
-            "bg-transparent": scrollState.atTop,
+            "bg-white h-[var(--header-height)]": !scrollState.atTop,
+            "bg-transparent h-[var(--header-height-slim)]": scrollState.atTop,
           },
           {
             [s.hidden]: scrollState.hidden,
@@ -217,7 +216,7 @@ export function Header() {
                   exit={{ opacity: 0, y: 5 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <LogoSlim fill={colors.black} />
+                  <LogoSlim fill={colors["bricky-brick"]} />
                 </motion.div>
               )}
             </AnimatePresence>
