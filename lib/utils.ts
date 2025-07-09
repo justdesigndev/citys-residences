@@ -24,3 +24,11 @@ export const isPhoneValid = (phone: string) => {
     return false
   }
 }
+
+export function toTitleCase(str: string): string {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+}

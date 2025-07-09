@@ -10,6 +10,7 @@ import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { breakpoints } from "@/styles/config.mjs"
 
 interface MembersClubItemProps {
+  className?: string
   item: {
     title: string
     subtitle?: string
@@ -19,11 +20,11 @@ interface MembersClubItemProps {
   align?: "ltr" | "rtl"
 }
 
-export function MembersClubItem({ item, align = "ltr" }: MembersClubItemProps) {
+export function MembersClubItem({ item, align = "ltr", className = "" }: MembersClubItemProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <div className="gsap-global-fade-in" ref={ref}>
+    <div className={cn("gsap-global-fade-in py-8", className)} ref={ref}>
       <div
         className={cn(
           "flex items-stretch gap-8 py-8",

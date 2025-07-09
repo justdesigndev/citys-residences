@@ -1,21 +1,14 @@
 import { AnimatedLine } from "@/components/animated-line"
-import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
-import { IconCitysIstanbulLogo, IconCitysParkBgLogo } from "@/components/icons"
+import { IconCitysIstanbulLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { ListCarousel } from "@/components/list-carousel"
+import { LogoSection } from "@/components/logo-section"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
-
-function toTitleCase(str: string): string {
-  return str
-    .toLowerCase()
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
-}
+import { toTitleCase } from "@/lib/utils"
 
 export default async function Page() {
   const brands = await getBrandsData()
@@ -116,16 +109,7 @@ export default async function Page() {
         </ScaleOut>
       </section>
       <section className="relative z-20 bg-white py-5">
-        <div className="w-full h-[30vh] lg:h-[35vh] xl:h-[50vh] 2xl:h-[60vh]">
-          <FadeInOnScroll duration={1.5}>
-            <IconCitysParkBgLogo fill="#000000" />
-          </FadeInOnScroll>
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 md:h-36">
-          <FadeInOnScroll duration={0.5}>
-            <IconCitysIstanbulLogo fill="#000000" />
-          </FadeInOnScroll>
-        </div>
+        <LogoSection foregroundLogo={<IconCitysIstanbulLogo fill="#000000" />} foregroundDuration={0.5} />
       </section>
       <section className="bg-white z-30 mb-10">
         <ListCarousel

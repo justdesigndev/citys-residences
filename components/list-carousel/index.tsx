@@ -67,7 +67,6 @@ export function ListCarousel({
     <div className="relative w-full" ref={ref}>
       <div className="h-full relative">
         <div className="w-full h-full flex flex-col gap-10 xl:gap-10 2xl:gap-10">
-          <AnimatedLine direction="horizontal" />
           <div className="flex flex-col gap-2 lg:gap-4 section-container">
             <h2 className="font-primary text-3xl lg:text-4xl xl:text-5xl font-normal text-bricky-brick">{title}</h2>
             {variant === "default" && items.length > 0 && (

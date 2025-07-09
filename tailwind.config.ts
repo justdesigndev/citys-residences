@@ -146,7 +146,7 @@ const config: Config = {
         montserrat: "var(--font-montserrat)",
         "suisse-intl": "var(--font-suisse-intl)",
         "aktiv-grotesk": "var(--font-aktiv-grotesk)",
-        primary: "var(--font-aktiv-grotesk)",
+        primary: "var(--font-suisse-intl)",
       },
       borderRadius: {
         lg: "var(--radius)",
