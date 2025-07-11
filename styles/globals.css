@@ -6,7 +6,7 @@
   --background: var(--black);
   --foreground: var(--white);
 
-  --header-height: mobile-vw(64px);
+  --header-height: mobile-vw(72px);
   --header-height-slim: mobile-vw(48px);
 
   --svh-calc: calc(var(--svh, 1vh) * 100);
@@ -18,8 +18,8 @@
   }
 
   @include-media ('desktop') {
-    --header-height: desktop-vw(84px);
-    --header-height-slim: desktop-vw(64px);
+    --header-height: desktop-vw(64px);
+    --header-height-slim: desktop-vw(100px);
   }
 
   --z-content: z-stack(10000);

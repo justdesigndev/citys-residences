@@ -84,7 +84,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
       ref={ref}
     >
       <button className="absolute top-6 left-14 z-50" onClick={() => setOpen(false)} type="button">
-        <X className="text-white h-12 w-12" />
+        <X strokeWidth={1} className="text-white h-12 w-12" />
       </button>
       <nav
         className={cn(
