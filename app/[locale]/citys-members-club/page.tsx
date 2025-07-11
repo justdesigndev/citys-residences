@@ -168,8 +168,7 @@ export default function Page() {
         <div className="section-container pb-24">
           <h2 className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl text-center">
             <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
-              Ayrıcalıklar dünyası <br /> City’s ile yeniden tasarlandı. <br /> Yaşamın tam merkezinde, <br /> size özel
-              ayrıcalıklarla dolu bir deneyim.
+              Yaşam yeniden tasarlandı. <br /> Hayatın tam merkezinde. <br /> Citys&apos;e özel ayrıcalıklarla.
             </GsapSplitText>
           </h2>
         </div>
