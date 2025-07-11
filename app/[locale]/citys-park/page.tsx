@@ -68,8 +68,8 @@ export default function Page() {
       </section>
       <section className="relative z-20 bg-white py-5">
         <LogoSection foregroundLogo={<IconCitysParkLogo fill="#5D7261" />} foregroundDuration={0.5} />
-        <div className="section-container py-20 flex flex-col gap-20">
-          <h2 className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl max-w-2xl">
+        <div className="section-container py-20 flex flex-col items-center gap-20">
+          <h2 className="font-primary font-medium text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl max-w-2xl text-center">
             <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
               Şehrin ortasında, sizi yavaşlatan ve merkeze alan benzersiz bir deneyim: City’s Park. City’s ile yaşam
               yeniden tasarlandı.
