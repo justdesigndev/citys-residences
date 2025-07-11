@@ -10,8 +10,9 @@ import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
-import { citysLifeVideo, gsapGlobalClasses } from "@/lib/constants"
+import { citysLifeVideo, gsapGlobalClasses, sections } from "@/lib/constants"
 import { breakpoints } from "@/styles/config.mjs"
+import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 
 export default function Page() {
   const t = useTranslations("citys-life")
@@ -61,6 +62,7 @@ export default function Page() {
   ]
   return (
     <Wrapper>
+      <SectionsMenuInitializer sections={Object.values(sections.home)} />
       <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden">
         <ScaleOut>
           <Video

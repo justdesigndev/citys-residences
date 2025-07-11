@@ -4,10 +4,11 @@ import { IconCitysIstanbulLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { ListCarousel } from "@/components/list-carousel"
 import { LogoSection } from "@/components/logo-section"
+import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
-import { citysIstanbulAvmVideo } from "@/lib/constants"
+import { citysIstanbulAvmVideo, sections } from "@/lib/constants"
 import { toTitleCase } from "@/lib/utils"
 
 export default async function Page() {
@@ -81,6 +82,7 @@ export default async function Page() {
 
   return (
     <Wrapper>
+      <SectionsMenuInitializer sections={Object.values(sections.home)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video

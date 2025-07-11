@@ -6,7 +6,8 @@ import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
-import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
+import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
+import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 
 export default function Page() {
   const items = [
@@ -53,6 +54,7 @@ export default function Page() {
 
   return (
     <Wrapper>
+      <SectionsMenuInitializer sections={Object.values(sections.home)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video

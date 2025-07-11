@@ -1,7 +1,5 @@
 "use client"
 
-import s from "./header.module.css"
-
 import { Link as LocalizedLink } from "@/i18n/routing"
 import { initialScroll } from "@/lib/constants"
 import { cn } from "@/lib/utils"
@@ -30,8 +28,13 @@ export function Header() {
   const t = useTranslations("common")
   const sectionsRef = useRef<(HTMLAnchorElement | null)[]>([])
 
-  // Animate sections with programmatic control
   useEffect(() => {
+    // Clear refs when sections becomes empty
+    if (sections.length === 0) {
+      sectionsRef.current = []
+      return
+    }
+
     if (sectionsRef.current.length === 0) return
 
     if (scrollState.atTop) {
@@ -105,24 +108,12 @@ export function Header() {
           {
             "bg-white h-[var(--header-height)]": !scrollState.atTop,
             "bg-transparent h-[var(--header-height-slim)]": scrollState.atTop,
-          },
-          {
-            [s.hidden]: scrollState.hidden,
-            [s.atTop]: scrollState.atTop,
-            [s.menuOpen]: menuOpen,
           }
         )}
       >
-        <div
-          className={cn(s.content, "flex items-center justify-between flex-1 gap-12 z-[var(--z-header-content)]", {
-            [s.atTop]: scrollState.atTop,
-          })}
-        >
+        <div className="flex items-center justify-between flex-1 gap-12 z-[var(--z-header-content)]">
           <button
-            className={cn(s.trigger, "cursor-pointer flex items-center gap-2 bt:gap-4", {
-              [s.active]: menuOpen,
-              [s.hidden]: scrollState.hidden,
-            })}
+            className="cursor-pointer flex items-center gap-2 bt:gap-4"
             onClick={() => setMenuOpen((prev) => !prev)}
             type="button"
             aria-expanded={menuOpen}
@@ -160,67 +151,66 @@ export function Header() {
               <span>{t("open")}</span>
             </div>
           </button>
-          <div
-            className={cn(
-              "flex items-center gap-4 mr-auto"
-              //    {
-              //   "opacity-0": menuOpen,
-              //   "opacity-100": !menuOpen,
-              //   "pointer-events-none": menuOpen,
-              //   "pointer-events-auto": !menuOpen,
-              // }
-            )}
-          >
-            {sections.map((item, index) => (
-              <a
-                key={item.id}
-                ref={(el) => {
-                  sectionsRef.current[index] = el
-                }}
-                href={`#${item.id}`}
-                className={cn("font-primary text-black text-sm font-regular", {
-                  "opacity-0": scrollState.atTop,
-                  "opacity-100": !scrollState.atTop,
-                  "pointer-events-none": scrollState.atTop,
-                  "pointer-events-auto": !scrollState.atTop,
-                })}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <LocalizedLink
-            className={cn(s["logo-c"], "cursor-pointer")}
-            href="/"
-            scroll={initialScroll}
-            aria-label="Home"
-          >
-            <AnimatePresence mode="wait">
-              {scrollState.atTop ? (
-                <motion.div
-                  className="w-full h-full"
-                  key="logo-full"
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 5 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Logo fill={colors.white} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  className="w-full h-full"
-                  key="logo-slim"
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 5 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <LogoSlim fill={colors["bricky-brick"]} />
-                </motion.div>
+          {sections.length > 0 && (
+            <div
+              className={cn(
+                "flex items-center gap-4 mr-auto"
+                //    {
+                //   "opacity-0": menuOpen,
+                //   "opacity-100": !menuOpen,
+                //   "pointer-events-none": menuOpen,
+                //   "pointer-events-auto": !menuOpen,
+                // }
               )}
-            </AnimatePresence>
-          </LocalizedLink>
+            >
+              {sections.map((item, index) => (
+                <a
+                  key={item.id}
+                  ref={(el) => {
+                    sectionsRef.current[index] = el
+                  }}
+                  href={`#${item.id}`}
+                  className={cn("font-primary text-black text-sm font-regular", {
+                    "opacity-0": scrollState.atTop,
+                    "opacity-100": !scrollState.atTop,
+                    "pointer-events-none": scrollState.atTop,
+                    "pointer-events-auto": !scrollState.atTop,
+                  })}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
+          <AnimatePresence mode="wait">
+            {scrollState.atTop ? (
+              <motion.div
+                className="absolute -top-2 left-1/2 -translate-x-1/2 h-20 w-20 xl:h-36 xl:w-36 2xl:h-40 2xl:w-40"
+                key="logo-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <LocalizedLink href="/" scroll={initialScroll} aria-label="Home">
+                  <Logo fill={colors.white} />
+                </LocalizedLink>
+              </motion.div>
+            ) : (
+              <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[65%]"
+                key="logo-slim"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <LocalizedLink className="block h-full w-full" href="/" scroll={initialScroll} aria-label="Home">
+                  <LogoSlim fill={colors["bricky-brick"]} />
+                </LocalizedLink>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <div className="cursor-pointer hidden bt:block">
             <LocaleSwitcher theme={scrollState.atTop ? "dark" : "light"} />
           </div>

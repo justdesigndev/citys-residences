@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <SectionsMenuInitializer sections={Object.values(sections.home)} />
+      <SectionsMenuInitializer sections={Object.values([])} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video

@@ -4,9 +4,10 @@ import { IconCitysMembersClubLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
+import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
-import { membersClubVideo } from "@/lib/constants"
+import { membersClubVideo, sections } from "@/lib/constants"
 
 export default function Page() {
   const items = [
@@ -149,6 +150,7 @@ export default function Page() {
 
   return (
     <Wrapper>
+      <SectionsMenuInitializer sections={Object.values(sections.home)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video

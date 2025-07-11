@@ -11,8 +11,9 @@ import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { Wrapper } from "@/components/wrapper"
-import { citysParkVideo, gsapGlobalClasses, pinarVeCemilAktasVideo } from "@/lib/constants"
+import { citysParkVideo, gsapGlobalClasses, pinarVeCemilAktasVideo, sections } from "@/lib/constants"
 import { breakpoints } from "@/styles/config.mjs"
+import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 
 export default function Page() {
   const t = useTranslations("citys-park")
@@ -52,6 +53,7 @@ export default function Page() {
 
   return (
     <Wrapper>
+      <SectionsMenuInitializer sections={Object.values(sections.home)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
