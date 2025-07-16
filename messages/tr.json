@@ -231,11 +231,11 @@
             "citysTimes": "City's Times",
             "project": "Proje"
         },
-        "contactInfo": "City's Residences Satış Ofisi / Sales Gallery",
+        "contactInfo": "Satış Ofisi / Sales Gallery",
         "close": "KAPAT",
         "open": "MENÜ",
         "inquiry": "RANDEVU\u00A0\u00A0AL",
-        "contact": "İletişim",
+        "contact": "Adres",
         "socialMedia": "Sosyal Medya",
         "menu": "Menü",
         "legal": "KVKK",
@@ -245,6 +245,6 @@
         "explicitConsent": "Açık Rıza Metni",
         "kvkRelatedInformation": "KVKK İlişkin Aydınlatma Metni",
         "cookiePolicy": "Çerez Politikası",
-        "scrollToTop": "En üste dön"
+        "scrollToTop": "Başa Dön"
     }
 }

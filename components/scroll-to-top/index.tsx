@@ -3,6 +3,7 @@
 import { gsap } from "@/components/gsap"
 import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
+import { ArrowUpIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 interface ScrollToTopProps {
@@ -30,12 +31,14 @@ export function ScrollToTop({ className }: ScrollToTopProps) {
     <button
       onClick={handleScrollToTop}
       className={cn(
-        "font-primary font-semibold text-lg text-white opacity-80 hover:opacity-100 transition-opacity cursor-pointer",
+        "flex items-center gap-2",
+        "font-primary text-white opacity-80 hover:opacity-100 transition-opacity cursor-pointer",
         className
       )}
       type="button"
     >
       {t("scrollToTop")}
+      <ArrowUpIcon className="w-6 h-6 opacity-80" />
     </button>
   )
 }
