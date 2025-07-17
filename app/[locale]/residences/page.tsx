@@ -1,18 +1,20 @@
+import { AnimatedLine } from "@/components/animated-line"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { Logo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
+import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Sequenced } from "@/components/sequenced"
 import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
-import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
+import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
 import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
-import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
+import { colors } from "@/styles/config.mjs"
 
 export default function Page() {
   const items = [
     {
-      title: "1+1",
+      title: "1+1 Daire",
       description: "“Şehir hayatına konforlu bir dokunuş: Kendi köşen, kendi ritmin.”",
       images: [
         {
@@ -25,7 +27,7 @@ export default function Page() {
       bg: "#fbfbfb",
     },
     {
-      title: "2+1",
+      title: "2+1 Daire",
       description: "“Modern profesyoneller için hem çalışmaya hem yaşamaya ilham veren bir düzen.”",
       images: [
         {
@@ -38,7 +40,85 @@ export default function Page() {
       bg: "#fffdfd",
     },
     {
-      title: "3+1",
+      title: "3+1 Daire",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      images: [
+        {
+          url: "/img/residences/3+1/plan.jpg",
+        },
+        {
+          url: "/img/residences/3+1/interior.jpg",
+        },
+      ],
+      bg: "#ffffff",
+    },
+    {
+      title: "4+1 Daire",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      images: [
+        {
+          url: "/img/residences/3+1/plan.jpg",
+        },
+        {
+          url: "/img/residences/3+1/interior.jpg",
+        },
+      ],
+      bg: "#ffffff",
+    },
+    {
+      title: "5+1 Daire",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      images: [
+        {
+          url: "/img/residences/3+1/plan.jpg",
+        },
+        {
+          url: "/img/residences/3+1/interior.jpg",
+        },
+      ],
+      bg: "#ffffff",
+    },
+    {
+      title: "6+1 Daire",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      images: [
+        {
+          url: "/img/residences/3+1/plan.jpg",
+        },
+        {
+          url: "/img/residences/3+1/interior.jpg",
+        },
+      ],
+      bg: "#ffffff",
+    },
+    {
+      title: "City's Park Daireleri",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      images: [
+        {
+          url: "/img/residences/3+1/plan.jpg",
+        },
+        {
+          url: "/img/residences/3+1/interior.jpg",
+        },
+      ],
+      bg: "#ffffff",
+    },
+    {
+      title: "Teras Evler",
+      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      images: [
+        {
+          url: "/img/residences/3+1/plan.jpg",
+        },
+        {
+          url: "/img/residences/3+1/interior.jpg",
+        },
+      ],
+      bg: "#ffffff",
+    },
+    {
+      title: "Penthouse",
       description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
       images: [
         {
@@ -67,40 +147,39 @@ export default function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white">
-        <div className="w-full h-40 bt:h-64 mx-auto my-12 bt:my-32">
-          <Logo fill="var(--bricky-brick)" />
+      <section className="bg-white relative z-30 py-12 lg:py-20 2xl:py-28">
+        <div className="w-full h-40 lg:h-64 mx-auto ">
+          <Logo fill={colors["bricky-brick"]} />
         </div>
       </section>
-      <section className="bg-white z-20 section-container">
-        <div className="relative ">
-          <div className="w-full h-[300px] bt:h-[90vh] relative z-10 flex items-center justify-center bg-black">
-            <VideoWithPlayButton
-              primaryVideoUrl={mustafaTonerVideo}
-              thumbnail="/img/thumbnail-toners.jpg"
-              title="İç Mimari: Yaşam Konforu ve Kalitesi"
-            />
-          </div>
+      <section className="bg-white relative z-30 py-12">
+        <div className="section-container">
+          <VideoSection
+            primaryVideoUrl={mustafaTonerVideo}
+            thumbnail="/img/thumbnail-toners.jpg"
+            title="İç Mimari: Yaşam Konforu ve Kalitesi"
+          />
         </div>
       </section>
-      <section className="hidden xl:block bg-white z-30 section-container py-12 bd:py-0">
+      <AnimatedLine direction="horizontal" />
+      <section className="hidden xl:block bg-white relative z-30 section-container">
         <Sequenced />
       </section>
-      <section className="bg-white z-30 section-container pb-16 bt:pb-72">
+      <section className="bg-white relative z-30 section-container py-12">
         <StackingCards items={items} />
       </section>
-      <section className="section-container">
-        <div className="relative">
-          <div className="w-full h-[350px] bt:h-[90vh] relative z-10 flex items-center justify-center bg-black">
-            <VideoWithPlayButton
-              primaryVideoUrl={melihBulgurVideo}
-              thumbnail="/img/thumbnail-melih-bulgur.jpg"
-              title="Statik: Huzur Mühendisliği"
-            />
-          </div>
-        </div>
+      <section className="section-container py-12">
+        <VideoSection
+          primaryVideoUrl={melihBulgurVideo}
+          thumbnail="/img/thumbnail-melih-bulgur.jpg"
+          title="Zemin Güvenliği: Huzur Mühendisliği"
+        />
       </section>
-      <LinkToPage previous={{ title: "Anasayfa", href: "/" }} next={{ title: "City's Park", href: "/citys-park" }} />
+      <AnimatedLine direction="horizontal" />
+      <LinkToPage
+        previous={{ title: "Proje", href: "/project" }}
+        next={{ title: "City's Park", href: "/citys-park" }}
+      />
     </Wrapper>
   )
 }

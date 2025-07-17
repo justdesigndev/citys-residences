@@ -5,9 +5,9 @@ import { cn } from "@/lib/utils"
 import { useRef } from "react"
 import { useWindowSize } from "react-use"
 
+import { MaskedPanImage } from "@/components/masked-pan-image"
 import { Img } from "@/components/utility/img"
 import { useImageGalleryStore } from "@/lib/store/image-gallery"
-import styles from "./stacking-cards.module.css"
 import { breakpoints } from "@/styles/config.mjs"
 
 export interface StackingCardsProps {
@@ -44,15 +44,16 @@ export function StackingCards({ items }: StackingCardsProps) {
       ScrollTrigger.create({
         animation: tl,
         trigger: ref.current,
-        start: "top top+=2%",
+        start: "center center",
         pin: true,
         scrub: true,
-        end: "+=1500px",
+        end: `+=${items.length * window.innerHeight}px`,
       })
     },
     {
       scope: ref,
       dependencies: [items, width],
+      revertOnUpdate: true,
     }
   )
 
@@ -66,49 +67,50 @@ export function StackingCards({ items }: StackingCardsProps) {
   }
 
   return (
-    <div className="relative w-full h-auto bt:h-[100vw] bd:h-[43vw]" ref={ref}>
+    <div className="relative w-full h-auto lg:h-[100vw] xl:h-[47vw] 2xl:h-[45vw] 3xl:h-[40vw]" ref={ref}>
       {items.map((item, i) => {
         return (
           <div
             className={cn(
               "gsap-stacking-card",
-              styles.stackingCard,
-              "relative bt:absolute left-1/2 -translate-x-1/2 w-full h-full overflow-hidden",
-              "border border-s-neutral-300 bg-white px-4 bt:px-8 bd:px-4 rounded-xl"
+              "relative lg:absolute left-1/2 -translate-x-1/2 w-full h-full overflow-hidden",
+              "border border-s-neutral-300 bg-white px-4 lg:px-8 rounded-xl",
+              "flex flex-col gap-3 py-4 lg:py-8 xl:py-4 flex-1"
             )}
             key={i}
-            style={
-              {
-                "--card-margin": `${i * 80}px`,
-              } as React.CSSProperties
-            }
+            // style={
+            //   {
+            //     "--card-margin": `${i * 80}px`,
+            //   } as React.CSSProperties
+            // }
           >
-            <div className="gsap-card-content flex flex-col gap-3 py-4 bt:py-8 bd:py-4">
-              <h2 className="font-primary text-4xl bt:text-4xl bd:text-5xl font-medium text-bricky-brick">
+            <div className="flex flex-col gap-5 py-8">
+              <h2 className="font-primary text-4xl lg:text-4xl xl:text-5xl font-bold text-bricky-brick">
                 {item.title}
               </h2>
-              <small className="font-primary text-sm bt:text-base bd:text-xl font-normal mb-4">
+              <small className="font-primary text-sm lg:text-base xl:text-2xl font-bold text-bricky-brick max-w-lg">
                 {item.description}
               </small>
-              <div className="flex flex-col bt:flex-row gap-4 flex-1 flex-shrink-0">
-                {item.images.map((image, i) => (
-                  <div
-                    key={i}
-                    className={cn(
-                      "relative rounded-md overflow-hidden cursor-pointer h-[64vw] bt:h-[32vw] flex-shrink-0 bt:flex-1",
-                      "hover:opacity-90 transition-opacity"
-                    )}
-                    onClick={() => handleImageClick(item.images, i)}
-                  >
-                    <Img
-                      src={image.url}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 800px) 100vw, 50vw"
-                      className={cn(i === 0 ? "object-contain" : "object-cover")}
-                    />
-                  </div>
-                ))}
+            </div>
+            <div className="grid grid-cols-2 gap-4 mt-auto flex-1">
+              <div className={cn("relative rounded-md overflow-hidden")}>
+                <Img
+                  src={item.images[0].url}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 800px) 100vw, 50vw"
+                  className={cn("object-contain")}
+                />
+              </div>
+              <div className={cn("relative rounded-md overflow-hidden")}>
+                <Img
+                  src={item.images[1].url}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 800px) 100vw, 50vw"
+                  className={cn(i === 0 ? "object-contain" : "object-cover")}
+                />
+                <MaskedPanImage imgSrc={item.images[1].url} sizes="100vw" />
               </div>
             </div>
           </div>

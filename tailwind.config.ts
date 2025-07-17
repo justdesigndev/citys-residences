@@ -27,6 +27,7 @@ const config: Config = {
       lg: "64rem",
       xl: "80rem",
       "2xl": "96rem",
+      "3xl": "120rem",
     },
     extend: {
       gridTemplateColumns: {

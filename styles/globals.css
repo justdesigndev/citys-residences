@@ -18,8 +18,8 @@
   }
 
   @include-media ('desktop') {
-    --header-height: desktop-vw(64px);
-    --header-height-slim: desktop-vw(100px);
+    --header-height: desktop-vw(60px);
+    --header-height-slim: desktop-vw(90px);
   }
 
   --z-content: z-stack(10000);
@@ -90,9 +90,9 @@ body {
 }
 
 .blur-bg-bricky-brick-light {
-  background: hsla(10, 66%, 43%, 0.9);
+  background: hsla(10, 66%, 43%, 0.7);
   backdrop-filter: blur(70px);
-  mask-image: hsla(10, 66%, 43%, 0.9);
+  mask-image: hsla(10, 66%, 43%, 0.7);
 }
 
 .blur-bg-bricky-brick-lighter {
