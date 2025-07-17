@@ -7,7 +7,6 @@ import { useWindowSize } from "react-use"
 
 import { MaskedPanImage } from "@/components/masked-pan-image"
 import { Img } from "@/components/utility/img"
-import { useImageGalleryStore } from "@/lib/store/image-gallery"
 import { breakpoints } from "@/styles/config.mjs"
 
 export interface StackingCardsProps {
@@ -23,7 +22,6 @@ export interface StackingCardsProps {
 
 export function StackingCards({ items }: StackingCardsProps) {
   const ref = useRef(null)
-  const { openModal } = useImageGalleryStore()
   const { width } = useWindowSize()
 
   useGSAP(
