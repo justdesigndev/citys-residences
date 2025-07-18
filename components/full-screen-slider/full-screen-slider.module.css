@@ -1,20 +1,20 @@
 .title {
   left: 50%;
-  letter-spacing: 0em;
+  /* letter-spacing: 0em; */
   overflow: hidden;
   position: relative;
   transform: translate(-50%, 0);
   @include-media ("tablet") {
     position: absolute;
     left: 50%;
-    letter-spacing: 0.14em;
+    /* letter-spacing: 0.14em; */
     transform: translate(-50%, -100%);
     top: tablet-vw(100px);
   }
   @include-media ("desktop") {
     position: absolute;
     left: 50%;
-    letter-spacing: 0.2em;
+    /* letter-spacing: 0.2em; */
     padding: desktop-vw(30px) 0;
     top: desktop-vw(50px);
     transform: translate(-50%, 0);

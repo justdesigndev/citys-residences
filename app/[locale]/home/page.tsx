@@ -12,7 +12,7 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
-import { gsapGlobalClasses, kolajVideo, locationVideo, mainVideo, sections } from "@/lib/constants"
+import { gsapGlobalClasses, kolajVideo, locationVideo, mainVideo } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
 
 export default function Home() {
@@ -77,7 +77,6 @@ export default function Home() {
           "relative py-8 lg:py-20",
           "before:absolute before:bottom-0 before:left-0 before:w-full before:h-1/2 before:bg-unbleached"
         )}
-        id={sections.home.section1.id}
       >
         <div className="section-container">
           <VideoSection
@@ -109,9 +108,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className={cn(gsapGlobalClasses.fadeIn)} id={sections.home.section2.id}>
+      <section className={cn(gsapGlobalClasses.fadeIn)}>
         <div className="flex gap-8 h-[60vw] relative">
-          <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-bricky-brick text-3xl lg:text-7xl xl:text-6xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50 tracking-[0.2em]">
+          <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-bricky-brick text-3xl lg:text-7xl xl:text-7xl 2xl:text-8xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50">
             <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
               {t("live.p1.title")}
             </GsapSplitText>
@@ -135,11 +134,11 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className={cn("py-12 lg:py-8", gsapGlobalClasses.fadeIn)} id={sections.home.section3.id}>
+      <section className={cn("py-12 lg:py-8", gsapGlobalClasses.fadeIn)}>
         <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
       </section>
       <AnimatedLine direction="horizontal" />
-      <section className={cn("py-12 lg:py-8 mt-8", gsapGlobalClasses.fadeIn)} id={sections.home.section5.id}>
+      <section className={cn("py-12 lg:py-8 mt-8", gsapGlobalClasses.fadeIn)}>
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
       </section>
       <AnimatedLine direction="horizontal" />
