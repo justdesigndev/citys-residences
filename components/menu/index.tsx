@@ -55,6 +55,14 @@ export function Menu({ open, setOpen, items }: MenuProps) {
     setActive(null)
   })
 
+  useClickAway(submenuRef, (e) => {
+    if ((e.target as HTMLElement).closest("[data-ignore-click-away]")) {
+      return
+    }
+    setOpen(false)
+    setActive(null)
+  })
+
   useGSAP(() => {
     const animationConfig = {
       from: { clipPath: "inset(0% 100% 0% 0%)" },
@@ -147,6 +155,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         )}
         style={{ clipPath: clipPath.current }}
         ref={menuRef}
+        data-ignore-click-away
       >
         <button className="absolute top-6 left-8 z-50" onClick={() => setOpen(false)} type="button">
           <X strokeWidth={1} className="text-white h-12 w-12" />
@@ -236,6 +245,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         )}
         style={{ clipPath: clipPath.current }}
         ref={submenuRef}
+        data-ignore-click-away
       >
         <div className="h-full w-full flex" data-lenis-prevent>
           <ScrollableBox>
