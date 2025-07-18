@@ -10,7 +10,7 @@ import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
-import { gsapGlobalClasses, membersClubVideo } from "@/lib/constants"
+import { gsapGlobalClasses, membersClubVideo, sections } from "@/lib/constants"
 
 export default function Page() {
   const items = [
@@ -290,7 +290,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+      <SectionsMenuInitializer sections={Object.values(sections.citysMembersClub)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
