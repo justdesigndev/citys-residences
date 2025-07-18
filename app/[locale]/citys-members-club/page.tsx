@@ -22,7 +22,7 @@ export default function Page() {
         <p>Zihninizi uyandırıp bedeninizi güçlendirirken dört mevsim konforlu ve sağlıklı yaşamın ayrıcalığını doyasıya yaşayın.</p>
       `,
       url: ["/img/citys-members-club/01.jpg"],
-      // sectionId: sections.citysMembersClub.indoorSwimmingPool.id,
+      sectionId: sections.citysMembersClub.indoorSwimmingPool.id,
     },
     {
       title: "Spor & Spa <br /> Resepsiyon",
@@ -31,7 +31,7 @@ export default function Page() {
         <p>Bireysel antrenmanlardan grup derslerine kendi sınırlarını zorladığın yerdesin</p>
       `,
       url: ["/img/citys-members-club/02.jpg"],
-      // sectionId: sections.citysMembersClub.macOne.subitems.training.id,
+      sectionId: sections.citysMembersClub.macOne.subitems.sportAndSpaReception.id,
     },
     {
       title: "Soyunma Odaları",
@@ -40,7 +40,7 @@ export default function Page() {
         <p>Yüksek ergonomi, kusursuz işlev, yüksek standartlardaki soyunma odalarınız sadece geçiş noktanız değil;<br />Konforun, zerafetin ve tüm kullanıcı ihtiyaçlarınızın yeniden tanımlandığı sıra dışı bir deneyim için tasarlandı.</p>
       `,
       url: ["/img/citys-members-club/03.jpg"],
-      // sectionId: sections.citysMembersClub.macOne.subitems.sauna.id,
+      sectionId: sections.citysMembersClub.macOne.subitems.changingRooms.id,
     },
     {
       title: "Spor Salonu",
@@ -51,7 +51,7 @@ export default function Page() {
 
       `,
       url: ["/img/citys-members-club/04.jpg"],
-      // sectionId: sections.citysMembersClub.macOne.subitems.yoga.id,
+      sectionId: sections.citysMembersClub.macOne.subitems.yoga.id,
     },
     {
       title: "Stüdyolar",
@@ -62,7 +62,7 @@ export default function Page() {
         <p>City’s Members Club stüdyolarında her zaman kendinizi daha iyi hissedeceksiniz.</p>
       `,
       url: ["/img/citys-members-club/05.jpg"],
-      // sectionId: sections.citysMembersClub.macOne.subitems.pilates.id,
+      sectionId: sections.citysMembersClub.macOne.subitems.pilates.id,
     },
     {
       title: "Yoga Stüdyosu",
@@ -71,6 +71,7 @@ export default function Page() {
         <p>Nefesin ve hareketin uyumuna zemin hazırlayan yoga stüdyosu ile kendinize iyi gelecek bir yolculuğa davetlisiniz.</p>
       `,
       url: ["/img/citys-members-club/06.jpg"],
+      sectionId: sections.citysMembersClub.macOne.subitems.yoga.id,
     },
     {
       title: "Pilates Stüdyosu",
@@ -78,10 +79,9 @@ export default function Page() {
       description: `
         <p>Pilates Stüdyosu, her hareketin merkezinde dengeyi arar.</p>
         <p>Alan, akışa eşlik eden ışık ve dinginlikle kendi ritmini kurar. Her seans, hareketle mekân arasında kurulan sessiz bir uyumdan doğar.</p>
-
-    
       `,
       url: ["/img/citys-members-club/07.jpg"],
+      sectionId: sections.citysMembersClub.macOne.subitems.pilates.id,
     },
     {
       title: "Duşlar",
@@ -90,6 +90,7 @@ export default function Page() {
         <p>Her ayrıntısıyla özenle tasarlanmış bu alan, antrenman yorgunluğunuzu ödüllendirdiğiniz ve kendinize döndüğünüz bir mekan sunar.</p>
       `,
       url: ["/img/citys-members-club/08.jpg"],
+      sectionId: sections.citysMembersClub.macOne.subitems.dryShowers.id,
     },
 
     {
@@ -99,6 +100,7 @@ export default function Page() {
         <p>Doğal dokularla şekillenen zarif bir denge içinde tasarlanan saunada, sadece bedeninizi değil zihninizi de arındırın.</p>
       `,
       url: ["/img/citys-members-club/09.jpg"],
+      sectionId: sections.citysMembersClub.macOne.subitems.sauna.id,
     },
     {
       title: "Spa & Wellness",
@@ -107,6 +109,7 @@ export default function Page() {
         <p>Sauna, buhar odası ve masaj alanlarını içeren wellness bölümühem bedeninizi hem de zihninizi rahatlatmak için kusursuz kurgulandı.</p>
       `,
       url: ["/img/citys-members-club/10.jpg"],
+      sectionId: sections.citysMembersClub.nuspa.subitems.spaWellness.id,
     },
     {
       title: "Masaj",
@@ -115,6 +118,7 @@ export default function Page() {
         <p>Dış uyaranlardan izole edilmiş, içe dönüşe alan tanıyan terapi odaları.</p>
       `,
       url: ["/img/citys-members-club/11.jpg"],
+      sectionId: sections.citysMembersClub.nuspa.subitems.massage.id,
     },
     {
       title: "Dinlenme",
@@ -124,6 +128,7 @@ export default function Page() {
         <p>Enerjinize ve ritminize eşlik eden bir deneyim, sakinliğin yeni dengesi.</p>
       `,
       url: ["/img/citys-members-club/12.jpg"],
+      sectionId: sections.citysMembersClub.nuspa.subitems.relaxation.id,
     },
     {
       title: "Hamam",
@@ -133,6 +138,7 @@ export default function Page() {
         <p>Su, buhar ve sessizlikle bedenin hafifliğini hissedin. <br /> Burada zihniniz arınır, yenilenir ve yeniden doğarsınız.</p> 
       `,
       url: ["/img/citys-members-club/13.jpg"],
+      sectionId: sections.citysMembersClub.nuspa.subitems.turkishBath.id,
     },
     {
       title: "Padel Tenis",
@@ -143,6 +149,7 @@ export default function Page() {
         <p>Padel tenis ile enerjiniz tazelensin.</p>
       `,
       url: ["/img/citys-members-club/14.jpg"],
+      sectionId: sections.citysMembersClub.dynamicZone.subitems.padelTennis.id,
     },
     {
       title: "Basketbol",
@@ -154,6 +161,7 @@ export default function Page() {
         <p>Her atış bir hedef. Her zıplayış bir özgürlük.</p>
       `,
       url: ["/img/citys-members-club/15.jpg"],
+      sectionId: sections.citysMembersClub.dynamicZone.subitems.basketball.id,
     },
     {
       title: "Masa Tenisi",
@@ -163,6 +171,7 @@ export default function Page() {
         <p>Hareketin enerji ile buluştuğu, sohbetin oyuna dönüştüğü yer. Sadece bir oyun değil yaşamın en keyifli hali.</p>
       `,
       url: ["/img/citys-members-club/16.jpg"],
+      sectionId: sections.citysMembersClub.dynamicZone.subitems.tableTennis.id,
     },
     {
       title: "Golf Deneyimi",
@@ -173,6 +182,7 @@ export default function Page() {
         <p>Yeşilin ritmini sadece birkaç adımda keşfedin.</p>
       `,
       url: ["/img/citys-members-club/17.jpg"],
+      sectionId: sections.citysMembersClub.dynamicZone.subitems.golfExperience.id,
     },
     {
       title: "Sinema Salonu",
@@ -184,6 +194,7 @@ export default function Page() {
         <p>City’s Members Club sinema deneyimi özel tasarlanmış konsepti ile çok farklı.</p>
       `,
       url: ["/img/citys-members-club/18.jpg"],
+      sectionId: sections.citysMembersClub.cinema.id,
     },
     {
       title: "Playstation Odası",
@@ -194,6 +205,7 @@ export default function Page() {
         <p>Burada her oyun bir anıya, her karşılaşma yeni bir hikayeye dönüşür.</p>
       `,
       url: ["/img/citys-members-club/19.jpg"],
+      sectionId: sections.citysMembersClub.eventStudios.subitems.playstation.id,
     },
     {
       title: "Müzik & Karaoke",
@@ -205,6 +217,7 @@ export default function Page() {
         <p>Bu stüdyo hayatın ritmini ciddiye alan herkes için tasarlandı.</p>
       `,
       url: ["/img/citys-members-club/20.jpg"],
+      sectionId: sections.citysMembersClub.eventStudios.subitems.musicKaraoke.id,
     },
     {
       title: "Podcast",
@@ -215,6 +228,7 @@ export default function Page() {
         <p>Profesyonel altyapısı size özel tasarlanmış ortamı ve yüksek kalitesi ile işlerinizi geliştirin, markanızı yaratın, geleceği yakalayın.</p>
       `,
       url: ["/img/citys-members-club/21.jpg"],
+      sectionId: sections.citysMembersClub.eventStudios.subitems.podcast.id,
     },
     {
       title: "Meditasyon",
@@ -226,6 +240,7 @@ export default function Page() {
         <p>Durmak da bir akıştır.</p>
       `,
       url: ["/img/citys-members-club/22.jpg"],
+      sectionId: sections.citysMembersClub.eventStudios.subitems.meditation.id,
     },
     {
       title: "Kids Club",
@@ -242,6 +257,7 @@ export default function Page() {
         "/img/citys-members-club/26.jpg",
         "/img/citys-members-club/27.jpg",
       ],
+      sectionId: sections.citysMembersClub.kidsClub.id,
     },
     {
       title: "Esnek Çalışma",
@@ -254,6 +270,7 @@ export default function Page() {
         <p>Ev gibi değil, daha iyi.</p>
       `,
       url: ["/img/citys-members-club/28.jpg"],
+      sectionId: sections.citysMembersClub.sharedOfficeSpaces.subitems.meetingRooms.id,
     },
     {
       title: "Toplantı Odaları",
@@ -265,6 +282,7 @@ export default function Page() {
         <p>Stratejik kararlarını, mutlulukla sonuçlanan bir başarı hikayesine dönüştür.</p>
       `,
       url: ["/img/citys-members-club/29.jpg"],
+      sectionId: sections.citysMembersClub.sharedOfficeSpaces.subitems.meetingRooms.id,
     },
     {
       title: "Yemek Atölyesi",
@@ -274,6 +292,7 @@ export default function Page() {
           <p>Mutfak sever çocuk ve yetişkinler için özel hazırlanmış birçok yemek atölyesinden birisi mutlaka sizin için.</p>
         `,
       url: ["/img/citys-members-club/30.jpg"],
+      sectionId: sections.citysMembersClub.workshops.subitems.cookingWorkshop.id,
     },
     {
       title: "Sanat Atölyesi",
@@ -285,6 +304,7 @@ export default function Page() {
           <p>Hayal eden çocuklar dünyayı değiştirebilir... Kendini ifade eden yetişkinler daha mutlu yaşar. İzin verin yaşam kendi rengini bulsun.</p>
         `,
       url: ["/img/citys-members-club/31.jpg"],
+      sectionId: sections.citysMembersClub.workshops.subitems.artWorkshop.id,
     },
   ]
 
@@ -326,6 +346,7 @@ export default function Page() {
             item={item}
             align={i % 2 === 0 ? "ltr" : "rtl"}
             className={i % 2 === 0 ? "bg-white" : "bg-unbleached"}
+            sectionId={item.sectionId as string}
           />
         ))}
       </section>

@@ -114,19 +114,23 @@ export const sections = {
   citysMembersClub: {
     indoorSwimmingPool: {
       label: "Kapalı Yüzme Havuzu",
-      id: "kapali-yuzme-havuzu",
+      id: "indoor-swimming-pool",
     },
     macOne: {
       label: "MAC/One",
       id: "mac-one",
       subitems: {
-        training: {
-          label: "Antrenman",
-          id: "antrenman",
+        sportAndSpaReception: {
+          label: "Spor & Spa Resepsiyon",
+          id: "sport-spa-reception",
         },
         changingRooms: {
           label: "Soyunma Odaları",
-          id: "soyunma-odalari",
+          id: "changing-rooms",
+        },
+        studios: {
+          label: "Stüdyolar",
+          id: "studios",
         },
         yoga: {
           label: "Yoga",
@@ -138,7 +142,11 @@ export const sections = {
         },
         groupClasses: {
           label: "Grup Dersleri",
-          id: "grup-dersleri",
+          id: "group-classes",
+        },
+        dryShowers: {
+          label: "Duşlar",
+          id: "dry-showers",
         },
         sauna: {
           label: "Sauna",
@@ -150,17 +158,21 @@ export const sections = {
       label: "Nuspa",
       id: "nuspa",
       subitems: {
+        spaWellness: {
+          label: "Spa & Wellness",
+          id: "spa-wellness",
+        },
         massage: {
           label: "Masaj",
-          id: "masaj",
+          id: "massage",
         },
         relaxation: {
           label: "Dinlenme",
-          id: "dinlenme",
+          id: "relaxation",
         },
         turkishBath: {
           label: "Hamam",
-          id: "hamam",
+          id: "turkish-bath",
         },
       },
     },
@@ -170,33 +182,37 @@ export const sections = {
       subitems: {
         padelTennis: {
           label: "Padel Tenis",
-          id: "padel-tenis",
+          id: "padel-tennis",
         },
         basketball: {
           label: "Basketbol",
-          id: "basketbol",
+          id: "basketball",
         },
         tableTennis: {
           label: "Masa Tenisi",
-          id: "masa-tenisi",
+          id: "table-tennis",
         },
         golfExperience: {
           label: "Golf Deneyimi",
-          id: "golf-deneyimi",
+          id: "golf-experience",
         },
       },
     },
     cinema: {
       label: "Sinema",
-      id: "sinema",
+      id: "cinema",
+    },
+    eventStudios: {
+      label: "Etkinlik Stüdyoları",
+      id: "event-studios",
       subitems: {
-        consoleGames: {
-          label: "Konsol Oyunları",
-          id: "konsol-oyunlari",
+        playstation: {
+          label: "Playstation Odası",
+          id: "playstation-room",
         },
         musicKaraoke: {
           label: "Müzik & Karaoke",
-          id: "muzik-karaoke",
+          id: "music-karaoke",
         },
         podcast: {
           label: "Podcast",
@@ -204,13 +220,9 @@ export const sections = {
         },
         meditation: {
           label: "Meditasyon",
-          id: "meditasyon",
+          id: "meditation",
         },
       },
-    },
-    eventStudios: {
-      label: "Etkinlik Stüdyoları",
-      id: "etkinlik-studyolari",
     },
     kidsClub: {
       label: "Kids Club",
@@ -218,29 +230,29 @@ export const sections = {
     },
     sharedOfficeSpaces: {
       label: "Paylaşımlı Ofis Alanları",
-      id: "paylaşimli-ofis-alanlari",
+      id: "shared-office-spaces",
       subitems: {
-        rooms: {
-          label: "Odalar",
-          id: "odalar",
+        receptionArea: {
+          label: "Karşılama Çalışma Alanları",
+          id: "reception-work-areas",
         },
         meetingRooms: {
           label: "Toplantı Odaları",
-          id: "toplanti-odalari",
+          id: "meeting-rooms",
         },
       },
     },
     workshops: {
       label: "Atölyeler",
-      id: "atolyeler",
+      id: "workshops",
       subitems: {
         cookingWorkshop: {
           label: "Yemek Atölyesi",
-          id: "yemek-atolyesi",
+          id: "cooking-workshop",
         },
         artWorkshop: {
           label: "Sanat Atölyesi",
-          id: "sanat-atolyesi",
+          id: "art-workshop",
         },
       },
     },
