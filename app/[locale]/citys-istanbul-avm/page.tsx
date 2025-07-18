@@ -27,21 +27,6 @@ export default async function Page() {
             playsInline
             className="w-full h-full object-cover"
           />
-          <div className="absolute top-0 left-0 w-full h-full bg-black/30">
-            <div className="flex flex-col h-full py-8 md:py-8 section-container">
-              <h1 className="max-w-lg block font-primary leading-snug text-white text-2xl md:text-4xl xl:text-2xl font-medium mt-auto mb-2 lg:mb-4">
-                {/* <GsapSplitText splitBy="lines" stagger={0.5} duration={1}> */}
-                ŞEHİR HAYATI BİR ASANSÖR UZAKLIKTA
-                {/* </GsapSplitText> */}
-              </h1>
-              <p className="max-w-lg block font-primary leading-snug text-white text-base md:text-lg font-normal mb-0 lg:mb-20">
-                {/* <GsapSplitText splitBy="lines" stagger={0.5} duration={1}> */}
-                City&#39;s Residences sakinleri için alışveriş, yeme-içme ve günlük ihtiyaçlar, şehrin merkezinde ama ev
-                rahatlığında. AVM hayatı, yaşam kurgusunun doğal bir parçası.
-                {/* </GsapSplitText> */}
-              </p>
-            </div>
-          </div>
         </ScaleOut>
       </section>
       <section className="relative z-30 bg-white py-5 flex flex-col items-center">
