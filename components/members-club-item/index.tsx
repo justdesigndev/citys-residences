@@ -4,12 +4,11 @@ import { cn } from "@/lib/utils"
 import { useRef } from "react"
 
 import { AnimatedLine } from "@/components/animated-line"
-import { GsapSplitText } from "@/components/gsap-split-text"
+import { MaskedPanImage } from "@/components/masked-pan-image"
 import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
-import { breakpoints } from "@/styles/config.mjs"
-import { MaskedPanImage } from "../masked-pan-image"
 import { gsapGlobalClasses } from "@/lib/constants"
+import { breakpoints } from "@/styles/config.mjs"
 
 interface MembersClubItemProps {
   sectionId?: string
