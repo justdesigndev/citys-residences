@@ -1,4 +1,6 @@
+import { AnimatedLine } from "@/components/animated-line"
 import { ScaleOut } from "@/components/animations/scale-out"
+import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
 import { LogoSection } from "@/components/logo-section"
@@ -7,79 +9,10 @@ import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
-import { toTitleCase } from "@/lib/utils"
 import { FilterableContent } from "./filterable-content"
-import { GsapSplitText } from "@/components/gsap-split-text"
-import { AnimatedLine } from "@/components/animated-line"
 
 export default async function Page() {
   const brands = await getBrandsData()
-
-  // Helper function to group brands by subcategory
-  const groupBySubCategory = (brandsInCategory: typeof brands.items) => {
-    return brandsInCategory.reduce((acc, brand) => {
-      const subCat = brand.subCategory || "other"
-      if (!acc[subCat]) {
-        acc[subCat] = []
-      }
-      acc[subCat].push(brand)
-      return acc
-    }, {} as Record<string, typeof brandsInCategory>)
-  }
-
-  // Filter brands by category
-  const shoppingBrands = brands.items?.filter((brand) => brand.category === "alisveris" && brand.subCategory) || []
-  const diningBrands = brands.items?.filter((brand) => brand.category === "yemeIcme") || []
-  const serviceBrands = brands.items?.filter((brand) => brand.category === "hizmet") || []
-
-  // Group each category by subcategory
-  const shoppingBySubCategory = groupBySubCategory(shoppingBrands)
-  const diningBySubCategory = groupBySubCategory(diningBrands)
-  const servicesBySubCategory = groupBySubCategory(serviceBrands)
-
-  // Create data structures for each category
-  const alisveris = {
-    title: brands.categories?.alisveris || "Alışveriş",
-    items: Object.entries(shoppingBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
-      title: toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
-      logos: brandsInCategory.map((brand) => ({
-        url: brand.logo,
-      })),
-    })),
-    images: Array.from({ length: Object.keys(shoppingBySubCategory).length }, (_, index) => ({
-      url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
-    })),
-  }
-
-  const yemeIcme = {
-    title: brands.categories?.yemeIcme || "Yeme & İçme",
-    items: Object.entries(diningBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
-      title:
-        subCategoryKey === "other" ? "Diğer" : toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
-      logos: brandsInCategory.map((brand) => ({
-        url: brand.logo,
-      })),
-    })),
-    images: Array.from({ length: Object.keys(diningBySubCategory).length }, (_, index) => ({
-      url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
-    })),
-  }
-
-  const hizmetler = {
-    title: brands.categories?.hizmet || "Hizmetler",
-    items: Object.entries(servicesBySubCategory).map(([subCategoryKey, brandsInCategory]) => ({
-      title:
-        subCategoryKey === "other"
-          ? "Diğer Hizmetler"
-          : toTitleCase(brands.subCategories?.[subCategoryKey] || subCategoryKey),
-      logos: brandsInCategory.map((brand) => ({
-        url: brand.logo,
-      })),
-    })),
-    images: Array.from({ length: Object.keys(servicesBySubCategory).length }, (_, index) => ({
-      url: `/img/citys-istanbul-avm/slide-${(index % 2) + 1}.jpg`,
-    })),
-  }
 
   return (
     <Wrapper>
