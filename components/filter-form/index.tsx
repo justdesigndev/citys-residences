@@ -41,10 +41,6 @@ export function FilterForm({ onFilter }: FilterFormProps) {
     onFilter?.(data)
   }
 
-  // Watch for form changes and trigger filtering on change
-  const watchedValues = form.watch()
-
-  // Handle real-time filtering on form value changes
   const handleValueChange = () => {
     const currentValues = form.getValues()
     onFilter?.(currentValues)
@@ -153,7 +149,6 @@ export function FilterForm({ onFilter }: FilterFormProps) {
                       )}
                       onChange={(e) => {
                         field.onChange(e)
-                        // Debounce search input
                         const timeoutId = setTimeout(() => {
                           handleValueChange()
                         }, 300)
