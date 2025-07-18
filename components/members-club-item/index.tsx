@@ -9,6 +9,7 @@ import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { EmblaCarousel } from "@/components/utility/embla-carousel"
 import { breakpoints } from "@/styles/config.mjs"
 import { MaskedPanImage } from "../masked-pan-image"
+import { gsapGlobalClasses } from "@/lib/constants"
 
 interface MembersClubItemProps {
   sectionId?: string
@@ -39,21 +40,32 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
         )}
       >
         <div className="flex flex-col items-start justify-center w-3/12 pr-6">
-          <h3 className="font-primary font-bold text-bricky-brick text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl mb-4">
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
-              {item.title}
-            </GsapSplitText>
+          <h3
+            className={cn(
+              "font-primary font-bold text-bricky-brick text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl mb-4",
+              gsapGlobalClasses.fadeIn
+            )}
+          >
+            <span dangerouslySetInnerHTML={{ __html: item.title }} />
           </h3>
-          <p className="font-primary font-bold text-base lg:text-lg xl:text-lg 2xl:text-2xl text-black">
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
-              {item.subtitle}
-            </GsapSplitText>
-          </p>
-          <p className="font-primary font-normal text-base lg:text-lg xl:text-lg 2xl:text-2xl text-black">
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1}>
-              {item.description}
-            </GsapSplitText>
-          </p>
+          {item.subtitle && (
+            <p
+              className={cn(
+                "font-primary font-bold text-base lg:text-lg xl:text-lg 2xl:text-2xl text-bricky-brick mb-4",
+                gsapGlobalClasses.fadeIn
+              )}
+            >
+              <span dangerouslySetInnerHTML={{ __html: item.subtitle }} />
+            </p>
+          )}
+          <div
+            className={cn(
+              "font-primary font-normal text-base lg:text-lg xl:text-lg 2xl:text-2xl text-black prose",
+              "[&_span]:text-bricky-brick",
+              gsapGlobalClasses.fadeIn
+            )}
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          />
         </div>
         <AnimatedLine direction="vertical" />
         <div className="w-9/12 relative">
@@ -75,7 +87,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
               parallax={true}
             />
           ) : (
-            <div className="relative w-full h-[45vw]">
+            <div className="relative w-full h-[50vw]">
               {/* <MaskedParallaxImage
                 imgSrc={item.url[0]}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}
