@@ -1,8 +1,6 @@
-import { AnimatedLine } from "@/components/animated-line"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { IconCitysIstanbulLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
-import { ListCarousel } from "@/components/list-carousel"
 import { LogoSection } from "@/components/logo-section"
 import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
@@ -10,6 +8,9 @@ import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
 import { toTitleCase } from "@/lib/utils"
+import { FilterableContent } from "./filterable-content"
+import { GsapSplitText } from "@/components/gsap-split-text"
+import { AnimatedLine } from "@/components/animated-line"
 
 export default async function Page() {
   const brands = await getBrandsData()
@@ -110,88 +111,21 @@ export default async function Page() {
           </div>
         </ScaleOut>
       </section>
-      <section className="relative z-20 bg-white py-5">
+      <section className="relative z-30 bg-white py-5 flex flex-col items-center">
         <LogoSection foregroundLogo={<IconCitysIstanbulLogo fill="#000000" />} foregroundDuration={0.5} />
-      </section>
-      <section className="bg-white z-30 mb-10">
-        <ListCarousel
-          title={alisveris.title}
-          items={alisveris.items}
-          images={alisveris.images}
-          withMoveDown
-          variant="v2"
-        />
-      </section>
-      <section className="bg-white z-30 mb-10">
-        <ListCarousel
-          title={yemeIcme.title}
-          items={yemeIcme.items}
-          images={yemeIcme.images}
-          withMoveDown
-          variant="v2"
-        />
-      </section>
-      <section className="bg-white z-30 mb-10">
-        <ListCarousel
-          title={hizmetler.title}
-          items={hizmetler.items}
-          images={hizmetler.images}
-          withMoveDown
-          variant="v2"
-        />
+        <h2 className="font-primary font-medium text-black text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl xl:leading-normal 2xl:leading-snug xl:max-w-4xl 2xl:max-w-6xl text-center">
+          <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+            Alışverişin, yaşamın ve şehrin ritminin tek bir çatı altında buluştuğu yer. <br />
+            Uluslararası seçkin markalara ulaşmak, yeni bir lezzet keşfetmek ya da <br />
+            günün yorgunluğunu ilham veren bir atmosferde atmak... <br />
+            Tüm bu ayrıcalıklar, yaşadığınız yerden sadece bir asansör uzaklıkta.
+          </GsapSplitText>
+        </h2>
+        <div className="section-container py-24">
+          <FilterableContent brands={brands.items || []} />
+        </div>
       </section>
       <AnimatedLine direction="horizontal" />
-      {/* <section className="relative z-20 bg-white mt-10 lg:mt-20">
-        <h2 className="font-primary text-3xl font-regular text-center mb-8">ALIŞVERİŞ</h2>
-        <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
-          {[...shoppingBrands, ...shoppingBrands].map((item, index) => (
-            <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
-          ))}
-        </AutoScrollCarousel>
-      </section> */}
-      {/* <section className="relative z-20 bg-white mt-10 lg:mt-20">
-        <h2 className="font-primary text-3xl font-regular text-center mb-8">YEME - İÇME</h2>
-        <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
-          {[...foodBrands, ...foodBrands].map((item, index) => (
-            <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
-          ))}
-        </AutoScrollCarousel>
-      </section> */}
-      {/* <section className="relative z-20 bg-white mt-10 lg:mt-20 mb-20">
-        <h2 className="font-primary text-3xl font-regular text-center mb-8">HİZMETLER</h2>
-        <AutoScrollCarousel options={{ dragFree: true, loop: true }}>
-          {[...services, ...services].map((item, index) => (
-            <BrandCarouselItem key={index} logo={item.logo} name={item.name} />
-          ))}
-        </AutoScrollCarousel>
-      </section> */}
-      {/* <section className="relative z-20 bg-white">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-8  py-0 md:py-8 section-container">
-          {slides.map((slide, index) => (
-            <div key={index} className={cn("h-[120vw] lg:h-[40vw] w-full relative")}>
-              <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                <Img
-                  src={slide.image}
-                  alt={`Slide ${index}`}
-                  fill
-                  className="w-full h-full object-cover"
-                  sizes="100vw"
-                />
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/80 to-transparent">
-                  <div className="flex flex-col h-full py-8 md:py-8 px-4 md:px-10 lg:px-8">
-                    <h1 className="max-w-lg block font-primary leading-snug text-white text-2xl md:text-4xl font-medium mt-auto mb-6">
-                      {slide.title}
-                    </h1>
-                    <p className="max-w-lg block font-primary leading-snug text-white text-base md:text-lg font-normal">
-                      {slide.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section> */}
       <LinkToPage
         previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
         next={{ title: "Anasayfa", href: "/" }}
