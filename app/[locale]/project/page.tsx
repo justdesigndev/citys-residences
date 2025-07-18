@@ -9,7 +9,7 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
-import { gsapGlobalClasses, mainVideo, muratKaderVideo, sections } from "@/lib/constants"
+import { gsapGlobalClasses, mainVideo, muratKaderVideo } from "@/lib/constants"
 import { breakpoints, colors } from "@/styles/config.mjs"
 
 export default function Page() {
@@ -46,10 +46,7 @@ export default function Page() {
         </div>
       </section>
       <AnimatedLine direction="horizontal" />
-      <section
-        className={cn("relative py-8 lg:py-16 section-container", gsapGlobalClasses.fadeIn)}
-        id={sections.home.section4.id}
-      >
+      <section className={cn("relative py-8 lg:py-16 section-container", gsapGlobalClasses.fadeIn)}>
         <VideoSection
           primaryVideoUrl={muratKaderVideo}
           thumbnail="/img/thumbnail-murat-kader.jpg"

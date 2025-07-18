@@ -3,6 +3,7 @@ import { create } from "zustand"
 interface Section {
   label: string
   id: string
+  subitems?: Section[]
 }
 
 interface State {

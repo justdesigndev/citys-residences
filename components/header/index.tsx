@@ -1,12 +1,12 @@
 "use client"
 
-import { Link as LocalizedLink } from "@/i18n/routing"
-import { initialScroll } from "@/lib/constants"
+import { Link as LocalizedLink, type Locale } from "@/i18n/routing"
+import { initialScroll, getNavigationItems } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import Lenis from "lenis"
 import { useLenis } from "lenis/react"
 import { animate, AnimatePresence, motion, stagger } from "motion/react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
@@ -26,6 +26,7 @@ export function Header() {
   })
   const pathname = usePathname()
   const t = useTranslations("common")
+  const locale = useLocale()
   const sectionsRef = useRef<(HTMLAnchorElement | null)[]>([])
 
   useEffect(() => {
@@ -37,35 +38,21 @@ export function Header() {
 
     if (sectionsRef.current.length === 0) return
 
+    const validElements = sectionsRef.current.filter(Boolean) as HTMLAnchorElement[]
+
+    // Don't animate if there are no valid elements
+    if (validElements.length === 0) return
+
     if (scrollState.atTop) {
       // Animate out
-      animate(
-        sectionsRef.current.filter(Boolean) as HTMLAnchorElement[],
-        { opacity: 0, y: -4 },
-        { duration: 0.1, delay: stagger(0.05) }
-      )
+      animate(validElements, { opacity: 0, y: -4, pointerEvents: "none" }, { duration: 0.1, delay: stagger(0.05) })
     } else {
       // Animate in with stagger
-      animate(
-        sectionsRef.current.filter(Boolean) as HTMLAnchorElement[],
-        { opacity: 1, y: 0 },
-        { duration: 0.3, delay: stagger(0.05) }
-      )
+      animate(validElements, { opacity: 1, y: 0, pointerEvents: "auto" }, { duration: 0.3, delay: stagger(0.05) })
     }
   }, [scrollState.atTop, sections.length])
 
-  const navigationItems = [
-    { title: t("navigation.home"), href: "/" },
-    { title: t("navigation.project"), href: "/" },
-    { title: t("navigation.location"), href: "/location" },
-    { title: t("navigation.residences"), href: "/residences" },
-    { title: t("navigation.citysPark"), href: "/citys-park" },
-    { title: t("navigation.citysMembersClub"), href: "/citys-members-club" },
-    { title: t("navigation.citysLifePrivileges"), href: "/citys-life-privileges" },
-    { title: t("navigation.citysPsm"), href: "/" },
-    { title: t("navigation.citysIstanbul"), href: "/citys-istanbul-avm" },
-    { title: t("navigation.citysTimes"), href: "/" },
-  ]
+  const navigationItems = getNavigationItems(t, locale as Locale)
 
   useEffect(() => {
     return menuOpen ? lenis?.stop() : lenis?.start()
@@ -103,7 +90,7 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-[var(--z-header)]",
-          "flex items-center section-padding",
+          "flex items-stretch section-padding",
           "transition-all duration-300",
           {
             "bg-white h-[var(--header-height)]": !scrollState.atTop,
@@ -111,7 +98,7 @@ export function Header() {
           }
         )}
       >
-        <div className="flex items-center justify-between flex-1 gap-12 z-[var(--z-header-content)]">
+        <div className="flex items-stretch justify-between flex-1 gap-12 z-[var(--z-header-content)]">
           <button
             className="cursor-pointer flex items-center gap-2 bt:gap-4"
             onClick={() => setMenuOpen((prev) => !prev)}
@@ -151,10 +138,10 @@ export function Header() {
               <span>{t("open")}</span>
             </div>
           </button>
-          {sections.length > 0 && (
+          {Object.values(sections).length > 0 && !scrollState.atTop && (
             <div
               className={cn(
-                "flex items-center gap-4 mr-auto"
+                "flex items-stretch gap-8"
                 //    {
                 //   "opacity-0": menuOpen,
                 //   "opacity-100": !menuOpen,
@@ -163,22 +150,32 @@ export function Header() {
                 // }
               )}
             >
-              {sections.map((item, index) => (
-                <a
-                  key={item.id}
-                  ref={(el) => {
-                    sectionsRef.current[index] = el
-                  }}
-                  href={`#${item.id}`}
-                  className={cn("font-primary text-black text-sm font-regular", {
-                    "opacity-0": scrollState.atTop,
-                    "opacity-100": !scrollState.atTop,
-                    "pointer-events-none": scrollState.atTop,
-                    "pointer-events-auto": !scrollState.atTop,
-                  })}
-                >
-                  {item.label}
-                </a>
+              {Object.values(sections).map((item, index) => (
+                <div key={item.id} className="group relative flex items-center">
+                  <a
+                    ref={(el) => {
+                      sectionsRef.current[index] = el
+                    }}
+                    href={`#${item.id}`}
+                    className={cn("font-primary text-black text-base font-regular relative block", {
+                      "opacity-0": scrollState.atTop,
+                      "opacity-100": !scrollState.atTop,
+                      "pointer-events-none": scrollState.atTop,
+                      "pointer-events-auto": !scrollState.atTop,
+                    })}
+                  >
+                    {item.label}
+                  </a>
+                  {item.subitems && Object.values(item.subitems).length > 0 && (
+                    <div className="absolute -bottom-px translate-y-full -translate-x-1/2 left-1/2 blur-bg-bricky-brick-light flex flex-col p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+                      {Object.values(item.subitems).map((subitem) => (
+                        <a href={`#${subitem.id}`} className="text-white italic whitespace-nowrap" key={subitem.id}>
+                          {subitem.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           )}
@@ -211,7 +208,7 @@ export function Header() {
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="cursor-pointer hidden bt:block">
+          <div className="flex items-center cursor-pointer">
             <LocaleSwitcher theme={scrollState.atTop ? "dark" : "light"} />
           </div>
         </div>

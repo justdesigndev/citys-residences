@@ -4,16 +4,30 @@ import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
 import { useRef, useState } from "react"
 import { useClickAway, useWindowSize } from "react-use"
-
 import { gsap, useGSAP } from "@/components/gsap"
+
 import { IconPin, socialIcons } from "@/components/icons"
 import { Link } from "@/components/utility/link"
+import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { breakpoints, colors } from "@/styles/config.mjs"
 import { X } from "lucide-react"
 
 interface MenuItem {
   title: string
   href: string
+  id: string
+  sections?: {
+    [key: string]: {
+      label: string
+      id: string
+      subitems?: {
+        [key: string]: {
+          label: string
+          id: string
+        }
+      }
+    }
+  }
 }
 
 interface MenuProps {
@@ -23,50 +37,76 @@ interface MenuProps {
 }
 
 export function Menu({ open, setOpen, items }: MenuProps) {
-  const ref = useRef<HTMLDivElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+  const submenuRef = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
+  const submenuTL = useRef<gsap.core.Timeline>()
   const lenis = useLenis()
   const { width } = useWindowSize()
+  const clipPath = useRef("inset(0% 100% 0% 0%)")
 
-  const [hover, setHover] = useState(false)
   const [active, setActive] = useState<number | null>(null)
 
-  useClickAway(ref, (e) => {
+  useClickAway(menuRef, (e) => {
     if ((e.target as HTMLElement).closest("[data-ignore-click-away]")) {
       return
     }
     setOpen(false)
+    setActive(null)
+  })
+
+  useGSAP(() => {
+    const animationConfig = {
+      from: { clipPath: "inset(0% 100% 0% 0%)" },
+      to: {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 0.6,
+        ease: "none",
+      },
+    }
+
+    const timelineConfig = {
+      paused: true,
+      ease: "none",
+    }
+
+    const createTimeline = (ref: React.RefObject<HTMLDivElement>) => {
+      const timeline = gsap.timeline(timelineConfig)
+      timeline.fromTo(ref.current, animationConfig.from, animationConfig.to)
+      return timeline
+    }
+
+    menuTL.current = createTimeline(menuRef)
+    submenuTL.current = createTimeline(submenuRef)
   })
 
   useGSAP(
     () => {
-      menuTL.current = gsap.timeline({
-        paused: true,
-      })
+      if (!menuTL.current || !submenuTL.current) return
 
-      menuTL.current?.fromTo(
-        ref.current,
-        { clipPath: "inset(0% 100% 0% 0%)" },
-        {
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.2,
-          ease: "expo.inOut",
-        }
-      )
-    },
-    {
-      scope: ref,
-    }
-  )
-
-  useGSAP(
-    () => {
       if (open) {
-        menuTL.current?.play()
+        gsap.to(menuTL.current, { time: menuTL.current?.duration(), ease: "expo.out" })
         lenis?.stop()
       } else {
-        menuTL.current?.reverse()
-        lenis?.start()
+        gsap.to(submenuTL.current, {
+          duration: 0.3,
+          time: 0,
+          ease: "expo.in",
+          overwrite: true,
+          onComplete: () => {
+            if (!menuTL.current) return
+            gsap.to(menuTL.current, {
+              duration: 0.3,
+              time: 0,
+              ease: "expo.out",
+              overwrite: true,
+              onComplete: () => {
+                lenis?.start()
+                setActive(null)
+              },
+            })
+          },
+        })
       }
     },
     {
@@ -74,96 +114,171 @@ export function Menu({ open, setOpen, items }: MenuProps) {
     }
   )
 
+  useGSAP(
+    () => {
+      if (!submenuTL.current) return
+
+      const shouldShowSubmenu = active !== null && items[active]?.sections
+
+      if (shouldShowSubmenu) {
+        gsap.to(submenuTL.current, { time: submenuTL.current?.duration(), ease: "expo.out" })
+      } else if (open) {
+        // Only close submenu when main menu is open (e.g., hovering over items without submenus)
+        gsap.to(submenuTL.current, {
+          time: 0,
+          duration: 0.2,
+          ease: "expo.out",
+          overwrite: true,
+        })
+      }
+    },
+    {
+      dependencies: [open, active, items],
+    }
+  )
+
   return (
-    <div
-      className={cn(
-        "fixed top-0 left-0 bottom-0 w-screen h-screen overflow-hidden",
-        "blur-bg-bricky-brick-light w-screen lg:w-[30vw] xl:w-[25vw] 2xl:w-[21vw] z-[var(--z-menu)]"
-      )}
-      style={{ clipPath: "inset(0% 10% 100%)" }}
-      ref={ref}
-    >
-      <button className="absolute top-6 left-14 z-50" onClick={() => setOpen(false)} type="button">
-        <X strokeWidth={1} className="text-white h-12 w-12" />
-      </button>
-      <nav
+    <>
+      {/* menu */}
+      <div
         className={cn(
-          "absolute top-0 left-0 w-full h-full lg:pl-12 xl:pl-16 lg:pr-6",
-          "flex items-center justify-center lg:justify-start"
+          "fixed top-0 left-0 bottom-0 overflow-hidden",
+          "blur-bg-bricky-brick w-screen lg:w-[30vw] xl:w-[25vw] 2xl:w-[20vw] z-[var(--z-menu)]"
         )}
+        style={{ clipPath: clipPath.current }}
+        ref={menuRef}
       >
-        <ul className="flex flex-col items-center lg:items-start gap-3 lg:gap-2 xl:gap-0 2xl:gap-2 py-0 pt-20 pb-0 lg:py-12 w-full">
-          {items.map(({ title, href }, i) => (
-            <li
-              className={cn(
-                "text-lg lg:text-xl xl:text-xl 2xl:text-2xl",
-                "font-primary font-normal text-white text-center lg:text-left",
-                "transition-opacity duration-300 ease-in-out",
-                {
-                  "opacity-30": hover && active !== i,
-                }
-              )}
-              key={title}
-              onMouseEnter={() => {
-                if (width > breakpoints.breakpointTablet) {
-                  setHover(true)
-                  setActive(i)
-                }
-              }}
-              onMouseLeave={() => {
-                if (width > breakpoints.breakpointTablet) {
-                  setHover(false)
-                  setActive(null)
-                }
-              }}
-            >
-              <Link className="cursor-pointer block xl:py-1" href={href}>
-                {title}
-              </Link>
+        <button className="absolute top-6 left-8 z-50" onClick={() => setOpen(false)} type="button">
+          <X strokeWidth={1} className="text-white h-12 w-12" />
+        </button>
+        <nav className="w-full h-full lg:px-10 flex items-end justify-center lg:justify-start">
+          <ul
+            className="flex flex-col items-center lg:items-start justify-end gap-3 lg:gap-2 xl:gap-4 2xl:gap-4 3xl:gap-5 w-full"
+            // onMouseLeave={() => {
+            //   if (width > breakpoints.breakpointTablet) {
+            //     setHover(false)
+            //     setActive(null)
+            //   }
+            // }}
+          >
+            {items.map(({ title, href }, i) => (
+              <li
+                className={cn(
+                  "text-lg lg:text-xl xl:text-2xl 2xl:text-2xl 3xl:text-3xl",
+                  "font-primary font-normal text-white text-center lg:text-left",
+                  "transition-opacity duration-300 ease-in-out",
+                  {
+                    "opacity-100": active === null || active === i,
+                    "opacity-30": active !== null && active !== i,
+                  }
+                )}
+                key={title}
+                onMouseEnter={() => {
+                  if (width > breakpoints.breakpointTablet) {
+                    setActive(i)
+                  }
+                }}
+              >
+                <Link className="cursor-pointer block" href={href}>
+                  {title}
+                </Link>
+              </li>
+            ))}
+            <li className="xl:my-8 2xl:my-10 3xl:my-14">
+              <a
+                href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "font-primary font-normal text-white text-base lg:text-lg xl:text-xl 2xl:text-xl 3xl:text-2xl text-center lg:text-left xl:leading-none",
+                  "transition-opacity duration-300 ease-in-out",
+                  "opacity-100 hover:opacity-70",
+                  "flex items-center gap-2"
+                )}
+              >
+                <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
+                  <IconPin fill={colors.white} />
+                </span>
+                CR Satış Ofisi Konum
+              </a>
             </li>
-          ))}
-          <li className="w-full flex flex-col items-center lg:items-start mt-2 lg:mt-10 xl:mt-5 mb-0 xl:my-6 order-last lg:order-none">
-            <p className="w-full font-primary font-normal text-white text-sm xl:text-base py-2 lg:border-b lg:border-white/30 text-center lg:text-left">
-              Bizi Takip Edin
-            </p>
-            <div className="flex gap-4 justify-center xl:justify-start py-3 xl:py-4">
-              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                {socialIcons.instagram}
+            <li className="w-full flex flex-col items-center lg:items-start order-last lg:order-none mt-auto mb-8">
+              <p className="w-full font-primary font-normal text-white text-sm xl:text-base 2xl:text-lg 3xl:text-xl py-2 lg:border-b lg:border-white/30 text-center lg:text-left">
+                Bizi Takip Edin
+              </p>
+              <div className="flex items-start gap-4 justify-center xl:justify-start py-3 xl:py-4">
+                <div className="h-10 w-10 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+                  {socialIcons.instagram}
+                </div>
+                <div className="h-10 w-10 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+                  {socialIcons.facebook}
+                </div>
+                <div className="h-10 w-10 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+                  {socialIcons.tiktok}
+                </div>
+                <div className="h-10 w-14 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+                  {socialIcons.youtube}
+                </div>
               </div>
-              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                {socialIcons.facebook}
-              </div>
-              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                {socialIcons.tiktok}
-              </div>
-              <div className="h-6 w-6 opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
-                {socialIcons.youtube}
-              </div>
-            </div>
-          </li>
-          <li className="mt-4 xl:mt-0">
-            <a
-              href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "font-primary font-normal text-white text-base lg:text-lg xl:text-xl 2xl:text-xl text-center lg:text-left xl:leading-none",
-                "transition-opacity duration-300 ease-in-out",
-                "opacity-100 hover:opacity-70",
-                "flex items-center gap-2"
-              )}
-            >
-              <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 mb-1">
-                <IconPin fill={colors.white} />
-              </span>
-              CR Satış Ofisi Konum
-            </a>
-          </li>
-          {/* <li className={cn(s.navItem, "block lg:hidden")}>
+            </li>
+            {/* <li className={cn(s.navItem, "block lg:hidden")}>
             <LocaleSwitcher />
           </li> */}
-        </ul>
-      </nav>
-    </div>
+          </ul>
+        </nav>
+      </div>
+      {/* submenu */}
+      <div
+        className={cn(
+          "fixed top-0 left-[20vw] bottom-0 overflow-hidden",
+          "blur-bg-bricky-brick w-screen lg:w-[30vw] xl:w-[25vw] 2xl:w-[15vw] z-[var(--z-menu)]",
+          "border-l border-white/30"
+        )}
+        style={{ clipPath: clipPath.current }}
+        ref={submenuRef}
+      >
+        <div className="h-full w-full flex" data-lenis-prevent>
+          <ScrollableBox>
+            <nav className={cn("h-full w-full px-8", "flex items-start justify-start")}>
+              <ul className="flex flex-col items-center lg:items-start gap-3 lg:gap-2 xl:gap-0 2xl:gap-2 py-0 pt-20 pb-0 lg:py-12 w-full">
+                {/* Show sections of the active item, or all items if no hover */}
+                {active !== null &&
+                  items[active]?.sections &&
+                  // Render sections of the hovered item
+                  Object.values(items[active].sections).map((section) => (
+                    <li
+                      className={cn(
+                        "text-lg lg:text-xl xl:text-xl 2xl:text-2xl",
+                        "font-primary font-normal text-white text-center lg:text-left"
+                      )}
+                      key={section.id}
+                    >
+                      <Link className="cursor-pointer block xl:py-1" href={`${items[active].href}#${section.id}`}>
+                        {section.label}
+                      </Link>
+
+                      {/* Render subitems if they exist */}
+                      {section.subitems && (
+                        <ul className="mt-2 flex flex-col gap-1">
+                          {Object.values(section.subitems).map((subitem) => (
+                            <li key={subitem.id} className="text-sm lg:text-base text-white/60">
+                              <Link
+                                className="cursor-pointer block py-0.5"
+                                href={`${items[active].href}#${subitem.id}`}
+                              >
+                                {subitem.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+              </ul>
+            </nav>
+          </ScrollableBox>
+        </div>
+      </div>
+    </>
   )
 }

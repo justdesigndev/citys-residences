@@ -1,52 +1,7 @@
+import { routing, type Locale, type Pathnames } from "@/i18n/routing"
+
 export const baseUrl = "citysresidences.com"
 export const initialScroll = true
-
-export const routes = {
-  en: {
-    home: {
-      ariaLabel: "Home",
-      name: "home",
-      path: "",
-      ui: "Home",
-      seo: {
-        title: "City's Residences",
-        description: "City's Residences",
-      },
-    },
-    notFound: {
-      ariaLabel: "Page Not Found",
-      name: "not-found",
-      path: "page-not-found",
-      ui: "Page Not Found",
-      seo: {
-        title: "404 Page Not Found",
-        description: "The page you are looking for was not found.",
-      },
-    },
-  },
-  tr: {
-    home: {
-      ariaLabel: "Anasayfa",
-      name: "home",
-      path: "",
-      ui: "Anasayfa",
-      seo: {
-        title: "City's Residences",
-        description: "City's Residences",
-      },
-    },
-    notFound: {
-      ariaLabel: "Sayfa Bulunamadı",
-      name: "not-found",
-      path: "sayfa-bulunamadi",
-      ui: "Sayfa Bulunamadı",
-      seo: {
-        title: "404 Sayfa Bulunamadı",
-        description: "Aradığınız sayfa bulunamadı.",
-      },
-    },
-  },
-}
 
 export const countryPhoneCodes = {
   en: [
@@ -156,26 +111,249 @@ export const gsapGlobalClasses = {
 }
 
 export const sections = {
-  home: {
-    section1: {
-      label: "Section 1",
-      id: "section1",
+  citysMembersClub: {
+    indoorSwimmingPool: {
+      label: "Kapalı Yüzme Havuzu",
+      id: "kapali-yuzme-havuzu",
     },
-    section2: {
-      label: "Section 2",
-      id: "section2",
+    macOne: {
+      label: "MAC/One",
+      id: "mac-one",
+      subitems: {
+        training: {
+          label: "Antrenman",
+          id: "antrenman",
+        },
+        changingRooms: {
+          label: "Soyunma Odaları",
+          id: "soyunma-odalari",
+        },
+        yoga: {
+          label: "Yoga",
+          id: "yoga",
+        },
+        pilates: {
+          label: "Pilates",
+          id: "pilates",
+        },
+        groupClasses: {
+          label: "Grup Dersleri",
+          id: "grup-dersleri",
+        },
+        sauna: {
+          label: "Sauna",
+          id: "sauna",
+        },
+      },
     },
-    section3: {
-      label: "Section 3",
-      id: "section3",
+    nuspa: {
+      label: "Nuspa",
+      id: "nuspa",
+      subitems: {
+        massage: {
+          label: "Masaj",
+          id: "masaj",
+        },
+        relaxation: {
+          label: "Dinlenme",
+          id: "dinlenme",
+        },
+        turkishBath: {
+          label: "Hamam",
+          id: "hamam",
+        },
+      },
     },
-    section4: {
-      label: "Section 4",
-      id: "section4",
+    dynamicZone: {
+      label: "Dynamic Zone",
+      id: "dynamic-zone",
+      subitems: {
+        padelTennis: {
+          label: "Padel Tenis",
+          id: "padel-tenis",
+        },
+        basketball: {
+          label: "Basketbol",
+          id: "basketbol",
+        },
+        tableTennis: {
+          label: "Masa Tenisi",
+          id: "masa-tenisi",
+        },
+        golfExperience: {
+          label: "Golf Deneyimi",
+          id: "golf-deneyimi",
+        },
+      },
     },
-    section5: {
-      label: "Section 5",
-      id: "section5",
+    cinema: {
+      label: "Sinema",
+      id: "sinema",
+      subitems: {
+        consoleGames: {
+          label: "Konsol Oyunları",
+          id: "konsol-oyunlari",
+        },
+        musicKaraoke: {
+          label: "Müzik & Karaoke",
+          id: "muzik-karaoke",
+        },
+        podcast: {
+          label: "Podcast",
+          id: "podcast",
+        },
+        meditation: {
+          label: "Meditasyon",
+          id: "meditasyon",
+        },
+      },
+    },
+    eventStudios: {
+      label: "Etkinlik Stüdyoları",
+      id: "etkinlik-studyolari",
+    },
+    kidsClub: {
+      label: "Kids Club",
+      id: "kids-club",
+    },
+    sharedOfficeSpaces: {
+      label: "Paylaşımlı Ofis Alanları",
+      id: "paylaşimli-ofis-alanlari",
+      subitems: {
+        rooms: {
+          label: "Odalar",
+          id: "odalar",
+        },
+        meetingRooms: {
+          label: "Toplantı Odaları",
+          id: "toplanti-odalari",
+        },
+      },
+    },
+    workshops: {
+      label: "Atölyeler",
+      id: "atolyeler",
+      subitems: {
+        cookingWorkshop: {
+          label: "Yemek Atölyesi",
+          id: "yemek-atolyesi",
+        },
+        artWorkshop: {
+          label: "Sanat Atölyesi",
+          id: "sanat-atolyesi",
+        },
+      },
     },
   },
+}
+
+// Navigation metadata for routes that should appear in navigation
+// Keys MUST exist in routing.pathnames (type-safe!)
+type NavigationMetadata = {
+  titleKey: string
+  id: string
+  sectionsKey?: keyof typeof sections
+  order: number
+}
+
+// Only define metadata for routes that should appear in navigation
+const navigationConfig: Partial<Record<Pathnames, NavigationMetadata>> = {
+  "/": {
+    titleKey: "navigation.home",
+    id: "home",
+    order: 1,
+  },
+  "/project": {
+    titleKey: "navigation.project",
+    id: "project",
+    order: 2,
+  },
+  "/location": {
+    titleKey: "navigation.location",
+    id: "location",
+    order: 3,
+  },
+  "/residences": {
+    titleKey: "navigation.residences",
+    id: "residences",
+    order: 4,
+  },
+  "/citys-park": {
+    titleKey: "navigation.citysPark",
+    id: "citysPark",
+    order: 5,
+  },
+  "/citys-members-club": {
+    titleKey: "navigation.citysMembersClub",
+    id: "citysMembersClub",
+    sectionsKey: "citysMembersClub",
+    order: 6,
+  },
+  "/citys-life-privileges": {
+    titleKey: "navigation.citysLifePrivileges",
+    id: "citysLifePrivileges",
+    order: 7,
+  },
+  "/citys-psm": {
+    titleKey: "navigation.citysPsm",
+    id: "citysPsm",
+    order: 8,
+  },
+  "/citys-istanbul-avm": {
+    titleKey: "navigation.citysIstanbul",
+    id: "citysIstanbul",
+    order: 9,
+  },
+  "/citys-times": {
+    titleKey: "navigation.citysTimes",
+    id: "citysTimes",
+    order: 10,
+  },
+}
+
+// Get routes that should appear in navigation
+function getNavigationRoutes() {
+  return Object.entries(navigationConfig)
+    .filter(([, config]) => config !== undefined)
+    .map(([routeKey, config]) => ({
+      routeKey: routeKey as Pathnames,
+      titleKey: config!.titleKey,
+      id: config!.id,
+      sectionsKey: config!.sectionsKey,
+      order: config!.order,
+    }))
+    .sort((a, b) => a.order - b.order)
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getNavigationItems = (t: (key: any) => string, locale: Locale) =>
+  getNavigationRoutes().map((item) => ({
+    title: t(item.titleKey),
+    href: getLocalizedPath(item.routeKey, locale),
+    id: item.id,
+    sections: item.sectionsKey ? sections[item.sectionsKey] : undefined,
+  }))
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getNavigationItem = (id: string, t: (key: any) => string, locale: Locale) => {
+  const item = getNavigationRoutes().find((navItem) => navItem.id === id)
+  if (!item) return null
+
+  return {
+    title: t(item.titleKey),
+    href: getLocalizedPath(item.routeKey, locale),
+    id: item.id,
+    sections: item.id ? sections[item.id as keyof typeof sections] : undefined,
+  }
+}
+
+// Helper function to get localized path from routing configuration
+function getLocalizedPath(routeKey: Pathnames, locale: Locale): string {
+  const pathConfig = routing.pathnames[routeKey]
+
+  if (typeof pathConfig === "string") {
+    return pathConfig
+  }
+
+  return pathConfig[locale] || pathConfig[routing.defaultLocale]
 }

@@ -8,7 +8,7 @@ import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
-import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
+import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
 
 export default function Page() {
@@ -134,7 +134,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <SectionsMenuInitializer sections={Object.values(sections.home)} />
+      <SectionsMenuInitializer sections={Object.values([])} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video

@@ -8,7 +8,7 @@ import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
-import { citysIstanbulAvmVideo, sections } from "@/lib/constants"
+import { citysIstanbulAvmVideo } from "@/lib/constants"
 import { toTitleCase } from "@/lib/utils"
 
 export default async function Page() {
@@ -82,7 +82,7 @@ export default async function Page() {
 
   return (
     <Wrapper>
-      <SectionsMenuInitializer sections={Object.values(sections.home)} />
+      <SectionsMenuInitializer sections={Object.values([])} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
