@@ -57,7 +57,7 @@ export const DropdownMenuCheckboxesHear = forwardRef<DropdownMenuCheckboxesRef, 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
-            className="h-10 w-full text-neutral-950 border border-bricky-brick-light flex items-center justify-between px-2 bt:px-4 rounded-md text-base bt:text-sm outline-none focus:outline-none focus:ring-0"
+            className="h-10 w-full text-neutral-950 border border-bricky-brick flex items-center justify-between px-2 bt:px-4 rounded-md text-base bt:text-sm outline-none focus:outline-none focus:ring-0"
             type="button"
             aria-label={`Select ${placeholder}`}
           >

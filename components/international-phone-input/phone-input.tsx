@@ -58,15 +58,15 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({ value, onChange, phoneIn
         }}
         value={phoneInput.country.iso2}
       >
-        <SelectTrigger className="w-24 h-10 rounded-md text-bricky-brick font-medium cursor-pointer text-base bt:text-sm border border-bricky-brick-light">
+        <SelectTrigger className="w-24 h-10 rounded-md text-bricky-brick font-medium cursor-pointer text-base bt:text-sm border border-bricky-brick">
           <SelectValue placeholder="Code">+{phoneInput.country.dialCode}</SelectValue>
         </SelectTrigger>
-        <SelectContent className="z-[500] bg-white text-neutral-950 border border-bricky-brick-light rounded-md">
+        <SelectContent className="z-[500] bg-white text-neutral-950 border border-bricky-brick rounded-md">
           <SelectGroup>{countryOptions}</SelectGroup>
         </SelectContent>
       </Select>
       <Input
-        className="h-10 border border-bricky-brick-light rounded-md"
+        className="h-10 border border-bricky-brick rounded-md"
         placeholder={phoneInput.country.format?.toString().replace(/\S/g, "X") || "XXXXXXXXXX"}
         type="tel"
         value={phoneInput.inputValue}
