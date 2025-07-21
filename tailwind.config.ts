@@ -30,6 +30,41 @@ const config: Config = {
       "3xl": "120rem",
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            p: {
+              marginTop: "1em",
+              marginBottom: "1em",
+            },
+          },
+        },
+        "2xl": {
+          css: {
+            p: {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+            },
+          },
+        },
+        // Add custom prose sizes with different paragraph spacing
+        tight: {
+          css: {
+            p: {
+              marginTop: "0.75em",
+              marginBottom: "0.75em",
+            },
+          },
+        },
+        loose: {
+          css: {
+            p: {
+              marginTop: "2em",
+              marginBottom: "2em",
+            },
+          },
+        },
+      },
       gridTemplateColumns: {
         "24": "repeat(24, minmax(0, 1fr))",
       },

@@ -38,7 +38,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
             : "section-container"
         )}
       >
-        <div className="flex flex-col items-start justify-center w-4/12 pr-6">
+        <div className="flex flex-col items-start justify-center w-4/12 pr-6 py-24">
           <h3
             className={cn(
               "font-primary font-bold text-bricky-brick text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl mb-6",
@@ -59,7 +59,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
           )}
           <div
             className={cn(
-              "font-primary font-normal text-base lg:text-lg xl:text-lg 2xl:text-2xl text-black prose",
+              "font-primary font-normal text-black prose-2xl",
               "[&_span]:text-bricky-brick",
               gsapGlobalClasses.fadeIn
             )}
@@ -86,7 +86,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
               parallax={true}
             />
           ) : (
-            <div className="relative w-full h-[50vw]">
+            <div className="relative w-full h-full min-h-[40vw]">
               {/* <MaskedParallaxImage
                 imgSrc={item.url[0]}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 80vw, 80vw`}

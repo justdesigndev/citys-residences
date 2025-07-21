@@ -44,7 +44,7 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
         }
       )
 
-      tl.play().timeScale(0.1).repeat(-1)
+      tl.play().timeScale(0.2).repeat(-1)
     },
     {
       scope: ref,
