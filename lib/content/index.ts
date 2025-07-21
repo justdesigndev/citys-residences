@@ -6,6 +6,7 @@ export interface ContentItem {
   title: string
   subtitle: string
   image: string
+  images?: string[]
   sectionId: string
   order: number
   content: string
@@ -57,7 +58,7 @@ export async function getContentItems(section: string, locale: string): Promise<
       ...frontmatter,
       content: processedContent,
       description: processedContent, // For compatibility with existing MembersClubItem component
-      url: [frontmatter.image], // Convert to array format to match existing structure
+      url: frontmatter.images || [frontmatter.image], // Use images array if available, otherwise single image
     } as ContentItem
   })
 
@@ -71,4 +72,8 @@ export async function getCitysParkContent(locale: string): Promise<ContentItem[]
 
 export async function getCitysLifePrivilegesContent(locale: string): Promise<ContentItem[]> {
   return getContentItems("citys-life-privileges", locale)
+}
+
+export async function getCitysMembersClubContent(locale: string): Promise<ContentItem[]> {
+  return getContentItems("citys-members-club", locale)
 }
