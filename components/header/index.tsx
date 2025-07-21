@@ -94,7 +94,7 @@ export function Header() {
           "transition-all duration-300",
           {
             "bg-white h-[var(--header-height)]": !scrollState.atTop,
-            "bg-transparent h-[var(--header-height-slim)]": scrollState.atTop || sections.length === 0,
+            "bg-transparent h-[var(--header-height-slim)]": scrollState.atTop,
           }
         )}
       >
