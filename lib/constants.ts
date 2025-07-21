@@ -111,6 +111,58 @@ export const gsapGlobalClasses = {
 }
 
 export const sections = {
+  residences: {
+    interiorArchitecture: {
+      label: "İç Mimari",
+      id: "interior-architecture",
+    },
+    residences: {
+      label: "Rezidanslar",
+      id: "residences",
+      subitems: {
+        onePlusOne: {
+          label: "1+1",
+          id: "one-plus-one",
+        },
+        twoPlusOne: {
+          label: "2+1",
+          id: "two-plus-one",
+        },
+        threePlusOne: {
+          label: "3+1",
+          id: "three-plus-one",
+        },
+        fourPlusOne: {
+          label: "4+1",
+          id: "four-plus-one",
+        },
+        fivePlusOne: {
+          label: "5+1",
+          id: "five-plus-one",
+        },
+        sixPlusOne: {
+          label: "6+1",
+          id: "six-plus-one",
+        },
+        citysParkResidences: {
+          label: "Citys Park Rezidansları",
+          id: "citys-park-residences",
+        },
+        terraceResidences: {
+          label: "Teras Evler",
+          id: "terrace-residences",
+        },
+        penthouse: {
+          label: "Penthouse",
+          id: "penthouse",
+        },
+      },
+    },
+    groundSafety: {
+      label: "Zemin Güvenliği",
+      id: "ground-safety",
+    },
+  },
   citysMembersClub: {
     indoorSwimmingPool: {
       label: "Kapalı Yüzme Havuzu",
