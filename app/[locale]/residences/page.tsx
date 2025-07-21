@@ -8,14 +8,14 @@ import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
-import { melihBulgurVideo, mustafaTonerVideo, residencesVideo } from "@/lib/constants"
+import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
 
 export default function Page() {
   const items = [
     {
       title: "1+1 Daire",
-      description: "“Şehir hayatına konforlu bir dokunuş: Kendi köşen, kendi ritmin.”",
+      description: "“Hayatına konforlu bir dokunuş.”",
       images: [
         {
           url: "/img/residences/1+1/plan.jpg",
@@ -28,7 +28,7 @@ export default function Page() {
     },
     {
       title: "2+1 Daire",
-      description: "“Modern profesyoneller için hem çalışmaya hem yaşamaya ilham veren bir düzen.”",
+      description: "“Çekirdek aile yaşamına ilham veren bir düzen.”",
       images: [
         {
           url: "/img/residences/2+1/plan.jpg",
@@ -41,7 +41,7 @@ export default function Page() {
     },
     {
       title: "3+1 Daire",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Köklenen yaşamlar için ideal bir dünya.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -54,7 +54,7 @@ export default function Page() {
     },
     {
       title: "4+1 Daire",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Daha büyük sofralar, daha geniş alanlar.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -67,7 +67,7 @@ export default function Page() {
     },
     {
       title: "5+1 Daire",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Kalabalık hayatlar yaşamanın en zarif hali.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -80,7 +80,7 @@ export default function Page() {
     },
     {
       title: "6+1 Daire",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Büyük yaşamların sıcaklığı, konforu ve en keyifli hali.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -93,7 +93,7 @@ export default function Page() {
     },
     {
       title: "City's Park Daireleri",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Dışarıda doğa, içeride huzur.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -106,7 +106,7 @@ export default function Page() {
     },
     {
       title: "Teras Evler",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Gökyüzünü ve denizi evine kattığın bir ayrıcalık.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -119,7 +119,7 @@ export default function Page() {
     },
     {
       title: "Penthouse",
-      description: "“Büyüyen hikâyeler ve köklenen yaşamlar için geniş bir dünya.”",
+      description: "“Limit gökyüzü. Sizi sıra dışı yaşatan bir tasarım.”",
       images: [
         {
           url: "/img/residences/3+1/plan.jpg",
@@ -134,7 +134,7 @@ export default function Page() {
 
   return (
     <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+      <SectionsMenuInitializer sections={Object.values(sections.residences)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
@@ -152,12 +152,12 @@ export default function Page() {
           <Logo fill={colors["bricky-brick"]} />
         </div>
       </section>
-      <section className="bg-white relative z-30 py-12">
+      <section className="bg-white relative z-30 py-12" id={sections.residences.interiorArchitecture.id}>
         <div className="section-container">
           <VideoSection
             primaryVideoUrl={mustafaTonerVideo}
             thumbnail="/img/thumbnail-toners.jpg"
-            title="İç Mimari: Yaşam Konforu ve Kalitesi"
+            title="İÇ MİMARİ: Yaşam Konforu ve Kalitesi"
           />
         </div>
       </section>
@@ -168,7 +168,7 @@ export default function Page() {
       <section className="bg-white relative z-30 section-container py-12">
         <StackingCards items={items} />
       </section>
-      <section className="section-container py-12">
+      <section className="section-container py-12" id={sections.residences.groundSafety.id}>
         <VideoSection
           primaryVideoUrl={melihBulgurVideo}
           thumbnail="/img/thumbnail-melih-bulgur.jpg"
