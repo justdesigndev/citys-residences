@@ -60,6 +60,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
           <div
             className={cn(
               "font-primary font-normal text-black prose-2xl",
+              "prose-ul:list-disc prose-ul:pl-6 prose-li:pl-1 prose-li:text-black",
               "[&_span]:text-bricky-brick",
               gsapGlobalClasses.fadeIn
             )}
