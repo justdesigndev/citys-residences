@@ -53,18 +53,18 @@ export default function Home() {
           <div className={cn("w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20", gsapGlobalClasses.fadeIn)}>
             <Logo fill={colors["bricky-brick"]} />
           </div>
-          <div className="flex flex-col items-center gap-4 lg:gap-8">
-            <article className="font-montserrat text-bricky-brick text-4xl lg:text-6xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
+          <div className="flex flex-col items-center gap-4 lg:gap-2">
+            <article className="font-montserrat font-semibold text-bricky-brick text-4xl lg:text-6xl leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
               <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
                 {t("section1.title1")}
               </GsapSplitText>
               <span className="sr-only">{t("section1.title1")}</span>
             </article>
-            <article className={cn("relative w-screen h-24 lg:h-44 xl:h-48", gsapGlobalClasses.fadeIn)}>
+            <article className={cn("relative w-screen h-24 lg:h-44 xl:h-36", gsapGlobalClasses.fadeIn)}>
               <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="100vw" />
               <span className="sr-only">{t("section1.title2")}</span>
             </article>
-            <article className="font-montserrat text-bricky-brick text-4xl lg:text-xl font-regular leading-relaxed tracking-wide lg:tracking-widest text-center">
+            <article className="font-montserrat font-medium text-bricky-brick text-4xl lg:text-xl leading-relaxed tracking-wide lg:tracking-widest text-center">
               <GsapSplitText splitBy="chars" stagger={0.01} duration={1.5}>
                 {t("section1.title3")}
               </GsapSplitText>
@@ -110,14 +110,14 @@ export default function Home() {
       </section>
       <section className={cn(gsapGlobalClasses.fadeIn)}>
         <div className="flex gap-8 h-[60vw] relative">
-          <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-bricky-brick text-3xl lg:text-7xl xl:text-7xl 2xl:text-8xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50">
+          <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-bricky-brick text-3xl lg:text-7xl xl:text-7xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50">
             <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
               {t("live.p1.title")}
             </GsapSplitText>
           </h2>
           <p
             className={cn(
-              "absolute bottom-64 left-32",
+              "absolute bottom-14 left-14",
               "font-primary font-semibold text-white text-base lg:text-4xl xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed lg:max-w-2xl xl:max-w-lg",
               "blur-bg-bricky-brick z-50 p-4 rounded-md"
             )}
