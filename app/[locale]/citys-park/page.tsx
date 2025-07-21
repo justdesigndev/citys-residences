@@ -12,62 +12,84 @@ import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { Wrapper } from "@/components/wrapper"
-import { citysParkVideo, gsapGlobalClasses } from "@/lib/constants"
+import { citysParkVideo, gsapGlobalClasses, sections } from "@/lib/constants"
 import { breakpoints } from "@/styles/config.mjs"
 
 export default function Page() {
   const items = [
     {
       title: `City's Lounge`,
+      subtitle: `Buluş, paylaş, keyfini çıkar`,
       description: `
-      <p>Günlük buluşmalardan özel davetlere kadar her anınıza uyum sağlayan ayrıcalıklı bir sosyal alandır.</p>
-      <p>İster doğanın içinde bir masa etrafında buluşun ister zarif bir etkinliğe ev sahipliği yapın.</p>
+      <p>Sabah bir kahve, öğlen küçük bir toplantı, akşamüstü spontane bir kutlama... <br /> Doğanın içinde arkadaşlarınla bir masaya kurul, ya da ışıkların altında unutulmaz bir etkinlik düzenle.</p>
+      <p>Resmiyet yok, sadece senin ritmin, senin alanın.</p>
       `,
       url: ["/img/citys-park/01.jpg"],
+      sectionId: sections.citysPark.citysLounge.id,
     },
     {
       title: `Açıkhava <br /> Meydanları`,
+      subtitle: `Plan yapmadan buluşmanın en güzel hali`,
       description: `
-      <p>Birlikte olmanın bir plana ihtiyaç duymadığı, hayatın akışında paylaşılan zamanlara ayrılmış birbirinden keyifli mekanlar.</p>
+      <p>City’s Park’ta her şey kendiliğinden gelişir.</p>
+      <p>Bir yandan çocuklar kahkahalarla parkta oynarken, diğer yanda birileri havuz başında kitabına dalmış, bazıları ise yürüyüş yolunda günün stresini geride bırakıyor.</p>
+      <p>Herkes bir arada. Ailece, dostça, doğayla iç içe.</p>
+      <p>Aynı anda aynı yerde herkes kendi ritminde.</p>
       `,
       url: ["/img/citys-park/06.jpg"],
+      sectionId: sections.citysPark.openSquares.id,
     },
     {
       title: `Açık Havuzlar`,
+      subtitle: `Serin sular, sıcacık anlar`,
       description: `
-      <p>City's Residences yaşam tasarımıyla, günün ritmine uyum sağlayan bir kaçış: <br /> Serinlik, güneş, sohbet ve huzur her an sizinle.</p>
+      <p>Güne biraz serinlik katalım mı?</p>
+      <p>Havuz başında bir şezlong kap, gözlüğünü tak, müziği aç... <br /> İster yüz, ister yayıl, ister kitaplara dal... <br /> City’s Residences’ta havuz keyfi nasıl istersen öyle yaşanır.</p>
+      <p>Kimse bir yere yetişmez, kimse acele etmez. <br /> Çünkü burası sadece bir havuz değil, şehrin tam ortasında özgürlüğünü hissettiğin bir nefes alma alanı.</p>
+      <p>Hayat, bazen sadece nefes almaktır.</p>
       `,
       url: ["/img/citys-park/02.jpg"],
+      sectionId: sections.citysPark.openPools.id,
     },
     {
       title: `Çocuk Parkları`,
+      subtitle: `Doğayla iç içe, gerçek bir çocukluk`,
       description: `
-      <p>Doğa, oyun ve hayal gücü bir arada; <br /> Çocukların özgürce büyüdüğü, çocukluklarını doya doya yaşadığı alanlar.</p>
+      <p>Oyunla büyüyen çocuklar... <br /> City’s Park’ta her salıncak bir hayale, her kahkaha bir özgürlüğe açılıyor.</p>
+      <p>Yalnızca oyun oynamak için değil, keşfetmek, düşlemek, çocukluğun dolu dolu yaşanması için tasarlandı.</p>
+      <p>Her çocukluk bir masaldır ve bu masal; <br /> çimlerin üzerinde çıplak ayakla yürünebilen, salıncağın gölgesinde hayal kurulan, doğayla iç içe, güvenle ve sevgiyle yazılıyor...</p>
       `,
       url: ["/img/citys-park/03.jpg"],
+      sectionId: sections.citysPark.childrenParks.id,
     },
     {
       title: `Yürüyüş Parkurları`,
+      subtitle: `Şehirden bir adım uzakta, kendine bir adım yakın...`,
       description: `
-      <p>Gökyüzü kadar geniş bir hareket alanıyla dilediğinizce yürüyün veya koşun.</p>
-      <p>Günlük adımlarınızı atarken nefesinizi ve ritminizi doğaya bırakın.</p>
-
+      <p>Ağaçların arasından süzülen ışıklarla doğa seni içine alır, nefesin yavaşlar, zihnin durulur, kalbin hafifler.</p>
+      <p>Sabahın sessizliğinde güne hafifçe başlarsın, akşam üzeri ise kendine ayırdığın eşsiz bir mola olur.</p>
+      <p>Adımlarını saymak zorunda değilsin... <br /> Yavaşla, hisset ve keyfini çıkar.</p>
       `,
       url: ["/img/citys-park/04.jpg"],
+      sectionId: sections.citysPark.walkingTracks.id,
     },
     {
       title: `Açık Spor Alanları`,
+      subtitle: `Bedenin özgür, ruhun doğayla...`,
       description: `
-      <p>Doğa ve bedeni aynı ritimde buluşturan yepyeni bir spor yaşamı tasarımı.</p>
-      <p>Dilerseniz sabah serinliğinde yoga, dilerseniz gün batımında bisiklet...</p>
+      <p>Sabah serinliğinde yoga matını ser, güne içten bir nefesle başla. Ya da gün batarken bisikletinle rüzgarı yüzünde hisset.</p>
+      <p>İster hafif bir esneme, ister tempolu bir koşu... Her adım, her duruş, her nefes daha iyi hissetmek için...</p>
+      <p>Doğa ritmi verir, sen katılırsın. İster sessiz, ister özgür, kendinin ve bedeninin kulak verdiği davete uyarsın.</p>
+      <p>Burada spor; kendine iyi gelme hali.</p>
       `,
       url: ["/img/citys-park/05.jpg"],
+      sectionId: sections.citysPark.openSportsAreas.id,
     },
   ]
 
   return (
     <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+      <SectionsMenuInitializer sections={Object.values(sections.citysPark)} />
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
@@ -109,6 +131,7 @@ export default function Page() {
             item={item}
             align={i % 2 === 0 ? "ltr" : "rtl"}
             className={i % 2 === 0 ? "bg-white" : "bg-unbleached"}
+            sectionId={item.sectionId}
           />
         ))}
       </section>
@@ -116,7 +139,7 @@ export default function Page() {
         <VideoSection
           primaryVideoUrl={citysParkVideo}
           thumbnail="/img/thumbnail-pinar-cemil-aktas.jpg"
-          title="Peyzaj: Bir Vaha Tasarımı..."
+          title="Peyzaj: Bir Vaha Tasarımı"
         />
       </section>
       <AnimatedLine direction="horizontal" />

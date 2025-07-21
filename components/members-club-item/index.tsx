@@ -26,7 +26,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
   const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <div className={cn("gsap-global-fade-in", className)} ref={ref} id={sectionId}>
+    <div className={cn(className)} ref={ref} id={sectionId}>
       <div
         className={cn(
           "flex items-stretch gap-8 py-8",
@@ -50,7 +50,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
           {item.subtitle && (
             <p
               className={cn(
-                "font-primary font-bold text-base lg:text-lg xl:text-lg 2xl:text-2xl text-bricky-brick mb-4",
+                "font-primary font-semibold text-base lg:text-lg xl:text-lg 2xl:text-2xl text-bricky-brick mb-4",
                 gsapGlobalClasses.fadeIn
               )}
             >
@@ -67,7 +67,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
           />
         </div>
         <AnimatedLine direction="vertical" />
-        <div className="w-8/12 relative">
+        <div className={cn("w-8/12 relative", gsapGlobalClasses.fadeIn)}>
           {item.url.length > 1 ? (
             <EmblaCarousel
               autoplay={true}

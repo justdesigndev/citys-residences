@@ -309,6 +309,32 @@ export const sections = {
       },
     },
   },
+  citysPark: {
+    citysLounge: {
+      label: "City's Lounge",
+      id: "citys-lounge",
+    },
+    openSquares: {
+      label: "Açıkhava Meydanları",
+      id: "open-squares",
+    },
+    openPools: {
+      label: "Açık Havuzlar",
+      id: "open-pools",
+    },
+    childrenParks: {
+      label: "Çocuk Parkları",
+      id: "children-parks",
+    },
+    walkingTracks: {
+      label: "Yürüyüş Parkurları",
+      id: "walking-tracks",
+    },
+    openSportsAreas: {
+      label: "Açık Spor Alanları",
+      id: "open-sports-areas",
+    },
+  },
 }
 
 // Navigation metadata for routes that should appear in navigation
@@ -345,6 +371,7 @@ const navigationConfig: Partial<Record<Pathnames, NavigationMetadata>> = {
   "/citys-park": {
     titleKey: "navigation.citysPark",
     id: "citysPark",
+    sectionsKey: "citysPark",
     order: 5,
   },
   "/citys-members-club": {

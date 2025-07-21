@@ -18,8 +18,9 @@ export default function Page() {
       title: "Kapalı Yüzme Havuzu",
       subtitle: "Her mevsim kendi ritminde",
       description: `
-        <p>Yarı olimpik havuzda kulaç atıp, soğuk şok havuzunda bedeninizi uyandırdığınız, sonra başınızı arkaya yaslayıp dinginliğin tadını çıkardığınız eşsiz bir mekan.</p>
-        <p>Zihninizi uyandırıp bedeninizi güçlendirirken dört mevsim konforlu ve sağlıklı yaşamın ayrıcalığını doyasıya yaşayın.</p>
+        <p>Dört mevsim sıcak, dört mevsim hazır. <br /> Bazen sabah erken, bazen günün tam ortasında... <br /> Kulaçlar atılır, yükler hafifler.</p>
+        <p>Yüzmek bir egzersiz değil, günün telaşından kendini nazikçe ayırmaktır... <br /> Yaşamak için bazen sadece bir kulaç yeter.</p>
+        <p>Zihin durulur, adım adım geride kalır dünya.</p>
       `,
       url: ["/img/citys-members-club/01.jpg"],
       sectionId: sections.citysMembersClub.indoorSwimmingPool.id,
@@ -28,7 +29,10 @@ export default function Page() {
       title: "Spor & Spa <br /> Resepsiyon",
       subtitle: "Şimdi senin zamanın",
       description: `
-        <p>Bireysel antrenmanlardan grup derslerine kendi sınırlarını zorladığın yerdesin</p>
+        <p>Bireysel antrenmanlardan grup derslerine kendi sınırlarını zorladığın yerdesin.</p>
+        <p>Hangi antrenmanı tercih edersin, bugün ruh halin nasıl, yüzmek mi iyi gelir, yoksa biraz sessizlik mi?</p>
+        <p>Sen anlatmasan da hisseden birileri vardır. Her şey bir bakışla anlaşılır.</p>
+        <p>Programın, ihtiyaçların, o günkü enerjin...</p>
       `,
       url: ["/img/citys-members-club/02.jpg"],
       sectionId: sections.citysMembersClub.macOne.subitems.sportAndSpaReception.id,
@@ -37,17 +41,22 @@ export default function Page() {
       title: "Soyunma Odaları",
       subtitle: "Konforun ve hijyenin yeni tanımı",
       description: `
-        <p>Yüksek ergonomi, kusursuz işlev, yüksek standartlardaki soyunma odalarınız sadece geçiş noktanız değil;<br />Konforun, zerafetin ve tüm kullanıcı ihtiyaçlarınızın yeniden tanımlandığı sıra dışı bir deneyim için tasarlandı.</p>
+        <p>Her şey rahatlığın için tasarlandı.</p>
+        <p>Her köşe işlevsel ama bir o kadar da zarif; <br /> havludan dolaba, aynadan oturma alanına kadar tüm detaylar özenli...</p>
+        <p>Sadelik burada şıklığın temel parçası. Hijyen ise olağanüstü olduğunu ilk anda hissedeceğin kadar kusursuz.</p>
+        <p>Samimi, rafine, her şey yerli yerinde.</p>
       `,
       url: ["/img/citys-members-club/03.jpg"],
       sectionId: sections.citysMembersClub.macOne.subitems.changingRooms.id,
     },
     {
-      title: "Spor Salonu",
-      subtitle: "Antrenman ve Özel Ders",
+      title: "Gym",
+      subtitle: "Kendinin en iyi versiyonuna ulaş",
       description: `
-        <p>MAC/One tarafından tasarlanmış fitness mekanları, limitsiz olanaklar, kişiye özel spor antrenmanları veya grup dersleri ile kendinizin en iyi performansına ulaşın.</p>
-        <p>Yenilenin, daha çok yaşayın.</p>
+        <p>MAC/One deneyimi ile özenle tasarlanmış gym alanları ve stüdyolarda; <br /> her şey, sadece bedenini değil ruhunu da güçlendirmek için...</p>
+        <p>İster birebir antrenmanla kendi sınırlarını zorla, ister grup derslerinde yüksek motive ol...</p>
+        <p>Özel ekipmanlarla gelişmiş antrenman alanlarında tempoyu yakala.</p>
+        <p>Yenilen, daha iyi hisset, daha çok yaşa.</p>
 
       `,
       url: ["/img/citys-members-club/04.jpg"],
@@ -55,14 +64,14 @@ export default function Page() {
     },
     {
       title: "Stüdyolar",
-      subtitle: "Yüksek enerji ve sosyalleşme bir arada",
+      subtitle: "Antrenman gibi değil, eğlence gibi",
       description: `
-        <p>Kimi zaman enerjinin birlikte yükseldiği sosyal mekanlar, kimi zaman kendi vücudunuzu dinleyebileceğiniz bireysel antrenman mekanları.</p>
-        <p>HIIT, Zumba, Core, Cycling, Dans, Esneme ve sayısız eğlenceli gruplar, dersler.</p>
-        <p>City’s Members Club stüdyolarında her zaman kendinizi daha iyi hissedeceksiniz.</p>
+        <p>Kimi zaman enerjinin birlikte yükseldiği bir sosyal alan, kimi zaman kendi bedenini ve ritmini dinleyebileceğin sakin bir durak... <br /> MAC/One Stüdyoları, ruh haline göre şekillenen esnek bir deneyim.</p>
+        <p>HIIT, Zumba, Core, Cycling, Dans, Esneme ve daha niceleri... <br /> Her birinde hareketin neşesiyle buluş...</p>
+        <p>Ritimle coş, kendin ol; her seferinde kendini daha iyi, daha canlı, daha sen gibi hisset...</p>
       `,
       url: ["/img/citys-members-club/05.jpg"],
-      sectionId: sections.citysMembersClub.macOne.subitems.pilates.id,
+      sectionId: sections.citysMembersClub.macOne.subitems.studios.id,
     },
     {
       title: "Yoga Stüdyosu",
@@ -103,19 +112,22 @@ export default function Page() {
       sectionId: sections.citysMembersClub.macOne.subitems.sauna.id,
     },
     {
-      title: "Spa & Wellness",
-      subtitle: "Rahatlamak da bir alışkanlık olabilir",
+      title: "Spa & Wellness <br /> Resepsiyon",
+      subtitle: "Şimdi sadece kendinlesin...",
       description: `
-        <p>Sauna, buhar odası ve masaj alanlarını içeren wellness bölümühem bedeninizi hem de zihninizi rahatlatmak için kusursuz kurgulandı.</p>
+        <p>Sauna, buhar odası ve masaj alanlarını içeren wellness bölümü hem bedeninizi hem de zihninizi rahatlatmak için kusursuz kurgulandı.</p>
       `,
       url: ["/img/citys-members-club/10.jpg"],
       sectionId: sections.citysMembersClub.nuspa.subitems.spaWellness.id,
     },
     {
       title: "Masaj",
-      subtitle: "Sessizliği planladık",
+      subtitle: "Her şey sen rahatla diye...",
       description: `
-        <p>Dış uyaranlardan izole edilmiş, içe dönüşe alan tanıyan terapi odaları.</p>
+        <p>Bazen bedenin anlatır içindeki yorgunluğu... <br /> İşte o an geldiğinde “NUSPA” masaj odalarında her şey sana göre odaklanır.</p>
+        <p>Aromatik yağlardan ruhuna iyi gelenleri seç, sadece gevşe, hafifle, hünerli ellere teslim ol. Bazen her şey bir dokunuşla değişir...</p>
+        <p>Müziğin derinden gelen sesi sana yük olan her şeyi yavaşça bırakır, sanki yeniden doğarsın...</p>
+        <p>Bedenin gevşer, ruhun hafifler.</p>
       `,
       url: ["/img/citys-members-club/11.jpg"],
       sectionId: sections.citysMembersClub.nuspa.subitems.massage.id,
@@ -124,8 +136,8 @@ export default function Page() {
       title: "Dinlenme",
       subtitle: "Burada dinlenmek bir yaşam biçimi",
       description: `
-        <p>Zihninizin arındığı, bedeninizin yenilendiği alanlar, City's Members Club seçkin yaşam tasarımının bir parçası olarak kurgulandı.</p>
-        <p>Enerjinize ve ritminize eşlik eden bir deneyim, sakinliğin yeni dengesi.</p>
+        <p>Zihninizin arındığı, bedeninizin yenilendiği alanlar; <br /> City's Members Club seçkin yaşam tasarımının ayrılmaz bir parçası.</p>
+        <p>Enerjinize ve ruhunuza eşlik eden bir deneyim, sakinliğin yeni dengesi...</p>
       `,
       url: ["/img/citys-members-club/12.jpg"],
       sectionId: sections.citysMembersClub.nuspa.subitems.relaxation.id,
@@ -135,7 +147,7 @@ export default function Page() {
       subtitle: "Zamansız bir ritüelin yeniden tasarımı",
       description: `
         <p>Yüzyıllardır süregelen Türk tarihine özel geleneksel bakım ritüellerini Citys’in modern yorumuyla yaşayın.</p>
-        <p>Su, buhar ve sessizlikle bedenin hafifliğini hissedin. <br /> Burada zihniniz arınır, yenilenir ve yeniden doğarsınız.</p> 
+        <p>Su, buhar ve sessizlikle bedenin hafifliğini hissedin. Burada zihniniz arınır, yenilenir ve yeniden doğarsınız.</p> 
       `,
       url: ["/img/citys-members-club/13.jpg"],
       sectionId: sections.citysMembersClub.nuspa.subitems.turkishBath.id,
@@ -186,7 +198,7 @@ export default function Page() {
     },
     {
       title: "Sinema Salonu",
-      subtitle: "Sadece size özel.. CineWAM ayrıcalığıyla",
+      subtitle: "Sadece size özel CineWAM ayrıcalığıyla",
       description: `
         <p>En yeni filmler, sevdiğiniz diziler, büyük maçlar...</p>
         <p>Bir sinema perdesi düşünün ışıklar sönüyor ama bu kez sadece sizin için.</p>
@@ -197,7 +209,7 @@ export default function Page() {
       sectionId: sections.citysMembersClub.cinema.id,
     },
     {
-      title: "Playstation Odası",
+      title: "PlayStation Odası",
       subtitle: "Rakibini getir ya da takımını kur",
       description: `
         <p>Sadece eğlenmek için değil rekabet etmek ve paylaşmak için tasarlandı.</p>
@@ -274,7 +286,7 @@ export default function Page() {
     },
     {
       title: "Toplantı Odaları",
-      subtitle: "Bir toplantı değil, bir etkinin başlangıcı.",
+      subtitle: "Bir toplantı değil, bir etkinin başlangıcı",
       description: `
         <p>Fikirlerin sınırları aştığı alanlar. Burada fikirler konuşmaz, birbiriyle dans eder.</p>
         <p>City’s Members Club tasarımıyla farklılaşan sıra dışı toplantılar, birlikte üretmenin en ideal hali.</p>
@@ -290,6 +302,7 @@ export default function Page() {
       description: `
           <p>Kahve ve taze ekmeğin rahatlatıcı kokusu, tutkulu, keyifli ve heyecanlı sohbetlerle birleşiyor.</p>
           <p>Mutfak sever çocuk ve yetişkinler için özel hazırlanmış birçok yemek atölyesinden birisi mutlaka sizin için.</p>
+          <p>Her tarif birlikte olmanın en lezzetli hali...</p>
         `,
       url: ["/img/citys-members-club/30.jpg"],
       sectionId: sections.citysMembersClub.workshops.subitems.cookingWorkshop.id,
