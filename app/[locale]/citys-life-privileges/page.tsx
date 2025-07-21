@@ -67,7 +67,7 @@ export default function Page() {
       <p><strong>JUSTWork’ün yaratıcı DNA’sından doğan JUSTStay,</strong> geleneksel hotel kalıplarını geride bırakıyor: <br /> Özgür, esnek, erişilebilir ama her detayında özenli yeni nesil bir konaklama ruhu sizinle... Kompakt, Konforlu, Akıllı odalar, gün boyu yaşayan sosyal ortamlar.</p>
       <p>Şehirde konaklamak sadece bir gece geçirmek demek değil, bir yaşam tarzına dokunmak demek.</p>
       <p>JUSTStay’de her şey ihtiyacın kadar. Tam kararında.</p>
-      <p><span>ÖZGÜR YAŞA...</span></p>
+      <p><strong>ÖZGÜR YAŞA...</strong></p>
    `,
       url: ["/img/citys-life/05.jpg"],
     },
