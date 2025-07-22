@@ -3,13 +3,13 @@ import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo } from "@/components/icons"
 import { LinkToPage } from "@/components/link-to-page"
-import { LogoSection } from "@/components/logo-section"
 import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
 import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
 import { FilterableContent } from "./filterable-content"
+import { colors } from "@/styles/config.mjs"
 
 export default async function Page() {
   const brands = await getBrandsData()
@@ -29,16 +29,36 @@ export default async function Page() {
           />
         </ScaleOut>
       </section>
-      <section className="relative z-30 bg-white py-5 flex flex-col items-center">
-        <LogoSection foregroundLogo={<IconCitysIstanbulLogo fill="#000000" />} foregroundDuration={0.5} />
-        <h2 className="font-primary font-medium text-black text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl xl:leading-normal 2xl:leading-snug xl:max-w-4xl 2xl:max-w-6xl text-center">
-          <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
-            Alışverişin, yaşamın ve şehrin ritminin tek bir çatı altında buluştuğu yer. <br />
-            Uluslararası seçkin markalara ulaşmak, yeni bir lezzet keşfetmek ya da <br />
-            günün yorgunluğunu ilham veren bir atmosferde atmak... <br />
-            Tüm bu ayrıcalıklar, yaşadığınız yerden sadece bir asansör uzaklıkta.
-          </GsapSplitText>
-        </h2>
+      <section className="relative z-30 bg-white flex flex-col items-center">
+        <div className="w-3/12 h-48 flex items-center justify-center bg-aqua-belt mb-8">
+          <div className="w-10/12 flex items-center justify-center">
+            <IconCitysIstanbulLogo fill={colors["halite-blue"]} />
+          </div>
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          <h2 className="font-primary font-bold text-bricky-brick text-2xl lg:text-2xl xl:text-4xl 2xl:text-4xl xl:leading-normal 2xl:leading-snug xl:max-w-4xl 2xl:max-w-6xl text-center">
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+              Hayatı Tüm Renkleriyle Yaşa...
+            </GsapSplitText>
+          </h2>
+          <p className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl xl:leading-normal 2xl:leading-snug xl:max-w-5xl 2xl:max-w-6xl text-center">
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+              Avrupa ve Asya’yı birbirine bağlayan en değerli lokasyonda ve hayatın tam merkezinde...
+            </GsapSplitText>
+          </p>
+          <p className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl xl:leading-normal 2xl:leading-snug xl:max-w-5xl 2xl:max-w-6xl text-center">
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+              Dünyaca tanınan seçkin markalara bir kaç adımda ulaşır, taze bir kahve kokusuyla tanışır, gurme lezzet
+              duraklarında soluklanır; sanat, kültür, eğlenceyle buluşur, günün koşturmacasını sakince geride
+              bırakırsın...
+            </GsapSplitText>
+          </p>
+          <p className="font-primary font-normal text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl xl:leading-normal 2xl:leading-snug xl:max-w-5xl 2xl:max-w-6xl text-center">
+            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+              Daha Çok... Daha Huzurlu... Daha Dolu... Yaşa.
+            </GsapSplitText>
+          </p>
+        </div>
         <div className="section-container py-24">
           <FilterableContent brands={brands.items || []} />
         </div>

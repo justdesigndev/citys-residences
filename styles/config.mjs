@@ -12,6 +12,8 @@ const colors = {
   "blue-shimmer": "#b6dce1",
   brilliance: "#fdfdfd",
   "minor-blue": "#b8e0e7",
+  "aqua-belt": "#7DCECC",
+  "halite-blue": "#0A2A45",
 }
 
 const themes = {
