@@ -1,16 +1,18 @@
-import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { cn } from "@/lib/utils"
+
+import { Logo } from "@/components/icons"
+import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
 import { colors } from "@/styles/config.mjs"
-import { Logo } from "../icons"
 
 interface VideoSectionProps {
   primaryVideoUrl: string
   thumbnail: string
   title: string
   className?: string
+  spot?: string
 }
 
-export function VideoSection({ primaryVideoUrl, thumbnail, title, className }: VideoSectionProps) {
+export function VideoSection({ primaryVideoUrl, thumbnail, title, className, spot }: VideoSectionProps) {
   return (
     <div
       className={cn(
@@ -18,10 +20,10 @@ export function VideoSection({ primaryVideoUrl, thumbnail, title, className }: V
         className
       )}
     >
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 h-60 w-60 z-50">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 z-50">
         <Logo fill={colors.white} />
       </div>
-      <VideoWithPlayButton primaryVideoUrl={primaryVideoUrl} thumbnail={thumbnail} title={title} />
+      <VideoWithPlayButton primaryVideoUrl={primaryVideoUrl} thumbnail={thumbnail} title={title} spot={spot} />
     </div>
   )
 }

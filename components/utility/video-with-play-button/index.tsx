@@ -12,13 +12,15 @@ export interface IVideoWithPlayButtonProps {
   primaryVideoType?: string
   thumbnail?: string
   title?: string
+  spot?: string
 }
 
 export function VideoWithPlayButton({
   primaryVideoUrl,
   primaryVideoType = "video/mp4",
   thumbnail,
-  title = "Lorem ipsum dolor sit.",
+  spot,
+  title,
 }: IVideoWithPlayButtonProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -54,16 +56,26 @@ export function VideoWithPlayButton({
             <Img src={thumbnail} alt="Thumbnail" className="w-full h-full object-cover" fill sizes="100vw" />
           </div>
         )}
+        {spot && (
+          <article
+            className={cn(
+              "font-primary font-bold text-white  text-lg xl:text-5xl 2xl:text-7xl lg:whitespace-nowrap min-w-52 text-center flex-shrink-0",
+              "absolute top-1/3 left-1/2 -translate-x-1/2 z-30"
+            )}
+          >
+            {spot}
+          </article>
+        )}
         <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 translate-y-1/3 flex flex-col items-center justify-center gap-10 z-30">
           {title && (
-            <article className="text-white font-primary text-lg lg:text-5xl font-medium lg:whitespace-nowrap min-w-52 text-center flex-shrink-0">
+            <article className="text-white font-primary text-lg xl:text-4xl 2xl:text-5xl font-medium lg:whitespace-nowrap min-w-52 text-center flex-shrink-0">
               {title}
             </article>
           )}
           <button
             type="button"
             className={cn(
-              "w-48 h-48 border border-white rounded-full flex items-center justify-center transition-transform duration-300 ease-in-out p-16",
+              "w-48 h-48 xl:w-40 xl:h-40 2xl:w-48 2xl:h-48 border border-white rounded-full flex items-center justify-center transition-transform duration-300 ease-in-out xl:p-12 2xl:p-16",
               "group-hover:scale-110"
             )}
           >
