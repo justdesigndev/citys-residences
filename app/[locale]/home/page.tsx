@@ -84,7 +84,7 @@ export default function Home() {
             primaryVideoUrl={kolajVideo}
             thumbnail="/img/thumbnail-kolaj-video.jpg"
             spot="PROJE VIDEOSU"
-            title="Yaşam Yeniden Tasarlandı : CITY'S."
+            title="Yaşam Yeniden Tasarlandı: CITY'S"
           />
         </div>
       </section>
