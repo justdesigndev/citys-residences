@@ -75,7 +75,7 @@ const Sequenced = () => {
         </p>
       </div>
       <div>
-        <div className="w-full h-screen flex items-center justify-center" ref={ref}>
+        <div className="w-full h-screen flex items-center justify-center overflow-hidden" ref={ref}>
           <div className="relative w-[70vw] h-[75%]">
             {Array.from({ length: 31 }).map((_, i) => {
               return (
