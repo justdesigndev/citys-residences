@@ -18,9 +18,9 @@ const styles = {
   textSizes: {
     linkTextSm: "text-base lg:text-xs xl:text-sm",
     linkText: "text-base lg:text-xs xl:text-lg",
-    headingText: "text-lg lg:text-sm xl:text-xl 2xl:text-3xl",
+    headingText: "text-lg lg:text-sm xl:text-2xl 2xl:text-3xl text-white",
     contactText: "text-base lg:text-sm xl:text-lg",
-    copyrightCredit: "text-[0.8rem] lg:text-xs xl:text-base",
+    copyrightCredit: "text-[0.8rem] lg:text-xs xl:text-base text-white",
     mobileAccordionLink: "text-base lg:text-xs xl:text-sm",
     mobileAccordionHeading: "text-lg lg:text-sm xl:text-base",
   },
@@ -32,7 +32,7 @@ const styles = {
   },
   // Layout patterns
   layout: {
-    sectionHeader: "pb-2 mb-6",
+    sectionHeader: "pb-2 mb-3",
     mobileOnly: "block lg:hidden",
     desktopOnly: "hidden lg:block",
   },
@@ -98,8 +98,8 @@ export function Footer() {
   }, [observer, setAloTechVisibility, setStickyContactMenuVisibility])
 
   return (
-    <footer className="relative bg-bricky-brick text-white py-12 xl:py-8 xl:pb-12 font-primary" ref={footerRef}>
-      <div className="section-container flex flex-col gap-12 lg:gap-0">
+    <footer className="relative bg-bricky-brick py-12 xl:py-10 xl:pb-12 xl:pt-0" ref={footerRef}>
+      <div className="section-container flex flex-col gap-12 lg:gap-0 pt-12">
         <div className="flex flex-col-reverse items-stretch lg:flex-row lg:items-center gap-12 lg:gap-0">
           {/* Logo Section */}
           <div className="w-full lg:w-3/12 flex flex-col items-center justify-center gap-8 lg:gap-12 mr-auto">
@@ -108,7 +108,7 @@ export function Footer() {
             </LocalizedLink>
           </div>
           <div className="w-full lg:w-8/12 flex flex-col items-stretch lg:flex-row pb-7 lg:pb-0 relative">
-            <ScrollToTop className={cn("text-3xl", "absolute top-0 right-0 z-50")} />
+            <ScrollToTop className={cn("text-3xl", "absolute top-0 right-0 -translate-y-3/4 z-50")} />
             {/* Contact Section */}
             <div className="w-full lg:w-4/12 py-10 lg:py-0">
               <h5 className={cn(styles.textSizes.headingText, styles.layout.sectionHeader)}>{t("contact")}</h5>
@@ -262,7 +262,7 @@ export function Footer() {
           <div className="w-full lg:w-3/12 flex flex-col items-center justify-center">
             <div className="flex flex-col items-start justify-center">
               <span className={cn(styles.textSizes.copyrightCredit, "mr-auto")}>Bizi Takip Edin</span>
-              <div className="flex items-center justify-center gap-6 lg:gap-6 pt-2 mt-1.5 border-t-[3px] border-white/40">
+              <div className="flex items-center justify-center gap-6 lg:gap-6 pt-1 mt-1.5 border-t-[3px] border-white/40">
                 <div
                   className={cn(
                     styles.iconSizes.social,
@@ -294,7 +294,8 @@ export function Footer() {
                   className={cn(
                     styles.iconSizes.social,
                     styles.interactions.opacityHover,
-                    styles.interactions.socialIcon
+                    styles.interactions.socialIcon,
+                    "xl:h-9 xl:w-9"
                   )}
                 >
                   {socialIcons.youtube}
