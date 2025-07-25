@@ -19,7 +19,7 @@
 
   @include-media ('desktop') {
     --header-height: desktop-vw(60px);
-    --header-height-slim: desktop-vw(90px);
+    --header-height-slim: desktop-vw(116px);
   }
 
   --z-content: z-stack(10000);

@@ -1,18 +1,19 @@
 "use client"
 
 import { Link as LocalizedLink, type Locale } from "@/i18n/routing"
-import { initialScroll, getNavigationItems } from "@/lib/constants"
+import { getNavigationItems, initialScroll } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 import Lenis from "lenis"
 import { useLenis } from "lenis/react"
 import { animate, AnimatePresence, motion, stagger } from "motion/react"
-import { useTranslations, useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
 import { Logo, LogoSlim } from "@/components/icons"
 import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Menu } from "@/components/menu"
+import { MenuX } from "@/components/menu-x"
 import { useSectionsMenuStore } from "@/lib/store/sections-menu"
 import { colors } from "@/styles/config.mjs"
 
@@ -107,9 +108,8 @@ export function Header() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             data-ignore-click-away
           >
-            {/* <div className={cn(s.cross, "cursor-pointer flex items-center")}>
+            <div className="cursor-pointer flex items-center">
               <MenuX
-                className="hidden bt:block"
                 isOpen={menuOpen}
                 onClick={() => setMenuOpen(!menuOpen)}
                 strokeWidth="2"
@@ -118,7 +118,7 @@ export function Header() {
                 width="50"
                 height="6"
               />
-              <MenuX
+              {/* <MenuX
                 className="block bt:hidden"
                 isOpen={menuOpen}
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -127,8 +127,8 @@ export function Header() {
                 transition={{ type: "spring", stiffness: 260, damping: 40 }}
                 width="35"
                 height="6"
-              />
-            </div> */}
+              /> */}
+            </div>
             <div
               className={cn("cursor-pointer overflow-hidden font-primary font-medium text-sm lg:text-base xl:text-lg", {
                 "text-black": !scrollState.atTop,

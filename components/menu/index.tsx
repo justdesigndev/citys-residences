@@ -162,7 +162,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         </button>
         <nav className="w-full h-full lg:px-10 flex items-end justify-center lg:justify-start">
           <ul
-            className="flex flex-col items-center lg:items-start justify-end gap-3 lg:gap-2 xl:gap-4 2xl:gap-4 3xl:gap-5 w-full"
+            className="flex flex-col items-center lg:items-start justify-end gap-3 lg:gap-2 xl:gap-3 2xl:gap-4 3xl:gap-5 w-full"
             // onMouseLeave={() => {
             //   if (width > breakpoints.breakpointTablet) {
             //     setHover(false)
@@ -173,7 +173,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             {items.map(({ title, href }, i) => (
               <li
                 className={cn(
-                  "text-lg lg:text-xl xl:text-2xl 2xl:text-2xl 3xl:text-3xl",
+                  "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-3xl",
                   "font-primary font-normal text-white text-center lg:text-left",
                   "transition-opacity duration-300 ease-in-out",
                   {
