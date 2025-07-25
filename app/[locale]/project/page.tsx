@@ -1,32 +1,24 @@
 import { cn } from "@/lib/utils"
 
-import { AnimatedLine } from "@/components/animated-line"
-import { ScaleOut } from "@/components/animations/scale-out"
 import { Logo } from "@/components/icons"
-import { LinkToPage } from "@/components/link-to-page"
-import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { Wrapper } from "@/components/wrapper"
 import { gsapGlobalClasses, mainVideo, muratKaderVideo } from "@/lib/constants"
 import { breakpoints, colors } from "@/styles/config.mjs"
 
 export default function Page() {
   return (
-    <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+    <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <ScaleOut>
-          <Video
-            primaryVideoUrl={mainVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover object-bottom"
-          />
-        </ScaleOut>
+        <Video
+          primaryVideoUrl={mainVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-bottom"
+        />
       </section>
       <section className="bg-white py-0 lg:py-12 z-20">
         <div className="section-container">
@@ -90,8 +82,8 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <AnimatedLine direction="horizontal" />
-      <LinkToPage previous={{ title: "Anasayfa", href: "/" }} next={{ title: "Daireler", href: "/residences" }} />
-    </Wrapper>
+      {/* <AnimatedLine direction="horizontal" /> */}
+      {/* <LinkToPage previous={{ title: "Anasayfa", href: "/" }} next={{ title: "Daireler", href: "/residences" }} /> */}
+    </>
   )
 }

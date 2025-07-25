@@ -6,18 +6,15 @@ import { HorizontalScroll } from "@/components/animations/horizontal-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { Logo } from "@/components/icons"
-import { LinkToPage } from "@/components/link-to-page"
-import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { Wrapper } from "@/components/wrapper"
 import { gsapGlobalClasses, kolajVideo, locationVideo, mainVideo } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: "home" })
-  const tCommon = await getTranslations({ locale, namespace: "common.navigation" })
+  // const tCommon = await getTranslations({ locale, namespace: "common.navigation" })
 
   // const createSlide = (imgSrc: string, index: number) => (
   //   <div className="relative w-screen h-[70vw] lg:h-[60vw] xl:h-[105vh]" key={index}>
@@ -35,8 +32,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   // const slides3 = slideImages.slides3.map((src, index) => createSlide(src, index + 1))
 
   return (
-    <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+    <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <ScaleOut>
           <Video
@@ -160,7 +156,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         />
       </section>
       <AnimatedLine direction="horizontal" />
-      <LinkToPage next={{ title: tCommon("project"), href: "/project" }} />
-    </Wrapper>
+      {/* <LinkToPage next={{ title: tCommon("project"), href: "/project" }} /> */}
+    </>
   )
 }

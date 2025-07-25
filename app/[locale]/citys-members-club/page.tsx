@@ -1,15 +1,11 @@
 import { cn } from "@/lib/utils"
 
-import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysMembersClubLogo } from "@/components/icons"
-import { LinkToPage } from "@/components/link-to-page"
 import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
-import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
-import { Wrapper } from "@/components/wrapper"
 import { gsapGlobalClasses, membersClubVideo } from "@/lib/constants"
 import { getCitysMembersClubContent } from "@/lib/content"
 
@@ -18,19 +14,16 @@ export default async function Page({ params }: { params: { locale: string } }) {
   const items = await getCitysMembersClubContent(locale)
 
   return (
-    <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+    <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <ScaleOut>
-          <Video
-            primaryVideoUrl={membersClubVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </ScaleOut>
+        <Video
+          primaryVideoUrl={membersClubVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
       </section>
       <section className="relative z-20 bg-minor-blue">
         <LogoSection foregroundLogo={<IconCitysMembersClubLogo fill="#000000" />} foregroundDuration={0.5} />
@@ -59,10 +52,10 @@ export default async function Page({ params }: { params: { locale: string } }) {
           />
         ))}
       </section>
-      <LinkToPage
+      {/* <LinkToPage
         previous={{ title: "City's Park", href: "/citys-park" }}
         next={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
-      />
-    </Wrapper>
+      /> */}
+    </>
   )
 }

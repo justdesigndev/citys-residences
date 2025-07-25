@@ -1,11 +1,6 @@
-import { AnimatedLine } from "@/components/animated-line"
-import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo } from "@/components/icons"
-import { LinkToPage } from "@/components/link-to-page"
-import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
-import { Wrapper } from "@/components/wrapper"
 // import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
@@ -117,19 +112,16 @@ export default async function Page() {
   const brands = mockBrandsData
 
   return (
-    <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+    <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <ScaleOut>
-          <Video
-            primaryVideoUrl={citysIstanbulAvmVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </ScaleOut>
+        <Video
+          primaryVideoUrl={citysIstanbulAvmVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
         <div className="w-3/12 h-48 flex items-center justify-center bg-aqua-belt mb-8">
@@ -165,11 +157,11 @@ export default async function Page() {
           <FilterableContent brands={brands.items || []} />
         </div>
       </section>
-      <AnimatedLine direction="horizontal" />
-      <LinkToPage
+      {/* <AnimatedLine direction="horizontal" /> */}
+      {/* <LinkToPage
         previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
         next={{ title: "Anasayfa", href: "/" }}
-      />
-    </Wrapper>
+      /> */}
+    </>
   )
 }

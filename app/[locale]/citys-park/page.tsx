@@ -1,17 +1,13 @@
 import { cn } from "@/lib/utils"
 
 import { AnimatedLine } from "@/components/animated-line"
-import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysParkLogo } from "@/components/icons"
-import { LinkToPage } from "@/components/link-to-page"
 import { LogoSection } from "@/components/logo-section"
 import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { MembersClubItem } from "@/components/members-club-item"
-import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { Wrapper } from "@/components/wrapper"
 import { citysParkVideo, gsapGlobalClasses } from "@/lib/constants"
 import { getCitysParkContent } from "@/lib/content"
 import { breakpoints } from "@/styles/config.mjs"
@@ -21,22 +17,19 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   // Load content from MDX files based on current locale
   const items = await getCitysParkContent(locale)
   const t = await getTranslations({ locale, namespace: "citys-park" })
-  const tCommon = await getTranslations({ locale, namespace: "common.navigation" })
+  // const tCommon = await getTranslations({ locale, namespace: "common.navigation" })
 
   return (
-    <Wrapper>
-      <SectionsMenuInitializer sections={Object.values([])} />
+    <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <ScaleOut>
-          <Video
-            primaryVideoUrl={citysParkVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </ScaleOut>
+        <Video
+          primaryVideoUrl={citysParkVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
       </section>
       <section className="relative z-20 bg-white py-5">
         <LogoSection foregroundLogo={<IconCitysParkLogo fill="#5D7261" />} foregroundDuration={0.5} />
@@ -78,11 +71,11 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           title={t("videoTitle")}
         />
       </section>
-      <AnimatedLine direction="horizontal" />
-      <LinkToPage
+      {/* <AnimatedLine direction="horizontal" /> */}
+      {/* <LinkToPage
         previous={{ title: tCommon("residences"), href: "/residences" }}
         next={{ title: tCommon("citysMembersClub"), href: "/citys-members-club" }}
-      />
-    </Wrapper>
+      /> */}
+    </>
   )
 }

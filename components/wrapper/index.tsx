@@ -8,9 +8,7 @@ import { usePathname } from "next/navigation"
 import Script from "next/script"
 import { useEffect } from "react"
 
-import { Footer } from "@/components/footer"
 import { gsap, ScrollTrigger } from "@/components/gsap"
-import { Header } from "@/components/header"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { useGSAP } from "@gsap/react"
 
@@ -52,12 +50,12 @@ export function Wrapper({ children, theme = "light", lenis = true, className, ..
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main className={cn(s.main, className)} {...props} style={{ zIndex: "var(--z-content)" }}>
         {children}
         <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script>
       </main>
-      <Footer />
+      {/* <Footer /> */}
       {lenis && <SmoothScroll root />}
     </>
   )
