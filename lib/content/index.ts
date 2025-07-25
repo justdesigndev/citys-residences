@@ -1,17 +1,19 @@
 import fs from "fs"
 import path from "path"
-import matter from "gray-matter"
+import { ReactNode } from "react"
+import { compileMDX } from "next-mdx-remote/rsc"
 
 export interface ContentItem {
-  title: string
-  subtitle: string
+  title: ReactNode
+  subtitle: ReactNode
   image: string
   images?: string[]
   sectionId: string
   order: number
-  content: string
+  content: ReactNode
   url: string[]
-  description: string
+  description: ReactNode
+  bg?: string
 }
 
 export interface ContentFrontmatter {
@@ -20,22 +22,11 @@ export interface ContentFrontmatter {
   image: string
   sectionId: string
   order: number
+  images?: string[]
+  bg?: string
 }
 
 const contentDirectory = path.join(process.cwd(), "content")
-
-// Convert markdown content to HTML-like format for display
-function processMarkdownContent(content: string): string {
-  // Simple markdown to HTML conversion for basic formatting
-  return content
-    .split("\n\n")
-    .map((paragraph) => paragraph.trim())
-    .filter((paragraph) => paragraph.length > 0)
-    .map(
-      (paragraph) => `<p>${paragraph.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, " <br /> ")}</p>`
-    )
-    .join("\n")
-}
 
 export async function getContentItems(section: string, locale: string): Promise<ContentItem[]> {
   const sectionPath = path.join(contentDirectory, section, locale)
@@ -47,20 +38,56 @@ export async function getContentItems(section: string, locale: string): Promise<
 
   const filenames = fs.readdirSync(sectionPath).filter((name) => name.endsWith(".mdx"))
 
-  const items = filenames.map((filename) => {
-    const filePath = path.join(sectionPath, filename)
-    const fileContents = fs.readFileSync(filePath, "utf8")
-    const { data: frontmatter, content } = matter(fileContents)
+  const items = await Promise.all(
+    filenames.map(async (filename) => {
+      const filePath = path.join(sectionPath, filename)
+      const fileContents = fs.readFileSync(filePath, "utf8")
 
-    const processedContent = processMarkdownContent(content)
+      // Compile the full MDX content
+      const { content, frontmatter } = await compileMDX<ContentFrontmatter>({
+        source: fileContents,
+        options: {
+          parseFrontmatter: true,
+          mdxOptions: {
+            remarkPlugins: [],
+            rehypePlugins: [],
+          },
+        },
+      })
 
-    return {
-      ...frontmatter,
-      content: processedContent,
-      description: processedContent, // For compatibility with existing MembersClubItem component
-      url: frontmatter.images || [frontmatter.image], // Use images array if available, otherwise single image
-    } as ContentItem
-  })
+      // Also compile just the title and subtitle for JSX support
+      const titleComponent = await compileMDX({
+        source: frontmatter.title,
+        options: {
+          mdxOptions: {
+            remarkPlugins: [],
+            rehypePlugins: [],
+          },
+        },
+      })
+
+      const subtitleComponent = frontmatter.subtitle
+        ? await compileMDX({
+            source: frontmatter.subtitle,
+            options: {
+              mdxOptions: {
+                remarkPlugins: [],
+                rehypePlugins: [],
+              },
+            },
+          })
+        : null
+
+      return {
+        ...frontmatter,
+        title: titleComponent.content,
+        subtitle: subtitleComponent?.content || frontmatter.subtitle,
+        content: content,
+        description: content, // For compatibility with existing components
+        url: frontmatter.images || [frontmatter.image], // Use images array if available, otherwise single image
+      } as ContentItem
+    })
+  )
 
   // Sort by order field
   return items.sort((a, b) => a.order - b.order)
@@ -76,4 +103,8 @@ export async function getCitysLifePrivilegesContent(locale: string): Promise<Con
 
 export async function getCitysMembersClubContent(locale: string): Promise<ContentItem[]> {
   return getContentItems("citys-members-club", locale)
+}
+
+export async function getResidencesContent(locale: string): Promise<ContentItem[]> {
+  return getContentItems("residences", locale)
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { useRef } from "react"
+import { useRef, ReactNode } from "react"
 
 import { AnimatedLine } from "@/components/animated-line"
 import { MaskedPanImage } from "@/components/masked-pan-image"
@@ -14,9 +14,9 @@ interface MembersClubItemProps {
   sectionId?: string
   className?: string
   item: {
-    title: string
-    subtitle?: string
-    description: string
+    title: ReactNode
+    subtitle?: ReactNode
+    description: ReactNode
     url: string[]
   }
   align?: "ltr" | "rtl"
@@ -45,7 +45,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
               gsapGlobalClasses.fadeIn
             )}
           >
-            <span dangerouslySetInnerHTML={{ __html: item.title }} />
+            {item.title}
           </h3>
           {item.subtitle && (
             <p
@@ -54,7 +54,7 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
                 gsapGlobalClasses.fadeIn
               )}
             >
-              <span dangerouslySetInnerHTML={{ __html: item.subtitle }} />
+              {item.subtitle}
             </p>
           )}
           <div
@@ -64,8 +64,9 @@ export function MembersClubItem({ item, sectionId, align = "ltr", className = ""
               "[&_span]:text-bricky-brick",
               gsapGlobalClasses.fadeIn
             )}
-            dangerouslySetInnerHTML={{ __html: item.description }}
-          />
+          >
+            {item.description}
+          </div>
         </div>
         <AnimatedLine direction="vertical" />
         <div className={cn("w-8/12 relative", gsapGlobalClasses.fadeIn)}>
