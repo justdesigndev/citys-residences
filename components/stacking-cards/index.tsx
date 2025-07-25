@@ -2,7 +2,7 @@
 
 import { ScrollTrigger, gsap, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
-import { useRef } from "react"
+import { useRef, ReactNode } from "react"
 import { useWindowSize } from "react-use"
 
 import { MaskedPanImage } from "@/components/masked-pan-image"
@@ -11,8 +11,8 @@ import { breakpoints } from "@/styles/config.mjs"
 
 export interface StackingCardsProps {
   items: {
-    title: string
-    description: string
+    title: ReactNode
+    description: ReactNode
     images: {
       url: string
     }[]
@@ -83,7 +83,7 @@ export function StackingCards({ items }: StackingCardsProps) {
           >
             <div className="flex flex-col gap-5 py-8">
               <h2 className="font-primary text-4xl lg:text-4xl xl:text-5xl font-bold text-bricky-brick">
-                <span dangerouslySetInnerHTML={{ __html: item.title }} />
+                {item.title}
               </h2>
               <small className="font-primary text-sm lg:text-base xl:text-2xl font-bold text-bricky-brick">
                 {item.description}
@@ -93,7 +93,7 @@ export function StackingCards({ items }: StackingCardsProps) {
               <div className={cn("relative rounded-md overflow-hidden")}>
                 <Img
                   src={item.images[0].url}
-                  alt={item.title}
+                  alt="Residence"
                   fill
                   sizes="(max-width: 800px) 100vw, 50vw"
                   className={cn("object-contain")}
@@ -102,7 +102,7 @@ export function StackingCards({ items }: StackingCardsProps) {
               <div className={cn("relative rounded-md overflow-hidden")}>
                 <Img
                   src={item.images[1].url}
-                  alt={item.title}
+                  alt="Residence"
                   fill
                   sizes="(max-width: 800px) 100vw, 50vw"
                   className={cn(i === 0 ? "object-contain" : "object-cover")}
