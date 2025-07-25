@@ -116,19 +116,21 @@ export function HorizontalScroll({
     <div className="overflow-hidden" ref={ref}>
       <div className={cn(s.container)}>
         <div className={cn(s.frame)}>
-          <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-white text-3xl lg:text-7xl xl:text-7xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50">
-            <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
-              {title}
-            </GsapSplitText>
+          <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-white text-3xl lg:text-7xl xl:text-7xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50 gsap-title-c">
+            <div className="gsap-title">
+              <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                {title}
+              </GsapSplitText>
+            </div>
           </h2>
           <p
             className={cn(
               "absolute bottom-14 left-14",
               "font-primary font-semibold text-white text-base lg:text-4xl xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed lg:max-w-2xl xl:max-w-lg",
-              "description-bg z-50 p-4 rounded-md"
+              "description-bg z-50 p-4 rounded-md gsap-description-c"
             )}
           >
-            {description}
+            <span className="gsap-description">{description}</span>
           </p>
         </div>
         {items.map((src, index) => (
