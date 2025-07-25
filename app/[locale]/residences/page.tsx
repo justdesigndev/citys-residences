@@ -57,10 +57,10 @@ export default function Page() {
       description: "“Daha büyük sofralar, daha geniş alanlar.”",
       images: [
         {
-          url: "/img/residences/3+1/plan.jpg",
+          url: "/img/residences/4+1/plan.jpg",
         },
         {
-          url: "/img/residences/3+1/interior.jpg",
+          url: "/img/residences/4+1/interior.jpg",
         },
       ],
       bg: "#ffffff",
@@ -96,7 +96,7 @@ export default function Page() {
       description: "“Dışarıda doğa, içeride huzur.”",
       images: [
         {
-          url: "/img/residences/3+1/plan.jpg",
+          url: "/img/residences/citys-park-residences/plan.jpg",
         },
         {
           url: "/img/residences/3+1/interior.jpg",
@@ -109,7 +109,7 @@ export default function Page() {
       description: "“Gökyüzünü ve denizi evine kattığın bir ayrıcalık.”",
       images: [
         {
-          url: "/img/residences/3+1/plan.jpg",
+          url: "/img/residences/terrace-houses/plan.jpg",
         },
         {
           url: "/img/residences/3+1/interior.jpg",
