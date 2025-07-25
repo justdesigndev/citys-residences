@@ -120,7 +120,7 @@ export default function Home() {
             className={cn(
               "absolute bottom-14 left-14",
               "font-primary font-semibold text-white text-base lg:text-4xl xl:text-2xl leading-relaxed lg:leading-relaxed xl:leading-relaxed lg:max-w-2xl xl:max-w-lg",
-              "blur-bg-bricky-brick z-50 p-4 rounded-md"
+              "description-bg z-50 p-4 rounded-md"
             )}
           >
             {t("live.p1.description")}
@@ -142,14 +142,16 @@ export default function Home() {
       <section className={cn("py-12 lg:py-8 mt-8", gsapGlobalClasses.fadeIn)}>
         <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
       </section> */}
-      <section className="relative my-12">
+      <AnimatedLine direction="horizontal" />
+      <section className="relative py-12">
         <HorizontalScroll
           title={t("live.p2.title")}
           description={t("live.p2.description")}
           items={slideImages.slides2}
         />
       </section>
-      <section className="relative">
+      <AnimatedLine direction="horizontal" />
+      <section className="py-12">
         <HorizontalScroll
           title={t("live.p3.title")}
           description={t("live.p3.description")}

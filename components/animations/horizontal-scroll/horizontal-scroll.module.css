@@ -5,12 +5,12 @@
   width: 100vw;
   height: 100vh;
   height: var(--lvh-calc);
-  outline: mobile-vw(4px) solid var(--bricky-brick);
-  outline-offset: mobile-vw(-4px);
+  /* outline: mobile-vw(4px) solid var(--bricky-brick);
+    outline-offset: mobile-vw(-4px); */
   pointer-events: none;
   z-index: 100;
 
-  @include-media ('tablet') {
+  /* @include-media ('tablet') {
     outline: tablet-vw(10px) solid var(--bricky-brick);
     outline-offset: tablet-vw(-10px);
   }
@@ -18,7 +18,7 @@
   @include-media ('desktop') {
     outline: desktop-vw(8px) solid var(--bricky-brick);
     outline-offset: desktop-vw(-8px);
-  }
+  } */
 }
 .panel {
   width: 100vw;
