@@ -4,43 +4,20 @@ import { FilterForm } from "@/components/filter-form"
 import { useState, useMemo } from "react"
 import { Brand } from "@/types"
 import { Img } from "@/components/utility/img"
+import { AnimatePresence, motion } from "motion/react"
 
 interface FilterableContentProps {
   brands: Brand[]
 }
 
-// Floor mapping - since floor data isn't in the API, we'll simulate it
-const getFloorForBrand = (brandName: string): string => {
-  // This is a simulation - in real scenario this would come from API
-  const upperFloorBrands = [
-    "BURGER KING",
-    "BABY GREEN",
-    "ART OF BAKERY",
-    "BİZİM LOKANTA",
-    "CARL'S JR.",
-    "CONI & CO",
-    "COOKSHOP",
-  ]
-  const basementFloorBrands = ["STARBUCKS", "MCDONALD'S"]
-
-  if (upperFloorBrands.some((brand) => brandName.toUpperCase().includes(brand))) {
-    return "upper"
-  } else if (basementFloorBrands.some((brand) => brandName.toUpperCase().includes(brand))) {
-    return "basement"
-  }
-  return "ground"
-}
-
 const getFloorDisplayName = (floor: string): string => {
   switch (floor) {
-    case "upper":
-      return "Üst Kat"
-    case "basement":
-      return "Alt Kat"
+    case "first":
+      return "Birinci Kat"
     case "ground":
       return "Zemin Kat"
     default:
-      return "Giriş Kat"
+      return "Zemin Kat"
   }
 }
 
@@ -79,12 +56,9 @@ export function FilterableContent({ brands }: FilterableContentProps) {
         }
       }
 
-      // Floor filter
-      if (filters.floor) {
-        const brandFloor = getFloorForBrand(brand.name)
-        if (brandFloor !== filters.floor) {
-          return false
-        }
+      // Floor filter - now using actual floor data from brands
+      if (filters.floor && brand.floor !== filters.floor) {
+        return false
       }
 
       // Search filter
@@ -116,52 +90,89 @@ export function FilterableContent({ brands }: FilterableContentProps) {
       <FilterForm onFilter={handleFilter} />
 
       {/* Results count */}
-      <div className="mb-6">
+      <motion.div
+        className="mb-6"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         <p className="text-sm text-gray-600 font-suisse-intl">{filteredBrands.length} sonuç bulundu</p>
-      </div>
+      </motion.div>
 
       {/* Brand Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-        {filteredBrands.map((brand, index) => {
-          const floor = getFloorForBrand(brand.name)
-          const floorDisplay = getFloorDisplayName(floor)
+      <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" layout="position">
+        <AnimatePresence mode="popLayout">
+          {filteredBrands.map((brand, index) => {
+            const floorDisplay = getFloorDisplayName(brand.floor)
 
-          return (
-            <div key={`${brand.name}-${index}`} className="group cursor-pointer">
-              <div className="relative overflow-hidden bg-gray-100 h-80 mb-4 flex items-center justify-center">
-                <div className="relative w-44 h-44">
+            return (
+              <motion.div
+                key={`${brand.name}-${brand.category}-${brand.floor}`}
+                className="group cursor-pointer"
+                layout="position"
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{
+                  transition: { duration: 0.2 },
+                }}
+              >
+                <motion.div
+                  className="relative overflow-hidden bg-gray-100 h-64 mb-4 flex items-center justify-center"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <Img
                     src={brand.logo}
                     alt={brand.name}
-                    className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                     onError={(e) => {
                       // Fallback for broken images
                       e.currentTarget.src = "/img/placeholder-logo.png"
                     }}
                     fill
                   />
+                </motion.div>
+                <div className="text-center">
+                  <h3 className="font-suisse-intl font-bold text-sm lg:text-base text-black mb-1 tracking-wide">
+                    {brand.name}
+                  </h3>
+                  <p className="font-suisse-intl text-xs lg:text-sm text-gray-600">{floorDisplay}</p>
                 </div>
-              </div>
-              <div className="text-center">
-                <h3 className="font-suisse-intl font-bold text-sm lg:text-base text-black mb-1 tracking-wide">
-                  {brand.name}
-                </h3>
-                <p className="font-suisse-intl text-xs lg:text-sm text-gray-600">{floorDisplay}</p>
-              </div>
-            </div>
-          )
-        })}
-      </div>
+              </motion.div>
+            )
+          })}
+        </AnimatePresence>
+      </motion.div>
 
       {/* No results message */}
-      {filteredBrands.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-gray-500 font-suisse-intl text-lg">Arama kriterlerinize uygun sonuç bulunamadı.</p>
-          <p className="text-gray-400 font-suisse-intl text-sm mt-2">
-            Lütfen filtrelerinizi değiştirip tekrar deneyin.
-          </p>
-        </div>
-      )}
+      <AnimatePresence>
+        {filteredBrands.length === 0 && (
+          <motion.div
+            className="text-center py-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+          >
+            <p className="text-gray-500 font-suisse-intl text-lg">Arama kriterlerinize uygun sonuç bulunamadı.</p>
+            <p className="text-gray-400 font-suisse-intl text-sm mt-2">
+              Lütfen filtrelerinizi değiştirip tekrar deneyin.
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

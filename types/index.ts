@@ -260,6 +260,7 @@ export interface Brand {
   category: string
   subCategory: string | null
   logo: string
+  floor: string
 }
 
 export interface BrandsResponse {

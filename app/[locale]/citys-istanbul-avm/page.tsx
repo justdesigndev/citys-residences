@@ -6,13 +6,115 @@ import { LinkToPage } from "@/components/link-to-page"
 import { SectionsMenuInitializer } from "@/components/sections-menu-initializer"
 import { Video } from "@/components/utility/video"
 import { Wrapper } from "@/components/wrapper"
-import { getBrandsData } from "@/lib/api/queries"
+// import { getBrandsData } from "@/lib/api/queries"
 import { citysIstanbulAvmVideo } from "@/lib/constants"
-import { FilterableContent } from "./filterable-content"
 import { colors } from "@/styles/config.mjs"
+import { BrandsResponse } from "@/types"
+import { FilterableContent } from "./filterable-content"
+
+// Mock data for brands
+const mockBrandsData: BrandsResponse = {
+  items: [
+    {
+      name: "BURGER KING",
+      category: "yemeIcme",
+      subCategory: "fastfood",
+      logo: "/img/citys-istanbul-avm/yemek/yemek-2.png",
+      floor: "first",
+    },
+    {
+      name: "MCDONALD'S",
+      category: "yemeIcme",
+      subCategory: "fastfood",
+      logo: "/img/citys-istanbul-avm/yemek/yemek-3.png",
+      floor: "ground",
+    },
+    {
+      name: "STARBUCKS",
+      category: "yemeIcme",
+      subCategory: "kafe",
+      logo: "/img/citys-istanbul-avm/yemek/yemek-4.png",
+      floor: "ground",
+    },
+    {
+      name: "BİZİM LOKANTA",
+      category: "yemeIcme",
+      subCategory: "restoran",
+      logo: "/img/citys-istanbul-avm/yemek/yemek-5.png",
+      floor: "first",
+    },
+    {
+      name: "CARL'S JR.",
+      category: "yemeIcme",
+      subCategory: "fastfood",
+      logo: "/img/citys-istanbul-avm/yemek/yemek-6.png",
+      floor: "first",
+    },
+    {
+      name: "CONI & CO",
+      category: "yemeIcme",
+      subCategory: "kafe",
+      logo: "/img/citys-istanbul-avm/yemek/yemek-7.png",
+      floor: "first",
+    },
+    {
+      name: "COOKSHOP",
+      category: "alisveris",
+      subCategory: null,
+      logo: "/img/citys-istanbul-avm/yemek/yemek-8.png",
+      floor: "first",
+    },
+    {
+      name: "BABY GREEN",
+      category: "alisveris",
+      subCategory: null,
+      logo: "/img/citys-istanbul-avm/yemek/yemek-9.png",
+      floor: "first",
+    },
+    {
+      name: "ZARA",
+      category: "alisveris",
+      subCategory: null,
+      logo: "/img/citys-istanbul-avm/alisveris/av-1.png",
+      floor: "ground",
+    },
+    {
+      name: "H&M",
+      category: "alisveris",
+      subCategory: null,
+      logo: "/img/citys-istanbul-avm/alisveris/av-2.png",
+      floor: "ground",
+    },
+    {
+      name: "MANGO",
+      category: "alisveris",
+      subCategory: null,
+      logo: "/img/citys-istanbul-avm/alisveris/av-3.png",
+      floor: "ground",
+    },
+    {
+      name: "OYSHO",
+      category: "alisveris",
+      subCategory: null,
+      logo: "/img/citys-istanbul-avm/alisveris/av-4.png",
+      floor: "first",
+    },
+  ],
+  categories: {
+    yemeIcme: "Yeme İçme",
+    alisveris: "Alışveriş",
+    eglence: "Eğlence",
+  },
+  subCategories: {
+    restoran: "Restoran",
+    kafe: "Kafe",
+    fastfood: "Fast Food",
+  },
+}
 
 export default async function Page() {
-  const brands = await getBrandsData()
+  // const brands = await getBrandsData()
+  const brands = mockBrandsData
 
   return (
     <Wrapper>

@@ -122,7 +122,7 @@ export function FilterForm({ onFilter }: FilterFormProps) {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="ground">Zemin Kat</SelectItem>
-                      <SelectItem value="upper">Birinci Kat</SelectItem>
+                      <SelectItem value="first">Birinci Kat</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -135,17 +135,14 @@ export function FilterForm({ onFilter }: FilterFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <div className="relative">
+                  <div className="relative w-full h-12">
                     <button type="submit" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black">
                       <Search size={16} strokeWidth={2} />
                     </button>
                     <Input
                       {...field}
                       placeholder="Ara"
-                      className={cn(
-                        defaultSelectTriggerClasses,
-                        "pl-10 w-full h-12 border-b border-bricky-brick rounded-none"
-                      )}
+                      className={cn(defaultSelectTriggerClasses, "pl-10 h-full")}
                       onChange={(e) => {
                         field.onChange(e)
                         const timeoutId = setTimeout(() => {
