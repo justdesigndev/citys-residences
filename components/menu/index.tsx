@@ -1,13 +1,12 @@
 "use client"
 
+import { gsap, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
 import { useRef, useState } from "react"
 import { useClickAway, useWindowSize } from "react-use"
-import { gsap, useGSAP } from "@/components/gsap"
 
 import { IconPin, socialIcons } from "@/components/icons"
-import { Link } from "@/components/utility/link"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { breakpoints, colors } from "@/styles/config.mjs"
 import { X } from "lucide-react"
@@ -145,6 +144,20 @@ export function Menu({ open, setOpen, items }: MenuProps) {
     }
   )
 
+  const handleScroll = (id: string) => {
+    gsap.to("body", {
+      opacity: 0,
+      onComplete: () => {
+        setOpen(false)
+        lenis?.scrollTo(`#${id}`, { immediate: true })
+        gsap.to("body", {
+          opacity: 1,
+          delay: 0.4,
+        })
+      },
+    })
+  }
+
   return (
     <>
       {/* menu */}
@@ -170,7 +183,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             //   }
             // }}
           >
-            {items.map(({ title, href }, i) => (
+            {items.map(({ title, id }, i) => (
               <li
                 className={cn(
                   "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-3xl",
@@ -188,9 +201,9 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                   }
                 }}
               >
-                <Link className="cursor-pointer block" href={href}>
+                <span className="cursor-pointer block" onClick={() => handleScroll(id)}>
                   {title}
-                </Link>
+                </span>
               </li>
             ))}
             <li className="xl:my-8 2xl:my-10 3xl:my-14">
@@ -263,21 +276,25 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                       )}
                       key={section.id}
                     >
-                      <Link className="cursor-pointer block xl:py-1" href={`${items[active].href}#${section.id}`}>
+                      <span
+                        className="cursor-pointer block xl:py-1"
+                        // href={`#${items[active].href}`}
+                        onClick={() => handleScroll(section.id)}
+                      >
                         {section.label}
-                      </Link>
-
+                      </span>
                       {/* Render subitems if they exist */}
                       {section.subitems && (
                         <ul className="mt-2 flex flex-col gap-1">
                           {Object.values(section.subitems).map((subitem) => (
                             <li key={subitem.id} className="text-sm lg:text-base text-white/60">
-                              <Link
+                              <span
                                 className="cursor-pointer block py-0.5"
-                                href={`${items[active].href}#${subitem.id}`}
+                                // href={`#${subitem.id}`}
+                                onClick={() => handleScroll(subitem.id)}
                               >
                                 {subitem.label}
-                              </Link>
+                              </span>
                             </li>
                           ))}
                         </ul>

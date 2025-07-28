@@ -190,7 +190,7 @@ export const sections = {
         },
         pilates: {
           label: "Pilates",
-          id: "pilates",
+          id: "pilates-studio",
         },
         groupClasses: {
           label: "Grup Dersleri",
@@ -347,7 +347,7 @@ type NavigationMetadata = {
 }
 
 // Only define metadata for routes that should appear in navigation
-const navigationConfig: Partial<Record<Pathnames, NavigationMetadata>> = {
+export const navigationConfig: Partial<Record<Pathnames, NavigationMetadata>> = {
   "/": {
     titleKey: "navigation.home",
     id: "home",
@@ -370,34 +370,34 @@ const navigationConfig: Partial<Record<Pathnames, NavigationMetadata>> = {
   },
   "/citys-park": {
     titleKey: "navigation.citysPark",
-    id: "citysPark",
+    id: "citys-park",
     sectionsKey: "citysPark",
     order: 5,
   },
   "/citys-members-club": {
     titleKey: "navigation.citysMembersClub",
-    id: "citysMembersClub",
+    id: "citys-members-club",
     sectionsKey: "citysMembersClub",
     order: 6,
   },
   "/citys-life-privileges": {
     titleKey: "navigation.citysLifePrivileges",
-    id: "citysLifePrivileges",
+    id: "citys-life-privileges",
     order: 7,
   },
   "/citys-psm": {
     titleKey: "navigation.citysPsm",
-    id: "citysPsm",
+    id: "citys-psm",
     order: 8,
   },
   "/citys-istanbul-avm": {
     titleKey: "navigation.citysIstanbul",
-    id: "citysIstanbul",
+    id: "citys-istanbul-avm",
     order: 9,
   },
   "/citys-times": {
     titleKey: "navigation.citysTimes",
-    id: "citysTimes",
+    id: "citys-times",
     order: 10,
   },
 }

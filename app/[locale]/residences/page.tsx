@@ -1,11 +1,10 @@
 import { AnimatedLine } from "@/components/animated-line"
-import { ScaleOut } from "@/components/animations/scale-out"
 import { Logo } from "@/components/icons"
 import { Sequenced } from "@/components/sequenced"
 import { StackingCards } from "@/components/stacking-cards"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
+import { melihBulgurVideo, mustafaTonerVideo, navigationConfig, residencesVideo, sections } from "@/lib/constants"
 import { getResidencesContent } from "@/lib/content"
 import { colors } from "@/styles/config.mjs"
 
@@ -154,17 +153,15 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <ScaleOut>
-          <Video
-            primaryVideoUrl={residencesVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </ScaleOut>
+      <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden" id={navigationConfig["/residences"]?.id}>
+        <Video
+          primaryVideoUrl={residencesVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        />
       </section>
       <section className="bg-white relative z-30 py-12 lg:py-20 2xl:py-28">
         <div className="w-full h-40 lg:h-64 mx-auto ">

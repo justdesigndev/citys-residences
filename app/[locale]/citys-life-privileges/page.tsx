@@ -6,7 +6,7 @@ import { IconCitysLifeLogo } from "@/components/icons"
 import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
-import { citysLifeVideo } from "@/lib/constants"
+import { citysLifeVideo, navigationConfig } from "@/lib/constants"
 import { getCitysLifePrivilegesContent } from "@/lib/content"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
@@ -16,7 +16,10 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden">
+      <section
+        className="relative h-svh bg-bricky-brick z-10 overflow-hidden"
+        id={navigationConfig["/citys-life-privileges"]?.id}
+      >
         <Video
           primaryVideoUrl={citysLifeVideo}
           autoPlay
