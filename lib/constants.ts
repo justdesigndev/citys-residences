@@ -371,13 +371,11 @@ export const navigationConfig: Partial<Record<Pathnames, NavigationMetadata>> = 
   "/citys-park": {
     titleKey: "navigation.citysPark",
     id: "citys-park",
-    sectionsKey: "citysPark",
     order: 5,
   },
   "/citys-members-club": {
     titleKey: "navigation.citysMembersClub",
     id: "citys-members-club",
-    sectionsKey: "citysMembersClub",
     order: 6,
   },
   "/citys-life-privileges": {

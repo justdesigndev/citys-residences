@@ -110,7 +110,7 @@ export function Header() {
           >
             <div className="cursor-pointer flex items-center">
               <MenuX
-                isOpen={menuOpen}
+                isOpen={false}
                 onClick={() => setMenuOpen(!menuOpen)}
                 strokeWidth="2"
                 color={scrollState.atTop || menuOpen ? colors.white : colors.black}

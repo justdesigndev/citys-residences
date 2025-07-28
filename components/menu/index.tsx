@@ -145,12 +145,12 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   )
 
   const handleScroll = (id: string) => {
-    gsap.to("body", {
+    setOpen(false)
+    gsap.to(".wrapper", {
       opacity: 0,
       onComplete: () => {
-        setOpen(false)
         lenis?.scrollTo(`#${id}`, { immediate: true })
-        gsap.to("body", {
+        gsap.to(".wrapper", {
           opacity: 1,
           delay: 0.4,
         })
