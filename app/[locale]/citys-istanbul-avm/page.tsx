@@ -1,8 +1,7 @@
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo } from "@/components/icons"
-import { Video } from "@/components/utility/video"
 // import { getBrandsData } from "@/lib/api/queries"
-import { citysIstanbulAvmVideo } from "@/lib/constants"
+import { Img } from "@/components/utility/img"
 import { colors } from "@/styles/config.mjs"
 import { BrandsResponse } from "@/types"
 import { FilterableContent } from "./filterable-content"
@@ -114,17 +113,18 @@ export default async function Page() {
   return (
     <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <Video
+        {/* <Video
           primaryVideoUrl={citysIstanbulAvmVideo}
           autoPlay
           loop
           muted
           playsInline
           className="w-full h-full object-cover"
-        />
+        /> */}
+        <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
-        <div className="w-3/12 h-48 flex items-center justify-center bg-aqua-belt mb-8">
+        <div className="w-[530px] h-56 flex items-center justify-center bg-aqua-belt mb-8">
           <div className="w-10/12 flex items-center justify-center">
             <IconCitysIstanbulLogo fill={colors["halite-blue"]} />
           </div>

@@ -23,7 +23,7 @@ interface FilterFormProps {
 }
 
 const baseSelectTriggerClasses = "px-4 py-3 bg-white text-gray-700 font-primary text-sm lg:text-base min-w-[200px]"
-const defaultSelectTriggerClasses = `${baseSelectTriggerClasses} border border-bricky-brick rounded-md flex-1 w-full`
+const defaultSelectTriggerClasses = `${baseSelectTriggerClasses} border border-bricky-brick rounded-md flex-1 w-full [&>svg]:text-bricky-brick`
 
 export function FilterForm({ onFilter }: FilterFormProps) {
   const form = useForm<FilterFormValues>({
@@ -67,6 +67,7 @@ export function FilterForm({ onFilter }: FilterFormProps) {
                       <SelectValue placeholder="Tüm Kategoriler" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="all">Tüm Kategoriler</SelectItem>
                       <SelectItem value="alisveris">Alışveriş</SelectItem>
                       <SelectItem value="yemeIcme">Yeme & İçme</SelectItem>
                       <SelectItem value="hizmet">Hizmetler</SelectItem>
@@ -94,6 +95,7 @@ export function FilterForm({ onFilter }: FilterFormProps) {
                       <SelectValue placeholder="Tüm Restoranlar" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="all">Tüm Restoranlar</SelectItem>
                       <SelectItem value="restoran">Restoran</SelectItem>
                       <SelectItem value="kafe">Kafe</SelectItem>
                       <SelectItem value="fastfood">Fast Food</SelectItem>
@@ -121,6 +123,7 @@ export function FilterForm({ onFilter }: FilterFormProps) {
                       <SelectValue placeholder="Tüm Katlar" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="all">Tüm Katlar</SelectItem>
                       <SelectItem value="ground">Zemin Kat</SelectItem>
                       <SelectItem value="first">Birinci Kat</SelectItem>
                     </SelectContent>
@@ -137,12 +140,15 @@ export function FilterForm({ onFilter }: FilterFormProps) {
                 <FormControl>
                   <div className="relative w-full h-12">
                     <button type="submit" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black">
-                      <Search size={16} strokeWidth={2} />
+                      <Search className="text-black" size={16} strokeWidth={3} />
                     </button>
                     <Input
                       {...field}
                       placeholder="Ara"
-                      className={cn(defaultSelectTriggerClasses, "pl-10 h-full")}
+                      className={cn(
+                        defaultSelectTriggerClasses,
+                        "pl-10 h-full border-t-0 border-x-0 rounded-none border-b border-bricky-brick text-black placeholder:text-black"
+                      )}
                       onChange={(e) => {
                         field.onChange(e)
                         const timeoutId = setTimeout(() => {

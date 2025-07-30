@@ -1,10 +1,11 @@
 "use client"
 
-import { FilterForm } from "@/components/filter-form"
+import { AnimatePresence, motion } from "motion/react"
 import { useState, useMemo } from "react"
+
+import { FilterForm } from "@/components/filter-form"
 import { Brand } from "@/types"
 import { Img } from "@/components/utility/img"
-import { AnimatePresence, motion } from "motion/react"
 
 interface FilterableContentProps {
   brands: Brand[]
@@ -128,6 +129,9 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                   transition: { duration: 0.2 },
                 }}
               >
+                <h3 className="font-suisse-intl font-bold text-base lg:text-xl text-black mb-2 tracking-wide text-center">
+                  {brand.name}
+                </h3>
                 <motion.div
                   className="relative overflow-hidden bg-gray-100 h-64 mb-4 flex items-center justify-center"
                   whileHover={{ scale: 1.02 }}
@@ -137,19 +141,10 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                     src={brand.logo}
                     alt={brand.name}
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      // Fallback for broken images
-                      e.currentTarget.src = "/img/placeholder-logo.png"
-                    }}
                     fill
                   />
                 </motion.div>
-                <div className="text-center">
-                  <h3 className="font-suisse-intl font-bold text-sm lg:text-base text-black mb-1 tracking-wide">
-                    {brand.name}
-                  </h3>
-                  <p className="font-suisse-intl text-xs lg:text-sm text-gray-600">{floorDisplay}</p>
-                </div>
+                <p className="font-suisse-intl text-xs lg:text-sm text-gray-800 text-center">{floorDisplay}</p>
               </motion.div>
             )
           })}
