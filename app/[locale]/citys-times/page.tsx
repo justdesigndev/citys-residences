@@ -1,3 +1,4 @@
+import { Header } from "@/components/header"
 import { IconWrapper } from "@/components/icon-wrapper"
 import { socialIcons } from "@/components/icons"
 import { Img } from "@/components/utility/img"
@@ -5,6 +6,7 @@ import { Img } from "@/components/utility/img"
 export default async function Page() {
   return (
     <>
+      <Header />
       <section className="h-[35vw] relative overflow-hidden">
         <Img
           className="object-cover w-full h-full"

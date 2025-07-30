@@ -128,6 +128,14 @@ export function Menu({ open, setOpen, items }: MenuProps) {
 
       const shouldShowSubmenu = active !== null && items[active]?.sections
 
+      // Debug logging
+      console.log("Menu Debug:", {
+        active,
+        items: items.map((item) => ({ id: item.id, hasSections: !!item.sections })),
+        activeItem: active !== null ? items[active] : null,
+        shouldShowSubmenu,
+      })
+
       if (shouldShowSubmenu) {
         gsap.to(submenuTL.current, { time: submenuTL.current?.duration(), ease: "expo.out" })
       } else if (open) {
@@ -147,6 +155,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
 
   const handleScroll = (id: string) => {
     setOpen(false)
+    setActive(null)
     gsap.to(".wrapper", {
       opacity: 0,
       onComplete: () => {
@@ -175,15 +184,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
           <X strokeWidth={1} className="text-white h-12 w-12" />
         </button>
         <nav className="w-full h-full lg:px-10 flex items-end justify-center lg:justify-start">
-          <ul
-            className="flex flex-col items-center lg:items-start justify-end gap-3 lg:gap-2 xl:gap-3 2xl:gap-4 3xl:gap-5 w-full"
-            // onMouseLeave={() => {
-            //   if (width > breakpoints.breakpointTablet) {
-            //     setHover(false)
-            //     setActive(null)
-            //   }
-            // }}
-          >
+          <ul className="flex flex-col items-center lg:items-start justify-end gap-3 lg:gap-2 xl:gap-3 2xl:gap-4 3xl:gap-5 w-full">
             {items.map(({ title, id }, i) => (
               <li
                 className={cn(
@@ -253,9 +254,11 @@ export function Menu({ open, setOpen, items }: MenuProps) {
       {/* submenu */}
       <div
         className={cn(
-          "fixed top-0 left-[20vw] bottom-0 overflow-hidden",
-          "blur-bg-bricky-brick w-screen lg:w-[30vw] xl:w-[25vw] 2xl:w-[15vw] z-[var(--z-menu)]",
-          "border-l border-white/30"
+          "fixed top-0 bottom-0 overflow-hidden",
+          "blur-bg-bricky-brick w-screen z-[var(--z-menu)]",
+          "border-l border-white/30",
+          "left-0 lg:left-[30vw] xl:left-[25vw] 2xl:left-[20vw]",
+          "lg:w-[30vw] xl:w-[25vw] 2xl:w-[15vw]"
         )}
         style={{ clipPath: clipPath.current }}
         ref={submenuRef}
