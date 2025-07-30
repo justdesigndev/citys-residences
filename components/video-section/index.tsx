@@ -1,8 +1,6 @@
 import { cn } from "@/lib/utils"
 
-import { Logo } from "@/components/icons"
 import { VideoWithPlayButton } from "@/components/utility/video-with-play-button"
-import { colors } from "@/styles/config.mjs"
 
 interface VideoSectionProps {
   primaryVideoUrl: string
@@ -20,9 +18,6 @@ export function VideoSection({ primaryVideoUrl, thumbnail, title, className, spo
         className
       )}
     >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 z-50">
-        <Logo fill={colors.white} />
-      </div>
       <VideoWithPlayButton primaryVideoUrl={primaryVideoUrl} thumbnail={thumbnail} title={title} spot={spot} />
     </div>
   )

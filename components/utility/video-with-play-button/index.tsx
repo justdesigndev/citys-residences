@@ -6,6 +6,8 @@ import { useRef, useState } from "react"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { PlayIcon } from "lucide-react"
+import { Logo } from "@/components/icons"
+import { colors } from "@/styles/config.mjs"
 
 export interface IVideoWithPlayButtonProps {
   primaryVideoUrl: string
@@ -51,6 +53,9 @@ export function VideoWithPlayButton({
         )}
         onClick={handlePlay}
       >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 z-50">
+          <Logo fill={colors.white} />
+        </div>
         {thumbnail && (
           <div className="absolute top-0 left-0 w-full h-full z-10">
             <Img src={thumbnail} alt="Thumbnail" className="w-full h-full object-cover" fill sizes="100vw" />
