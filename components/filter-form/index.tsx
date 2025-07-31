@@ -8,6 +8,7 @@ import { FilterData } from "@/lib/utils/filter-utils"
 import { Category, Floor, SubCategory } from "@/types"
 import { Search } from "lucide-react"
 import { UseFormReturn } from "react-hook-form"
+import { useEffect, useState } from "react"
 
 interface FilterFormProps {
   form: UseFormReturn<FilterData>
@@ -30,6 +31,16 @@ export function FilterForm({
   isLoading = false,
 }: FilterFormProps) {
   const floorValue = form.watch("floor")
+  const [searchValue, setSearchValue] = useState("")
+
+  // Debounce search input
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      form.setValue("keyword", searchValue)
+    }, 500) // 500ms delay
+
+    return () => clearTimeout(timer)
+  }, [searchValue, form])
   const handleCategoryChange = (categoryId: string) => {
     // Always reset subcategory when category changes
     form.setValue("subCategory", "")
@@ -164,7 +175,7 @@ export function FilterForm({
           <FormField
             control={form.control}
             name="keyword"
-            render={({ field }) => (
+            render={() => (
               <FormItem>
                 <FormControl>
                   <div className="relative w-full h-12">
@@ -172,14 +183,14 @@ export function FilterForm({
                       <Search className="text-black" size={16} strokeWidth={3} />
                     </button>
                     <Input
-                      {...field}
+                      value={searchValue}
                       placeholder="Marka ara..."
                       className={cn(
                         defaultSelectTriggerClasses,
                         "pl-10 h-full border-t-0 border-x-0 rounded-none border-b border-bricky-brick text-black placeholder:text-black"
                       )}
                       onChange={(e) => {
-                        field.onChange(e.target.value)
+                        setSearchValue(e.target.value)
                       }}
                       disabled={isLoading}
                     />
