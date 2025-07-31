@@ -128,14 +128,6 @@ export function Menu({ open, setOpen, items }: MenuProps) {
 
       const shouldShowSubmenu = active !== null && items[active]?.sections
 
-      // Debug logging
-      console.log("Menu Debug:", {
-        active,
-        items: items.map((item) => ({ id: item.id, hasSections: !!item.sections })),
-        activeItem: active !== null ? items[active] : null,
-        shouldShowSubmenu,
-      })
-
       if (shouldShowSubmenu) {
         gsap.to(submenuTL.current, { time: submenuTL.current?.duration(), ease: "expo.out" })
       } else if (open) {
