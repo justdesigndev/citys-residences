@@ -30,7 +30,7 @@ export function LocaleSwitcher({ theme = "light" }: LocaleSwitcherProps) {
     <Select value={locale} onValueChange={setLocale}>
       <SelectTrigger
         className={cn(
-          "font-primary font-medium text-sm lg:text-xl 2xl:text-xl pointer-events-none [&>svg]:w-6 [&>svg]:h-6",
+          "font-primary font-medium text-sm lg:text-xl xl:text-lg 2xl:text-xl pointer-events-none [&>svg]:w-6 [&>svg]:h-6",
           {
             "text-black [&>svg]:text-black": theme === "light",
             "text-white": theme === "dark",
