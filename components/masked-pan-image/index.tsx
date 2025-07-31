@@ -1,6 +1,5 @@
 import { gsap } from "@/components/gsap"
 import { Img } from "@/components/utility/img"
-import { breakpoints } from "@/styles/config.mjs"
 import { useGSAP } from "@gsap/react"
 import { useWindowSize } from "hamo"
 import { useRef } from "react"
@@ -20,9 +19,9 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
     () => {
       if (!width) return
 
-      const isBelowTablet = width < breakpoints.breakpointTablet
+      // const isBelowTablet = width < breakpoints.breakpointTablet
 
-      const distance = isBelowTablet ? 50 : 50
+      const distance = 150
 
       const tl = gsap.timeline({ paused: true })
 
@@ -44,7 +43,9 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
         }
       )
 
-      tl.play().timeScale(0.2).repeat(-1)
+      tl.play()
+        .timeScale(distance * 0.001)
+        .repeat(-1)
     },
     {
       scope: ref,
@@ -52,9 +53,16 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
     }
   )
   return (
-    <div className="w-full h-full flex items-center justify-center overflow-hidden" ref={ref}>
-      <div className="relative h-full w-[73vw] flex-shrink-0" ref={imgRef}>
-        <Img src={imgSrc} alt="Parallax Image" className="object-cover z-40" fill sizes={sizes} loading="lazy" />
+    <div className="w-full h-full flex items-center justify-center overflow-hidden border border-red-500" ref={ref}>
+      <div className="relative h-full w-[200%] flex-shrink-0 border border-blue-500" ref={imgRef}>
+        <Img
+          src={imgSrc}
+          alt="Parallax Image"
+          className="object-contain z-40 border border-green-500"
+          fill
+          sizes={sizes}
+          loading="lazy"
+        />
       </div>
     </div>
   )
