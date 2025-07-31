@@ -34,7 +34,11 @@ export default function Page({ params }: { params: { locale: string } }) {
         <CitysMembersClub params={params} />
         <PageTitle title="CITY'S LIFE AYRICALIKLARI" id={navigationConfig["/citys-life-privileges"]?.id as string} />
         <CitysLifePrivileges params={params} />
-        <PageTitle title="CITY'S ISTANBUL AVM" id={navigationConfig["/citys-istanbul-avm"]?.id as string} />
+        <PageTitle
+          className="font-copperplate text-center"
+          title="CITY'S İSTANBUL <br /> AVM"
+          id={navigationConfig["/citys-istanbul-avm"]?.id as string}
+        />
         <CitysIstanbulAvm />
         <PageTitle title="CITY'S TIMES" id={navigationConfig["/citys-times"]?.id as string} />
         <CitysTimes />

@@ -183,6 +183,7 @@ const config: Config = {
         "suisse-intl": "var(--font-suisse-intl)",
         "aktiv-grotesk": "var(--font-aktiv-grotesk)",
         primary: "var(--font-suisse-intl)",
+        copperplate: "var(--font-copperplate)",
       },
       borderRadius: {
         lg: "var(--radius)",

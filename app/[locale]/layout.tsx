@@ -166,6 +166,17 @@ const aktivGrotesk = localFont({
   variable: "--font-aktiv-grotesk",
 })
 
+const copperplate = localFont({
+  src: [
+    {
+      path: "./fonts/copperplate/Copperplate-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-copperplate",
+})
+
 export async function generateMetadata({ params: { locale } }: { params: { locale: Locale } }) {
   const t = await getTranslations({ locale, namespace: "metadata.default" })
 
@@ -201,7 +212,7 @@ export default async function LocaleLayout({
         <AlotechWidget />
       </head>
       <body
-        className={`${halenoir.variable} ${montserrat.variable} ${suisseIntl.variable} ${aktivGrotesk.variable} antialiased`}
+        className={`${halenoir.variable} ${montserrat.variable} ${suisseIntl.variable} ${aktivGrotesk.variable} ${copperplate.variable} antialiased`}
       >
         <RealViewport />
         <NextIntlClientProvider messages={messages}>
