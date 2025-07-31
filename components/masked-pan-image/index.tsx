@@ -1,8 +1,12 @@
 import { gsap } from "@/components/gsap"
 import { Img } from "@/components/utility/img"
+import { cn } from "@/lib/utils"
 import { useGSAP } from "@gsap/react"
-import { useWindowSize } from "hamo"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useRef } from "react"
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger)
 
 export interface MaskedPanImageProps {
   imgSrc: string
@@ -13,15 +17,9 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
   const ref = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLDivElement>(null)
 
-  const { width } = useWindowSize()
-
   useGSAP(
     () => {
-      if (!width) return
-
-      // const isBelowTablet = width < breakpoints.breakpointTablet
-
-      const distance = 150
+      const distance = 125
 
       const tl = gsap.timeline({ paused: true })
 
@@ -33,32 +31,58 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
         {
           x: `${distance * 1.5}px`,
         }
-      ).fromTo(
-        imgRef.current,
-        {
-          x: `${distance * 1.5}px`,
-        },
-        {
-          x: `-${distance * 1.5}px`,
-        }
       )
 
-      tl.play()
-        .timeScale(distance * 0.001)
+      tl.timeScale(distance * 0.0005)
         .repeat(-1)
+        .yoyo(true)
+
+      ScrollTrigger.create({
+        trigger: ref.current,
+        start: "top bottom",
+        end: "bottom top",
+        markers: false,
+        onEnter: () => {
+          tl.play()
+        },
+        onLeave: () => {
+          tl.pause()
+        },
+        onEnterBack: () => {
+          tl.play()
+        },
+        onLeaveBack: () => {
+          tl.pause()
+        },
+      })
     },
     {
       scope: ref,
-      dependencies: [width],
     }
   )
+
   return (
-    <div className="w-full h-full flex items-center justify-center overflow-hidden border border-red-500" ref={ref}>
-      <div className="relative h-full w-[200%] flex-shrink-0 border border-blue-500" ref={imgRef}>
+    <div
+      className={cn(
+        "w-full h-full flex items-center justify-center overflow-hidden"
+        // ,"border border-red-500"
+      )}
+      ref={ref}
+    >
+      <div
+        className={cn(
+          "relative h-full w-[200%] flex-shrink-0"
+          // , "border border-blue-500"
+        )}
+        ref={imgRef}
+      >
         <Img
           src={imgSrc}
           alt="Parallax Image"
-          className="object-contain z-40 border border-green-500"
+          className={cn(
+            "object-contain z-40"
+            // , "border border-green-500"
+          )}
           fill
           sizes={sizes}
           loading="lazy"
