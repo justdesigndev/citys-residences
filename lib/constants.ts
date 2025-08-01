@@ -118,7 +118,7 @@ export const sections = {
     },
     residences: {
       label: "Daireler",
-      id: "residences",
+      id: "one-plus-one",
       subitems: {
         onePlusOne: {
           label: "1+1",
