@@ -25,58 +25,60 @@ export default function Page() {
           <div className={cn("w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20", gsapGlobalClasses.fadeIn)}>
             <Logo fill={colors["bricky-brick"]} />
           </div>
-          <div className="space-y-8 lg:space-y-16">
-            <div className={cn("relative w-full h-[55vw]", gsapGlobalClasses.fadeIn)}>
+          <div className="space-y-8 lg:space-y-16 3xl:space-y-12 px-44">
+            <div className={cn("relative w-full h-[40vw]", gsapGlobalClasses.fadeIn)}>
               <Img
                 alt={`Project Visual`}
                 src={`/img/project/01.jpg`}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
-            <div className={cn("relative w-full h-[55vw]", gsapGlobalClasses.fadeIn)}>
+            <div className={cn("relative w-full h-[40vw]", gsapGlobalClasses.fadeIn)}>
               <Img
                 alt={`Project Visual`}
                 src={`/img/project/02.jpg`}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
-            <div className={cn("relative py-8 lg:py-8", gsapGlobalClasses.fadeIn)}>
-              <VideoSection
-                primaryVideoUrl={muratKaderVideo}
-                thumbnail="/img/thumbnail-murat-kader.jpg"
-                title="PROJEYİ MİMARI ANLATIYOR..."
-                className="rounded-sm overflow-hidden"
-              />
-            </div>
-            <div className={cn("relative w-full h-[55vw]", gsapGlobalClasses.fadeIn)}>
+          </div>
+          <div className={cn("relative py-8 lg:py-16", gsapGlobalClasses.fadeIn)}>
+            <VideoSection
+              primaryVideoUrl={muratKaderVideo}
+              thumbnail="/img/thumbnail-murat-kader.jpg"
+              title="PROJEYİ MİMARI ANLATIYOR..."
+              className="rounded-sm overflow-hidden"
+            />
+          </div>
+          <div className="space-y-8 lg:space-y-16 3xl:space-y-12 px-44">
+            <div className={cn("relative w-full h-[40vw]", gsapGlobalClasses.fadeIn)}>
               <Img
                 alt={`Project Visual`}
                 src={`/img/project/03.jpg`}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
-            <div className={cn("relative w-full h-[55vw]", gsapGlobalClasses.fadeIn)}>
+            <div className={cn("relative w-full h-[40vw]", gsapGlobalClasses.fadeIn)}>
               <Img
                 alt={`Project Visual`}
                 src={`/img/project/04.jpg`}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
-            <div className={cn("relative w-full h-[55vw]", gsapGlobalClasses.fadeIn)}>
+            <div className={cn("relative w-full h-[40vw]", gsapGlobalClasses.fadeIn)}>
               <Img
                 alt={`Project Visual`}
                 src={`/img/project/05.jpg`}
                 sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
