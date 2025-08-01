@@ -26,7 +26,11 @@ export function Wrapper({ children, theme = "light", lenis = true, className, ..
   return (
     <>
       {/* <Header /> */}
-      <main className={cn(s.main, className, "wrapper")} {...props} style={{ zIndex: "var(--z-content)" }}>
+      <main
+        className={cn(s.main, className, "wrapper overflow-hidden")}
+        {...props}
+        style={{ zIndex: "var(--z-content)" }}
+      >
         {children}
         <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script>
       </main>
