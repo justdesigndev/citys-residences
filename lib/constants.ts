@@ -117,7 +117,7 @@ export const sections = {
       id: "interior-architecture",
     },
     residences: {
-      label: "Rezidanslar",
+      label: "Daireler",
       id: "residences",
       subitems: {
         onePlusOne: {
