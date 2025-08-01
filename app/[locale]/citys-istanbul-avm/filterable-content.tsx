@@ -85,7 +85,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
             transition={{ duration: 0.3 }}
           >
             {/* Brands Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-end">
               {filteredBrands.map((brand) => {
                 const floorDisplay = getFloorDisplayName(brand.floor)
                 return (
