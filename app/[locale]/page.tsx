@@ -1,5 +1,4 @@
 import { Footer } from "@/components/footer"
-import { GSAPGlobalAnimationInitializer } from "@/components/gsap-global-animation-initializer"
 import { Header } from "@/components/header"
 import { PageTitle } from "@/components/page-title"
 import { Wrapper } from "@/components/wrapper"
@@ -20,7 +19,6 @@ export default function Page({ params }: { params: { locale: string } }) {
     <>
       <Header />
       <Wrapper>
-        <GSAPGlobalAnimationInitializer />
         <Home params={params} />
         <PageTitle title="PROJE" id={navigationConfig["/project"]?.id as string} />
         <Project />

@@ -118,43 +118,43 @@ export const sections = {
     },
     residences: {
       label: "Daireler",
-      id: "one-plus-one",
+      id: "stacking-cards-0",
       subitems: {
         onePlusOne: {
           label: "1+1",
-          id: "one-plus-one",
+          id: "stacking-cards-0",
         },
         twoPlusOne: {
           label: "2+1",
-          id: "two-plus-one",
+          id: "stacking-cards-1",
         },
         threePlusOne: {
           label: "3+1",
-          id: "three-plus-one",
+          id: "stacking-cards-2",
         },
         fourPlusOne: {
           label: "4+1",
-          id: "four-plus-one",
+          id: "stacking-cards-3",
         },
         fivePlusOne: {
           label: "5+1",
-          id: "five-plus-one",
+          id: "stacking-cards-4",
         },
         sixPlusOne: {
           label: "6+1",
-          id: "six-plus-one",
+          id: "stacking-cards-5",
         },
         citysParkResidences: {
           label: "Citys Park Daireleri",
-          id: "citys-park-residences",
+          id: "stacking-cards-6",
         },
         terraceHouses: {
           label: "Teras Evler",
-          id: "terrace-houses",
+          id: "stacking-cards-7",
         },
         penthouse: {
           label: "Penthouse",
-          id: "penthouse",
+          id: "stacking-cards-8",
         },
       },
     },

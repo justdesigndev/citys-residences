@@ -1,7 +1,7 @@
 "use client"
 
 import { gsap, ScrollTrigger, useGSAP } from "@/components/gsap"
-import { useRef } from "react"
+import { useRef, Children, isValidElement, cloneElement } from "react"
 
 interface FadeInOnScrollProps {
   children: React.ReactNode
@@ -9,8 +9,8 @@ interface FadeInOnScrollProps {
   delay?: number
 }
 
-export function FadeInOnScroll({ children, duration = 0.5, delay = 0.2 }: FadeInOnScrollProps) {
-  const ref = useRef<HTMLDivElement>(null)
+export function FadeInOnScroll({ children, duration = 0.4, delay = 0 }: FadeInOnScrollProps) {
+  const ref = useRef<HTMLElement>(null)
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -26,14 +26,22 @@ export function FadeInOnScroll({ children, duration = 0.5, delay = 0.2 }: FadeIn
     ScrollTrigger.create({
       animation: tl,
       trigger: ref.current,
-      onEnter: () => tl.play(),
-      markers: false,
+      markers: true,
+      start: "center-=25% center+=25%",
     })
   })
 
-  return (
-    <div className="flex w-full h-full" ref={ref}>
-      {children}
-    </div>
-  )
+  // Get the first valid child element
+  const child = Children.toArray(children)[0]
+
+  if (!isValidElement(child)) {
+    console.warn("FadeInOnScroll: Children must be a valid React element")
+    return <>{children}</>
+  }
+
+  // Clone the child and add the ref to it
+  return cloneElement(child, {
+    ref: ref,
+    ...child.props,
+  })
 }

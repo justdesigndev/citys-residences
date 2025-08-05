@@ -6,11 +6,12 @@ import { useLenis } from "lenis/react"
 import { useRef, useState } from "react"
 import { useClickAway, useWindowSize } from "react-use"
 
+import { IconWrapper } from "@/components/icon-wrapper"
 import { IconPin, socialIcons } from "@/components/icons"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
+import { useStackingCardsStore } from "@/lib/store/stacking-cards"
 import { breakpoints, colors } from "@/styles/config.mjs"
 import { X } from "lucide-react"
-import { IconWrapper } from "@/components/icon-wrapper"
 
 interface MenuItem {
   title: string
@@ -44,7 +45,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   const lenis = useLenis()
   const { width } = useWindowSize()
   const clipPath = useRef("inset(0% 100% 0% 0%)")
-
+  const { scrollToCard } = useStackingCardsStore()
   const [active, setActive] = useState<number | null>(null)
 
   useClickAway(menuRef, (e) => {
@@ -151,7 +152,14 @@ export function Menu({ open, setOpen, items }: MenuProps) {
     gsap.to(".wrapper", {
       opacity: 0,
       onComplete: () => {
-        lenis?.scrollTo(`#${id}`, { immediate: true })
+        if (id.includes("stacking-cards")) {
+          const cardIndex = parseInt(id.split("-")[2])
+          scrollToCard(parseInt(cardIndex.toFixed(0)), true)
+        } else {
+          lenis?.scrollTo(`#${id}`, { immediate: true })
+        }
+
+        // Always run this animation regardless of the condition
         gsap.to(".wrapper", {
           opacity: 1,
           delay: 0.4,
@@ -180,7 +188,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             {items.map(({ title, id }, i) => (
               <li
                 className={cn(
-                  "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-3xl",
+                  "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
                   "font-primary font-normal text-white text-center lg:text-left",
                   "transition-opacity duration-300 ease-in-out",
                   {
@@ -267,7 +275,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                   Object.values(items[active].sections).map((section) => (
                     <li
                       className={cn(
-                        "text-lg lg:text-xl xl:text-xl 2xl:text-2xl",
+                        "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
                         "font-primary font-normal text-white text-center lg:text-left"
                       )}
                       key={section.id}
@@ -281,11 +289,11 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                       </span>
                       {/* Render subitems if they exist */}
                       {section.subitems && (
-                        <ul className="mt-2 flex flex-col gap-1">
+                        <ul className="mt-4 flex flex-col gap-2">
                           {Object.values(section.subitems).map((subitem) => (
-                            <li key={subitem.id} className="text-sm lg:text-base text-white/60">
+                            <li key={subitem.id}>
                               <span
-                                className="cursor-pointer block py-0.5"
+                                className="text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl cursor-pointer block py-0.5"
                                 // href={`#${subitem.id}`}
                                 onClick={() => handleScroll(subitem.id)}
                               >

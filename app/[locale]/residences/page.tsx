@@ -1,4 +1,4 @@
-import { AnimatedLine } from "@/components/animated-line"
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { Logo } from "@/components/icons"
 import { Sequenced } from "@/components/sequenced"
@@ -22,31 +22,36 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <Video
-          primaryVideoUrl={residencesVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-      </section>
+      <FadeInOnScroll>
+        <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
+          <Video
+            primaryVideoUrl={residencesVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </section>
+      </FadeInOnScroll>
       <section className="bg-white relative z-30 py-12 lg:pt-20 2xl:pt-28">
-        <div className="w-full h-40 lg:h-64 mx-auto ">
-          <Logo fill={colors["bricky-brick"]} />
-        </div>
+        <FadeInOnScroll>
+          <div className="w-full h-40 lg:h-64 mx-auto ">
+            <Logo fill={colors["bricky-brick"]} />
+          </div>
+        </FadeInOnScroll>
       </section>
       <section className="bg-white relative z-30 py-12" id={sections.residences.interiorArchitecture.id}>
-        <div className="section-container">
-          <VideoSection
-            primaryVideoUrl={mustafaTonerVideo}
-            thumbnail="/img/thumbnail-toners.jpg"
-            title="İÇ MİMARIN GÖZÜYLE..."
-          />
-        </div>
+        <FadeInOnScroll>
+          <div className="section-container">
+            <VideoSection
+              primaryVideoUrl={mustafaTonerVideo}
+              thumbnail="/img/thumbnail-toners.jpg"
+              title="İÇ MİMARIN GÖZÜYLE..."
+            />
+          </div>
+        </FadeInOnScroll>
       </section>
-      <AnimatedLine direction="horizontal" />
       <section className="hidden xl:block bg-white relative z-30 section-container">
         <div className="relative flex flex-col items-center justify-center lg:max-w-4xl 3xl:max-w-5xl mx-auto py-32 pb-0">
           <h2 className="font-primary font-bold text-bricky-brick text-4xl lg:text-7xl xl:text-6xl 2xl:text-6xl 3xl:text-7xl xl:leading-tight 2xl:leading-snug 3xl:leading-snug mb-6 text-center xl:text-center">
@@ -71,18 +76,15 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       <section className="bg-white relative z-30 section-container py-12">
         <StackingCards items={items} />
       </section>
-      <section className="section-container py-12" id={sections.residences.groundSafety.id}>
-        <VideoSection
-          primaryVideoUrl={melihBulgurVideo}
-          thumbnail="/img/thumbnail-melih-bulgur.jpg"
-          title="Zemin Güvenliği: Huzur Mühendisliği"
-        />
-      </section>
-      {/* <AnimatedLine direction="horizontal" /> */}
-      {/* <LinkToPage
-        previous={{ title: "Proje", href: "/project" }}
-        next={{ title: "City's Park", href: "/citys-park" }}
-      /> */}
+      <FadeInOnScroll>
+        <section className="section-container py-12" id={sections.residences.groundSafety.id}>
+          <VideoSection
+            primaryVideoUrl={melihBulgurVideo}
+            thumbnail="/img/thumbnail-melih-bulgur.jpg"
+            title="Zemin Güvenliği: Huzur Mühendisliği"
+          />
+        </section>
+      </FadeInOnScroll>
     </>
   )
 }

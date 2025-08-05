@@ -2,14 +2,15 @@ import { cn } from "@/lib/utils"
 import { getTranslations } from "next-intl/server"
 
 import { AnimatedLine } from "@/components/animated-line"
-import { HorizontalScroll } from "@/components/horizontal-scroll"
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
+import { HorizontalScroll } from "@/components/horizontal-scroll"
 import { Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { gsapGlobalClasses, kolajVideo, locationVideo, mainVideo, navigationConfig } from "@/lib/constants"
+import { kolajVideo, locationVideo, mainVideo, navigationConfig } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
@@ -45,28 +46,33 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           />
         </ScaleOut>
       </section>
+      {/* YAŞAMA SANATI */}
       <section className="bg-white py-0 lg:py-12 z-20 relative">
         <div className=" mx-auto py-12 lg:py-28 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16">
-          <div className={cn("w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20", gsapGlobalClasses.fadeIn)}>
-            <Logo fill={colors["bricky-brick"]} />
-          </div>
-          <div className="flex flex-col items-center gap-4 lg:gap-2">
-            <article className="font-montserrat font-semibold text-bricky-brick text-4xl lg:text-6xl leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
-                {t("section1.title1")}
-              </GsapSplitText>
-              <span className="sr-only">{t("section1.title1")}</span>
-            </article>
-            <article className={cn("relative w-screen h-24 lg:h-44 xl:h-36", gsapGlobalClasses.fadeIn)}>
-              <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="100vw" />
-              <span className="sr-only">{t("section1.title2")}</span>
-            </article>
-            <article className="font-montserrat font-medium text-bricky-brick text-4xl lg:text-xl leading-relaxed tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.01} duration={1.5}>
-                {t("section1.title3")}
-              </GsapSplitText>
-            </article>
-          </div>
+          <FadeInOnScroll>
+            <div className={"w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20"}>
+              <Logo fill={colors["bricky-brick"]} />
+            </div>
+          </FadeInOnScroll>
+          <FadeInOnScroll>
+            <div className="flex flex-col items-center gap-4 lg:gap-2">
+              <article className="font-montserrat font-semibold text-bricky-brick text-4xl lg:text-6xl leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
+                <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
+                  {t("section1.title1")}
+                </GsapSplitText>
+                <span className="sr-only">{t("section1.title1")}</span>
+              </article>
+              <article className={"relative w-screen h-24 lg:h-44 xl:h-36"}>
+                <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="100vw" />
+                <span className="sr-only">{t("section1.title2")}</span>
+              </article>
+              <article className="font-montserrat font-medium text-bricky-brick text-4xl lg:text-xl leading-relaxed tracking-wide lg:tracking-widest text-center">
+                <GsapSplitText splitBy="chars" stagger={0.01} duration={1.5}>
+                  {t("section1.title3")}
+                </GsapSplitText>
+              </article>
+            </div>
+          </FadeInOnScroll>
         </div>
       </section>
       <section
@@ -75,39 +81,42 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           "before:absolute before:bottom-0 before:left-0 before:w-full before:h-1/2 before:bg-unbleached"
         )}
       >
-        <div className="section-container">
-          <VideoSection
-            className={gsapGlobalClasses.fadeIn}
-            primaryVideoUrl={kolajVideo}
-            thumbnail="/img/thumbnail-kolaj-video.jpg"
-            spot="PROJE VIDEOSU"
-            title="Yaşam Yeniden Tasarlandı: CITY'S"
-          />
-        </div>
-      </section>
-      <section className="bg-unbleached py-0 lg:py-12 z-20 relative">
-        <div className="mx-auto py-12 lg:py-28 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16">
-          <div className="flex flex-col items-center gap-4 lg:gap-8">
-            <article className="font-montserrat text-bricky-brick text-4xl lg:text-5xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
-                {t("section2.title1")}
-              </GsapSplitText>
-              <span className="sr-only">{t("section2.title1")}</span>
-            </article>
-            <article className={cn("relative w-screen h-24 lg:h-44 xl:h-44", gsapGlobalClasses.fadeIn)}>
-              <Img src="/img/tam.png" alt="Tam" fill className="object-contain" sizes="100vw" />
-              <span className="sr-only">{t("section2.title2")}</span>
-            </article>
-            <article className="font-montserrat text-bricky-brick text-5xl lg:text-5xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
-              <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
-                {t("section2.title3")}
-              </GsapSplitText>
-            </article>
+        <FadeInOnScroll>
+          <div className="section-container">
+            <VideoSection
+              primaryVideoUrl={kolajVideo}
+              thumbnail="/img/thumbnail-kolaj-video.jpg"
+              title="Yaşam Yeniden Tasarlandı: CITY'S"
+            />
           </div>
-        </div>
+        </FadeInOnScroll>
       </section>
-      <section className={cn(gsapGlobalClasses.fadeIn)}>
-        <div className="flex gap-8 h-[50vw] relative">
+      {/* YAŞAMIN TAM MERKEZİNDE */}
+      <section className="bg-unbleached py-0 lg:py-12 z-20 relative">
+        <FadeInOnScroll>
+          <div className="mx-auto py-12 lg:py-28 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16">
+            <div className="flex flex-col items-center gap-4 lg:gap-8">
+              <article className="font-montserrat text-bricky-brick text-4xl lg:text-5xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
+                <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
+                  {t("section2.title1")}
+                </GsapSplitText>
+                <span className="sr-only">{t("section2.title1")}</span>
+              </article>
+              <article className={"relative w-screen h-24 lg:h-44 xl:h-44"}>
+                <Img src="/img/tam.png" alt="Tam" fill className="object-contain" sizes="100vw" />
+                <span className="sr-only">{t("section2.title2")}</span>
+              </article>
+              <article className="font-montserrat text-bricky-brick text-5xl lg:text-5xl font-semibold leading-tight lg:leading-tight tracking-wide lg:tracking-widest text-center">
+                <GsapSplitText splitBy="chars" stagger={0.02} duration={1.5}>
+                  {t("section2.title3")}
+                </GsapSplitText>
+              </article>
+            </div>
+          </div>
+        </FadeInOnScroll>
+      </section>
+      <FadeInOnScroll>
+        <section className="flex gap-8 h-[50vw] relative">
           <h2 className="title-shadow absolute top-28 left-1/2 -translate-x-1/2 font-primary font-bold text-bricky-brick text-3xl lg:text-7xl xl:text-7xl 2xl:text-7xl leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight text-left lg:text-center z-50">
             <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
               {t("live.p1.title")}
@@ -130,15 +139,8 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             playsInline
             className="relative w-full h-full object-cover z-0"
           />
-        </div>
-      </section>
-      {/* <section className={cn("py-12 lg:py-8", gsapGlobalClasses.fadeIn)}>
-        <FullScreenSlider title={t("live.p2.title")} description={t("live.p2.description")} items={slides2} />
-      </section>
-      <AnimatedLine direction="horizontal" />
-      <section className={cn("py-12 lg:py-8 mt-8", gsapGlobalClasses.fadeIn)}>
-        <FullScreenSlider title={t("live.p3.title")} description={t("live.p3.description")} items={slides3} />
-      </section> */}
+        </section>
+      </FadeInOnScroll>
       <AnimatedLine direction="horizontal" />
       <section className="relative py-12">
         <HorizontalScroll
@@ -155,8 +157,6 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           items={slideImages.slides3}
         />
       </section>
-      <AnimatedLine direction="horizontal" />
-      {/* <LinkToPage next={{ title: tCommon("project"), href: "/project" }} /> */}
     </>
   )
 }

@@ -2,10 +2,12 @@
 
 import { ScrollTrigger, gsap, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
-import { ReactNode, useRef } from "react"
+import { useLenis } from "lenis/react"
+import { ReactNode, useEffect, useRef } from "react"
 import { useWindowSize } from "react-use"
 
 import { Img } from "@/components/utility/img"
+import { useStackingCardsStore } from "@/lib/store/stacking-cards"
 import { breakpoints } from "@/styles/config.mjs"
 
 export interface StackingCardsProps {
@@ -23,10 +25,23 @@ export interface StackingCardsProps {
 export function StackingCards({ items }: StackingCardsProps) {
   const ref = useRef(null)
   const { width } = useWindowSize()
+  const lenis = useLenis()
+
+  const { setScrollTrigger, setItemsLength, setLenis, updateCurrentCardFromProgress } = useStackingCardsStore()
+
+  // Set Lenis instance in store
+  useEffect(() => {
+    if (lenis) {
+      setLenis(lenis)
+    }
+  }, [lenis, setLenis])
 
   useGSAP(
     () => {
       if (!width || width < breakpoints.breakpointMobile) return
+
+      // Set items length in store
+      setItemsLength(items.length)
 
       const tl = gsap.timeline()
       const cards: HTMLElement[] = gsap.utils.toArray(".gsap-stacking-card")
@@ -39,14 +54,19 @@ export function StackingCards({ items }: StackingCardsProps) {
         tl.to(card, { xPercent: 0, scale: 1 })
       })
 
-      ScrollTrigger.create({
+      const trigger = ScrollTrigger.create({
         animation: tl,
         trigger: ref.current,
         start: "center center",
         pin: true,
         scrub: true,
         end: `+=${items.length * window.innerHeight}px`,
+        onUpdate: (self) => {
+          updateCurrentCardFromProgress(self.progress)
+        },
       })
+
+      setScrollTrigger(trigger)
     },
     {
       scope: ref,
@@ -54,17 +74,28 @@ export function StackingCards({ items }: StackingCardsProps) {
     }
   )
 
-  // const handleImageClick = (itemImages: { url: string }[], index: number) => {
-  //   const slides = itemImages.map((image) => (
-  //     <div key={image.url} className="h-[90vh] w-[100vw] relative">
-  //       <Img src={image.url} fill sizes="100vw" alt="Residence" className="object-contain" />
-  //     </div>
-  //   ))
-  //   openModal(slides, index)
-  // }
-
   return (
     <div className="relative w-full h-auto lg:h-[100vw] xl:h-[42vw] 2xl:h-[45vw] 3xl:h-[40vw]" ref={ref}>
+      {/* <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-50">
+        <div className="flex gap-2 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg border border-s-neutral-200">
+          {items.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToCard(index, false)}
+              className={cn(
+                "h-10 rounded-full whitespace-nowrap flex items-center justify-center text-sm font-medium transition-all duration-300",
+                "hover:bg-bricky-brick hover:text-white",
+                currentCard === index
+                  ? "bg-bricky-brick text-white"
+                  : "bg-white/50 text-bricky-brick border border-s-neutral-200"
+              )}
+            >
+              {item.title}
+            </button>
+          ))}
+        </div>
+      </div> */}
+
       {items.map((item, i) => {
         return (
           <div
@@ -86,13 +117,13 @@ export function StackingCards({ items }: StackingCardsProps) {
               </small>
             </div>
             <div className="grid grid-cols-2 gap-4 mt-auto flex-1">
-              <div className={cn("relative rounded-md overflow-hidden")}>
+              <div className="relative rounded-md overflow-hidden">
                 <Img
                   src={item.images[0].url}
                   alt="Residence"
                   fill
                   sizes="(max-width: 800px) 100vw, 50vw"
-                  className={cn("object-contain")}
+                  className="object-contain"
                 />
               </div>
               <div className={cn("relative rounded-md overflow-hidden")}>
