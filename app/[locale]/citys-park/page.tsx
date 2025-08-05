@@ -1,6 +1,5 @@
-import { cn } from "@/lib/utils"
-
 import { AnimatedLine } from "@/components/animated-line"
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysParkLogo } from "@/components/icons"
 import { LogoSection } from "@/components/logo-section"
@@ -8,7 +7,7 @@ import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { citysParkVideo, gsapGlobalClasses } from "@/lib/constants"
+import { citysParkVideo } from "@/lib/constants"
 import { getCitysParkContent } from "@/lib/content"
 import { breakpoints } from "@/styles/config.mjs"
 import { getTranslations } from "next-intl/server"
@@ -21,18 +20,20 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <Video
-          primaryVideoUrl={citysParkVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-      </section>
+      <FadeInOnScroll>
+        <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
+          <Video
+            primaryVideoUrl={citysParkVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </section>
+      </FadeInOnScroll>
       <section className="relative z-20 bg-white py-5">
-        <LogoSection foregroundLogo={<IconCitysParkLogo fill="#5D7261" />} foregroundDuration={0.5} />
+        <LogoSection foregroundLogo={<IconCitysParkLogo fill="#5D7261" />} />
         <div className="section-container pb-20 pt-10 flex flex-col items-center gap-16">
           <h2 className="font-primary font-medium text-black text-2xl lg:text-2xl xl:text-5xl 2xl:text-5xl 3xl:text-[54px] xl:leading-normal 2xl:leading-tight 3xl:leading-tight xl:max-w-4xl 2xl:max-w-6xl text-center">
             <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
@@ -44,7 +45,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               {t("title2")}
             </GsapSplitText>
           </h2>
-          <div className={cn("relative w-full h-[90vh] mt-5", gsapGlobalClasses.fadeIn)}>
+          <div className="relative w-full h-[90vh] mt-5">
             <MaskedParallaxImage
               imgSrc={"/img/citys-park-banner.jpg"}
               sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
@@ -64,18 +65,15 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           />
         ))}
       </section>
-      <section className={cn("relative section-container py-20", gsapGlobalClasses.fadeIn)}>
-        <VideoSection
-          primaryVideoUrl={citysParkVideo}
-          thumbnail="/img/thumbnail-pinar-cemil-aktas.jpg"
-          title={t("videoTitle")}
-        />
-      </section>
-      {/* <AnimatedLine direction="horizontal" /> */}
-      {/* <LinkToPage
-        previous={{ title: tCommon("residences"), href: "/residences" }}
-        next={{ title: tCommon("citysMembersClub"), href: "/citys-members-club" }}
-      /> */}
+      <FadeInOnScroll>
+        <section className="relative section-container py-20">
+          <VideoSection
+            primaryVideoUrl={citysParkVideo}
+            thumbnail="/img/thumbnail-pinar-cemil-aktas.jpg"
+            title={t("videoTitle")}
+          />
+        </section>
+      </FadeInOnScroll>
     </>
   )
 }

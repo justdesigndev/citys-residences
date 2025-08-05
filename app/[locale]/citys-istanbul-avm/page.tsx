@@ -1,9 +1,9 @@
+import { AvmBrandsContainer } from "@/components/avm-brands-container"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysIstanbulLogo } from "@/components/icons"
-import { getBrandsData } from "@/lib/api/server-actions"
 import { Img } from "@/components/utility/img"
+import { getBrandsData } from "@/lib/api/server-actions"
 import { colors } from "@/styles/config.mjs"
-import { AvmBrandsContainer } from "@/components/avm-brands-container"
 
 // Fallback data for brands in case API fails - keeping for reference
 // const fallbackBrandsData: BrandsResponse = {
@@ -19,14 +19,6 @@ export default async function Page() {
   return (
     <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        {/* <Video
-          primaryVideoUrl={citysIstanbulAvmVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        /> */}
         <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
@@ -63,11 +55,6 @@ export default async function Page() {
           <AvmBrandsContainer initialBrands={brands.items || []} />
         </div>
       </section>
-      {/* <AnimatedLine direction="horizontal" /> */}
-      {/* <LinkToPage
-        previous={{ title: "City's Life Ayrıcalıkları", href: "/citys-life-privileges" }}
-        next={{ title: "Anasayfa", href: "/" }}
-      /> */}
     </>
   )
 }

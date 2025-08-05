@@ -8,16 +8,6 @@ import { breakpoints, colors } from "@/styles/config.mjs"
 export default function Page() {
   return (
     <>
-      {/* <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <Video
-          primaryVideoUrl={mainVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover object-bottom"
-        />
-      </section> */}
       <section className="bg-white py-0 lg:py-12 z-20">
         <div className="section-container">
           <FadeInOnScroll>
