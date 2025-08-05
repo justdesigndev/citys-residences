@@ -124,6 +124,7 @@ export function StackingCards({ items }: StackingCardsProps) {
                   fill
                   sizes="(max-width: 800px) 100vw, 50vw"
                   className="object-contain"
+                  loading="lazy"
                 />
               </div>
               <div className={cn("relative rounded-md overflow-hidden")}>
@@ -133,6 +134,7 @@ export function StackingCards({ items }: StackingCardsProps) {
                   fill
                   sizes="(max-width: 800px) 100vw, 50vw"
                   className="object-cover"
+                  loading="lazy"
                 />
                 {/* <MaskedPanImage imgSrc={item.images[1].url} sizes="100vw" /> */}
               </div>
