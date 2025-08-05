@@ -105,7 +105,7 @@ export function HorizontalScroll({
                 src={src}
                 alt="Aerial view of City's Residences"
                 fill
-                className={cn(s.img, "img object-cover")}
+                className={cn(s.img, "img object-cover object-bottom")}
                 priority
                 sizes="100vw"
               />
