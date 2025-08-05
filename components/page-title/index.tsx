@@ -1,4 +1,3 @@
-import { AnimatedLine } from "@/components/animated-line"
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { cn } from "@/lib/utils"
 
@@ -10,20 +9,16 @@ export interface PageTitleProps {
 
 export function PageTitle(props: PageTitleProps) {
   return (
-    <>
-      <AnimatedLine direction="horizontal" />
-      <div
-        className={cn("flex items-center justify-center gap-6 bd:gap-2 py-12 bt:py-20 font-primary", props.className)}
-        id={props.id}
-      >
-        <FadeInOnScroll>
-          <h2
-            className="text-bricky-brick font-semibold text-base xl:text-7xl 2xl:text-7xl xl:leading-tight 2xl:leading-tight"
-            dangerouslySetInnerHTML={{ __html: props.title }}
-          />
-        </FadeInOnScroll>
-      </div>
-      <AnimatedLine direction="horizontal" />
-    </>
+    <div
+      className={cn("flex items-center justify-center gap-6 bd:gap-2 py-12 bt:py-20 font-primary", props.className)}
+      id={props.id}
+    >
+      <FadeInOnScroll>
+        <h2
+          className="text-bricky-brick font-semibold text-base xl:text-7xl 2xl:text-7xl xl:leading-tight 2xl:leading-tight"
+          dangerouslySetInnerHTML={{ __html: props.title }}
+        />
+      </FadeInOnScroll>
+    </div>
   )
 }
