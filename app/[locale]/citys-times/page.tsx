@@ -18,6 +18,12 @@ export default async function Page() {
       </section>
       <section className="flex mb-8">
         <div className="w-72 font-primary font-medium border-r border-black text-bricky-brick text-xl p-8 flex flex-col items-start space-y-6 min-h-screen pt-24 mt-8">
+          <div className="flex items-center justify-start space-x-3 mb-8">
+            <IconWrapper className="w-14 h-14 flex-shrink-0 flex-grow-0 border-bricky-brick">
+              {social.events}
+            </IconWrapper>
+            <span>Etkinlikler</span>
+          </div>
           <div className="flex items-center justify-start space-x-3">
             <IconWrapper className="w-14 h-14 flex-shrink-0 flex-grow-0 border-bricky-brick">
               {social.instagram}
@@ -51,12 +57,6 @@ export default async function Page() {
               {social.linkedin}
             </IconWrapper>
             <span>Linkedin</span>
-          </div>
-          <div className="flex items-center justify-start space-x-3">
-            <IconWrapper className="w-14 h-14 flex-shrink-0 flex-grow-0 border-bricky-brick">
-              {social.events}
-            </IconWrapper>
-            <span>Etkinlikler</span>
           </div>
         </div>
         <div className="flex-1 bg-white py-20 flex flex-col items-center">
