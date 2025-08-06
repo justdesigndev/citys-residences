@@ -8,6 +8,7 @@ import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
 import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
 import { getResidencesContent } from "@/lib/content"
+import { cn } from "@/lib/utils"
 import { colors } from "@/styles/config.mjs"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
@@ -54,18 +55,36 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         </FadeInOnScroll>
       </section>
       <section className="hidden xl:block bg-white relative z-30 section-container">
-        <div className="relative flex flex-col items-center justify-center lg:max-w-4xl 3xl:max-w-5xl mx-auto py-32 pb-0">
-          <h2 className="font-montserrat font-bold text-bricky-brick text-4xl lg:text-7xl xl:text-6xl 2xl:text-6xl 3xl:text-7xl xl:leading-tight 2xl:leading-snug 3xl:leading-snug mb-6 text-center xl:text-center">
+        <div className="relative flex flex-col items-center justify-center mx-auto py-32 pb-0">
+          <h2
+            className={cn(
+              "font-montserrat font-bold text-bricky-brick text-center mb-5",
+              "text-4xl lg:text-7xl xl:text-6xl 2xl:text-7xl 3xl:text-7xl",
+              "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight "
+            )}
+          >
             <GsapSplitText splitBy="lines" stagger={0.05} duration={1}>
               Yaşama Alan Açan Detaylar
             </GsapSplitText>
           </h2>
-          <p className="font-primary font-medium text-md lg:text-4xl xl:text-4xl 2xl:text-4xl 3xl:text-5xl xl:leading-snug 2xl:leading-normal 3xl:leading-normal mb-6 text-center xl:text-center">
+          <p
+            className={cn(
+              "font-primary font-medium text-md text-center mb-10",
+              "text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+              "leading-tighter lg:leading-tighter xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+            )}
+          >
             <GsapSplitText splitBy="lines" stagger={0.05} duration={1}>
               Her metrekaresi ince tasarlanmış, <br /> ferah bir hayata açılan çizgiler
             </GsapSplitText>
           </p>
-          <p className="font-primary font-normal text-md lg:text-4xl xl:text-3xl 2xl:text-3xl 3xl:text-3xl xl:leading-normal 2xl:leading-normal 3xl:leading-normal text-center xl:text-center">
+          <p
+            className={cn(
+              "font-primary font-normal text-center xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl",
+              "text-lg lg:text-4xl xl:text-2xl 2xl:text-3xl 3xl:text-3xl",
+              "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal"
+            )}
+          >
             <GsapSplitText splitBy="lines" stagger={0.05} duration={1}>
               Günlük alışkanlıklardan uzun vadeli konfora kadar her detay, yaşamın doğal akışına uyum sağlayacak şekilde
               tasarlandı.
