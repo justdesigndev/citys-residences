@@ -101,7 +101,12 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <VideoSection
             primaryVideoUrl={melihBulgurVideo}
             thumbnail="/img/thumbnail-melih-bulgur.jpg"
-            title="Zemin Güvenliği: Huzur Mühendisliği"
+            title={
+              <>
+                Zemin Güvenliği <span className="font-montserrat font-light text-[1.5em] mx-8">X</span> Huzur
+                Mühendisliği
+              </>
+            }
           />
         </section>
       </FadeInOnScroll>

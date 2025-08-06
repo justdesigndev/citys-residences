@@ -33,8 +33,12 @@ export default function Page({ params }: { params: { locale: string } }) {
         <PageTitle title="CITY'S LIFE AYRICALIKLARI" id={navigationConfig["/citys-life-privileges"]?.id as string} />
         <CitysLifePrivileges params={params} />
         <PageTitle
-          className="font-copperplate text-center"
-          title="CITY'S İSTANBUL <br /> AVM"
+          textClassName="font-copperplate text-center"
+          title={
+            <>
+              CITY<span className="font-montserrat">&apos;</span>S İSTANBUL <br /> AVM
+            </>
+          }
           id={navigationConfig["/citys-istanbul-avm"]?.id as string}
         />
         <CitysIstanbulAvm />
