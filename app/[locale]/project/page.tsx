@@ -17,9 +17,9 @@ export default function Page() {
               <Logo fill={colors["bricky-brick"]} />
             </div>
           </FadeInOnScroll>
-          <div className="space-y-8 lg:space-y-16 3xl:space-y-12 px-44">
+          <div className="space-y-8 lg:space-y-16 3xl:space-y-12 px-0 lg:px-44">
             <FadeInOnScroll>
-              <div className={"relative w-full h-[40vw]"}>
+              <div className="relative w-full h-[60vw] lg:h-[40vw]">
                 <Img
                   alt={`Project Visual`}
                   src={`/img/project/01.jpg`}
@@ -31,7 +31,7 @@ export default function Page() {
               </div>
             </FadeInOnScroll>
             <FadeInOnScroll>
-              <div className={"relative w-full h-[40vw]"}>
+              <div className="relative w-full h-[60vw] lg:h-[40vw]">
                 <Img
                   alt={`Project Visual`}
                   src={`/img/project/02.jpg`}
@@ -44,18 +44,17 @@ export default function Page() {
             </FadeInOnScroll>
           </div>
           <FadeInOnScroll>
-            <div className={"relative py-8 lg:py-16"}>
+            <div className="relative py-8 lg:py-16">
               <VideoSection
                 primaryVideoUrl={muratKaderVideo}
                 thumbnail="/img/thumbnail-murat-kader.jpg"
                 title="PROJEYİ MİMARI ANLATIYOR..."
-                className="rounded-sm overflow-hidden"
               />
             </div>
           </FadeInOnScroll>
-          <div className="space-y-8 lg:space-y-16 3xl:space-y-12 px-44">
+          <div className="space-y-8 lg:space-y-16 3xl:space-y-12 px-0 lg:px-44">
             <FadeInOnScroll>
-              <div className={"relative w-full h-[40vw]"}>
+              <div className="relative w-full h-[60vw] lg:h-[40vw]">
                 <Img
                   alt={`Project Visual`}
                   src={`/img/project/03.jpg`}
@@ -67,7 +66,7 @@ export default function Page() {
               </div>
             </FadeInOnScroll>
             <FadeInOnScroll>
-              <div className={"relative w-full h-[40vw]"}>
+              <div className="relative w-full h-[60vw] lg:h-[40vw]">
                 <Img
                   alt={`Project Visual`}
                   src={`/img/project/04.jpg`}
@@ -79,7 +78,7 @@ export default function Page() {
               </div>
             </FadeInOnScroll>
             <FadeInOnScroll>
-              <div className={"relative w-full h-[40vw]"}>
+              <div className="relative w-full h-[60vw] lg:h-[40vw]">
                 <Img
                   alt={`Project Visual`}
                   src={`/img/project/05.jpg`}

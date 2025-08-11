@@ -122,7 +122,7 @@ body {
 }
 
 .section-padding {
-  @apply px-6 md:px-10 xl:px-16;
+  @apply px-0 md:px-10 xl:px-16;
 }
 
 .section-container {
