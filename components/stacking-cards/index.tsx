@@ -102,22 +102,22 @@ export function StackingCards({ items }: StackingCardsProps) {
             className={cn(
               "gsap-stacking-card",
               "relative lg:absolute w-full h-full overflow-hidden",
-              "border border-s-neutral-300 bg-white px-4 lg:px-8 rounded-xl",
-              "flex flex-col gap-3 py-4 lg:py-8 xl:py-4 flex-1"
+              "lg:border lg:border-s-neutral-300 bg-white px-0 lg:px-8 lg:rounded-xl",
+              "flex flex-col gap-0 lg:gap-3 py-4 lg:py-8 xl:py-4 flex-1"
             )}
             key={i}
             id={item.sectionId}
           >
-            <div className="flex flex-col gap-5 py-8">
-              <h3 className="font-montserrat text-4xl lg:text-4xl xl:text-5xl font-bold text-bricky-brick">
+            <div className="flex flex-col gap-2 lg:gap-5 py-8 px-4 lg:px-0">
+              <h3 className="font-montserrat text-3xl lg:text-4xl xl:text-5xl font-bold text-bricky-brick">
                 {item.title}
               </h3>
-              <small className="font-primary text-sm lg:text-base xl:text-2xl font-bold text-bricky-brick">
+              <small className="font-primary text-lg lg:text-base xl:text-2xl font-bold text-bricky-brick max-w-72 lg:max-w-none">
                 {item.description}
               </small>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-auto flex-1">
-              <div className="relative rounded-md overflow-hidden">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 mt-auto flex-1">
+              <div className="relative lg:rounded-md overflow-hidden w-full h-[72vw] lg:h-auto">
                 <Img
                   src={item.images[0].url}
                   alt="Residence"
@@ -127,7 +127,7 @@ export function StackingCards({ items }: StackingCardsProps) {
                   loading="lazy"
                 />
               </div>
-              <div className={cn("relative rounded-md overflow-hidden")}>
+              <div className="relative lg:rounded-md overflow-hidden w-full h-[60vw] lg:h-auto">
                 <Img
                   src={item.images[1].url}
                   alt="Residence"
@@ -136,7 +136,6 @@ export function StackingCards({ items }: StackingCardsProps) {
                   className="object-cover"
                   loading="lazy"
                 />
-                {/* <MaskedPanImage imgSrc={item.images[1].url} sizes="100vw" /> */}
               </div>
             </div>
           </div>

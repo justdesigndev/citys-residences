@@ -43,7 +43,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </div>
         </FadeInOnScroll>
       </section>
-      <section className="bg-white relative z-30 py-12" id={sections.residences.interiorArchitecture.id}>
+      <section className="bg-white relative z-30 lg:py-12" id={sections.residences.interiorArchitecture.id}>
         <FadeInOnScroll>
           <div className="section-container">
             <VideoSection
@@ -93,18 +93,18 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         </div>
         <Sequenced />
       </section>
-      <section className="bg-white relative z-30 section-container py-12">
+      <section className="bg-white relative z-30 section-container py-6 lg:py-12">
         <StackingCards items={items} />
       </section>
       <FadeInOnScroll>
-        <section className="section-container py-12" id={sections.residences.groundSafety.id}>
+        <section className="section-container lg:py-12" id={sections.residences.groundSafety.id}>
           <VideoSection
             primaryVideoUrl={melihBulgurVideo}
             thumbnail="/img/thumbnail-melih-bulgur.jpg"
             title={
               <>
-                Zemin Güvenliği <span className="font-montserrat font-light text-[1.5em] mx-8">X</span> Huzur
-                Mühendisliği
+                Zemin Güvenliği <span className="block lg:inline font-montserrat font-light text-[1.5em] mx-8">X</span>{" "}
+                Huzur Mühendisliği
               </>
             }
           />
