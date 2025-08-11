@@ -54,8 +54,8 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </div>
         </FadeInOnScroll>
       </section>
-      <section className="hidden xl:block bg-white relative z-30 section-container">
-        <div className="relative flex flex-col items-center justify-center mx-auto py-32 pb-0">
+      <section className="bg-white relative z-30 section-container">
+        <div className="relative flex flex-col items-center justify-center mx-auto py-16 lg:py-32 pb-0 px-4 lg:px-0">
           <h2
             className={cn(
               "font-montserrat font-bold text-bricky-brick text-center mb-5",
@@ -69,8 +69,8 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </h2>
           <p
             className={cn(
-              "font-primary font-medium text-md text-center mb-10",
-              "text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+              "font-primary font-medium text-md text-center mb-5 lg:mb-10",
+              "text-2xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
               "leading-tighter lg:leading-tighter xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
             )}
           >

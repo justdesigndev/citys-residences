@@ -42,6 +42,7 @@ const Sequenced = () => {
         end: `+=1500px`,
         pin: true,
         scrub: true,
+        start: "center center",
         trigger: ref.current,
         onUpdate: (self) => {
           setImgRecursively(self.progress)
@@ -55,14 +56,13 @@ const Sequenced = () => {
 
   return (
     <div className="relative overflow-hidden pointer-events-none">
-      <div className="w-full h-screen flex items-center justify-center overflow-hidden" ref={ref}>
+      <div className="w-full h-[80vw] lg:h-screen flex items-center justify-center overflow-hidden" ref={ref}>
         <div className="relative w-[70vw] h-[75%]">
           {Array.from({ length: 31 }).map((_, i) => {
             return (
               <div className={cn("gsap-sequence-item", "absolute top-0 left-0 botom-0 right-0 h-full w-full")} key={i}>
                 <Img
                   className="w-full h-full object-contain"
-                  // src={`/img/residences/3d/${String(i + 1).padStart(2, "0")}.png`}
                   src={`/img/residences/3d/${i}.png`}
                   alt="Residence 3D View"
                   fill
