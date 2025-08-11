@@ -32,13 +32,13 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           />
         </section>
       </FadeInOnScroll>
-      <section className="relative z-20 bg-white pt-10">
+      <section className="relative z-20 bg-white lg:pt-10">
         <LogoSection foregroundLogo={<IconCitysLifeLogo fill="#000000" />} />
-        <div className="section-container pt-16 pb-32 flex flex-col items-center gap-14">
+        <div className="section-container pt-8 lg:pt-16 pb-16 lg:pb-32 flex flex-col items-center gap-14">
           <h2
             className={cn(
               "font-primary font-medium text-black text-center",
-              "text-2xl lg:text-2xl xl:text-5xl 2xl:text-5xl 3xl:text-[54px]",
+              "text-3xl lg:text-2xl xl:text-5xl 2xl:text-5xl 3xl:text-[54px]",
               "leading-snug xl:leading-snug 2xl:leading-snug 3xl:leading-snug"
             )}
           >
@@ -47,9 +47,18 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             </GsapSplitText>
           </h2>
           <FadeInOnScroll delay={0.3}>
-            <h2 className="font-primary font-medium text-bricky-brick text-2xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl xl:leading-normal 2xl:leading-tight 3xl:leading-tight xl:max-w-4xl 2xl:max-w-6xl text-center flex items-center justify-center">
-              Yaşam Yeniden Tasarlandı <span className="font-montserrat font-light text-[1.5em] mx-8">X</span>{" "}
-              CITY&apos;S
+            <h2
+              className={cn(
+                "font-primary font-medium text-center text-bricky-brick",
+                "text-3xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+                "xl:leading-normal 2xl:leading-tight 3xl:leading-tight",
+                "xl:max-w-4xl 2xl:max-w-6xl",
+                "flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0"
+              )}
+            >
+              <span>Yaşam Yeniden Tasarlandı </span>
+              <span className="block lg:inline font-montserrat font-light text-[1.5em] mx-8">X</span>
+              <span>CITY&apos;S</span>
             </h2>
           </FadeInOnScroll>
         </div>

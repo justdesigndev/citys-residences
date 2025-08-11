@@ -6,6 +6,7 @@ import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { membersClubVideo } from "@/lib/constants"
 import { getCitysMembersClubContent } from "@/lib/content"
+import { cn } from "@/lib/utils"
 
 export default async function Page({ params }: { params: { locale: string } }) {
   const { locale } = params
@@ -27,16 +28,25 @@ export default async function Page({ params }: { params: { locale: string } }) {
       </FadeInOnScroll>
       <section className="relative z-20 bg-minor-blue">
         <LogoSection foregroundLogo={<IconCitysMembersClubLogo fill="#000000" />} />
-        <div className="flex flex-col items-center justify-center pb-24">
+        <div className="flex flex-col items-center justify-center pb-12 lg:pb-24">
           <FadeInOnScroll>
-            <div className="relative w-[35vw] h-[35vw] mb-12">
+            <div className="relative w-[90vw] h-[80vw] lg:w-[35vw] lg:h-[35vw] mb-12">
               <Img src="/img/members-cat.png" alt="City's Members Club" fill className="object-contain" />
             </div>
           </FadeInOnScroll>
           <FadeInOnScroll delay={0.3}>
-            <h2 className="font-primary font-medium text-2xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl xl:leading-normal 2xl:leading-tight 3xl:leading-tight xl:max-w-4xl 2xl:max-w-6xl text-center flex items-center justify-center">
-              Yaşam Yeniden Tasarlandı <span className="font-montserrat font-light text-[1.5em] mx-8">X</span>{" "}
-              CITY&apos;S
+            <h2
+              className={cn(
+                "font-primary font-medium text-center",
+                "text-3xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+                "xl:leading-normal 2xl:leading-tight 3xl:leading-tight",
+                "xl:max-w-4xl 2xl:max-w-6xl",
+                "flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0"
+              )}
+            >
+              <span>Yaşam Yeniden Tasarlandı </span>
+              <span className="block lg:inline font-montserrat font-light text-[1.5em] mx-8">X</span>
+              <span>CITY&apos;S</span>
             </h2>
           </FadeInOnScroll>
         </div>
