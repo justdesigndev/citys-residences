@@ -35,11 +35,11 @@ export function HorizontalScroll({
           pin: true,
           scrub: true,
           end: "+=5000",
-          snap: {
-            snapTo: 1 / (sections.length - 1),
-            duration: 2,
-            ease: "power3.inOut",
-          },
+          // snap: {
+          //   snapTo: 1 / (sections.length - 1),
+          //   duration: 2,
+          //   ease: "power3.inOut",
+          // },
         },
       })
 
