@@ -345,7 +345,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         </button>
         <div className="h-full w-full flex" data-lenis-prevent>
           <ScrollableBox>
-            <nav className="h-full w-full px-10 lg:px-6 flex items-start justify-start">
+            <nav className="h-full w-full px-10 lg:px-6 flex items-start justify-start pb-12 lg:pb-0">
               <ul
                 className={cn(
                   "flex flex-col items-start gap-3 lg:gap-2 xl:gap-0 2xl:gap-2",
@@ -363,7 +363,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     <li key={section.id}>
                       <span
                         className={cn(
-                          "font-primary font-normal text-white my-2",
+                          "font-primary font-normal text-white my-0 lg:my-2",
                           "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
                           "cursor-pointer block"
                         )}
