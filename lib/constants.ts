@@ -251,7 +251,7 @@ export const sections = {
       id: "spa-wellness-reception",
       subitems: {
         spaWellness: {
-          label: "Spa & Wellness Rsepsiyon",
+          label: "Spa & Wellness Resepsiyon",
           id: "spa-wellness-reception",
         },
         massage: {
