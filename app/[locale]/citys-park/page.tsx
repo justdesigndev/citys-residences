@@ -7,7 +7,7 @@ import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
-import { citysParkVideo } from "@/lib/constants"
+import { citysParkVideo, pinarVeCemilAktasVideo } from "@/lib/constants"
 import { getCitysParkContent } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { breakpoints } from "@/styles/config.mjs"
@@ -85,7 +85,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       <FadeInOnScroll>
         <section className="relative section-container py-20">
           <VideoSection
-            primaryVideoUrl={citysParkVideo}
+            primaryVideoUrl={pinarVeCemilAktasVideo}
             thumbnail="/img/thumbnail-pinar-cemil-aktas.jpg"
             title={t("videoTitle")}
           />
