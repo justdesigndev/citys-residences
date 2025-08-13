@@ -230,6 +230,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                       "text-xl lg:text-xl xl:text-2xl 2xl:text-2xl 3xl:text-3xl",
                       "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
+
                       {
                         "opacity-100": active === null || active === i,
                         "opacity-30": active !== null && active !== i,
@@ -379,13 +380,13 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                         {section.label}
                       </span>
                       {section.subitems && (
-                        <ul className="flex flex-col gap-2 my-2 lg:my-4">
+                        <ul className="flex flex-col gap-2 my-2 lg:my-2">
                           {Object.values(section.subitems).map((subitem) => (
                             <li key={subitem.id}>
                               <span
                                 className={cn(
                                   "font-primary font-light text-white/90",
-                                  "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
+                                  "text-lg lg:text-xl xl:text-[calc(theme(fontSize.xl)_-_.2rem)] 2xl:text-[calc(theme(fontSize.2xl)_-_.2rem)] 3xl:text-[calc(theme(fontSize.2xl)_-_.2rem)]",
                                   "cursor-pointer block"
                                 )}
                                 onClick={() => handleScroll(subitem.id)}
