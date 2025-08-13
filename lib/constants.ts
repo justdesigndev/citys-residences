@@ -333,31 +333,31 @@ export const sections = {
   },
   "citys-life-privileges": {
     receptionConcierge: {
-      label: "Resepsiyon & Concierge",
+      label: "Resepsiyon & Concierge Hizmeti",
       id: "reception-concierge",
     },
     valetParking: {
-      label: "Vale Otopark",
+      label: "Vale & Otopark Hizmetleri",
       id: "valet-parking",
     },
     cargoDelivery: {
-      label: "Kargo Teslimat",
+      label: "Kargo Teslim Servisi",
       id: "cargo-delivery",
     },
     petServices: {
-      label: "Evcil Hayvan Hizmetleri",
+      label: "Pet Hotel & Pet Hospital",
       id: "pet-services",
     },
     justStay: {
-      label: "Just Stay",
+      label: "JUSTStay",
       id: "juststay-accommodation",
     },
     justWork: {
-      label: "Just Work",
+      label: "JUSTWork Office Campus",
       id: "justwork-office",
     },
     justEvent: {
-      label: "Just Event",
+      label: "JUSTEvent",
       id: "justevent",
     },
   },
