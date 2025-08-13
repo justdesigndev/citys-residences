@@ -228,8 +228,8 @@ export function Menu({ open, setOpen, items }: MenuProps) {
             <nav className="w-full h-full flex items-end justify-center lg:justify-start px-10 lg:px-10">
               <ul
                 className={cn(
-                  "flex flex-col items-start gap-3 lg:gap-2 xl:gap-2 2xl:gap-3",
-                  "py-0 pt-20 lg:pt-20 pb-0 lg:py-12 w-full"
+                  "flex flex-col items-start gap-3 lg:gap-2 xl:gap-3 2xl:gap-3 3xl:gap-4",
+                  "pt-20 lg:pt-0 pb-0 lg:py-12 w-full"
                 )}
               >
                 {items.map(({ title, id }, i) => (
@@ -251,7 +251,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     </span>
                   </li>
                 ))}
-                <li className="my-4 lg:my-8 xl:my-8 2xl:my-10 3xl:my-10">
+                <li className="my-4 lg:my-8 xl:my-6 2xl:my-10 3xl:my-10">
                   <a
                     href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
                     target="_blank"
@@ -272,17 +272,17 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     CR Satış Ofisi Konum
                   </a>
                 </li>
-                <li className="flex flex-col items-center lg:items-start mt-auto mb-8 w-7/12 lg:w-full">
+                <li className="flex flex-col items-center lg:items-start mt-auto ">
                   <p
                     className={cn(
                       "w-full font-primary font-normal text-white text-left",
-                      "text-sm xl:text-xl 2xl:text-xl 3xl:text-2xl",
+                      "text-sm xl:text-lg 2xl:text-xl 3xl:text-2xl",
                       "py-2 border-b-[3px] border-b-white/30"
                     )}
                   >
                     Bizi Takip Edin
                   </p>
-                  <div className="grid grid-cols-4 gap-2 lg:gap-2 xl:gap-2 py-3 xl:py-4 pr-4">
+                  <div className="grid grid-cols-4 gap-2 lg:gap-2 xl:gap-2 pt-3 xl:pt-4 pr-4 w-7/12 xl:w-10/12 2xl:w-full">
                     <IconWrapper
                       className={cn(
                         "w-full aspect-square opacity-70 transition-opacity cursor-pointer",
