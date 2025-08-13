@@ -318,7 +318,7 @@ export const sections = {
     },
     workshops: {
       label: "Atölyeler",
-      id: "workshops",
+      id: "cooking-workshop",
       subitems: {
         cookingWorkshop: {
           label: "Yemek Atölyesi",
