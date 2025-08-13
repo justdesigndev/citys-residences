@@ -192,11 +192,11 @@ export const sections = {
     },
     macOne: {
       label: "MAC/One",
-      id: "mac-one",
+      id: "sports-spa-reception",
       subitems: {
         sportAndSpaReception: {
           label: "Spor & Spa Resepsiyon",
-          id: "sport-spa-reception",
+          id: "sports-spa-reception",
         },
         changingRooms: {
           label: "Soyunma Odaları",
@@ -226,7 +226,7 @@ export const sections = {
     },
     dynamicZone: {
       label: "Dynamic Zone",
-      id: "padel-tennis",
+      id: "dynamic-zone",
       subitems: {
         padelTennis: {
           label: "Padel Tenis",
