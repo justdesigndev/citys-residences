@@ -9,6 +9,7 @@ import { useClickAway, useWindowSize } from "react-use"
 import { IconWrapper } from "@/components/icon-wrapper"
 import { IconPin, socialIcons } from "@/components/icons"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
+import { citysIstanbulAvmGoogleMaps } from "@/lib/constants"
 import { useStackingCardsStore } from "@/lib/store/stacking-cards"
 import { breakpoints, colors } from "@/styles/config.mjs"
 import { ChevronLeft, X } from "lucide-react"
@@ -235,7 +236,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                 {items.map(({ title, id }, i) => (
                   <li
                     className={cn(
-                      "text-xl lg:text-xl xl:text-2xl 2xl:text-2xl 3xl:text-3xl",
+                      "text-xl lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
                       "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
                       {
@@ -251,38 +252,55 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     </span>
                   </li>
                 ))}
-                <li className="my-4 lg:my-8 xl:my-6 2xl:my-10 3xl:my-10">
+                <li className="my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-8">
                   <a
-                    href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
+                    href={citysIstanbulAvmGoogleMaps}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      "text-xl lg:text-lg xl:text-xl 2xl:text-xl 3xl:text-2xl",
+                      "text-base lg:text-base xl:text-base 2xl:text-lg 3xl:text-lg",
                       "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
                       "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
                       "opacity-100",
                       "hover:opacity-70",
-                      "flex items-center gap-2"
+                      "flex items-start gap-2"
                     )}
                   >
                     <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
                       <IconPin fill={colors.white} />
                     </span>
-                    CR Satış Ofisi Konum
+                    <span className="flex flex-col gap-2">
+                      <span>CR Satış Ofisi Konum</span>
+                      <span
+                        // href={citysIstanbulAvmGoogleMaps}
+                        className={cn(
+                          "block",
+                          "whitespace-pre-line",
+                          "text-sm lg:text-sm xl:text-sm 2xl:text-lg 3xl:text-lg",
+                          "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
+                          "font-primary font-normal text-white text-center lg:text-left"
+                        )}
+                        // target="_blank"
+                        // rel="noopener noreferrer"
+                      >
+                        <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
+                        <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
+                      </span>
+                    </span>
                   </a>
                 </li>
                 <li className="flex flex-col items-center lg:items-start mt-auto ">
                   <p
                     className={cn(
                       "w-full font-primary font-normal text-white text-left",
-                      "text-sm xl:text-lg 2xl:text-xl 3xl:text-2xl",
+                      "text-sm xl:text-sm 2xl:text-sm 3xl:text-base",
                       "py-2 border-b-[3px] border-b-white/30"
                     )}
                   >
                     Bizi Takip Edin
                   </p>
-                  <div className="grid grid-cols-4 gap-2 lg:gap-2 xl:gap-2 pt-3 xl:pt-4 pr-4 w-7/12 xl:w-10/12 2xl:w-full">
+                  <div className="grid grid-cols-4 gap-2 lg:gap-2 xl:gap-2 pt-3 xl:pt-2 pr-4 w-7/12 xl:w-9/12">
                     <IconWrapper
                       className={cn(
                         "w-full aspect-square opacity-70 transition-opacity cursor-pointer",
