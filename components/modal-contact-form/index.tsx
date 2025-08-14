@@ -11,10 +11,13 @@ import { useEffect, useRef, useState } from "react"
 
 import { ContactForm } from "@/components/form-contact"
 import { gsap } from "@/components/gsap"
+import { IconPin } from "@/components/icons"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { useEsc } from "@/hooks/useEsc"
-import { FormTranslations } from "@/types"
+import { citysIstanbulAvmGoogleMaps } from "@/lib/constants"
 import { useVisibilityStore } from "@/lib/store/visibility"
+import { colors } from "@/styles/config.mjs"
+import { FormTranslations } from "@/types"
 
 export function ModalContactForm() {
   const stickyBadgeRef = useRef<HTMLDivElement>(null)
@@ -195,8 +198,8 @@ export function ModalContactForm() {
         ref={bgRef}
         onClick={() => setOpen(false)}
       ></div>
-      <div className={cn(s.form)}>
-        <div className={cn("relative box bg-brilliance h-full w-0")} onClick={(e) => e.stopPropagation()} ref={formRef}>
+      <div className={s.form}>
+        <div className="relative box bg-brilliance h-full w-0" onClick={(e) => e.stopPropagation()} ref={formRef}>
           <div className="absolute top-0 left-0 w-[700px] h-full flex right-0">
             <button
               className={cn(
@@ -228,26 +231,50 @@ export function ModalContactForm() {
             </div>
             <div className="h-full flex flex-col justify-center">
               <ScrollableBox className="flex flex-grow-0">
-                <div className="px-4 lg:px-8 py-14 lg:py-8 space-y-8">
+                <div className="px-4 lg:px-8 py-14 lg:py-8 space-y-8 relative">
                   <h2 className="text-neutral-900 text-base lg:text-sm font-normal font-primary text-left lg:text-center xl:text-left leading-normal">
                     {t.rich("description", {
                       br: () => <br className="hidden lg:block" />,
                     })}
                   </h2>
                   <ContactForm translations={formTranslations} />
+                  <a
+                    href={citysIstanbulAvmGoogleMaps}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "absolute bottom-8 right-8",
+                      "text-base lg:text-base xl:text-base 2xl:text-base 3xl:text-base",
+                      "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
+                      "font-primary font-normal text-bricky-brick text-center lg:text-left",
+                      "transition-opacity duration-300 ease-in-out",
+                      "opacity-100",
+                      "hover:opacity-70",
+                      "flex items-start gap-2"
+                    )}
+                  >
+                    <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
+                      <IconPin fill={colors["bricky-brick"]} />
+                    </span>
+                    <span className="flex flex-col gap-2">
+                      <span>CR Satış Ofisi Konum</span>
+                      <span
+                        className={cn(
+                          "block",
+                          "whitespace-pre-line",
+                          "text-sm lg:text-sm xl:text-sm 2xl:text-sm 3xl:text-sm",
+                          "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
+                          "font-primary font-normal text-center lg:text-left"
+                        )}
+                      >
+                        <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
+                        <span className="block sm:whitespace-nowrap">34752 Ataşehir/Istanbul</span>
+                      </span>
+                    </span>
+                  </a>
                 </div>
               </ScrollableBox>
             </div>
-            {/* <div className="hidden xl:block col-span-1">
-                  <Video
-                    primaryVideoUrl={mainVideoDesktop}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
-                </div> */}
           </div>
         </div>
       </div>

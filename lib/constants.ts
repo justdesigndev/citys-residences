@@ -106,6 +106,8 @@ export const membersClubVideo =
 export const citysIstanbulAvmVideo =
   "https://player.vimeo.com/progressive_redirect/playback/1090029618/rendition/1080p/file.mp4?loc=external&log_user=0&signature=f1d3f003fc9827566caaea65487458e20ce21ad51846208b95045b77f6875b34"
 
+export const citysIstanbulAvmGoogleMaps = "https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
+
 export const sections = {
   residences: {
     interiorArchitecture: {

@@ -12,7 +12,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Link as LocalizedLink } from "@/components/utility/link"
 import { Locale, routing } from "@/i18n/routing"
-import { getNavigationItems } from "@/lib/constants"
+import { citysIstanbulAvmGoogleMaps, getNavigationItems } from "@/lib/constants"
 import { useVisibilityStore } from "@/lib/store/visibility"
 import { colors } from "@/styles/config.mjs"
 
@@ -131,7 +131,7 @@ export function Footer() {
                       })}
                     </span>
                     <a
-                      href="https://maps.app.goo.gl/2hSJUsgo2U198Kqq9"
+                      href={citysIstanbulAvmGoogleMaps}
                       className={cn(
                         "block",
                         "whitespace-pre-line",
