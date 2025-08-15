@@ -45,7 +45,9 @@ export default function Page({ params }: { params: { locale: string } }) {
         />
         <CitysIstanbulAvm />
         <PageTitle title="CITY'S TIMES" id={navigationConfig["/citys-times"]?.id as string} />
-        <CitysTimes />
+        <CitysTimes
+        //  params={params}
+        />
       </Wrapper>
       <Footer />
     </>

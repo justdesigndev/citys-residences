@@ -2,9 +2,14 @@ import { IconWrapper } from "@/components/icon-wrapper"
 import { socialIcons } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { colors } from "@/styles/config.mjs"
+// import { fetchEvents, getEventImageUrl } from "@/lib/api/queries"
 
 export default async function Page() {
+  // { params: { locale } }: { params: { locale: string } }
   const social = socialIcons(colors["bricky-brick"])
+  // const eventsResponse = await fetchEvents(locale)
+  // const events = eventsResponse.success ? eventsResponse.data || [] : []
+
   return (
     <>
       <section className="h-[35vw] relative overflow-hidden">
@@ -84,6 +89,54 @@ export default async function Page() {
               />
             </div>
           </div>
+          {/* {events.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mt-12 px-24">
+              {events.map((event) => (
+                <div key={event.id} className="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+                  {event.media.length > 0 && event.media[0].type === "image" && (
+                    <div className="w-full h-48 relative">
+                      <Img
+                        src={getEventImageUrl(event.media[0].src)}
+                        alt={event.title}
+                        fill
+                        sizes="30vw"
+                        className="object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <h4 className="font-primary font-semibold text-black text-xl mb-2">{event.title}</h4>
+                    <p className="font-primary text-gray-600 text-sm mb-3">{event.description}</p>
+                    <div className="space-y-1 text-sm text-bricky-brick">
+                      <p>
+                        <span className="font-medium">Konum:</span> {event.location}
+                      </p>
+                      <p>
+                        <span className="font-medium">Tarih:</span> {event.date}
+                      </p>
+                      <p>
+                        <span className="font-medium">Saat:</span> {event.time}
+                      </p>
+                    </div>
+                    <div className="mt-3">
+                      <span
+                        className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                          event.status === "active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"
+                        }`}
+                      >
+                        {event.status === "active" ? "Aktif" : "Pasif"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 text-center">
+              <p className="font-primary text-gray-500 text-xl">Henüz etkinlik bulunmamaktadır.</p>
+            </div>
+          )} */}
         </div>
       </section>
     </>

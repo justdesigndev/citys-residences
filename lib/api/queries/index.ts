@@ -1,4 +1,4 @@
-import { BrandsResponse, Category, SubCategory, Floor, ApiResponse, ApiBrand } from "@/types"
+import { BrandsResponse, Category, SubCategory, Floor, ApiResponse, ApiBrand, Event } from "@/types"
 
 // Client-side functions for fetching data
 export async function fetchCategories(lang: string = "tr"): Promise<ApiResponse<Category[]>> {
@@ -148,4 +148,33 @@ export async function fetchBrands(
   } catch {
     return { success: false, error: "Failed to fetch brands" }
   }
+}
+
+export async function fetchEvents(lang: string = "tr"): Promise<ApiResponse<Event[]>> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+    const response = await fetch(`${baseUrl}/api/events?lang=${lang}`, {
+      cache: "no-store", // For dynamic data
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch events: ${response.status}`)
+    }
+
+    const data = await response.json()
+    // The API returns the events array directly, not wrapped in an object
+    const events = Array.isArray(data) ? data : []
+
+    return { success: true, data: events }
+  } catch {
+    return { success: false, error: "Failed to fetch events" }
+  }
+}
+
+// Utility function to get proper image URLs for events
+export function getEventImageUrl(imageSrc: string): string {
+  if (imageSrc.startsWith("http")) {
+    return imageSrc
+  }
+  return `https://crm.citysresidences.com/assets/images/events/${imageSrc}`
 }

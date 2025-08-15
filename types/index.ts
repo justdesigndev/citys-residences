@@ -302,3 +302,25 @@ export interface ApiResponse<T> {
   error?: string
   message?: string
 }
+
+// Events API types
+export interface EventMedia {
+  id: string
+  type: "image" | "video"
+  src: string
+}
+
+export interface Event {
+  id: string
+  title: string
+  description: string
+  location: string
+  date: string
+  time: string
+  status: "active" | "inactive"
+  media: EventMedia[]
+}
+
+export interface EventsResponse {
+  events: Event[]
+}
