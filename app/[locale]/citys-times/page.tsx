@@ -17,8 +17,8 @@ export default async function Page() {
         />
       </section>
       <section className="flex mb-8">
-        <div className="w-72 font-primary font-medium border-r border-black text-bricky-brick text-xl p-8 flex flex-col items-start space-y-6 min-h-screen pt-24 mt-8">
-          <div className="flex items-center justify-start space-x-3 mb-8">
+        <div className="w-72 font-primary font-medium border-r-2 border-black text-bricky-brick text-xl p-8 flex flex-col items-start space-y-6 min-h-screen pt-24 mt-8">
+          <div className="flex items-center justify-start space-x-3 mb-16">
             <IconWrapper className="w-14 h-14 flex-shrink-0 flex-grow-0 border-bricky-brick">
               {social.events}
             </IconWrapper>
