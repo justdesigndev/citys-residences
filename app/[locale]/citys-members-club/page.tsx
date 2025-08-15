@@ -1,5 +1,5 @@
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
-import { IconCitysMembersClubLogo } from "@/components/icons"
+import { IconCitysMembersClubLogo, IconCollab } from "@/components/icons"
 import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Img } from "@/components/utility/img"
@@ -7,6 +7,7 @@ import { Video } from "@/components/utility/video"
 import { membersClubVideo } from "@/lib/constants"
 import { getCitysMembersClubContent } from "@/lib/content"
 import { cn } from "@/lib/utils"
+import { colors } from "@/styles/config.mjs"
 
 export default async function Page({ params }: { params: { locale: string } }) {
   const { locale } = params
@@ -45,7 +46,9 @@ export default async function Page({ params }: { params: { locale: string } }) {
               )}
             >
               <span>Yaşam Yeniden Tasarlandı </span>
-              <span className="block lg:inline font-montserrat font-light text-[1.5em] mx-8">X</span>
+              <span className="w-12 h-12 mx-8">
+                <IconCollab fill={colors.black} />
+              </span>
               <span>CITY&apos;S</span>
             </h2>
           </FadeInOnScroll>

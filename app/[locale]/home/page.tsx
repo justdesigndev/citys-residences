@@ -5,7 +5,7 @@ import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { HorizontalScroll } from "@/components/horizontal-scroll"
-import { Logo } from "@/components/icons"
+import { IconCollab, Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
@@ -56,7 +56,9 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             )}
           >
             <span className="whitespace-nowrap">Yaşam Yeniden Tasarlandı</span>
-            <span className="font-montserrat font-light text-[1.5em] mx-8">X</span>
+            <span className="w-12 h-12 mx-8">
+              <IconCollab fill={colors.white} />
+            </span>
             <span className="whitespace-nowrap">CITY&apos;S</span>
           </div>
         </div>
@@ -119,7 +121,9 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                   <span className="font-montserrat whitespace-nowrap text-2xl lg:text-5xl">
                     Yaşam Yeniden Tasarlandı
                   </span>
-                  <span className="font-montserrat font-light text-[1.5em] mx-8">X</span>
+                  <span className="w-12 h-12 mx-8">
+                    <IconCollab fill={colors.white} />
+                  </span>
                   <span className="font-montserrat whitespace-nowrap text-2xl lg:text-5xl">CITY&apos;S</span>
                 </>
               }

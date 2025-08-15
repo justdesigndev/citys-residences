@@ -1147,3 +1147,22 @@ export const socialIcons = (fill: string = colors.white): Record<SocialMedia, JS
   [SocialMedia.linkedin]: <IconLinkedin fill={fill} />,
   [SocialMedia.events]: <IconEvents fill={fill} />,
 })
+
+export const IconCollab = (props: Props) => {
+  return (
+    <span className="inherit-dims block" style={{ transform: `rotate(${props.rotate ?? 0}deg)` }}>
+      <svg width="100%" height="100%" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.2833 27.8498L3.24714 49L1 46.846L21.0818 25.644L23.2833 27.8498Z" fill={props.fill} />
+        <path d="M46.9999 46.846L44.7528 49L24.7257 27.8619L26.9243 25.6592L46.9999 46.846Z" fill={props.fill} />
+        <path
+          d="M23.3319 21.1535L21.1303 23.3592L0.900024 2.15399L2.02359 1.077L3.1502 0L23.3319 21.1535Z"
+          fill={props.fill}
+        />
+        <path
+          d="M45.9992 1.077L47.1227 2.15399L26.8985 23.344L24.7 21.1414L44.8726 0L45.9992 1.077Z"
+          fill={props.fill}
+        />
+      </svg>
+    </span>
+  )
+}

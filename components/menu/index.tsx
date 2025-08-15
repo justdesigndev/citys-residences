@@ -208,7 +208,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         className={cn(
           "fixed top-0 left-0 bottom-0 overflow-hidden z-[var(--z-menu)]",
           "blur-bg-bricky-brick",
-          "w-screen lg:w-[30vw] xl:w-[22vw] 2xl:w-[20vw]"
+          "w-screen lg:w-[20vw] xl:w-[18vw] 2xl:w-[18vw] 3xl:w-[16vw]"
         )}
         style={{ clipPath: clipPath.current }}
         ref={menuRef}
@@ -226,7 +226,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         </button>
         <div className="h-full w-full flex lg:items-end" data-lenis-prevent>
           <ScrollableBox>
-            <nav className="w-full h-full flex items-end justify-center lg:justify-start px-10 lg:px-10">
+            <nav className="w-full h-full flex items-end justify-center lg:justify-start px-10 lg:px-8">
               <ul
                 className={cn(
                   "flex flex-col items-start gap-3 lg:gap-2 xl:gap-3 2xl:gap-3 3xl:gap-4",
@@ -252,43 +252,39 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     </span>
                   </li>
                 ))}
-                <li className="my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-8">
+                <li className="my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-8 flex flex-col gap-2">
                   <a
                     href={citysIstanbulAvmGoogleMaps}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
+                      "block",
                       "text-base lg:text-base xl:text-base 2xl:text-lg 3xl:text-lg",
                       "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
                       "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
                       "opacity-100",
                       "hover:opacity-70",
-                      "flex items-start gap-2"
+                      "flex items-center gap-1"
                     )}
                   >
                     <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
                       <IconPin fill={colors.white} />
                     </span>
-                    <span className="flex flex-col gap-2">
-                      <span>CR Satış Ofisi Konum</span>
-                      <span
-                        // href={citysIstanbulAvmGoogleMaps}
-                        className={cn(
-                          "block",
-                          "whitespace-pre-line",
-                          "text-sm lg:text-sm xl:text-sm 2xl:text-lg 3xl:text-lg",
-                          "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
-                          "font-primary font-normal text-white text-center lg:text-left"
-                        )}
-                        // target="_blank"
-                        // rel="noopener noreferrer"
-                      >
-                        <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
-                        <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
-                      </span>
-                    </span>
+                    <span>CR Satış Ofisi Konum</span>
                   </a>
+                  <span
+                    className={cn(
+                      "block",
+                      "whitespace-pre-line",
+                      "text-sm lg:text-sm xl:text-sm 2xl:text-lg 3xl:text-lg",
+                      "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
+                      "font-primary font-normal text-white text-center lg:text-left"
+                    )}
+                  >
+                    <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
+                    <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
+                  </span>
                 </li>
                 <li className="flex flex-col items-center lg:items-start mt-auto ">
                   <p
@@ -346,8 +342,8 @@ export function Menu({ open, setOpen, items }: MenuProps) {
           "fixed top-0 bottom-0 overflow-hidden z-[var(--z-menu-submenu)]",
           "blur-bg-bricky-brick",
           "border-l border-white/30",
-          "left-0 lg:left-[30vw] xl:left-[22vw] 2xl:left-[20vw]",
-          "w-full lg:w-[30vw] xl:w-[18vw] 2xl:w-[15vw]"
+          "left-0 lg:left-[20vw] xl:left-[18vw] 2xl:left-[18vw] 3xl:left-[16vw]",
+          "w-full lg:w-[30vw] xl:w-[18vw] 2xl:w-[17vw] 3xl:w-[15vw]"
         )}
         style={{ clipPath: clipPath.current }}
         ref={submenuRef}

@@ -1,7 +1,7 @@
 import { AnimatedLine } from "@/components/animated-line"
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { GsapSplitText } from "@/components/gsap-split-text"
-import { IconCitysParkLogo } from "@/components/icons"
+import { IconCitysParkLogo, IconCollab } from "@/components/icons"
 import { LogoSection } from "@/components/logo-section"
 import { MaskedParallaxImage } from "@/components/masked-parallax-image"
 import { MembersClubItem } from "@/components/members-club-item"
@@ -10,7 +10,7 @@ import { VideoSection } from "@/components/video-section"
 import { citysParkVideo, pinarVeCemilAktasVideo } from "@/lib/constants"
 import { getCitysParkContent } from "@/lib/content"
 import { cn } from "@/lib/utils"
-import { breakpoints } from "@/styles/config.mjs"
+import { breakpoints, colors } from "@/styles/config.mjs"
 import { getTranslations } from "next-intl/server"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
@@ -58,7 +58,9 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               )}
             >
               <span>Yaşam Yeniden Tasarlandı </span>
-              <span className="block lg:inline font-montserrat font-light text-[1.5em] mx-8">X</span>
+              <span className="w-12 h-12 mx-8">
+                <IconCollab fill={colors.white} />
+              </span>
               <span>CITY&apos;S</span>
             </h2>
           </FadeInOnScroll>

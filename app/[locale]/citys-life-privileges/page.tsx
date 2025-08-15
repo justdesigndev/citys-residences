@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { AnimatedLine } from "@/components/animated-line"
 import { GsapSplitText } from "@/components/gsap-split-text"
-import { IconCitysLifeLogo } from "@/components/icons"
+import { IconCitysLifeLogo, IconCollab } from "@/components/icons"
 import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
@@ -10,6 +10,7 @@ import { citysLifeVideo } from "@/lib/constants"
 import { getCitysLifePrivilegesContent } from "@/lib/content"
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { cn } from "@/lib/utils"
+import { colors } from "@/styles/config.mjs"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: "citys-life-privileges" })
@@ -57,7 +58,9 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               )}
             >
               <span>Yaşam Yeniden Tasarlandı </span>
-              <span className="block lg:inline font-montserrat font-light text-[1.5em] mx-8">X</span>
+              <span className="w-12 h-12 mx-8">
+                <IconCollab fill={colors["bricky-brick"]} />
+              </span>
               <span>CITY&apos;S</span>
             </h2>
           </FadeInOnScroll>
