@@ -13,7 +13,7 @@ export default async function Page() {
   return (
     <>
       <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" />
+        <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" loading="lazy" />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
         <div className="flex items-center justify-center bg-aqua-belt w-[530px] h-56 mb-8">

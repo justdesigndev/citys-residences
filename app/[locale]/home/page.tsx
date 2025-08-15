@@ -87,7 +87,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 <span className="sr-only">{t("section1.title1")}</span>
               </article>
               <article className={"relative w-screen h-24 lg:h-44 xl:h-36"}>
-                <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="100vw" />
+                <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="100vw" loading="lazy" />
                 <span className="sr-only">{t("section1.title2")}</span>
               </article>
               <article
@@ -150,7 +150,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 <span className="sr-only">{t("section2.title1")}</span>
               </article>
               <article className={"relative w-screen h-28 lg:h-44 xl:h-44"}>
-                <Img src="/img/tam.png" alt="Tam" fill className="object-contain" sizes="100vw" />
+                <Img src="/img/tam.png" alt="Tam" fill className="object-contain" sizes="100vw" loading="lazy" />
                 <span className="sr-only">{t("section2.title2")}</span>
               </article>
               <article

@@ -32,7 +32,13 @@ export default async function Page({ params }: { params: { locale: string } }) {
         <div className="flex flex-col items-center justify-center pb-12 lg:pb-24">
           <FadeInOnScroll>
             <div className="relative w-[90vw] h-[80vw] lg:w-[35vw] lg:h-[35vw] mb-12">
-              <Img src="/img/members-cat.png" alt="City's Members Club" fill className="object-contain" />
+              <Img
+                src="/img/members-cat.png"
+                alt="City's Members Club"
+                fill
+                className="object-contain"
+                loading="lazy"
+              />
             </div>
           </FadeInOnScroll>
           <FadeInOnScroll delay={0.3}>

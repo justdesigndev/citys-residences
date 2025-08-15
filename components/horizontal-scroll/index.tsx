@@ -110,8 +110,8 @@ export function HorizontalScroll({
                 alt="Aerial view of City's Residences"
                 fill
                 className={cn(s.img, "img object-cover object-bottom")}
-                priority
                 sizes="100vw"
+                loading="lazy"
               />
             </div>
           </section>

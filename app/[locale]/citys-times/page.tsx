@@ -14,6 +14,7 @@ export default async function Page() {
           alt="Citys Times"
           fill
           sizes="100vw"
+          loading="lazy"
         />
       </section>
       <section className="flex mb-8">
@@ -67,13 +68,20 @@ export default async function Page() {
           <p className="font-primary font-medium text-bricky-brick text-6xl">Bizi Takip Edin...</p>
           <div className="grid grid-cols-3 gap-6 w-full border-red-500 mt-12 px-24">
             <div className="w-full xl:h-72 2xl:h-96 aspect-square bg-bricky-brick relative">
-              <Img src="/img/avm-1.jpg" alt="Citys Times" fill sizes="30vw" className="object-cover" />
+              <Img src="/img/avm-1.jpg" alt="Citys Times" fill sizes="30vw" className="object-cover" loading="lazy" />
             </div>
             <div className="w-full xl:h-72 2xl:h-96 aspect-square bg-bricky-brick relative">
-              <Img src="/img/avm-2.jpg" alt="Citys Times" fill sizes="30vw" className="object-cover" />
+              <Img src="/img/avm-2.jpg" alt="Citys Times" fill sizes="30vw" className="object-cover" loading="lazy" />
             </div>
             <div className="w-full xl:h-72 2xl:h-96 aspect-square bg-bricky-brick relative">
-              <Img src="/img/video-bg.jpg" alt="Citys Times" fill sizes="30vw" className="object-cover" />
+              <Img
+                src="/img/video-bg.jpg"
+                alt="Citys Times"
+                fill
+                sizes="30vw"
+                className="object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
