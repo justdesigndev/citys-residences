@@ -252,7 +252,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     </span>
                   </li>
                 ))}
-                <li className="my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-8 flex flex-col gap-2">
+                <li className="my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-6 flex flex-col gap-2">
                   <a
                     href={citysIstanbulAvmGoogleMaps}
                     target="_blank"
@@ -263,28 +263,29 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                       "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
                       "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
-                      "opacity-100",
-                      "hover:opacity-70",
-                      "flex items-center gap-1"
+                      "opacity-100 hover:opacity-70",
+                      "flex items-start gap-1"
                     )}
                   >
                     <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
                       <IconPin fill={colors.white} />
                     </span>
-                    <span>CR Satış Ofisi Konum</span>
+                    <span className="flex flex-col gap-2">
+                      <span>CR Satış Ofisi Konum</span>
+                      <span
+                        className={cn(
+                          "block whitespace-pre-line",
+                          "text-sm lg:text-sm xl:text-sm 2xl:text-base 3xl:text-base",
+                          "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
+                          "font-primary font-normal text-white text-center lg:text-left"
+                        )}
+                      >
+                        <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
+                        <span className="block sm:whitespace-nowrap">CITY&apos;S İstanbul AVM</span>
+                        <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
+                      </span>
+                    </span>
                   </a>
-                  <span
-                    className={cn(
-                      "block",
-                      "whitespace-pre-line",
-                      "text-sm lg:text-sm xl:text-sm 2xl:text-base 3xl:text-base",
-                      "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
-                      "font-primary font-normal text-white text-center lg:text-left"
-                    )}
-                  >
-                    <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
-                    <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
-                  </span>
                 </li>
                 <li className="flex flex-col items-center lg:items-start mt-auto ">
                   <p
@@ -343,7 +344,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
           "blur-bg-bricky-brick",
           "border-l border-white/30",
           "left-0 lg:left-[20vw] xl:left-[20vw] 2xl:left-[20vw] 3xl:left-[18vw]",
-          "w-full lg:w-[30vw] xl:w-[18vw] 2xl:w-[17vw] 3xl:w-[15vw]"
+          "w-full lg:w-[30vw] xl:w-[13.5vw] 2xl:w-[11.5vw] 3xl:w-[10vw]"
         )}
         style={{ clipPath: clipPath.current }}
         ref={submenuRef}
@@ -368,7 +369,7 @@ export function Menu({ open, setOpen, items }: MenuProps) {
         </button>
         <div className="h-full w-full flex" data-lenis-prevent>
           <ScrollableBox>
-            <nav className="h-full w-full px-10 lg:px-6 flex items-start justify-start pb-12 lg:pb-0">
+            <nav className="h-full w-full px-10 lg:px-4 flex items-start justify-start pb-12 lg:pb-0">
               <ul
                 className={cn(
                   "flex flex-col items-start gap-3 lg:gap-2 xl:gap-0 2xl:gap-2",
@@ -392,8 +393,8 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                     <li key={section.id}>
                       <span
                         className={cn(
-                          "font-primary font-normal text-white my-0 lg:my-2",
-                          "text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
+                          "font-primary font-normal text-white my-0 lg:my-[.2em]",
+                          "text-lg lg:text-xl xl:text-base 2xl:text-base 3xl:text-base",
                           "cursor-pointer block"
                         )}
                         onClick={() => handleScroll(section.id)}
@@ -406,8 +407,9 @@ export function Menu({ open, setOpen, items }: MenuProps) {
                             <li key={subitem.id}>
                               <span
                                 className={cn(
-                                  "font-primary font-light text-white/90",
-                                  "text-lg lg:text-xl xl:text-[calc(theme(fontSize.xl)_-_.2rem)] 2xl:text-[calc(theme(fontSize.2xl)_-_.2rem)] 3xl:text-[calc(theme(fontSize.2xl)_-_.2rem)]",
+                                  "font-primary font-light text-white/80",
+                                  "text-lg lg:text-xl xl:text-[calc(theme(fontSize.base)_-_.2rem)] 2xl:text-[calc(theme(fontSize.base)_-_.2rem)] 3xl:text-[calc(theme(fontSize.base)_-_.2rem)]",
+                                  "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                                   "cursor-pointer block"
                                 )}
                                 onClick={() => handleScroll(subitem.id)}
