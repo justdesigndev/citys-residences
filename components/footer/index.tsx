@@ -57,19 +57,19 @@ export function Footer() {
     legal: [
       {
         title: t("kvkRelatedInformation"),
-        href: routing.pathnames["/pdpl-related-information"][locale as Locale],
+        href: routing.pathnames["/pdpl/pdpl-related-information"][locale as Locale],
       },
       {
         title: t("commercialElectronicMessage"),
-        href: routing.pathnames["/commercial-electronic-message"][locale as Locale],
+        href: routing.pathnames["/pdpl/commercial-electronic-message"][locale as Locale],
       },
       {
         title: t("explicitConsent"),
-        href: routing.pathnames["/explicit-consent"][locale as Locale],
+        href: routing.pathnames["/pdpl/explicit-consent"][locale as Locale],
       },
       {
         title: t("cookiePolicy"),
-        href: routing.pathnames["/cookie-policy"][locale as Locale],
+        href: routing.pathnames["/pdpl/cookie-policy"][locale as Locale],
       },
     ],
   }

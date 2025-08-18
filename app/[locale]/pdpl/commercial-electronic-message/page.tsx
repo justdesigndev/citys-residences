@@ -43,7 +43,7 @@ export default function Page() {
           Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ&apos;e göre KVKK&apos;nın 11. Maddesinde sayılan
           haklarınız mevcut olup, işlenenÒ kişisel verilerinize ilişkin hak ve talepleriniz ile ilgili başvuru
           yöntemlerine, &ldquo;
-          <Link target="_blank" rel="noopener noreferrer" href="/pdpl-related-information">
+          <Link target="_blank" rel="noopener noreferrer" href="/pdpl/pdpl-related-information">
             Citys Gayrimenkul Geliştirme A.Ş. Kişisel Verilerin İşlenmesi ve Korunması Hakkında Aydınlatma Metni
           </Link>
           &rdquo;nden ulaşabilirsiniz.

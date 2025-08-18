@@ -50,21 +50,25 @@ export const routing = defineRouting({
       tr: "/proje",
       en: "/project",
     },
-    "/explicit-consent": {
-      tr: "/acik-riza-metni",
-      en: "/explicit-consent",
+    "/pdpl": {
+      tr: "/kvkk",
+      en: "/pdpl",
     },
-    "/cookie-policy": {
-      tr: "/cerez-politikasi",
-      en: "/cookie-policy",
+    "/pdpl/explicit-consent": {
+      tr: "/kvkk/acik-riza-metni",
+      en: "/pdpl/explicit-consent",
     },
-    "/commercial-electronic-message": {
-      tr: "/ticari-elektronik-ileti-aydinlatma-metni",
-      en: "/commercial-electronic-message",
+    "/pdpl/cookie-policy": {
+      tr: "/kvkk/cerez-politikasi",
+      en: "/pdpl/cookie-policy",
     },
-    "/pdpl-related-information": {
-      tr: "/kvkk-iliskin-aydinlatma-metni",
-      en: "/pdpl-related-information",
+    "/pdpl/commercial-electronic-message": {
+      tr: "/kvkk/ticari-elektronik-ileti-aydinlatma-metni",
+      en: "/pdpl/commercial-electronic-message",
+    },
+    "/pdpl/pdpl-related-information": {
+      tr: "/kvkk/kvkk-iliskin-aydinlatma-metni",
+      en: "/pdpl/pdpl-related-information",
     },
   },
   localePrefix: "as-needed",

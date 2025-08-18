@@ -9,19 +9,19 @@ export function LegalTableOfContents() {
   const legalRoutes: { title: string; href: Pathnames }[] = [
     {
       title: "KVKK İlişkin Aydınlatma Metni",
-      href: "/pdpl-related-information" as Pathnames,
+      href: "/pdpl/pdpl-related-information" as Pathnames,
     },
     {
       title: "Ticari Elektronik İleti Aydınlatma Metni",
-      href: "/commercial-electronic-message" as Pathnames,
+      href: "/pdpl/commercial-electronic-message" as Pathnames,
     },
     {
       title: "Açık Rıza Metni",
-      href: "/explicit-consent" as Pathnames,
+      href: "/pdpl/explicit-consent" as Pathnames,
     },
     {
       title: "Çerez Politikası",
-      href: "/cookie-policy" as Pathnames,
+      href: "/pdpl/cookie-policy" as Pathnames,
     },
   ]
 
