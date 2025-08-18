@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server"
-
 import { AnimatedLine } from "@/components/animated-line"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysLifeLogo, IconCollab } from "@/components/icons"
@@ -21,18 +20,6 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <FadeInOnScroll>
-        <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden">
-          <Video
-            primaryVideoUrl={citysLifeVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </section>
-      </FadeInOnScroll>
       <section className="relative z-20 bg-white lg:pt-10">
         <LogoSection foregroundLogo={<IconCitysLifeLogo fill="#000000" />} />
         <div className="section-container pt-8 lg:pt-12 pb-16 lg:pb-28 flex flex-col items-center gap-8">
@@ -66,6 +53,18 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </FadeInOnScroll>
         </div>
       </section>
+      <FadeInOnScroll>
+        <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden">
+          <Video
+            primaryVideoUrl={citysLifeVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </section>
+      </FadeInOnScroll>
       <section className="relative z-20 bg-white">
         <AnimatedLine direction="horizontal" />
         {items.map((item, i) => (
