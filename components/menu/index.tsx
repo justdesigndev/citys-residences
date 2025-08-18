@@ -400,7 +400,8 @@ export function Menu({ items }: MenuProps) {
                               <span
                                 className={cn(
                                   "font-primary font-light text-white/80",
-                                  "text-lg lg:text-xl xl:text-[calc(theme(fontSize.base)_-_.2rem)] 2xl:text-[calc(theme(fontSize.base)_-_.2rem)] 3xl:text-[calc(theme(fontSize.xl)_-_.2rem)]",
+                                  // "text-lg lg:text-xl xl:text-[calc(theme(fontSize.base)_-_.2rem)] 2xl:text-[calc(theme(fontSize.base)_-_.2rem)] 3xl:text-[calc(theme(fontSize.xl)_-_.2rem)]",
+                                  "text-lg lg:text-xl xl:text-base 2xl:text-base 3xl:text-xl",
                                   "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                                   "cursor-pointer block"
                                 )}
