@@ -28,11 +28,11 @@ export default function Page({ params }: { params: { locale: string } }) {
         </div>
         <PageTitle title="DAİRELER" id={navigationConfig["/residences"]?.id as string} />
         <Residences params={params} />
-        <PageTitle title="CITY'S PARK" id={navigationConfig["/citys-park"]?.id as string} />
+        {/* <PageTitle title="CITY'S PARK" id={navigationConfig["/citys-park"]?.id as string} /> */}
         <CitysPark params={params} />
-        <PageTitle title="CITY'S MEMBERS CLUB" id={navigationConfig["/citys-members-club"]?.id as string} />
+        {/* <PageTitle title="CITY'S MEMBERS CLUB" id={navigationConfig["/citys-members-club"]?.id as string} /> */}
         <CitysMembersClub params={params} />
-        <PageTitle title="CITY'S LIFE AYRICALIKLARI" id={navigationConfig["/citys-life-privileges"]?.id as string} />
+        {/* <PageTitle title="CITY'S LIFE AYRICALIKLARI" id={navigationConfig["/citys-life-privileges"]?.id as string} /> */}
         <CitysLifePrivileges params={params} />
         <PageTitle
           textClassName="font-copperplate text-center"
@@ -44,7 +44,7 @@ export default function Page({ params }: { params: { locale: string } }) {
           id={navigationConfig["/citys-istanbul-avm"]?.id as string}
         />
         <CitysIstanbulAvm />
-        <PageTitle title="CITY'S TIMES" id={navigationConfig["/citys-times"]?.id as string} />
+        {/* <PageTitle title="CITY'S TIMES" id={navigationConfig["/citys-times"]?.id as string} /> */}
         <CitysTimes
         //  params={params}
         />
