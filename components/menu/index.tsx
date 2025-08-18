@@ -3,14 +3,14 @@
 import { gsap, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useClickAway, useWindowSize } from "react-use"
 
 import { IconWrapper } from "@/components/icon-wrapper"
 import { IconPin, socialIcons } from "@/components/icons"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { citysIstanbulAvmGoogleMaps } from "@/lib/constants"
-import { useStackingCardsStore } from "@/lib/store/stacking-cards"
+import { useScrollStore } from "@/lib/store/scroll"
 import { breakpoints, colors } from "@/styles/config.mjs"
 import { ChevronLeft, X } from "lucide-react"
 
@@ -33,12 +33,10 @@ interface MenuItem {
 }
 
 interface MenuProps {
-  open: boolean
-  setOpen: (open: boolean) => void
   items: MenuItem[]
 }
 
-export function Menu({ open, setOpen, items }: MenuProps) {
+export function Menu({ items }: MenuProps) {
   const menuRef = useRef<HTMLDivElement>(null)
   const submenuRef = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
@@ -46,8 +44,15 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   const lenis = useLenis()
   const { width } = useWindowSize()
   const clipPath = useRef("inset(0% 100% 0% 0%)")
-  const { scrollToCard } = useStackingCardsStore()
-  const [active, setActive] = useState<number | null>(null)
+
+  // Use the new unified scroll store
+  const {
+    menu: { isOpen: open, activeItem: active },
+    setMenuOpen: setOpen,
+    setMenuActiveItem: setActive,
+    scrollToCard,
+    smoothScrollWithWrapper,
+  } = useScrollStore()
 
   // Simple touch device detection
   const isTouchDevice = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0)
@@ -151,25 +156,12 @@ export function Menu({ open, setOpen, items }: MenuProps) {
   )
 
   const handleScroll = (id: string) => {
-    setOpen(false)
-    setActive(null)
-    gsap.to(".wrapper", {
-      opacity: 0,
-      onComplete: () => {
-        if (id.includes("stacking-cards")) {
-          const cardIndex = parseInt(id.split("-")[2])
-          scrollToCard(parseInt(cardIndex.toFixed(0)), true)
-        } else {
-          lenis?.scrollTo(`#${id}`, { immediate: true })
-        }
-
-        // Always run this animation regardless of the condition
-        gsap.to(".wrapper", {
-          opacity: 1,
-          delay: 0.4,
-        })
-      },
-    })
+    if (id.includes("stacking-cards")) {
+      const cardIndex = parseInt(id.split("-")[2])
+      smoothScrollWithWrapper(() => scrollToCard(cardIndex, true))
+    } else {
+      smoothScrollWithWrapper(() => lenis?.scrollTo(`#${id}`, { immediate: true }))
+    }
   }
 
   const handleMenuItemInteraction = (index: number) => {

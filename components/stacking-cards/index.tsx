@@ -7,7 +7,7 @@ import { ReactNode, useEffect, useRef } from "react"
 import { useWindowSize } from "react-use"
 
 import { Img } from "@/components/utility/img"
-import { useStackingCardsStore } from "@/lib/store/stacking-cards"
+import { useStackingCardsStore } from "@/lib/store/scroll"
 import { breakpoints } from "@/styles/config.mjs"
 
 export interface StackingCardsProps {

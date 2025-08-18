@@ -15,12 +15,24 @@ import { LocaleSwitcher } from "@/components/locale-switcher"
 import { Menu } from "@/components/menu"
 import { MenuX } from "@/components/menu-x"
 import { useSectionsMenuStore } from "@/lib/store/sections-menu"
+import { useScrollStore } from "@/lib/store/scroll"
 import { colors } from "@/styles/config.mjs"
 
 export function Header() {
   const lenis = useLenis()
   const { sections } = useSectionsMenuStore()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const {
+    menu: { isOpen: menuOpen },
+    setMenuOpen,
+    setLenis,
+  } = useScrollStore()
+
+  // Set lenis instance in the scroll store
+  useEffect(() => {
+    if (lenis) {
+      setLenis(lenis)
+    }
+  }, [lenis, setLenis])
   const [scrollState, setScrollState] = useState({
     hidden: false,
     atTop: true,
@@ -61,7 +73,7 @@ export function Header() {
 
   useEffect(() => {
     setMenuOpen(false)
-  }, [pathname])
+  }, [pathname, setMenuOpen])
 
   useEffect(() => {
     let prevDirection = 0
@@ -102,7 +114,7 @@ export function Header() {
         <div className="flex items-stretch justify-between flex-1 gap-12 z-[var(--z-header-content)] px-4 lg:px-0">
           <button
             className="cursor-pointer flex items-center gap-2 lg:gap-4"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => setMenuOpen(!menuOpen)}
             type="button"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -205,7 +217,7 @@ export function Header() {
           </div>
         </div>
       </header>
-      <Menu open={menuOpen} setOpen={setMenuOpen} items={navigationItems} />
+      <Menu items={navigationItems} />
     </>
   )
 }
