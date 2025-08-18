@@ -16,7 +16,7 @@ export interface FullScreenSliderProps {
 export function FullScreenSlider({ className, title, description, items }: FullScreenSliderProps) {
   const slides = items.map((item, i) => (
     <div className="w-screen h-[70vw] relative" key={i}>
-      <Img className="object-cover object-bottom" src={item} alt={title} fill sizes="100vw" />
+      <Img className="object-cover object-bottom" src={item} alt={title} height={1080} width={1920} />
     </div>
   ))
 
