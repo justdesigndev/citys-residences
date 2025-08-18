@@ -1,7 +1,6 @@
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysParkLogo, IconCollab } from "@/components/icons"
-import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { VideoSection } from "@/components/video-section"
@@ -19,8 +18,12 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <section className="relative z-20 bg-army-canvas lg:pt-10" id={navigationConfig["/citys-park"]?.id as string}>
-        <LogoSection foregroundLogo={<IconCitysParkLogo fill={colors.white} />} />
+      <section className="relative z-20 bg-army-canvas" id={navigationConfig["/citys-park"]?.id as string}>
+        <div className="flex items-center justify-center w-full pt-24 pb-12">
+          <div className="h-40">
+            <IconCitysParkLogo fill={colors.white} />
+          </div>
+        </div>
         <div className="flex flex-col items-center gap-8 lg:gap-14">
           <h2
             className={cn(
