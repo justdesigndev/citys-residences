@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
   return (
     <>
       <section className="relative z-20 bg-minor-blue" id={navigationConfig["/citys-members-club"]?.id as string}>
-        <div className="flex items-center justify-center w-full pt-24 pb-12">
+        <div className="flex items-center justify-center w-full pt-36 pb-12">
           <div className="h-48">
             <IconCitysMembersClubLogo fill="#000000" />
           </div>

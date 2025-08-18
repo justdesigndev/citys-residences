@@ -1,15 +1,14 @@
-import { getTranslations } from "next-intl/server"
 import { AnimatedLine } from "@/components/animated-line"
+import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCitysLifeLogo, IconCollab } from "@/components/icons"
-import { LogoSection } from "@/components/logo-section"
 import { MembersClubItem } from "@/components/members-club-item"
 import { Video } from "@/components/utility/video"
 import { citysLifeVideo, navigationConfig } from "@/lib/constants"
 import { getCitysLifePrivilegesContent } from "@/lib/content"
-import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { cn } from "@/lib/utils"
 import { colors } from "@/styles/config.mjs"
+import { getTranslations } from "next-intl/server"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: "citys-life-privileges" })
@@ -24,7 +23,11 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         className="relative z-20 bg-white lg:pt-10"
         id={navigationConfig["/citys-life-privileges"]?.id as string}
       >
-        <LogoSection foregroundLogo={<IconCitysLifeLogo fill="#000000" />} />
+        <div className="flex items-center justify-center w-full pt-36">
+          <div className="h-36">
+            <IconCitysLifeLogo fill={colors.black} />
+          </div>
+        </div>
         <div className="section-container pt-8 lg:pt-12 pb-16 lg:pb-28 flex flex-col items-center gap-8">
           <h2
             className={cn(

@@ -19,7 +19,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   return (
     <>
       <section className="relative z-20 bg-army-canvas" id={navigationConfig["/citys-park"]?.id as string}>
-        <div className="flex items-center justify-center w-full pt-24 pb-12">
+        <div className="flex items-center justify-center w-full pt-36 pb-12">
           <div className="h-40">
             <IconCitysParkLogo fill={colors.white} />
           </div>
