@@ -199,8 +199,8 @@ export function Menu({ items }: MenuProps) {
       <div
         className={cn(
           "fixed top-0 left-0 bottom-0 overflow-hidden z-[var(--z-menu)]",
-          "blur-bg-bricky-brick",
-          "w-screen lg:w-[20vw] xl:w-[20vw] 2xl:w-[20vw] 3xl:w-[18vw]"
+          "w-screen lg:w-[20vw] xl:w-[20vw] 2xl:w-[20vw] 3xl:w-[17vw]",
+          "blur-bg-bricky-brick"
         )}
         style={{ clipPath: clipPath.current }}
         ref={menuRef}
@@ -218,7 +218,7 @@ export function Menu({ items }: MenuProps) {
         </button>
         <div className="h-full w-full flex lg:items-end" data-lenis-prevent>
           <ScrollableBox>
-            <nav className="w-full h-full flex items-end justify-center lg:justify-start px-10 lg:px-8">
+            <nav className="w-full h-full flex items-end justify-center lg:justify-start px-10 lg:pl-8 lg:pr-4">
               <ul
                 className={cn(
                   "flex flex-col items-start gap-3 lg:gap-2 xl:gap-3 2xl:gap-4 3xl:gap-4",
@@ -335,7 +335,7 @@ export function Menu({ items }: MenuProps) {
           "fixed top-0 bottom-0 overflow-hidden z-[var(--z-menu-submenu)]",
           "blur-bg-bricky-brick",
           "border-l border-white/30",
-          "left-0 lg:left-[20vw] xl:left-[20vw] 2xl:left-[20vw] 3xl:left-[18vw]",
+          "left-0 lg:left-[20vw] xl:left-[20vw] 2xl:left-[20vw] 3xl:left-[17vw]",
           "w-full lg:w-[30vw] xl:w-[13.5vw] 2xl:w-[11.5vw] 3xl:w-[12vw]"
         )}
         style={{ clipPath: clipPath.current }}
