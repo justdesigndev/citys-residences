@@ -1,10 +1,12 @@
 import { LegalLayout } from "@/components/legal-layout"
 import { Wrapper } from "@/components/wrapper"
 
-export function Page({ children }: { children: React.ReactNode }) {
+export default function Page() {
   return (
     <Wrapper>
-      <LegalLayout>{children}</LegalLayout>
+      <LegalLayout>
+        <h1 className="opacity-0">KVKK</h1>
+      </LegalLayout>
     </Wrapper>
   )
 }
