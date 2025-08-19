@@ -93,7 +93,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         </div>
         <Sequenced />
       </section>
-      <section className="bg-white relative z-30 section-container py-6 lg:py-12">
+      <section className="bg-white relative z-30 section-container py-6 lg:py-12 w-full overflow-hidden">
         <StackingCards items={items} />
       </section>
       <FadeInOnScroll>
