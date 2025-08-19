@@ -26,7 +26,7 @@ export default function Page({ params }: { params: { locale: string } }) {
         <div className="w-screen h-screen bg-bricky-brick/30 relative">
           <Img src="/img/lunas.jpg" alt="Lunas" fill sizes="100vw" />
         </div>
-        <PageTitle title="DAİRELER" id={navigationConfig["/residences"]?.id as string} />
+        <PageTitle title="RESIDENCES'LAR" id={navigationConfig["/residences"]?.id as string} />
         <Residences params={params} />
         {/* <PageTitle title="CITY'S PARK" id={navigationConfig["/citys-park"]?.id as string} /> */}
         <CitysPark params={params} />
