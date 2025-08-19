@@ -199,7 +199,7 @@ export function Menu({ items }: MenuProps) {
       <div
         className={cn(
           "fixed top-0 left-0 bottom-0 overflow-hidden z-[var(--z-menu)]",
-          "w-screen lg:w-[20vw] xl:w-[20vw] 2xl:w-[20vw] 3xl:w-[17vw]",
+          "w-screen lg:w-[20vw] xl:w-[19vw] 2xl:w-[19vw] 3xl:w-[17vw]",
           "blur-bg-bricky-brick"
         )}
         style={{ clipPath: clipPath.current }}
@@ -335,7 +335,7 @@ export function Menu({ items }: MenuProps) {
           "fixed top-0 bottom-0 overflow-hidden z-[var(--z-menu-submenu)]",
           "blur-bg-bricky-brick",
           "border-l border-white/30",
-          "left-0 lg:left-[20vw] xl:left-[20vw] 2xl:left-[20vw] 3xl:left-[17vw]",
+          "left-0 lg:left-[20vw] xl:left-[19vw] 2xl:left-[19vw] 3xl:left-[17vw]",
           "w-full lg:w-[30vw] xl:w-[13.5vw] 2xl:w-[11.5vw] 3xl:w-[12vw]"
         )}
         style={{ clipPath: clipPath.current }}
