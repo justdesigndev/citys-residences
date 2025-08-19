@@ -75,13 +75,13 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </div>
         </div>
       </section>
-      <section className="relative z-20 bg-white">
+      <section className="relative z-20 bg-army-canvas">
         {items.map((item, i) => (
           <MembersClubItem
             key={i}
             item={item}
             align={i % 2 === 0 ? "ltr" : "rtl"}
-            className="bg-army-canvas"
+            className="transparent"
             titleClassName="text-white"
             subtitleClassName="text-white"
             descriptionClassName="text-white [&_p]:text-white [&_li]:text-white"

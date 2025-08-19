@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
             key={i}
             item={item}
             align={i % 2 === 0 ? "ltr" : "rtl"}
-            className="bg-minor-blue"
+            className="transparent"
             titleClassName="text-black"
             subtitleClassName="text-black"
             descriptionClassName="text-black [&_p]:text-black [&_li]:text-black"
