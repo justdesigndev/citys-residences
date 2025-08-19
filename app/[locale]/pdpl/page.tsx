@@ -1,5 +1,10 @@
-import { redirect } from "next/navigation"
+import { LegalLayout } from "@/components/legal-layout"
+import { Wrapper } from "@/components/wrapper"
 
-export default function Page() {
-  redirect("/pdpl/pdpl-related-information")
+export default function Page({ children }: { children: React.ReactNode }) {
+  return (
+    <Wrapper>
+      <LegalLayout>{children}</LegalLayout>
+    </Wrapper>
+  )
 }
