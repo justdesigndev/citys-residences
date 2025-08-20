@@ -146,7 +146,9 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
               </div>
               <div
                 className={cn(
-                  "cursor-pointer overflow-hidden font-primary font-medium text-sm lg:text-base xl:text-lg",
+                  "font-primary font-medium text-sm lg:text-base xl:text-lg",
+                  "cursor-pointer overflow-hidden",
+                  "transition-colors duration-300",
                   {
                     "text-black": !scrollState.atTop,
                     "text-white": scrollState.atTop,
@@ -159,7 +161,15 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
           ) : (
             <Link
               href="/"
-              className="font-primary text-white text-xl font-medium relative flex items-center gap-2 lg:gap-2 cursor-pointer"
+              className={cn(
+                "font-primary text-white text-xl font-medium",
+                "relative flex items-center gap-2 lg:gap-2 cursor-pointer",
+                "transition-colors duration-300",
+                {
+                  "text-black": !scrollState.atTop,
+                  "text-white": scrollState.atTop,
+                }
+              )}
             >
               <ArrowLeft className="w-6 h-6" />
               ANASAYFAYA DÖN
