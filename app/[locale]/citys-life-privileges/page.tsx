@@ -29,7 +29,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <h2
             className={cn(
               "font-primary font-medium text-black text-center",
-              "text-3xl lg:text-2xl xl:text-5xl 2xl:text-5xl 3xl:text-4xl",
+              "text-3xl lg:text-2xl xl:text-4xl 2xl:text-4xl 3xl:text-4xl",
               "leading-snug xl:leading-snug 2xl:leading-snug 3xl:leading-snug"
             )}
           >
