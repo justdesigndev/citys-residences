@@ -112,6 +112,9 @@ export const useScrollStore = create<ScrollState>((set, get) => ({
 
     if (itemsLength === 0) return
 
+    const wrapperSelector = ".wrapper"
+    const fadeInDelay = 0.4
+
     // If ScrollTrigger is available (desktop), use the existing method
     if (scrollTrigger) {
       const progress = cardIndex / (itemsLength - 1)
@@ -119,14 +122,30 @@ export const useScrollStore = create<ScrollState>((set, get) => ({
       const end = scrollTrigger.end
       const targetScrollTop = start + progress * (end - start)
 
-      lenis?.scrollTo(targetScrollTop, { immediate })
+      lenis?.scrollTo(targetScrollTop, {
+        immediate,
+        onComplete: () => {
+          gsap.to(wrapperSelector, {
+            opacity: 1,
+            delay: fadeInDelay,
+          })
+        },
+      })
     } else {
       // Mobile fallback: scroll directly to the card element
       const cards = document.querySelectorAll(".gsap-stacking-card")
       const targetCard = cards[cardIndex] as HTMLElement
 
       if (targetCard && lenis) {
-        lenis.scrollTo(targetCard, { immediate })
+        lenis.scrollTo(targetCard, {
+          immediate,
+          onComplete: () => {
+            gsap.to(wrapperSelector, {
+              opacity: 1,
+              delay: fadeInDelay,
+            })
+          },
+        })
       }
     }
   },
@@ -135,7 +154,18 @@ export const useScrollStore = create<ScrollState>((set, get) => ({
     const { immediate = false } = options
     const { lenis } = get()
 
-    lenis?.scrollTo(`#${id}`, { immediate })
+    const wrapperSelector = ".wrapper"
+    const fadeInDelay = 0.4
+
+    lenis?.scrollTo(`#${id}`, {
+      immediate,
+      onComplete: () => {
+        gsap.to(wrapperSelector, {
+          opacity: 1,
+          delay: fadeInDelay,
+        })
+      },
+    })
   },
 
   smoothScrollWithWrapper: (targetAction, options = {}) => {
