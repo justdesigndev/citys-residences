@@ -222,9 +222,17 @@ export function Footer() {
                     {t("legal")}
                   </h5>
                   <div className="space-y-2">
-                    <h5 className={cn("block", styles.textSizes.linkTextSm, styles.interactions.linkHover)}>
+                    {/* <h5 className={cn("block", styles.textSizes.linkTextSm, styles.interactions.linkHover)}>
                       {t("legal")}
-                    </h5>
+                    </h5> */}
+                    <LocalizedLink
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={routing.pathnames["/pdpl"][locale as Locale]}
+                      className={cn("block", styles.textSizes.linkTextSm, styles.interactions.linkHover)}
+                    >
+                      {t("legal")}
+                    </LocalizedLink>
                     {footerItems.legal.map((item, i) => (
                       <LocalizedLink
                         target="_blank"
