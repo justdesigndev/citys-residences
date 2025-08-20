@@ -35,9 +35,8 @@ export function VideoSection({
   return (
     <div
       className={cn(
-        "w-full relative z-10",
-        "h-[80vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] xl:h-[85vh] 2xl:h-[90vh]",
-        "flex items-center justify-center",
+        "w-full relative z-10 flex-shrink-0",
+        "h-[100vw] sm:h-[60vw] md:h-[65vw] lg:h-[60vw] xl:h-[60vw] 2xl:h-[60vw] 3xl:h-[55vw]",
         "bg-black lg:rounded-sm overflow-hidden",
         className
       )}
