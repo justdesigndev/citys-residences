@@ -35,7 +35,8 @@ export function VideoSection({
   return (
     <div
       className={cn(
-        "w-full h-[100vw] lg:h-auto relative z-10",
+        "w-full relative z-10",
+        "h-[80vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] xl:h-[85vh] 2xl:h-[90vh]",
         "flex items-center justify-center",
         "bg-black lg:rounded-sm overflow-hidden",
         className
@@ -43,7 +44,7 @@ export function VideoSection({
     >
       <div className="group relative w-full h-full flex items-center justify-center">
         <Video
-          className="w-full h-auto lg:h-full"
+          className="w-full h-auto lg:h-full object-contain"
           primaryVideoUrl={primaryVideoUrl}
           primaryVideoType={primaryVideoType}
           ref={videoRef}
