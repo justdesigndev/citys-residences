@@ -104,7 +104,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             title={
               <>
                 <span className="whitespace-nowrap">Zemin Güvenliği</span>
-                <span className="w-12 h-12 mx-8">
+                <span className="w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 mx-8">
                   <IconCollab fill={colors.white} />
                 </span>
                 <span className="whitespace-nowrap">Huzur Mühendisliği</span>
