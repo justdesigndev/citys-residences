@@ -16,7 +16,7 @@ export default async function Page() {
         <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" loading="lazy" />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
-        <div className="flex items-center justify-center bg-aqua-belt w-[530px] h-56 mb-8">
+        <div className="flex items-center justify-center bg-aqua-belt w-full lg:w-[530px] h-56 mb-8">
           <div className="flex items-center justify-center w-9/12 lg:w-10/12">
             <IconCitysIstanbulLogo fill={colors["halite-blue"]} />
           </div>
