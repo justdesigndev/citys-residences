@@ -262,7 +262,7 @@ export function Menu({ items }: MenuProps) {
                     <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
                       <IconPin fill={colors.white} />
                     </span>
-                    <span className="flex flex-col gap-2">
+                    <span className="flex flex-col gap-1">
                       <span>CR Satış Ofisi Konum</span>
                       <span
                         className={cn(

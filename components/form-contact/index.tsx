@@ -11,7 +11,7 @@ import { AnimatedButton } from "@/components/animated-button"
 import { ConsentCheckboxes } from "@/components/consent-checkboxes"
 import { DropdownMenuCheckboxesHear } from "@/components/dropdown-menu-hear"
 import { DropdownMenuCheckboxesRef, DropdownMenuCheckboxesResidences } from "@/components/dropdown-menu-residences"
-import { IconCheck, IconLoading } from "@/components/icons"
+import { IconCheck, IconLoading, IconPin } from "@/components/icons"
 import { InternationalPhoneInputComponent } from "@/components/international-phone-input"
 import {
   Dialog,
@@ -25,9 +25,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { submitContactForm } from "@/lib/api/submit-contact-form"
-import { isPhoneValid } from "@/lib/utils"
+import { cn, isPhoneValid } from "@/lib/utils"
 import { FormTranslations } from "@/types"
 import { colors } from "@/styles/config.mjs"
+import { citysIstanbulAvmGoogleMaps } from "@/lib/constants"
 
 const getFormSchema = (translations: FormTranslations) =>
   z
@@ -389,14 +390,51 @@ export function ContactForm({ translations }: FormContactProps) {
             />
           </div>
           <ConsentCheckboxes form={form} control={form.control} />
-          <button type="submit" disabled={mutation.isPending} className="flex relative w-40 lg:w-48 mt-8">
-            <AnimatedButton text={translations.submit.default} theme="secondary" size="sm" />
-            {mutation.isPending && (
-              <span className="absolute top-1/2 -right-4 -translate-y-1/2 translate-x-full flex items-center justify-center w-6 h-6">
-                <IconLoading fill={colors["bricky-brick"]} />
-              </span>
-            )}
-          </button>
+          <div className="flex items-start justify-between mt-8">
+            <button type="submit" disabled={mutation.isPending} className="flex relative w-40 lg:w-48">
+              <AnimatedButton text={translations.submit.default} theme="secondary" size="sm" />
+              {mutation.isPending && (
+                <span className="absolute top-1/2 -right-4 -translate-y-1/2 translate-x-full flex items-center justify-center w-6 h-6">
+                  <IconLoading fill={colors["bricky-brick"]} />
+                </span>
+              )}
+            </button>
+            <div>
+              <a
+                href={citysIstanbulAvmGoogleMaps}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "block",
+                  "text-base lg:text-base xl:text-xl 2xl:text-xl 3xl:text-xl",
+                  "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
+                  "font-primary font-normal text-bricky-brick text-center lg:text-left",
+                  "transition-opacity duration-300 ease-in-out",
+                  "opacity-100 hover:opacity-70",
+                  "flex items-start gap-1"
+                )}
+              >
+                <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
+                  <IconPin fill={colors["bricky-brick"]} />
+                </span>
+                <span className="flex flex-col gap-1">
+                  <span>CR Satış Ofisi Konum</span>
+                  <span
+                    className={cn(
+                      "block whitespace-pre-line pl-1",
+                      "text-sm lg:text-sm xl:text-sm 2xl:text-sm 3xl:text-sm",
+                      "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
+                      "font-primary font-normal text-bricky-brick text-center lg:text-left"
+                    )}
+                  >
+                    <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
+                    <span className="block sm:whitespace-nowrap">CITY&apos;S İstanbul AVM</span>
+                    <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
         </form>
       </Form>
       <Dialog open={successDialog} onOpenChange={setSuccessDialog}>

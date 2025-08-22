@@ -110,7 +110,7 @@ export function StackingCards({ items }: StackingCardsProps) {
                   loading="lazy"
                 />
               </div>
-              <div className="relative lg:rounded-md overflow-hidden w-full h-[60vw] lg:h-[80%] mt-auto">
+              <div className="relative lg:rounded-md overflow-hidden w-full h-[60vw] lg:h-auto">
                 <Img
                   src={item.images[1].url}
                   alt="Residence"

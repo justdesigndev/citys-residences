@@ -11,12 +11,9 @@ import { useEffect, useRef, useState } from "react"
 
 import { ContactForm } from "@/components/form-contact"
 import { gsap } from "@/components/gsap"
-import { IconPin } from "@/components/icons"
 import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { useEsc } from "@/hooks/useEsc"
-import { citysIstanbulAvmGoogleMaps } from "@/lib/constants"
 import { useVisibilityStore } from "@/lib/store/visibility"
-import { colors } from "@/styles/config.mjs"
 import { FormTranslations } from "@/types"
 
 export function ModalContactForm() {
@@ -237,43 +234,7 @@ export function ModalContactForm() {
                       br: () => <br className="hidden lg:block" />,
                     })}
                   </h2>
-
                   <ContactForm translations={formTranslations} />
-                  <div className="absolute bottom-8 right-8">
-                    <a
-                      href={citysIstanbulAvmGoogleMaps}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(
-                        "block",
-                        "text-base lg:text-base xl:text-xl 2xl:text-xl 3xl:text-xl",
-                        "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
-                        "font-primary font-normal text-bricky-brick text-center lg:text-left",
-                        "transition-opacity duration-300 ease-in-out",
-                        "opacity-100 hover:opacity-70",
-                        "flex items-start gap-1"
-                      )}
-                    >
-                      <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
-                        <IconPin fill={colors["bricky-brick"]} />
-                      </span>
-                      <span className="flex flex-col gap-1">
-                        <span>CR Satış Ofisi Konum</span>
-                        <span
-                          className={cn(
-                            "block whitespace-pre-line pl-1",
-                            "text-sm lg:text-sm xl:text-sm 2xl:text-sm 3xl:text-sm",
-                            "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
-                            "font-primary font-normal text-bricky-brick text-center lg:text-left"
-                          )}
-                        >
-                          <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
-                          <span className="block sm:whitespace-nowrap">CITY&apos;S İstanbul AVM</span>
-                          <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
-                        </span>
-                      </span>
-                    </a>
-                  </div>
                 </div>
               </ScrollableBox>
             </div>
