@@ -50,12 +50,14 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <div
             className={cn(
               "font-montserrat font-semibold text-white text-center",
-              "text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+              "text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
               "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
               "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
             )}
           >
-            <span className="whitespace-nowrap">Yaşam Yeniden Tasarlandı</span>
+            <span className="whitespace-nowrap">
+              Yaşam <br className="block lg:hidden" /> Yeniden Tasarlandı
+            </span>
             <span className="w-12 h-12 2xl:w-14 2xl:h-14 3xl:w-16 3xl:h-16 mx-8">
               <IconCollab fill={colors.white} />
             </span>
@@ -76,7 +78,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               <article
                 className={cn(
                   "font-montserrat font-semibold text-bricky-brick text-center",
-                  "text-5xl lg:text-6xl",
+                  "text-4xl lg:text-6xl",
                   "leading-tight lg:leading-tight",
                   "tracking-wide lg:tracking-widest"
                 )}
@@ -86,14 +88,14 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 </GsapSplitText>
                 <span className="sr-only">{t("section1.title1")}</span>
               </article>
-              <article className={"relative w-screen h-24 lg:h-44 xl:h-36"}>
+              <article className={"relative w-screen h-16 lg:h-44 xl:h-36"}>
                 <Img src="/img/sanati.png" alt="Sanatı" fill className="object-contain" sizes="100vw" loading="lazy" />
                 <span className="sr-only">{t("section1.title2")}</span>
               </article>
               <article
                 className={cn(
                   "font-montserrat font-medium text-bricky-brick text-center",
-                  "text-sm lg:text-xl",
+                  "text-[0.8rem] lg:text-xl",
                   "leading-relaxed tracking-wide lg:tracking-widest"
                 )}
               >
@@ -118,13 +120,27 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               thumbnail="/img/thumbnail-kolaj-video.jpg"
               title={
                 <>
-                  <span className="font-montserrat whitespace-nowrap text-2xl lg:text-5xl">
-                    Yaşam Yeniden Tasarlandı
+                  <span
+                    className={cn(
+                      "font-semibold text-white text-center",
+                      "text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+                      "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+                    )}
+                  >
+                    Yaşam <br className="block lg:hidden" /> Yeniden Tasarlandı
                   </span>
                   <span className="w-12 h-12 2xl:w-14 2xl:h-14 3xl:w-16 3xl:h-16 mx-8">
                     <IconCollab fill={colors.white} />
                   </span>
-                  <span className="font-montserrat whitespace-nowrap text-2xl lg:text-5xl">CITY&apos;S</span>
+                  <span
+                    className={cn(
+                      "font-semibold text-white text-center",
+                      "text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+                      "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+                    )}
+                  >
+                    CITY&apos;S
+                  </span>
                 </>
               }
             />
@@ -139,7 +155,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               <article
                 className={cn(
                   "font-montserrat text-bricky-brick text-center",
-                  "text-4xl lg:text-5xl",
+                  "text-3xl lg:text-5xl",
                   "font-semibold leading-tight lg:leading-tight",
                   "tracking-wide lg:tracking-widest"
                 )}
@@ -149,14 +165,14 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 </GsapSplitText>
                 <span className="sr-only">{t("section2.title1")}</span>
               </article>
-              <article className={"relative w-screen h-28 lg:h-44 xl:h-44"}>
+              <article className={"relative w-screen h-24 lg:h-44 xl:h-44"}>
                 <Img src="/img/tam.png" alt="Tam" fill className="object-contain" sizes="100vw" loading="lazy" />
                 <span className="sr-only">{t("section2.title2")}</span>
               </article>
               <article
                 className={cn(
                   "font-montserrat font-semibold text-bricky-brick text-center",
-                  "text-4xl lg:text-5xl",
+                  "text-3xl lg:text-5xl",
                   "leading-tight lg:leading-tight",
                   "tracking-wide lg:tracking-widest"
                 )}
@@ -227,7 +243,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           items={slideImages.slides2}
         />
       </section>
-      <section className="pb-12 lg:pb-12 pt-0 lg:pt-12">
+      <section className="pb-0 lg:pb-12 pt-0 lg:pt-12">
         <HorizontalScroll
           className="hidden xl:block"
           title={t("live.p3.title")}

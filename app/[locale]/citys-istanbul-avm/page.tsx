@@ -12,11 +12,11 @@ export default async function Page() {
 
   return (
     <>
-      <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
+      <section className="h-[60vw] lg:h-svh bg-bricky-brick relative z-10 overflow-hidden">
         <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" loading="lazy" />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
-        <div className="flex items-center justify-center bg-aqua-belt w-full lg:w-[530px] h-56 mb-8">
+        <div className="flex items-center justify-center bg-aqua-belt w-full lg:w-[530px] h-40 lg:h-56 mb-8">
           <div className="flex items-center justify-center w-9/12 lg:w-10/12">
             <IconCitysIstanbulLogo fill={colors["halite-blue"]} />
           </div>
@@ -29,7 +29,7 @@ export default async function Page() {
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+            <GsapSplitText stagger={0.1} splitBy="lines" duration={1}>
               Hayatı Tüm Renkleriyle Yaşa...
             </GsapSplitText>
           </h2>
@@ -40,7 +40,7 @@ export default async function Page() {
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+            <GsapSplitText stagger={0.1} splitBy="lines" duration={1}>
               Avrupa ve Asya’yı birbirine bağlayan en değerli lokasyonda ve hayatın tam merkezinde...
             </GsapSplitText>
           </p>
@@ -51,7 +51,7 @@ export default async function Page() {
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+            <GsapSplitText stagger={0.1} splitBy="lines" duration={1}>
               Dünyaca tanınan seçkin markalara bir kaç adımda ulaşır, taze bir kahve kokusuyla tanışır, gurme lezzet
               duraklarında soluklanır; sanat, kültür, eğlenceyle buluşur, günün koşturmacasını sakince geride
               bırakırsın...
@@ -64,7 +64,7 @@ export default async function Page() {
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
-            <GsapSplitText stagger={0.2} splitBy="lines" duration={1.5}>
+            <GsapSplitText stagger={0.1} splitBy="lines" duration={1}>
               Daha Çok... Daha Huzurlu... Daha Dolu... Yaşa.
             </GsapSplitText>
           </p>

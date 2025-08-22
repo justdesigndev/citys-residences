@@ -21,7 +21,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
     <>
       <section className="relative z-20 bg-white" id={navigationConfig["/citys-life-privileges"]?.id as string}>
         <div className="flex items-center justify-center w-full pt-12 pb-16">
-          <div className="h-36">
+          <div className="h-24 lg:h-36">
             <IconCitysLifeLogo fill={colors.black} />
           </div>
         </div>
@@ -41,13 +41,15 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             <h2
               className={cn(
                 "font-primary font-semibold text-center text-bricky-brick",
-                "text-3xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
-                "xl:leading-normal 2xl:leading-tight 3xl:leading-tight",
+                "text-4xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+                "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                 "xl:max-w-4xl 2xl:max-w-6xl",
                 "flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0"
               )}
             >
-              <span>Yaşam Yeniden Tasarlandı </span>
+              <span>
+                Yaşam <br className="block lg:hidden" /> Yeniden Tasarlandı{" "}
+              </span>
               <span className="w-12 h-12 lg:w-16 lg:h-16 mx-8">
                 <IconCollab fill={colors["bricky-brick"]} />
               </span>
@@ -57,7 +59,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         </div>
       </section>
       <FadeInOnScroll>
-        <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden">
+        <section className="relative h-[60vw] lg:h-svh bg-bricky-brick z-10 overflow-hidden mb-12 lg:mb-0">
           <Video
             primaryVideoUrl={citysLifeVideo}
             autoPlay

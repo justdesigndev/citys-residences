@@ -2,11 +2,20 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translate(desktop-vw(70px), calc(100% + desktop-vw(10px)));
+  transform: translate(desktop-vw(70px), calc(100% + mobile-vw(10px)));
   display: flex;
-  gap: desktop-vw(6px);
+  gap: mobile-vw(6px);
   justify-content: space-between;
   z-index: 200;
+
+  @include-media ('tablet') {
+    transform: translate(tablet-vw(70px), calc(100% + tablet-vw(10px)));
+    gap: tablet-vw(6px);
+  }
+  @include-media ('desktop') {
+    transform: translate(desktop-vw(70px), calc(100% + desktop-vw(10px)));
+    gap: desktop-vw(6px);
+  }
 }
 .embla {
   max-width: 100vw;

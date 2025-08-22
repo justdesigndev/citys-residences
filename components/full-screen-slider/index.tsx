@@ -35,7 +35,7 @@ export function FullScreenSlider({ className, title, description, items }: FullS
       </h2>
       <p
         className={cn(
-          "font-primary text-black lg:text-white font-semibold text-center mb-8 lg:mb-0",
+          "font-primary text-black lg:text-white font-normal text-center mb-8 lg:mb-0",
           "w-full lg:w-6/12 xl:w-[27vw] px-6 lg:px-4 lg:py-4",
           "text-2xl lg:text-4xl xl:text-4xl 2xl:text-4xl",
           "leading-relaxed lg:leading-relaxed xl:leading-relaxed"

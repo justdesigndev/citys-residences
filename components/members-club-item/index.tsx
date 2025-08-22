@@ -46,6 +46,7 @@ export function MembersClubItem({
         <div
           className={cn(
             "flex flex-col-reverse lg:flex-row items-stretch gap-8 py-0 lg:py-8",
+            item.url.length > 1 && "gap-20 lg:gap-8",
             align === "ltr" ? "lg:flex-row" : "lg:flex-row-reverse",
             item.url.length > 1
               ? align === "rtl"

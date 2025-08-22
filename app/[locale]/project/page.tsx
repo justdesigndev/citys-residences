@@ -30,7 +30,7 @@ export default function Page() {
                     "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
                   )}
                 >
-                  <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                  <GsapSplitText splitBy="lines" stagger={0.05} duration={0.5}>
                     KARMA YAŞAM PROJESİ
                   </GsapSplitText>
                 </h2>
@@ -56,7 +56,7 @@ export default function Page() {
                     "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
                   )}
                 >
-                  <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                  <GsapSplitText splitBy="lines" stagger={0.05} duration={0.5}>
                     KONUM
                   </GsapSplitText>
                 </h2>
@@ -93,7 +93,7 @@ export default function Page() {
                     "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
                   )}
                 >
-                  <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                  <GsapSplitText splitBy="lines" stagger={0.05} duration={0.5}>
                     BLOK GİRİŞLERİ
                   </GsapSplitText>
                 </h2>
@@ -119,7 +119,7 @@ export default function Page() {
                     "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
                   )}
                 >
-                  <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                  <GsapSplitText splitBy="lines" stagger={0.05} duration={0.5}>
                     OTOPARK GİRİŞ ÇIKIŞLARI
                   </GsapSplitText>
                 </h2>
@@ -145,7 +145,7 @@ export default function Page() {
                     "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
                   )}
                 >
-                  <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
+                  <GsapSplitText splitBy="lines" stagger={0.05} duration={0.5}>
                     BAHÇE VE TERASLAR
                   </GsapSplitText>
                 </h2>

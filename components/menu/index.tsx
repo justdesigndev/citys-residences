@@ -251,9 +251,6 @@ export function Menu({ items }: MenuProps) {
                     rel="noopener noreferrer"
                     className={cn(
                       "block",
-                      "text-base lg:text-base xl:text-xl 2xl:text-2xl 3xl:text-2xl",
-                      "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
-                      "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
                       "opacity-100 hover:opacity-70",
                       "flex items-start gap-1"
@@ -263,13 +260,21 @@ export function Menu({ items }: MenuProps) {
                       <IconPin fill={colors.white} />
                     </span>
                     <span className="flex flex-col gap-1">
-                      <span>CR Satış Ofisi Konum</span>
+                      <span
+                        className={cn(
+                          "text-xl lg:text-base xl:text-xl 2xl:text-2xl 3xl:text-2xl",
+                          "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
+                          "font-primary font-normal text-white text-center lg:text-left"
+                        )}
+                      >
+                        CR Satış Ofisi Konum
+                      </span>
                       <span
                         className={cn(
                           "block whitespace-pre-line pl-1",
-                          "text-sm lg:text-sm xl:text-sm 2xl:text-base 3xl:text-base",
+                          "text-[0.8rem] lg:text-sm xl:text-sm 2xl:text-base 3xl:text-base",
                           "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
-                          "font-primary font-normal text-white text-center lg:text-left"
+                          "font-primary font-normal text-white text-left"
                         )}
                       >
                         <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
@@ -279,7 +284,7 @@ export function Menu({ items }: MenuProps) {
                     </span>
                   </a>
                 </li>
-                <li className="flex flex-col items-center lg:items-start mt-auto ">
+                <li className="flex flex-col items-start mt-auto">
                   <p
                     className={cn(
                       "w-full font-primary font-normal text-white text-left",

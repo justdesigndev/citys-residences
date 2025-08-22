@@ -78,7 +78,7 @@ const Sequenced = () => {
           setElement(el)
         }}
       >
-        <div className="relative w-[70vw] h-[75%]">
+        <div className="relative w-[80vw] h-[85%] lg:w-[70vw] lg:h-[75%]">
           {Array.from({ length: 31 }).map((_, i) => {
             return (
               <div className={cn("gsap-sequence-item", "absolute top-0 left-0 botom-0 right-0 h-full w-full")} key={i}>
