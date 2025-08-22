@@ -22,8 +22,8 @@ export function AnimatedLine({ direction, barClassName }: AnimatedLineProps) {
 
       gsap.to(bar, {
         opacity: 0.4,
-        duration: () => (isHorizontal ? 2.5 : 3),
-        ease: "expo.out",
+        duration: () => (isHorizontal ? 1 : 1.5),
+        ease: "power3.out",
         ...(isHorizontal ? { scaleX: 1 } : { scaleY: 1 }),
         scrollTrigger: {
           trigger: ref.current,
