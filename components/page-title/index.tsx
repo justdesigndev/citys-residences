@@ -4,12 +4,16 @@ import { cn } from "@/lib/utils"
 export interface PageTitleProps {
   title: React.ReactNode
   id: string
+  className?: string
   textClassName?: string
 }
 
 export function PageTitle(props: PageTitleProps) {
   return (
-    <div className="flex items-center justify-center gap-6 lg:gap-2 py-12 lg:py-20" id={props.id}>
+    <div
+      className={cn("flex items-center justify-center gap-6 lg:gap-2 py-12 lg:py-20", props.className)}
+      id={props.id}
+    >
       <FadeInOnScroll>
         <h2
           className={cn(
