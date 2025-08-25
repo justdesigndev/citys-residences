@@ -23,7 +23,7 @@ interface ContentData {
 
 export function Content() {
   const social = socialIcons(colors["bricky-brick"])
-  const [selectedPlatform, setSelectedPlatform] = useState<SocialPlatform>("instagram")
+  const [selectedPlatform, setSelectedPlatform] = useState<SocialPlatform>("events")
 
   const items: Record<SocialPlatform, SocialItem> = {
     events: {
