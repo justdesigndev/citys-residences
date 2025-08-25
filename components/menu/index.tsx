@@ -222,7 +222,7 @@ export function Menu({ items }: MenuProps) {
               <ul
                 className={cn(
                   "flex flex-col items-start gap-3 lg:gap-3 xl:gap-3 2xl:gap-4 3xl:gap-4",
-                  "pt-20 lg:pt-0 pb-0 lg:py-8 2xl:py-12 w-full"
+                  "pt-20 lg:pt-0 pb-10 lg:pb-0 lg:py-8 2xl:py-12 w-full"
                 )}
               >
                 {items.map(({ title, id }, i) => (
