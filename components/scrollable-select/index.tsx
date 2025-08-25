@@ -54,11 +54,13 @@ export function ScrollableSelect({
               id={`item${itemIndex}Button`}
               key={itemIndex}
               className={cn(
-                "whitespace-nowrap font-primary text-sm 2xl:text-base text-black cursor-pointer pr-6 transition-opacity duration-300",
-                itemIndex === items.length - 1 && "pr-0",
+                "whitespace-nowrap font-primary text-black cursor-pointer pr-6",
+                "text-sm 2xl:text-base",
+                "transition-opacity duration-300 hover:opacity-100",
+                itemIndex === 0 && "pl-4",
+                itemIndex === items.length - 1 && "pr-4",
                 itemIndex === activeIndex && "underline",
-                itemIndex === activeIndex ? "opacity-100" : "opacity-50",
-                "hover:opacity-100"
+                itemIndex === activeIndex ? "opacity-100" : "opacity-50"
               )}
               onClick={() => goToIndex(itemIndex)}
             >
