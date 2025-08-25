@@ -39,15 +39,17 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <FadeInOnScroll>
             <h2
               className={cn(
-                "font-primary font-semibold text-center text-white",
-                "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-5xl",
-                "xl:leading-normal 2xl:leading-tight 3xl:leading-tight",
+                "font-primary font-semibold text-white text-center",
+                "text-4xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-5xl",
+                "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                 "xl:max-w-4xl 2xl:max-w-6xl",
                 "flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0",
                 "mb-6 xl:mb-8 2xl:mb-8 3xl:mb-10"
               )}
             >
-              <span>Yaşam Yeniden Tasarlandı </span>
+              <span>
+                Yaşam <br className="block lg:hidden" /> Yeniden Tasarlandı
+              </span>
               <span className="w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 mx-8">
                 <IconCollab fill={colors.white} />
               </span>
