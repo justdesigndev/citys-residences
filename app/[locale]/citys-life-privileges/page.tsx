@@ -20,16 +20,16 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   return (
     <>
       <section className="relative z-20 bg-white" id={navigationConfig["/citys-life-privileges"]?.id as string}>
-        <div className="flex items-center justify-center w-full pt-36 pb-16">
+        <div className="flex items-center justify-center w-full pt-24 lg:pt-36 pb-16">
           <div className="h-24 lg:h-36">
             <IconCitysLifeLogo fill={colors.black} />
           </div>
         </div>
-        <div className="section-container pt-8 lg:pt-6 pb-16 lg:pb-64 flex flex-col items-center gap-16">
+        <div className="section-container pt-8 lg:pt-6 pb-24 lg:pb-64 flex flex-col items-center gap-16">
           <h2
             className={cn(
               "font-primary font-medium text-black text-center",
-              "text-3xl lg:text-2xl xl:text-4xl 2xl:text-4xl 3xl:text-4xl",
+              "text-2xl lg:text-2xl xl:text-4xl 2xl:text-4xl 3xl:text-4xl",
               "leading-snug xl:leading-snug 2xl:leading-snug 3xl:leading-snug"
             )}
           >
@@ -41,15 +41,13 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             <h2
               className={cn(
                 "font-primary font-semibold text-center text-bricky-brick",
-                "text-4xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+                "text-3xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
                 "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                 "xl:max-w-4xl 2xl:max-w-6xl",
-                "flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0"
+                "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
               )}
             >
-              <span>
-                Yaşam <br className="block lg:hidden" /> Yeniden Tasarlandı{" "}
-              </span>
+              <span>Yaşam Yeniden Tasarlandı</span>
               <span className="w-12 h-12 lg:w-16 lg:h-16 mx-8">
                 <IconCollab fill={colors["bricky-brick"]} />
               </span>
@@ -59,7 +57,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         </div>
       </section>
       <FadeInOnScroll>
-        <section className="relative h-[60vw] xl:h-svh bg-bricky-brick z-10 overflow-hidden mb-12 lg:mb-0">
+        <section className="relative h-svh bg-bricky-brick z-10 overflow-hidden mb-12 lg:mb-0">
           <Video
             primaryVideoUrl={citysLifeVideo}
             autoPlay

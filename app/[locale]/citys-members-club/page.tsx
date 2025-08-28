@@ -36,15 +36,13 @@ export default async function Page({ params }: { params: { locale: string } }) {
             <h2
               className={cn(
                 "font-primary font-medium text-center",
-                "text-4xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+                "text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
                 "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                 "xl:max-w-4xl 2xl:max-w-6xl",
-                "flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0"
+                "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
               )}
             >
-              <span>
-                Yaşam <br className="block lg:hidden" /> Yeniden Tasarlandı{" "}
-              </span>
+              <span>Yaşam Yeniden Tasarlandı</span>
               <span className="w-14 h-14 lg:w-16 lg:h-16 mx-8">
                 <IconCollab fill={colors.black} />
               </span>
@@ -54,7 +52,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
         </div>
       </section>
       <FadeInOnScroll>
-        <section className="h-[60vw] lg:h-svh bg-bricky-brick relative z-10 overflow-hidden mb-12 lg:mb-0">
+        <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden mb-12 lg:mb-0">
           <Video
             primaryVideoUrl={membersClubVideo}
             autoPlay

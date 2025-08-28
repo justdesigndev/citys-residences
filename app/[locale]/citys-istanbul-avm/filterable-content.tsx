@@ -87,7 +87,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-6 lg:gap-8 items-end">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 items-end">
               <AnimatePresence>
                 {filteredBrands.slice(0, visibleCount).map((brand) => {
                   const floorDisplay = getFloorDisplayName(brand.floor)
@@ -104,15 +104,15 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                         <h3
                           className={cn(
                             "font-primary font-bold",
-                            "text-3xl lg:text-xl",
-                            "text-black mb-2 tracking-wide text-center"
+                            "text-lg lg:text-xl",
+                            "text-black mb-1 lg:mb-2 tracking-wide text-center"
                           )}
                         >
                           {brand.name}
                         </h3>
                         <div
                           className={cn(
-                            "relative overflow-hidden bg-gray-100 mb-4",
+                            "relative overflow-hidden bg-gray-100 mb-2 lg:mb-4",
                             // "h-[65vw] sm:h-48 md:h-56 lg:h-72",
                             "flex items-center justify-center",
                             "pb-[100%]"
@@ -130,7 +130,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                         <p
                           className={cn(
                             "font-primary",
-                            "text-base md:text-sm lg:text-base",
+                            "text-[0.8rem] md:text-sm lg:text-base",
                             "text-gray-800 text-center"
                           )}
                         >

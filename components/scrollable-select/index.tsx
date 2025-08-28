@@ -1,13 +1,15 @@
 "use client"
 
-import { ScrollableBox } from "../utility/scrollable-box"
-import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
+import { motion } from "motion/react"
 import { useState } from "react"
+import { IconWrapper } from "@/components/icon-wrapper"
+import { ScrollableBox } from "@/components/utility/scrollable-box"
 
 export interface ScrollableSelectProps {
   items: {
     title: string
+    icon?: React.ReactNode
   }[]
   activeIndex?: number
   goToIndex?: (index: number) => void
@@ -58,6 +60,7 @@ export function ScrollableSelect({
                 "whitespace-nowrap font-primary text-black cursor-pointer pr-6",
                 "text-sm 2xl:text-base",
                 "transition-opacity duration-300 hover:opacity-100",
+                "flex items-center gap-2",
                 itemIndex === 0 && "pl-4",
                 itemIndex === items.length - 1 && "pr-4",
                 itemIndex === activeIndex && "underline",
@@ -65,6 +68,7 @@ export function ScrollableSelect({
               )}
               onClick={() => goToIndex(itemIndex)}
             >
+              <IconWrapper className="w-8 h-8 flex-shrink-0 flex-grow-0 border-bricky-brick">{item.icon}</IconWrapper>
               {item.title}
             </motion.div>
           ))}

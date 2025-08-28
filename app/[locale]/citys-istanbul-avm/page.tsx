@@ -12,8 +12,15 @@ export default async function Page() {
 
   return (
     <>
-      <section className="h-[60vw] xl:h-svh bg-bricky-brick relative z-10 overflow-hidden">
-        <Img src="/img/citys-istanbul-avm-hero.jpg" alt="City's Istanbul AVM" fill sizes="100vw" loading="lazy" />
+      <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
+        <Img
+          src="/img/citys-istanbul-avm-hero.jpg"
+          alt="City's Istanbul AVM"
+          fill
+          sizes="100vw"
+          loading="lazy"
+          className="object-cover"
+        />
       </section>
       <section className="relative z-30 bg-white flex flex-col items-center">
         <div className="flex items-center justify-center bg-aqua-belt w-full lg:w-[530px] h-40 lg:h-56 mb-8">

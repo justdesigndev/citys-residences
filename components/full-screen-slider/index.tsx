@@ -38,7 +38,7 @@ export function FullScreenSlider({ className, title, description, items }: FullS
           "font-primary text-black xl:text-white font-normal text-center mb-8 mx-auto",
           "w-full lg:w-9/12 xl:w-[27vw] px-6 lg:px-4 lg:py-4",
           "text-2xl lg:text-3xl",
-          "leading-relaxed lg:leading-relaxed xl:leading-relaxed"
+          "leading-snug lg:leading-snug xl:leading-snug"
         )}
       >
         {description}

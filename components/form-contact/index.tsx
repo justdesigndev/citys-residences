@@ -390,7 +390,7 @@ export function ContactForm({ translations }: FormContactProps) {
             />
           </div>
           <ConsentCheckboxes form={form} control={form.control} />
-          <div className="flex items-start justify-between mt-8">
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-0 mt-8">
             <button type="submit" disabled={mutation.isPending} className="flex relative w-40 lg:w-48">
               <AnimatedButton text={translations.submit.default} theme="secondary" size="sm" />
               {mutation.isPending && (
@@ -408,7 +408,7 @@ export function ContactForm({ translations }: FormContactProps) {
                   "block",
                   "text-base lg:text-base xl:text-xl 2xl:text-xl 3xl:text-xl",
                   "leading-none lg:leading-none xl:leading-none 2xl:leading-none 3xl:leading-none",
-                  "font-primary font-normal text-bricky-brick text-center lg:text-left",
+                  "font-primary font-normal text-bricky-brick text-left",
                   "transition-opacity duration-300 ease-in-out",
                   "opacity-100 hover:opacity-70",
                   "flex items-start gap-1"
@@ -424,7 +424,7 @@ export function ContactForm({ translations }: FormContactProps) {
                       "block whitespace-pre-line pl-1",
                       "text-sm lg:text-sm xl:text-sm 2xl:text-sm 3xl:text-sm",
                       "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal",
-                      "font-primary font-normal text-bricky-brick text-center lg:text-left"
+                      "font-primary font-normal text-bricky-brick text-left"
                     )}
                   >
                     <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>

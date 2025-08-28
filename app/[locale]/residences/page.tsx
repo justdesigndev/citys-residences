@@ -25,7 +25,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   return (
     <>
       <FadeInOnScroll>
-        <section className="h-[65vw] xl:h-svh bg-bricky-brick relative z-10 overflow-hidden">
+        <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
           <Video
             primaryVideoUrl={residencesVideo}
             autoPlay

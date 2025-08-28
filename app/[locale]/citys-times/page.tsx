@@ -4,7 +4,7 @@ import { Content } from "./content"
 // import { fetchEvents, getEventImageUrl } from "@/lib/api/queries"
 
 export default async function Page() {
-// { params }: { params: { locale: string } }
+  // { params }: { params: { locale: string } }
   //const { locale } = params
   // const eventsResponse = await fetchEvents(locale)
   // const events = eventsResponse.success ? eventsResponse.data || [] : []
