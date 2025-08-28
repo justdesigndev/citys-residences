@@ -41,7 +41,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             <h2
               className={cn(
                 "font-primary font-semibold text-center text-bricky-brick",
-                "text-3xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+                "text-2xl lg:text-2xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
                 "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
                 "xl:max-w-4xl 2xl:max-w-6xl",
                 "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
