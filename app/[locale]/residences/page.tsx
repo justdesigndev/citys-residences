@@ -102,6 +102,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <VideoSection
             primaryVideoUrl={melihBulgurVideo}
             thumbnail="/img/thumbnail-melih-bulgur.jpg"
+            thumbnailMobile="/img/thumbnail-melih-bulgur-mobile.jpg"
             title={
               <>
                 <span className="whitespace-nowrap">Zemin Güvenliği</span>

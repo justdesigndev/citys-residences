@@ -10,7 +10,8 @@ import { useRef, useState, ReactNode } from "react"
 interface VideoSectionProps {
   primaryVideoUrl: string
   primaryVideoType?: string
-  thumbnail: string
+  thumbnail?: string
+  thumbnailMobile?: string
   title: ReactNode
   className?: string
   spot?: string
@@ -20,6 +21,7 @@ export function VideoSection({
   primaryVideoUrl,
   primaryVideoType = "video/mp4",
   thumbnail,
+  thumbnailMobile,
   title,
   className,
   spot,
@@ -61,10 +63,22 @@ export function VideoSection({
           )}
           onClick={handlePlay}
         >
-          {thumbnail && (
+          {thumbnail && !thumbnailMobile && (
             <div className="absolute top-0 left-0 w-full h-full z-10">
               <Img
                 src={thumbnail}
+                alt="Thumbnail"
+                className="w-full h-full object-cover"
+                fill
+                sizes="100vw"
+                loading="lazy"
+              />
+            </div>
+          )}
+          {thumbnailMobile && (
+            <div className="absolute top-0 left-0 w-full h-full z-10 block lg:hidden">
+              <Img
+                src={thumbnailMobile}
                 alt="Thumbnail"
                 className="w-full h-full object-cover"
                 fill
