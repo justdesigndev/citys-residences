@@ -50,7 +50,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <div
             className={cn(
               "font-montserrat font-semibold text-white text-center",
-              "text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+              "text-2xl sm:text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
               "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
               "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
             )}
