@@ -63,28 +63,26 @@ export function VideoSection({
           )}
           onClick={handlePlay}
         >
-          {thumbnail && !thumbnailMobile && (
+          {(thumbnail || thumbnailMobile) && (
             <div className="absolute top-0 left-0 w-full h-full z-10">
               <Img
-                src={thumbnail}
+                src={(thumbnailMobile || thumbnail)!}
                 alt="Thumbnail"
-                className="w-full h-full object-cover"
+                className={cn("w-full h-full object-cover", thumbnailMobile && "block lg:hidden")}
                 fill
                 sizes="100vw"
                 loading="lazy"
               />
-            </div>
-          )}
-          {thumbnailMobile && (
-            <div className="absolute top-0 left-0 w-full h-full z-10 block lg:hidden">
-              <Img
-                src={thumbnailMobile}
-                alt="Thumbnail"
-                className="w-full h-full object-cover"
-                fill
-                sizes="100vw"
-                loading="lazy"
-              />
+              {thumbnail && thumbnailMobile && (
+                <Img
+                  src={thumbnail}
+                  alt="Thumbnail"
+                  className="w-full h-full object-cover hidden lg:block"
+                  fill
+                  sizes="100vw"
+                  loading="lazy"
+                />
+              )}
             </div>
           )}
           {/* <div className="absolute top-0 left-1/2 -translate-x-1/2 xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 z-50">
