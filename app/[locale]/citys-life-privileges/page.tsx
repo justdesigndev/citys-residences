@@ -47,11 +47,27 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
               )}
             >
-              <span>Yaşam Yeniden Tasarlandı</span>
+              <span
+                className={cn(
+                  "font-primary font-normal lg:font-semibold text-bricky-brick text-center whitespace-nowrap",
+                  "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-5xl",
+                  "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+                )}
+              >
+                Yaşam Yeniden Tasarlandı
+              </span>
               <span className="w-12 h-12 lg:w-16 lg:h-16 mx-8">
                 <IconCollab fill={colors["bricky-brick"]} />
               </span>
-              <span>CITY&apos;S</span>
+              <span
+                className={cn(
+                  "font-copperplate font-semibold text-bricky-brick text-center",
+                  "text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+                  "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+                )}
+              >
+                CITY&apos;S
+              </span>
             </h2>
           </FadeInOnScroll>
         </div>

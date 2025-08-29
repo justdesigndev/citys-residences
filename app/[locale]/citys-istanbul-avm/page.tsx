@@ -28,11 +28,11 @@ export default async function Page() {
             <IconCitysIstanbulLogo fill={colors["halite-blue"]} />
           </div>
         </div>
-        <div className="flex flex-col items-center gap-4 px-6 md:px-0 lg:px-0">
+        <div className="flex flex-col items-center gap-4 px-4 md:px-0 lg:px-0">
           <h2
             className={cn(
               "font-primary font-bold text-bricky-brick xl:max-w-4xl 2xl:max-w-6xl text-center",
-              "text-3xl lg:text-2xl xl:text-4xl 2xl:text-4xl",
+              "text-2xl lg:text-2xl xl:text-4xl 2xl:text-4xl",
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
@@ -43,7 +43,7 @@ export default async function Page() {
           <p
             className={cn(
               "font-primary font-normal text-black xl:max-w-5xl 2xl:max-w-6xl text-center",
-              "text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl",
+              "text-lg lg:text-2xl xl:text-2xl 2xl:text-2xl",
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
@@ -54,7 +54,7 @@ export default async function Page() {
           <p
             className={cn(
               "font-primary font-normal text-black xl:max-w-5xl 2xl:max-w-6xl text-center",
-              "text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl",
+              "text-lg lg:text-2xl xl:text-2xl 2xl:text-2xl",
               "xl:leading-normal 2xl:leading-snug"
             )}
           >
@@ -67,7 +67,7 @@ export default async function Page() {
           <p
             className={cn(
               "font-primary font-normal text-black xl:max-w-5xl 2xl:max-w-6xl text-center",
-              "text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl",
+              "text-lg lg:text-2xl xl:text-2xl 2xl:text-2xl",
               "xl:leading-normal 2xl:leading-snug"
             )}
           >

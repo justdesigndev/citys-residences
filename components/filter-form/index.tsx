@@ -56,7 +56,7 @@ export function FilterForm({
   return (
     <Form {...form}>
       <form onSubmit={(e) => e.preventDefault()} className="flex flex-col lg:flex-row gap-4 mb-8 lg:mb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-8 w-full">
           <FormField
             control={form.control}
             name="category"

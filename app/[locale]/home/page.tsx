@@ -47,19 +47,29 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           />
         </ScaleOut>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-          <div
-            className={cn(
-              "font-montserrat font-semibold text-white text-center",
-              "text-2xl sm:text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
-              "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
-              "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
-            )}
-          >
-            <span className="whitespace-nowrap">Yaşam Yeniden Tasarlandı</span>
+          <div className={cn("flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0")}>
+            <span
+              className={cn(
+                "font-montserrat font-medium lg:font-semibold text-white text-center whitespace-nowrap",
+                "text-2xl sm:text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+                "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight",
+                "flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
+              )}
+            >
+              Yaşam Yeniden Tasarlandı
+            </span>
             <span className="w-12 h-12 2xl:w-14 2xl:h-14 3xl:w-16 3xl:h-16 mx-8">
               <IconCollab fill={colors.white} />
             </span>
-            <span className="whitespace-nowrap">CITY&apos;S</span>
+            <span
+              className={cn(
+                "font-copperplate font-semibold text-white text-center",
+                "text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+                "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+              )}
+            >
+              CITY&apos;S
+            </span>
           </div>
         </div>
       </section>
@@ -120,7 +130,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 <>
                   <span
                     className={cn(
-                      "font-semibold text-white text-center whitespace-nowrap",
+                      "font-normal lg:font-semibold text-white text-center whitespace-nowrap",
                       "text-2xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
                       "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
                     )}
@@ -132,8 +142,8 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                   </span>
                   <span
                     className={cn(
-                      "font-semibold text-white text-center",
-                      "text-2xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
+                      "font-copperplate font-semibold text-white text-center",
+                      "text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl",
                       "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
                     )}
                   >
@@ -190,13 +200,13 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             className={cn(
               "relative lg:absolute lg:top-28 lg:left-1/2 lg:-translate-x-1/2",
               "font-primary font-bold text-bricky-brick lg:title-shadow text-center z-50 mb-4 lg:mb-0",
-              "text-4xl lg:text-6xl xl:text-7xl 2xl:text-7xl",
+              "text-3xl lg:text-6xl xl:text-7xl 2xl:text-7xl",
               "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
             )}
           >
-            <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}>
-              {t("live.p1.title")}
-            </GsapSplitText>
+            {/* <GsapSplitText splitBy="lines" stagger={0.005} duration={0.5}> */}
+            {t("live.p1.title")}
+            {/* </GsapSplitText> */}
           </h2>
           <p
             className={cn(
@@ -204,7 +214,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               "description-bg py-0 lg:py-4 px-6 lg:px-8 mb-8 lg:mb-0 lg:rounded-md z-50",
               "font-primary font-normal",
               "text-black lg:text-white text-center lg:text-left",
-              "text-2xl lg:text-2xl xl:text-2xl",
+              "text-xl lg:text-2xl xl:text-2xl",
               "leading-snug lg:leading-snug xl:leading-snug",
               "lg:w-[460px] xl:w-[500px]"
             )}

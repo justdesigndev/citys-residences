@@ -85,8 +85,8 @@ export function MembersClubItem({
                 className={cn(
                   "font-primary font-normal text-black",
                   "prose prose-ul:list-disc prose-ul:pl-6 prose-li:text-black prose-li:mb-2",
-                  "[&_p]:mb-4 [&_p]:text-xl xl:[&_p]:text-2xl",
-                  "[&_ul]:list-disc [&_ul]:pl-6 [&_li]:text-xl xl:[&_li]:text-2xl [&_li]:text-black [&_li]:mb-2",
+                  "[&_p]:mb-4 [&_p]:text-lg xl:[&_p]:text-2xl",
+                  "[&_ul]:list-disc [&_ul]:pl-6 [&_li]:text-lg xl:[&_li]:text-2xl [&_li]:text-black [&_li]:mb-2",
                   "[&_ul]:list-none [&_li]:before:content-['•'] [&_li]:before:mr-2 [&_li]:before:black",
                   descriptionClassName
                 )}

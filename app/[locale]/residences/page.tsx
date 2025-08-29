@@ -59,7 +59,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <h2
             className={cn(
               "font-montserrat font-bold text-bricky-brick text-center mb-5",
-              "text-4xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-7xl",
+              "text-2xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-7xl",
               "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight "
             )}
           >
@@ -70,7 +70,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           <p
             className={cn(
               "font-primary font-medium text-md text-center mb-5 lg:mb-10",
-              "text-2xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
+              "text-xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
               "leading-tighter lg:leading-tighter xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
             )}
           >
