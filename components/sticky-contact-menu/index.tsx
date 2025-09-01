@@ -126,25 +126,25 @@ export function StickyContactMenu() {
       >
         <Link
           href="tel:+902162666600"
-          className="py-3 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+          className="py-2 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
         >
-          <IconTelephone className="w-6 h-6" />
-          <div className="text-sm font-medium leading-none">Telefon</div>
+          <IconTelephone className="w-4 h-4" />
+          <div className="text-[0.8rem] font-medium leading-none">Telefon</div>
         </Link>
         <div
-          className="py-3 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+          className="py-2 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
           onClick={() => setIsOpen(true)}
         >
-          <IconInquiry className="w-6 h-6" />
-          <div className="text-sm font-medium leading-none">Randevu Al</div>
+          <IconInquiry className="w-4 h-4" />
+          <div className="text-[0.8rem] font-medium leading-none">Randevu Al</div>
         </div>
 
         <Link
           href="https://wa.me/+9002162666600"
-          className="py-3 text-white flex flex-col items-center justify-center gap-2"
+          className="py-2 text-white flex flex-col items-center justify-center gap-2"
         >
-          <IconWhatsapp className="w-6 h-6" />
-          <div className="text-sm font-medium leading-none">Whatsapp</div>
+          <IconWhatsapp className="w-4 h-4" />
+          <div className="text-[0.8rem] font-medium leading-none">Whatsapp</div>
         </Link>
       </div>
       <div
