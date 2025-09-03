@@ -1,18 +1,17 @@
 import { cn } from "@/lib/utils"
 import { getTranslations } from "next-intl/server"
 
+import { AnimatedLine } from "@/components/animated-line"
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
 import { ScaleOut } from "@/components/animations/scale-out"
+import { FullScreenSlider } from "@/components/full-screen-slider"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { HorizontalScroll } from "@/components/horizontal-scroll"
 import { IconCollab, Logo } from "@/components/icons"
 import { Img } from "@/components/utility/img"
 import { Video } from "@/components/utility/video"
-import { VideoSection } from "@/components/video-section"
-import { kolajVideo, locationVideo, mainVideo, navigationConfig } from "@/lib/constants"
+import { locationVideo, mainVideo, navigationConfig } from "@/lib/constants"
 import { colors } from "@/styles/config.mjs"
-import { AnimatedLine } from "@/components/animated-line"
-import { FullScreenSlider } from "@/components/full-screen-slider"
 
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: "home" })
@@ -115,7 +114,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
           </div>
         </div>
       </section>
-      <section
+      {/* <section
         className={cn(
           "relative py-0 lg:py-12",
           "before:absolute before:bottom-0 before:left-0 before:w-full before:h-1/2 before:bg-unbleached"
@@ -154,7 +153,10 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             />
           </div>
         </FadeInOnScroll>
-      </section>
+      </section> */}
+      <div className="w-screen h-svh lg:h-[55vw] xl:h-screen bg-bricky-brick/30 relative">
+        <Img src="/img/from-sky.jpg" alt="Lunas" fill sizes="100vw" className="object-cover" />
+      </div>
       {/* YAŞAMIN TAM MERKEZİNDE */}
       <section className="bg-unbleached py-16 lg:py-12 z-20 relative">
         <div className="mx-auto py-12 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16">
