@@ -62,7 +62,7 @@ export function MembersClubItem({
               <h3
                 className={cn(
                   "font-primary font-bold text-bricky-brick",
-                  "text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl",
+                  "text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl",
                   "mb-3 xl:mb-6",
                   titleClassName
                 )}
@@ -73,7 +73,7 @@ export function MembersClubItem({
                 <div
                   className={cn(
                     "font-primary font-semibold text-bricky-brick",
-                    "text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl 3xl:text-2xl",
+                    "text-base lg:text-2xl xl:text-2xl 2xl:text-2xl 3xl:text-2xl",
                     "mb-4",
                     subtitleClassName
                   )}
@@ -85,8 +85,8 @@ export function MembersClubItem({
                 className={cn(
                   "font-primary font-normal text-black",
                   "prose prose-ul:list-disc prose-ul:pl-6 prose-li:text-black prose-li:mb-2",
-                  "[&_p]:mb-4 [&_p]:text-base xl:[&_p]:text-2xl",
-                  "[&_ul]:list-disc [&_ul]:pl-1 xl:[&_ul]:pl-6 [&_li]:text-base xl:[&_li]:text-2xl [&_li]:text-black [&_li]:mb-2",
+                  "[&_p]:mb-4 [&_p]:text-sm xl:[&_p]:text-2xl",
+                  "[&_ul]:list-disc [&_ul]:pl-1 xl:[&_ul]:pl-6 [&_li]:text-sm xl:[&_li]:text-2xl [&_li]:text-black [&_li]:mb-2",
                   "[&_ul]:list-none [&_li]:before:content-['•'] [&_li]:before:mr-2 [&_li]:before:black",
                   descriptionClassName
                 )}
