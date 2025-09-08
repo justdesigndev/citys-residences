@@ -196,8 +196,8 @@ export function ModalContactForm() {
         onClick={() => setOpen(false)}
       ></div>
       <div className={s.form}>
-        <div className="relative box bg-brilliance h-full w-0" onClick={(e) => e.stopPropagation()} ref={formRef}>
-          <div className="absolute top-0 left-0 w-[700px] h-full flex right-0">
+        <div className='relative box bg-brilliance h-full w-0' onClick={(e) => e.stopPropagation()} ref={formRef}>
+          <div className='absolute top-0 left-0 w-[700px] h-full flex right-0'>
             <button
               className={cn(
                 s.close,
@@ -208,7 +208,7 @@ export function ModalContactForm() {
                 }
               )}
               onClick={() => setOpen(false)}
-              type="button"
+              type='button'
             >
               <X />
             </button>
@@ -224,17 +224,17 @@ export function ModalContactForm() {
               onClick={() => setOpen((prev) => !prev)}
               ref={stickyBadgeRef}
             >
-              <span className="block xl:-rotate-90 whitespace-nowrap pointer-events-none">{commonT("inquiry")}</span>
+              <span className='block xl:-rotate-90 whitespace-nowrap pointer-events-none'>{commonT("inquiry")}</span>
             </div>
-            <div className="h-full flex flex-col justify-center">
-              <ScrollableBox className="flex flex-grow-0">
-                <div className="px-4 lg:px-8 py-14 lg:py-8 space-y-8 relative">
-                  <h2 className="text-neutral-900 text-base lg:text-sm font-normal font-primary text-left lg:text-center xl:text-left leading-normal">
+            <div className='h-full flex flex-col justify-center'>
+              <ScrollableBox className='flex flex-grow-0'>
+                <div className='px-4 lg:px-8 py-14 lg:py-8 space-y-8 relative'>
+                  <h2 className='text-neutral-900 text-base lg:text-sm font-normal font-primary text-left lg:text-center xl:text-left leading-normal'>
                     {t.rich("description", {
-                      br: () => <br className="hidden lg:block" />,
+                      br: () => <br className='hidden lg:block' />,
                     })}
                   </h2>
-                  <ContactForm translations={formTranslations} />
+                  <ContactForm translations={formTranslations} withAddress />
                 </div>
               </ScrollableBox>
             </div>

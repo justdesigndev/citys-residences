@@ -8,7 +8,6 @@ import { getMessages, getTranslations } from "next-intl/server"
 import { Montagu_Slab, Montserrat } from "next/font/google"
 import localFont from "next/font/local"
 
-import { AlotechWidget } from "@/components/alotech-widget"
 import { GSAP } from "@/components/gsap"
 import { ImageGalleryModal } from "@/components/image-gallery/modal"
 import { ModalContactForm } from "@/components/modal-contact-form"
@@ -216,7 +215,7 @@ export default async function LocaleLayout({
       <head>
         <StyleVariables colors={colors} themes={themes} />
         {/* <UTMWidgetInit /> */}
-        <AlotechWidget />
+        {/* <AlotechWidget /> */}
       </head>
       <body
         className={`${halenoir.variable} ${montserrat.variable} ${montaguSlab.variable} ${suisseIntl.variable} ${aktivGrotesk.variable} ${copperplate.variable} antialiased`}
