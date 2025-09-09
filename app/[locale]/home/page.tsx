@@ -78,7 +78,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       </section>
       {/* YAŞAMA SANATI */}
       <section className='bg-white py-12 lg:py-12 z-20 relative'>
-        <div className='mx-auto py-12 xl:py-28 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16'>
+        <div className='mx-auto py-12 xl:py-28 xl:pt-16 xl:pb-16 relative flex flex-col items-center px-0 lg:px-10 xl:px-16'>
           <div className='w-48 h-48 lg:w-64 lg:h-64 mx-auto mb-20 lg:mb-20'>
             <FadeInOnScroll delay={0.5}>
               <Logo fill={colors["bricky-brick"]} />
@@ -163,7 +163,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       </div>
       {/* YAŞAMIN TAM MERKEZİNDE */}
       <section className='bg-unbleached py-16 lg:py-12 z-20 relative'>
-        <div className='mx-auto py-12 xl:pt-16 xl:pb-8 relative flex flex-col items-center px-0 lg:px-10 xl:px-16'>
+        <div className='mx-auto py-12 xl:pt-16 xl:pb-16 relative flex flex-col items-center px-0 lg:px-10 xl:px-16'>
           <div className='flex flex-col items-center gap-4 lg:gap-8'>
             <article
               className={cn(
