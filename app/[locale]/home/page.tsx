@@ -267,7 +267,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
                 "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
               )}
             >
-              İletişim Formu
+              Randevu Al
             </h3>
             <p
               className={cn(
