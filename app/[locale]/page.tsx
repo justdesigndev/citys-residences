@@ -20,13 +20,13 @@ export default function Page({ params }: { params: { locale: string } }) {
       <Header />
       <Wrapper>
         <Home params={params} />
-        <PageTitle title="PROJE" id={navigationConfig["/project"]?.id as string} />
+        <PageTitle title='PROJE' id={navigationConfig["/project"]?.id as string} />
         <Project />
-        <PageTitle title="KONUM" id={navigationConfig["/location"]?.id as string} />
-        <div className="w-screen h-svh lg:h-[55vw] xl:h-screen bg-bricky-brick/30 relative">
-          <Img src="/img/lunas.jpg" alt="Lunas" fill sizes="100vw" className="object-cover" />
+        <PageTitle title='KONUM' id={navigationConfig["/location"]?.id as string} />
+        <div className='w-screen h-svh lg:h-[55vw] xl:h-screen bg-bricky-brick/30 relative'>
+          <Img src='/img/lunas.jpg' alt='Lunas' fill sizes='100vw' className='object-cover' />
         </div>
-        <PageTitle className="pb:8 lg:pb-8" title="RESIDENCES'LAR" id={navigationConfig["/residences"]?.id as string} />
+        <PageTitle className='pb:8 lg:pb-8' title="RESIDENCE'LAR" id={navigationConfig["/residences"]?.id as string} />
         <Residences params={params} />
         {/* <PageTitle title="CITY'S PARK" id={navigationConfig["/citys-park"]?.id as string} /> */}
         <CitysPark params={params} />
@@ -35,10 +35,10 @@ export default function Page({ params }: { params: { locale: string } }) {
         {/* <PageTitle title="CITY'S LIFE AYRICALIKLARI" id={navigationConfig["/citys-life-privileges"]?.id as string} /> */}
         <CitysLifePrivileges params={params} />
         <PageTitle
-          textClassName="font-copperplate text-center"
+          textClassName='font-copperplate text-center'
           title={
             <>
-              CITY<span className="font-montserrat">&apos;</span>S İSTANBUL <br /> AVM
+              CITY<span className='font-montserrat'>&apos;</span>S İSTANBUL <br /> AVM
             </>
           }
           id={navigationConfig["/citys-istanbul-avm"]?.id as string}
