@@ -162,7 +162,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       <div className='w-screen h-svh lg:h-[55vw] xl:h-screen bg-bricky-brick/30 relative hidden xl:block'>
         <Img src='/img/from-sky.jpg' alt='Lunas' fill sizes='100vw' className='object-cover' />
       </div>
-      <div className='relative w-full h-[90vw] lg:h-full xl:h-[45vw] min-h-[40vw] lg:min-h-[45vw] block xl:hidden'>
+      <div className='relative w-full h-[120vw] lg:h-full xl:h-[45vw] min-h-[40vw] lg:min-h-[45vw] block xl:hidden'>
         <MaskedPanImage imgSrc={"/img/from-sky.jpg"} sizes='100vw' />
       </div>
       {/* YAŞAMIN TAM MERKEZİNDE */}

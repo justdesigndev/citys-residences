@@ -150,7 +150,7 @@ export function MaskedPanImage({ imgSrc, sizes = "100vw" }: MaskedPanImageProps)
 
         // Calculate duration based on pan distance to maintain consistent speed
         // Responsive base speed: slower on mobile for better UX
-        const baseSpeed = width < breakpoints.breakpointTablet ? 50 : 100 // pixels per second
+        const baseSpeed = width < breakpoints.breakpointTablet ? 70 : 100 // pixels per second
         const panDuration = Math.max(maxPanDistance / baseSpeed, 1) // minimum 1 second
         const returnDuration = panDuration * 0.8 // return to center slightly faster
 
