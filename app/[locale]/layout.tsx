@@ -15,6 +15,7 @@ import { Preloader, PreloaderClient } from "@/components/preloader"
 import { ReactQueryProvider } from "@/components/react-query-provider"
 import { RealViewport } from "@/components/real-viewport"
 import { StickyContactMenu } from "@/components/sticky-contact-menu"
+import { AlotechWidget } from "@/components/alotech-widget"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -215,7 +216,7 @@ export default async function LocaleLayout({
       <head>
         <StyleVariables colors={colors} themes={themes} />
         {/* <UTMWidgetInit /> */}
-        {/* <AlotechWidget /> */}
+        <AlotechWidget />
       </head>
       <body
         className={`${halenoir.variable} ${montserrat.variable} ${montaguSlab.variable} ${suisseIntl.variable} ${aktivGrotesk.variable} ${copperplate.variable} antialiased`}
