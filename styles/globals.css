@@ -39,6 +39,7 @@
   --z-gsap-markers: z-stack();
   --z-sticky-menu: z-stack();
   --z-alotech: z-stack();
+  --z-test-page: z-stack();
 }
 
 * {
