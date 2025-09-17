@@ -8,6 +8,7 @@ import s from "./infinite-scrolling-cards.module.css"
 interface InfiniteScrollingCardsProps {
   items?: {
     src: string
+    text: string
   }[]
   className?: string
 }
@@ -203,7 +204,10 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
       <ul className={s.cards} ref={cardsRef}>
         {items?.map((item, index) => (
           <li key={index}>
-            <Img src={item.src} alt='test' fill className='w-full h-full object-cover' />
+            <Img src={item.src} alt='test' fill className='gsap-img w-full h-full object-cover' />
+            <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold z-50'>
+              {item.text}
+            </div>
           </li>
         ))}
       </ul>
