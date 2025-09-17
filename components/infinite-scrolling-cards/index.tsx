@@ -37,7 +37,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
     let time = 0
 
     // Set initial state of items
-    gsap.set(items, { yPercent: 400, opacity: 0, scale: 0 })
+    gsap.set(items, { yPercent: 250, opacity: 0, scale: 0 })
 
     // Create animations
     for (let i = 0; i < l; i++) {
@@ -62,9 +62,9 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
         )
         .fromTo(
           item,
-          { yPercent: 400 },
+          { yPercent: 250 },
           {
-            yPercent: -400,
+            yPercent: -250,
             duration: 1,
             ease: "none",
             immediateRender: false,
@@ -203,9 +203,9 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
     <div className={`${s.gallery} ${className}`} ref={galleryRef}>
       <ul className={s.cards} ref={cardsRef}>
         {items?.map((item, index) => (
-          <li key={index}>
+          <li key={index} className="after:content-[''] after:absolute after:inset-0 after:bg-black/20">
             <Img src={item.src} alt='test' fill className='gsap-img w-full h-full object-cover' />
-            <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold z-50'>
+            <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-medium z-50 font-primary whitespace-nowrap'>
               {item.text}
             </div>
           </li>
