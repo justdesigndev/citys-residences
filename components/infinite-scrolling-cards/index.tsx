@@ -41,7 +41,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
     let time = 0
 
     // Set initial state of items
-    gsap.set(items, { yPercent: 250, opacity: 0, scale: 0 })
+    gsap.set(items, { yPercent: 250, opacity: 1, scale: 0, filter: "brightness(0)" })
 
     // Create animations
     for (let i = 0; i < l; i++) {
@@ -51,10 +51,11 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
       rawSequence
         .fromTo(
           item,
-          { scale: 0, opacity: 0 },
+          { scale: 0, opacity: 1, filter: "brightness(0)" },
           {
             scale: 1,
             opacity: 1,
+            filter: "brightness(1)",
             zIndex: 100,
             duration: 0.5,
             yoyo: true,
