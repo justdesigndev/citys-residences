@@ -128,7 +128,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
 
       gsap.registerPlugin(ScrollTrigger)
 
-      const spacing = 0.02
+      const spacing = 0.025
       const snap = gsap.utils.snap(spacing)
       const cards = gsap.utils.toArray(cardsRef.current.children) as HTMLElement[]
 

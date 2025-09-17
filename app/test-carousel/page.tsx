@@ -10,18 +10,7 @@ export default async function Page() {
     { src: "/img/test-carousel/6.jpg", text: "GALERİ" },
   ]
 
-  const manyItems = [
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-    ...items4,
-  ]
+  const manyItems = [...items4, ...items4, ...items4, ...items4, ...items4]
 
   return (
     <div className='relative h-screen w-screen z-[var(--z-test-page)] bg-white'>
