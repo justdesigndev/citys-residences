@@ -41,7 +41,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
     let time = 0
 
     // Set initial state of items
-    gsap.set(items, { yPercent: 250, opacity: 1, scale: 0, filter: "brightness(0)" })
+    gsap.set(items, { yPercent: 200, opacity: 1, scale: 0, filter: "brightness(0)" })
 
     // Create animations
     for (let i = 0; i < l; i++) {
@@ -67,9 +67,9 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
         )
         .fromTo(
           item,
-          { yPercent: 250 },
+          { yPercent: 200 },
           {
-            yPercent: -250,
+            yPercent: -200,
             duration: 1,
             ease: "none",
             immediateRender: false,
@@ -180,7 +180,9 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
       <div className='fixed top-0 left-0 w-full h-20 bg-white z-50 py-4'>
         <LogoSlim fill={colors["bricky-brick"]} />
       </div>
-      <div className={cn(s.gallery, "absolute top-0 left-0 w-full h-full overflow-hidden")} ref={galleryRef}>
+      <div className='fixed bottom-0 left-0 w-full h-16 bg-white z-40'></div>
+      <div className='fixed top-0 left-0 w-full h-24 bg-white z-40'></div>
+      <div className={cn(s.gallery, "absolute top-0 left-0 w-full h-full overflow-hidden z-30")} ref={galleryRef}>
         {/* <div className={s.topGradient} />
         <div className={s.bottomGradient} /> */}
         <ul className={s.cards} ref={cardsRef}>
