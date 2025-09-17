@@ -179,7 +179,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
       <div className='fixed top-0 left-0 w-full h-20 bg-white z-50 py-4'>
         <LogoSlim fill={colors["bricky-brick"]} />
       </div>
-      <div className={cn(s.gallery, "absolute top-20 left-0 w-full h-full overflow-hidden")} ref={galleryRef}>
+      <div className={cn(s.gallery, "absolute top-0 left-0 w-full h-full overflow-hidden")} ref={galleryRef}>
         {/* <div className={s.topGradient} />
         <div className={s.bottomGradient} /> */}
         <ul className={s.cards} ref={cardsRef}>
