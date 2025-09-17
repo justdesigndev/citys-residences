@@ -25,37 +25,37 @@ export default async function Page({ params: { locale } }: { params: { locale: s
   return (
     <>
       <FadeInOnScroll>
-        <section className="h-svh bg-bricky-brick relative z-10 overflow-hidden">
+        <section className='h-svh bg-bricky-brick relative z-10 overflow-hidden'>
           <Video
             primaryVideoUrl={residencesVideo}
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className='w-full h-full object-cover'
           />
         </section>
       </FadeInOnScroll>
-      <section className="bg-white relative z-30 py-12 lg:pt-20 2xl:pt-28">
+      <section className='bg-white relative z-30 py-12 lg:pt-20 2xl:pt-28'>
         <FadeInOnScroll>
-          <div className="w-full h-40 lg:h-64 mx-auto">
+          <div className='w-full h-40 lg:h-64 mx-auto'>
             <Logo fill={colors["bricky-brick"]} />
           </div>
         </FadeInOnScroll>
       </section>
-      <section className="bg-white relative z-30 lg:py-12" id={sections.residences.interiorArchitecture.id}>
+      <section className='bg-white relative z-30 lg:py-12' id={sections.residences.interiorArchitecture.id}>
         <FadeInOnScroll>
-          <div className="section-container">
+          <div className='section-container'>
             <VideoSection
               primaryVideoUrl={mustafaTonerVideo}
-              thumbnail="/img/thumbnail-toners.jpg"
-              title="İÇ MİMARIN GÖZÜYLE..."
+              thumbnail='/img/thumbnail-toners.jpg'
+              title='İÇ MİMARIN GÖZÜYLE...'
             />
           </div>
         </FadeInOnScroll>
       </section>
-      <section className="bg-white relative z-30 section-container">
-        <div className="relative flex flex-col items-center justify-center mx-auto py-16 xl:py-32 pb-0 px-4 lg:px-0">
+      <section className='bg-white relative z-30 section-container'>
+        <div className='relative flex flex-col items-center justify-center mx-auto py-16 xl:py-32 pb-0 px-4 lg:px-0'>
           <h2
             className={cn(
               "font-montserrat font-bold text-bricky-brick text-center mb-6 lg:mb-24",
@@ -63,7 +63,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
             )}
           >
-            <GsapSplitText splitBy="lines" stagger={0.05} duration={1}>
+            <GsapSplitText splitBy='lines' stagger={0.05} duration={1}>
               Hayata Dokunan Detaylar
             </GsapSplitText>
           </h2>
@@ -74,7 +74,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               "leading-tighter lg:leading-tighter xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
             )}
           >
-            <GsapSplitText splitBy="lines" stagger={0.05} duration={1}>
+            <GsapSplitText splitBy='lines' stagger={0.05} duration={1}>
               Her köşesi özenle düşünülmüş, <br /> tüm çizgileri ferah bir nefese açılan alanlar...
             </GsapSplitText>
           </p>
@@ -86,7 +86,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal"
             )}
           >
-            <GsapSplitText splitBy="lines" stagger={0.05} duration={1}>
+            <GsapSplitText splitBy='lines' stagger={0.05} duration={1}>
               Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir
               dünyaya dönüşmesi için tasarlandı.
             </GsapSplitText>
@@ -94,28 +94,28 @@ export default async function Page({ params: { locale } }: { params: { locale: s
         </div>
         <Sequenced />
       </section>
-      <section className="bg-white relative z-30 section-container py-6 lg:py-12 w-full overflow-hidden">
+      <section className='bg-white relative z-30 section-container py-6 lg:py-12 w-full overflow-hidden'>
         <StackingCards items={items} />
       </section>
       <FadeInOnScroll>
-        <section className="section-container lg:py-12" id={sections.residences.groundSafety.id}>
+        <section className='section-container lg:py-12' id={sections.residences.groundSafety.id}>
           <VideoSection
             primaryVideoUrl={melihBulgurVideo}
-            thumbnail="/img/thumbnail-melih-bulgur.jpg"
-            thumbnailMobile="/img/thumbnail-melih-bulgur-mobile.jpg"
+            thumbnail='/img/thumbnail-melih-bulgur.jpg'
+            thumbnailMobile='/img/thumbnail-melih-bulgur-mobile.jpg'
             title={
               <>
-                <span className="whitespace-nowrap">Zemin Güvenliği</span>
-                <span className="w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 mx-8">
+                <span className='whitespace-nowrap'>Zemin Güvenliği</span>
+                <span className='w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 mx-8'>
                   <IconCollab fill={colors.white} />
                 </span>
-                <span className="whitespace-nowrap">Huzur Mühendisliği</span>
+                <span className='whitespace-nowrap'>Huzur Mühendisliği</span>
               </>
             }
           />
         </section>
       </FadeInOnScroll>
-      <AnimatedLine direction="horizontal" />
+      <AnimatedLine direction='horizontal' />
     </>
   )
 }

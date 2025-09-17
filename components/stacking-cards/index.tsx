@@ -73,46 +73,61 @@ export function StackingCards({ items }: StackingCardsProps) {
   )
 
   return (
-    <div className="relative w-[96vw] md:w-full h-[140vw] xl:h-[42vw] 2xl:h-[42vw] 3xl:h-[35vw]" ref={ref}>
+    <div
+      className='relative w-[96vw] md:w-[90vw] xl:w-[90vw] 2xl:w-[90vw] 3xl:w-[80vw] h-[140vw] xl:h-[42vw] 2xl:h-[42vw] 3xl:h-[35vw]'
+      ref={ref}
+    >
+      <div className='absolute top-4 left-0 flex flex-col gap-0 lg:gap-4 z-50'>
+        {items.map((item, i) => {
+          return (
+            <h3
+              key={i}
+              className='font-montserrat text-xl lg:text-4xl xl:text-2xl 3xl:text-3xl font-bold text-bricky-brick'
+            >
+              {item.title}
+            </h3>
+          )
+        })}
+      </div>
       {items.map((item, i) => {
         return (
           <div
             className={cn(
               "gsap-stacking-card",
-              "absolute w-full h-full overflow-hidden",
+              "absolute right-0 top-0 bottom-0 w-9/12 h-full overflow-hidden",
               "border border-s-neutral-300 bg-white px-4 rounded-xl",
               "flex flex-col gap-0 lg:gap-3 py-4 lg:py-8 xl:py-4 flex-1"
             )}
             key={i}
             id={item.sectionId}
           >
-            <div className="flex flex-col gap-0 lg:gap-2 pb-2 lg:pt-6 px-0">
+            {/* <div className="flex flex-col gap-0 lg:gap-2 pb-2 lg:pt-6 px-0">
               <h3 className="font-montserrat text-xl lg:text-4xl xl:text-4xl font-bold text-bricky-brick">
                 {item.title}
               </h3>
               <small className="font-primary text-sm lg:text-xl xl:text-xl font-normal lg:font-bold text-bricky-brick">
                 {item.description}
               </small>
-            </div>
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 mt-auto flex-1">
-              <div className="relative lg:rounded-md overflow-hidden w-full h-[55vw] lg:h-[30vw] xl:h-auto">
+            </div> */}
+            <div className='flex mt-auto flex-1'>
+              {/* <div className='relative lg:rounded-md overflow-hidden w-full h-[55vw] lg:h-[30vw] xl:h-auto'>
                 <Img
                   src={item.images[0].url}
-                  alt="Residence"
+                  alt='Residence'
                   fill
-                  sizes="(max-width: 800px) 100vw, 50vw"
-                  className="object-fill"
-                  loading="lazy"
+                  sizes='(max-width: 800px) 100vw, 50vw'
+                  className='object-fill'
+                  loading='lazy'
                 />
-              </div>
-              <div className="relative lg:rounded-md overflow-hidden w-full h-[55vw] lg:h-[30vw] xl:h-auto">
+              </div> */}
+              <div className='relative lg:rounded-md overflow-hidden w-full h-[55vw] lg:h-[30vw] xl:h-auto'>
                 <Img
                   src={item.images[1].url}
-                  alt="Residence"
+                  alt='Residence'
                   fill
-                  sizes="(max-width: 800px) 100vw, 50vw"
-                  className="object-cover"
-                  loading="lazy"
+                  sizes='(max-width: 800px) 100vw, 50vw'
+                  className='object-cover'
+                  loading='lazy'
                 />
               </div>
             </div>

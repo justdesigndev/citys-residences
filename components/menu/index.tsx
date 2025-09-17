@@ -12,7 +12,7 @@ import { ScrollableBox } from "@/components/utility/scrollable-box"
 import { citysIstanbulAvmGoogleMaps } from "@/lib/constants"
 import { useScrollStore } from "@/lib/store/scroll"
 import { breakpoints, colors } from "@/styles/config.mjs"
-import { ChevronLeft, X } from "lucide-react"
+import { ChevronLeft, Plus, X } from "lucide-react"
 
 interface MenuItem {
   title: string
@@ -199,7 +199,7 @@ export function Menu({ items }: MenuProps) {
       <div
         className={cn(
           "fixed top-0 left-0 bottom-0 overflow-hidden z-[var(--z-menu)]",
-          "w-screen lg:w-[27vw] xl:w-[19vw] 2xl:w-[19vw] 3xl:w-[17vw]",
+          "w-screen lg:w-[27vw] xl:w-[21vw] 2xl:w-[21vw] 3xl:w-[18vw]",
           "blur-bg-bricky-brick"
         )}
         style={{ clipPath: clipPath.current }}
@@ -207,27 +207,28 @@ export function Menu({ items }: MenuProps) {
         data-ignore-click-away
       >
         <button
-          className="absolute top-6 right-8 z-[var(--z-menu-close-button)]"
+          className='absolute top-5 right-2 z-[var(--z-menu-close-button)]'
           onClick={() => {
             setOpen(false)
             setActive(null)
           }}
-          type="button"
+          type='button'
         >
-          <X strokeWidth={1} className="text-white h-12 w-12" />
+          <X strokeWidth={1} className='text-white h-12 w-12' />
         </button>
-        <div className="h-full w-full flex lg:items-end" data-lenis-prevent>
+        <div className='h-full w-full flex lg:items-end' data-lenis-prevent>
           <ScrollableBox>
-            <nav className="w-full h-full flex items-end justify-center lg:justify-start px-10 lg:pl-8 lg:pr-4">
+            <nav className='w-full h-full flex items-end justify-center lg:justify-start px-10 lg:pl-8 lg:pr-4'>
               <ul
                 className={cn(
-                  "flex flex-col items-start gap-3 lg:gap-3 xl:gap-3 2xl:gap-4 3xl:gap-4",
+                  "flex flex-col items-stretch gap-3 lg:gap-3 xl:gap-3 2xl:gap-4 3xl:gap-4",
                   "pt-20 lg:pt-0 pb-10 lg:pb-0 lg:py-8 2xl:py-12 w-full"
                 )}
               >
-                {items.map(({ title, id }, i) => (
+                {items.map((item, i) => (
                   <li
                     className={cn(
+                      "flex items-center justify-between gap-2",
                       "text-xl lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
                       "font-primary font-normal text-white text-center lg:text-left",
                       "transition-opacity duration-300 ease-in-out",
@@ -236,19 +237,23 @@ export function Menu({ items }: MenuProps) {
                         "opacity-30": active !== null && active !== i,
                       }
                     )}
-                    key={title}
+                    key={item.title}
                     onMouseEnter={() => handleMenuItemInteraction(i)}
                   >
-                    <span className="block cursor-pointer" onClick={(event) => handleMenuItemClick(id, event, i)}>
-                      {title}
+                    <span
+                      className='block cursor-pointer whitespace-nowrap'
+                      onClick={(event) => handleMenuItemClick(item.id, event, i)}
+                    >
+                      {item.title}
                     </span>
+                    {item.sections && <Plus className='pointer-events-none' strokeWidth={2} size={24} />}
                   </li>
                 ))}
-                <li className="my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-6 flex flex-col gap-2">
+                <li className='my-4 lg:my-6 xl:my-4 2xl:my-8 3xl:my-6 flex flex-col gap-2'>
                   <a
                     href={citysIstanbulAvmGoogleMaps}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target='_blank'
+                    rel='noopener noreferrer'
                     className={cn(
                       "block",
                       "transition-opacity duration-300 ease-in-out",
@@ -256,10 +261,10 @@ export function Menu({ items }: MenuProps) {
                       "flex items-start gap-1"
                     )}
                   >
-                    <span className="flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8">
+                    <span className='flex items-end h-5 w-5 xl:w-6 xl:h-6 2xl:w-8 2xl:h-8'>
                       <IconPin fill={colors.white} />
                     </span>
-                    <span className="flex flex-col gap-1">
+                    <span className='flex flex-col gap-1'>
                       <span
                         className={cn(
                           "text-xl lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl",
@@ -277,16 +282,16 @@ export function Menu({ items }: MenuProps) {
                           "font-primary font-normal text-white text-left"
                         )}
                       >
-                        <span className="block sm:whitespace-nowrap">İçerenköy, Çayır Cd No: 1,</span>
-                        <span className="block sm:whitespace-nowrap">
-                          CITY<span className="font-montagu-slab font-normal">&apos;</span>S İstanbul AVM
+                        <span className='block sm:whitespace-nowrap'>İçerenköy, Çayır Cd No: 1,</span>
+                        <span className='block sm:whitespace-nowrap'>
+                          CITY<span className='font-montagu-slab font-normal'>&apos;</span>S İstanbul AVM
                         </span>
-                        <span className="block sm:whitespace-nowrap">34752 Ataşehir/İstanbul</span>
+                        <span className='block sm:whitespace-nowrap'>34752 Ataşehir/İstanbul</span>
                       </span>
                     </span>
                   </a>
                 </li>
-                <li className="flex flex-col items-start mt-auto">
+                <li className='flex flex-col items-start mt-auto'>
                   <p
                     className={cn(
                       "w-full font-primary font-normal text-white text-left",
@@ -296,7 +301,7 @@ export function Menu({ items }: MenuProps) {
                   >
                     Bizi Takip Edin
                   </p>
-                  <div className="grid grid-cols-4 gap-2 lg:gap-2 xl:gap-2 pt-3 xl:pt-2 pr-4 w-7/12 lg:w-9/12">
+                  <div className='grid grid-cols-4 gap-2 lg:gap-2 xl:gap-2 pt-3 xl:pt-2 pr-4 w-7/12 lg:w-9/12'>
                     <IconWrapper
                       className={cn(
                         "w-full aspect-square opacity-70 transition-opacity cursor-pointer",
@@ -342,7 +347,7 @@ export function Menu({ items }: MenuProps) {
           "fixed top-0 bottom-0 overflow-hidden z-[var(--z-menu-submenu)]",
           "blur-bg-bricky-brick",
           "border-l border-white/30",
-          "left-0 lg:left-[27vw] xl:left-[19vw] 2xl:left-[19vw] 3xl:left-[17vw]",
+          "left-0 lg:left-[27vw] xl:left-[21vw] 2xl:left-[21vw] 3xl:left-[18vw]",
           "w-full lg:w-[17vw] xl:w-[13.5vw] 2xl:w-[11.5vw] 3xl:w-[12vw]"
         )}
         style={{ clipPath: clipPath.current }}
@@ -350,34 +355,34 @@ export function Menu({ items }: MenuProps) {
         data-ignore-click-away
       >
         <button
-          className="absolute top-6 right-8 z-[var(--z-menu-close-button)] lg:hidden"
+          className='absolute top-6 right-8 z-[var(--z-menu-close-button)] lg:hidden'
           onClick={() => {
             setOpen(false)
             setActive(null)
           }}
-          type="button"
+          type='button'
         >
-          <X strokeWidth={1} className="text-white h-12 w-12" />
+          <X strokeWidth={1} className='text-white h-12 w-12' />
         </button>
         <button
-          className="absolute top-6 left-8 z-[var(--z-menu-close-button)] lg:hidden"
+          className='absolute top-6 left-8 z-[var(--z-menu-close-button)] lg:hidden'
           onClick={() => setActive(null)}
-          type="button"
+          type='button'
         >
-          <ChevronLeft strokeWidth={1} className="text-white h-12 w-12" />
+          <ChevronLeft strokeWidth={1} className='text-white h-12 w-12' />
         </button>
-        <div className="h-full w-full flex" data-lenis-prevent>
+        <div className='h-full w-full flex' data-lenis-prevent>
           <ScrollableBox>
-            <nav className="h-full w-full px-10 lg:px-4 flex items-start justify-start pb-12 lg:pb-0">
+            <nav className='h-full w-full px-10 lg:px-4 flex items-start justify-start pb-12 lg:pb-0'>
               <ul
                 className={cn(
                   "flex flex-col items-start gap-3 lg:gap-2 xl:gap-0 2xl:gap-2",
                   "py-0 pt-20 lg:pt-20 pb-0 lg:py-12 w-full"
                 )}
               >
-                <div className="w-full border-b-2 border-white/20 lg:border-none">
+                <div className='w-full border-b-2 border-white/20 lg:border-none'>
                   <div
-                    className="text-white text-2xl font-semibold pb-2 lg:hidden"
+                    className='text-white text-2xl font-semibold pb-2 lg:hidden'
                     onClick={(event) => {
                       if (active === null) return
                       handleMenuItemClick(items[active].id, event)
@@ -401,7 +406,7 @@ export function Menu({ items }: MenuProps) {
                         {section.label}
                       </span>
                       {section.subitems && (
-                        <ul className="flex flex-col gap-2 my-2 lg:my-2">
+                        <ul className='flex flex-col gap-2 my-2 lg:my-2'>
                           {Object.values(section.subitems).map((subitem) => (
                             <li key={subitem.id}>
                               <span
