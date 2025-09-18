@@ -180,7 +180,9 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
       <div className='fixed top-0 left-0 w-full h-20 bg-white z-50 py-4'>
         <LogoSlim fill={colors["bricky-brick"]} />
       </div>
-      <div className={cn("font-primary fixed left-0 bottom-0 right-0 blur-bg-bricky-brick grid grid-cols-4 z-40 py-2")}>
+      <div
+        className={cn("font-primary fixed left-0 bottom-0 right-0 blur-bg-bricky-brick grid grid-cols-4 z-[45] py-2")}
+      >
         <div className=' text-white flex flex-col items-center justify-end gap-1 border-r border-black/15'>
           <div className='w-6 h-6'>
             <IconTile fill={colors.white} />
@@ -207,6 +209,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({ 
         </div>
       </div>
       <div className='fixed top-0 left-0 w-full h-24 bg-white z-40'></div>
+      <div className='fixed bottom-0 left-0 w-full h-24 bg-white z-40'></div>
       <div className={cn(s.gallery, "absolute top-0 left-0 w-full h-full overflow-hidden z-30")} ref={galleryRef}>
         {/* <div className={s.topGradient} />
         <div className={s.bottomGradient} /> */}
