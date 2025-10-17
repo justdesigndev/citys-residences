@@ -1,10 +1,10 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-
 import { ReactNode } from "react"
-import { GsapSplitText } from "../gsap-split-text"
-import { WistiaPlayerWrapper } from "../wistia-player"
+
+import { GsapSplitText } from "@/components/gsap-split-text"
+import { WistiaPlayerWrapper } from "@/components/wistia-player"
 
 interface VideoWithTextProps {
   primaryVideoUrl: string
@@ -19,34 +19,32 @@ interface VideoWithTextProps {
 
 export function VideoWithText(props: VideoWithTextProps) {
   const { title, description, className } = props
-  // const { primaryVideoUrl, primaryVideoType = "video/mp4", title, className, description } = props
-  // const videoRef = useRef<HTMLVideoElement>(null)
 
   return (
     <div
       className={cn(
-        "relative h-[60vw] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1/2 after:bg-gradient-to-t after:from-current after:to-transparent after:z-10",
+        "relative h-[60vw] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1/2 after:bg-gradient-to-t after:from-current after:to-transparent after:z-10 overflow-hidden",
         className
       )}
     >
-      {/* <Video
-        className='w-full h-full object-cover'
-        primaryVideoUrl={primaryVideoUrl}
-        primaryVideoType={primaryVideoType}
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-      /> */}
-      <div className='w-full h-screen relative'>
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-full pointer-events-none'>
         <WistiaPlayerWrapper
+          className='w-full h-full object-cover'
           aspect={16 / 9}
           mediaId='e2tew1zhxj'
           autoplay
           muted
-          controlsVisibleOnLoad={false}
           preload='auto'
+          qualityMin={1080}
+          swatch={true}
+          bigPlayButton={false}
+          silentAutoplay='allow'
+          endVideoBehavior='loop'
+          controlsVisibleOnLoad={false}
+          playBarControl={false}
+          volumeControl={false}
+          settingsControl={false}
+          transparentLetterbox={true}
         />
       </div>
       <div className={cn("absolute bottom-[15%] left-1/2 -translate-x-1/2 z-50")}>

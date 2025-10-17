@@ -59,7 +59,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             autoplay
             preload='metadata'
             qualityMin={1080}
-            swatch={true}
+            swatch={false}
             bigPlayButton={false}
             silentAutoplay='allow'
             endVideoBehavior='loop'
@@ -68,6 +68,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             volumeControl={false}
             settingsControl={false}
             transparentLetterbox={true}
+            lazy={false}
           />
         </div>
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
@@ -99,11 +100,11 @@ export default async function Page({ params: { locale } }: { params: { locale: s
       </section>
       {/* YAŞAMA SANATI */}
       <section className='bg-white py-12 lg:py-12 z-20 relative'>
-        <div className='py-12 xl:py-28 relative flex items-center justify-center'>
-          <div className='flex flex-col items-center gap-2 lg:gap-2 w-72'>
+        <div className='py-12 xl:py-28 relative flex items-center justify-center gap-32 ml-32'>
+          <div className='flex flex-col items-center gap-2 lg:gap-2 flex-shrink-0 w-[700px]'>
             <article
               className={cn(
-                "font-montserrat font-[400] text-trapped-darkness text-center",
+                "font-montserrat font-[500] text-trapped-darkness text-center",
                 "text-4xl lg:text-5xl",
                 "leading-tight lg:leading-tight",
                 "tracking-wide lg:tracking-widest"
@@ -115,21 +116,21 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               <span className='sr-only'>{t("section1.title1")}</span>
             </article>
             <FadeInOnScroll delay={0.5}>
-              <article className='relative w-screen h-16 lg:h-44 xl:h-36'>
+              <article className='relative w-screen h-16 lg:h-44 xl:h-32'>
                 <Img src='/img/sanati.png' alt='Sanatı' fill className='object-contain' sizes='100vw' loading='lazy' />
                 <span className='sr-only'>{t("section1.title2")}</span>
               </article>
             </FadeInOnScroll>
           </div>
-          <div className='flex w-72'>
+          <div className='flex w-80 flex-shrink-0'>
             <article
               className={cn(
-                "font-montserrat font-[400] text-trapped-darkness text-left",
-                "text-[0.8rem] lg:text-xl",
+                "font-montserrat font-[300] text-trapped-darkness text-left",
+                "text-[0.8rem] lg:text-2xl",
                 "leading-relaxed"
               )}
             >
-              <GsapSplitText splitBy='chars' stagger={0.01} duration={1.5}>
+              <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
                 {t("section1.title3")}
               </GsapSplitText>
             </article>
