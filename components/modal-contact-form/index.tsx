@@ -221,9 +221,8 @@ export function ModalContactForm() {
             <div
               className={cn(
                 "absolute top-1/2 left-0 bottom-0 -translate-x-full -translate-y-1/2",
-                "h-64 w-12",
-                "font-primary font-normal text-white text-lg xl:text-2xl blur-bg-bricky-brick",
-                "rounded-bl-2xl rounded-tl-2xl",
+                "h-72 w-16",
+                "font-primary font-[500] text-white text-lg xl:text-xl bg-gradient-orange tracking-[0.2em]",
                 "inline-flex items-center justify-center",
                 "cursor-pointer"
               )}
