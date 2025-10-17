@@ -40,7 +40,14 @@ export function VideoWithText(props: VideoWithTextProps) {
         playsInline
       /> */}
       <div className='w-full h-screen relative'>
-        <WistiaPlayerWrapper aspect={16 / 9} mediaId='e2tew1zhxj' autoplay muted controlsVisibleOnLoad={false} />
+        <WistiaPlayerWrapper
+          aspect={16 / 9}
+          mediaId='e2tew1zhxj'
+          autoplay
+          muted
+          controlsVisibleOnLoad={false}
+          preload='auto'
+        />
       </div>
       <div className={cn("absolute bottom-[15%] left-1/2 -translate-x-1/2 z-50")}>
         {title && (

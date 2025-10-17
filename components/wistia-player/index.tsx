@@ -7,5 +7,5 @@ export function WistiaPlayerWrapper(props: WistiaPlayerProps) {
     console.log("The video was just played!")
   }
 
-  return <WistiaPlayer onPlay={handlePlay} {...props} />
+  return <WistiaPlayer className='w-full object-cover' onPlay={handlePlay} {...props} />
 }

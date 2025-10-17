@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils"
 import { getMessages, getTranslations } from "next-intl/server"
 
 import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
-import { ScaleOut } from "@/components/animations/scale-out"
 import { ContactForm } from "@/components/form-contact"
 import { GsapSplitText } from "@/components/gsap-split-text"
 import { IconCollab } from "@/components/icons"
@@ -21,9 +20,9 @@ export default async function Page({ params: { locale } }: { params: { locale: s
 
   return (
     <>
-      <section className='h-svh bg-bricky-brick relative z-10 overflow-hidden' id={navigationConfig["/"]?.id}>
-        <ScaleOut>
-          {/* <Video
+      <section className='h-svh relative z-10 overflow-hidden' id={navigationConfig["/"]?.id}>
+        {/* <ScaleOut> */}
+        {/* <Video
             primaryVideoUrl={mainVideo}
             autoPlay
             loop
@@ -31,18 +30,46 @@ export default async function Page({ params: { locale } }: { params: { locale: s
             playsInline
             className='w-full h-full object-cover object-bottom'
           /> */}
-          <div className='w-full h-screen relative pointer-events-none'>
+        {/* <div className='w-full h-screen relative pointer-events-none'>
             <WistiaPlayerWrapper
               aspect={16 / 9}
               mediaId='e2tew1zhxj'
-              autoplay
               muted
-              silentAutoplay
+              autoplay
               preload='metadata'
               qualityMin={1080}
-            />
-          </div>
-        </ScaleOut>
+              swatch={false}
+              bigPlayButton={false}
+              silentAutoplay='allow'
+              endVideoBehavior='loop'
+              controlsVisibleOnLoad={false}
+              playBarControl={false}
+              volumeControl={false}
+              settingsControl={false}
+              transparentLetterbox={true}
+              poster='/img/hero.jpg'
+            /> */}
+
+        {/* </ScaleOut> */}
+        <div className='w-full h-screen relative pointer-events-none'>
+          <WistiaPlayerWrapper
+            aspect={16 / 9}
+            mediaId='e2tew1zhxj'
+            muted
+            autoplay
+            preload='metadata'
+            qualityMin={1080}
+            swatch={true}
+            bigPlayButton={false}
+            silentAutoplay='allow'
+            endVideoBehavior='loop'
+            controlsVisibleOnLoad={false}
+            playBarControl={false}
+            volumeControl={false}
+            settingsControl={false}
+            transparentLetterbox={true}
+          />
+        </div>
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50'>
           <div className={cn("flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0")}>
             <span
