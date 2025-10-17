@@ -11,7 +11,6 @@ import localFont from "next/font/local"
 import { GSAP } from "@/components/gsap"
 import { ImageGalleryModal } from "@/components/image-gallery/modal"
 import { ModalContactForm } from "@/components/modal-contact-form"
-import { Preloader } from "@/components/preloader"
 import { ReactQueryProvider } from "@/components/react-query-provider"
 import { RealViewport } from "@/components/real-viewport"
 import { StickyContactMenu } from "@/components/sticky-contact-menu"
@@ -220,7 +219,7 @@ export default async function LocaleLayout({
         className={`${halenoir.variable} ${montserrat.variable} ${suisseIntl.variable} ${aktivGrotesk.variable} ${copperplate.variable} antialiased`}
       >
         <RealViewport />
-        <Preloader />
+        {/* <Preloader /> */}
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
             {children}
