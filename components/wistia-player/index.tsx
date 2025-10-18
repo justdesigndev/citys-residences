@@ -15,6 +15,8 @@ interface WistiaPlayerWrapperProps extends WistiaPlayerProps {
   aspectRatio?: number
   containerHeight?: string | number
   lazy?: boolean
+  poster?: string
+  posterClassName?: string
 }
 
 export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
@@ -27,11 +29,15 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
     aspectRatio,
     containerHeight,
     lazy = true,
+    poster,
+    posterClassName,
     ...wistiaProps
   } = props
 
   const [isInView, setIsInView] = useState(!lazy)
   const [isLoaded, setIsLoaded] = useState(!lazy)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [showPoster, setShowPoster] = useState(!!poster)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -59,6 +65,11 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
 
   function handlePlay() {
     console.log("The video was just played!")
+    setIsPlaying(true)
+    // Hide poster after fade animation completes
+    setTimeout(() => {
+      setShowPoster(false)
+    }, 500) // Match the duration of the fade animation
   }
 
   // Set loaded state when component mounts (video is in view)
@@ -118,6 +129,19 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
       {isInView && (
         <div className={cn("absolute inset-0 w-full h-full", !isLoaded && "opacity-0 transition-opacity duration-300")}>
           <WistiaPlayer className='w-full h-full object-cover' onPlay={handlePlay} {...wistiaProps} />
+        </div>
+      )}
+
+      {/* Poster image that fades out when video starts playing */}
+      {poster && isInView && showPoster && (
+        <div
+          className={cn(
+            "absolute inset-0 w-full h-full transition-opacity duration-500 ease-out",
+            isPlaying && "opacity-0",
+            posterClassName
+          )}
+        >
+          <Img src={poster} alt='Video poster' fill className='object-cover' sizes='100vw' loading='lazy' />
         </div>
       )}
     </div>

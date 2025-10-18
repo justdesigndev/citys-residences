@@ -13,6 +13,8 @@ import { colors } from "@/styles/config.mjs"
 import { FormTranslations } from "@/types"
 import { ScaleOut } from "@/components/animations/scale-out"
 
+import heroVideoPoster from "@/public/img/poster-hero.png"
+
 export default async function Page({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: "home" })
   const messages = await getMessages({ locale })
@@ -41,6 +43,7 @@ export default async function Page({ params: { locale } }: { params: { locale: s
               settingsControl={false}
               transparentLetterbox={true}
               lazy={false}
+              poster={heroVideoPoster.src}
             />
           </div>
         </ScaleOut>
