@@ -36,7 +36,6 @@ export default async function Page({
         <ScaleOut>
           <div className='pointer-events-none relative h-[105vh] w-screen bg-[url("/img/poster-hero.jpg")] bg-cover bg-center object-cover'>
             <WistiaPlayerWrapper
-              aspect={16 / 9}
               mediaId='e2tew1zhxj'
               muted
               autoplay

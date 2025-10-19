@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { WistiaPlayer, WistiaPlayerProps } from '@wistia/wistia-player-react'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 import { Image } from '@/components/image'
 
@@ -25,6 +25,7 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
   } = props
 
   const [isPlaying, setIsPlaying] = useState(false)
+  const [videoAspect, setVideoAspect] = useState<number | null>(null)
   const playerRef = useRef<React.ComponentRef<typeof WistiaPlayer>>(null)
 
   // Handle video play event
@@ -33,11 +34,29 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
       console.log(
         'Wistia video with id',
         wistiaProps.mediaId,
-        'started playing'
+        'started playing',
+        playerRef.current?.aspect
       )
     }
     setIsPlaying(true)
+
+    // Get video aspect ratio
+    if (playerRef.current?.aspect) {
+      setVideoAspect(playerRef.current.aspect)
+    }
   }
+
+  // Try to get aspect ratio on mount
+  useEffect(() => {
+    const checkAspect = setInterval(() => {
+      if (playerRef.current?.aspect) {
+        setVideoAspect(playerRef.current.aspect)
+        clearInterval(checkAspect)
+      }
+    }, 100)
+
+    return () => clearInterval(checkAspect)
+  }, [])
 
   return (
     <div
@@ -46,13 +65,14 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
         className
       )}
       aria-label='Video player'
+      style={{
+        width: videoAspect ? '100%' : '100%',
+        height: videoAspect ? '100%' : '100%',
+        minWidth: videoAspect ? `${videoAspect * 100}vh` : '177.78vh',
+        minHeight: videoAspect ? `${(1 / videoAspect) * 100}vw` : '56.25vw',
+      }}
     >
-      {/* Wistia Player */}
-      <div className='absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2'>
-        <WistiaPlayer ref={playerRef} onPlay={handlePlay} {...wistiaProps} />
-      </div>
-
-      {/* Poster image that fades out when video starts playing */}
+      <WistiaPlayer ref={playerRef} onPlay={handlePlay} {...wistiaProps} />
       {customPoster && (
         <div
           className={cn(
