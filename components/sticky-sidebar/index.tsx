@@ -49,13 +49,13 @@ export const StickySidebar: React.FC = () => {
     <div className='fixed top-1/2 -translate-y-[40%] left-16  z-[var(--z-sticky-menu)] flex flex-col mix-blend-difference'>
       {items.map((item) => (
         <div
-          className={cn("w-64 h-20 relative border-l-2 border-white transition-all duration-300 ease-in-out", {
+          className={cn("w-64 h-16 relative border-l-2 border-white transition-all duration-300 ease-in-out", {
             "border-l-4": activeItem === item.label,
           })}
           key={item.href}
         >
           <div
-            className='font-primary absolute top-1/2 -translate-y-1/2 left-4 text-sm font-[600] block text-white cursor-pointer tracking-[0.4em]'
+            className='font-primary absolute top-1/2 -translate-y-1/2 left-4 text-[0.8rem] font-[600] block text-white cursor-pointer tracking-[0.4em]'
             onClick={() => setActiveItem(item.label || null)}
           >
             {item.label}

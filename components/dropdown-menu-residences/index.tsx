@@ -13,9 +13,9 @@ interface ResidenceOption {
 
 interface ResidenceTypeSelectorProps {
   title: string
-  selectedValue?: string
+  selectedValues?: string[]
   options: ResidenceOption[]
-  onChange?: (id: string) => void
+  onChange?: (ids: string[]) => void
   className?: string
 }
 
@@ -24,17 +24,29 @@ export interface ResidenceTypeSelectorRef {
 }
 
 export const DropdownMenuCheckboxesResidences = forwardRef<ResidenceTypeSelectorRef, ResidenceTypeSelectorProps>(
-  ({ title, selectedValue, options, onChange, className }, ref) => {
+  ({ title, selectedValues = [], options, onChange, className }, ref) => {
     const handleOptionClick = (id: string) => {
       if (onChange) {
-        onChange(id)
+        const currentValues = selectedValues || []
+        const isSelected = currentValues.includes(id)
+
+        let newValues: string[]
+        if (isSelected) {
+          // Remove the id from the array
+          newValues = currentValues.filter((value) => value !== id)
+        } else {
+          // Add the id to the array
+          newValues = [...currentValues, id]
+        }
+
+        onChange(newValues)
       }
     }
 
     useImperativeHandle(ref, () => ({
       reset: () => {
         // Reset to no selection
-        onChange?.("")
+        onChange?.([])
       },
     }))
 
@@ -43,7 +55,7 @@ export const DropdownMenuCheckboxesResidences = forwardRef<ResidenceTypeSelector
         <h3 className='font-primary text-white text-lg font-[400]'>{title}</h3>
         <div className='flex flex-wrap gap-3'>
           {options.map((option) => {
-            const isSelected = selectedValue === option.id
+            const isSelected = (selectedValues || []).includes(option.id)
             return (
               <button
                 key={option.id}

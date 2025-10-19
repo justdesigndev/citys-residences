@@ -66,6 +66,17 @@ export function StickyContactMenu() {
           newspaperMagazine: t("form.inputs.howDidYouHearAboutUs.options.newspaperMagazine"),
         },
       },
+      contactPreference: {
+        placeholder: t("form.inputs.contactPreference.placeholder"),
+        errors: {
+          required: t("form.inputs.contactPreference.errors.required"),
+        },
+      },
+      contactPreferenceOptions: {
+        sms: t("form.inputs.contactPreferenceOptions.sms"),
+        email: t("form.inputs.contactPreferenceOptions.email"),
+        phone: t("form.inputs.contactPreferenceOptions.phone"),
+      },
       message: { placeholder: t("form.inputs.message.placeholder") },
       consent: {
         placeholder: "", // This is handled by ConsentCheckboxes component with t.rich()
@@ -125,26 +136,26 @@ export function StickyContactMenu() {
         ref={ref}
       >
         <Link
-          href="tel:+902162666600"
-          className="py-2 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+          href='tel:+902162666600'
+          className='py-2 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15'
         >
-          <IconTelephone className="w-4 h-4" />
-          <div className="text-[0.8rem] font-medium leading-none">Telefon</div>
+          <IconTelephone className='w-4 h-4' />
+          <div className='text-[0.8rem] font-medium leading-none'>Telefon</div>
         </Link>
         <div
-          className="py-2 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15"
+          className='py-2 text-white flex flex-col items-center justify-center gap-2 border-r border-black/15'
           onClick={() => setIsOpen(true)}
         >
-          <IconInquiry className="w-4 h-4" />
-          <div className="text-[0.8rem] font-medium leading-none">Randevu Al</div>
+          <IconInquiry className='w-4 h-4' />
+          <div className='text-[0.8rem] font-medium leading-none'>Randevu Al</div>
         </div>
 
         <Link
-          href="https://wa.me/+9002162666600"
-          className="py-2 text-white flex flex-col items-center justify-center gap-2"
+          href='https://wa.me/+9002162666600'
+          className='py-2 text-white flex flex-col items-center justify-center gap-2'
         >
-          <IconWhatsapp className="w-4 h-4" />
-          <div className="text-[0.8rem] font-medium leading-none">Whatsapp</div>
+          <IconWhatsapp className='w-4 h-4' />
+          <div className='text-[0.8rem] font-medium leading-none'>Whatsapp</div>
         </Link>
       </div>
       <div
@@ -153,15 +164,15 @@ export function StickyContactMenu() {
         })}
         onClick={() => setIsOpen(false)}
       >
-        <div className="absolute top-4 right-4 w-6 h-6">
-          <X className="text-white" />
-          <span className="sr-only">Close</span>
+        <div className='absolute top-4 right-4 w-6 h-6'>
+          <X className='text-white' />
+          <span className='sr-only'>Close</span>
         </div>
         <div className={cn(s.dContent, "px-4 pb-20")} onClick={(e) => e.stopPropagation()}>
           <ScrollableBox>
-            <p className="text-neutral-900 text-base bt:text-sm font-normal font-primary text-left bt:text-center bd:text-left leading-normal mt-5">
+            <p className='text-neutral-900 text-base bt:text-sm font-normal font-primary text-left bt:text-center bd:text-left leading-normal mt-5'>
               {t.rich("description", {
-                br: () => <br className="hidden bt:block" />,
+                br: () => <br className='hidden bt:block' />,
               })}
             </p>
             <ContactForm translations={formTranslations} />

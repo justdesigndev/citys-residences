@@ -3,7 +3,7 @@
 import { gsap, useGSAP } from "@/components/gsap"
 import { cn } from "@/lib/utils"
 import { useLenis } from "lenis/react"
-import { X } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { useRef } from "react"
 import { useClickAway } from "react-use"
 
@@ -23,7 +23,6 @@ export function Menu({ items }: MenuProps) {
   const menuRef = useRef<HTMLDivElement>(null)
   const menuTL = useRef<gsap.core.Timeline>()
   const lenis = useLenis()
-  const clipPath = useRef("inset(0% 100% 0% 0%)")
 
   // Use the new unified scroll store
   const {
@@ -40,46 +39,35 @@ export function Menu({ items }: MenuProps) {
     setOpen(false)
   })
 
-  useGSAP(() => {
-    const animationConfig = {
-      from: { clipPath: "inset(0% 0% 0% 100%)" },
-      to: {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.6,
-        ease: "none",
-      },
-    }
+  useGSAP(
+    () => {
+      menuTL.current = gsap.timeline({
+        paused: true,
+      })
 
-    const timelineConfig = {
-      paused: true,
-      ease: "none",
+      menuTL.current.fromTo(
+        menuRef.current,
+        { translateX: "100%" },
+        {
+          translateX: "0%",
+          duration: 0.8,
+          ease: "expo.inOut",
+        }
+      )
+    },
+    {
+      revertOnUpdate: true,
     }
-
-    const createTimeline = (ref: React.RefObject<HTMLDivElement>) => {
-      const timeline = gsap.timeline(timelineConfig)
-      timeline.fromTo(ref.current, animationConfig.from, animationConfig.to)
-      return timeline
-    }
-
-    menuTL.current = createTimeline(menuRef)
-  })
+  )
 
   useGSAP(
     () => {
-      if (!menuTL.current) return
-
       if (open) {
-        gsap.to(menuTL.current, { time: menuTL.current?.duration(), ease: "expo.out" })
+        menuTL.current?.play()
         lenis?.stop()
       } else {
-        gsap.to(menuTL.current, {
-          duration: 0.3,
-          time: 0,
-          ease: "expo.out",
-          overwrite: true,
-          onComplete: () => {
-            lenis?.start()
-          },
+        menuTL.current?.reverse().then(() => {
+          lenis?.start()
         })
       }
     },
@@ -105,23 +93,28 @@ export function Menu({ items }: MenuProps) {
     <>
       <div
         className={cn(
-          "fixed top-0 right-0 bottom-0 overflow-hidden z-[var(--z-menu)]",
+          "fixed top-0 right-0 bottom-0 z-[var(--z-menu)] translate-x-full",
           "w-screen lg:w-[60vw]",
           "blur-bg-white-2",
           "pt-20 pl-24 pr-16 pb-10"
         )}
-        style={{ clipPath: clipPath.current }}
         ref={menuRef}
         data-ignore-click-away
       >
         <button
-          className='absolute top-5 left-24 -translate-x-full z-[var(--z-menu-close-button)]'
-          onClick={() => {
-            setOpen(false)
-          }}
+          className={cn(
+            "absolute top-2 lg:top-20 left-0 w-16 h-16 z-16 -translate-x-full bg-white p-2 text-bricky-brick",
+            "opacity-0 transition-opacity duration-700 ease-in-out",
+            "flex items-center justify-center",
+            {
+              "opacity-100": open,
+            }
+          )}
+          onClick={() => setOpen(false)}
           type='button'
         >
-          <X strokeWidth={1} className='text-white h-12 w-12' />
+          <ChevronRight className='w-8 h-8' />
+          <span className='sr-only'>Close</span>
         </button>
         <div className='flex justify-between gap-24'>
           <div className='flex lg:items-end' data-lenis-prevent>
@@ -201,8 +194,8 @@ export function Menu({ items }: MenuProps) {
             </div>
           </div>
           <div className='flex items-center justify-between gap-2'>
-            <div className='w-40 h-40 border-red-800 border'>Randevu Oluştur</div>
-            <div className='w-40 h-40 border-red-800 border'>Temsilciyle Görüş</div>
+            <div className='w-40 h-40 border-gradient-white rounded-sm'>Randevu Oluştur</div>
+            <div className='w-40 h-40 border-gradient-white rounded-sm'>Temsilciyle Görüş</div>
             <a
               href={citysIstanbulAvmGoogleMaps}
               target='_blank'
@@ -212,7 +205,7 @@ export function Menu({ items }: MenuProps) {
                 "transition-opacity duration-300 ease-in-out",
                 "opacity-100 hover:opacity-70",
                 "flex items-start gap-1",
-                "w-40 h-40 border-red-800 border"
+                "w-40 h-40 border-gradient-white rounded-sm"
               )}
             >
               Yol Tarifi Al
