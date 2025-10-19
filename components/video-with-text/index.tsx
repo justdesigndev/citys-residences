@@ -46,7 +46,6 @@ export function VideoWithText(props: VideoWithTextProps) {
           settingsControl={false}
           transparentLetterbox={true}
           customPoster={customPoster}
-          containerHeight='100%'
         />
       </div>
       <div
