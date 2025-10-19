@@ -24,9 +24,7 @@ const extractTextFromChildren = (children: React.ReactNode): string => {
   if (typeof children === 'string') return children
 
   if (React.isValidElement(children)) {
-    const props = (children as React.ReactElement).props as {
-      children: React.ReactNode
-    }
+    const props = children.props as { children?: React.ReactNode }
     const childText = props.children
     if (typeof childText === 'string') return childText
     if (React.isValidElement(childText)) {
@@ -104,7 +102,7 @@ interface Letter3DSwapProps {
   rotateDirection?: 'top' | 'right' | 'bottom' | 'left'
 }
 
-export function Letter3DSwap({
+const Letter3DSwap = ({
   children,
   as = 'p',
   mainClassName,
@@ -115,7 +113,7 @@ export function Letter3DSwap({
   transition = { type: 'spring', damping: 30, stiffness: 300 },
   rotateDirection = 'right',
   ...props
-}: Letter3DSwapProps) {
+}: Letter3DSwapProps) => {
   const [isAnimating, setIsAnimating] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const [scope, animate] = useAnimate()
@@ -344,3 +342,5 @@ const CharBox = ({
 }
 
 Letter3DSwap.displayName = 'Letter3DSwap'
+
+export default Letter3DSwap
