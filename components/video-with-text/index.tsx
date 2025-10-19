@@ -34,9 +34,9 @@ export function VideoWithText(props: VideoWithTextProps) {
           mediaId='e2tew1zhxj'
           autoplay
           muted
-          preload='auto'
+          preload='none'
           qualityMin={1080}
-          swatch={true}
+          swatch={false}
           bigPlayButton={false}
           silentAutoplay='allow'
           endVideoBehavior='loop'
@@ -45,6 +45,7 @@ export function VideoWithText(props: VideoWithTextProps) {
           volumeControl={false}
           settingsControl={false}
           transparentLetterbox={true}
+          lazy
         />
       </div>
       <div className={cn("absolute bottom-[15%] left-1/2 -translate-x-1/2 z-50")}>
@@ -58,7 +59,7 @@ export function VideoWithText(props: VideoWithTextProps) {
             <h3
               className={cn(
                 "text-white font-primary font-[200] whitespace-nowrap text-center",
-                "text-6xl xl:text-6xl 2xl:text-6xl",
+                "text-6xl xl:text-6xl 2xl:text-7xl",
                 "w-full min-w-[90vw] lg:min-w-52",
                 "flex-shrink-0 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
               )}
@@ -70,10 +71,10 @@ export function VideoWithText(props: VideoWithTextProps) {
             <p
               className={cn(
                 "text-white font-primary font-[300] text-center",
-                "text-2xl xl:text-2xl 2xl:text-2xl",
+                "text-2xl xl:text-2xl 2xl:text-3xl",
                 "leading-relaxed xl:leading-relaxed 2xl:leading-relaxed",
                 "flex-shrink-0 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0",
-                "max-w-5xl"
+                "max-w-4xl"
               )}
             >
               <GsapSplitText splitBy='lines' stagger={0.02} duration={1}>

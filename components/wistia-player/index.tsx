@@ -95,7 +95,7 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
   }
 
   return (
-    <div ref={containerRef} className={cn("relative w-full", className)} style={containerStyles}>
+    <div ref={containerRef} className={cn("relative w-full bg-black", className)} style={containerStyles}>
       {lazy && !isInView && (
         <div
           className={cn(
