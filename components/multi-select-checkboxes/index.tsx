@@ -67,7 +67,7 @@ export const MultiSelectCheckboxes = forwardRef<
     return (
       <div className={cn('space-y-5', className)}>
         {title && (
-          <h3 className='font-primary text-lg font-[400] text-white'>
+          <h3 className='font-primary text-lg font-[300] text-white'>
             {title}
           </h3>
         )}
@@ -80,7 +80,7 @@ export const MultiSelectCheckboxes = forwardRef<
                 onClick={() => handleOptionClick(option.id)}
                 disabled={option.disabled}
                 className={cn(
-                  'flex h-24 w-24 flex-shrink-0 cursor-pointer flex-col items-center justify-between rounded-lg px-1 py-4 transition-all duration-200',
+                  'flex flex-shrink-0 cursor-pointer flex-col items-center justify-between rounded-lg px-1 py-4 transition-all duration-200 lg:h-20 lg:w-20 2xl:h-24 2xl:w-24',
                   {
                     'bg-white text-bricky-brick': isSelected,
                     'border border-tangerine-flake text-white hover:border-tangerine-flake/40':
