@@ -30,11 +30,11 @@ export default async function Page({
   return (
     <>
       <section
-        className='relative z-10 h-svh overflow-hidden'
+        className='relative z-10 h-[100vh] overflow-hidden'
         id={navigationConfig['/']?.id}
       >
         <ScaleOut>
-          <div className='pointer-events-none relative h-[105vh] w-screen bg-[url("/img/poster-hero.jpg")] bg-cover bg-center object-cover'>
+          <div className='pointer-events-none relative h-full w-full'>
             <WistiaPlayerWrapper
               mediaId='e2tew1zhxj'
               muted

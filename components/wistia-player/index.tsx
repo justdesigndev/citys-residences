@@ -61,31 +61,29 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
         className
       )}
       aria-label='Video player'
-      style={{
-        width: videoAspect ? '100%' : '100%',
-        height: videoAspect ? '100%' : '100%',
-        minWidth: videoAspect ? `${videoAspect * 100}vh` : '177.78vh',
-        minHeight: videoAspect ? `${(1 / videoAspect) * 100}vw` : '56.25vw',
-      }}
     >
-      <WistiaPlayer ref={playerRef} onPlay={handlePlay} {...wistiaProps} />
+      <div
+        style={{
+          minWidth: videoAspect ? `${videoAspect * 100}vh` : '177.78vh',
+          minHeight: videoAspect ? `${(1 / videoAspect) * 100}vw` : '56.25vw',
+        }}
+        className='absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2'
+      >
+        <WistiaPlayer ref={playerRef} onPlay={handlePlay} {...wistiaProps} />
+      </div>
       {customPoster && (
-        <div
+        <Image
+          src={customPoster}
+          alt='Video poster'
+          fill
           className={cn(
-            'pointer-events-none absolute inset-0 h-full w-full overflow-hidden transition-opacity duration-300 ease-out',
+            'pointer-events-none absolute inset-0 h-full w-full overflow-hidden object-cover object-center transition-opacity duration-300 ease-out',
             isPlaying && 'opacity-0'
           )}
-          aria-hidden='true'
-        >
-          <Image
-            src={customPoster}
-            alt='Video poster'
-            fill
-            className='object-cover'
-            sizes='100vw'
-            priority={posterPriority}
-          />
-        </div>
+          sizes='100vw'
+          mobileSize='100vw'
+          priority={posterPriority}
+        />
       )}
     </div>
   )
