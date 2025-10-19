@@ -14,6 +14,8 @@ import { FormTranslations } from '@/types'
 import { ScaleOut } from '@/components/animations/scale-out'
 
 import heroVideoPoster from '@/public/img/poster-hero.jpg'
+import liveMorePoster from '@/public/img/thumbnail-live-more.jpg'
+import livePeacefullyPoster from '@/public/img/thumbnail-live-peacefully.jpg'
 
 export default async function Page({
   params: { locale },
@@ -50,7 +52,7 @@ export default async function Page({
               settingsControl={false}
               transparentLetterbox={true}
               lazy={false}
-              poster={heroVideoPoster.src}
+              customPoster={heroVideoPoster.src}
             />
           </div>
         </ScaleOut>
@@ -136,6 +138,8 @@ export default async function Page({
           </div>
         </section>
         <VideoWithText
+          customPoster={livePeacefullyPoster.src}
+          mediaId='dxd0f32sha'
           primaryVideoUrl={citysParkVideo}
           title={
             <span>
@@ -165,9 +169,9 @@ export default async function Page({
                 <p
                   className={cn(
                     'max-w-[90%] font-primary font-[300] text-white',
-                    'text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl',
+                    'text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-2xl',
                     'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug',
-                    'max-w-lg'
+                    'xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
                   )}
                 >
                   Ekibimizin sizinle iletişime geçebilmesi için lütfen kayıt
@@ -181,6 +185,8 @@ export default async function Page({
           </FadeInOnScroll>
         </section>
         <VideoWithText
+          customPoster={liveMorePoster.src}
+          mediaId='cpkxfmdyvb'
           primaryVideoUrl={citysParkVideo}
           title={
             <span>

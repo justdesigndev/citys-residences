@@ -1,12 +1,13 @@
-"use client"
+'use client'
 
-import { cn } from "@/lib/utils"
-import { ReactNode } from "react"
+import { cn } from '@/lib/utils'
+import { ReactNode } from 'react'
 
-import { GsapSplitText } from "@/components/gsap-split-text"
-import { WistiaPlayerWrapper } from "@/components/wistia-player"
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { WistiaPlayerWrapper } from '@/components/wistia-player'
 
 interface VideoWithTextProps {
+  mediaId: string
   primaryVideoUrl: string
   primaryVideoType?: string
   thumbnail?: string
@@ -15,23 +16,22 @@ interface VideoWithTextProps {
   description: ReactNode
   className?: string
   spot?: string
+  customPoster?: string
 }
 
 export function VideoWithText(props: VideoWithTextProps) {
-  const { title, description, className } = props
+  const { mediaId, title, description, className, customPoster } = props
 
   return (
     <div
       className={cn(
-        "relative h-[60vw] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1/2 after:bg-gradient-to-t after:from-current after:to-transparent after:z-10 overflow-hidden",
+        'relative h-[60vw] overflow-hidden after:absolute after:bottom-0 after:left-0 after:z-10 after:h-1/2 after:w-full after:bg-gradient-to-t after:from-current after:to-transparent',
         className
       )}
     >
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-full pointer-events-none'>
+      <div className='pointer-events-none absolute inset-0 h-full w-full'>
         <WistiaPlayerWrapper
-          className='w-full h-full object-cover'
-          aspect={16 / 9}
-          mediaId='e2tew1zhxj'
+          mediaId={mediaId}
           autoplay
           muted
           preload='none'
@@ -46,22 +46,26 @@ export function VideoWithText(props: VideoWithTextProps) {
           settingsControl={false}
           transparentLetterbox={true}
           lazy
+          customPoster={customPoster}
+          containerHeight='100%'
         />
       </div>
-      <div className={cn("absolute bottom-[15%] left-1/2 -translate-x-1/2 z-50")}>
+      <div
+        className={cn('absolute bottom-[15%] left-1/2 z-50 -translate-x-1/2')}
+      >
         {title && (
           <article
             className={cn(
-              "text-white font-primary font-semibold text-center",
-              "flex-shrink-0 flex flex-col items-center justify-center gap-4 lg:gap-6"
+              'text-center font-primary font-semibold text-white',
+              'flex flex-shrink-0 flex-col items-center justify-center gap-4 lg:gap-6'
             )}
           >
             <h3
               className={cn(
-                "text-white font-primary font-[200] whitespace-nowrap text-center",
-                "text-6xl xl:text-6xl 2xl:text-7xl",
-                "w-full min-w-[90vw] lg:min-w-52",
-                "flex-shrink-0 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0"
+                'whitespace-nowrap text-center font-primary font-[200] text-white',
+                'text-6xl xl:text-6xl 2xl:text-7xl',
+                'w-full min-w-[90vw] lg:min-w-52',
+                'flex flex-shrink-0 flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
             >
               <GsapSplitText splitBy='chars' stagger={0.02} duration={1}>
@@ -70,11 +74,11 @@ export function VideoWithText(props: VideoWithTextProps) {
             </h3>
             <p
               className={cn(
-                "text-white font-primary font-[300] text-center",
-                "text-2xl xl:text-2xl 2xl:text-3xl",
-                "leading-relaxed xl:leading-relaxed 2xl:leading-relaxed",
-                "flex-shrink-0 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0",
-                "max-w-4xl"
+                'text-center font-primary font-[300] text-white',
+                'text-2xl xl:text-2xl 2xl:text-3xl',
+                'leading-relaxed xl:leading-relaxed 2xl:leading-relaxed',
+                'flex flex-shrink-0 flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0',
+                'max-w-4xl'
               )}
             >
               <GsapSplitText splitBy='lines' stagger={0.02} duration={1}>
