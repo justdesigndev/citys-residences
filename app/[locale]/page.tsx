@@ -1,6 +1,7 @@
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { Wrapper } from "@/components/wrapper"
+// import { LazyHomeSection } from "@/components/lazy-home-section"
 
 import Home from "./home/page"
 
@@ -10,6 +11,31 @@ export default function Page({ params }: { params: { locale: string } }) {
       <Header />
       <Wrapper>
         <Home params={params} />
+        {/* <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} />
+        <LazyHomeSection params={params} /> */}
       </Wrapper>
       <Footer />
     </>
