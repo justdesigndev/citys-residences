@@ -2,14 +2,12 @@
 
 import { cn } from '@/lib/utils'
 import { WistiaPlayer, WistiaPlayerProps } from '@wistia/wistia-player-react'
-import { useRef, useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Image } from '@/components/image'
 
 interface WistiaPlayerWrapperProps extends WistiaPlayerProps {
   className?: string
-  aspectRatio?: string | number
-  containerHeight?: string | number
   customPoster?: string
   posterPriority?: boolean
 }
@@ -17,8 +15,6 @@ interface WistiaPlayerWrapperProps extends WistiaPlayerProps {
 export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
   const {
     className,
-    aspectRatio,
-    containerHeight,
     customPoster,
     posterPriority = false,
     ...wistiaProps
