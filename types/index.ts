@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image"
+import { StaticImageData } from 'next/image'
 
 export interface Filter {
   ui: string
@@ -50,22 +50,22 @@ export interface News {
 }
 
 export enum MediaType {
-  image = "image",
-  video = "video",
+  image = 'image',
+  video = 'video',
 }
 
 export enum PageTransitionPhase {
-  IDLE = "IDLE",
-  APPEAR = "APPEAR",
-  IN = "IN",
-  OUT = "OUT",
+  IDLE = 'IDLE',
+  APPEAR = 'APPEAR',
+  IN = 'IN',
+  OUT = 'OUT',
 }
 
 export enum CursorType {
-  default = "default",
-  view = "view",
-  email = "email",
-  magnet = "magnet",
+  default = 'default',
+  view = 'view',
+  email = 'email',
+  magnet = 'magnet',
 }
 
 interface MenuItem {
@@ -92,13 +92,13 @@ export interface SupportFaqProps {
 }
 
 export enum SocialMedia {
-  tiktok = "tiktok",
-  facebook = "facebook",
-  instagram = "instagram",
-  x = "x",
-  youtube = "youtube",
-  linkedin = "linkedin",
-  events = "events",
+  tiktok = 'tiktok',
+  facebook = 'facebook',
+  instagram = 'instagram',
+  x = 'x',
+  youtube = 'youtube',
+  linkedin = 'linkedin',
+  events = 'events',
 }
 
 export interface BannerImage {
@@ -218,25 +218,48 @@ export interface ContactInfo {
 
 export interface FormTranslations {
   inputs: {
-    name: { placeholder: string; errors: { required: string } }
-    surname: { placeholder: string; errors: { required: string } }
+    name: { placeholder: string; label: string; errors: { required: string } }
+    surname: {
+      placeholder: string
+      label: string
+      errors: { required: string }
+    }
     phone: {
       placeholder: string
+      label: string
       errors: {
         min: string
         max: string
         required: string
       }
     }
-    email: { placeholder: string; errors: { required: string; email: string } }
-    residenceType: { placeholder: string; errors: { required: string } }
+    email: {
+      placeholder: string
+      label: string
+      errors: { required: string; email: string }
+    }
+    residenceType: {
+      placeholder: string
+      label: string
+      errors: { required: string }
+    }
     howDidYouHearAboutUs: {
       placeholder: string
+      label: string
       errors: { required: string }
       options: Record<string, string>
     }
+    contactPreference: { placeholder: string; errors: { required: string } }
+    contactPreferenceOptions: {
+      sms: string
+      email: string
+      phone: string
+    }
     consent: { placeholder: string; errors: { required: string } }
-    consentElectronicMessage: { placeholder: string; errors: { required: string } }
+    consentElectronicMessage: {
+      placeholder: string
+      errors: { required: string }
+    }
     consentSms: { placeholder: string }
     consentEmail: { placeholder: string }
     consentPhone: { placeholder: string }
@@ -306,7 +329,7 @@ export interface ApiResponse<T> {
 // Events API types
 export interface EventMedia {
   id: string
-  type: "image" | "video"
+  type: 'image' | 'video'
   src: string
 }
 
@@ -317,7 +340,7 @@ export interface Event {
   location: string
   date: string
   time: string
-  status: "active" | "inactive"
+  status: 'active' | 'inactive'
   media: EventMedia[]
 }
 
