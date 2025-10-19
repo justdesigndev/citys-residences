@@ -1,0 +1,25 @@
+{
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "semi": false,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 80,
+    "useTabs": false,
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "plugins": [
+        "prettier-plugin-tailwindcss"
+    ],
+    "overrides": [
+        {
+            "files": "*.{ts,tsx,js,jsx}",
+            "options": {
+                "singleQuote": true,
+                "jsxSingleQuote": true
+            }
+        }
+    ]
+}
