@@ -1,11 +1,7 @@
 'use client'
 
-import { Link, Link as LocalizedLink, type Locale } from '@/i18n/routing'
-import {
-  getNavigationItems,
-  initialScroll,
-  NavigationMetadata,
-} from '@/lib/constants'
+import { Link, Link as LocalizedLink } from '@/i18n/routing'
+import { initialScroll } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import Lenis from 'lenis'
 import { useLenis } from 'lenis/react'
@@ -80,10 +76,10 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
     }
   }, [scrollState.atTop, sections.length])
 
-  const navigationItems: NavigationMetadata[] = getNavigationItems(
-    t,
-    locale as Locale
-  )
+  // const navigationItems: NavigationMetadata[] = getNavigationItems(
+  //   t,
+  //   locale as Locale
+  // )
 
   useEffect(() => {
     return menuOpen ? lenis?.stop() : lenis?.start()
