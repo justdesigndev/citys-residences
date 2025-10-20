@@ -2,19 +2,19 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import { useLocale } from 'next-intl'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+// import { useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { Control, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { ConsentCheckboxes } from '@/components/consent-checkboxes'
 import { IconCheck, IconLoading } from '@/components/icons'
-import { Image } from '@/components/image'
 import { InternationalPhoneInputComponent } from '@/components/international-phone-input'
 import {
   MultiSelectCheckboxes,
   MultiSelectCheckboxesRef,
 } from '@/components/multi-select-checkboxes'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
   DialogClose,
@@ -32,11 +32,20 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { submitContactForm } from '@/lib/api/submit-contact-form'
+// import { submitContactForm } from '@/lib/api/submit-contact-form'
 import { cn, isPhoneValid } from '@/lib/utils'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
-import { Home, Mail, Phone, SmilePlus } from 'lucide-react'
+import {
+  CalendarPlusIcon,
+  ChatCenteredTextIcon,
+  DeviceMobileCameraIcon,
+  EnvelopeOpenIcon,
+  HouseSimpleIcon,
+  PresentationIcon,
+  StorefrontIcon,
+  UserIcon,
+} from '@phosphor-icons/react'
 
 const getFormSchema = (translations: FormTranslations) => {
   // Ensure contactPreference exists with fallback
@@ -46,56 +55,44 @@ const getFormSchema = (translations: FormTranslations) => {
     errors: { required: 'Required field' },
   }
 
-  return z
-    .object({
-      name: z
-        .string()
-        .min(2, { message: translations.inputs.name.errors.required }),
-      surname: z
-        .string()
-        .min(2, { message: translations.inputs.surname.errors.required }),
-      countryCode: z.string(),
-      phone: z.string().refine(
+  return z.object({
+    name: z
+      .string()
+      .min(2, { message: translations.inputs.name.errors.required }),
+    surname: z
+      .string()
+      .min(2, { message: translations.inputs.surname.errors.required }),
+    countryCode: z.string(),
+    phone: z
+      .string()
+      .min(1, { message: translations.inputs.phone.errors.required })
+      .refine(
         val => {
+          if (!val || val.trim() === '') return false
           return isPhoneValid(val)
         },
         { message: translations.inputs.phone.errors.required }
       ),
-      email: z
-        .string()
-        .min(1, { message: translations.inputs.email.errors.required })
-        .email({ message: translations.inputs.email.errors.email }),
-      residenceType: z
-        .string()
-        .min(1, { message: translations.inputs.residenceType.errors.required }),
-      howDidYouHearAboutUs: z.string().min(1, {
-        message: translations.inputs.howDidYouHearAboutUs.errors.required,
-      }),
-      contactPreference: z
-        .string()
-        .min(1, { message: contactPreferenceTranslations.errors.required }),
-      consent: z.boolean().refine(data => data === true, {
-        message: translations.inputs.consent.errors.required,
-      }),
-      consentElectronicMessage: z.boolean().refine(data => data === true, {
-        message: translations.inputs.consentElectronicMessage.errors.required,
-      }),
-      consentSms: z.boolean(),
-      consentEmail: z.boolean(),
-      consentPhone: z.boolean(),
-    })
-    .refine(
-      data => {
-        if (data.consentElectronicMessage) {
-          return data.consentSms || data.consentEmail || data.consentPhone
-        }
-        return true
-      },
-      {
-        message: translations.inputs.consentElectronicMessage.errors.required,
-        path: ['consentElectronicMessage'],
-      }
-    )
+    email: z
+      .string()
+      .min(1, { message: translations.inputs.email.errors.required })
+      .email({ message: translations.inputs.email.errors.email }),
+    residenceType: z
+      .string()
+      .min(1, { message: translations.inputs.residenceType.errors.required }),
+    howDidYouHearAboutUs: z.string().min(1, {
+      message: translations.inputs.howDidYouHearAboutUs.errors.required,
+    }),
+    contactPreference: z
+      .string()
+      .min(1, { message: contactPreferenceTranslations.errors.required }),
+    consent: z.boolean().refine(data => data === true, {
+      message: translations.inputs.consent.errors.required,
+    }),
+    consentElectronicMessage: z.boolean().refine(data => data === true, {
+      message: translations.inputs.consentElectronicMessage.errors.required,
+    }),
+  })
 }
 
 export type FormValues = z.infer<ReturnType<typeof getFormSchema>>
@@ -125,7 +122,7 @@ const FormInput = ({
     name={name}
     render={({ field }) => (
       <FormItem>
-        <FormLabel className='block text-lg font-[300] leading-none text-white'>
+        <FormLabel className='block font-[300] leading-none text-white lg:text-sm 2xl:text-lg'>
           {label}
         </FormLabel>
         <FormControl>
@@ -135,7 +132,9 @@ const FormInput = ({
             {...field}
             value={field.value?.toString() ?? ''}
             className={cn(
-              'rounded-none border-b border-white text-lg font-[300] placeholder:text-tangerine-flake',
+              'rounded-none border-b border-white font-[300] placeholder:text-tangerine-flake',
+              'placeholder:text-sm xl:placeholder:text-sm 2xl:placeholder:text-lg',
+              'lg:text-sm xl:text-sm 2xl:text-lg',
               commonInputStyles,
               className
             )}
@@ -191,7 +190,8 @@ interface FormContactProps {
 
 export function ContactForm({ translations }: FormContactProps) {
   const { showMessage } = useFormMessage()
-  const locale = useLocale()
+  // const locale = useLocale() // Uncomment when using real API
+  const t = useTranslations()
   const [successDialog, setSuccessDialog] = useState(false)
 
   const residenceTypeDropdownRef = useRef<MultiSelectCheckboxesRef>(null)
@@ -217,9 +217,6 @@ export function ContactForm({ translations }: FormContactProps) {
       contactPreference: '',
       consent: false,
       consentElectronicMessage: false,
-      consentSms: false,
-      consentEmail: false,
-      consentPhone: false,
     },
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -231,8 +228,41 @@ export function ContactForm({ translations }: FormContactProps) {
 
   const mutation = useMutation({
     mutationFn: async (data: FormValues) => {
-      const result = await submitContactForm(data, locale)
-      return result
+      // Clean phone number - remove country code if it was somehow included
+      let cleanPhone = data.phone
+
+      // If phone starts with the country code, remove it
+      if (data.countryCode && cleanPhone.startsWith(data.countryCode)) {
+        cleanPhone = cleanPhone.slice(data.countryCode.length).trim()
+      }
+      // Also handle case where phone starts with + followed by country code
+      else if (
+        data.countryCode &&
+        cleanPhone.startsWith(`+${data.countryCode.replace('+', '')}`)
+      ) {
+        cleanPhone = cleanPhone.slice(data.countryCode.length).trim()
+      }
+
+      const cleanedData = {
+        ...data,
+        phone: cleanPhone,
+      }
+
+      // Development mode: console log and return early
+      console.log('Form Data to be submitted:', {
+        ...cleanedData,
+        timestamp: new Date().toISOString(),
+      })
+
+      // Early return for development - bypassing actual API call
+      return {
+        success: true,
+        message: 'Development mode - data logged to console',
+      }
+
+      // Uncomment below when ready to use real API
+      // const result = await submitContactForm(cleanedData, locale)
+      // return result
     },
     onSuccess: result => {
       if (result.success) {
@@ -264,14 +294,40 @@ export function ContactForm({ translations }: FormContactProps) {
     },
   })
 
+  const iconSize = 'size-5 xl:size-6 2xl:size-7 3xl:size-8'
+
   const residenceTypeOptions = useMemo(
     () => [
-      { id: '1+1', label: '1+1', icon: <Home /> },
-      { id: '2+1', label: '2+1', icon: <Home /> },
-      { id: '3+1', label: '3+1', icon: <Home /> },
-      { id: '4+1', label: '4+1', icon: <Home /> },
-      { id: '5+1', label: '5+1', icon: <Home /> },
-      { id: '6+1', label: '6+1', icon: <Home /> },
+      {
+        id: '1+1',
+        label: '1+1',
+        icon: <HouseSimpleIcon className={iconSize} />,
+      },
+      {
+        id: '2+1',
+        label: '2+1',
+        icon: <HouseSimpleIcon className={iconSize} />,
+      },
+      {
+        id: '3+1',
+        label: '3+1',
+        icon: <HouseSimpleIcon className={iconSize} />,
+      },
+      {
+        id: '4+1',
+        label: '4+1',
+        icon: <HouseSimpleIcon className={iconSize} />,
+      },
+      {
+        id: '5+1',
+        label: '5+1',
+        icon: <HouseSimpleIcon className={iconSize} />,
+      },
+      {
+        id: '6+1',
+        label: '6+1',
+        icon: <HouseSimpleIcon className={iconSize} />,
+      },
     ],
     []
   )
@@ -281,23 +337,23 @@ export function ContactForm({ translations }: FormContactProps) {
       {
         id: 'reference',
         label: translations.inputs.howDidYouHearAboutUs.options.reference,
-        icon: <Home />,
+        icon: <UserIcon className={iconSize} />,
       },
       {
         id: 'projectVisit',
         label: translations.inputs.howDidYouHearAboutUs.options.projectVisit,
-        icon: <Home />,
+        icon: <StorefrontIcon className={iconSize} />,
       },
       {
         id: 'internetSocialMedia',
         label:
           translations.inputs.howDidYouHearAboutUs.options.internetSocialMedia,
-        icon: <Home />,
+        icon: <DeviceMobileCameraIcon className={iconSize} />,
       },
       {
         id: 'billboard',
         label: translations.inputs.howDidYouHearAboutUs.options.billboard,
-        icon: <Home />,
+        icon: <PresentationIcon className={iconSize} />,
       },
     ],
     [translations.inputs.howDidYouHearAboutUs.options]
@@ -307,18 +363,18 @@ export function ContactForm({ translations }: FormContactProps) {
     () => [
       {
         id: 'sms',
-        label: translations.inputs.contactPreferenceOptions?.sms || 'SMS',
-        icon: <SmilePlus />,
+        label: translations.inputs.contactPreferenceOptions?.sms,
+        icon: <ChatCenteredTextIcon className={iconSize} />,
       },
       {
         id: 'email',
-        label: translations.inputs.contactPreferenceOptions?.email || 'Email',
-        icon: <Mail />,
+        label: translations.inputs.contactPreferenceOptions?.email,
+        icon: <EnvelopeOpenIcon className={iconSize} />,
       },
       {
         id: 'phone',
-        label: translations.inputs.contactPreferenceOptions?.phone || 'Phone',
-        icon: <Phone />,
+        label: translations.inputs.contactPreferenceOptions?.phone,
+        icon: <DeviceMobileCameraIcon className={iconSize} />,
       },
     ],
     [translations.inputs.contactPreferenceOptions]
@@ -331,6 +387,31 @@ export function ContactForm({ translations }: FormContactProps) {
         errors: { required: 'Required field' },
       },
     [translations.inputs.contactPreference]
+  )
+
+  const handleConsentElectronicMessageChange = useCallback(
+    (checked: boolean) => {
+      form.setValue('consentElectronicMessage', checked)
+
+      if (checked) {
+        // If checked, select all contact preference options
+        const allContactPreferenceLabels = contactPreferenceOptions
+          .map(opt => opt.label)
+          .join(',')
+        form.setValue('contactPreference', allContactPreferenceLabels, {
+          shouldValidate: false,
+        })
+      } else {
+        // If unchecked, clear all contact preference options
+        form.setValue('contactPreference', '', {
+          shouldValidate: false,
+        })
+      }
+
+      form.trigger('consentElectronicMessage')
+      form.trigger('contactPreference')
+    },
+    [form, contactPreferenceOptions]
   )
 
   const handleResidenceType = useCallback(
@@ -376,19 +457,23 @@ export function ContactForm({ translations }: FormContactProps) {
         shouldValidate: false,
       })
 
+      if (ids.length > 0) {
+        // If at least one contact preference is selected, check consentElectronicMessage
+        form.setValue('consentElectronicMessage', true, {
+          shouldValidate: false,
+        })
+      } else {
+        // If all contact preferences are unselected, uncheck consentElectronicMessage
+        form.setValue('consentElectronicMessage', false, {
+          shouldValidate: false,
+        })
+      }
+
       form.trigger('contactPreference')
+      form.trigger('consentElectronicMessage')
     },
     [form, contactPreferenceOptions]
   )
-
-  useEffect(() => {
-    form.register('phone', {
-      onChange: () => form.trigger('phone'), // Validate phone on change
-    })
-    form.register('email', {
-      onChange: () => form.trigger('email'), // Validate email on change
-    })
-  }, [form])
 
   return (
     <>
@@ -399,7 +484,7 @@ export function ContactForm({ translations }: FormContactProps) {
           noValidate
         >
           <div className='grid grid-cols-24'>
-            <div className='col-span-14 flex flex-col justify-between gap-16 pr-24'>
+            <div className='flex flex-col justify-between gap-16 lg:col-span-14 xl:col-span-15 xl:gap-8 xl:pr-16 2xl:col-span-15 2xl:gap-12 2xl:pr-20 3xl:col-span-14'>
               <div className='flex grid-flow-col flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-6'>
                 <FormInput
                   label={translations.inputs.name.label}
@@ -460,106 +545,174 @@ export function ContactForm({ translations }: FormContactProps) {
                   )}
                 />
               </div>
-              <ConsentCheckboxes form={form} control={form.control} />
+              <div className='space-y-5'>
+                <div className='space-y-3'>
+                  <FormField
+                    control={form.control}
+                    name='consentElectronicMessage'
+                    render={({ field }) => (
+                      <FormItem>
+                        <div className='group flex flex-row gap-2 space-y-0'>
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={checked => {
+                                field.onChange(checked)
+                                handleConsentElectronicMessageChange(
+                                  checked as boolean
+                                )
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className='max-w-[90%] cursor-pointer text-base font-[300] leading-snug text-white xl:text-sm 2xl:text-base'>
+                            {t.rich(
+                              'contact.form.inputs.consentElectronicMessage.placeholder',
+                              {
+                                legal4: chunks => (
+                                  <a
+                                    target='_blank'
+                                    rel='norefferer noopener'
+                                    href='/pdf/citys-residences-acik-riza-beyani.pdf'
+                                    className='font-[400] text-white underline'
+                                  >
+                                    {chunks}
+                                  </a>
+                                ),
+                              }
+                            )}
+                          </FormLabel>
+                        </div>
+                        <FormMessage className='text-white' />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name='consent'
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className='group flex flex-row gap-2 space-y-0'>
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <FormLabel className='max-w-[90%] cursor-pointer text-base font-[300] leading-snug text-white xl:text-sm 2xl:text-base'>
+                          {t.rich('contact.form.inputs.consent.placeholder', {
+                            legal1: chunks => (
+                              <a
+                                target='_blank'
+                                rel='norefferer noopener'
+                                href='/pdf/citys-residences-kvkk-aydinlatma-metni.pdf'
+                                className='font-[400] text-white underline'
+                              >
+                                {chunks}
+                              </a>
+                            ),
+                            legal2: chunks => (
+                              <a
+                                target='_blank'
+                                rel='norefferer noopener'
+                                href='/pdf/citys-residences-acik-riza-metni.pdf'
+                                className='font-[400] text-white underline'
+                              >
+                                {chunks}
+                              </a>
+                            ),
+                            legal3: chunks => (
+                              <a
+                                target='_blank'
+                                rel='norefferer noopener'
+                                href='/pdf/citys-residences-ticari-elektronik-ileti-aydinlatma-metni.pdf'
+                                className='font-[400] text-white underline'
+                              >
+                                {chunks}
+                              </a>
+                            ),
+                          })}
+                        </FormLabel>
+                      </div>
+                      <FormMessage className='text-white' />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
-            <div className='col-span-8 flex flex-col justify-between gap-16'>
-              <div className='grid grid-cols-1 gap-6 lg:gap-4'>
-                <div className='flex flex-col'>
-                  <FormField
-                    control={form.control}
-                    name='howDidYouHearAboutUs'
-                    render={() => (
-                      <FormItem>
-                        <FormControl>
-                          <MultiSelectCheckboxes
-                            title={
-                              translations.inputs.howDidYouHearAboutUs.label
-                            }
-                            selectedValues={
-                              howDidYouHearAboutUsValue
-                                ? howDidYouHearAboutUsOptions
-                                    .filter(opt =>
-                                      howDidYouHearAboutUsValue
-                                        .split(',')
-                                        .includes(opt.label)
-                                    )
-                                    .map(opt => opt.id)
-                                : []
-                            }
-                            options={howDidYouHearAboutUsOptions}
-                            onChange={handleHowDidYouHearAboutUs}
-                            ref={howDidYouHearAboutUsDropdownRef}
-                          />
-                        </FormControl>
-                        <FormMessage className='text-white' />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
-              <div className='grid grid-cols-1 gap-6 lg:gap-4'>
-                <div className='flex flex-col'>
-                  <FormField
-                    control={form.control}
-                    name='contactPreference'
-                    render={() => (
-                      <FormItem>
-                        <FormControl>
-                          <MultiSelectCheckboxes
-                            title={`${contactPreferenceTranslations.placeholder}*`}
-                            selectedValues={
-                              contactPreferenceValue
-                                ? contactPreferenceOptions
-                                    .filter(opt =>
-                                      contactPreferenceValue
-                                        .split(',')
-                                        .includes(opt.label)
-                                    )
-                                    .map(opt => opt.id)
-                                : []
-                            }
-                            options={contactPreferenceOptions}
-                            onChange={handleContactPreference}
-                            ref={contactPreferenceDropdownRef}
-                          />
-                        </FormControl>
-                        <FormMessage className='text-white' />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </div>
-              <div className='ml-auto mt-auto flex flex-col items-start justify-between gap-12 lg:flex-row lg:gap-0'>
+            <div className='flex flex-col justify-between gap-16 lg:col-span-10 xl:col-span-9 xl:gap-8 2xl:col-span-9 2xl:gap-12 3xl:col-span-9'>
+              <FormField
+                control={form.control}
+                name='howDidYouHearAboutUs'
+                render={() => (
+                  <FormItem>
+                    <FormControl>
+                      <MultiSelectCheckboxes
+                        title={translations.inputs.howDidYouHearAboutUs.label}
+                        selectedValues={
+                          howDidYouHearAboutUsValue
+                            ? howDidYouHearAboutUsOptions
+                                .filter(opt =>
+                                  howDidYouHearAboutUsValue
+                                    .split(',')
+                                    .includes(opt.label)
+                                )
+                                .map(opt => opt.id)
+                            : []
+                        }
+                        options={howDidYouHearAboutUsOptions}
+                        onChange={handleHowDidYouHearAboutUs}
+                        ref={howDidYouHearAboutUsDropdownRef}
+                      />
+                    </FormControl>
+                    <FormMessage className='text-white' />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='contactPreference'
+                render={() => (
+                  <FormItem>
+                    <FormControl>
+                      <MultiSelectCheckboxes
+                        title={`${contactPreferenceTranslations.placeholder}*`}
+                        selectedValues={
+                          contactPreferenceValue
+                            ? contactPreferenceOptions
+                                .filter(opt =>
+                                  contactPreferenceValue
+                                    .split(',')
+                                    .includes(opt.label)
+                                )
+                                .map(opt => opt.id)
+                            : []
+                        }
+                        options={contactPreferenceOptions}
+                        onChange={handleContactPreference}
+                        ref={contactPreferenceDropdownRef}
+                      />
+                    </FormControl>
+                    <FormMessage className='text-white' />
+                  </FormItem>
+                )}
+              />
+              <div className='ml-auto mt-auto flex flex-col items-start justify-between gap-12 lg:flex-row lg:gap-0 xl:mb-8'>
                 <button
                   type='submit'
                   disabled={mutation.isPending}
                   className='group relative flex items-center'
                 >
-                  <span className='px-8 text-sm tracking-[0.4em] text-white lg:text-lg'>
-                    {/* <Letter3DSwap
-                      mainClassName='text-sm tracking-[0.4em] text-white lg:text-lg'
-                      as='span'
-                      rotateDirection='top'
-                      staggerDuration={0.03}
-                      staggerFrom='first'
-                      transition={{
-                        type: 'spring',
-                        damping: 25,
-                        stiffness: 160,
-                      }}
-                    >
-                      {translations.submit.default}
-                    </Letter3DSwap> */}
+                  <span className='whitespace-nowrap text-sm tracking-[0.4em] text-white lg:text-lg xl:px-6 xl:text-sm 2xl:px-8 2xl:text-lg'>
                     {translations.submit.default}
                   </span>
-                  <span className='relative flex h-20 w-20 items-center justify-center overflow-hidden bg-gradient-button transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-button-hover before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100'>
-                    <Image
-                      src='/svg/calendar-plus.svg'
-                      alt='Calendar Plus'
-                      width={24}
-                      height={24}
-                      className='svg-icon-white relative z-10'
-                    />
+                  <span
+                    className={cn(
+                      'bg-gradient-submit-button relative flex flex-shrink-0 items-center justify-center overflow-hidden text-white transition-all duration-500 group-hover:text-bleeding-crimson xl:size-16 2xl:size-20 3xl:size-24',
+                      'before:bg-gradient-submit-button-hover before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100'
+                    )}
+                  >
+                    <CalendarPlusIcon className='relative z-10 xl:size-8 2xl:size-10 3xl:size-12' />
                   </span>
                   {mutation.isPending && (
                     <span className='absolute -right-4 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-full items-center justify-center'>

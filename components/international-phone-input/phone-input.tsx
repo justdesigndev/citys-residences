@@ -17,16 +17,19 @@ import {
 } from '@/components/ui/select'
 import { SelectItem } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 interface PhoneInputProps {
   value: string
   onChange: (phone: string) => void
+  onCountryChange?: (dialCode: string) => void
   phoneInputRef?: React.Ref<HTMLInputElement>
 }
 
 export const PhoneInput: React.FC<PhoneInputProps> = ({
   value,
   onChange,
+  onCountryChange,
   phoneInputRef,
 }) => {
   const messages = useMessages()
@@ -35,8 +38,11 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
     defaultCountry: 'tr',
     disableDialCodeAndPrefix: true,
     value,
-    onChange: (data: { phone: string }) => {
+    onChange: (data: { phone: string; country: { dialCode: string } }) => {
       onChange(data.phone)
+      if (onCountryChange) {
+        onCountryChange(`+${data.country.dialCode}`)
+      }
     },
   })
 
@@ -65,6 +71,13 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
     }
   }, [inputRef, phoneInput.inputRef])
 
+  // Set initial country code
+  useEffect(() => {
+    if (onCountryChange && phoneInput.country.dialCode) {
+      onCountryChange(`+${phoneInput.country.dialCode}`)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   const countryOptions = (
     <>
       {defaultCountries.map((c, index) => {
@@ -90,17 +103,22 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   return (
     <div className='flex items-center'>
       <Select
+        name='countryCode'
         onValueChange={value => {
           const selectedCountry = defaultCountries.find(
             c => parseCountry(c).iso2 === value
           )
           if (selectedCountry) {
             phoneInput.setCountry(selectedCountry[1].toLowerCase())
+            if (onCountryChange) {
+              const country = parseCountry(selectedCountry)
+              onCountryChange(`+${country.dialCode}`)
+            }
           }
         }}
         value={phoneInput.country.iso2}
       >
-        <SelectTrigger className='h-14 w-24 cursor-pointer rounded-none border-b border-white text-lg font-[300] text-white/90 placeholder:text-white/90'>
+        <SelectTrigger className='h-14 w-24 cursor-pointer rounded-none border-b border-white font-[300] text-white/90 placeholder:text-white/90 lg:text-sm xl:h-12 2xl:h-14 2xl:text-lg'>
           <SelectValue placeholder='Code'>
             +{phoneInput.country.dialCode}
           </SelectValue>
@@ -110,7 +128,11 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
         </SelectContent>
       </Select>
       <Input
-        className='h-14 rounded-none border-b border-white text-lg text-white placeholder:text-lg placeholder:text-tangerine-flake'
+        className={cn(
+          'rounded-none border-b border-white font-[300] placeholder:text-tangerine-flake',
+          'placeholder:text-sm xl:placeholder:text-sm 2xl:placeholder:text-lg',
+          'lg:text-sm xl:text-sm 2xl:text-lg'
+        )}
         placeholder={
           phoneInput.country.format?.toString().replace(/\S/g, 'X') ||
           'XXXXXXXXXX'

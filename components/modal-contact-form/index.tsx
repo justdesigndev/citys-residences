@@ -155,7 +155,7 @@ export function ModalContactForm() {
           formRef.current,
           { width: '0' },
           {
-            width: '80vw',
+            width: '85vw',
             duration: 0.8,
             ease: 'expo.inOut',
           },
@@ -236,7 +236,7 @@ export function ModalContactForm() {
           onClick={e => e.stopPropagation()}
           ref={formRef}
         >
-          <div className='absolute left-0 right-0 top-0 flex h-full w-[80vw]'>
+          <div className='absolute left-0 right-0 top-0 flex h-full w-[85vw]'>
             <button
               className={cn(
                 'z-16 absolute left-0 top-20 h-16 w-16 -translate-x-full bg-white p-2 text-bricky-brick',
@@ -285,7 +285,7 @@ export function ModalContactForm() {
                       'max-w-[90%] font-primary font-[300] text-white',
                       'text-xl lg:text-xl xl:text-xl 2xl:text-2xl',
                       'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug',
-                      'max-w-xl'
+                      'max-w-xl lg:max-w-2xl xl:max-w-lg 2xl:max-w-xl 3xl:max-w-2xl'
                     )}
                   >
                     {t.rich('description', {

@@ -26,7 +26,7 @@ export function InternationalPhoneInputComponent({
       render={({ field }) => (
         <FormItem>
           <FormLabel
-            className='block text-lg font-[300] leading-none text-white'
+            className='block font-[300] leading-none text-white lg:text-sm 2xl:text-lg'
             htmlFor='phone'
           >
             {t('form.inputs.phone.label')}
@@ -35,6 +35,9 @@ export function InternationalPhoneInputComponent({
             <PhoneInput
               value={field.value}
               onChange={phone => field.onChange(phone)}
+              onCountryChange={dialCode => {
+                form.setValue('countryCode', dialCode)
+              }}
               phoneInputRef={field.ref}
             />
           </FormControl>

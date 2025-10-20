@@ -67,11 +67,11 @@ export const MultiSelectCheckboxes = forwardRef<
     return (
       <div className={cn('space-y-5', className)}>
         {title && (
-          <h3 className='font-primary text-lg font-[300] text-white'>
+          <h3 className='font-primary text-lg font-[300] text-white lg:text-sm 2xl:text-lg'>
             {title}
           </h3>
         )}
-        <div className='flex flex-wrap gap-5'>
+        <div className='flex flex-wrap xl:gap-2.5 2xl:gap-3.5'>
           {options.map(option => {
             const isSelected = (selectedValues || []).includes(option.id)
             return (
@@ -80,7 +80,7 @@ export const MultiSelectCheckboxes = forwardRef<
                 onClick={() => handleOptionClick(option.id)}
                 disabled={option.disabled}
                 className={cn(
-                  'flex flex-shrink-0 cursor-pointer flex-col items-center justify-between rounded-lg px-1 py-4 transition-all duration-200 lg:h-20 lg:w-20 2xl:h-24 2xl:w-24',
+                  'flex flex-shrink-0 cursor-pointer flex-col items-center justify-between rounded-md px-1 transition-all duration-200 lg:size-8 xl:size-20 xl:py-4 2xl:size-[6rem] 2xl:py-5',
                   {
                     'bg-white text-bricky-brick': isSelected,
                     'border border-tangerine-flake text-white hover:border-tangerine-flake/40':
@@ -90,18 +90,18 @@ export const MultiSelectCheckboxes = forwardRef<
                 aria-label={`Select ${option.label}`}
                 type='button'
               >
-                <div className='mb-2 flex h-6 w-6 items-center justify-center'>
-                  {/* <IconHome fill={isSelected ? '#8B2635' : '#fff'} /> */}
+                <div className='mb-1 flex items-center justify-center'>
                   {option.icon}
                 </div>
                 <span
                   className={cn(
-                    'font-[300] leading-tight tracking-wide',
-                    textSize === 'sm'
-                      ? 'text-[0.7rem]'
-                      : textSize === 'md'
-                        ? 'text-[0.8rem]'
-                        : 'text-[1.1rem]'
+                    'font-[300]',
+                    textSize === 'sm' &&
+                      'text-[0.7rem] xl:text-sm 2xl:text-base',
+                    textSize === 'md' &&
+                      'text-[0.8rem] xl:text-[0.7rem]/[1.1] 2xl:text-[0.8rem]/[1.1]',
+                    textSize === 'lg' &&
+                      'text-[1.1rem] xl:text-sm 2xl:text-base'
                   )}
                 >
                   {option.label}
