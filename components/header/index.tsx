@@ -152,7 +152,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
               ))}
             </div>
           )}
-          <div className='h-32 w-48 xl:h-36 xl:w-36 2xl:h-40 2xl:w-40'>
+          <div className='2xl:size-46 size-32 xl:size-32 3xl:size-40'>
             <LocalizedLink href='/' scroll={initialScroll} aria-label='Home'>
               <Logo fill={colors.white} />
             </LocalizedLink>
