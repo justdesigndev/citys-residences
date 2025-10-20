@@ -256,9 +256,9 @@ export function ModalContactForm() {
             <button
               className={cn(
                 'group',
-                'h-72 w-32',
+                'xl:h-60 xl:w-24 2xl:h-72 2xl:w-32',
                 'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-1/2',
-                'font-primary text-lg font-[500] tracking-[0.2em] text-white xl:text-xl',
+                'font-primary text-lg font-[500] tracking-[0.2em] text-white xl:text-base 2xl:text-xl',
                 'flex cursor-pointer items-center justify-center',
                 'relative overflow-hidden bg-gradient-button-hover transition-all duration-300',
                 'before:absolute before:inset-0 before:bg-gradient-button before:opacity-0',
