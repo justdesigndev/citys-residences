@@ -9,22 +9,22 @@ export default function TestPage() {
     <div>
       <Header />
       <PageTitle
-        className='bg-army-canvas'
-        bgColor={colors['army-canvas']}
-        itemColor={colors.white}
+        primaryColor={colors['army-canvas']}
+        secondaryColor={colors.white}
         title="CITY'S PARK"
         description='Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha...'
         id='test'
       />
       <PageTitle
-        bgColor={colors['bricky-brick']}
+        primaryColor={colors.white}
+        secondaryColor={colors['bricky-brick']}
         title='DAiRELER'
         description='Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı.'
-        id='test'
+        id='residences'
       />
       <PageTitle
-        bgColor={colors['blue-shimmer']}
-        className='bg-blue-shimmer'
+        primaryColor={colors['blue-shimmer']}
+        secondaryColor={colors.black}
         title={
           <>
             <span className='block'>CITY&apos;S</span>
@@ -32,12 +32,11 @@ export default function TestPage() {
           </>
         }
         description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
-        itemColor={colors.black}
-        id='test'
+        id='citys-members-club'
       />
       <PageTitle
-        bgColor={colors['verve-violet']}
-        className='bg-verve-violet'
+        primaryColor={colors['verve-violet']}
+        secondaryColor={colors.white}
         title={
           <>
             <span className='block'>CITY&apos;S</span>
@@ -45,16 +44,15 @@ export default function TestPage() {
           </>
         }
         description='Artık her şey daha kolay.'
-        itemColor={colors.white}
-        id='test'
+        id='citys-living'
       />
       <HeroSection
         mainText='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
         videoThumbnail='/img/thumbnail-kolaj-video.jpg'
       />
       <PageTitle
-        bgColor={colors['aqua-belt']}
-        className='bg-aqua-belt'
+        primaryColor={colors['aqua-belt']}
+        secondaryColor={colors.black}
         title={
           <>
             <span className='block'>CITY&apos;S</span>
@@ -62,16 +60,14 @@ export default function TestPage() {
           </>
         }
         description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
-        itemColor={colors.black}
-        id='test'
+        id='citys-istanbul-avm'
       />
       <PageTitle
-        bgColor={colors['trapped-darkness']}
-        className='bg-trapped-darkness'
+        primaryColor={colors['trapped-darkness']}
+        secondaryColor={colors.white}
         title="CITY'S TIMES"
         description='Bizi takip edin.'
-        itemColor={colors.white}
-        id='test'
+        id='citys-times'
       />
       <Footer />
     </div>

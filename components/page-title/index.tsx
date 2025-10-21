@@ -1,17 +1,18 @@
-import { cn } from "@/lib/utils"
-import { colors } from "@/styles/config.mjs"
+import { cn } from '@/lib/utils'
 
-import { LogoSlim } from "@/components/icons"
-import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
-import { GsapSplitText } from "../gsap-split-text"
+import { colors } from '@/styles/config.mjs'
+import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { LogoSlim } from '@/components/icons'
+import { SvgBgC } from '@/components/svgs/svg-bg-c'
 
 export interface PageTitleProps {
   title: React.ReactNode
   description: React.ReactNode
   id: string
   className?: string
-  bgColor?: string
-  itemColor?: string
+  primaryColor?: string
+  secondaryColor?: string
 }
 
 export function PageTitle(props: PageTitleProps) {
@@ -20,53 +21,59 @@ export function PageTitle(props: PageTitleProps) {
     description,
     id,
     className,
-    bgColor = colors["bricky-brick"],
-    itemColor = colors["bricky-brick"],
+    primaryColor = colors['bricky-brick'],
+    secondaryColor = colors['bricky-brick'],
   } = props
   return (
-    <div style={{ color: bgColor }}>
-      <div
-        className={cn(
-          "flex items-center justify-center min-h-[70vw] bg-[url('/img/test-bg.svg')] bg-cover bg-center bg-blend-soft-light relative",
-          "before:absolute before:top-0 before:left-0 before:w-full before:h-[25%] before:bg-gradient-to-b before:from-current before:to-transparent",
-          "after:absolute after:bottom-0 after:left-0 after:w-full after:h-[25%] after:bg-gradient-to-t after:from-current after:to-transparent",
-          className
-        )}
-        id={id}
-      >
-        <div className='flex flex-col items-center justify-center gap-6 lg:gap-6'>
-          <FadeInOnScroll>
-            <span className='w-36 h-36 lg:w-20 lg:h-20'>
-              <LogoSlim fill={itemColor} />
+    <div
+      style={
+        {
+          '--theme-primary': primaryColor,
+          '--theme-secondary': secondaryColor,
+        } as React.CSSProperties
+      }
+    >
+      <FadeInOnScroll>
+        <div
+          className={cn(
+            'relative z-30 flex min-h-[120vh] items-center justify-center overflow-hidden bg-[var(--theme-primary)]',
+            'before:absolute before:left-0 before:top-0 before:z-10 before:h-3/6 before:w-full before:bg-gradient-to-b before:from-[var(--theme-primary)] before:to-transparent',
+            'after:absolute after:bottom-0 after:left-0 after:z-10 after:h-3/6 after:w-full after:bg-gradient-to-t after:from-[var(--theme-primary)] after:to-transparent',
+            className
+          )}
+          id={id}
+        >
+          <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-auto w-full -translate-x-1/2 -translate-y-1/2 text-[var(--theme-secondary)]' />
+          <div className='z-40 flex flex-col items-center justify-center gap-6 lg:gap-6'>
+            <span className='h-36 w-36 lg:h-20 lg:w-20'>
+              <LogoSlim fill={secondaryColor} />
             </span>
-          </FadeInOnScroll>
-          <h2
-            className={cn(
-              "font-montserrat font-[600] text-center",
-              "text-5xl lg:text-5xl xl:text-5xl 2xl:text-5xl tracking-[0.4em]",
-              "leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug"
-            )}
-            style={{ color: itemColor }}
-          >
-            <GsapSplitText splitBy='chars' stagger={0.02} duration={1}>
-              {title}
-            </GsapSplitText>
-          </h2>
-          <p
-            className={cn(
-              "font-montserrat font-[300] text-bricky-brick text-center",
-              "text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl",
-              "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight",
-              "max-w-2xl"
-            )}
-            style={{ color: itemColor }}
-          >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1}>
-              {description}
-            </GsapSplitText>
-          </p>
+            <h2
+              className={cn(
+                'text-center font-primary font-[500] text-[var(--theme-secondary)]',
+                'text-5xl tracking-[0.4em] lg:text-5xl xl:text-5xl 2xl:text-5xl',
+                'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug'
+              )}
+            >
+              <GsapSplitText splitBy='chars' stagger={0.02} duration={1}>
+                {title}
+              </GsapSplitText>
+            </h2>
+            <p
+              className={cn(
+                'text-center font-primary font-[300] text-[var(--theme-secondary)]',
+                'text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl',
+                'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight',
+                'max-w-2xl'
+              )}
+            >
+              <GsapSplitText splitBy='lines' stagger={0.01} duration={1}>
+                {description}
+              </GsapSplitText>
+            </p>
+          </div>
         </div>
-      </div>
+      </FadeInOnScroll>
     </div>
   )
 }
