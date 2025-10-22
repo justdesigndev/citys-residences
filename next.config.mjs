@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-import createMDX from "@next/mdx"
-import createNextIntlPlugin from "next-intl/plugin"
+import createMDX from '@next/mdx'
+import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin()
 const withMDX = createMDX({
@@ -16,8 +16,8 @@ const nextConfig = {
   redirects: async () => {
     return [
       {
-        source: "/home",
-        destination: "/",
+        source: '/home',
+        destination: '/',
         permanent: true,
       },
     ]
@@ -25,19 +25,19 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "cms.citysresidences.com",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'cms.citysresidences.com',
+        pathname: '**',
       },
       {
-        protocol: "https",
-        hostname: "citys-istanbul.com",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'citys-istanbul.com',
+        pathname: '**',
       },
       {
-        protocol: "https",
-        hostname: "crm.citysresidences.com",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'panel.citysresidences.com',
+        pathname: '**',
       },
     ],
   },
@@ -61,8 +61,8 @@ const nextConfig = {
           ...config.optimization.splitChunks.cacheGroups,
           wistia: {
             test: /[\\/]node_modules[\\/]@wistia[\\/]/,
-            name: "wistia",
-            chunks: "all",
+            name: 'wistia',
+            chunks: 'all',
             priority: 10,
           },
         },
