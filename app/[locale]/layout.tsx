@@ -9,7 +9,6 @@ import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { GSAP } from '@/components/gsap'
-import { ImageGalleryModal } from '@/components/image-gallery/modal'
 import { ModalContactForm } from '@/components/modal-contact-form'
 import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
@@ -157,7 +156,6 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
             {children}
-            <ImageGalleryModal />
             <ModalContactForm />
             <StickyContactMenu />
             {/* <PreloaderClient /> */}
