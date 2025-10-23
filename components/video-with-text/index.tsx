@@ -66,7 +66,7 @@ export function VideoWithText(props: VideoWithTextProps) {
                 'flex flex-shrink-0 flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
             >
-              <GsapSplitText splitBy='chars' stagger={0.02} duration={1}>
+              <GsapSplitText type='chars' stagger={0.02} duration={1}>
                 {title}
               </GsapSplitText>
             </h3>
@@ -79,7 +79,7 @@ export function VideoWithText(props: VideoWithTextProps) {
                 'max-w-4xl'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.02} duration={1}>
+              <GsapSplitText type='lines' stagger={0.02} duration={1}>
                 {description}
               </GsapSplitText>
             </p>

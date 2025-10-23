@@ -1,6 +1,5 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
-import { HeroSection } from '@/components/hero-section'
 import { PageTitle } from '@/components/page-title'
 import {
   ComponentType,
@@ -19,11 +18,6 @@ export default function TestPage() {
         title='DAiRELER'
         description='Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı.'
         id='residences'
-      />
-
-      <HeroSection
-        mainText='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
-        videoThumbnail='/img/thumbnail-kolaj-video.jpg'
       />
       <PageTitle
         primaryColor={colors['aqua-belt']}

@@ -55,7 +55,7 @@ export function PageTitle(props: PageTitleProps) {
                 'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug'
               )}
             >
-              <GsapSplitText splitBy='chars' stagger={0.02} duration={1}>
+              <GsapSplitText type='chars' stagger={0.02} duration={1}>
                 {title}
               </GsapSplitText>
             </h2>
@@ -67,7 +67,7 @@ export function PageTitle(props: PageTitleProps) {
                 'max-w-sm lg:max-w-md'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.01} duration={1}>
+              <GsapSplitText type='lines' stagger={0.01} duration={1}>
                 {description}
               </GsapSplitText>
             </p>

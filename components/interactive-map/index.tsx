@@ -159,7 +159,7 @@ export function InteractiveMap() {
             'lg:leading-tighter leading-normal'
           )}
         >
-          <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+          <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
             Yaşamın tam <br /> merkezinde.
           </GsapSplitText>
         </h3>

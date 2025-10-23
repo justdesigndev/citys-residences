@@ -25,7 +25,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
                 'text-[0.8rem] lg:text-6xl/tight'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+              <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
                 {title}
               </GsapSplitText>
             </h3>
@@ -35,7 +35,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
                 'text-[0.8rem] lg:text-4xl/tight'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+              <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
                 {subtitle}
               </GsapSplitText>
             </h4>
@@ -48,13 +48,12 @@ export function CenterVideoText(props: CenterVideoTextProps) {
               'text-[0.8rem] lg:text-2xl/snug'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(description),
-                }}
-              />
-            </GsapSplitText>
+            <GsapSplitText
+              type='words'
+              stagger={0.01}
+              duration={1.5}
+              html={DOMPurify.sanitize(description)}
+            />
           </div>
         </div>
       </div>

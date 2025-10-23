@@ -53,7 +53,7 @@ export default function Page() {
               'text-3xl/tight lg:text-6xl/tight'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
               Blok ve Otopark <br />
               Girişleri
             </GsapSplitText>
@@ -66,7 +66,7 @@ export default function Page() {
               'text-base/snug lg:text-2xl/snug'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
               Her blok için ayrı tasarlanmış lobi ve girişler, güvenli ve
               prestijli bir karşılama sunuyor.
               <br />
@@ -112,7 +112,7 @@ export default function Page() {
               'text-3xl/tight lg:text-6xl/tight'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
               Yeşil Alanlar
             </GsapSplitText>
           </h3>
@@ -124,7 +124,7 @@ export default function Page() {
               'text-base/snug lg:text-2xl/snug'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
               50.000+ m² peyzaj alanında, doğanın ortasında huzurlu bir yaşam.
             </GsapSplitText>
           </p>
@@ -153,7 +153,7 @@ export default function Page() {
               'text-3xl/tight lg:text-6xl/tight'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
               Projenin mimarları <br />
               anlatıyor.
             </GsapSplitText>
@@ -166,7 +166,7 @@ export default function Page() {
               'text-base/snug lg:text-2xl/snug'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
               City’s Residences, gösterişten çok yaşam kalitesini merkeze alan
               bir mimarlık diliyle tasarlandı.
             </GsapSplitText>

@@ -61,7 +61,7 @@ export function QuoteWithVideo({
                   style={{ color: secondaryColor }}
                 />
               </span>
-              <GsapSplitText splitBy='lines' stagger={0.1} duration={1.5}>
+              <GsapSplitText type='lines' stagger={0.1} duration={1.5}>
                 {quote}
               </GsapSplitText>
             </h2>

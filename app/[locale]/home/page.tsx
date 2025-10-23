@@ -112,7 +112,7 @@ export default async function Page({
                   'tracking-wide lg:tracking-wide'
                 )}
               >
-                <GsapSplitText splitBy='chars' stagger={0.02} duration={1.5}>
+                <GsapSplitText type='chars' stagger={0.02} duration={1.5}>
                   {t('section1.title1')}
                 </GsapSplitText>
                 <span className='sr-only'>{t('section1.title1')}</span>
@@ -140,7 +140,7 @@ export default async function Page({
                   'text-center xl:text-left'
                 )}
               >
-                <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+                <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
                   {t('section1.title3')}
                 </GsapSplitText>
               </article>

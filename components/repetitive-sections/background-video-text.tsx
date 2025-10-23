@@ -30,7 +30,7 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
                 'text-[0.8rem] lg:text-6xl/tight'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+              <GsapSplitText stagger={0.01} duration={1.5} type='lines'>
                 {title}
               </GsapSplitText>
             </h3>
@@ -40,7 +40,7 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
                 'text-[0.8rem] lg:text-4xl/tight'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+              <GsapSplitText stagger={0.01} duration={1.5} type='lines'>
                 {subtitle}
               </GsapSplitText>
             </h4>
@@ -53,13 +53,12 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
               'text-[0.8rem] lg:text-2xl/snug'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(description),
-                }}
-              />
-            </GsapSplitText>
+            <GsapSplitText
+              stagger={0.01}
+              duration={1.5}
+              type='lines'
+              html={DOMPurify.sanitize(description)}
+            />
           </p>
         </div>
       </div>
