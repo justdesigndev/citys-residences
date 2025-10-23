@@ -66,8 +66,8 @@ export function LazyWistiaPlayer(props: LazyWistiaPlayerProps) {
     customPoster,
     posterPriority = false,
     loadingFallback,
-    intersectionThreshold = 0.1,
-    intersectionRootMargin = '50px',
+    intersectionThreshold = 0,
+    intersectionRootMargin = '400px',
     ...wistiaProps
   } = props
 

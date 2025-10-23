@@ -43,7 +43,7 @@ export function PageTitle(props: PageTitleProps) {
           )}
           id={id}
         >
-          <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 text-[var(--theme-secondary)] lg:h-auto lg:w-full' />
+          <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 text-[var(--theme-secondary)] mix-blend-soft-light lg:h-auto lg:w-full' />
           <div className='z-40 flex flex-col items-center justify-center gap-6 lg:gap-6'>
             <span className='size-24 lg:size-24'>
               <LogoSlim fill={secondaryColor} />
