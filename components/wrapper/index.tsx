@@ -1,14 +1,13 @@
-"use client"
+'use client'
 
-import s from "./wrapper.module.css"
+import s from './wrapper.module.css'
 
-import { cn } from "@/lib/utils"
-import type { themeNames } from "@/styles/config.mjs"
-import { usePathname } from "next/navigation"
-import Script from "next/script"
-import { useEffect } from "react"
+import { cn } from '@/lib/utils'
+import type { themeNames } from '@/styles/config.mjs'
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 
-import { SmoothScroll } from "@/components/smooth-scroll"
+import { SmoothScroll } from '@/components/smooth-scroll'
 
 interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: (typeof themeNames)[number]
@@ -16,19 +15,29 @@ interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   webgl?: boolean | object
 }
 
-export function Wrapper({ children, theme = "light", lenis = true, className, ...props }: WrapperProps) {
+export function Wrapper({
+  children,
+  theme = 'light',
+  lenis = true,
+  className,
+  ...props
+}: WrapperProps) {
   const pathname = usePathname()
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme)
+    document.documentElement.setAttribute('data-theme', theme)
   }, [pathname, theme])
 
   return (
     <>
       {/* <Header /> */}
-      <main className={cn(s.main, className, "wrapper")} {...props} style={{ zIndex: "var(--z-content)" }}>
+      <main
+        className={cn(s.main, className, 'wrapper')}
+        {...props}
+        style={{ zIndex: 'var(--z-content)' }}
+      >
         {children}
-        <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script>
+        {/* <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script> */}
       </main>
       {/* <Footer /> */}
       {lenis && <SmoothScroll root />}

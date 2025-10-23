@@ -36,22 +36,22 @@ export function PageTitle(props: PageTitleProps) {
       <FadeInOnScroll>
         <div
           className={cn(
-            'relative z-30 flex min-h-[120vh] items-center justify-center overflow-hidden bg-[var(--theme-primary)]',
+            'relative z-30 flex min-h-lvh items-center justify-center overflow-hidden bg-[var(--theme-primary)] lg:min-h-[120vh]',
             'before:absolute before:left-0 before:top-0 before:z-10 before:h-3/6 before:w-full before:bg-gradient-to-b before:from-[var(--theme-primary)] before:to-transparent',
             'after:absolute after:bottom-0 after:left-0 after:z-10 after:h-3/6 after:w-full after:bg-gradient-to-t after:from-[var(--theme-primary)] after:to-transparent',
             className
           )}
           id={id}
         >
-          <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-auto w-full -translate-x-1/2 -translate-y-1/2 text-[var(--theme-secondary)]' />
+          <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 text-[var(--theme-secondary)] lg:h-auto lg:w-full' />
           <div className='z-40 flex flex-col items-center justify-center gap-6 lg:gap-6'>
-            <span className='h-36 w-36 lg:h-20 lg:w-20'>
+            <span className='size-24 lg:size-24'>
               <LogoSlim fill={secondaryColor} />
             </span>
             <h2
               className={cn(
                 'text-center font-primary font-[500] text-[var(--theme-secondary)]',
-                'text-5xl tracking-[0.4em] lg:text-5xl xl:text-5xl 2xl:text-5xl',
+                'text-3xl tracking-[0.4em] lg:text-5xl xl:text-5xl 2xl:text-5xl',
                 'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug'
               )}
             >
@@ -62,9 +62,9 @@ export function PageTitle(props: PageTitleProps) {
             <p
               className={cn(
                 'text-center font-primary font-[300] text-[var(--theme-secondary)]',
-                'text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl',
+                'text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl',
                 'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight',
-                'max-w-2xl'
+                'max-w-sm lg:max-w-md'
               )}
             >
               <GsapSplitText splitBy='lines' stagger={0.01} duration={1}>

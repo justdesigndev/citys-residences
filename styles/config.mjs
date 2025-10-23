@@ -20,6 +20,7 @@ const colors = {
   'trapped-darkness': '#0F1A2C',
   'tangerine-flake': '#E57C5C',
   'bleeding-crimson': '#99170F',
+  'birch-strain': '#DDB760',
 }
 
 const themes = {

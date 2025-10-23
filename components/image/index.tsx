@@ -1,22 +1,23 @@
-"use client"
+'use client'
 
-import { breakpoints } from "@/styles/config.mjs"
-import cn from "clsx"
-import NextImage, { type ImageProps as NextImageProps } from "next/image"
-import type { Ref } from "react"
+import { breakpoints } from '@/styles/config.mjs'
+import cn from 'clsx'
+import NextImage, { type ImageProps as NextImageProps } from 'next/image'
+import { forwardRef } from 'react'
 
-export type ImageProps = Omit<NextImageProps, "objectFit" | "alt"> & {
+export type ImageProps = Omit<NextImageProps, 'objectFit' | 'alt'> & {
   block?: boolean
   mobileSize?: `${number}vw`
   desktopSize?: `${number}vw`
-  ref?: Ref<HTMLImageElement>
   alt?: string
   aspectRatio?: number
 }
 
 // Memoize helper functions to avoid recreation
 const toBase64 = (str: string) =>
-  typeof window === "undefined" ? Buffer.from(str).toString("base64") : window.btoa(str)
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str)
 
 // Helper to generate blur placeholder with transparent background by default
 const generateShimmer = (w: number, h: number) => `
@@ -35,13 +36,13 @@ const generateShimmer = (w: number, h: number) => `
 
 // Helper to determine if blur placeholder should be used
 const shouldUseBlurPlaceholder = (
-  src: NextImageProps["src"],
+  src: NextImageProps['src'],
   placeholder: string,
   blurDataURL: string | undefined
 ): boolean => {
   if (!src) return false
-  const isSvg = typeof src === "string" && src.includes(".svg")
-  return !isSvg && placeholder === "blur" && !blurDataURL
+  const isSvg = typeof src === 'string' && src.includes('.svg')
+  return !isSvg && placeholder === 'blur' && !blurDataURL
 }
 
 // Helper to generate blur data URL
@@ -61,50 +62,69 @@ const getFinalPlaceholder = (
   shouldUse: boolean,
   aspectRatio: number | undefined,
   blurDataURL: string | undefined,
-  originalPlaceholder: NextImageProps["placeholder"]
-): NextImageProps["placeholder"] => {
+  originalPlaceholder: NextImageProps['placeholder']
+): NextImageProps['placeholder'] => {
   if (!shouldUse) {
-    return originalPlaceholder === "blur" && !blurDataURL ? "empty" : originalPlaceholder
+    return originalPlaceholder === 'blur' && !blurDataURL
+      ? 'empty'
+      : originalPlaceholder
   }
 
-  return aspectRatio || blurDataURL ? "blur" : "empty"
+  return aspectRatio || blurDataURL ? 'blur' : 'empty'
 }
 
-export function Image({
-  style,
-  className,
-  loading,
-  quality = 90,
-  alt = "",
-  fill,
-  block = !fill,
-  width = block ? 1 : undefined,
-  height = block ? 1 : undefined,
-  mobileSize = "100vw",
-  desktopSize = "100vw",
-  sizes,
-  src,
-  unoptimized,
-  ref,
-  aspectRatio,
-  placeholder = "blur",
-  priority = false,
-  ...props
-}: ImageProps) {
+export const Image = forwardRef<HTMLImageElement, ImageProps>(function Image(
+  {
+    style,
+    className,
+    loading,
+    quality = 90,
+    alt = '',
+    fill,
+    block = !fill,
+    width = block ? 1 : undefined,
+    height = block ? 1 : undefined,
+    mobileSize = '100vw',
+    desktopSize = '100vw',
+    sizes,
+    src,
+    unoptimized,
+    aspectRatio,
+    placeholder = 'blur',
+    priority = false,
+    ...props
+  },
+  ref
+) {
   // Determine loading strategy
-  const finalLoading = loading ?? (priority ? "eager" : "lazy")
+  const finalLoading = loading ?? (priority ? 'eager' : 'lazy')
 
   // Generate responsive sizes if not provided
-  const finalSizes = sizes || `(max-width: ${breakpoints.breakpointMobile}px) ${mobileSize}, ${desktopSize}`
+  const finalSizes =
+    sizes ||
+    `(max-width: ${breakpoints.breakpointMobile}px) ${mobileSize}, ${desktopSize}`
 
   // Early return after hooks
   if (!src) return null
 
   // Determine SVG status and placeholder logic
-  const isSvg = typeof src === "string" && src.includes(".svg")
-  const shouldUsePlaceholder = shouldUseBlurPlaceholder(src, placeholder, props.blurDataURL)
-  const blurDataURL = generateBlurDataURL(shouldUsePlaceholder, aspectRatio, props.blurDataURL)
-  const finalPlaceholder = getFinalPlaceholder(shouldUsePlaceholder, aspectRatio, props.blurDataURL, placeholder)
+  const isSvg = typeof src === 'string' && src.includes('.svg')
+  const shouldUsePlaceholder = shouldUseBlurPlaceholder(
+    src,
+    placeholder,
+    props.blurDataURL
+  )
+  const blurDataURL = generateBlurDataURL(
+    shouldUsePlaceholder,
+    aspectRatio,
+    props.blurDataURL
+  )
+  const finalPlaceholder = getFinalPlaceholder(
+    shouldUsePlaceholder,
+    aspectRatio,
+    props.blurDataURL,
+    placeholder
+  )
 
   return (
     <NextImage
@@ -118,16 +138,16 @@ export function Image({
       style={{
         ...style,
       }}
-      className={cn(className, block && "block h-auto w-auto")}
+      className={cn(className, block && 'block h-auto w-auto')}
       sizes={finalSizes}
       src={src}
       unoptimized={unoptimized || isSvg}
       draggable={false}
-      onDragStart={(e) => e.preventDefault()}
+      onDragStart={e => e.preventDefault()}
       placeholder={finalPlaceholder}
       blurDataURL={blurDataURL}
       priority={priority}
       {...props}
     />
   )
-}
+})

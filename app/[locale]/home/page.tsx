@@ -103,14 +103,13 @@ export default async function Page({
       </section>
       <div className='relative z-20 bg-white'>
         <section className='relative py-12 lg:py-12'>
-          <div className='relative ml-32 flex items-center justify-center gap-32 py-12 xl:py-28'>
-            <div className='flex w-[700px] flex-shrink-0 flex-col items-center gap-2 lg:gap-2'>
+          <div className='relative ml-0 flex flex-col items-center justify-center gap-8 py-12 lg:flex-row xl:ml-32 xl:gap-32 xl:py-28'>
+            <div className='flex w-full flex-shrink-0 flex-col items-center gap-2 lg:gap-2 xl:w-[700px]'>
               <article
                 className={cn(
-                  'text-center font-montserrat font-[500] text-trapped-darkness',
-                  'text-4xl lg:text-5xl',
-                  'leading-tight lg:leading-tight',
-                  'tracking-wide lg:tracking-widest'
+                  'text-center font-montserrat font-[500] text-black',
+                  'text-xl/tight lg:text-5xl/tight',
+                  'tracking-wide lg:tracking-wide'
                 )}
               >
                 <GsapSplitText splitBy='chars' stagger={0.02} duration={1.5}>
@@ -133,12 +132,12 @@ export default async function Page({
                 </article>
               </FadeInOnScroll>
             </div>
-            <div className='flex w-96 flex-shrink-0'>
+            <div className='flex w-auto flex-shrink-0 xl:w-96'>
               <article
                 className={cn(
-                  'text-left font-primary font-[200] text-trapped-darkness',
-                  'text-[0.8rem] lg:text-3xl',
-                  'leading-relaxed'
+                  'font-primary font-[200] text-black',
+                  'text-xl/normal lg:text-3xl/normal',
+                  'text-center xl:text-left'
                 )}
               >
                 <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>

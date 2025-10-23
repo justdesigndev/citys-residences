@@ -1,16 +1,19 @@
 import { cn } from '@/lib/utils'
-import { GsapSplitText } from '../gsap-split-text'
-import { WistiaPlayerWrapper } from '../wistia-player'
+import DOMPurify from 'isomorphic-dompurify'
+
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { LazyWistiaPlayer } from '../lazy-wistia-player'
 
 export interface BackgroundVideoTextProps {
   title: string
   subtitle: string
   description: string
   mediaId: string
+  thumbnail?: string
 }
 
 export function BackgroundVideoText(props: BackgroundVideoTextProps) {
-  const { title, subtitle, description, mediaId } = props
+  const { title, subtitle, description, mediaId, thumbnail } = props
   return (
     <section
       className={cn(
@@ -51,17 +54,19 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
-              {description}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(description),
+                }}
+              />
             </GsapSplitText>
           </p>
         </div>
       </div>
       <div className='absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
-        <WistiaPlayerWrapper
+        <LazyWistiaPlayer
           muted
-          autoplay
-          preload='auto'
-          qualityMin={1080}
+          preload='none'
           swatch={false}
           bigPlayButton={false}
           silentAutoplay='allow'
@@ -72,6 +77,7 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
           settingsControl={false}
           transparentLetterbox={true}
           mediaId={mediaId}
+          customPoster={thumbnail}
         />
       </div>
     </section>

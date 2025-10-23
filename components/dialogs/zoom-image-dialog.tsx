@@ -23,9 +23,16 @@ export function ZoomImageDialog({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       {dialogTrigger && <DialogTrigger asChild>{dialogTrigger}</DialogTrigger>}
-      <DialogContent className='z-[var(--z-modal)] p-4'>
-        <div className='relative flex aspect-[16/9] w-[30vw] flex-col'>
-          <Image src={image} alt='Zoom Image' fill className='object-cover' />
+      <DialogContent className='z-[var(--z-modal)] flex flex-col items-center justify-center border border-red-500'>
+        <div className='relative aspect-[16/9] max-h-[100vh] w-[80vw]'>
+          <Image
+            src={image}
+            alt='Zoom Image'
+            mobileSize='90vw'
+            desktopSize='90vw'
+            fill
+            className='h-full w-full object-contain'
+          />
         </div>
       </DialogContent>
     </Dialog>

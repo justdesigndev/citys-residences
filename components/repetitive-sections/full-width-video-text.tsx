@@ -1,16 +1,19 @@
 import { cn } from '@/lib/utils'
+import DOMPurify from 'isomorphic-dompurify'
+
 import { GsapSplitText } from '../gsap-split-text'
-import { WistiaPlayerWrapper } from '../wistia-player'
+import { LazyWistiaPlayer } from '../lazy-wistia-player'
 
 export interface FullWidthVideoTextProps {
   title: string
   subtitle: string
   description: string
   mediaId: string
+  thumbnail?: string
 }
 
 export function FullWidthVideoText(props: FullWidthVideoTextProps) {
-  const { title, subtitle, description, mediaId } = props
+  const { title, subtitle, description, mediaId, thumbnail } = props
   return (
     <section className={cn('relative min-h-lvh bg-white')}>
       <div className={cn('relative z-30 grid grid-cols-24')}>
@@ -46,18 +49,20 @@ export function FullWidthVideoText(props: FullWidthVideoTextProps) {
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
-              {description}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(description),
+                }}
+              />
             </GsapSplitText>
           </p>
         </div>
       </div>
       <div className={cn('relative z-30 grid grid-cols-24 py-24')}>
         <div className='col-span-24 aspect-[16/9]'>
-          <WistiaPlayerWrapper
+          <LazyWistiaPlayer
             muted
-            autoplay
-            preload='auto'
-            qualityMin={1080}
+            preload='none'
             swatch={false}
             bigPlayButton={false}
             silentAutoplay='allow'
@@ -68,6 +73,7 @@ export function FullWidthVideoText(props: FullWidthVideoTextProps) {
             settingsControl={false}
             transparentLetterbox={true}
             mediaId={mediaId}
+            customPoster={thumbnail}
           />
         </div>
       </div>

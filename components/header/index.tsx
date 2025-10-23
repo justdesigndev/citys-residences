@@ -123,7 +123,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
           'fixed left-0 right-0 top-0 z-[var(--z-header)] mix-blend-difference',
           'section-padding flex items-stretch',
           'transition-all duration-300',
-          'h-[var(--header-height-slim)] bg-transparent'
+          'h-[var(--header-height-slim)] w-screen bg-transparent'
         )}
       >
         <div className='z-[var(--z-header-content)] flex flex-1 items-stretch justify-between gap-12 px-4 lg:px-0'>
@@ -170,7 +170,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
               >
                 <div className='flex cursor-pointer items-center'>
                   <MenuX
-                    className='hidden lg:block'
+                    className='block'
                     isOpen={false}
                     onClick={() => setMenuOpen(!menuOpen)}
                     strokeWidth='2'
@@ -178,16 +178,6 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
                     transition={{ type: 'spring', stiffness: 260, damping: 40 }}
                     width='40'
                     height='12'
-                  />
-                  <MenuX
-                    className='block lg:hidden'
-                    isOpen={menuOpen}
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    strokeWidth='2'
-                    color={colors.white}
-                    transition={{ type: 'spring', stiffness: 260, damping: 40 }}
-                    width='50'
-                    height='6'
                   />
                 </div>
               </button>

@@ -1,16 +1,19 @@
 import { cn } from '@/lib/utils'
-import { GsapSplitText } from '../gsap-split-text'
-import { WistiaPlayerWrapper } from '../wistia-player'
+import DOMPurify from 'isomorphic-dompurify'
+
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { LazyWistiaPlayer } from '../lazy-wistia-player'
 
 export interface CenterVideoTextProps {
   title: string
   subtitle: string
   description: string
   mediaId: string
+  thumbnail?: string
 }
 
 export function CenterVideoText(props: CenterVideoTextProps) {
-  const { title, subtitle, description, mediaId } = props
+  const { title, subtitle, description, mediaId, thumbnail } = props
   return (
     <section className={cn('relative min-h-lvh bg-white')}>
       <div className={cn('relative z-30 grid grid-cols-24')}>
@@ -39,25 +42,27 @@ export function CenterVideoText(props: CenterVideoTextProps) {
           </div>
         </div>
         <div className='col-span-6 py-36'>
-          <p
+          <div
             className={cn(
               'text-left font-primary font-[300] text-black',
               'text-[0.8rem] lg:text-2xl/snug'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
-              {description}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(description),
+                }}
+              />
             </GsapSplitText>
-          </p>
+          </div>
         </div>
       </div>
       <div className={cn('relative z-30 grid grid-cols-24 py-24')}>
         <div className='col-span-16 col-start-6 aspect-[16/9]'>
-          <WistiaPlayerWrapper
+          <LazyWistiaPlayer
             muted
-            autoplay
-            preload='auto'
-            qualityMin={1080}
+            preload='none'
             swatch={false}
             bigPlayButton={false}
             silentAutoplay='allow'
@@ -68,6 +73,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
             settingsControl={false}
             transparentLetterbox={true}
             mediaId={mediaId}
+            customPoster={thumbnail}
           />
         </div>
       </div>

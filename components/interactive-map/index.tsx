@@ -1,6 +1,5 @@
 'use client'
 
-import { IconPin } from '@/components/icons'
 import { cn } from '@/lib/utils'
 import { colors } from '@/styles/config.mjs'
 import {
@@ -10,7 +9,9 @@ import {
   TrainIcon,
 } from '@phosphor-icons/react'
 import { useState } from 'react'
-import { GsapSplitText } from '../gsap-split-text'
+
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { IconPin } from '@/components/icons'
 
 interface LocationItem {
   id: string
@@ -65,16 +66,19 @@ const locations: LocationItem[] = [
   },
 ]
 
-const getIconComponent = (iconType: LocationItem['icon']) => {
+const getIconComponent = (
+  iconType: LocationItem['icon'],
+  size: number = 40
+) => {
   switch (iconType) {
     case 'metro':
-      return <TrainIcon size={40} weight='thin' />
+      return <TrainIcon size={size} weight='thin' />
     case 'hospital':
-      return <LetterCircleHIcon size={40} weight='thin' />
+      return <LetterCircleHIcon size={size} weight='thin' />
     case 'university':
-      return <GraduationCapIcon size={40} weight='thin' />
+      return <GraduationCapIcon size={size} weight='thin' />
     case 'building':
-      return <BankIcon size={40} weight='thin' />
+      return <BankIcon size={size} weight='thin' />
     default:
       return null
   }
@@ -84,38 +88,9 @@ export function InteractiveMap() {
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null)
 
   return (
-    <div className='grid h-screen grid-cols-24 gap-8'>
-      {/* Map Section */}
-      <div className='relative col-span-12 overflow-hidden bg-gray-100'>
-        <div className='relative h-full w-full bg-gray-200'>
-          {/* Map Background - simplified representation */}
-          <svg
-            className='absolute inset-0 h-full w-full'
-            viewBox='0 0 100 60'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            {/* Map paths/roads */}
-            <path
-              d='M10 30 Q30 10 50 20 T90 40'
-              stroke='#d1d5db'
-              strokeWidth='0.5'
-              fill='none'
-            />
-            <path
-              d='M20 10 Q40 30 60 15 T85 35'
-              stroke='#d1d5db'
-              strokeWidth='0.5'
-              fill='none'
-            />
-            <path
-              d='M5 45 L95 25'
-              stroke='#d1d5db'
-              strokeWidth='0.5'
-              fill='none'
-            />
-          </svg>
-
+    <div className='grid grid-cols-1 gap-4 overflow-hidden lg:grid-cols-24 lg:gap-8'>
+      <div className='relative overflow-hidden bg-gray-100 lg:col-span-12'>
+        <div className='relative h-[100vw] w-full bg-gray-200 sm:h-80 md:h-96 lg:h-full'>
           {/* Location Pins */}
           {locations.map(location => {
             const isHovered = hoveredLocation === location.id
@@ -158,7 +133,7 @@ export function InteractiveMap() {
                           : 'text-white'
                     }`}
                   >
-                    {getIconComponent(location.icon)}
+                    {getIconComponent(location.icon, 24)}
                   </div>
                 </div>
 
@@ -175,12 +150,12 @@ export function InteractiveMap() {
       </div>
 
       {/* List Section */}
-      <div className='col-span-12 flex flex-col pb-16 pl-20 pr-24 pt-24'>
+      <div className='flex flex-col px-4 pb-8 pt-8 sm:px-8 lg:col-span-12 lg:pb-16 lg:pl-20 lg:pr-24 lg:pt-24'>
         <h3
           className={cn(
             'ml-auto',
             'text-left font-primary font-[400] text-trapped-darkness',
-            'text-[0.8rem] lg:text-6xl',
+            'text-2xl sm:text-3xl md:text-4xl lg:text-6xl',
             'lg:leading-tighter leading-normal'
           )}
         >
@@ -201,7 +176,7 @@ export function InteractiveMap() {
                 className='border-b border-gray-200 last:border-b-0'
               >
                 <div
-                  className={`flex cursor-pointer items-center py-6 transition-all duration-300 ${
+                  className={`flex cursor-pointer items-center py-4 transition-all duration-300 sm:py-6 ${
                     isHovered || isSelected
                       ? 'text-red-600'
                       : 'text-gray-600 hover:text-gray-800'
@@ -212,20 +187,20 @@ export function InteractiveMap() {
                   {/* Icon */}
                   <div
                     className={cn(
-                      `mr-4 flex items-center justify-center transition-colors duration-300`,
+                      `mr-3 flex items-center justify-center transition-colors duration-300 sm:mr-4`,
                       isHovered || isSelected
                         ? 'text-bricky-brick'
                         : 'text-black'
                     )}
                   >
-                    {getIconComponent(location.icon)}
+                    {getIconComponent(location.icon, 24)}
                   </div>
 
                   {/* Content */}
-                  <div className='ml-auto flex items-end gap-4'>
+                  <div className='ml-auto flex items-end gap-2 sm:gap-4'>
                     <div
                       className={cn(
-                        `font-primary text-2xl font-[300] text-black transition-colors duration-300`,
+                        `font-primary text-sm font-[300] text-black transition-colors duration-300 sm:text-lg lg:text-2xl`,
                         isHovered || isSelected
                           ? 'text-bricky-brick'
                           : 'text-black'
@@ -233,7 +208,7 @@ export function InteractiveMap() {
                     >
                       {location.name}
                     </div>
-                    <div className='font-primary text-2xl font-[200] text-black/50'>
+                    <div className='font-primary text-sm font-[200] text-black/50 sm:text-lg lg:text-2xl'>
                       {location.distance}
                     </div>
                   </div>

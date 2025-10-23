@@ -194,3 +194,13 @@ body {
   filter: brightness(0) saturate(100%) invert(17%) sepia(85%) saturate(1916%)
     hue-rotate(344deg) brightness(96%) contrast(93%);
 }
+
+/* Additional utilities for quote-with-video component */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle at var(--tw-gradient-stops));
+}
+
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

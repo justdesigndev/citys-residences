@@ -39,6 +39,11 @@ const nextConfig = {
         hostname: 'panel.citysresidences.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'embed-ssl.wistia.com',
+        pathname: '**',
+      },
     ],
   },
   webpack: (config, { isServer }) => {

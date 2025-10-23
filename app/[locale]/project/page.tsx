@@ -5,7 +5,7 @@ import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
 import { InteractiveMap } from '@/components/interactive-map'
 import { PageTitle } from '@/components/page-title'
-import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { QuoteWithVideo } from '@/components/quote-with-video'
 import { WistiaPlayerWrapper } from '@/components/wistia-player'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
@@ -25,7 +25,7 @@ export default function Page() {
         }
         id={navigationConfig['/project']?.id as string}
       />
-      <section className='pointer-events-none h-[45vw] overflow-hidden'>
+      <section className='pointer-events-none h-screen overflow-hidden lg:h-[45vw]'>
         <WistiaPlayerWrapper
           mediaId='p4l0a63nut'
           autoplay
@@ -44,13 +44,13 @@ export default function Page() {
         />
       </section>
       <InteractiveMap />
-      <section className='grid grid-cols-24'>
-        <div className='col-span-8 col-start-7 flex pt-36'>
+      <section className='grid grid-cols-24 gap-4 px-8 py-8 lg:px-0 lg:py-36'>
+        <div className='col-span-24 flex lg:col-span-8 lg:col-start-7'>
           <h3
             className={cn(
-              'ml-auto',
-              'text-left font-primary font-[400] text-trapped-darkness',
-              'text-[0.8rem] lg:text-6xl/tight'
+              'lg:ml-auto',
+              'text-left font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-6xl/tight'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
@@ -59,11 +59,11 @@ export default function Page() {
             </GsapSplitText>
           </h3>
         </div>
-        <div className='col-span-8 pl-24 pt-36'>
+        <div className='col-span-24 lg:col-span-8 lg:pl-0'>
           <p
             className={cn(
-              'text-left font-primary font-[300] text-trapped-darkness',
-              'text-[0.8rem] lg:text-2xl/snug'
+              'text-left font-primary font-[300] text-black',
+              'text-base/snug lg:text-2xl/snug'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
@@ -76,8 +76,8 @@ export default function Page() {
           </p>
         </div>
       </section>
-      <section className='grid grid-cols-24 gap-4 py-24'>
-        <div className='col-span-8 col-start-7'>
+      <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-4 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-24'>
+        <div className='col-span-24 lg:col-span-8 lg:col-start-7'>
           <ZoomImageDialog
             dialogTrigger={
               <Image
@@ -90,7 +90,7 @@ export default function Page() {
             image='/img/project/project-a-1.jpg'
           />
         </div>
-        <div className='col-span-8'>
+        <div className='col-span-24 lg:col-span-8'>
           <ZoomImageDialog
             dialogTrigger={
               <Image
@@ -104,12 +104,12 @@ export default function Page() {
           />
         </div>
       </section>
-      <section className='grid grid-cols-24'>
-        <div className='col-span-8 col-start-7 flex justify-center py-36'>
+      <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-36'>
+        <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center'>
           <h3
             className={cn(
-              'text-left font-primary font-[400] text-trapped-darkness',
-              'text-[0.8rem] lg:text-6xl/tight'
+              'text-left font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-6xl/tight'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
@@ -117,11 +117,11 @@ export default function Page() {
             </GsapSplitText>
           </h3>
         </div>
-        <div className='col-span-8 py-36 pl-24'>
+        <div className='col-span-24 lg:col-span-8 lg:py-36 lg:pl-24'>
           <p
             className={cn(
-              'text-left font-primary font-[300] text-trapped-darkness',
-              'text-[0.8rem] lg:text-2xl/snug'
+              'text-left font-primary font-[300] text-black',
+              'text-base/snug lg:text-2xl/snug'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
@@ -130,8 +130,8 @@ export default function Page() {
           </p>
         </div>
       </section>
-      <section className='grid grid-cols-24 gap-4 py-24'>
-        <div className='col-span-16 col-start-7'>
+      <section className='grid grid-cols-24 px-8 py-4 lg:px-0 lg:py-24'>
+        <div className='col-span-24 lg:col-span-16 lg:col-start-7'>
           <ZoomImageDialog
             dialogTrigger={
               <Image
@@ -145,27 +145,25 @@ export default function Page() {
           />
         </div>
       </section>
-      <section className='grid grid-cols-24'>
-        <div className='col-span-15 flex pr-36 pt-36'>
+      <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-36'>
+        <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center'>
           <h3
             className={cn(
-              'ml-auto',
-              'text-left font-primary font-[400] text-trapped-darkness',
-              'text-[0.8rem] lg:text-6xl/tight'
+              'text-left font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-6xl/tight'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
-              Projenin <br />
-              mimarları <br />
+              Projenin mimarları <br />
               anlatıyor.
             </GsapSplitText>
           </h3>
         </div>
-        <div className='col-span-6 py-36'>
+        <div className='col-span-24 lg:col-span-8 lg:py-36 lg:pl-24'>
           <p
             className={cn(
-              'text-left font-primary font-[300] text-trapped-darkness',
-              'text-[0.8rem] lg:text-2xl/snug'
+              'text-left font-primary font-[300] text-black',
+              'text-base/snug lg:text-2xl/snug'
             )}
           >
             <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
@@ -175,37 +173,59 @@ export default function Page() {
           </p>
         </div>
       </section>
-      <section className='grid grid-cols-24 gap-4 py-24'>
-        <div className='col-span-16 col-start-7 grid h-96 grid-cols-24 gap-8'>
-          <div className='col-span-12 border border-red-500'></div>
-          <div className='col-span-6 border border-red-500'></div>
-          <div className='col-span-6 border border-red-500'></div>
+      <section className='grid grid-cols-24 gap-0 px-8 py-24 lg:gap-4 lg:px-0'>
+        <div className='col-span-24 grid h-96 grid-cols-24 gap-0 lg:col-span-16 lg:col-start-7 lg:gap-8'>
+          <div className='col-span-8 border border-red-500 lg:col-span-12'></div>
+          <div className='col-span-8 border border-red-500 lg:col-span-6'></div>
+          <div className='col-span-8 border border-red-500 lg:col-span-6'></div>
         </div>
       </section>
-      <RepetitiveSectionsWrapper
-        componentType='FullWidthSingleVideo'
+      <QuoteWithVideo
+        quote='Karma kullanım modeliyle zamanı geri veriyoruz: yaşa, çalış, eğlen—tek ekosistem içinde.'
         mediaId='p4l0a63nut'
+        thumbnail='/img/avm-1.jpg'
+        portraitImage='/img/murat-kader-portrait.png'
+        personName='Murat Kader'
+        personTitle='Yüksek Mimar'
+        sidebarText='Mimari Proje'
+        primaryColor={colors['bricky-brick']}
+        secondaryColor={colors['white']}
+        hasBg={true}
       />
-      <RepetitiveSectionsWrapper
-        componentType='FullWidthVideoText'
-        title='Dynamic Zone'
-        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
-        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+      <QuoteWithVideo
+        quote='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
         mediaId='p4l0a63nut'
+        thumbnail='/img/avm-1.jpg'
+        portraitImage='/img/toner-portrait.png'
+        personName='Mustafa & Emre Toner'
+        personTitle='İç Mimar'
+        sidebarText='İç Mimari'
+        primaryColor={colors['white']}
+        secondaryColor={colors['bricky-brick']}
       />
-      <RepetitiveSectionsWrapper
-        componentType='CenterVideoText'
-        title='Dynamic Zone'
-        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
-        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+      <QuoteWithVideo
+        quote='Kuzey Ormanları etkisi ve İstanbul’un endemik türleriyle, yeşilin her tonu projeye taşındı.'
         mediaId='p4l0a63nut'
+        thumbnail='/img/avm-1.jpg'
+        portraitImage='/img/aktas-portrait.png'
+        personName='Cemil Aktaş, Pınar Kesim Aktaş'
+        personTitle='Peyzaj Mimari'
+        sidebarText='Peyzaj'
+        primaryColor={colors['army-canvas']}
+        secondaryColor={colors['white']}
+        hasBg={true}
       />
-      <RepetitiveSectionsWrapper
-        componentType='BackgroundVideoText'
-        title='Dynamic Zone'
-        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
-        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+      <QuoteWithVideo
+        quote='Sadece teknik başarı değil; City’s Residences sakinlerine huzurlu bir yuva sunmak için tasarlandı.'
         mediaId='p4l0a63nut'
+        thumbnail='/img/avm-1.jpg'
+        portraitImage='/img/melih-bulgur-portrait.png'
+        personName='Melih Bulgur'
+        personTitle='Yüksek İnşaat Mühendisi'
+        sidebarText='Statik'
+        primaryColor={colors['birch-strain']}
+        secondaryColor={colors['white']}
+        hasBg={true}
       />
     </>
   )

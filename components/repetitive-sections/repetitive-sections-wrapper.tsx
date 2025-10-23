@@ -1,11 +1,35 @@
-'use client'
+import dynamic from 'next/dynamic'
 
-import { BackgroundVideoText } from './background-video-text'
-import { CenterVideoText } from './center-video-text'
-import { FullWidthSingleVideo } from './full-width-single-video'
-import { FullWidthVideoText } from './full-width-video-text'
+const BackgroundVideoText = dynamic(
+  () =>
+    import('./background-video-text').then(mod => ({
+      default: mod.BackgroundVideoText,
+    })),
+  { ssr: false }
+)
+const CenterVideoText = dynamic(
+  () =>
+    import('./center-video-text').then(mod => ({
+      default: mod.CenterVideoText,
+    })),
+  { ssr: false }
+)
+const FullWidthSingleVideo = dynamic(
+  () =>
+    import('./full-width-single-video').then(mod => ({
+      default: mod.FullWidthSingleVideo,
+    })),
+  { ssr: false }
+)
+const FullWidthVideoText = dynamic(
+  () =>
+    import('./full-width-video-text').then(mod => ({
+      default: mod.FullWidthVideoText,
+    })),
+  { ssr: false }
+)
 
-enum ComponentType {
+export enum ComponentType {
   BackgroundVideoText = 'BackgroundVideoText',
   CenterVideoText = 'CenterVideoText',
   FullWidthVideoText = 'FullWidthVideoText',
@@ -18,6 +42,7 @@ export interface RepetitiveSectionsWrapperProps {
   subtitle?: string
   description?: string
   mediaId?: string
+  thumbnail?: string
 }
 
 export function RepetitiveSectionsWrapper({
@@ -26,6 +51,7 @@ export function RepetitiveSectionsWrapper({
   subtitle,
   description,
   mediaId,
+  thumbnail,
 }: RepetitiveSectionsWrapperProps) {
   if (!componentType || !mediaId) {
     return null
@@ -40,6 +66,7 @@ export function RepetitiveSectionsWrapper({
           subtitle={subtitle}
           description={description}
           mediaId={mediaId}
+          thumbnail={thumbnail}
         />
       )
 
@@ -51,6 +78,7 @@ export function RepetitiveSectionsWrapper({
           subtitle={subtitle}
           description={description}
           mediaId={mediaId}
+          thumbnail={thumbnail}
         />
       )
 
@@ -62,11 +90,12 @@ export function RepetitiveSectionsWrapper({
           subtitle={subtitle}
           description={description}
           mediaId={mediaId}
+          thumbnail={thumbnail}
         />
       )
 
     case 'FullWidthSingleVideo':
-      return <FullWidthSingleVideo mediaId={mediaId} />
+      return <FullWidthSingleVideo mediaId={mediaId} thumbnail={thumbnail} />
 
     default:
       return null

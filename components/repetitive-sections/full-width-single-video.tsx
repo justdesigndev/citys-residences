@@ -1,20 +1,20 @@
 import { cn } from '@/lib/utils'
-import { WistiaPlayerWrapper } from '../wistia-player'
+import { LazyWistiaPlayer } from '../lazy-wistia-player'
 
 export interface FullWidthSingleVideoProps {
   mediaId: string
+  thumbnail?: string
 }
 
 export function FullWidthSingleVideo(props: FullWidthSingleVideoProps) {
-  const { mediaId } = props
+  const { mediaId, thumbnail } = props
+
   return (
     <section className={cn('relative h-[40vw]')}>
       <div className='absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
-        <WistiaPlayerWrapper
+        <LazyWistiaPlayer
           muted
-          autoplay
-          preload='auto'
-          qualityMin={1080}
+          preload='none'
           swatch={false}
           bigPlayButton={false}
           silentAutoplay='allow'
@@ -25,6 +25,7 @@ export function FullWidthSingleVideo(props: FullWidthSingleVideoProps) {
           settingsControl={false}
           transparentLetterbox={true}
           mediaId={mediaId}
+          customPoster={thumbnail}
         />
       </div>
     </section>

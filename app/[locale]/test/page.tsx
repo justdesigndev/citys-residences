@@ -2,19 +2,17 @@ import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero-section'
 import { PageTitle } from '@/components/page-title'
+import {
+  ComponentType,
+  RepetitiveSectionsWrapper,
+} from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { colors } from '@/styles/config.mjs'
 
 export default function TestPage() {
   return (
     <div>
       <Header />
-      <PageTitle
-        primaryColor={colors['army-canvas']}
-        secondaryColor={colors.white}
-        title="CITY'S PARK"
-        description='Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha...'
-        id='test'
-      />
+
       <PageTitle
         primaryColor={colors.white}
         secondaryColor={colors['bricky-brick']}
@@ -22,30 +20,7 @@ export default function TestPage() {
         description='Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı.'
         id='residences'
       />
-      <PageTitle
-        primaryColor={colors['blue-shimmer']}
-        secondaryColor={colors.black}
-        title={
-          <>
-            <span className='block'>CITY&apos;S</span>
-            <span className='block'>MEMBERS CLUB</span>
-          </>
-        }
-        description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
-        id='citys-members-club'
-      />
-      <PageTitle
-        primaryColor={colors['verve-violet']}
-        secondaryColor={colors.white}
-        title={
-          <>
-            <span className='block'>CITY&apos;S</span>
-            <span className='block'>LIVING</span>
-          </>
-        }
-        description='Artık her şey daha kolay.'
-        id='citys-living'
-      />
+
       <HeroSection
         mainText='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
         videoThumbnail='/img/thumbnail-kolaj-video.jpg'
@@ -68,6 +43,32 @@ export default function TestPage() {
         title="CITY'S TIMES"
         description='Bizi takip edin.'
         id='citys-times'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.FullWidthSingleVideo}
+        mediaId='p4l0a63nut'
+        thumbnail='/img/thumbnail-kolaj-video.jpg'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.FullWidthVideoText}
+        title='Dynamic Zone'
+        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
+        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+        mediaId='p4l0a63nut'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.CenterVideoText}
+        title='Dynamic Zone'
+        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
+        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+        mediaId='p4l0a63nut'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.BackgroundVideoText}
+        title='Dynamic Zone'
+        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
+        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+        mediaId='p4l0a63nut'
       />
       <Footer />
     </div>

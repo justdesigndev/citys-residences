@@ -1,43 +1,19 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { Wrapper } from '@/components/wrapper'
-// import { LazyHomeSection } from "@/components/lazy-home-section"
 
 import Home from './home/page'
-import Project from './project/page'
+import ProjectPage from './project/page'
 
-export default function Page({ params }: { params: { locale: string } }) {
+export default async function Page({ params }: { params: { locale: string } }) {
+  console.log(params)
+
   return (
     <>
       <Header />
       <Wrapper>
         <Home params={params} />
-        <Project />
-        {/* <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} /> */}
+        <ProjectPage />
       </Wrapper>
       <Footer />
     </>
