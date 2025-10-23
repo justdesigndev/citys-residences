@@ -30,47 +30,64 @@ export function GsapSplitText(props: GsapSplitTextProps) {
   useGSAP(() => {
     if (!ref.current || !fontsLoaded) return
 
+    // Set initial opacity
+    gsap.set(ref.current, { opacity: 1 })
+
     const splitType = type === 'words,lines' ? 'lines' : type
+    let splitInstance: SplitText | null = null
 
-    const split = new SplitText(ref.current, {
+    SplitText.create(ref.current, {
       type,
-      linesClass: 'line',
+      linesClass: 'split-line',
+      wordsClass: 'split-word',
+      charsClass: 'split-char',
+      autoSplit: true,
+      mask: splitType as 'lines' | 'words' | 'chars',
       ...rest,
-    })
+      onSplit: self => {
+        splitInstance = self
 
-    const elements = {
-      lines: split.lines,
-      words: split.words,
-      chars: split.chars,
-    }
+        const elements = {
+          lines: self.lines,
+          words: self.words,
+          chars: self.chars,
+        }
 
-    const targetElements = elements[splitType as keyof typeof elements]
+        const targetElements = elements[splitType as keyof typeof elements]
 
-    if (!targetElements || targetElements.length === 0) return
+        if (!targetElements || targetElements.length === 0) return
 
-    const anim = gsap.from(targetElements, {
-      duration,
-      yPercent: 105,
-      opacity: 0,
-      stagger,
-      ease,
-      paused: true,
-    })
+        const anim = gsap.from(targetElements, {
+          duration,
+          yPercent: 100,
+          opacity: 0,
+          stagger,
+          ease,
+          paused: true,
+        })
 
-    animationRef.current = anim
+        animationRef.current = anim
 
-    const trigger = ScrollTrigger.create({
-      trigger: ref.current,
-      start: 'center bottom-=20%',
-      onEnter: () => {
-        anim.play()
+        const trigger = ScrollTrigger.create({
+          trigger: ref.current,
+          onEnter: () => {
+            anim.play()
+          },
+        })
+
+        return () => {
+          trigger.kill()
+        }
       },
     })
 
     return () => {
-      trigger.kill()
-      anim.kill()
-      split.revert()
+      if (animationRef.current) {
+        animationRef.current.kill()
+      }
+      if (splitInstance) {
+        splitInstance.revert()
+      }
     }
   }, [type, stagger, duration, ease, html, children, rest, fontsLoaded])
 
@@ -79,13 +96,14 @@ export function GsapSplitText(props: GsapSplitTextProps) {
       <span
         className='split'
         ref={ref}
+        style={{ opacity: 0 }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     )
   }
 
   return (
-    <span className='split' ref={ref}>
+    <span className='split' ref={ref} style={{ opacity: 0 }}>
       {children}
     </span>
   )

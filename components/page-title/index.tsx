@@ -51,8 +51,7 @@ export function PageTitle(props: PageTitleProps) {
             <h2
               className={cn(
                 'text-center font-primary font-[500] text-[var(--theme-secondary)]',
-                'text-3xl tracking-[0.4em] lg:text-5xl xl:text-5xl 2xl:text-5xl',
-                'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug'
+                'text-3xl/tight tracking-[0.4em] lg:text-5xl/tight xl:text-5xl/tight 2xl:text-5xl/tight'
               )}
             >
               <GsapSplitText type='chars' stagger={0.02} duration={1}>
@@ -62,8 +61,7 @@ export function PageTitle(props: PageTitleProps) {
             <p
               className={cn(
                 'text-center font-primary font-[300] text-[var(--theme-secondary)]',
-                'text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl',
-                'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight',
+                'text-xl/tight lg:text-2xl/tight xl:text-2xl/tight 2xl:text-3xl/tight',
                 'max-w-sm lg:max-w-md'
               )}
             >
