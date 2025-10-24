@@ -118,13 +118,13 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
           'h-[var(--header-height-slim)] w-screen bg-transparent'
         )}
       >
-        <div className='z-[var(--z-header-content)] flex flex-1 items-stretch justify-between gap-12 px-4 lg:px-0'>
-          <div className='2xl:size-46 size-32 xl:size-32 3xl:size-40'>
+        <div className='z-[var(--z-header-content)] flex flex-1 items-stretch justify-between px-6 lg:px-0'>
+          <div className='2xl:size-46 size-28 xl:size-32 3xl:size-40'>
             <LocalizedLink href='/' scroll={initialScroll} aria-label='Home'>
               <Logo fill={colors.white} />
             </LocalizedLink>
           </div>
-          <div className='ml-auto flex cursor-pointer items-center gap-5'>
+          <div className='ml-auto flex cursor-pointer items-center gap-2 lg:gap-6'>
             <LocaleSwitcher theme='dark' />
             {!nonHome ? (
               <button
@@ -137,7 +137,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
               >
                 <div className='flex cursor-pointer items-center'>
                   <MenuX
-                    className='block'
+                    className='hidden lg:block'
                     isOpen={false}
                     onClick={() => setMenuOpen(!menuOpen)}
                     strokeWidth='2'
@@ -145,6 +145,16 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
                     transition={{ type: 'spring', stiffness: 260, damping: 40 }}
                     width='40'
                     height='12'
+                  />
+                  <MenuX
+                    className='block lg:hidden'
+                    isOpen={false}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    strokeWidth='2'
+                    color={colors.white}
+                    transition={{ type: 'spring', stiffness: 260, damping: 40 }}
+                    width='30'
+                    height='9'
                   />
                 </div>
               </button>

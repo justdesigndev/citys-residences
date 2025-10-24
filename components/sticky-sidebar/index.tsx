@@ -58,7 +58,11 @@ export const StickySidebar: React.FC = () => {
   return (
     <div
       className={cn(
-        'pointer-events-auto fixed bottom-4 left-4 top-auto z-[var(--z-sticky-menu)] flex flex-row opacity-100 mix-blend-difference transition-opacity duration-300 ease-in-out lg:bottom-auto lg:left-16 lg:top-1/2 lg:-translate-y-[40%] lg:flex-col',
+        'pointer-events-auto z-[var(--z-sticky-menu)] mix-blend-difference',
+        'flex flex-row lg:flex-col',
+        'fixed bottom-4 left-4 top-auto lg:bottom-auto lg:left-16 lg:top-1/2',
+        'lg:-translate-y-[40%]',
+        'opacity-100 transition-opacity duration-300 ease-in-out',
         isScrolledToBottom && 'pointer-events-none opacity-0'
       )}
     >
