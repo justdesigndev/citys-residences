@@ -3,10 +3,10 @@ import { getMessages, getTranslations } from 'next-intl/server'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { ScaleOut } from '@/components/animations/scale-out'
-import { ContactForm } from '@/components/form-contact'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { IconCollab } from '@/components/icons'
 import { Image } from '@/components/image'
+import { SectionContactForm } from '@/components/section-contact-form'
 import { VideoWithText } from '@/components/video-with-text'
 import { WistiaPlayerWrapper } from '@/components/wistia-player'
 import { citysParkVideo, navigationConfig } from '@/lib/constants'
@@ -30,11 +30,15 @@ export default async function Page({
   return (
     <>
       <section
-        className='relative z-10 h-[100vh] overflow-hidden'
+        className={cn(
+          'relative z-10 h-[100vh] overflow-hidden',
+          'before:absolute before:bottom-0 before:left-0 before:z-20 before:h-[200px] before:w-full before:bg-gradient-to-t before:from-black/80 before:to-transparent',
+          'after:absolute after:left-0 after:top-0 after:z-20 after:h-[200px] after:w-full after:bg-gradient-to-b after:from-black/50 after:to-transparent'
+        )}
         id={navigationConfig['/']?.id}
       >
         <ScaleOut>
-          <div className='pointer-events-none relative h-[100vh] w-full'>
+          <div className='pointer-events-none relative h-svh w-full'>
             <WistiaPlayerWrapper
               mediaId='e2tew1zhxj'
               muted
@@ -55,7 +59,11 @@ export default async function Page({
             />
           </div>
         </ScaleOut>
-        <div className='absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2'>
+        <div
+          className={cn(
+            'absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2'
+          )}
+        >
           <div
             className={cn(
               'flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
@@ -64,8 +72,7 @@ export default async function Page({
             <span
               className={cn(
                 'whitespace-nowrap text-center font-montserrat font-[500] text-white',
-                'text-2xl sm:text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl',
-                'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight',
+                'text-3xl/tight sm:text-4xl/tight lg:text-5xl/tight xl:text-5xl/tight 2xl:text-5xl/tight 3xl:text-6xl/tight',
                 'flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
             >
@@ -78,11 +85,11 @@ export default async function Page({
               className={cn(
                 'text-center font-copperplate font-[700] text-white',
                 'text-[44px] lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl',
-                'block translate-y-1 leading-[0]'
+                'block translate-y-1 leading-[1]'
               )}
             >
               CITY
-              <span className='font-montagu-slab font-normal leading-[0.5]'>
+              <span className='font-montagu-slab font-[400] leading-[0.5]'>
                 &apos;
               </span>
               S
@@ -101,7 +108,12 @@ export default async function Page({
           <span className='sr-only'>Scroll Down</span>
         </div>
       </section>
-      <div className='relative z-20 bg-white'>
+      <div
+        className={cn(
+          'relative z-20 bg-white',
+          'after:absolute after:left-0 after:top-0 after:z-20 after:h-[70px] after:w-full after:bg-gradient-to-b after:from-black/70 after:to-transparent lg:after:hidden'
+        )}
+      >
         <section className='relative py-12 lg:py-12'>
           <div className='relative ml-0 flex flex-col items-center justify-center gap-8 py-12 lg:flex-row xl:ml-32 xl:gap-32 xl:py-28'>
             <div className='flex w-full flex-shrink-0 flex-col items-center gap-2 lg:gap-2 xl:w-[700px]'>
@@ -163,37 +175,7 @@ export default async function Page({
             </>
           }
         />
-        <section className='bg-gradient-appointment py-8 xl:py-40'>
-          <FadeInOnScroll delay={0.25}>
-            <div className='grid grid-cols-12 px-4 lg:col-start-4 lg:grid-cols-24 lg:px-16'>
-              <div className='col-span-12 mb-12 lg:col-span-18 lg:col-start-6 lg:mb-24'>
-                <h3
-                  className={cn(
-                    'mb-4 font-primary font-[400] text-white lg:mb-4',
-                    'text-6xl lg:text-6xl xl:text-6xl 2xl:text-6xl',
-                    'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight'
-                  )}
-                >
-                  Randevu al
-                </h3>
-                <p
-                  className={cn(
-                    'max-w-[90%] font-primary font-[300] text-white',
-                    'text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-2xl',
-                    'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug',
-                    'xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
-                  )}
-                >
-                  Ekibimizin sizinle iletişime geçebilmesi için lütfen kayıt
-                  formunu doldurunuz.
-                </p>
-              </div>
-              <div className='col-span-12 lg:col-span-18 lg:col-start-6'>
-                <ContactForm translations={formTranslations} />
-              </div>
-            </div>
-          </FadeInOnScroll>
-        </section>
+        <SectionContactForm formTranslations={formTranslations} />
         <VideoWithText
           customPoster={liveMorePoster.src}
           mediaId='cpkxfmdyvb'
