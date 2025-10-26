@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     }
 
     const response = await fetch(
-      `https://crm.citysresidences.com/api/subCategories.php?categoryId=${categoryId}&lang=${lang}`,
+      `https://panel.citysresidences.com/api/subCategories.php?categoryId=${categoryId}&lang=${lang}`,
       {
         headers: {
           'Content-Type': 'application/json',

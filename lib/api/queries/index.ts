@@ -1,13 +1,23 @@
-import { BrandsResponse, Category, SubCategory, Floor, ApiResponse, ApiBrand, Event } from "@/types"
+import {
+  BrandsResponse,
+  Category,
+  SubCategory,
+  Floor,
+  ApiResponse,
+  ApiBrand,
+  Event,
+} from '@/types'
 
 // Client-side functions for fetching data
-export async function fetchCategories(lang: string = "tr"): Promise<ApiResponse<Category[]>> {
+export async function fetchCategories(
+  lang: string = 'tr'
+): Promise<ApiResponse<Category[]>> {
   try {
-    const url = `https://crm.citysresidences.com/api/categories.php?lang=${lang}`
+    const url = `https://panel.citysresidences.com/api/categories.php?lang=${lang}`
 
     const response = await fetch(url, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
 
@@ -18,17 +28,20 @@ export async function fetchCategories(lang: string = "tr"): Promise<ApiResponse<
     const data = await response.json()
     return { success: true, data }
   } catch {
-    return { success: false, error: "Failed to fetch categories" }
+    return { success: false, error: 'Failed to fetch categories' }
   }
 }
 
-export async function fetchSubCategories(categoryId: string, lang: string = "tr"): Promise<ApiResponse<SubCategory[]>> {
+export async function fetchSubCategories(
+  categoryId: string,
+  lang: string = 'tr'
+): Promise<ApiResponse<SubCategory[]>> {
   try {
-    const url = `https://crm.citysresidences.com/api/subCategories.php?categoryId=${categoryId}&lang=${lang}`
+    const url = `https://panel.citysresidences.com/api/subCategories.php?categoryId=${categoryId}&lang=${lang}`
 
     const response = await fetch(url, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
 
@@ -39,17 +52,19 @@ export async function fetchSubCategories(categoryId: string, lang: string = "tr"
     const data = await response.json()
     return { success: true, data }
   } catch {
-    return { success: false, error: "Failed to fetch subcategories" }
+    return { success: false, error: 'Failed to fetch subcategories' }
   }
 }
 
-export async function fetchFloors(lang: string = "tr"): Promise<ApiResponse<Floor[]>> {
+export async function fetchFloors(
+  lang: string = 'tr'
+): Promise<ApiResponse<Floor[]>> {
   try {
-    const url = `https://crm.citysresidences.com/api/floors.php?lang=${lang}`
+    const url = `https://panel.citysresidences.com/api/floors.php?lang=${lang}`
 
     const response = await fetch(url, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
 
@@ -60,39 +75,44 @@ export async function fetchFloors(lang: string = "tr"): Promise<ApiResponse<Floo
     const data = await response.json()
     return { success: true, data }
   } catch {
-    return { success: false, error: "Failed to fetch floors" }
+    return { success: false, error: 'Failed to fetch floors' }
   }
 }
 
 export async function fetchBrands(
-  lang: string = "tr",
-  filters?: { category?: string; subCategory?: string; floor?: string; keyword?: string }
+  lang: string = 'tr',
+  filters?: {
+    category?: string
+    subCategory?: string
+    floor?: string
+    keyword?: string
+  }
 ): Promise<ApiResponse<BrandsResponse>> {
   try {
     // Build query parameters
     const params = new URLSearchParams()
-    params.append("lang", lang)
+    params.append('lang', lang)
 
     if (filters) {
-      if (filters.category && filters.category !== "all") {
-        params.append("category", filters.category)
+      if (filters.category && filters.category !== 'all') {
+        params.append('category', filters.category)
       }
-      if (filters.subCategory && filters.subCategory !== "all") {
-        params.append("subCategory", filters.subCategory)
+      if (filters.subCategory && filters.subCategory !== 'all') {
+        params.append('subCategory', filters.subCategory)
       }
-      if (filters.floor && filters.floor !== "all") {
-        params.append("floor", filters.floor)
+      if (filters.floor && filters.floor !== 'all') {
+        params.append('floor', filters.floor)
       }
       if (filters.keyword) {
-        params.append("keyword", filters.keyword)
+        params.append('keyword', filters.keyword)
       }
     }
 
-    const url = `https://crm.citysresidences.com/api/brands.php?${params.toString()}`
+    const url = `https://panel.citysresidences.com/api/brands.php?${params.toString()}`
 
     const response = await fetch(url, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
 
@@ -117,24 +137,30 @@ export async function fetchBrands(
     const apiBrands: ApiBrand[] = responseData
 
     // Transform API data to match our expected structure
-    const items = apiBrands.map((brand) => ({
+    const items = apiBrands.map(brand => ({
       name: brand.title,
       category: brand.categoryID,
       subCategory: null, // API doesn't provide subcategory
       logo: brand.image,
       floor: (() => {
         const floorLower = brand.floor.toLowerCase()
-        if (floorLower.includes("zemin") || floorLower.includes("ground") || floorLower.includes("0")) {
-          return "ground"
+        if (
+          floorLower.includes('zemin') ||
+          floorLower.includes('ground') ||
+          floorLower.includes('0')
+        ) {
+          return 'ground'
         }
-        return "first"
+        return 'first'
       })(),
     }))
 
     // Create categories mapping
     const categories: Record<string, string> = {}
-    const uniqueCategories = Array.from(new Set(apiBrands.map((brand) => brand.categoryID)))
-    uniqueCategories.forEach((catId) => {
+    const uniqueCategories = Array.from(
+      new Set(apiBrands.map(brand => brand.categoryID))
+    )
+    uniqueCategories.forEach(catId => {
       categories[catId] = catId // We'll get proper names from categories API
     })
 
@@ -146,15 +172,17 @@ export async function fetchBrands(
 
     return { success: true, data }
   } catch {
-    return { success: false, error: "Failed to fetch brands" }
+    return { success: false, error: 'Failed to fetch brands' }
   }
 }
 
-export async function fetchEvents(lang: string = "tr"): Promise<ApiResponse<Event[]>> {
+export async function fetchEvents(
+  lang: string = 'tr'
+): Promise<ApiResponse<Event[]>> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
     const response = await fetch(`${baseUrl}/api/events?lang=${lang}`, {
-      cache: "no-store", // For dynamic data
+      cache: 'no-store', // For dynamic data
     })
 
     if (!response.ok) {
@@ -167,14 +195,26 @@ export async function fetchEvents(lang: string = "tr"): Promise<ApiResponse<Even
 
     return { success: true, data: events }
   } catch {
-    return { success: false, error: "Failed to fetch events" }
+    return { success: false, error: 'Failed to fetch events' }
   }
 }
 
 // Utility function to get proper image URLs for events
 export function getEventImageUrl(imageSrc: string): string {
-  if (imageSrc.startsWith("http")) {
+  if (imageSrc.startsWith('http')) {
     return imageSrc
   }
-  return `https://crm.citysresidences.com/assets/images/events/${imageSrc}`
+  return `https://panel.citysresidences.com/assets/images/events/${imageSrc}`
 }
+
+// Export citys-park queries
+export { fetchCitysParkData, type CitysParkData } from './citys-park'
+
+// Export citys-living queries
+export { fetchCitysLivingData, type CitysLivingData } from './citys-living'
+
+// Export citys-members-club queries
+export {
+  fetchCitysMembersClubData,
+  type CitysMembersClubData,
+} from './citys-members-club'

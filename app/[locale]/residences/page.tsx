@@ -1,121 +1,156 @@
-import { AnimatedLine } from "@/components/animated-line"
-import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
-import { GsapSplitText } from "@/components/gsap-split-text"
-import { IconCollab, Logo } from "@/components/icons"
-import { Sequenced } from "@/components/sequenced"
-import { StackingCards } from "@/components/stacking-cards"
-import { Video } from "@/components/utility/video"
-import { VideoSection } from "@/components/video-section"
-import { melihBulgurVideo, mustafaTonerVideo, residencesVideo, sections } from "@/lib/constants"
-import { getResidencesContent } from "@/lib/content"
-import { cn } from "@/lib/utils"
-import { colors } from "@/styles/config.mjs"
+import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { Image } from '@/components/image'
+import { PageTitle } from '@/components/page-title'
+import { ResidencesNavigator } from '@/components/residences-navigator'
+import { SectionContactForm } from '@/components/section-contact-form'
+import { WistiaPlayerWrapper } from '@/components/wistia-player'
+import { navigationConfig } from '@/lib/constants'
+import { cn } from '@/lib/utils'
+import { colors } from '@/styles/config.mjs'
+import { FormTranslations } from '@/types'
+import { getMessages } from 'next-intl/server'
 
-export default async function Page({ params: { locale } }: { params: { locale: string } }) {
-  const residencesContent = await getResidencesContent(locale)
+const ImageCard = ({ src }: { src: string }) => (
+  <div className='size-[400px]'>
+    <Image
+      src={src}
+      alt='Citys Residences Interiors'
+      fill
+      desktopSize='90vw'
+      mobileSize='30vw'
+      className='object-cover'
+    />
+  </div>
+)
 
-  const items = residencesContent.map((item) => ({
-    title: item.title,
-    description: item.subtitle,
-    images: item.url.map((url) => ({ url })),
-    bg: item.bg || "#ffffff",
-    sectionId: item.sectionId || "",
-  }))
+export default async function Page({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  const images = [
+    {
+      src: '/img/residences/1+1/interior.jpg',
+      alt: '1+1 Interior',
+    },
+  ]
+
+  const messages = await getMessages({ locale })
+  type ContactMessages = { contact: { form: FormTranslations } }
+  const formTranslations = (messages as unknown as ContactMessages).contact.form
 
   return (
     <>
-      <FadeInOnScroll>
-        <section className='h-svh bg-bricky-brick relative z-10 overflow-hidden'>
-          <Video
-            primaryVideoUrl={residencesVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className='w-full h-full object-cover'
-          />
-        </section>
-      </FadeInOnScroll>
-      <section className='bg-white relative z-30 py-12 lg:pt-20 2xl:pt-28'>
-        <FadeInOnScroll>
-          <div className='w-full h-40 lg:h-64 mx-auto'>
-            <Logo fill={colors["bricky-brick"]} />
-          </div>
-        </FadeInOnScroll>
-      </section>
-      <section className='bg-white relative z-30 lg:py-12' id={sections.residences.interiorArchitecture.id}>
-        <FadeInOnScroll>
-          <div className='section-container'>
-            <VideoSection
-              primaryVideoUrl={mustafaTonerVideo}
-              thumbnail='/img/thumbnail-toners.jpg'
-              title='İÇ MİMARIN GÖZÜYLE...'
-            />
-          </div>
-        </FadeInOnScroll>
-      </section>
-      <section className='bg-white relative z-30 section-container'>
-        <div className='relative flex flex-col items-center justify-center mx-auto py-16 xl:py-32 pb-0 px-4 lg:px-0'>
+      <PageTitle
+        primaryColor={colors.white}
+        secondaryColor={colors['bricky-brick']}
+        title='DAiRELER'
+        description='Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı.'
+        id={navigationConfig['/residences']?.id as string}
+      />
+      <section
+        className={cn(
+          'relative min-h-svh overflow-hidden bg-bricky-brick',
+          'py-48',
+          'before:absolute before:bottom-0 before:left-0 before:top-0 before:z-20 before:h-full before:w-[300px] before:bg-gradient-to-r before:from-bricky-brick before:to-transparent',
+          'after:absolute after:bottom-0 after:right-0 after:top-0 after:z-20 after:h-full after:w-[300px] after:bg-gradient-to-l after:from-bricky-brick after:to-transparent'
+        )}
+      >
+        <div className='dt:py-24 relative z-30 py-16'>
+          <AutoScrollCarousel
+            options={{ loop: true, dragFree: true }}
+            emblaSlideClassname='items-start'
+            slideSpacing='2rem'
+          >
+            {[
+              ...images,
+              ...images,
+              ...images,
+              ...images,
+              ...images,
+              ...images,
+              ...images,
+              ...images,
+            ].map((image, index) => (
+              <ImageCard key={index} {...image} />
+            ))}
+          </AutoScrollCarousel>
+        </div>
+        <div className='z-30 flex flex-col items-center justify-center gap-6 lg:gap-6'>
           <h2
             className={cn(
-              "font-montserrat font-bold text-bricky-brick text-center mb-6 lg:mb-24",
-              "text-3xl lg:text-6xl xl:text-6xl 2xl:text-7xl 3xl:text-7xl",
-              "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+              'text-center font-primary font-[400] text-white',
+              'text-3xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.05} duration={1}>
-              Hayata Dokunan Detaylar
+            <GsapSplitText type='chars' stagger={0.02} duration={1}>
+              Hayatına konforlu bir dokunuş.
             </GsapSplitText>
           </h2>
           <p
             className={cn(
-              "font-primary font-medium text-md text-center mb-5 lg:mb-24",
-              "text-xl lg:text-4xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl",
-              "leading-tighter lg:leading-tighter xl:leading-tight 2xl:leading-tight 3xl:leading-tight"
+              'text-center font-primary font-[300] text-white',
+              'text-xl/tight lg:text-2xl/tight xl:text-2xl/tight 2xl:text-3xl/tight',
+              'max-w-sm lg:max-w-2xl'
             )}
           >
-            <GsapSplitText splitBy='lines' stagger={0.05} duration={1}>
-              Her köşesi özenle düşünülmüş, <br /> tüm çizgileri ferah bir nefese açılan alanlar...
-            </GsapSplitText>
-          </p>
-          <p
-            className={cn(
-              "font-primary font-normal text-center",
-              "lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl",
-              "text-lg lg:text-3xl xl:text-2xl 2xl:text-3xl 3xl:text-3xl",
-              "leading-normal lg:leading-normal xl:leading-normal 2xl:leading-normal 3xl:leading-normal"
-            )}
-          >
-            <GsapSplitText splitBy='lines' stagger={0.05} duration={1}>
-              Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir
-              dünyaya dönüşmesi için tasarlandı.
+            <GsapSplitText type='lines' stagger={0.01} duration={1}>
+              Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize
+              ayırarak keyifle, yaşamı sanata dönüştürerek daha çok yaşa.
             </GsapSplitText>
           </p>
         </div>
-        <Sequenced />
+        <div
+          className="pointer-events-none absolute inset-0 z-0 bg-[url('/svg/bg-footer.svg')] bg-cover bg-left-bottom bg-no-repeat"
+          style={{ mixBlendMode: 'overlay' }}
+        />
       </section>
-      <section className='bg-white relative z-30 section-container py-6 lg:py-12 w-full overflow-hidden'>
-        <StackingCards items={items} />
+      <section className='pointer-events-none h-screen overflow-hidden lg:h-[45vw]'>
+        <WistiaPlayerWrapper
+          mediaId='4g5plgua2p'
+          autoplay
+          muted
+          preload='none'
+          swatch={false}
+          bigPlayButton={false}
+          silentAutoplay='allow'
+          endVideoBehavior='loop'
+          controlsVisibleOnLoad={false}
+          playBarControl={false}
+          volumeControl={false}
+          settingsControl={false}
+          transparentLetterbox={true}
+        />
       </section>
-      <FadeInOnScroll>
-        <section className='section-container lg:py-12' id={sections.residences.groundSafety.id}>
-          <VideoSection
-            primaryVideoUrl={melihBulgurVideo}
-            thumbnail='/img/thumbnail-melih-bulgur.jpg'
-            thumbnailMobile='/img/thumbnail-melih-bulgur-mobile.jpg'
-            title={
-              <>
-                <span className='whitespace-nowrap'>Zemin Güvenliği</span>
-                <span className='w-12 h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 mx-8'>
-                  <IconCollab fill={colors.white} />
-                </span>
-                <span className='whitespace-nowrap'>Huzur Mühendisliği</span>
-              </>
-            }
-          />
-        </section>
-      </FadeInOnScroll>
-      <AnimatedLine direction='horizontal' />
+      <section className={cn('relative overflow-hidden bg-white', 'pt-36')}>
+        <div className='flex flex-col items-center justify-center gap-6 lg:gap-6'>
+          <h2
+            className={cn(
+              'text-center font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
+            )}
+          >
+            <GsapSplitText type='chars' stagger={0.02} duration={1}>
+              Farklı ihtiyaçlar, ortak yaşam tarzı.
+            </GsapSplitText>
+          </h2>
+          <p
+            className={cn(
+              'text-center font-primary font-[300] text-black',
+              'lg:text-2xl/text-xl/snug xl:text-2xl/text-xl/snug 2xl:text-2xl/text-xl/snug text-xl/snug',
+              'max-w-sm lg:max-w-2xl'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1}>
+              Küçük detaylardan büyük alanlara… City’s Residences’ta farklı
+              daire tipleriyle size ve ailenize en uygun yaşam alanını keşfedin.
+            </GsapSplitText>
+          </p>
+        </div>
+        <ResidencesNavigator />
+      </section>
+      <SectionContactForm formTranslations={formTranslations} />
     </>
   )
 }

@@ -1,43 +1,23 @@
-import { Footer } from "@/components/footer"
-import { Header } from "@/components/header"
-import { Wrapper } from "@/components/wrapper"
-// import { LazyHomeSection } from "@/components/lazy-home-section"
+import { Wrapper } from '@/components/wrapper'
 
-import Home from "./home/page"
+import CitysIstanbulAvm from '@/components/sections/citys-istanbul-avm'
+import { CitysTimes } from '@/components/sections/citys-times'
+import Home from './home/page'
+import ProjectPage from './project/page'
+import ResidencesPage from './residences/page'
 
-export default function Page({ params }: { params: { locale: string } }) {
+export default async function Page({ params }: { params: { locale: string } }) {
+  console.log(params)
+
   return (
     <>
-      <Header />
       <Wrapper>
         <Home params={params} />
-        {/* <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} />
-        <LazyHomeSection params={params} /> */}
+        <ProjectPage />
+        <ResidencesPage params={params} />
+        <CitysIstanbulAvm />
+        <CitysTimes />
       </Wrapper>
-      <Footer />
     </>
   )
 }

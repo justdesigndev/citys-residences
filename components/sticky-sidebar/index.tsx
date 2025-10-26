@@ -1,14 +1,18 @@
 'use client'
 
-import { navigationConfig } from '@/lib/constants'
-import { cn } from '@/lib/utils'
 import { useLenis } from 'lenis/react'
+import { cn } from '@/lib/utils'
 import React, { useState } from 'react'
 
+import { Link } from '@/components/utility/link'
+import { navigationConfig } from '@/lib/constants'
+import { useActiveSection } from '@/hooks/useActiveSection'
+import { useNavigation } from '@/hooks/useNavigation'
+import { ScrollableBox } from '../utility/scrollable-box'
+
 export const StickySidebar: React.FC = () => {
-  const [activeItem, setActiveItem] = useState<string | null>(
-    navigationConfig['/']?.id || null
-  )
+  const activeSection = useActiveSection()
+  const { handleNavClick } = useNavigation()
   const [isScrolledToBottom, setIsScrolledToBottom] = useState(false)
 
   useLenis(({ scroll, limit }) => {
@@ -33,21 +37,21 @@ export const StickySidebar: React.FC = () => {
       href: '/residences',
       id: navigationConfig['/residences']?.id,
     },
-    {
-      label: "CITY'S PARK",
-      href: '/citys-park',
-      id: navigationConfig['/citys-park']?.id,
-    },
-    {
-      label: 'MEMBERS CLUB',
-      href: '/citys-members-club',
-      id: navigationConfig['/citys-members-club']?.id,
-    },
-    {
-      label: "CITY'S LIVING",
-      href: '/citys-life-privileges',
-      id: navigationConfig['/citys-life-privileges']?.id,
-    },
+    // {
+    //   label: "CITY'S PARK",
+    //   href: '/citys-park',
+    //   id: navigationConfig['/citys-park']?.id,
+    // },
+    // {
+    //   label: 'MEMBERS CLUB',
+    //   href: '/citys-members-club',
+    //   id: navigationConfig['/citys-members-club']?.id,
+    // },
+    // {
+    //   label: "CITY'S LIVING",
+    //   href: '/citys-living',
+    //   id: navigationConfig['/citys-living']?.id,
+    // },
     {
       label: "CITY'S ISTANBUL AVM",
       href: '/citys-istanbul-avm',
@@ -56,36 +60,77 @@ export const StickySidebar: React.FC = () => {
   ]
 
   return (
-    <div
-      className={cn(
-        'pointer-events-auto fixed left-16 top-1/2 z-[var(--z-sticky-menu)] flex -translate-y-[40%] flex-col opacity-100 mix-blend-difference transition-opacity duration-300 ease-in-out',
-        isScrolledToBottom && 'pointer-events-none opacity-0'
-      )}
-    >
-      {items.map(item => (
-        <div
-          className={cn(
-            'relative h-[3.75vw] w-64 transition-all duration-300 ease-in-out',
-            'before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-white before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
-            'hover:before:w-1',
-            {
-              'before:w-[3px]': activeItem === item.id,
-            }
-          )}
-          key={item.href}
-        >
+    <>
+      <div
+        className={cn(
+          'pointer-events-auto z-[var(--z-sticky-menu)] mix-blend-difference',
+          'hidden flex-col lg:flex',
+          'fixed left-16 top-1/2',
+          '-translate-y-[40%]',
+          'opacity-100 transition-opacity duration-300 ease-in-out',
+          isScrolledToBottom && 'pointer-events-none opacity-0'
+        )}
+      >
+        {items.map(item => (
           <div
-            className='absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
-            onClick={() => setActiveItem(item.label || null)}
-            onMouseEnter={() => setActiveItem(item.label || null)}
-            onMouseLeave={() => setActiveItem(null)}
+            className={cn(
+              'relative h-[3.75vw] w-64 flex-shrink-0 transition-all duration-300 ease-in-out',
+              'before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-white before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
+              'hover:before:w-1',
+              {
+                'before:w-[3px]': activeSection === item.id,
+              }
+            )}
+            key={item.href}
           >
-            <span className='font-primary font-[600] tracking-[0.4em] text-white xl:text-[0.6rem] 2xl:text-[0.8rem]'>
-              {item.label}
-            </span>
+            <Link
+              href={item.id === 'home' ? '/' : `#${item.id as string}`}
+              onClick={e => handleNavClick(e, item.id as string)}
+              className='absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
+            >
+              <span className='whitespace-nowrap font-primary text-[0.8rem] font-[700] text-white lg:tracking-[0.4em]'>
+                {item.label}
+              </span>
+            </Link>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+      <div className='fixed bottom-4 left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen mix-blend-difference lg:hidden'>
+        <ScrollableBox orientation='horizontal'>
+          <div
+            className={cn(
+              'pointer-events-auto',
+              'flex flex-row lg:hidden',
+              'opacity-100 transition-opacity duration-300 ease-in-out',
+              isScrolledToBottom && 'pointer-events-none opacity-0'
+            )}
+          >
+            {items.map(item => (
+              <div
+                className={cn(
+                  'relative h-8 w-32 flex-shrink-0 transition-all duration-300 ease-in-out first:ml-4 last:mr-4',
+                  'before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
+                  'hover:before:w-1',
+                  {
+                    'before:h-[3px]': activeSection === item.id,
+                  }
+                )}
+                key={item.href}
+              >
+                <Link
+                  href={item.id === 'home' ? '/' : `#${item.id as string}`}
+                  onClick={e => handleNavClick(e, item.id as string)}
+                  className='absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
+                >
+                  <span className='whitespace-nowrap font-primary text-[0.7rem] font-[700] text-white'>
+                    {item.label}
+                  </span>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </ScrollableBox>
+      </div>
+    </>
   )
 }

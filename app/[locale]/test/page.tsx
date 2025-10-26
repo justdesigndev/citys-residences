@@ -1,7 +1,10 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
-import { HeroSection } from '@/components/hero-section'
 import { PageTitle } from '@/components/page-title'
+import {
+  ComponentType,
+  RepetitiveSectionsWrapper,
+} from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { colors } from '@/styles/config.mjs'
 
 export default function TestPage() {
@@ -9,69 +12,37 @@ export default function TestPage() {
     <div>
       <Header />
       <PageTitle
-        className='bg-army-canvas'
-        bgColor={colors['army-canvas']}
-        itemColor={colors.white}
-        title="CITY'S PARK"
-        description='Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha...'
-        id='test'
-      />
-      <PageTitle
-        bgColor={colors['bricky-brick']}
-        title='DAiRELER'
-        description='Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı.'
-        id='test'
-      />
-      <PageTitle
-        bgColor={colors['blue-shimmer']}
-        className='bg-blue-shimmer'
-        title={
-          <>
-            <span className='block'>CITY&apos;S</span>
-            <span className='block'>MEMBERS CLUB</span>
-          </>
-        }
-        description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
-        itemColor={colors.black}
-        id='test'
-      />
-      <PageTitle
-        bgColor={colors['verve-violet']}
-        className='bg-verve-violet'
-        title={
-          <>
-            <span className='block'>CITY&apos;S</span>
-            <span className='block'>LIVING</span>
-          </>
-        }
-        description='Artık her şey daha kolay.'
-        itemColor={colors.white}
-        id='test'
-      />
-      <HeroSection
-        mainText='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
-        videoThumbnail='/img/thumbnail-kolaj-video.jpg'
-      />
-      <PageTitle
-        bgColor={colors['aqua-belt']}
-        className='bg-aqua-belt'
-        title={
-          <>
-            <span className='block'>CITY&apos;S</span>
-            <span className='block'>İSTANBUL AVM</span>
-          </>
-        }
-        description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
-        itemColor={colors.black}
-        id='test'
-      />
-      <PageTitle
-        bgColor={colors['trapped-darkness']}
-        className='bg-trapped-darkness'
+        primaryColor={colors['trapped-darkness']}
+        secondaryColor={colors.white}
         title="CITY'S TIMES"
         description='Bizi takip edin.'
-        itemColor={colors.white}
-        id='test'
+        id='citys-times'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.FullWidthSingleVideo}
+        mediaId='p4l0a63nut'
+        thumbnail='/img/thumbnail-kolaj-video.jpg'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.FullWidthVideoText}
+        title='Dynamic Zone'
+        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
+        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+        mediaId='p4l0a63nut'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.CenterVideoText}
+        title='Dynamic Zone'
+        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
+        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+        mediaId='p4l0a63nut'
+      />
+      <RepetitiveSectionsWrapper
+        componentType={ComponentType.BackgroundVideoText}
+        title='Dynamic Zone'
+        subtitle='Hareket hiç bu kadar eğlenceli olmamıştı.'
+        description='Dilediğiniz oyunu seçin, enerjinizi ortaya koyun! Padel, basketbol, masa tenisi ve golf simülatörüyle her gününüzü farklı bir heyecana dönüştürün. Arkadaşlarınızla kıyasıya rekabet, bol kahkahalı anlar ve sınırsız enerji… Dynamic Zone’da spor sadece bir aktivite değil, unutulmaz bir deneyim. Hazır mısınız? Çünkü burada her an bir oyuna dönüşüyor.'
+        mediaId='p4l0a63nut'
       />
       <Footer />
     </div>

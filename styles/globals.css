@@ -7,7 +7,7 @@
   --foreground: var(--white);
 
   --header-height: mobile-vw(50px);
-  --header-height-slim: mobile-vw(80px);
+  --header-height-slim: mobile-vw(100px);
 
   --svh-calc: calc(var(--svh, 1vh) * 100);
   --lvh-calc: calc(var(--lvh, 1vh) * 100);
@@ -36,6 +36,7 @@
   --z-alotech: z-stack();
   --z-modal-background: z-stack();
   --z-modal: z-stack();
+  --z-modal-content: z-stack();
   --z-radix-popper: z-stack();
   --z-preloader: z-stack();
   --z-gsap-markers: z-stack();
@@ -174,14 +175,14 @@ body {
   z-index: var(--z-alotech) !important;
 }
 
-.border-gradient-white {
+.border-gradient-soft-light {
   border: 1px solid transparent;
+  border-image-slice: 1;
   border-image-source: linear-gradient(
     132.66deg,
     #ffffff -46.82%,
     rgba(255, 255, 255, 0) 47.43%
   );
-  border-image-slice: 1;
 }
 
 /* SVG color transition utilities */
@@ -193,4 +194,14 @@ body {
 .group:hover .svg-icon-white {
   filter: brightness(0) saturate(100%) invert(17%) sepia(85%) saturate(1916%)
     hue-rotate(344deg) brightness(96%) contrast(93%);
+}
+
+/* Additional utilities for quote-with-video component */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle at var(--tw-gradient-stops));
+}
+
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }

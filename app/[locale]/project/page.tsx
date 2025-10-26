@@ -1,150 +1,245 @@
-import { AnimatedLine } from "@/components/animated-line"
-import { FadeInOnScroll } from "@/components/animations/fade-in-on-scroll"
-import { DynamicAspectImage } from "@/components/dynamic-aspect-image"
-import { GsapSplitText } from "@/components/gsap-split-text"
-import { Logo } from "@/components/icons"
-import { VideoSection } from "@/components/video-section"
-import { muratKaderVideo } from "@/lib/constants"
-import { cn } from "@/lib/utils"
-import { breakpoints, colors } from "@/styles/config.mjs"
+import { cn } from '@/lib/utils'
+
+import { ZoomImageDialog } from '@/components/dialogs/zoom-image-dialog'
+import { GsapSplitText } from '@/components/gsap-split-text'
+import { Image } from '@/components/image'
+import { InteractiveMap } from '@/components/interactive-map'
+import { PageTitle } from '@/components/page-title'
+import { QuoteWithVideo } from '@/components/quote-with-video'
+import { WistiaPlayerWrapper } from '@/components/wistia-player'
+import { navigationConfig } from '@/lib/constants'
+import { colors } from '@/styles/config.mjs'
 
 export default function Page() {
   return (
     <>
-      <AnimatedLine direction='horizontal' />
-      <section className='bg-white py-0 lg:py-12 z-20'>
-        <div className='section-container'>
-          <FadeInOnScroll>
-            <div className={"w-36 h-436 lg:w-64 lg:h-64 mx-auto mb-10 lg:mb-20 mt-10 lg:mt-0"}>
-              <Logo fill={colors["bricky-brick"]} />
-            </div>
-          </FadeInOnScroll>
-          <div className='space-y-8 xl:space-y-16 3xl:space-y-12 px-0 xl:px-44'>
-            <FadeInOnScroll>
-              <div className='relative'>
-                <h2
-                  className={cn(
-                    "relative lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 mt-16",
-                    "font-primary font-semibold lg:font-bold text-bricky-brick lg:title-shadow text-center lg:whitespace-nowrap mb-2 lg:mb-0 z-50",
-                    "text-2xl lg:text-5xl xl:text-5xl 2xl:text-5xl",
-                    "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
-                  )}
-                >
-                  <GsapSplitText splitBy='lines' stagger={0.05} duration={0.5}>
-                    KARMA YAŞAM PROJESİ
-                  </GsapSplitText>
-                </h2>
-                <DynamicAspectImage
-                  alt='Project Visual'
-                  src='/img/project/01.jpg'
-                  sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
-                  loading='lazy'
-                />
-              </div>
-            </FadeInOnScroll>
-            <FadeInOnScroll>
-              <div className='relative'>
-                <h2
-                  className={cn(
-                    "relative lg:absolute lg:top-16 3xl:top-24 lg:left-1/2 lg:-translate-x-1/2",
-                    "font-primary font-semibold lg:font-bold text-bricky-brick lg:text-white lg:title-shadow text-center lg:whitespace-nowrap mb-2 lg:mb-0 z-50",
-                    "text-2xl lg:text-5xl xl:text-5xl 2xl:text-5xl",
-                    "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
-                  )}
-                >
-                  <GsapSplitText splitBy='lines' stagger={0.05} duration={0.5}>
-                    KONUM
-                  </GsapSplitText>
-                </h2>
-                <DynamicAspectImage
-                  alt='Project Visual'
-                  src='/img/project/02.jpg'
-                  sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
-                  loading='lazy'
-                />
-              </div>
-            </FadeInOnScroll>
-          </div>
-          <FadeInOnScroll>
-            <div className='relative py-20 lg:py-16'>
-              <VideoSection
-                primaryVideoUrl={muratKaderVideo}
-                thumbnail='/img/thumbnail-murat-kader.jpg'
-                title='PROJEYİ MİMARI ANLATIYOR...'
-              />
-            </div>
-          </FadeInOnScroll>
-          <div className='space-y-8 xl:space-y-16 3xl:space-y-12 px-0 xl:px-44'>
-            <FadeInOnScroll>
-              <div className='relative'>
-                <h2
-                  className={cn(
-                    "relative lg:absolute lg:top-6 3xl:top-12 lg:left-1/2 lg:-translate-x-1/2 ",
-                    "font-primary font-semibold lg:font-bold text-bricky-brick lg:text-white lg:title-shadow text-center lg:whitespace-nowrap mb-2 lg:mb-0 z-50",
-                    "text-2xl lg:text-5xl xl:text-5xl 2xl:text-5xl",
-                    "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
-                  )}
-                >
-                  <GsapSplitText splitBy='lines' stagger={0.05} duration={0.5}>
-                    BLOK GİRİŞLERİ
-                  </GsapSplitText>
-                </h2>
-                <DynamicAspectImage
-                  alt='Project Visual'
-                  src='/img/project/03.jpg'
-                  sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
-                  loading='lazy'
-                />
-              </div>
-            </FadeInOnScroll>
-            <FadeInOnScroll>
-              <div className='relative'>
-                <h2
-                  className={cn(
-                    "relative lg:absolute lg:top-44 3xl:top-64 lg:left-1/2 lg:-translate-x-1/2",
-                    "font-primary font-semibold lg:font-bold text-bricky-brick lg:title-shadow text-center lg:whitespace-nowrap mb-2 lg:mb-0 z-50",
-                    "text-2xl lg:text-5xl xl:text-5xl 2xl:text-5xl",
-                    "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
-                  )}
-                >
-                  <GsapSplitText splitBy='lines' stagger={0.05} duration={0.5}>
-                    OTOPARK GİRİŞ ÇIKIŞLARI
-                  </GsapSplitText>
-                </h2>
-                <DynamicAspectImage
-                  alt='Project Visual'
-                  src='/img/project/04.jpg'
-                  sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
-                  loading='lazy'
-                />
-              </div>
-            </FadeInOnScroll>
-            <FadeInOnScroll>
-              <div className='relative'>
-                <h2
-                  className={cn(
-                    "relative lg:absolute lg:top-6 3xl:top-12 lg:left-1/2 lg:-translate-x-1/2",
-                    "font-primary font-semibold lg:font-bold text-bricky-brick lg:text-white lg:title-shadow text-center lg:whitespace-nowrap mb-2 lg:mb-0 z-50",
-                    "text-2xl lg:text-5xl xl:text-5xl 2xl:text-5xl",
-                    "leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight"
-                  )}
-                >
-                  <GsapSplitText splitBy='lines' stagger={0.05} duration={0.5}>
-                    PARK & BAHÇELER & TERASLAR
-                  </GsapSplitText>
-                </h2>
-                <DynamicAspectImage
-                  alt='Project Visual'
-                  src='/img/project/05.jpg'
-                  sizes={`(max-width: ${breakpoints.breakpointMobile}px) 100vw, (max-width: ${breakpoints.breakpointTablet}px) 90vw, 90vw`}
-                  loading='lazy'
-                />
-              </div>
-            </FadeInOnScroll>
-          </div>
+      <PageTitle
+        primaryColor={colors['white']}
+        secondaryColor={colors['bricky-brick']}
+        title='PROJE'
+        description={
+          <>
+            Her köşesi özenle düşünülmüş bir{' '}
+            <strong>karma yaşam projesi.</strong>
+          </>
+        }
+        id={navigationConfig['/project']?.id as string}
+      />
+      <section className='pointer-events-none h-screen overflow-hidden lg:h-[45vw]'>
+        <WistiaPlayerWrapper
+          mediaId='p4l0a63nut'
+          autoplay
+          muted
+          preload='none'
+          qualityMin={1080}
+          swatch={false}
+          bigPlayButton={false}
+          silentAutoplay='allow'
+          endVideoBehavior='loop'
+          controlsVisibleOnLoad={false}
+          playBarControl={false}
+          volumeControl={false}
+          settingsControl={false}
+          transparentLetterbox={true}
+        />
+      </section>
+      <InteractiveMap />
+      <section className='grid grid-cols-24 gap-4 px-8 py-8 lg:px-0 lg:py-36'>
+        <div className='col-span-24 flex lg:col-span-8 lg:col-start-7'>
+          <h3
+            className={cn(
+              'lg:ml-auto',
+              'text-left font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-6xl/tight'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+              Blok ve Otopark <br />
+              Girişleri
+            </GsapSplitText>
+          </h3>
+        </div>
+        <div className='col-span-24 lg:col-span-8 lg:pl-0'>
+          <p
+            className={cn(
+              'text-left font-primary font-[300] text-black',
+              'text-base/snug lg:text-2xl/snug'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+              Her blok için ayrı tasarlanmış lobi ve girişler, güvenli ve
+              prestijli bir karşılama sunuyor.
+              <br />
+              Geniş otopark ve doğrudan blok bağlantılarıyla, zamandan
+              kazandıran kolay erişim.
+            </GsapSplitText>
+          </p>
         </div>
       </section>
-      <AnimatedLine direction='horizontal' />
+      <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-4 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-24'>
+        <div className='col-span-24 lg:col-span-8 lg:col-start-7'>
+          <ZoomImageDialog
+            dialogTrigger={
+              <Image
+                className='aspect-[16/9] w-full cursor-pointer'
+                src='/img/project/project-a-1.jpg'
+                alt='Project Visual'
+                loading='lazy'
+              />
+            }
+            image='/img/project/project-a-1.jpg'
+          />
+        </div>
+        <div className='col-span-24 lg:col-span-8'>
+          <ZoomImageDialog
+            dialogTrigger={
+              <Image
+                className='aspect-[16/9] w-full cursor-pointer'
+                src='/img/project/project-a-2.jpg'
+                alt='Project Visual'
+                loading='lazy'
+              />
+            }
+            image='/img/project/project-a-2.jpg'
+          />
+        </div>
+      </section>
+      <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-36'>
+        <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center'>
+          <h3
+            className={cn(
+              'text-left font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-6xl/tight'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+              Yeşil Alanlar
+            </GsapSplitText>
+          </h3>
+        </div>
+        <div className='col-span-24 lg:col-span-8 lg:py-36 lg:pl-24'>
+          <p
+            className={cn(
+              'text-left font-primary font-[300] text-black',
+              'text-base/snug lg:text-2xl/snug'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+              50.000+ m² peyzaj alanında, doğanın ortasında huzurlu bir yaşam.
+            </GsapSplitText>
+          </p>
+        </div>
+      </section>
+      <section className='grid grid-cols-24 px-8 py-4 lg:px-0 lg:py-24'>
+        <div className='col-span-24 lg:col-span-16 lg:col-start-7'>
+          <ZoomImageDialog
+            dialogTrigger={
+              <Image
+                className='aspect-[16/9] w-full cursor-pointer'
+                src='/img/project/project-b-1.jpg'
+                alt='Project Visual'
+                loading='lazy'
+              />
+            }
+            image='/img/project/project-b-1.jpg'
+          />
+        </div>
+      </section>
+      <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-36'>
+        <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center'>
+          <h3
+            className={cn(
+              'text-left font-primary font-[400] text-black',
+              'text-3xl/tight lg:text-6xl/tight'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+              Projenin mimarları <br />
+              anlatıyor.
+            </GsapSplitText>
+          </h3>
+        </div>
+        <div className='col-span-24 lg:col-span-8 lg:py-36 lg:pl-24'>
+          <p
+            className={cn(
+              'text-left font-primary font-[300] text-black',
+              'text-base/snug lg:text-2xl/snug'
+            )}
+          >
+            <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+              City’s Residences, gösterişten çok yaşam kalitesini merkeze alan
+              bir mimarlık diliyle tasarlandı.
+            </GsapSplitText>
+          </p>
+        </div>
+      </section>
+      <section className='grid grid-cols-24 gap-0 px-8 py-16 lg:gap-4 lg:px-0 lg:py-24'>
+        <div className='relative col-span-24 grid aspect-[16/16] grid-cols-24 gap-0 lg:col-span-16 lg:col-start-7 lg:aspect-[16/9] lg:gap-8'>
+          <Image
+            className='hidden object-contain lg:block'
+            src='/img/architects-grid.png'
+            alt='Project Visual'
+            loading='lazy'
+            fill
+            desktopSize='80vw'
+          />
+          <Image
+            className='block object-contain lg:hidden'
+            src='/img/architects-grid-mobile.png'
+            alt='Project Visual'
+            loading='lazy'
+            fill
+            desktopSize='80vw'
+          />
+        </div>
+      </section>
+      <QuoteWithVideo
+        quote='Karma kullanım modeliyle zamanı geri veriyoruz: yaşa, çalış, eğlen—tek ekosistem içinde.'
+        mediaId='1qwipsnwiv'
+        thumbnail='/img/thumbnail-murat-kader.jpg'
+        portraitImage='/img/murat-kader-portrait.png'
+        personName='Murat Kader'
+        personTitle='Yüksek Mimar'
+        sidebarText='Mimari Proje'
+        primaryColor={colors['bricky-brick']}
+        secondaryColor={colors['white']}
+        hasBg={true}
+      />
+      <QuoteWithVideo
+        quote='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
+        mediaId='k7c3eyfiwe'
+        thumbnail='/img/thumbnail-toners.jpg'
+        portraitImage='/img/toner-portrait.png'
+        personName='Mustafa & Emre Toner'
+        personTitle='İç Mimar'
+        sidebarText='İç Mimari'
+        primaryColor={colors['white']}
+        secondaryColor={colors['bricky-brick']}
+      />
+      <QuoteWithVideo
+        quote='Kuzey Ormanları etkisi ve İstanbul’un endemik türleriyle, yeşilin her tonu projeye taşındı.'
+        mediaId='lw6zlx5v5y'
+        thumbnail='/img/thumbnail-aktas.jpg'
+        portraitImage='/img/aktas-portrait.png'
+        personName='Cemil Aktaş, Pınar Kesim Aktaş'
+        personTitle='Peyzaj Mimari'
+        sidebarText='Peyzaj'
+        primaryColor={colors['army-canvas']}
+        secondaryColor={colors['white']}
+        hasBg={true}
+      />
+      <QuoteWithVideo
+        quote='Sadece teknik başarı değil; City’s Residences sakinlerine huzurlu bir yuva sunmak için tasarlandı.'
+        mediaId='zmn4yqnamk'
+        thumbnail='/img/thumbnail-melih-bulgur.jpg'
+        portraitImage='/img/melih-bulgur-portrait.png'
+        personName='Melih Bulgur'
+        personTitle='Yüksek İnşaat Mühendisi'
+        sidebarText='Statik'
+        primaryColor={colors['birch-strain']}
+        secondaryColor={colors['white']}
+        hasBg={true}
+      />
     </>
   )
 }

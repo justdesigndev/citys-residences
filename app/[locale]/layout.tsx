@@ -9,13 +9,12 @@ import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { GSAP } from '@/components/gsap'
-import { ImageGalleryModal } from '@/components/image-gallery/modal'
-import { ModalContactForm } from '@/components/modal-contact-form'
 import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
-import { StickyContactMenu } from '@/components/sticky-contact-menu'
+import { Scroller } from '@/components/scroller'
 import { StickySidebar } from '@/components/sticky-sidebar'
-import { WebChat } from '@/components/web-chat'
+import { ModalContactForm } from '@/components/modal-contact-form'
+// import { WebChat } from '@/components/web-chat'
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -146,8 +145,6 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <head>
         <StyleVariables colors={colors} themes={themes} />
-        {/* <UTMWidgetInit /> */}
-        {/* <AlotechWidget /> */}
       </head>
       <body
         className={`${montserrat.variable} ${suisseIntl.variable} ${copperplate.variable} antialiased`}
@@ -157,15 +154,14 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
             {children}
-            <ImageGalleryModal />
             <ModalContactForm />
-            <StickyContactMenu />
+            <Scroller />
             {/* <PreloaderClient /> */}
             <StickySidebar />
           </ReactQueryProvider>
         </NextIntlClientProvider>
         <GSAP scrollTrigger={true} />
-        <WebChat />
+        {/* <WebChat /> */}
       </body>
     </html>
   )

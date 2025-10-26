@@ -25,7 +25,7 @@ export function VideoWithText(props: VideoWithTextProps) {
   return (
     <div
       className={cn(
-        'relative h-[60vw] overflow-hidden after:absolute after:bottom-0 after:left-0 after:z-10 after:h-1/2 after:w-full after:bg-gradient-to-t after:from-current after:to-transparent',
+        'relative h-[100vh] overflow-hidden after:absolute after:bottom-0 after:left-0 after:z-10 after:h-1/2 after:w-full after:bg-gradient-to-t after:from-current after:to-transparent xl:h-[60vw]',
         className
       )}
     >
@@ -35,7 +35,6 @@ export function VideoWithText(props: VideoWithTextProps) {
           autoplay
           muted
           preload='none'
-          qualityMin={1080}
           swatch={false}
           bigPlayButton={false}
           silentAutoplay='allow'
@@ -61,25 +60,25 @@ export function VideoWithText(props: VideoWithTextProps) {
             <h3
               className={cn(
                 'whitespace-nowrap text-center font-primary font-[200] text-white',
-                'text-6xl xl:text-6xl 2xl:text-7xl',
+                'text-4xl xl:text-6xl 2xl:text-7xl',
                 'w-full min-w-[90vw] lg:min-w-52',
                 'flex flex-shrink-0 flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
             >
-              <GsapSplitText splitBy='chars' stagger={0.02} duration={1}>
+              <GsapSplitText type='chars' stagger={0.02} duration={1}>
                 {title}
               </GsapSplitText>
             </h3>
             <p
               className={cn(
                 'text-center font-primary font-[300] text-white',
-                'text-2xl xl:text-2xl 2xl:text-3xl',
+                'text-xl xl:text-2xl 2xl:text-3xl',
                 'leading-relaxed xl:leading-relaxed 2xl:leading-relaxed',
                 'flex flex-shrink-0 flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0',
                 'max-w-4xl'
               )}
             >
-              <GsapSplitText splitBy='lines' stagger={0.02} duration={1}>
+              <GsapSplitText type='lines' stagger={0.02} duration={1}>
                 {description}
               </GsapSplitText>
             </p>

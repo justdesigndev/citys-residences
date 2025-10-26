@@ -20,12 +20,18 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
     ...wistiaProps
   } = props
 
+  const [isClient, setIsClient] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [videoAspect, setVideoAspect] = useState<number | null>(null)
   const playerRef = useRef<React.ComponentRef<typeof WistiaPlayer>>(null)
   const playStateTimeoutRef = useRef<NodeJS.Timeout>()
   const [isPageVisible, setIsPageVisible] = useState(true)
   const resizeCheckTimeoutRef = useRef<NodeJS.Timeout>()
+
+  // Ensure client-side only rendering
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   // Handle video play event
   const handlePlay = () => {
@@ -268,10 +274,35 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
     }
   }, [])
 
+  // Return fallback during SSR to prevent hydration mismatch
+  if (!isClient) {
+    return (
+      <div
+        className={cn(
+          'relative h-full w-full overflow-hidden bg-opacity-10 bg-gradient-appointment',
+          className
+        )}
+        aria-label='Video player'
+      >
+        {customPoster && (
+          <Image
+            src={customPoster}
+            alt='Video poster'
+            fill
+            className='absolute inset-0 h-full w-full overflow-hidden object-cover object-center'
+            sizes='100vw'
+            mobileSize='100vw'
+            priority={posterPriority}
+          />
+        )}
+      </div>
+    )
+  }
+
   return (
     <div
       className={cn(
-        'relative h-full w-full overflow-hidden bg-black',
+        'relative h-full w-screen overflow-hidden bg-opacity-10 bg-gradient-appointment lg:w-full',
         className
       )}
       aria-label='Video player'

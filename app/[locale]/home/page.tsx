@@ -3,19 +3,21 @@ import { getMessages, getTranslations } from 'next-intl/server'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { ScaleOut } from '@/components/animations/scale-out'
-import { ContactForm } from '@/components/form-contact'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { IconCollab } from '@/components/icons'
 import { Image } from '@/components/image'
+import { SectionContactForm } from '@/components/section-contact-form'
 import { VideoWithText } from '@/components/video-with-text'
-import { WistiaPlayerWrapper } from '@/components/wistia-player'
+// import { WistiaPlayerWrapper } from '@/components/wistia-player'
 import { citysParkVideo, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
 
-import heroVideoPoster from '@/public/img/poster-hero.jpg'
+// import heroVideoPoster from '@/public/img/poster-hero.jpg'
 import liveMorePoster from '@/public/img/thumbnail-live-more.jpg'
 import livePeacefullyPoster from '@/public/img/thumbnail-live-peacefully.jpg'
+import { SectionSetter } from '@/components/section-setter'
+import { VimeoPlayer } from '@/components/vimeo-player'
 
 export default async function Page({
   params: { locale },
@@ -30,11 +32,15 @@ export default async function Page({
   return (
     <>
       <section
-        className='relative z-10 h-[100vh] overflow-hidden'
+        className={cn(
+          'relative z-10 h-[100vh] overflow-hidden',
+          'before:absolute before:bottom-0 before:left-0 before:z-20 before:h-[300px] before:w-full before:bg-gradient-to-t before:from-black/90 before:to-transparent lg:before:h-[200px]',
+          'after:absolute after:left-0 after:top-0 after:z-20 after:h-[200px] after:w-full after:bg-gradient-to-b after:from-black/50 after:to-transparent'
+        )}
         id={navigationConfig['/']?.id}
       >
         <ScaleOut>
-          <div className='pointer-events-none relative h-[100vh] w-full'>
+          {/* <div className='pointer-events-none relative h-svh w-full'>
             <WistiaPlayerWrapper
               mediaId='e2tew1zhxj'
               muted
@@ -53,9 +59,19 @@ export default async function Page({
               customPoster={heroVideoPoster.src}
               posterPriority={true}
             />
+          </div> */}
+          <div className='pointer-events-none relative h-svh w-full'>
+            <VimeoPlayer
+              poster='/img/poster-hero.jpg'
+              src='https://player.vimeo.com/progressive_redirect/playback/1130616578/rendition/1080p/file.mp4?loc=external&log_user=0&signature=4c84b12cfbf4f5ae9ef7087bd4cc4277a815c1235d739ebda936132a2a46214b'
+            />
           </div>
         </ScaleOut>
-        <div className='absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2'>
+        <div
+          className={cn(
+            'absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2'
+          )}
+        >
           <div
             className={cn(
               'flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
@@ -64,8 +80,7 @@ export default async function Page({
             <span
               className={cn(
                 'whitespace-nowrap text-center font-montserrat font-[500] text-white',
-                'text-2xl sm:text-3xl lg:text-5xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl',
-                'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight 3xl:leading-tight',
+                'text-3xl/tight sm:text-4xl/tight lg:text-5xl/tight xl:text-5xl/tight 2xl:text-5xl/tight 3xl:text-6xl/tight',
                 'flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
             >
@@ -78,11 +93,11 @@ export default async function Page({
               className={cn(
                 'text-center font-copperplate font-[700] text-white',
                 'text-[44px] lg:text-4xl xl:text-5xl 2xl:text-5xl 3xl:text-6xl',
-                'block translate-y-1 leading-[0]'
+                'block translate-y-1 leading-[1]'
               )}
             >
               CITY
-              <span className='font-montagu-slab font-normal leading-[0.5]'>
+              <span className='font-montagu-slab font-[400] leading-[0.5]'>
                 &apos;
               </span>
               S
@@ -90,7 +105,7 @@ export default async function Page({
           </div>
         </div>
         <div className='absolute bottom-[8%] left-1/2 z-50 size-12 -translate-x-1/2 xl:size-16 2xl:size-16'>
-          <div className='size-full animate-bounce-translate'>
+          <div className='relative size-full animate-bounce-translate'>
             <Image
               src='/svg/scroll-down.svg'
               alt='Scroll Down'
@@ -101,19 +116,24 @@ export default async function Page({
           <span className='sr-only'>Scroll Down</span>
         </div>
       </section>
-      <div className='relative z-20 bg-white'>
+      <div
+        className={cn(
+          'relative z-20 bg-white'
+          // 'after:absolute after:left-0 after:top-0 after:z-20 after:h-[70px] after:w-full after:bg-gradient-to-b after:from-black/70 after:to-transparent lg:after:hidden'
+        )}
+      >
+        <SectionSetter sectionId={navigationConfig['/']?.id || ''} />
         <section className='relative py-12 lg:py-12'>
-          <div className='relative ml-32 flex items-center justify-center gap-32 py-12 xl:py-28'>
-            <div className='flex w-[700px] flex-shrink-0 flex-col items-center gap-2 lg:gap-2'>
+          <div className='relative ml-0 flex flex-col items-center justify-center gap-8 py-12 lg:flex-row xl:ml-32 xl:gap-32 xl:py-28'>
+            <div className='flex w-full flex-shrink-0 flex-col items-center gap-2 lg:gap-2 xl:w-[700px]'>
               <article
                 className={cn(
-                  'text-center font-montserrat font-[500] text-trapped-darkness',
-                  'text-4xl lg:text-5xl',
-                  'leading-tight lg:leading-tight',
-                  'tracking-wide lg:tracking-widest'
+                  'text-center font-montserrat font-[500] text-black',
+                  'text-xl/tight lg:text-5xl/tight',
+                  'tracking-wide lg:tracking-wide'
                 )}
               >
-                <GsapSplitText splitBy='chars' stagger={0.02} duration={1.5}>
+                <GsapSplitText type='chars' stagger={0.02} duration={1.5}>
                   {t('section1.title1')}
                 </GsapSplitText>
                 <span className='sr-only'>{t('section1.title1')}</span>
@@ -133,15 +153,15 @@ export default async function Page({
                 </article>
               </FadeInOnScroll>
             </div>
-            <div className='flex w-96 flex-shrink-0'>
+            <div className='flex w-auto flex-shrink-0 xl:w-96'>
               <article
                 className={cn(
-                  'text-left font-primary font-[200] text-trapped-darkness',
-                  'text-[0.8rem] lg:text-3xl',
-                  'leading-relaxed'
+                  'font-primary font-[200] text-black',
+                  'text-xl/normal lg:text-3xl/normal',
+                  'text-center xl:text-left'
                 )}
               >
-                <GsapSplitText splitBy='lines' stagger={0.01} duration={1.5}>
+                <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
                   {t('section1.title3')}
                 </GsapSplitText>
               </article>
@@ -164,37 +184,7 @@ export default async function Page({
             </>
           }
         />
-        <section className='bg-gradient-appointment py-8 xl:py-40'>
-          <FadeInOnScroll delay={0.25}>
-            <div className='grid grid-cols-12 px-16 lg:col-start-4 lg:grid-cols-24'>
-              <div className='col-span-12 mb-12 lg:col-span-18 lg:col-start-6 lg:mb-24'>
-                <h3
-                  className={cn(
-                    'mb-4 font-primary font-[400] text-white lg:mb-4',
-                    'text-6xl lg:text-6xl xl:text-6xl 2xl:text-6xl',
-                    'leading-tight lg:leading-tight xl:leading-tight 2xl:leading-tight'
-                  )}
-                >
-                  Randevu al
-                </h3>
-                <p
-                  className={cn(
-                    'max-w-[90%] font-primary font-[300] text-white',
-                    'text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-2xl',
-                    'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug',
-                    'xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
-                  )}
-                >
-                  Ekibimizin sizinle iletişime geçebilmesi için lütfen kayıt
-                  formunu doldurunuz.
-                </p>
-              </div>
-              <div className='col-span-12 lg:col-span-18 lg:col-start-6'>
-                <ContactForm translations={formTranslations} />
-              </div>
-            </div>
-          </FadeInOnScroll>
-        </section>
+        <SectionContactForm formTranslations={formTranslations} />
         <VideoWithText
           customPoster={liveMorePoster.src}
           mediaId='cpkxfmdyvb'
