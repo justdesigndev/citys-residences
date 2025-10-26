@@ -8,6 +8,7 @@ import { Link } from '@/components/utility/link'
 import { navigationConfig } from '@/lib/constants'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useNavigation } from '@/hooks/useNavigation'
+import { ScrollableBox } from '../utility/scrollable-box'
 
 export const StickySidebar: React.FC = () => {
   const activeSection = useActiveSection()
@@ -62,9 +63,8 @@ export const StickySidebar: React.FC = () => {
     <>
       <div
         className={cn(
-          'hidden lg:block',
           'pointer-events-auto z-[var(--z-sticky-menu)] mix-blend-difference',
-          'flex flex-col',
+          'hidden flex-col lg:flex',
           'fixed left-16 top-1/2',
           '-translate-y-[40%]',
           'opacity-100 transition-opacity duration-300 ease-in-out',
@@ -95,39 +95,41 @@ export const StickySidebar: React.FC = () => {
           </div>
         ))}
       </div>
-      <div
-        className={cn(
-          'block lg:hidden',
-          'pointer-events-auto z-[var(--z-sticky-menu)] mix-blend-difference',
-          'flex flex-row',
-          'fixed left-4 top-0 translate-y-[90vh]',
-          'opacity-100 transition-opacity duration-300 ease-in-out',
-          isScrolledToBottom && 'pointer-events-none opacity-0'
-        )}
-      >
-        {items.map(item => (
+      <div className='fixed bottom-4 left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen mix-blend-difference lg:hidden'>
+        <ScrollableBox orientation='horizontal'>
           <div
             className={cn(
-              'relative h-px w-32 flex-shrink-0 transition-all duration-300 ease-in-out',
-              'before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:bg-white before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
-              'hover:before:w-1',
-              {
-                'before:w-[3px]': activeSection === item.id,
-              }
+              'pointer-events-auto',
+              'flex flex-row lg:hidden',
+              'opacity-100 transition-opacity duration-300 ease-in-out',
+              isScrolledToBottom && 'pointer-events-none opacity-0'
             )}
-            key={item.href}
           >
-            <Link
-              href={item.id === 'home' ? '/' : `#${item.id as string}`}
-              onClick={e => handleNavClick(e, item.id as string)}
-              className='absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
-            >
-              <span className='whitespace-nowrap font-primary font-[700] text-white xl:text-[0.6rem] 2xl:text-[0.8rem]'>
-                {item.label}
-              </span>
-            </Link>
+            {items.map(item => (
+              <div
+                className={cn(
+                  'relative h-8 w-32 flex-shrink-0 transition-all duration-300 ease-in-out first:ml-4 last:mr-4',
+                  'before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
+                  'hover:before:w-1',
+                  {
+                    'before:h-[3px]': activeSection === item.id,
+                  }
+                )}
+                key={item.href}
+              >
+                <Link
+                  href={item.id === 'home' ? '/' : `#${item.id as string}`}
+                  onClick={e => handleNavClick(e, item.id as string)}
+                  className='absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
+                >
+                  <span className='whitespace-nowrap font-primary text-[0.7rem] font-[700] text-white'>
+                    {item.label}
+                  </span>
+                </Link>
+              </div>
+            ))}
           </div>
-        ))}
+        </ScrollableBox>
       </div>
     </>
   )

@@ -57,7 +57,7 @@ export function Footer() {
   return (
     <footer
       className={cn(
-        'pb-12 pt-16 sm:pb-16 sm:pt-20 lg:pb-16 lg:pt-32',
+        'overflow-hidden pb-12 pt-16 sm:pb-16 sm:pt-20 lg:pb-16 lg:pt-32',
         'relative bg-gradient-appointment-reversed'
       )}
       ref={footerRef}

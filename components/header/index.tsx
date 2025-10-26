@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Logo } from '@/components/icons'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 // import { Menu } from "@/components/menu"
-import { MenuX } from '@/components/menu-x'
+// import { MenuX } from '@/components/menu-x'
 import { useScrollStore } from '@/lib/store/scroll'
 import { colors } from '@/styles/config.mjs'
 import { ArrowLeft } from 'lucide-react'
@@ -135,7 +135,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                 data-ignore-click-away
               >
-                <div className='flex cursor-pointer items-center'>
+                {/* <div className='flex cursor-pointer items-center'>
                   <MenuX
                     className='hidden lg:block'
                     isOpen={false}
@@ -156,7 +156,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
                     width='30'
                     height='9'
                   />
-                </div>
+                </div> */}
               </button>
             ) : (
               <Link

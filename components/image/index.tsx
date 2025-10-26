@@ -1,7 +1,7 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { breakpoints } from '@/styles/config.mjs'
-import cn from 'clsx'
 import NextImage, { type ImageProps as NextImageProps } from 'next/image'
 import { forwardRef } from 'react'
 

@@ -48,7 +48,7 @@ export function QuoteWithVideo({
         )}
         style={{ backgroundColor: primaryColor }}
       >
-        <div className='col-start-0 col-span-24 flex items-center justify-between px-8 pt-48 lg:col-span-15 lg:col-start-5 lg:px-0 lg:pt-48'>
+        <div className='col-span-24 flex items-center justify-between px-8 pt-48 lg:col-span-15 lg:col-start-5 lg:px-0 lg:pt-48'>
           <div className='max-w-[80%] text-left lg:max-w-[50%]'>
             <h2
               className='relative font-primary text-2xl font-[400] lg:text-4xl lg:leading-snug'
@@ -85,7 +85,7 @@ export function QuoteWithVideo({
             )}
           </div>
         </div>
-        <div className='col-start-0 col-span-24 px-8 pb-32 pt-16 lg:col-span-15 lg:col-start-5 lg:px-0 lg:pb-32 lg:pt-16'>
+        <div className='col-span-24 px-8 pb-32 pt-16 lg:col-span-15 lg:col-start-5 lg:px-0 lg:pb-32 lg:pt-16'>
           <div className='group relative aspect-[16/9] w-full cursor-pointer overflow-hidden rounded-md text-red-400'>
             <FullScreenVideoDialog
               dialogTrigger={
