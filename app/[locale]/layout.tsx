@@ -9,11 +9,11 @@ import { Montserrat } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { GSAP } from '@/components/gsap'
-import { ModalContactForm } from '@/components/modal-contact-form'
 import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
-import { StickySidebar } from '@/components/sticky-sidebar'
 import { Scroller } from '@/components/scroller'
+import { StickySidebar } from '@/components/sticky-sidebar'
+import { ModalContactForm } from '@/components/modal-contact-form'
 // import { WebChat } from '@/components/web-chat'
 
 const montserrat = Montserrat({
