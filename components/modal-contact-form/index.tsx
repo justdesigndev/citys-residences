@@ -196,14 +196,14 @@ export function ModalContactForm() {
       ></button>
       {/* Form */}
       <div
-        className='fixed bottom-0 right-0 top-0 z-[var(--z-modal)] h-full w-[85vw] translate-x-[100%] bg-gradient-appointment'
+        className='fixed bottom-0 right-0 top-0 z-[var(--z-modal)] h-full w-full translate-x-[100%] bg-gradient-appointment lg:w-[85vw]'
         onClick={e => e.stopPropagation()}
         ref={formRef}
       >
         {/* Close Button */}
         <button
           className={cn(
-            'z-16 absolute left-0 top-20 h-16 w-16 -translate-x-full bg-white p-2 text-bricky-brick',
+            'absolute left-0 top-20 z-[var(--z-modal-content)] h-16 w-16 bg-white p-2 text-bricky-brick lg:-translate-x-full',
             'transition-opacity duration-700 ease-in-out',
             'flex items-center justify-center',
             {
@@ -221,9 +221,9 @@ export function ModalContactForm() {
         <button
           className={cn(
             'group',
-            'h-60 w-24 xl:h-60 xl:w-24 2xl:h-72 2xl:w-16',
-            'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-1/2',
-            'font-primary text-lg font-[500] tracking-[0.2em] text-white xl:text-base 2xl:text-xl',
+            'h-60 w-[3.5rem] lg:w-24 xl:h-60 xl:w-24 2xl:h-72 2xl:w-16',
+            'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-[0%] lg:-translate-y-1/2',
+            'font-primary text-base font-[500] tracking-[0.2em] text-white xl:text-base 2xl:text-xl',
             'flex cursor-pointer items-center justify-center',
             'relative overflow-hidden bg-gradient-button-hover transition-all duration-300',
             'before:absolute before:inset-0 before:bg-gradient-button before:opacity-0',
@@ -238,13 +238,14 @@ export function ModalContactForm() {
           ref={stickyBadgeRef}
           type='button'
         >
-          <span className='pointer-events-none relative z-10 block whitespace-nowrap xl:-rotate-90'>
+          <span className='pointer-events-none relative z-10 block -rotate-90 whitespace-nowrap'>
             {commonT('inquiry')}
           </span>
         </button>
-        <div className='flex h-full flex-col justify-center'>
-          <ScrollableBox className='flex flex-grow-0'>
-            <div className='relative flex h-full flex-col justify-center gap-12 px-16 py-8'>
+        {/* Content */}
+        <div className='absolute inset-0'>
+          <ScrollableBox className='flex h-full items-start'>
+            <div className='relative flex min-h-screen flex-col justify-center gap-12 px-8 py-8 pb-16 lg:px-16 lg:py-8 lg:pb-0'>
               <p
                 className={cn(
                   'max-w-[90%] font-primary font-[300] text-white',

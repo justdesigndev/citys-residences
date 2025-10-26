@@ -10,14 +10,14 @@ export function SectionContactForm({
   formTranslations: FormTranslations
 }) {
   return (
-    <section className='bg-gradient-appointment py-8 xl:py-40'>
+    <section className='bg-gradient-appointment py-12 xl:py-40'>
       <FadeInOnScroll delay={0.25}>
-        <div className='grid grid-cols-12 px-4 lg:col-start-4 lg:grid-cols-24 lg:px-16'>
-          <div className='col-span-12 mb-12 lg:col-span-18 lg:col-start-6 lg:mb-24'>
+        <div className='grid grid-cols-12 px-8 lg:col-start-4 lg:grid-cols-24 lg:px-16'>
+          <div className='col-span-12 mb-12 lg:col-span-18 lg:col-start-6 lg:mb-16'>
             <h3
               className={cn(
                 'mb-4 font-primary font-[400] text-white lg:mb-4',
-                'text-6xl/tight lg:text-6xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
+                'text-4xl/tight lg:text-6xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
               )}
             >
               Randevu al
@@ -25,16 +25,15 @@ export function SectionContactForm({
             <p
               className={cn(
                 'max-w-[90%] font-primary font-[300] text-white',
-                'text-2xl lg:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-2xl',
-                'leading-snug lg:leading-snug xl:leading-snug 2xl:leading-snug',
-                'xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
+                'text-base/snug lg:text-xl/snug xl:text-xl/snug 2xl:text-2xl/snug 3xl:text-2xl/snug',
+                'lg:max-w-sm xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
               )}
             >
               Ekibimizin sizinle iletişime geçebilmesi için lütfen kayıt formunu
               doldurunuz.
             </p>
           </div>
-          <div className='col-span-12 lg:col-span-18 lg:col-start-6'>
+          <div className='col-span-12 pb-12 lg:col-span-18 lg:col-start-6 xl:pb-0'>
             <ContactForm translations={formTranslations} />
           </div>
         </div>

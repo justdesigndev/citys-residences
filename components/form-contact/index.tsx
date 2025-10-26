@@ -8,21 +8,12 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import { Control, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { IconCheck, IconLoading } from '@/components/icons'
 import { InternationalPhoneInputComponent } from '@/components/international-phone-input'
 import {
   MultiSelectCheckboxes,
   MultiSelectCheckboxesRef,
 } from '@/components/multi-select-checkboxes'
 import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
 import {
   Form,
   FormControl,
@@ -34,7 +25,6 @@ import {
 import { Input } from '@/components/ui/input'
 // import { submitContactForm } from '@/lib/api/submit-contact-form'
 import { cn, isPhoneValid } from '@/lib/utils'
-import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
 import {
   CalendarPlusIcon,
@@ -97,9 +87,6 @@ const getFormSchema = (translations: FormTranslations) => {
 
 export type FormValues = z.infer<ReturnType<typeof getFormSchema>>
 
-const commonInputStyles =
-  'bg-transparent text-white rounded-none transition-colors duration-300 ease-in-out placeholder:text-tangerine-flake placeholder:text-lg'
-
 interface FormInputProps {
   name: keyof FormValues
   control: Control<FormValues>
@@ -132,10 +119,10 @@ const FormInput = ({
             {...field}
             value={field.value?.toString() ?? ''}
             className={cn(
-              'rounded-none border-b border-white font-[300] placeholder:text-tangerine-flake',
+              'rounded-none border-b border-white font-[300]',
+              'text-white placeholder:text-tangerine-flake',
               'placeholder:text-sm xl:placeholder:text-sm 2xl:placeholder:text-lg',
-              'lg:text-sm xl:text-sm 2xl:text-lg',
-              commonInputStyles,
+              'text-sm lg:text-sm xl:text-sm 2xl:text-lg',
               className
             )}
             onChange={e => {
@@ -192,7 +179,6 @@ export function ContactForm({ translations }: FormContactProps) {
   const { showMessage } = useFormMessage()
   // const locale = useLocale() // Uncomment when using real API
   const t = useTranslations()
-  const [successDialog, setSuccessDialog] = useState(false)
 
   const residenceTypeDropdownRef = useRef<MultiSelectCheckboxesRef>(null)
   const howDidYouHearAboutUsDropdownRef = useRef<MultiSelectCheckboxesRef>(null)
@@ -269,7 +255,7 @@ export function ContactForm({ translations }: FormContactProps) {
         resetDropdowns()
         form.reset()
         form.clearErrors()
-        setSuccessDialog(true)
+        showMessage('success', 'Form submitted successfully')
       } else {
         showMessage('error', result.message)
       }
@@ -480,11 +466,11 @@ export function ContactForm({ translations }: FormContactProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(data => mutation.mutate(data))}
-          className='flex flex-col gap-6 py-10 font-primary lg:py-0'
           noValidate
         >
-          <div className='grid grid-cols-12 lg:grid-cols-24'>
-            <div className='col-span-12 flex flex-col justify-between gap-16 lg:col-span-14 xl:col-span-15 xl:gap-8 xl:pr-16 2xl:col-span-15 2xl:gap-12 2xl:pr-20 3xl:col-span-14'>
+          <div className='grid grid-cols-12 items-start gap-y-12 xl:grid-cols-24'>
+            {/* name and surname */}
+            <div className='col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
               <div className='flex grid-flow-col flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-6'>
                 <FormInput
                   label={translations.inputs.name.label}
@@ -545,102 +531,9 @@ export function ContactForm({ translations }: FormContactProps) {
                   )}
                 />
               </div>
-              <div className='space-y-5'>
-                <div className='space-y-3'>
-                  <FormField
-                    control={form.control}
-                    name='consentElectronicMessage'
-                    render={({ field }) => (
-                      <FormItem>
-                        <div className='group flex flex-row gap-2 space-y-0'>
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={checked => {
-                                field.onChange(checked)
-                                handleConsentElectronicMessageChange(
-                                  checked as boolean
-                                )
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className='max-w-[90%] cursor-pointer text-base font-[300] leading-snug text-white xl:text-sm 2xl:text-base'>
-                            {t.rich(
-                              'contact.form.inputs.consentElectronicMessage.placeholder',
-                              {
-                                legal4: chunks => (
-                                  <a
-                                    target='_blank'
-                                    rel='norefferer noopener'
-                                    href='/pdf/citys-residences-acik-riza-beyani.pdf'
-                                    className='font-[400] text-white underline'
-                                  >
-                                    {chunks}
-                                  </a>
-                                ),
-                              }
-                            )}
-                          </FormLabel>
-                        </div>
-                        <FormMessage className='text-white' />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <FormField
-                  control={form.control}
-                  name='consent'
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className='group flex flex-row gap-2 space-y-0'>
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
-                        <FormLabel className='max-w-[90%] cursor-pointer text-base font-[300] leading-snug text-white xl:text-sm 2xl:text-base'>
-                          {t.rich('contact.form.inputs.consent.placeholder', {
-                            legal1: chunks => (
-                              <a
-                                target='_blank'
-                                rel='norefferer noopener'
-                                href='/pdf/citys-residences-kvkk-aydinlatma-metni.pdf'
-                                className='font-[400] text-white underline'
-                              >
-                                {chunks}
-                              </a>
-                            ),
-                            legal2: chunks => (
-                              <a
-                                target='_blank'
-                                rel='norefferer noopener'
-                                href='/pdf/citys-residences-acik-riza-metni.pdf'
-                                className='font-[400] text-white underline'
-                              >
-                                {chunks}
-                              </a>
-                            ),
-                            legal3: chunks => (
-                              <a
-                                target='_blank'
-                                rel='norefferer noopener'
-                                href='/pdf/citys-residences-ticari-elektronik-ileti-aydinlatma-metni.pdf'
-                                className='font-[400] text-white underline'
-                              >
-                                {chunks}
-                              </a>
-                            ),
-                          })}
-                        </FormLabel>
-                      </div>
-                      <FormMessage className='text-white' />
-                    </FormItem>
-                  )}
-                />
-              </div>
             </div>
-            <div className='col-span-12 flex flex-col justify-between gap-16 lg:col-span-10 xl:col-span-9 xl:gap-8 2xl:col-span-9 2xl:gap-12 3xl:col-span-9'>
+            {/* how did you hear about us */}
+            <div className='col-span-12 space-y-8 xl:col-span-9'>
               <FormField
                 control={form.control}
                 name='howDidYouHearAboutUs'
@@ -697,60 +590,133 @@ export function ContactForm({ translations }: FormContactProps) {
                   </FormItem>
                 )}
               />
-              <div className='ml-auto mt-auto flex flex-col items-start justify-between gap-12 lg:flex-row lg:gap-0 xl:mb-8'>
-                <button
-                  type='submit'
-                  disabled={mutation.isPending}
-                  className='group relative flex items-center'
-                >
-                  <span className='whitespace-nowrap text-sm tracking-[0.4em] text-white lg:text-lg xl:px-6 xl:text-sm 2xl:px-8 2xl:text-lg'>
-                    {translations.submit.default}
-                  </span>
-                  <span
-                    className={cn(
-                      'relative flex flex-shrink-0 items-center justify-center overflow-hidden bg-gradient-submit-button text-white transition-all duration-500 group-hover:text-bleeding-crimson xl:size-16 2xl:size-20 3xl:size-24',
-                      'before:absolute before:inset-0 before:bg-gradient-submit-button-hover before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100'
+            </div>
+            {/* consent */}
+            <div className='col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
+              <div className='space-y-5'>
+                <div className='space-y-3'>
+                  <FormField
+                    control={form.control}
+                    name='consentElectronicMessage'
+                    render={({ field }) => (
+                      <FormItem>
+                        <div className='group flex flex-row gap-2 space-y-0'>
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={checked => {
+                                field.onChange(checked)
+                                handleConsentElectronicMessageChange(
+                                  checked as boolean
+                                )
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className='cursor-pointer text-sm font-[300] leading-snug text-white xl:max-w-[90%] xl:text-sm 2xl:text-base'>
+                            {t.rich(
+                              'contact.form.inputs.consentElectronicMessage.placeholder',
+                              {
+                                legal4: chunks => (
+                                  <a
+                                    target='_blank'
+                                    rel='norefferer noopener'
+                                    href='/pdf/citys-residences-acik-riza-beyani.pdf'
+                                    className='font-[400] text-white underline'
+                                  >
+                                    {chunks}
+                                  </a>
+                                ),
+                              }
+                            )}
+                          </FormLabel>
+                        </div>
+                        <FormMessage className='text-white' />
+                      </FormItem>
                     )}
-                  >
-                    <CalendarPlusIcon
-                      weight='thin'
-                      className='relative z-10 xl:size-8 2xl:size-10 3xl:size-12'
-                    />
-                  </span>
-                  {mutation.isPending && (
-                    <span className='absolute -right-4 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-full items-center justify-center'>
-                      <IconLoading fill={colors['bricky-brick']} />
-                    </span>
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name='consent'
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className='group flex flex-row gap-2 space-y-0'>
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <FormLabel className='cursor-pointer text-sm font-[300] leading-snug text-white xl:max-w-[90%] xl:text-sm 2xl:text-base'>
+                          {t.rich('contact.form.inputs.consent.placeholder', {
+                            legal1: chunks => (
+                              <a
+                                target='_blank'
+                                rel='norefferer noopener'
+                                href='/pdf/citys-residences-kvkk-aydinlatma-metni.pdf'
+                                className='font-[400] text-white underline'
+                              >
+                                {chunks}
+                              </a>
+                            ),
+                            legal2: chunks => (
+                              <a
+                                target='_blank'
+                                rel='norefferer noopener'
+                                href='/pdf/citys-residences-acik-riza-metni.pdf'
+                                className='font-[400] text-white underline'
+                              >
+                                {chunks}
+                              </a>
+                            ),
+                            legal3: chunks => (
+                              <a
+                                target='_blank'
+                                rel='norefferer noopener'
+                                href='/pdf/citys-residences-ticari-elektronik-ileti-aydinlatma-metni.pdf'
+                                className='font-[400] text-white underline'
+                              >
+                                {chunks}
+                              </a>
+                            ),
+                          })}
+                        </FormLabel>
+                      </div>
+                      <FormMessage className='text-white' />
+                    </FormItem>
                   )}
-                </button>
+                />
               </div>
+            </div>
+            {/* submit button */}
+            <div className='col-span-12 flex space-y-8 xl:col-span-9 2xl:pr-20'>
+              <button
+                type='submit'
+                disabled={mutation.isPending}
+                className='group relative flex w-full items-center justify-between lg:ml-auto lg:w-auto lg:justify-end'
+              >
+                <span className='whitespace-nowrap px-4 text-sm tracking-[0.4em] text-white lg:text-lg xl:px-6 xl:text-sm 2xl:px-8 2xl:text-lg'>
+                  {translations.submit.default}
+                </span>
+                <span
+                  className={cn(
+                    'relative flex flex-shrink-0 items-center justify-center overflow-hidden',
+                    'bg-gradient-submit-button text-white transition-all duration-500 group-hover:text-bleeding-crimson',
+                    'size-[3.5rem] p-2 xl:size-16 2xl:size-20 3xl:size-24',
+                    'before:absolute before:inset-0 before:bg-gradient-submit-button-hover before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100'
+                  )}
+                >
+                  <CalendarPlusIcon
+                    weight='thin'
+                    className='z-10 h-full w-full'
+                    pointerEvents='none'
+                  />
+                </span>
+              </button>
             </div>
           </div>
         </form>
       </Form>
-      <Dialog open={successDialog} onOpenChange={setSuccessDialog}>
-        <DialogContent className='flex flex-col items-center justify-center py-8 font-primary'>
-          <DialogHeader>
-            <DialogTitle className='mb-2 flex flex-col items-center gap-2 text-center text-lg font-medium leading-none text-white lg:text-lg'>
-              <div className='flex h-9 w-9 items-center justify-center'>
-                <IconCheck />
-              </div>
-              {translations.messages.successDialog.title}
-            </DialogTitle>
-            <DialogDescription className='block pb-10 text-center text-sm font-normal leading-none text-white lg:text-lg'>
-              {translations.messages.successDialog.description}
-            </DialogDescription>
-            <DialogClose asChild>
-              <button
-                className='text-sm text-white underline lg:text-lg'
-                type='button'
-              >
-                {translations.messages.successDialog.button}
-              </button>
-            </DialogClose>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </>
   )
 }
