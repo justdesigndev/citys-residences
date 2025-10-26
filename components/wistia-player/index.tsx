@@ -302,7 +302,7 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
   return (
     <div
       className={cn(
-        'relative h-full w-full overflow-hidden bg-opacity-10 bg-gradient-appointment',
+        'relative h-full w-screen overflow-hidden bg-opacity-10 bg-gradient-appointment lg:w-full',
         className
       )}
       aria-label='Video player'

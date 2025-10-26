@@ -34,7 +34,7 @@ export default async function Page({
       <section
         className={cn(
           'relative z-10 h-[100vh] overflow-hidden',
-          'before:absolute before:bottom-0 before:left-0 before:z-20 before:h-[200px] before:w-full before:bg-gradient-to-t before:from-black/80 before:to-transparent',
+          'before:absolute before:bottom-0 before:left-0 before:z-20 before:h-[300px] before:w-full before:bg-gradient-to-t before:from-black/90 before:to-transparent lg:before:h-[200px]',
           'after:absolute after:left-0 after:top-0 after:z-20 after:h-[200px] after:w-full after:bg-gradient-to-b after:from-black/50 after:to-transparent'
         )}
         id={navigationConfig['/']?.id}
@@ -118,13 +118,11 @@ export default async function Page({
       </section>
       <div
         className={cn(
-          'relative z-20 bg-white',
-          'after:absolute after:left-0 after:top-0 after:z-20 after:h-[70px] after:w-full after:bg-gradient-to-b after:from-black/70 after:to-transparent lg:after:hidden'
+          'relative z-20 bg-white'
+          // 'after:absolute after:left-0 after:top-0 after:z-20 after:h-[70px] after:w-full after:bg-gradient-to-b after:from-black/70 after:to-transparent lg:after:hidden'
         )}
       >
-        <div className='absolute inset-0'>
-          <SectionSetter sectionId={navigationConfig['/']?.id || ''} />
-        </div>
+        <SectionSetter sectionId={navigationConfig['/']?.id || ''} />
         <section className='relative py-12 lg:py-12'>
           <div className='relative ml-0 flex flex-col items-center justify-center gap-8 py-12 lg:flex-row xl:ml-32 xl:gap-32 xl:py-28'>
             <div className='flex w-full flex-shrink-0 flex-col items-center gap-2 lg:gap-2 xl:w-[700px]'>
