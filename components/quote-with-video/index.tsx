@@ -1,5 +1,3 @@
-'use client'
-
 import { cn } from '@/lib/utils'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
@@ -8,7 +6,7 @@ import {
   BlueprintIcon,
   PlayCircleIcon,
   QuotesIcon,
-} from '@phosphor-icons/react'
+} from '@phosphor-icons/react/dist/ssr'
 import { FullScreenVideoDialog } from '@/components/dialogs/full-screen-video-dialog'
 
 export interface QuoteWithVideoProps {
