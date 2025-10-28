@@ -14,7 +14,6 @@ import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
 import { Scroller } from '@/components/scroller'
 import { StickySidebar } from '@/components/sticky-sidebar'
-import { WebChat } from '@/components/web-chat'
 // import { WebChat } from '@/components/web-chat'
 
 // const montserrat = Montserrat({
@@ -152,6 +151,10 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <head>
         <StyleVariables colors={colors} themes={themes} />
+        {/* Wistia CDN Resource Hints for faster video loading */}
+        <link rel='preconnect' href='https://fast.wistia.com' />
+        <link rel='preconnect' href='https://embedwistia-a.akamaihd.net' />
+        <link rel='dns-prefetch' href='https://fast.wistia.com' />
       </head>
       <body
         className={`${montaguSlab.variable} ${suisseIntl.variable} ${copperplate.variable} antialiased`}
@@ -172,7 +175,7 @@ export default async function LocaleLayout({
           </ReactQueryProvider>
         </NextIntlClientProvider>
         <GSAP scrollTrigger={true} />
-        <WebChat key={locale} locale={locale} />
+        {/* <WebChat key={locale} locale={locale} /> */}
       </body>
     </html>
   )
