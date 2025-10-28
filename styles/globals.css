@@ -28,15 +28,13 @@
   --z-sticky: z-stack();
   --z-header: z-stack();
   --z-header-content: z-stack();
-  --z-menu: z-stack();
-  --z-menu-submenu: z-stack();
-  --z-menu-close-button: z-stack();
-  --z-popup: z-stack();
-  --z-sticky-menu: z-stack();
-  --z-alotech: z-stack();
-  --z-modal-background: z-stack();
+  --z-modal-overlay: z-stack();
+  --z-modal-contact-form: z-stack();
   --z-modal: z-stack();
   --z-modal-content: z-stack();
+  --z-modal-close-button: z-stack();
+  --z-popup: z-stack();
+  --z-sticky-menu: z-stack();
   --z-radix-popper: z-stack();
   --z-preloader: z-stack();
   --z-gsap-markers: z-stack();
@@ -210,7 +208,42 @@ body {
   --border-width: 1px;
   position: relative;
   box-sizing: border-box;
-  background: linear-gradient(146.41deg, #99170f 60%, #ffffff 242.33%);
+  background: linear-gradient(
+    146.41deg,
+    var(--bricky-brick) 60%,
+    #ffffff 242.33%
+  );
+  background-clip: padding-box;
+  border: solid var(--border-width) transparent;
+  border-radius: 0.25em;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: calc(var(--border-width) * -1);
+    border-radius: inherit;
+    background: linear-gradient(
+      132.66deg,
+      #ffffff -46.82%,
+      rgba(255, 255, 255, 0) 47.43%
+    );
+  }
+}
+
+.border-radius-gradient-gray {
+  --border-width: 1px;
+  position: relative;
+  box-sizing: border-box;
+  background: linear-gradient(
+    146.41deg,
+    rgba(198, 198, 198, 0) 22.01%,
+    #ffffff 242.33%
+  );
   background-clip: padding-box;
   border: solid var(--border-width) transparent;
   border-radius: 0.25em;

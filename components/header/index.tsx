@@ -1,60 +1,37 @@
 'use client'
 
-import { Link, Locale, Link as LocalizedLink } from '@/i18n/routing'
-import {
-  getNavigationItems,
-  initialScroll,
-  NavigationMetadata,
-} from '@/lib/constants'
+import { Link, Link as LocalizedLink } from '@/i18n/routing'
+import { initialScroll } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import Lenis from 'lenis'
 import { useLenis } from 'lenis/react'
+import { ArrowLeft } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { ArrowLeft } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
 
 import { Logo } from '@/components/icons'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Menu } from '@/components/menu'
-import { MenuX } from '@/components/menu-x'
-import { useScrollStore } from '@/lib/store/scroll'
+import { useUiStore } from '@/lib/store/ui'
 import { colors } from '@/styles/config.mjs'
+import { ListIcon } from '@phosphor-icons/react'
 
 export function Header({ nonHome = false }: { nonHome?: boolean }) {
   const lenis = useLenis()
-  const {
-    menu: { isOpen: menuOpen },
-    setMenuOpen,
-    setLenis,
-  } = useScrollStore()
-
-  // Set lenis instance in the scroll store
-  useEffect(() => {
-    if (lenis) {
-      setLenis(lenis)
-    }
-  }, [lenis, setLenis])
+  const { isMenuOpen, setIsMenuOpen } = useUiStore()
   const [scrollState, setScrollState] = useState({
     hidden: false,
     atTop: true,
   })
   const pathname = usePathname()
-  const t = useTranslations('common')
-  const locale = useLocale()
-
-  const navigationItems: NavigationMetadata[] = getNavigationItems(
-    t,
-    locale as Locale
-  )
 
   useEffect(() => {
-    return menuOpen ? lenis?.stop() : lenis?.start()
-  }, [lenis, menuOpen])
+    return isMenuOpen ? lenis?.stop() : lenis?.start()
+  }, [lenis, isMenuOpen])
 
   useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname, setMenuOpen])
+    setIsMenuOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     let prevDirection = 0
@@ -90,8 +67,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
         className={cn(
           'fixed left-0 right-0 top-0 z-[var(--z-header)] mix-blend-difference',
           'section-padding flex items-stretch',
-          'transition-all duration-300',
-          'pointer-events-none h-[var(--header-height-slim)] w-screen bg-transparent'
+          'pointer-events-none h-[var(--header-height-slim)] bg-transparent'
         )}
       >
         <div className='z-[var(--z-header-content)] flex flex-1 items-stretch justify-between px-6 lg:px-0'>
@@ -104,35 +80,13 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
             <LocaleSwitcher theme='dark' />
             {!nonHome ? (
               <button
-                className='pointer-events-none flex cursor-pointer items-center gap-2 lg:gap-4'
-                onClick={() => setMenuOpen(!menuOpen)}
+                className='pointer-events-auto cursor-pointer'
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
                 type='button'
-                aria-expanded={menuOpen}
-                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                data-ignore-click-away
+                aria-expanded={isMenuOpen}
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               >
-                <div className='flex cursor-pointer items-center'>
-                  <MenuX
-                    className='hidden lg:block'
-                    isOpen={false}
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    strokeWidth='2'
-                    color={colors.white}
-                    transition={{ type: 'spring', stiffness: 260, damping: 40 }}
-                    width='40'
-                    height='12'
-                  />
-                  <MenuX
-                    className='block lg:hidden'
-                    isOpen={false}
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    strokeWidth='2'
-                    color={colors.white}
-                    transition={{ type: 'spring', stiffness: 260, damping: 40 }}
-                    width='30'
-                    height='9'
-                  />
-                </div>
+                <ListIcon weight='thin' className='size-12 text-white' />
               </button>
             ) : (
               <Link
@@ -154,7 +108,7 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
           </div>
         </div>
       </header>
-      <Menu items={navigationItems} />
+      <Menu />
     </>
   )
 }

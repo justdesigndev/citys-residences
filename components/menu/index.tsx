@@ -1,59 +1,73 @@
 'use client'
 
-import { gsap, useGSAP } from '@/components/gsap'
+import { gsap } from '@/components/gsap'
 import { cn } from '@/lib/utils'
+import { useGSAP } from '@gsap/react'
 import { useLenis } from 'lenis/react'
-import { ChevronRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
-import { useClickAway } from 'react-use'
 
-import { IconWrapper } from '@/components/icon-wrapper'
-import { socialIcons } from '@/components/icons'
-import { Img } from '@/components/utility/img'
-import { ScrollableBox } from '@/components/utility/scrollable-box'
-import { citysIstanbulAvmGoogleMaps, NavigationMetadata } from '@/lib/constants'
-import { useScrollStore } from '@/lib/store/scroll'
-import { colors } from '@/styles/config.mjs'
+import { Link } from '@/components/utility/link'
+import { useEsc } from '@/hooks/useEsc'
+import { citysIstanbulAvmGoogleMaps } from '@/lib/constants'
+import { useUiStore } from '@/lib/store/ui'
+import {
+  CalendarPlusIcon,
+  CaretRightIcon,
+  FacebookLogoIcon,
+  HeadsetIcon,
+  InstagramLogoIcon,
+  MapPinPlusIcon,
+  XLogoIcon,
+  YoutubeLogoIcon,
+} from '@phosphor-icons/react'
+import { MenuNavList } from './menu-nav-list'
 
-interface MenuProps {
-  items: NavigationMetadata[]
-}
-
-export function Menu({ items }: MenuProps) {
+export function Menu() {
+  const t = useTranslations('common')
+  const { isMenuOpen, setIsMenuOpen } = useUiStore()
+  const overlayRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
-  const menuTL = useRef<gsap.core.Timeline>()
+  const animationTL = useRef<gsap.core.Timeline>()
   const lenis = useLenis()
 
-  // Use the new unified scroll store
-  const {
-    menu: { isOpen: open },
-    setMenuOpen: setOpen,
-    scrollToCard,
-    smoothScrollWithWrapper,
-  } = useScrollStore()
+  // useClickAway(menuRef, e => {
+  //   if (!open) return
+  //   if ((e.target as HTMLElement).closest('[data-ignore-click-away]')) {
+  //     return
+  //   }
+  //   onClose()
+  // })
 
-  useClickAway(menuRef, e => {
-    if ((e.target as HTMLElement).closest('[data-ignore-click-away]')) {
-      return
-    }
-    setOpen(false)
-  })
+  useEsc(() => setIsMenuOpen(!isMenuOpen), isMenuOpen)
 
   useGSAP(
     () => {
-      menuTL.current = gsap.timeline({
+      animationTL.current = gsap.timeline({
         paused: true,
       })
 
-      menuTL.current.fromTo(
-        menuRef.current,
-        { translateX: '100%' },
-        {
-          translateX: '0%',
-          duration: 0.8,
-          ease: 'expo.inOut',
-        }
-      )
+      animationTL.current
+        ?.fromTo(
+          overlayRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 0.4,
+            ease: 'power2.out',
+          },
+          's'
+        )
+        .fromTo(
+          menuRef.current,
+          { x: '100%' },
+          {
+            x: 0,
+            duration: 0.6,
+            ease: 'expo.inOut',
+          },
+          's'
+        )
     },
     {
       revertOnUpdate: true,
@@ -62,177 +76,128 @@ export function Menu({ items }: MenuProps) {
 
   useGSAP(
     () => {
-      if (open) {
-        menuTL.current?.play()
+      if (isMenuOpen) {
+        animationTL.current?.play()
         lenis?.stop()
       } else {
-        menuTL.current?.reverse().then(() => {
-          lenis?.start()
-        })
+        animationTL.current?.reverse()
+        lenis?.start()
       }
     },
     {
-      dependencies: [open, lenis],
+      dependencies: [isMenuOpen, lenis],
     }
   )
 
-  const handleScroll = (id: string) => {
-    if (id.includes('stacking-cards')) {
-      const cardIndex = parseInt(id.split('-')[2])
-      smoothScrollWithWrapper(() => scrollToCard(cardIndex, true))
-    } else {
-      smoothScrollWithWrapper(() =>
-        lenis?.scrollTo(`#${id}`, { immediate: true })
-      )
-    }
-  }
-
-  const handleMenuItemClick = (id: string) => {
-    handleScroll(id)
-  }
-
   return (
     <>
+      {/* Overlay */}
+      <button
+        className={cn(
+          'fixed left-0 top-0 z-[var(--z-modal-overlay)] block h-full w-full opacity-0',
+          {
+            'pointer-events-none': !isMenuOpen,
+            'pointer-events-auto': isMenuOpen,
+          }
+        )}
+        ref={overlayRef}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        type='button'
+      ></button>
+      {/* Menu */}
       <div
         className={cn(
-          'fixed bottom-0 right-0 top-0 z-[var(--z-menu)] translate-x-full',
-          'w-screen lg:w-[60vw]',
+          'fixed bottom-0 right-0 top-0',
+          'h-full w-full translate-x-[100%] lg:w-[80vw] xl:w-[60vw]',
           'blur-bg-white-2',
-          'pb-10 pl-24 pr-16 pt-20'
+          'py-8 pl-8 pr-8 lg:py-20 lg:pl-16 lg:pr-20 xl:pl-24 xl:pr-24',
+          'flex flex-col',
+          'z-[var(--z-modal)]'
         )}
+        onClick={e => e.stopPropagation()}
         ref={menuRef}
-        data-ignore-click-away
       >
+        {/* close button */}
         <button
           className={cn(
-            'z-16 absolute left-0 top-2 h-16 w-16 -translate-x-full bg-white p-2 text-bricky-brick lg:top-20',
+            'absolute right-0 top-28 lg:left-0 lg:right-auto lg:top-20 lg:-translate-x-full',
+            'size-12 p-4 lg:size-20 xl:size-16',
+            'z-[var(--z-modal-close-button)] bg-bricky-brick text-white',
             'opacity-0 transition-opacity duration-700 ease-in-out',
             'flex items-center justify-center',
             {
-              'opacity-100': open,
+              'pointer-events-auto opacity-100': isMenuOpen,
+              'pointer-events-none opacity-0': !isMenuOpen,
             }
           )}
-          onClick={() => setOpen(false)}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
           type='button'
+          disabled={!isMenuOpen}
         >
-          <ChevronRight className='h-8 w-8' />
+          <CaretRightIcon className='size-full' weight='thin' />
           <span className='sr-only'>Close</span>
         </button>
         <div className='flex justify-between gap-24'>
-          <div className='flex lg:items-end' data-lenis-prevent>
-            <ScrollableBox>
-              <nav className='flex h-full w-full items-end justify-center lg:justify-start'>
-                <ul
-                  className={cn(
-                    'flex w-full flex-col items-stretch gap-3 lg:gap-3 xl:gap-3 2xl:gap-4 3xl:gap-4'
-                  )}
-                >
-                  {items.map(item => (
-                    <li
-                      className={cn(
-                        'flex items-center justify-between gap-2',
-                        'text-xl lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl',
-                        'text-center font-primary font-[300] text-white lg:text-left',
-                        {
-                          'text-6xl lg:text-6xl xl:text-6xl 2xl:text-6xl 3xl:text-6xl':
-                            item.mainRoute,
-                        }
-                      )}
-                      key={item.title}
-                    >
-                      <span
-                        className='block cursor-pointer whitespace-nowrap'
-                        onClick={() => handleMenuItemClick(item.id)}
-                      >
-                        {item.title}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </ScrollableBox>
-          </div>
-          <div className='flex flex-1 flex-col gap-8'>
-            <div className='relative h-72 w-full overflow-hidden'>
-              <Img
-                src='/img/citys-istanbul-avm-hero.jpg'
-                alt="City's Istanbul AVM"
-                fill
-                sizes='40vw'
-                loading='lazy'
-                className='object-cover'
-              />
-            </div>
-            <p
-              className={cn(
-                'flex items-center justify-between gap-2',
-                'text-xl lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl',
-                'text-center font-primary font-[300] text-white lg:text-left'
-              )}
-            >
-              Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize
-              ayırarak keyifle, yaşamı sanata dönüştürerek daha çok yaşa.
-            </p>
+          <div className='flex lg:items-end'>
+            <MenuNavList />
           </div>
         </div>
-        <div className='flex items-end justify-between'>
-          <div className='flex flex-col items-start'>
-            <div className='grid w-[300px] grid-cols-4 gap-2 lg:gap-2 xl:gap-2'>
-              <IconWrapper
-                className={cn(
-                  'aspect-square w-full cursor-pointer opacity-70 transition-opacity',
-                  'hover:opacity-100'
-                )}
-              >
-                {socialIcons(colors.white).instagram}
-              </IconWrapper>
-              <IconWrapper
-                className={cn(
-                  'aspect-square w-full cursor-pointer opacity-70 transition-opacity',
-                  'hover:opacity-100'
-                )}
-              >
-                {socialIcons(colors.white).facebook}
-              </IconWrapper>
-              <IconWrapper
-                className={cn(
-                  'aspect-square w-full cursor-pointer opacity-70 transition-opacity',
-                  'hover:opacity-100'
-                )}
-              >
-                {socialIcons(colors.white).tiktok}
-              </IconWrapper>
-              <IconWrapper
-                className={cn(
-                  'aspect-square w-full cursor-pointer opacity-70 transition-opacity',
-                  'hover:opacity-100'
-                )}
-              >
-                {socialIcons(colors.white).youtube}
-              </IconWrapper>
-            </div>
+        <div className='mt-12 flex flex-col items-end justify-between gap-16 lg:mt-auto lg:flex-row'>
+          <div className='mr-auto flex gap-4'>
+            <FacebookLogoIcon
+              weight='fill'
+              className='size-9 text-white xl:size-8'
+            />
+            <InstagramLogoIcon
+              weight='fill'
+              className='size-9 text-white xl:size-8'
+            />
+            <XLogoIcon weight='fill' className='size-9 text-white xl:size-8' />
+            <YoutubeLogoIcon
+              weight='fill'
+              className='size-9 text-white xl:size-8'
+            />
           </div>
-          <div className='flex items-center justify-between gap-2'>
-            <div className='border-gradient-white h-40 w-40 rounded-sm'>
-              Randevu Oluştur
+          {/* buttons */}
+          <div className='mr-auto flex flex-col lg:ml-auto lg:mr-0'>
+            <div className='grid grid-cols-3 gap-2 sm:gap-3 lg:gap-3'>
+              <button className='border-radius-gradient-gray flex aspect-[14/16] flex-col px-3 py-4 sm:gap-6 lg:px-3 lg:py-5'>
+                <CalendarPlusIcon
+                  weight='thin'
+                  className='size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
+                />
+                <span className='mt-auto text-left font-primary text-sm font-[400] leading-tight text-white sm:text-sm lg:text-base'>
+                  {t.rich('createAppointment', {
+                    br: () => <br />,
+                  })}
+                </span>
+              </button>
+              <button className='border-radius-gradient-gray flex aspect-[14/16] flex-col px-3 py-4 sm:gap-6 lg:px-3 lg:py-5'>
+                <HeadsetIcon
+                  weight='thin'
+                  className='size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
+                />
+                <span className='mt-auto text-left font-primary text-sm font-[400] leading-tight text-white sm:text-sm lg:text-base'>
+                  {t.rich('speakWithRepresentative', {
+                    br: () => <br />,
+                  })}
+                </span>
+              </button>
+              <Link
+                href={citysIstanbulAvmGoogleMaps}
+                className='border-radius-gradient-gray flex aspect-[14/16] flex-col px-3 py-4 sm:gap-6 lg:px-3 lg:py-5'
+              >
+                <MapPinPlusIcon
+                  weight='thin'
+                  className='size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
+                />
+                <span className='mt-auto text-left font-primary text-sm font-[400] leading-tight text-white sm:text-sm lg:text-base'>
+                  {t.rich('getDirections', {
+                    br: () => <br />,
+                  })}
+                </span>
+              </Link>
             </div>
-            <div className='border-gradient-white h-40 w-40 rounded-sm'>
-              Temsilciyle Görüş
-            </div>
-            <a
-              href={citysIstanbulAvmGoogleMaps}
-              target='_blank'
-              rel='noopener noreferrer'
-              className={cn(
-                'block',
-                'transition-opacity duration-300 ease-in-out',
-                'opacity-100 hover:opacity-70',
-                'flex items-start gap-1',
-                'border-gradient-white h-40 w-40 rounded-sm'
-              )}
-            >
-              Yol Tarifi Al
-            </a>
           </div>
         </div>
       </div>

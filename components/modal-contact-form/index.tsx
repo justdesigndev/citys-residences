@@ -2,16 +2,17 @@
 
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
-import { ChevronRight } from 'lucide-react'
+import { useLenis } from 'lenis/react'
 import { useTranslations } from 'next-intl'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import { ContactForm } from '@/components/form-contact'
 import { gsap } from '@/components/gsap'
 import { ScrollableBox } from '@/components/utility/scrollable-box'
 import { useEsc } from '@/hooks/useEsc'
+import { useUiStore } from '@/lib/store/ui'
 import { FormTranslations } from '@/types'
-import { useLenis } from 'lenis/react'
+import { CaretRightIcon } from '@phosphor-icons/react'
 
 export function ModalContactForm() {
   const stickyBadgeRef = useRef<HTMLButtonElement>(null)
@@ -21,7 +22,7 @@ export function ModalContactForm() {
   const t = useTranslations('contact')
   const commonT = useTranslations('common')
   const lenis = useLenis()
-  const [open, setOpen] = useState(false)
+  const { isModalContactFormOpen, setIsModalContactFormOpen } = useUiStore()
 
   const formTranslations: FormTranslations = {
     inputs: {
@@ -128,17 +129,20 @@ export function ModalContactForm() {
     },
   }
 
-  const menuTL = useRef<gsap.core.Timeline>()
+  const animationTL = useRef<gsap.core.Timeline>()
 
-  useEsc(() => setOpen(false), open)
+  useEsc(
+    () => setIsModalContactFormOpen(!isModalContactFormOpen),
+    isModalContactFormOpen
+  )
 
   useGSAP(
     () => {
-      menuTL.current = gsap.timeline({
+      animationTL.current = gsap.timeline({
         paused: true,
       })
 
-      menuTL.current
+      animationTL.current
         ?.fromTo(
           overlayRef.current,
           { opacity: 0 },
@@ -167,16 +171,16 @@ export function ModalContactForm() {
 
   useGSAP(
     () => {
-      if (open) {
-        menuTL.current?.play()
+      if (isModalContactFormOpen) {
+        animationTL.current?.play()
         lenis?.stop()
       } else {
-        menuTL.current?.reverse().then(() => {})
+        animationTL.current?.reverse()
         lenis?.start()
       }
     },
     {
-      dependencies: [open, lenis],
+      dependencies: [isModalContactFormOpen, lenis],
     }
   )
 
@@ -185,45 +189,52 @@ export function ModalContactForm() {
       {/* Overlay */}
       <button
         className={cn(
-          'blur-bg fixed left-0 top-0 z-[var(--z-modal-background)] block h-full w-full opacity-0',
+          'blur-bg fixed left-0 top-0 z-[var(--z-modal-overlay)] block h-full w-full opacity-0',
           {
-            'pointer-events-none': !open,
+            'pointer-events-none': !isModalContactFormOpen,
+            'pointer-events-auto': isModalContactFormOpen,
           }
         )}
         ref={overlayRef}
-        onClick={() => setOpen(false)}
+        onClick={() => setIsModalContactFormOpen(!isModalContactFormOpen)}
         type='button'
       ></button>
       {/* Form */}
       <div
-        className='fixed bottom-0 right-0 top-0 z-[var(--z-modal)] h-full w-full translate-x-[100%] bg-gradient-appointment lg:w-[85vw]'
+        className={cn(
+          'fixed bottom-0 right-0 top-0',
+          'h-full w-full translate-x-[100%] lg:w-[85vw]',
+          'bg-gradient-appointment',
+          'z-[var(--z-modal-contact-form)]'
+        )}
         onClick={e => e.stopPropagation()}
         ref={formRef}
       >
         {/* Close Button */}
         <button
           className={cn(
-            'z-[var(--z-modal-content)] bg-white text-bricky-brick',
+            'z-[var(--z-modal-close-button)] bg-white text-bricky-brick',
             'absolute right-0 top-28 lg:left-0 lg:right-auto lg:top-20 lg:-translate-x-full',
             'size-12 p-3 lg:size-20',
             'transition-opacity duration-300 ease-in-out',
             'flex items-center justify-center',
             {
-              'opacity-0': !open,
-              'opacity-100': open,
+              'pointer-events-none opacity-0': !isModalContactFormOpen,
+              'pointer-events-auto opacity-100': isModalContactFormOpen,
             }
           )}
-          onClick={() => setOpen(false)}
+          onClick={() => setIsModalContactFormOpen(!isModalContactFormOpen)}
           type='button'
+          disabled={!isModalContactFormOpen}
         >
-          <ChevronRight className='size-full' />
+          <CaretRightIcon className='size-full' weight='thin' />
           <span className='sr-only'>Close</span>
         </button>
         {/* Trigger Button */}
         <button
           className={cn(
             'group',
-            'h-52 w-12 lg:w-16 xl:h-60 xl:w-16 2xl:h-72 2xl:w-20',
+            'h-52 w-12 lg:w-16 xl:h-60 xl:w-16 2xl:h-72 2xl:w-20 3xl:w-16',
             'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-[0%] lg:-translate-y-1/2',
             'font-primary font-[500] tracking-[0.2em] text-white',
             'text-sm xl:text-base 2xl:text-xl',
@@ -231,15 +242,16 @@ export function ModalContactForm() {
             'relative overflow-hidden bg-gradient-button-hover transition-all duration-300',
             'before:absolute before:inset-0 before:bg-gradient-button before:opacity-0',
             'before:transition-opacity before:duration-300 hover:before:opacity-100',
-            'transition-opacity duration-300 ease-in-out',
+            'transition-opacity duration-500 ease-in-out',
             {
-              'opacity-0': open,
-              'opacity-100': !open,
+              'pointer-events-none opacity-0': isModalContactFormOpen,
+              'pointer-events-auto opacity-100': !isModalContactFormOpen,
             }
           )}
-          onClick={() => setOpen(prev => !prev)}
+          onClick={() => setIsModalContactFormOpen(!isModalContactFormOpen)}
           ref={stickyBadgeRef}
           type='button'
+          disabled={isModalContactFormOpen}
         >
           <span className='pointer-events-none relative z-10 block -rotate-90 whitespace-nowrap'>
             {commonT('inquiry')}
