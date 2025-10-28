@@ -203,8 +203,10 @@ export function ModalContactForm() {
         {/* Close Button */}
         <button
           className={cn(
-            'absolute left-0 top-20 z-[var(--z-modal-content)] h-16 w-16 bg-white p-2 text-bricky-brick lg:-translate-x-full',
-            'transition-opacity duration-700 ease-in-out',
+            'z-[var(--z-modal-content)] bg-white text-bricky-brick',
+            'absolute right-0 top-28 lg:left-0 lg:right-auto lg:top-20 lg:-translate-x-full',
+            'size-12 p-3 lg:size-20',
+            'transition-opacity duration-300 ease-in-out',
             'flex items-center justify-center',
             {
               'opacity-0': !open,
@@ -214,21 +216,22 @@ export function ModalContactForm() {
           onClick={() => setOpen(false)}
           type='button'
         >
-          <ChevronRight className='size-8' />
+          <ChevronRight className='size-full' />
           <span className='sr-only'>Close</span>
         </button>
         {/* Trigger Button */}
         <button
           className={cn(
             'group',
-            'h-60 w-[3.5rem] lg:w-16 xl:h-60 xl:w-16 2xl:h-72 2xl:w-20',
+            'h-52 w-12 lg:w-16 xl:h-60 xl:w-16 2xl:h-72 2xl:w-20',
             'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-[0%] lg:-translate-y-1/2',
-            'font-primary text-base font-[500] tracking-[0.2em] text-white xl:text-base 2xl:text-xl',
+            'font-primary font-[500] tracking-[0.2em] text-white',
+            'text-sm xl:text-base 2xl:text-xl',
             'flex cursor-pointer items-center justify-center',
             'relative overflow-hidden bg-gradient-button-hover transition-all duration-300',
             'before:absolute before:inset-0 before:bg-gradient-button before:opacity-0',
             'before:transition-opacity before:duration-300 hover:before:opacity-100',
-            'transition-opacity duration-700 ease-in-out',
+            'transition-opacity duration-300 ease-in-out',
             {
               'opacity-0': open,
               'opacity-100': !open,
@@ -245,7 +248,12 @@ export function ModalContactForm() {
         {/* Content */}
         <div className='absolute inset-0'>
           <ScrollableBox className='flex h-full items-start'>
-            <div className='relative flex min-h-screen flex-col justify-center gap-12 px-8 py-8 pb-16 lg:px-16 lg:py-8 lg:pb-0'>
+            <div
+              className={cn(
+                'relative flex min-h-screen flex-col justify-center gap-12',
+                'px-8 py-12 pb-16 lg:px-16 lg:py-8 lg:pb-0'
+              )}
+            >
               <p
                 className={cn(
                   'max-w-[90%] font-primary font-[300] text-white',
