@@ -26,16 +26,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cms.citysresidences.com',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'citys-istanbul.com',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
         hostname: 'panel.citysresidences.com',
         pathname: '**',
       },
