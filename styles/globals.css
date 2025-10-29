@@ -117,10 +117,6 @@ body {
   backdrop-filter: blur(200px);
 }
 
-#Click2ConnectPackageFrame {
-  z-index: var(--z-alotech) !important;
-}
-
 [data-radix-popper-content-wrapper] {
   z-index: var(--z-radix-popper) !important;
 }
@@ -157,7 +153,7 @@ body {
 .description-bg {
   background: transparent;
 
-  @include-media ("tablet") {
+  @include-media ('tablet') {
     background: hsla(10, 66%, 43%, 0.2);
     backdrop-filter: blur(10px);
     mask-image: hsla(10, 66%, 43%, 0.2);
@@ -172,6 +168,11 @@ body {
 
 .cw-container {
   z-index: var(--z-alotech) !important;
+  display: none;
+
+  @include-media ('tablet') {
+    display: block;
+  }
 }
 
 .border-gradient-soft-light {

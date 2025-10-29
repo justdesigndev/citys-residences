@@ -103,6 +103,7 @@ export const StickySidebar: React.FC = () => {
         )}
       >
         <ScrollableBox
+          className='mr-8'
           orientation='horizontal'
           scrollTo={activeSection ? `[data-nav-id="${activeSection}"]` : null}
         >
@@ -116,7 +117,7 @@ export const StickySidebar: React.FC = () => {
             {items.map(item => (
               <div
                 className={cn(
-                  'relative h-8 w-32 flex-shrink-0 transition-all duration-300 ease-in-out first:ml-8 last:mr-8',
+                  'relative h-8 w-auto flex-shrink-0 transition-all duration-300 ease-in-out first:ml-8 last:mr-16',
                   'before:absolute before:bottom-0 before:left-0 before:h-0 before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
                   'hover:before:w-1',
                   {
@@ -129,9 +130,15 @@ export const StickySidebar: React.FC = () => {
                 <Link
                   href={item.id === 'home' ? '/' : `#${item.id as string}`}
                   onClick={e => handleNavClick(e, item.id as string)}
-                  className='absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
+                  className={cn(
+                    'cursor-pointer flex-col items-center justify-center px-8',
+                    {
+                      'text-[0.7rem]': activeSection === item.id,
+                      'text-[0.6rem]': activeSection !== item.id,
+                    }
+                  )}
                 >
-                  <span className='whitespace-nowrap font-primary text-[0.7rem] font-[700] text-white'>
+                  <span className='whitespace-nowrap font-primary font-[700] tracking-[0.2em] text-white'>
                     {item.label}
                   </span>
                 </Link>
