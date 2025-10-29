@@ -28,6 +28,7 @@
   --z-sticky: z-stack();
   --z-header: z-stack();
   --z-header-content: z-stack();
+  --z-webchat: z-stack();
   --z-modal-overlay: z-stack();
   --z-modal-contact-form: z-stack();
   --z-modal: z-stack();
@@ -39,7 +40,6 @@
   --z-preloader: z-stack();
   --z-gsap-markers: z-stack();
   --z-test-page: z-stack();
-  --z-alotech: z-stack();
 }
 
 * {
@@ -167,11 +167,11 @@ body {
 }
 
 .cw-container {
-  z-index: var(--z-alotech) !important;
-  display: none;
+  z-index: var(--z-webchat) !important;
+  display: none !important;
 
   @include-media ('tablet') {
-    display: block;
+    display: block !important;
   }
 }
 

@@ -22,7 +22,11 @@ export function ModalContactForm() {
   const t = useTranslations('contact')
   const commonT = useTranslations('common')
   const lenis = useLenis()
-  const { isModalContactFormOpen, setIsModalContactFormOpen } = useUiStore()
+  const {
+    isModalContactFormOpen,
+    setIsModalContactFormOpen,
+    isInquiryVisible,
+  } = useUiStore()
 
   const formTranslations: FormTranslations = {
     inputs: {
@@ -242,10 +246,12 @@ export function ModalContactForm() {
             'relative overflow-hidden bg-gradient-button-hover transition-all duration-300',
             'before:absolute before:inset-0 before:bg-gradient-button before:opacity-0',
             'before:transition-opacity before:duration-300 hover:before:opacity-100',
-            'transition-opacity duration-500 ease-in-out',
+            'transition-opacity duration-300 ease-in-out',
             {
-              'pointer-events-none opacity-0': isModalContactFormOpen,
-              'pointer-events-auto opacity-100': !isModalContactFormOpen,
+              'pointer-events-none opacity-0':
+                !isInquiryVisible || isModalContactFormOpen,
+              'pointer-events-auto opacity-100':
+                isInquiryVisible && !isModalContactFormOpen,
             }
           )}
           onClick={() => setIsModalContactFormOpen(!isModalContactFormOpen)}
