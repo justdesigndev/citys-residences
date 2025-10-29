@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils'
 import {
   FacebookLogoIcon,
-  YoutubeLogoIcon,
   InstagramLogoIcon,
   XLogoIcon,
+  YoutubeLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
@@ -18,10 +18,7 @@ import { WistiaPlayerWrapper } from '@/components/wistia-player'
 
 export function CitysTimes() {
   return (
-    <>
-      <SectionSetter
-        sectionId={navigationConfig['/citys-times']?.id as string}
-      />
+    <SectionSetter sectionId={navigationConfig['/citys-times']?.id as string}>
       <section className='pointer-events-none h-screen overflow-hidden lg:h-[45vw]'>
         <WistiaPlayerWrapper
           mediaId='luxxfpk3x3'
@@ -97,6 +94,6 @@ export function CitysTimes() {
           <ScrollToTop className='absolute bottom-24 left-1/2 -translate-x-1/2' />
         </div>
       </div>
-    </>
+    </SectionSetter>
   )
 }

@@ -2,7 +2,6 @@ import { cn } from '@/lib/utils'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
-import { SectionSetter } from '@/components/section-setter'
 import { SvgBgC } from '@/components/svgs/svg-bg-c'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
@@ -48,7 +47,6 @@ export function PageTitle(props: PageTitleProps) {
         )}
         id={id}
       >
-        <SectionSetter sectionId={id} />
         <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 text-[var(--theme-tertiary)] xl:h-auto xl:w-full' />
         <div className='z-40 flex flex-shrink-0 flex-col items-center justify-center gap-6 lg:gap-6'>
           <span className='size-24 lg:size-24'>

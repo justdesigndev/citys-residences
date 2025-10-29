@@ -15,6 +15,7 @@ import a2 from '@/public/img/project/a-2.jpg'
 import b1 from '@/public/img/project/b-1.jpg'
 import a1Zoom from '@/public/img/project/a-1-zoom.jpg'
 import a2Zoom from '@/public/img/project/a-2-zoom.jpg'
+import { SectionSetter } from '@/components/section-setter'
 
 const images = {
   a1,
@@ -26,7 +27,7 @@ const images = {
 
 export default function Page() {
   return (
-    <>
+    <SectionSetter sectionId={navigationConfig['/project']?.id as string}>
       <PageTitle
         primaryColor={colors['white']}
         secondaryColor={colors['bricky-brick']}
@@ -297,6 +298,6 @@ export default function Page() {
         secondaryColor={colors['white']}
         hasBg={true}
       />
-    </>
+    </SectionSetter>
   )
 }

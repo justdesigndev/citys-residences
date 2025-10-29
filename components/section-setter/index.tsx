@@ -13,9 +13,11 @@ interface SectionSetterProps {
   onLeave?: (sectionId: string) => void
   onEnterBack?: (sectionId: string) => void
   onLeaveBack?: (sectionId: string) => void
+  children?: React.ReactNode
 }
 
 export function SectionSetter({
+  children,
   sectionId,
   onEnter,
   onLeave,
@@ -24,7 +26,6 @@ export function SectionSetter({
 }: SectionSetterProps) {
   const ref = useRef(null)
   const sectionStore = useSectionStore()
-  const prevSectionRef = useRef<string | null>(null)
 
   useGSAP(() => {
     ScrollTrigger.create({
@@ -32,16 +33,12 @@ export function SectionSetter({
       start: 'top 50%', // Trigger when section reaches 50% of viewport
       end: 'bottom 50%', // End when section leaves 50% of viewport
       onEnter: () => {
-        const prevSection = sectionStore.currentSection
         sectionStore.setCurrentSection(sectionId)
         onEnter?.(sectionId)
-        prevSectionRef.current = prevSection
       },
       onEnterBack: () => {
-        const prevSection = sectionStore.currentSection
         sectionStore.setCurrentSection(sectionId)
         onEnterBack?.(sectionId)
-        prevSectionRef.current = prevSection
       },
       onLeave: () => {
         onLeave?.(sectionId)
@@ -52,10 +49,5 @@ export function SectionSetter({
     })
   })
 
-  return (
-    <div
-      ref={ref}
-      className='pointer-events-none absolute left-0 top-0 h-full w-full'
-    />
-  )
+  return <div ref={ref}>{children}</div>
 }

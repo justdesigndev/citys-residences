@@ -4,12 +4,15 @@ import { getBrandsData } from '@/lib/api/server-actions'
 import { colors } from '@/styles/config.mjs'
 import { PageTitle } from '@/components/page-title'
 import { navigationConfig } from '@/lib/constants'
+import { SectionSetter } from '@/components/section-setter'
 
 export default async function Page() {
   const brands = await getBrandsData()
 
   return (
-    <>
+    <SectionSetter
+      sectionId={navigationConfig['/citys-istanbul-avm']?.id as string}
+    >
       <PageTitle
         primaryColor={colors['aqua-belt']}
         secondaryColor={colors['trapped-darkness']}
@@ -44,6 +47,6 @@ export default async function Page() {
       <section className='section-container px-8 py-8 lg:px-0 lg:py-24'>
         <BrandsContainer initialBrands={brands.items || []} />
       </section>
-    </>
+    </SectionSetter>
   )
 }

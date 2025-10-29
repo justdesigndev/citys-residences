@@ -30,7 +30,7 @@ export default async function Page({
   const formTranslations = (messages as unknown as ContactMessages).contact.form
 
   return (
-    <>
+    <SectionSetter sectionId={navigationConfig['/']?.id as string}>
       <section
         className={cn(
           'relative z-10 h-screen overflow-hidden',
@@ -205,6 +205,6 @@ export default async function Page({
           }
         />
       </div>
-    </>
+    </SectionSetter>
   )
 }

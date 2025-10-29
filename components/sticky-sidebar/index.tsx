@@ -86,11 +86,18 @@ export const StickySidebar: React.FC = () => {
             <Link
               href={item.id === 'home' ? '/' : `#${item.id as string}`}
               onClick={e => handleNavClick(e, item.id as string)}
-              className='absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer flex-col items-center justify-center'
+              className={cn(
+                'absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer',
+                'font-primary font-[700] text-white lg:tracking-[0.4em]',
+                'flex-col items-center justify-center',
+                'transition-all duration-300 ease-out',
+                {
+                  'text-[0.7rem]': activeSection === item.id,
+                  'text-[0.6rem]': activeSection !== item.id,
+                }
+              )}
             >
-              <span className='font-primary text-[0.8rem]/[1.2] font-[700] text-white lg:tracking-[0.4em]'>
-                {item.label}
-              </span>
+              {item.label}
             </Link>
           </div>
         ))}
@@ -131,16 +138,16 @@ export const StickySidebar: React.FC = () => {
                   href={item.id === 'home' ? '/' : `#${item.id as string}`}
                   onClick={e => handleNavClick(e, item.id as string)}
                   className={cn(
+                    'whitespace-nowrap font-primary font-[700] tracking-[0.2em] text-white',
                     'cursor-pointer flex-col items-center justify-center px-8',
+                    'transition-all duration-300 ease-out',
                     {
                       'text-[0.7rem]': activeSection === item.id,
                       'text-[0.6rem]': activeSection !== item.id,
                     }
                   )}
                 >
-                  <span className='whitespace-nowrap font-primary font-[700] tracking-[0.2em] text-white'>
-                    {item.label}
-                  </span>
+                  {item.label}
                 </Link>
               </div>
             ))}

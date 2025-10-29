@@ -11,6 +11,7 @@ import { WistiaPlayerWrapper } from '@/components/wistia-player'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
+import { SectionSetter } from '@/components/section-setter'
 
 const ImageCard = ({ src }: { src: string }) => (
   <div className='aspect-[9/12] w-[200px] lg:w-[350px]'>
@@ -42,7 +43,7 @@ export default async function Page({
   const formTranslations = (messages as unknown as ContactMessages).contact.form
 
   return (
-    <>
+    <SectionSetter sectionId={navigationConfig['/residences']?.id as string}>
       <PageTitle
         primaryColor={colors.white}
         secondaryColor={colors['bricky-brick']}
@@ -159,6 +160,6 @@ export default async function Page({
         <ResidencesNavigator />
       </section>
       <SectionContactForm formTranslations={formTranslations} />
-    </>
+    </SectionSetter>
   )
 }
