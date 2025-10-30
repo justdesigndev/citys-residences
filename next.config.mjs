@@ -13,8 +13,6 @@ const withMDX = createMDX({
 
 const nextConfig = {
   reactStrictMode: true,
-  // Exclude server-side DOM packages from bundling to avoid ES module issues
-  serverExternalPackages: ['jsdom', 'parse5', 'isomorphic-dompurify'],
   redirects: async () => {
     return [
       {
