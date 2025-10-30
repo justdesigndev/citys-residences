@@ -9,12 +9,11 @@ import {
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
 import { SectionSetter } from '@/components/section-setter'
-import { SvgBgC } from '@/components/svgs/svg-bg-c'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { WistiaPlayerWrapper } from '@/components/wistia-player'
+import { SvgBgC } from '@/components/svgs/svg-bg-c'
 
 export function CitysTimes() {
   return (
@@ -43,7 +42,11 @@ export function CitysTimes() {
           'after:absolute after:bottom-0 after:left-0 after:z-10 after:h-3/6 after:w-full after:bg-gradient-to-t after:from-trapped-darkness after:to-transparent'
         )}
       >
-        <SvgBgC className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 text-white opacity-30 lg:h-auto lg:w-full' />
+        <SvgBgC
+          stopColor1={colors['trapped-darkness']}
+          stopColor2={colors.white}
+          className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 lg:h-auto lg:w-full'
+        />
         <div className='z-40 flex flex-col items-center justify-center gap-6 lg:gap-6'>
           <span className='size-24 lg:size-24'>
             <LogoSlim fill={colors.white} />
