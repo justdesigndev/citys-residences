@@ -1,16 +1,24 @@
 import { PageTitle } from '@/components/page-title'
-import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
-import { fetchCitysParkData } from '@/lib/api/queries'
+import {
+  RepetitiveSectionsWrapper,
+  ComponentType,
+} from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
-export default async function CitysPark({
-  params,
-}: {
-  params: { locale: string }
-}) {
-  const citysParkData = await fetchCitysParkData(params.locale)
-  const data = citysParkData.data || []
+interface CitysParkProps {
+  data: Array<{
+    id: string | number
+    componentType: ComponentType
+    title?: string
+    subtitle?: string
+    description?: string
+    mediaId?: string
+    thumbnail?: string
+  }>
+}
+
+export default function CitysPark({ data }: CitysParkProps) {
   return (
     <>
       <PageTitle

@@ -1,16 +1,24 @@
 import { PageTitle } from '@/components/page-title'
-import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
-import { fetchCitysLivingData } from '@/lib/api/queries'
+import {
+  RepetitiveSectionsWrapper,
+  ComponentType,
+} from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
-export default async function CitysLiving({
-  params,
-}: {
-  params: { locale: string }
-}) {
-  const citysLivingData = await fetchCitysLivingData(params.locale)
-  const data = citysLivingData.data || []
+interface CitysLivingProps {
+  data: Array<{
+    id: string | number
+    componentType: ComponentType
+    title?: string
+    subtitle?: string
+    description?: string
+    mediaId?: string
+    thumbnail?: string
+  }>
+}
+
+export default function CitysLiving({ data }: CitysLivingProps) {
   return (
     <>
       <PageTitle

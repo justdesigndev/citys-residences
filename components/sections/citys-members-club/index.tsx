@@ -1,16 +1,24 @@
 import { PageTitle } from '@/components/page-title'
-import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
-import { fetchCitysMembersClubData } from '@/lib/api/queries'
+import {
+  RepetitiveSectionsWrapper,
+  ComponentType,
+} from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
-export default async function CitysMembersClub({
-  params,
-}: {
-  params: { locale: string }
-}) {
-  const citysMembersClubData = await fetchCitysMembersClubData(params.locale)
-  const data = citysMembersClubData.data || []
+interface CitysMembersClubProps {
+  data: Array<{
+    id: string | number
+    componentType: ComponentType
+    title?: string
+    subtitle?: string
+    description?: string
+    mediaId?: string
+    thumbnail?: string
+  }>
+}
+
+export default function CitysMembersClub({ data }: CitysMembersClubProps) {
   return (
     <>
       <PageTitle
