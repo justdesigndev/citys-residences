@@ -116,8 +116,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                         <div className='cursor-pointer'>
                           <div
                             className={cn(
-                              'relative overflow-hidden',
-                              'aspect-square',
+                              'relative aspect-[1/1] w-full overflow-hidden',
                               'flex items-center justify-center'
                             )}
                           >
