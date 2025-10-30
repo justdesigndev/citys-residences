@@ -4,7 +4,11 @@ import { fetchCitysParkData } from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
-export default async function Page({ params }: { params: { locale: string } }) {
+export default async function CitysPark({
+  params,
+}: {
+  params: { locale: string }
+}) {
   const citysParkData = await fetchCitysParkData(params.locale)
   const data = citysParkData.data || []
   return (

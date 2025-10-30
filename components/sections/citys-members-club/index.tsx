@@ -4,7 +4,11 @@ import { fetchCitysMembersClubData } from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
-export default async function Page({ params }: { params: { locale: string } }) {
+export default async function CitysMembersClub({
+  params,
+}: {
+  params: { locale: string }
+}) {
   const citysMembersClubData = await fetchCitysMembersClubData(params.locale)
   const data = citysMembersClubData.data || []
   return (
