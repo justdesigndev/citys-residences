@@ -1,6 +1,7 @@
 import CitysLiving from '@/components/sections/citys-living'
 import CitysMembersClub from '@/components/sections/citys-members-club'
 import CitysPark from '@/components/sections/citys-park'
+import { Wrapper } from '@/components/wrapper'
 import {
   fetchCitysLivingData,
   fetchCitysMembersClubData,
@@ -15,10 +16,10 @@ export default async function Page({ params }: { params: { locale: string } }) {
   const citysLivingData = await fetchCitysLivingData(params.locale)
   const citysLivingDataItems = citysLivingData.data || []
   return (
-    <>
+    <Wrapper>
       <CitysPark data={citysParkDataItems} />
       <CitysMembersClub data={citysMembersClubDataItems} />
       <CitysLiving data={citysLivingDataItems} />
-    </>
+    </Wrapper>
   )
 }
