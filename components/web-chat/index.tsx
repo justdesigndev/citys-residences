@@ -16,6 +16,8 @@ export function WebChat({ locale }: WebChatProps) {
       const chatWindow = document.getElementById('cw-window')
 
       if (chatWindow) {
+        // Add data-lenis-prevent to prevent smooth scroll interference
+        chatWindow.setAttribute('data-lenis-prevent', '')
         // Check initial state
         const initiallyOpen = chatWindow.classList.contains('open')
         console.log('Chat window initial state - open:', initiallyOpen)
