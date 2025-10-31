@@ -5,12 +5,14 @@ import { useLenis } from 'lenis/react'
 
 import { gsap } from '@/components/gsap'
 import { ArrowCounterClockwiseIcon } from '@phosphor-icons/react/dist/ssr'
+import { useTranslations } from 'next-intl'
 
 interface ScrollToTopProps {
   className?: string
 }
 
 export function ScrollToTop({ className }: ScrollToTopProps) {
+  const t = useTranslations('common')
   const lenis = useLenis()
 
   const handleScrollToTop = () => {
@@ -40,7 +42,7 @@ export function ScrollToTop({ className }: ScrollToTopProps) {
         className='size-12 text-white lg:size-16'
         weight='thin'
       />
-      <span className='text-4xl'>Yeniden Keşfet</span>
+      <span className='text-4xl'>{t('scrollToTop')}</span>
     </button>
   )
 }

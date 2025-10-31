@@ -57,13 +57,20 @@ export async function CitysTimes() {
           'after:absolute after:bottom-0 after:left-0 after:z-10 after:h-3/6 after:w-full after:bg-gradient-to-t after:from-trapped-darkness after:to-transparent'
         )}
       >
+        <div
+          className={cn(
+            'pointer-events-none absolute inset-0 z-30',
+            'before:absolute before:bottom-0 before:left-0 before:top-0 before:z-20 before:h-full before:w-[20vw] before:bg-gradient-to-r before:from-trapped-darkness before:to-transparent',
+            'after:absolute after:bottom-0 after:right-0 after:top-0 after:z-20 after:h-full after:w-[20vw] after:bg-gradient-to-l after:from-trapped-darkness after:to-transparent'
+          )}
+        ></div>
         <SvgBgC
           stopColor1={'transparent'}
           stopColor2={colors.white}
           className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 lg:h-auto lg:w-full'
         />
-        <div className='z-40 flex flex-col items-center justify-center gap-6 lg:gap-6'>
-          <div className='relative z-10 flex items-center justify-center py-16 lg:py-24'>
+        <div className='z-20 flex flex-col items-center justify-center gap-6 lg:gap-6'>
+          <div className='relative z-10 flex items-center justify-center py-24 lg:py-24'>
             <AutoScrollCarousel
               options={{ loop: true, dragFree: true }}
               emblaSlideClassname='items-start'
@@ -112,7 +119,7 @@ export async function CitysTimes() {
               {t('followUs')}
             </GsapSplitText>
           </p>
-          <div className='mt-16 flex gap-6'>
+          <div className='mt-4 flex gap-6 lg:mt-16'>
             <div className='flex items-center justify-center'>
               <FacebookLogoIcon
                 weight='fill'
