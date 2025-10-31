@@ -180,7 +180,7 @@ const config: Config = {
       fontFamily: {
         'suisse-intl': 'var(--font-suisse-intl)',
         'roboto-slab': 'var(--font-roboto-slab)',
-        primary: 'var(--font-roboto-slab)',
+        primary: 'var(--font-suisse-intl)',
         copperplate: 'var(--font-copperplate)',
       },
       keyframes: {
