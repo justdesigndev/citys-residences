@@ -35,16 +35,12 @@ export function WistiaPlayerWrapper(props: WistiaPlayerWrapperProps) {
 
   return (
     <div
-      className={cn(
-        'absolute inset-0 z-50 h-full w-full',
-        'outline-dashed -outline-offset-8 outline-amber-500',
-        className
-      )}
+      className={cn('absolute inset-0 z-50 h-full w-full', className)}
       aria-label='Video player'
     >
       <WistiaPlayer
         ref={playerRef as React.RefObject<WistiaPlayerElement>}
-        className='!pointer-events-none absolute inset-0 h-full w-full outline -outline-offset-8 outline-blue-500'
+        className='!pointer-events-none absolute inset-0 h-full w-full'
         onPlay={handlePlay}
         muted
         autoplay
