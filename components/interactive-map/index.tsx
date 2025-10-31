@@ -28,42 +28,42 @@ const locations: LocationItem[] = [
     id: 'kozyatagi-metro',
     name: 'kozyatagi-metro',
     distance: '1 km',
-    map: 'citys.jpg',
+    map: 'map-1.jpg',
     icon: <TrainIcon className='size-full' weight='thin' />,
   },
   {
     id: 'yenisahra-metro',
     name: 'yenisahra-metro',
     distance: '2 km',
-    map: 'citys.jpg',
+    map: 'map-2.jpg',
     icon: <TrainIcon className='size-full' weight='thin' />,
   },
   {
     id: 'memorial-atasehir',
     name: 'memorial-atasehir',
     distance: '1 km',
-    map: 'citys.jpg',
+    map: 'map-3.jpg',
     icon: <HospitalIcon className='size-full' weight='thin' />,
   },
   {
     id: 'acibadem-atasehir',
     name: 'acibadem-atasehir',
     distance: '4 km',
-    map: 'citys.jpg',
+    map: 'map-4.jpg',
     icon: <HospitalIcon className='size-full' weight='thin' />,
   },
   {
     id: 'fenerbahce-university',
     name: 'fenerbahce-university',
     distance: '3 km',
-    map: 'citys.jpg',
+    map: 'map-5.jpg',
     icon: <GraduationCapIcon className='size-full' weight='thin' />,
   },
   {
     id: 'istanbul-finance',
     name: 'istanbul-finance',
     distance: '3 km',
-    map: 'citys.jpg',
+    map: 'map-6.jpg',
     icon: <BankIcon className='size-full' weight='thin' />,
   },
 ]
@@ -86,7 +86,7 @@ export function InteractiveMap() {
   return (
     <div className='grid grid-cols-1 gap-4 overflow-hidden lg:gap-8 xl:min-h-[110vh] xl:grid-cols-24'>
       <div className='relative h-[100vw] overflow-hidden bg-[url(/img/map.jpg)] bg-cover bg-center xl:col-span-14 xl:h-full'>
-        <AnimatePresence mode='popLayout'>
+        <AnimatePresence mode='sync'>
           {locations.map(location => {
             if (location.icon === null) return null
 
@@ -106,20 +106,24 @@ export function InteractiveMap() {
                 transition={{ duration: 0.3 }}
               >
                 <Image
-                  className='block xl:hidden'
+                  className='block object-cover xl:hidden'
                   src={`/img/interactive-map/mobile/${location.map}`}
                   alt={t(`locations.${location.name}`)}
                   fill
                   desktopSize='50vw'
                   mobileSize='100vw'
+                  quality={100}
+                  loading='lazy'
                 />
                 <Image
-                  className='hidden xl:block'
+                  className='hidden object-cover xl:block'
                   src={`/img/interactive-map/desktop/${location.map}`}
                   alt={t(`locations.${location.name}`)}
                   fill
                   desktopSize='50vw'
                   mobileSize='100vw'
+                  quality={100}
+                  loading='lazy'
                 />
               </motion.div>
             )
