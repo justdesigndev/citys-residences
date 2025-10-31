@@ -60,7 +60,7 @@ export default async function Page({
               posterPriority={true}
             />
           </div> */}
-          <div className='pointer-events-none relative h-svh w-full'>
+          <div className='pointer-events-none relative h-screen w-full'>
             <VimeoPlayer
               poster='/img/poster-hero.jpg'
               src='https://player.vimeo.com/progressive_redirect/playback/1130616578/rendition/1080p/file.mp4?loc=external&log_user=0&signature=4c84b12cfbf4f5ae9ef7087bd4cc4277a815c1235d739ebda936132a2a46214b'
@@ -200,9 +200,10 @@ export default async function Page({
 
             <article
               className={cn(
-                'flex w-auto flex-shrink-0 xl:w-[400px]',
+                'flex flex-shrink-0',
+                'w-[70%] xl:w-[400px]',
                 'font-primary font-[200] text-black',
-                'text-xl/normal lg:text-2xl/normal xl:text-3xl/normal',
+                'text-lg/normal lg:text-2xl/normal xl:text-3xl/normal',
                 'text-center lg:text-left'
               )}
             >

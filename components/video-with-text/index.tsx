@@ -22,7 +22,7 @@ export function VideoWithText(props: VideoWithTextProps) {
   return (
     <div
       className={cn(
-        'xl:auto min-h-[120vh] w-full',
+        'xl:auto h-screen min-h-fit w-full xl:min-h-[120vh]',
         'relative overflow-hidden',
         'after:absolute after:bottom-0 after:left-0 after:z-10 after:h-1/2 after:w-full after:bg-gradient-to-t after:from-current after:to-transparent',
         className
