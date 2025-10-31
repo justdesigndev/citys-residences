@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import { GsapSplitText } from '../gsap-split-text'
 import { LazyWistiaPlayer } from '../wistia-player-lazy'
+import { AspectCover } from '../aspect-cover'
 
 export interface FullWidthVideoTextProps {
   title: string
@@ -79,27 +80,29 @@ export function FullWidthVideoText(props: FullWidthVideoTextProps) {
         </div>
       </div>
       <div className='!pointer-events-none col-span-24 aspect-[16/19] overflow-hidden xl:aspect-[16/7]'>
-        <LazyWistiaPlayer
-          muted
-          autoplay
-          preload='metadata'
-          swatch={false}
-          bigPlayButton={false}
-          silentAutoplay='allow'
-          endVideoBehavior='loop'
-          controlsVisibleOnLoad={false}
-          playBarControl={false}
-          volumeControl={false}
-          settingsControl={false}
-          transparentLetterbox={true}
-          mediaId={mediaId}
-          customPoster={thumbnail}
-          roundedPlayer={0}
-          fullscreenControl={false}
-          playbackRateControl={false}
-          playPauseControl={false}
-          aspect={videoAspectRatio}
-        />
+        <AspectCover ratio={videoAspectRatio || 16 / 9}>
+          <LazyWistiaPlayer
+            muted
+            autoplay
+            preload='metadata'
+            swatch={false}
+            bigPlayButton={false}
+            silentAutoplay='allow'
+            endVideoBehavior='loop'
+            controlsVisibleOnLoad={false}
+            playBarControl={false}
+            volumeControl={false}
+            settingsControl={false}
+            transparentLetterbox={true}
+            mediaId={mediaId}
+            customPoster={thumbnail}
+            roundedPlayer={0}
+            fullscreenControl={false}
+            playbackRateControl={false}
+            playPauseControl={false}
+            aspect={videoAspectRatio}
+          />
+        </AspectCover>
       </div>
     </section>
   )

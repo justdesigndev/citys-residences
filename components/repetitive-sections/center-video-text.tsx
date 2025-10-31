@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LazyWistiaPlayer } from '../wistia-player-lazy'
 import { useState, useEffect } from 'react'
+import { AspectCover } from '../aspect-cover'
 
 export interface CenterVideoTextProps {
   title: string
@@ -79,27 +80,29 @@ export function CenterVideoText(props: CenterVideoTextProps) {
       </div>
       <div className='relative z-30 grid grid-cols-24'>
         <div className='!pointer-events-none col-span-24 aspect-[16/19] overflow-hidden lg:col-span-16 lg:col-start-6 lg:aspect-[16/9] xl:col-start-5'>
-          <LazyWistiaPlayer
-            muted
-            autoplay
-            preload='metadata'
-            swatch={false}
-            bigPlayButton={false}
-            silentAutoplay='allow'
-            endVideoBehavior='loop'
-            controlsVisibleOnLoad={false}
-            playBarControl={false}
-            volumeControl={false}
-            settingsControl={false}
-            transparentLetterbox={true}
-            mediaId={mediaId}
-            customPoster={thumbnail}
-            roundedPlayer={0}
-            fullscreenControl={false}
-            playbackRateControl={false}
-            playPauseControl={false}
-            aspect={videoAspectRatio}
-          />
+          <AspectCover ratio={videoAspectRatio || 16 / 9}>
+            <LazyWistiaPlayer
+              muted
+              autoplay
+              preload='metadata'
+              swatch={false}
+              bigPlayButton={false}
+              silentAutoplay='allow'
+              endVideoBehavior='loop'
+              controlsVisibleOnLoad={false}
+              playBarControl={false}
+              volumeControl={false}
+              settingsControl={false}
+              transparentLetterbox={true}
+              mediaId={mediaId}
+              customPoster={thumbnail}
+              roundedPlayer={0}
+              fullscreenControl={false}
+              playbackRateControl={false}
+              playPauseControl={false}
+              aspect={videoAspectRatio}
+            />
+          </AspectCover>
         </div>
       </div>
     </section>
