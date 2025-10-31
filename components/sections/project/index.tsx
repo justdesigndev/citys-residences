@@ -17,6 +17,7 @@ import a1Zoom from '@/public/img/project/a-1-zoom.jpg'
 import a2Zoom from '@/public/img/project/a-2-zoom.jpg'
 import { SectionSetter } from '@/components/section-setter'
 import { AspectCover } from '@/components/aspect-cover'
+import { getTranslations } from 'next-intl/server'
 
 const images = {
   a1,
@@ -26,20 +27,20 @@ const images = {
   a2Zoom,
 }
 
-export default function Page() {
+export default async function Page({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  const t = await getTranslations({ locale, namespace: 'project' })
   return (
     <SectionSetter sectionId={navigationConfig['/project']?.id as string}>
       <PageTitle
         primaryColor={colors['white']}
         secondaryColor={colors['bricky-brick']}
         tertiaryColor={colors['bricky-brick']}
-        title='PROJE'
-        description={
-          <>
-            Her köşesi özenle düşünülmüş bir{' '}
-            <strong>karma yaşam projesi.</strong>
-          </>
-        }
+        title={t('pageTitle.title')}
+        description={t('pageTitle.description')}
         id={navigationConfig['/project']?.id as string}
       />
       <section className='relative h-screen overflow-hidden lg:h-[60vw] xl:h-[45vw]'>
@@ -62,8 +63,7 @@ export default function Page() {
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-                Blok ve Otopark <br />
-                Girişleri
+                {t('sections.blockParking.title')}
               </GsapSplitText>
             </h3>
           </div>
@@ -75,11 +75,9 @@ export default function Page() {
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-                Her blok için ayrı tasarlanmış lobi ve girişler, güvenli ve
-                prestijli bir karşılama sunuyor.
+                {t('sections.blockParking.p1')}
                 <br />
-                Geniş otopark ve doğrudan blok bağlantılarıyla, zamandan
-                kazandıran kolay erişim.
+                {t('sections.blockParking.p2')}
               </GsapSplitText>
             </p>
           </div>
@@ -147,7 +145,7 @@ export default function Page() {
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-                Yeşil Alanlar
+                {t('sections.greenAreas.title')}
               </GsapSplitText>
             </h3>
           </div>
@@ -159,7 +157,7 @@ export default function Page() {
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-                50.000+ m² peyzaj alanında, doğanın ortasında huzurlu bir yaşam.
+                {t('sections.greenAreas.p1')}
               </GsapSplitText>
             </p>
           </div>
@@ -201,8 +199,7 @@ export default function Page() {
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-                Projenin mimarları <br />
-                anlatıyor.
+                {t('sections.architectsSay.title')}
               </GsapSplitText>
             </h3>
           </div>
@@ -214,8 +211,7 @@ export default function Page() {
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-                City’s Residences, gösterişten çok yaşam kalitesini merkeze alan
-                bir mimarlık diliyle tasarlandı.
+                {t('sections.architectsSay.p1')}
               </GsapSplitText>
             </p>
           </div>
@@ -243,48 +239,48 @@ export default function Page() {
       </div>
       {/* architecture sections */}
       <QuoteWithVideo
-        quote='Karma kullanım modeliyle zamanı geri veriyoruz: yaşa, çalış, eğlen—tek ekosistem içinde.'
+        quote={t('quotes.architecture.quote')}
         mediaId='1qwipsnwiv'
         thumbnail='/img/thumbnail-murat-kader.jpg'
         portraitImage='/img/murat-kader-portrait.png'
-        personName='Murat Kader'
-        personTitle='Yüksek Mimar'
-        sidebarText='Mimari Proje'
+        personName={t('quotes.architecture.personName')}
+        personTitle={t('quotes.architecture.personTitle')}
+        sidebarText={t('quotes.architecture.sidebarText')}
         primaryColor={colors['bricky-brick']}
         secondaryColor={colors['white']}
         hasBg={true}
       />
       <QuoteWithVideo
-        quote='Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.'
+        quote={t('quotes.interior.quote')}
         mediaId='k7c3eyfiwe'
         thumbnail='/img/thumbnail-toners.jpg'
         portraitImage='/img/toner-portrait.png'
-        personName='Mustafa & Emre Toner'
-        personTitle='İç Mimar'
-        sidebarText='İç Mimari'
+        personName={t('quotes.interior.personName')}
+        personTitle={t('quotes.interior.personTitle')}
+        sidebarText={t('quotes.interior.sidebarText')}
         primaryColor={colors['white']}
         secondaryColor={colors['bricky-brick']}
       />
       <QuoteWithVideo
-        quote='Kuzey Ormanları etkisi ve İstanbul’un endemik türleriyle, yeşilin her tonu projeye taşındı.'
+        quote={t('quotes.landscape.quote')}
         mediaId='lw6zlx5v5y'
         thumbnail='/img/thumbnail-aktas.jpg'
         portraitImage='/img/aktas-portrait.png'
-        personName='Cemil Aktaş, Pınar Kesim Aktaş'
-        personTitle='Peyzaj Mimari'
-        sidebarText='Peyzaj'
+        personName={t('quotes.landscape.personName')}
+        personTitle={t('quotes.landscape.personTitle')}
+        sidebarText={t('quotes.landscape.sidebarText')}
         primaryColor={colors['army-canvas']}
         secondaryColor={colors['white']}
         hasBg={true}
       />
       <QuoteWithVideo
-        quote='Sadece teknik başarı değil; City’s Residences sakinlerine huzurlu bir yuva sunmak için tasarlandı.'
+        quote={t('quotes.structural.quote')}
         mediaId='zmn4yqnamk'
         thumbnail='/img/thumbnail-melih-bulgur.jpg'
         portraitImage='/img/melih-bulgur-portrait.png'
-        personName='Melih Bulgur'
-        personTitle='Yüksek İnşaat Mühendisi'
-        sidebarText='Statik'
+        personName={t('quotes.structural.personName')}
+        personTitle={t('quotes.structural.personTitle')}
+        sidebarText={t('quotes.structural.sidebarText')}
         primaryColor={colors['birch-strain']}
         secondaryColor={colors['white']}
         hasBg={true}

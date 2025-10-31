@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Link } from '@/components/utility/link'
 import { useNavigation } from '@/hooks/useNavigation'
-import { Locale, Link as LocalizedLink } from '@/i18n/routing'
+import { Locale } from '@/i18n/routing'
 import { getNavigationItems, navigationConfig } from '@/lib/constants'
 import { useUiStore } from '@/lib/store/ui'
 import { cn } from '@/lib/utils'
@@ -44,7 +44,7 @@ export function MenuNavList() {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   {item.id === navigationConfig['/']?.id ? (
-                    <LocalizedLink
+                    <Link
                       href='/'
                       className={cn(
                         'block font-primary font-[300] text-white transition-all duration-300',
@@ -53,7 +53,7 @@ export function MenuNavList() {
                       onClick={e => handleClick(e, item.id)}
                     >
                       {item.title}
-                    </LocalizedLink>
+                    </Link>
                   ) : (
                     <Link
                       href={`#${item.id}`}

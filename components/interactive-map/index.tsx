@@ -9,6 +9,7 @@ import {
 } from '@phosphor-icons/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { memo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
@@ -25,57 +26,61 @@ interface LocationItem {
 const locations: LocationItem[] = [
   {
     id: 'kozyatagi-metro',
-    name: 'Kozyatağı Metro',
+    name: 'kozyatagi-metro',
     distance: '1 km',
     map: 'citys.jpg',
     icon: <TrainIcon className='size-full' weight='thin' />,
   },
   {
     id: 'yenisahra-metro',
-    name: 'Yenisahra Metro',
+    name: 'yenisahra-metro',
     distance: '2 km',
     map: 'citys.jpg',
     icon: <TrainIcon className='size-full' weight='thin' />,
   },
   {
     id: 'memorial-atasehir',
-    name: 'Memorial Ataşehir Hastanesi',
+    name: 'memorial-atasehir',
     distance: '1 km',
     map: 'citys.jpg',
     icon: <HospitalIcon className='size-full' weight='thin' />,
   },
   {
     id: 'acibadem-atasehir',
-    name: 'Acıbadem Ataşehir Hastanesi',
+    name: 'acibadem-atasehir',
     distance: '4 km',
     map: 'citys.jpg',
     icon: <HospitalIcon className='size-full' weight='thin' />,
   },
   {
     id: 'fenerbahce-university',
-    name: 'Fenerbahçe Üniversitesi',
+    name: 'fenerbahce-university',
     distance: '3 km',
     map: 'citys.jpg',
     icon: <GraduationCapIcon className='size-full' weight='thin' />,
   },
   {
     id: 'istanbul-finance',
-    name: 'İstanbul Finans Merkezi',
+    name: 'istanbul-finance',
     distance: '3 km',
     map: 'citys.jpg',
     icon: <BankIcon className='size-full' weight='thin' />,
   },
 ]
 
-const MemoizedTitle = memo(() => (
-  <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-    Yaşamın tam <br /> merkezinde.
-  </GsapSplitText>
-))
+const MemoizedTitle = memo(() => {
+  const t = useTranslations('project.map')
+  return (
+    <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
+      {t('title')}
+    </GsapSplitText>
+  )
+})
 
 MemoizedTitle.displayName = 'MemoizedTitle'
 
 export function InteractiveMap() {
+  const t = useTranslations('project.map')
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null)
 
   return (
@@ -103,7 +108,7 @@ export function InteractiveMap() {
                 <Image
                   className='block xl:hidden'
                   src={`/img/interactive-map/mobile/${location.map}`}
-                  alt={location.name}
+                  alt={t(`locations.${location.name}`)}
                   fill
                   desktopSize='50vw'
                   mobileSize='100vw'
@@ -111,7 +116,7 @@ export function InteractiveMap() {
                 <Image
                   className='hidden xl:block'
                   src={`/img/interactive-map/desktop/${location.map}`}
-                  alt={location.name}
+                  alt={t(`locations.${location.name}`)}
                   fill
                   desktopSize='50vw'
                   mobileSize='100vw'
@@ -172,7 +177,7 @@ export function InteractiveMap() {
                           : 'text-black'
                       )}
                     >
-                      {location.name}
+                      {t(`locations.${location.name}`)}
                     </div>
                     <div className='font-primary text-sm font-[200] text-black/50 sm:text-lg lg:text-2xl'>
                       {location.distance}

@@ -179,14 +179,9 @@ const config: Config = {
       },
       fontFamily: {
         'suisse-intl': 'var(--font-suisse-intl)',
-        'montagu-slab': 'var(--font-montagu-slab)',
-        primary: 'var(--font-suisse-intl)',
+        'roboto-slab': 'var(--font-roboto-slab)',
+        primary: 'var(--font-roboto-slab)',
         copperplate: 'var(--font-copperplate)',
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
         'accordion-down': {

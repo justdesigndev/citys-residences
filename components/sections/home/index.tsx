@@ -84,7 +84,7 @@ export default async function Page({
                 'flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
             >
-              Yaşam Yeniden Tasarlandı
+              {t('hero.title')}
             </span>
             <span className='mx-8 h-12 w-12 2xl:h-14 2xl:w-14 3xl:h-16 3xl:w-16'>
               <IconCollab fill={colors.white} />
@@ -97,7 +97,7 @@ export default async function Page({
               )}
             >
               CITY
-              <span className='font-montagu-slab font-[400] leading-[0.5]'>
+              <span className='font-roboto-slab font-[400] leading-[0.5]'>
                 &apos;
               </span>
               S
@@ -172,17 +172,10 @@ export default async function Page({
           aspect={livePeacefully.aspect()}
           customPoster={livePeacefullyPoster.src}
           mediaId='dxd0f32sha'
-          title={
-            <span>
-              Daha <strong>huzurlu</strong> yaşa.
-            </span>
-          }
-          description={
-            <>
-              Farklı ve zamansız mimarinin, doğanın cömertliği ile buluştuğu
-              mekanlarda güven içinde, daha huzurlu yaşa.
-            </>
-          }
+          title={t.rich('livePeacefully.title', {
+            strong: chunks => <strong>{chunks}</strong>,
+          })}
+          description={t('livePeacefully.description')}
         />
         <SectionContactForm formTranslations={formTranslations} />
         <VideoWithText
@@ -190,17 +183,10 @@ export default async function Page({
           aspect={liveMore.aspect()}
           customPoster={liveMorePoster.src}
           mediaId='cpkxfmdyvb'
-          title={
-            <span>
-              Daha <strong>dolu</strong> yaşa.
-            </span>
-          }
-          description={
-            <>
-              Spor, sanat, kültür, alışveriş, eğlence ve çok daha fazlasını bir
-              araya getiren yeni bir yaşam dizaynı ile daha dolu yaşa.
-            </>
-          }
+          title={t.rich('liveFully.title', {
+            strong: chunks => <strong>{chunks}</strong>,
+          })}
+          description={t('liveFully.description')}
         />
       </div>
     </SectionSetter>

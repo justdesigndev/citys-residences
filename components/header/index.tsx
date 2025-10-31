@@ -1,6 +1,6 @@
 'use client'
 
-import { Link, Link as LocalizedLink } from '@/i18n/routing'
+import { Link } from '@/i18n/navigation'
 import { initialScroll } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import Lenis from 'lenis'
@@ -72,12 +72,12 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
       >
         <div className='z-[var(--z-header-content)] flex flex-1 items-stretch justify-between px-6 lg:px-0'>
           <div className='2xl:size-46 pointer-events-auto size-28 xl:size-32 3xl:size-40'>
-            <LocalizedLink href='/' scroll={initialScroll} aria-label='Home'>
+            <Link href='/' scroll={initialScroll} aria-label='Home'>
               <Logo fill={colors.white} />
-            </LocalizedLink>
+            </Link>
           </div>
           <div className='pointer-events-auto ml-auto flex cursor-pointer items-center gap-2 lg:gap-6'>
-            <LocaleSwitcher theme='dark' />
+            <LocaleSwitcher />
             {!nonHome ? (
               <button
                 className='pointer-events-auto cursor-pointer'

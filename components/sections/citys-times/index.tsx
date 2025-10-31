@@ -17,6 +17,7 @@ import { SvgBgC } from '@/components/svgs/svg-bg-c'
 import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
 import { Image } from '@/components/image'
 import { AspectCover } from '@/components/aspect-cover'
+import { getTranslations } from 'next-intl/server'
 
 const ImageCard = ({ src }: { src: string }) => (
   <div className='aspect-[9/12] w-[200px] lg:w-[260px]'>
@@ -31,7 +32,8 @@ const ImageCard = ({ src }: { src: string }) => (
   </div>
 )
 
-export function CitysTimes() {
+export async function CitysTimes() {
+  const t = await getTranslations('citys-times')
   const images = [
     {
       src: '/img/residences/1+1/interior.jpg',
@@ -96,7 +98,7 @@ export function CitysTimes() {
             )}
           >
             <GsapSplitText type='chars' stagger={0.02} duration={1}>
-              CITY&apos;S TIMES
+              {t('title')}
             </GsapSplitText>
           </h2>
           <p
@@ -107,7 +109,7 @@ export function CitysTimes() {
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>
-              Bizi takip edin.
+              {t('followUs')}
             </GsapSplitText>
           </p>
           <div className='mt-16 flex gap-6'>

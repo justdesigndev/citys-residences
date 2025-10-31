@@ -5,7 +5,7 @@ import { StyleVariables } from '@/lib/style-variables'
 import { colors, themes } from '@/styles/config.mjs'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
-import { Montagu_Slab } from 'next/font/google'
+import { Roboto_Slab } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { GSAP } from '@/components/gsap'
@@ -22,9 +22,9 @@ import { WebChat } from '@/components/web-chat'
 //   weight: ['500'],
 // })
 
-const montaguSlab = Montagu_Slab({
+const robotoSlab = Roboto_Slab({
   subsets: ['latin'],
-  variable: '--font-montagu-slab',
+  variable: '--font-roboto-slab',
   weight: ['400'],
 })
 
@@ -157,7 +157,7 @@ export default async function LocaleLayout({
         <link rel='dns-prefetch' href='https://fast.wistia.com' />
       </head>
       <body
-        className={`${montaguSlab.variable} ${suisseIntl.variable} ${copperplate.variable} antialiased`}
+        className={`${robotoSlab.variable} ${suisseIntl.variable} ${copperplate.variable} antialiased`}
       >
         {/* Hidden element for webchat to detect language */}
         {/* <span id='selectedLanguage' style={{ display: 'none' }}>

@@ -5,6 +5,64 @@
             "description": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırabilmek, yaşamı sanata dönüştürmektir."
         }
     },
+    "project": {
+        "pageTitle": {
+            "title": "PROJE",
+            "description": "Her köşesi özenle düşünülmüş bir karma yaşam projesi."
+        },
+        "map": {
+            "title": "Yaşamın tam merkezinde.",
+            "locations": {
+                "kozyatagi-metro": "Kozyatağı Metro",
+                "yenisahra-metro": "Yenisahra Metro",
+                "memorial-atasehir": "Memorial Ataşehir Hastanesi",
+                "acibadem-atasehir": "Acıbadem Ataşehir Hastanesi",
+                "fenerbahce-university": "Fenerbahçe Üniversitesi",
+                "istanbul-finance": "İstanbul Finans Merkezi"
+            }
+        },
+        "sections": {
+            "blockParking": {
+                "title": "Blok ve Otopark Girişleri",
+                "p1": "Her blok için ayrı tasarlanmış lobi ve girişler, güvenli ve prestijli bir karşılama sunuyor.",
+                "p2": "Geniş otopark ve doğrudan blok bağlantılarıyla, zamandan kazandıran kolay erişim."
+            },
+            "greenAreas": {
+                "title": "Yeşil Alanlar",
+                "p1": "50.000+ m² peyzaj alanında, doğanın ortasında huzurlu bir yaşam."
+            },
+            "architectsSay": {
+                "title": "Projenin mimarları anlatıyor.",
+                "p1": "City’s Residences, gösterişten çok yaşam kalitesini merkeze alan bir mimarlık diliyle tasarlandı."
+            }
+        },
+        "quotes": {
+            "architecture": {
+                "quote": "Karma kullanım modeliyle zamanı geri veriyoruz: yaşa, çalış, eğlen—tek ekosistem içinde.",
+                "personName": "Murat Kader",
+                "personTitle": "Yüksek Mimar",
+                "sidebarText": "Mimari Proje"
+            },
+            "interior": {
+                "quote": "Gösteriş değil yaşam kalitesi: zamansız malzeme ve yalın detaylarla ‘gizli lüks’ kurduk.",
+                "personName": "Mustafa & Emre Toner",
+                "personTitle": "İç Mimari",
+                "sidebarText": "İç Mimari"
+            },
+            "landscape": {
+                "quote": "Kuzey Ormanları etkisi ve İstanbul’un endemik türleriyle, yeşilin her tonu projeye taşındı.",
+                "personName": "Cemil Aktaş, Pınar Kesim Aktaş",
+                "personTitle": "Peyzaj Mimarı",
+                "sidebarText": "Peyzaj"
+            },
+            "structural": {
+                "quote": "Sadece teknik başarı değil; City’s Residences sakinlerine huzurlu bir yuva sunmak için tasarlandı.",
+                "personName": "Melih Bulgur",
+                "personTitle": "Yüksek İnşaat Mühendisi",
+                "sidebarText": "Statik"
+            }
+        }
+    },
     "localeSwitcher": {
         "label": "tr",
         "locale": "{locale, select, tr}"
@@ -20,6 +78,7 @@
     "contact": {
         "description": "Ekibimizin sizinle iletişime geçebilmesi için lütfen aşağıdaki kayıt formunu doldurunuz.",
         "form": {
+            "title": "Randevu al",
             "inputs": {
                 "name": {
                     "label": "Adınız*",
@@ -127,6 +186,9 @@
         }
     },
     "home": {
+        "hero": {
+            "title": "Yaşam Yeniden Tasarlandı"
+        },
         "section1": {
             "title1": "YAŞAMA",
             "title2": "SANATI",
@@ -168,6 +230,14 @@
                 "title": "DAHA DOLU YAŞA",
                 "description": "Spor, sanat, kültür, alışveriş, eğlence ve çok daha fazlasını bir araya getiren yeni bir yaşam dizaynı ile <br></br> daha dolu yaşa."
             }
+        },
+        "livePeacefully": {
+            "title": "Daha <strong>huzurlu</strong> yaşa.",
+            "description": "Farklı ve zamansız mimarinin, doğanın cömertliği ile buluştuğu mekanlarda güven içinde, daha huzurlu yaşa."
+        },
+        "liveFully": {
+            "title": "Daha <strong>dolu</strong> yaşa.",
+            "description": "Spor, sanat, kültür, alışveriş, eğlence ve çok daha fazlasını bir araya getiren yeni bir yaşam dizaynı ile daha dolu yaşa."
         }
     },
     "citys-life": {
@@ -245,6 +315,54 @@
         "title": "Yaşam Yeniden Tasarlandı: CITY'S",
         "subtitle": "Artık her şey daha kolay..."
     },
+    "citys-istanbul-avm": {
+        "title": {
+            "line1": "CITY’S",
+            "line2": "İSTANBUL AVM"
+        },
+        "description": "Hayatı tüm renkleriyle yaşa.",
+        "filters": {
+            "category": "Kategori",
+            "allCategories": "Tüm Kategoriler",
+            "subcategory": "Alt Kategori",
+            "allSubcategories": "Tüm Alt Kategoriler",
+            "select": "Seçiniz",
+            "selectCategoryFirst": "Önce Kategori Seçiniz",
+            "floors": "Katlar",
+            "allFloors": "Tüm Katlar",
+            "searchPlaceholder": "Mağaza arayın"
+        },
+        "buttons": {
+            "viewAll": "Tümünü Gör"
+        },
+        "loading": "Yükleniyor..."
+    },
+    "citys-times": {
+        "title": "CITY’S TIMES",
+        "followUs": "Bizi takip edin."
+    },
+    "residences": {
+        "pageTitle": {
+            "title": "DAİRELER",
+            "description": "Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı."
+        },
+        "hero": {
+            "title": "Hayatına konforlu bir dokunuş.",
+            "description": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırarak keyifle, yaşamı sanata dönüştürerek daha çok yaşa."
+        },
+        "types": {
+            "title": "Farklı ihtiyaçlar, ortak yaşam tarzı.",
+            "description": "Küçük detaylardan büyük alanlara… City’s Residences’ta farklı daire tipleriyle size ve ailenize en uygun yaşam alanını keşfedin."
+        },
+        "imageAlt": "City's Residences İç Mekanları",
+        "navigator": {
+            "labels": {
+                "citysParkHouses": "City's Park Evleri",
+                "terraceHouses": "Teras Evler",
+                "penthouse": "PH Penthouse"
+            }
+        }
+    },
     "common": {
         "navigation": {
             "home": "Anasayfa",
@@ -267,6 +385,8 @@
         "menu": "Menü",
         "legal": "KVKK",
         "copyright": "Tüm hakları saklıdır.",
+        "copyrightYear": "2025 ©",
+        "copyrightText": "City's Residences İstanbul Tüm hakları saklıdır.",
         "kvkk": "KVKK",
         "commercialElectronicMessage": "Ticari Elektronik İleti Aydınlatma Metni",
         "explicitConsent": "Açık Rıza Metni",
@@ -274,6 +394,9 @@
         "cookiePolicy": "Çerez Politikası",
         "scrollToTop": "Başa Dön",
         "salesOffice": "Satış Ofisi",
+        "salesOfficeAddress1": "City's Istanbul AVM",
+        "salesOfficeAddress2": "İçerenköy, Çayır Caddesi No: 1, 34752",
+        "salesOfficeAddress3": "Ataşehir, İstanbul",
         "createAppointment": "Randevu <br></br> Oluştur",
         "speakWithRepresentative": "Temsilciyle <br></br> Görüş",
         "getDirections": "Yol <br></br> Tarifi Al"
@@ -520,5 +643,9 @@
         "ZA": "Güney Afrika",
         "ZM": "Zambiya",
         "ZW": "Zimbabve"
+    },
+    "LocaleSwitcher": {
+        "label": "Dil değiştir",
+        "locale": "{locale, select, tr {TR} en {EN} other {Unknown}}"
     }
 }

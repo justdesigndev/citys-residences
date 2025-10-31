@@ -18,7 +18,7 @@ import { Fragment, useRef } from 'react'
 import { Logo } from '@/components/icons'
 import { Link } from '@/components/utility/link'
 import { useNavigation } from '@/hooks/useNavigation'
-import { Locale, Link as LocalizedLink, routing } from '@/i18n/routing'
+import { Locale, routing } from '@/i18n/routing'
 import { getNavigationItems, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
@@ -77,12 +77,12 @@ export function Footer() {
                 'order-1 mb-16 xl:mb-0'
               )}
             >
-              <LocalizedLink
+              <Link
                 href='/'
                 className='w-[160px] sm:w-[200px] lg:w-[180px] xl:w-[200px] 2xl:w-[240px]'
               >
                 <Logo fill={colors['white']} />
-              </LocalizedLink>
+              </Link>
             </div>
             <div
               className={cn(
@@ -99,7 +99,7 @@ export function Footer() {
                     return (
                       <Fragment key={item.id}>
                         {item.id === navigationConfig['/']?.id ? (
-                          <LocalizedLink
+                          <Link
                             href='/'
                             className={cn(
                               'block font-primary font-[300] text-white transition-colors duration-300',
@@ -109,7 +109,7 @@ export function Footer() {
                             onClick={e => handleNavClick(e, item.id)}
                           >
                             {item.title}
-                          </LocalizedLink>
+                          </Link>
                         ) : (
                           <Link
                             href={'#' + item.id}
@@ -171,13 +171,13 @@ export function Footer() {
                   className='-mt-6 flex flex-col gap-1 text-white sm:-mt-8'
                 >
                   <p className='font-primary text-sm/[1.2] font-[300] xl:text-base'>
-                    City&apos;s Istanbul AVM
+                    {t('salesOfficeAddress1')}
                   </p>
                   <p className='font-primary text-sm/[1.2] font-[300] xl:text-base'>
-                    İçerenköy, Çayır Caddesi No: 1, 34752
+                    {t('salesOfficeAddress2')}
                   </p>
                   <p className='font-primary text-sm/[1.2] font-[300] xl:text-base'>
-                    Ataşehir, İstanbul
+                    {t('salesOfficeAddress3')}
                   </p>
                 </Link>
               </div>
@@ -284,8 +284,8 @@ export function Footer() {
           )}
         >
           <span className='flex flex-col gap-4 text-center lg:gap-0 lg:text-left'>
-            <span>2025 ©</span>
-            <span>City&apos;s Residences İstanbul Tüm hakları saklıdır.</span>
+            <span>{t('copyrightYear')}</span>
+            <span>{t('copyrightText')}</span>
           </span>
         </div>
         <div

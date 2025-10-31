@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 
 import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
 import { GsapSplitText } from '@/components/gsap-split-text'
@@ -14,11 +14,11 @@ import { FormTranslations } from '@/types'
 import { SectionSetter } from '@/components/section-setter'
 import { AspectCover } from '@/components/aspect-cover'
 
-const ImageCard = ({ src }: { src: string }) => (
+const ImageCard = ({ src, alt }: { src: string; alt: string }) => (
   <div className='aspect-[9/12] w-[200px] lg:w-[350px]'>
     <Image
       src={src}
-      alt='Citys Residences Interiors'
+      alt={alt}
       fill
       desktopSize='90vw'
       mobileSize='30vw'
@@ -40,6 +40,7 @@ export default async function Page({
   ]
 
   const messages = await getMessages({ locale })
+  const t = await getTranslations({ locale, namespace: 'residences' })
   type ContactMessages = { contact: { form: FormTranslations } }
   const formTranslations = (messages as unknown as ContactMessages).contact.form
 
@@ -48,8 +49,8 @@ export default async function Page({
       <PageTitle
         primaryColor={colors.white}
         secondaryColor={colors['bricky-brick']}
-        title='RESIDENCES'
-        description='Günlük yaşamın alışkanlıklarından, yıllara yayılan huzurlu anılara kadar her detay; evinizin size ait bir dünyaya dönüşmesi için tasarlandı.'
+        title={t('pageTitle.title')}
+        description={t('pageTitle.description')}
         id={navigationConfig['/residences']?.id as string}
       />
       <section
@@ -80,7 +81,7 @@ export default async function Page({
                 key={index}
                 className={cn('relative', index % 2 === 0 && 'mt-16')}
               >
-                <ImageCard {...image} />
+                <ImageCard {...image} alt={t('imageAlt')} />
               </div>
             ))}
           </AutoScrollCarousel>
@@ -94,7 +95,7 @@ export default async function Page({
             )}
           >
             <GsapSplitText type='chars' stagger={0.02} duration={1}>
-              Hayatına konforlu bir dokunuş.
+              {t('hero.title')}
             </GsapSplitText>
           </h2>
           <p
@@ -105,8 +106,7 @@ export default async function Page({
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>
-              Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize
-              ayırarak keyifle, yaşamı sanata dönüştürerek daha çok yaşa.
+              {t('hero.description')}
             </GsapSplitText>
           </p>
         </div>
@@ -134,7 +134,7 @@ export default async function Page({
             )}
           >
             <GsapSplitText type='chars' stagger={0.01} duration={1}>
-              Farklı ihtiyaçlar, ortak yaşam tarzı.
+              {t('types.title')}
             </GsapSplitText>
           </h2>
           <p
@@ -144,8 +144,7 @@ export default async function Page({
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>
-              Küçük detaylardan büyük alanlara… City’s Residences’ta farklı
-              daire tipleriyle size ve ailenize en uygun yaşam alanını keşfedin.
+              {t('types.description')}
             </GsapSplitText>
           </p>
         </div>

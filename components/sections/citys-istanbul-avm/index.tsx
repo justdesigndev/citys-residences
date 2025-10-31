@@ -6,9 +6,11 @@ import { PageTitle } from '@/components/page-title'
 import { citysIstanbulAvmBanner, navigationConfig } from '@/lib/constants'
 import { SectionSetter } from '@/components/section-setter'
 import { AspectCover } from '@/components/aspect-cover'
+import { getTranslations } from 'next-intl/server'
 
 export default async function Page() {
   const brands = await getBrandsData()
+  const t = await getTranslations('citys-istanbul-avm')
 
   return (
     <SectionSetter
@@ -20,11 +22,11 @@ export default async function Page() {
         tertiaryColor={colors['trapped-darkness']}
         title={
           <>
-            <span className='block'>CITY&apos;S</span>
-            <span className='block'>İSTANBUL AVM</span>
+            <span className='block'>{t('title.line1')}</span>
+            <span className='block'>{t('title.line2')}</span>
           </>
         }
-        description='Hayatı tüm renkleriyle yaşa.'
+        description={t('description')}
         id={navigationConfig['/citys-istanbul-avm']?.id as string}
       />
       <section className='h-screen overflow-hidden lg:h-[45vw]'>

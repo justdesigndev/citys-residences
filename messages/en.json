@@ -5,6 +5,64 @@
             "description": "In the heart of life, being able to dedicate time to yourself and your loved ones is transforming life into art."
         }
     },
+    "project": {
+        "pageTitle": {
+            "title": "PROJECT",
+            "description": "A mixed-use living project thoughtfully designed in every detail."
+        },
+        "map": {
+            "title": "At the heart of life.",
+            "locations": {
+                "kozyatagi-metro": "Kozyatağı Metro",
+                "yenisahra-metro": "Yenisahra Metro",
+                "memorial-atasehir": "Memorial Ataşehir Hospital",
+                "acibadem-atasehir": "Acıbadem Ataşehir Hospital",
+                "fenerbahce-university": "Fenerbahçe University",
+                "istanbul-finance": "Istanbul Financial Center"
+            }
+        },
+        "sections": {
+            "blockParking": {
+                "title": "Block and Parking Entrances",
+                "p1": "Each block features uniquely designed lobbies and entrances, offering a secure and prestigious welcome.",
+                "p2": "Spacious parking areas and direct block connections ensure convenient, time-saving access."
+            },
+            "greenAreas": {
+                "title": "Green Spaces",
+                "p1": "A serene life in the heart of nature with over 50,000 m² of landscaped green areas."
+            },
+            "architectsSay": {
+                "title": "The Architects Describe the Project",
+                "p1": "City’s Residences was designed with an architectural language that prioritizes quality of life over ostentation."
+            }
+        },
+        "quotes": {
+            "architecture": {
+                "quote": "With a mixed-use model, we give time back: live, work, and enjoy—within a single ecosystem.",
+                "personName": "Murat Kader",
+                "personTitle": "Master Architect",
+                "sidebarText": "Architectural Design"
+            },
+            "interior": {
+                "quote": "Not showiness, but quality of life: we created ‘hidden luxury’ with timeless materials and refined details.",
+                "personName": "Mustafa & Emre Toner",
+                "personTitle": "Interior Design",
+                "sidebarText": "Interior Design"
+            },
+            "landscape": {
+                "quote": "Inspired by the Northern Forests and Istanbul’s endemic species, every shade of green has been brought into the project.",
+                "personName": "Cemil Aktaş, Pınar Kesim Aktaş",
+                "personTitle": "Landscape Architect",
+                "sidebarText": "Landscape Design"
+            },
+            "structural": {
+                "quote": "Not only a technical achievement; City’s Residences is designed to offer residents a peaceful home.",
+                "personName": "Melih Bulgur",
+                "personTitle": "Senior Civil Engineer",
+                "sidebarText": "Structural Engineering"
+            }
+        }
+    },
     "localeSwitcher": {
         "label": "en",
         "locale": "{locale, select, en}"
@@ -20,6 +78,7 @@
     "contact": {
         "description": "Thank you for your interest in City's Residences. <br></br> Please fill out the registration form below so our team can contact you.",
         "form": {
+            "title": "Book an Appointment",
             "inputs": {
                 "name": {
                     "placeholder": "Name",
@@ -125,6 +184,9 @@
         }
     },
     "home": {
+        "hero": {
+            "title": "Life Reimagined"
+        },
         "section1": {
             "title1": "THE ART",
             "title2": "OF LIVING",
@@ -166,6 +228,14 @@
                 "title": "LIVE MORE RICHLY",
                 "description": "Live more richly with a new life design that brings together sports, art, culture, shopping, entertainment, and much more."
             }
+        },
+        "livePeacefully": {
+            "title": "Live more <strong>peacefully</strong>.",
+            "description": "Live in peace and security, in spaces where distinctive and timeless architecture meets the generosity of nature."
+        },
+        "liveFully": {
+            "title": "Live more <strong>fully</strong>.",
+            "description": "Live more fully with a new life design that brings together sports, art, culture, shopping, entertainment, and much more."
         }
     },
     "citys-life": {
@@ -243,6 +313,54 @@
         "title": "Life Redesigned: CITY'S",
         "subtitle": "Everything is easier now..."
     },
+    "citys-istanbul-avm": {
+        "title": {
+            "line1": "CITY’S",
+            "line2": "ISTANBUL MALL"
+        },
+        "description": "Experience life in all its colors.",
+        "filters": {
+            "category": "Category",
+            "allCategories": "All Categories",
+            "subcategory": "Subcategory",
+            "allSubcategories": "All Subcategories",
+            "select": "Select",
+            "selectCategoryFirst": "Select Category First",
+            "floors": "Floors",
+            "allFloors": "All Floors",
+            "searchPlaceholder": "Search for a store"
+        },
+        "buttons": {
+            "viewAll": "View All"
+        },
+        "loading": "Loading..."
+    },
+    "citys-times": {
+        "title": "CITY’S TIMES",
+        "followUs": "Follow us."
+    },
+    "residences": {
+        "pageTitle": {
+            "title": "RESIDENCES",
+            "description": "From daily routines to lifelong memories, every detail has been designed to turn your home into your own world."
+        },
+        "hero": {
+            "title": "A comfortable touch to your life.",
+            "description": "At the heart of life, make time for yourself and your loved ones—live more fully, turning life into art."
+        },
+        "types": {
+            "title": "Different needs, one shared lifestyle.",
+            "description": "From small details to grand spaces… Discover the ideal living area for you and your family among the diverse apartment types at City's Residences."
+        },
+        "imageAlt": "City's Residences Interiors",
+        "navigator": {
+            "labels": {
+                "citysParkHouses": "City's Park Houses",
+                "terraceHouses": "Terrace Houses",
+                "penthouse": "PH Penthouse"
+            }
+        }
+    },
     "common": {
         "navigation": {
             "home": "Home",
@@ -256,25 +374,31 @@
             "citysTimes": "City's Times",
             "project": "Project"
         },
-        "contactInfo": "Satış Ofisi / Sales Office",
+        "contactInfo": "Sales Office",
         "close": "CLOSE",
         "open": "MENU",
         "inquiry": "INQUIRY",
-        "contact": "Address",
+        "contact": "Contact",
         "socialMedia": "Social Media",
         "menu": "Menu",
         "legal": "Legal",
-        "copyright": "2025 © City's Istanbul Residences - All rights reserved.",
-        "kvkk": "Personal Data Protection Law",
-        "commercialElectronicMessage": "Commercial Electronic Message",
-        "explicitConsent": "Explicit Consent",
-        "kvkRelatedInformation": "PDPL Related Information",
+        "copyright": "All rights reserved.",
+        "copyrightYear": "2025 ©",
+        "copyrightText": "City's Residences Istanbul All rights reserved.",
+        "kvkk": "Personal Data Protection (KVKK)",
+        "commercialElectronicMessage": "Commercial Electronic Message Information Text",
+        "explicitConsent": "Explicit Consent Text",
+        "kvkRelatedInformation": "Information Text Regarding KVKK",
         "cookiePolicy": "Cookie Policy",
         "scrollToTop": "Scroll to Top",
         "salesOffice": "Sales Office",
-        "createAppointment": "Create <br></br> Appointment",
-        "speakWithRepresentative": "Speak with <br></br> Representative",
-        "getDirections": "Get <br></br> Directions"
+        "salesOfficeAddress1": "City's Istanbul Mall",
+        "salesOfficeAddress2": "İçerenköy, Çayır Street No: 1, 34752",
+        "salesOfficeAddress3": "Ataşehir, Istanbul",
+        "createAppointment": "Book an <br></br> Appointment",
+        "speakWithRepresentative": "Talk to a<br></br>Representative",
+        "getDirections": "Get <br></br> Directions",
+        "exploreAgain": "Explore Again"
     },
     "countries": {
         "AD": "Andorra",
@@ -518,5 +642,9 @@
         "ZA": "South Africa",
         "ZM": "Zambia",
         "ZW": "Zimbabwe"
+    },
+    "LocaleSwitcher": {
+        "label": "Change language",
+        "locale": "{locale, select, tr {TR} en {EN} other {Unknown}}"
     }
 }

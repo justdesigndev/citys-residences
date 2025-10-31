@@ -21,6 +21,7 @@ import {
   type FilterData,
 } from '@/lib/utils/filter-utils'
 import { Brand } from '@/types'
+import { useTranslations } from 'next-intl'
 
 const filterSchema = z.object({
   category: z.string().optional(),
@@ -34,6 +35,7 @@ interface FilterableContentProps {
 }
 
 export function FilterableContent({ brands }: FilterableContentProps) {
+  const t = useTranslations('citys-istanbul-avm')
   const { categories, floors, loading, error } = useAvmData()
 
   const DEFAULT_VISIBLE_COUNT = 30
@@ -90,7 +92,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
         />
       </div>
       <div className='col-span-24 px-8 lg:col-span-19 lg:col-start-5'>
-        {loading && <LoadingSpinner message='Yükleniyor...' />}
+        {loading && <LoadingSpinner message={t('loading')} />}
         <AnimatePresence mode='wait'>
           {!loading && (
             <motion.div
@@ -145,7 +147,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                   )}
                   onClick={() => setVisibleCount(filteredBrands.length)}
                 >
-                  Tümünü Gör
+                  {t('buttons.viewAll')}
                 </button>
               )}
               <AnimatePresence>

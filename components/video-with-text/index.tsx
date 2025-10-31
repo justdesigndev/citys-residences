@@ -8,8 +8,10 @@ interface VideoWithTextProps {
   className?: string
   mediaId: string
   thumbnail?: string
-  title: ReactNode
-  description: ReactNode
+  title?: ReactNode
+  description?: ReactNode
+  titleHtml?: string
+  descriptionHtml?: string
   customPoster?: string
   aspect?: number
 }

@@ -3,12 +3,14 @@ import { cn } from '@/lib/utils'
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { ContactForm } from '@/components/form-contact'
 import { FormTranslations } from '@/types'
+import { useTranslations } from 'next-intl'
 
 export function SectionContactForm({
   formTranslations,
 }: {
   formTranslations: FormTranslations
 }) {
+  const t = useTranslations()
   return (
     <section className='bg-gradient-appointment py-12 xl:py-40'>
       <FadeInOnScroll delay={0.25}>
@@ -20,7 +22,7 @@ export function SectionContactForm({
                 'text-4xl/tight lg:text-6xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
               )}
             >
-              Randevu al
+              {t('contact.form.title')}
             </h3>
             <p
               className={cn(
@@ -29,8 +31,7 @@ export function SectionContactForm({
                 'lg:max-w-sm xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
               )}
             >
-              Ekibimizin sizinle iletişime geçebilmesi için lütfen kayıt formunu
-              doldurunuz.
+              {t.rich('contact.description', {})}
             </p>
           </div>
           <div className='col-span-12 pb-12 lg:col-span-18 lg:col-start-6 xl:pb-0'>

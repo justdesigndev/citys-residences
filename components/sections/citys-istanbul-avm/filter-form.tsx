@@ -22,6 +22,7 @@ import {
 import { FilterData } from '@/lib/utils/filter-utils'
 import { Category, Floor, SubCategory } from '@/types'
 import { MagnifyingGlassIcon } from '@phosphor-icons/react'
+import { useTranslations } from 'next-intl'
 
 interface FilterFormProps {
   form: UseFormReturn<FilterData>
@@ -46,6 +47,7 @@ export function FilterForm({
   onCategoryChange,
   isLoading = false,
 }: FilterFormProps) {
+  const t = useTranslations('citys-istanbul-avm')
   const floorValue = form.watch('floor')
   const [searchValue, setSearchValue] = useState('')
 
@@ -79,7 +81,7 @@ export function FilterForm({
             render={({ field }) => (
               <FormItem className='relative col-span-24 lg:col-span-8'>
                 <FormLabel className={defaultFormLabelClasses}>
-                  Kategori
+                  {t('filters.category')}
                 </FormLabel>
                 <FormControl>
                   <Select
@@ -91,16 +93,18 @@ export function FilterForm({
                     disabled={isLoading}
                   >
                     <SelectTrigger className={defaultSelectTriggerClasses}>
-                      <SelectValue placeholder='Tüm Kategoriler'>
+                      <SelectValue placeholder={t('filters.allCategories')}>
                         {field.value === 'all' || !field.value
-                          ? 'Tüm Kategoriler'
+                          ? t('filters.allCategories')
                           : categories.find(
                               category => category.id.toString() === field.value
-                            )?.title || 'Tüm Kategoriler'}
+                            )?.title || t('filters.allCategories')}
                       </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value='all'>Tüm Kategoriler</SelectItem>
+                      <SelectItem value='all'>
+                        {t('filters.allCategories')}
+                      </SelectItem>
                       {categories.map(category => (
                         <SelectItem key={category.id} value={category.id}>
                           {category.title}
@@ -118,7 +122,7 @@ export function FilterForm({
             render={({ field }) => (
               <FormItem className='relative col-span-24 lg:col-span-8'>
                 <FormLabel className={defaultFormLabelClasses}>
-                  Alt Kategori
+                  {t('filters.subcategory')}
                 </FormLabel>
                 <FormControl>
                   <Select
@@ -137,20 +141,22 @@ export function FilterForm({
                         placeholder={
                           !form.getValues('category') ||
                           form.getValues('category') === 'all'
-                            ? 'Önce Kategori Seçiniz'
-                            : 'Seçiniz'
+                            ? t('filters.selectCategoryFirst')
+                            : t('filters.select')
                         }
                       >
                         {field.value === 'all' || !field.value
-                          ? 'Alt Kategoriler'
+                          ? t('filters.allSubcategories')
                           : subCategories.find(
                               subCategory =>
                                 subCategory.id.toString() === field.value
-                            )?.title || 'Seçiniz'}
+                            )?.title || t('filters.select')}
                       </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value='all'>Tüm Alt Kategoriler</SelectItem>
+                      <SelectItem value='all'>
+                        {t('filters.allSubcategories')}
+                      </SelectItem>
                       {subCategories.map(subCategory => (
                         <SelectItem key={subCategory.id} value={subCategory.id}>
                           {subCategory.title}
@@ -168,7 +174,7 @@ export function FilterForm({
             render={({ field }) => (
               <FormItem className='relative col-span-24 lg:col-span-8'>
                 <FormLabel className={defaultFormLabelClasses}>
-                  Katlar
+                  {t('filters.floors')}
                 </FormLabel>
                 <FormControl>
                   <Select
@@ -179,22 +185,24 @@ export function FilterForm({
                     disabled={isLoading}
                   >
                     <SelectTrigger className={defaultSelectTriggerClasses}>
-                      <SelectValue placeholder='Tüm Katlar'>
+                      <SelectValue placeholder={t('filters.allFloors')}>
                         {(() => {
                           if (floorValue === 'all' || !floorValue) {
-                            return 'Tüm Katlar'
+                            return t('filters.allFloors')
                           }
                           const selectedFloor = floors.find(
                             floor => floor.id.toString() === floorValue
                           )
                           return selectedFloor
                             ? selectedFloor.title
-                            : 'Tüm Katlar'
+                            : t('filters.allFloors')
                         })()}
                       </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value='all'>Tüm Katlar</SelectItem>
+                      <SelectItem value='all'>
+                        {t('filters.allFloors')}
+                      </SelectItem>
                       {floors.map(floor => (
                         <SelectItem key={floor.id} value={floor.id}>
                           {floor.title}
@@ -221,7 +229,7 @@ export function FilterForm({
                     <Input
                       name='keyword'
                       value={searchValue}
-                      placeholder='Mağaza arayın'
+                      placeholder={t('filters.searchPlaceholder')}
                       className={cn(
                         'h-full rounded-none border-x-0 border-b border-t-0 border-bricky-brick font-primary font-[300] text-bricky-brick placeholder:text-lg placeholder:text-bricky-brick'
                       )}

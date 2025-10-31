@@ -134,9 +134,7 @@ type NavigationConfigItem = {
   mainRoute: boolean
 }
 
-export const navigationConfig: Partial<
-  Record<Pathnames, NavigationConfigItem>
-> = {
+export const navigationConfig: Record<string, NavigationConfigItem> = {
   '/': {
     titleKey: 'navigation.home',
     id: 'home',
@@ -243,6 +241,11 @@ export const getNavigationItem = (
 // Helper function to get localized path from routing configuration
 function getLocalizedPath(routeKey: Pathnames, locale: Locale): string {
   const pathConfig = routing.pathnames[routeKey]
+
+  // Fallback in case a routeKey is missing from routing.pathnames
+  if (!pathConfig) {
+    return routeKey
+  }
 
   if (typeof pathConfig === 'string') {
     return pathConfig

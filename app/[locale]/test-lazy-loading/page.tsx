@@ -6,8 +6,8 @@ import CitysMembersClub from '@/components/sections/citys-members-club'
 import CitysPark from '@/components/sections/citys-park'
 import { CitysTimes } from '@/components/sections/citys-times'
 import HomePage from '@/components/sections/home'
-import ProjectPage from '@/components/sections/project'
-import ResidencesPage from '@/components/sections/residences'
+import ProjectSection from '@/components/sections/project'
+import ResidencesSection from '@/components/sections/residences'
 import {
   fetchCitysLivingData,
   fetchCitysMembersClubData,
@@ -24,8 +24,8 @@ export default async function Page({ params }: { params: { locale: string } }) {
   return (
     <Wrapper>
       <HomePage params={params} />
-      <ProjectPage />
-      <ResidencesPage params={params} />
+      <ProjectSection params={params} />
+      <ResidencesSection params={params} />
       <CitysPark data={citysParkDataItems} />
       <CitysMembersClub data={citysMembersClubDataItems} />
       <CitysLiving data={citysLivingDataItems} />

@@ -5,8 +5,10 @@ import { cn } from '@/lib/utils'
 import { HouseSimpleIcon } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { Image } from '@/components/image'
+import { useTranslations } from 'next-intl'
 
 export function ResidencesNavigator() {
+  const t = useTranslations('residences.navigator.labels')
   const options = [
     {
       id: '1',
@@ -46,19 +48,19 @@ export function ResidencesNavigator() {
     },
     {
       id: '7',
-      label: 'Citys Park Evleri',
+      label: t('citysParkHouses'),
       src: '/img/residences/1+1/interior.jpg',
       icon: <HouseSimpleIcon size={40} weight='thin' />,
     },
     {
       id: '8',
-      label: 'Teras Evler',
+      label: t('terraceHouses'),
       src: '/img/residences/terrace-houses/interior.jpg',
       icon: <HouseSimpleIcon size={40} weight='thin' />,
     },
     {
       id: '9',
-      label: 'PH Penthouse',
+      label: t('penthouse'),
       src: '/img/residences/terrace-houses/interior.jpg',
       icon: <HouseSimpleIcon size={40} weight='thin' />,
     },

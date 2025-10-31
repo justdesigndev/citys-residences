@@ -27,7 +27,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <CaretDownIcon className='size-8' weight='thin' />
+      <CaretDownIcon className='size-8' weight='regular' />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
