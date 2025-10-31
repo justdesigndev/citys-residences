@@ -13,6 +13,8 @@ import { colors } from '@/styles/config.mjs'
 import a1 from '@/public/img/project/a-1.jpg'
 import a2 from '@/public/img/project/a-2.jpg'
 import b1 from '@/public/img/project/b-1.jpg'
+import b1Mobile from '@/public/img/project/b-1-mobile.jpg'
+
 import a1Zoom from '@/public/img/project/a-1-zoom.jpg'
 import a2Zoom from '@/public/img/project/a-2-zoom.jpg'
 import { SectionSetter } from '@/components/section-setter'
@@ -23,6 +25,7 @@ const images = {
   a1,
   a2,
   b1,
+  b1Mobile,
   a1Zoom,
   a2Zoom,
 }
@@ -52,8 +55,8 @@ export default async function Page({
         </AspectCover>
       </section>
       <InteractiveMap />
-      <div className='space-y-8 py-12'>
-        <section className='grid grid-cols-24 gap-4 px-8 py-8 lg:px-0 lg:py-16 xl:py-36'>
+      <div className='gap-y-8 py-12'>
+        <section className='grid grid-cols-24 gap-y-4 px-8 py-8 lg:px-0 lg:py-16 xl:py-36'>
           <div className='col-span-24 flex lg:col-span-9 lg:col-start-6 xl:col-span-8 xl:col-start-7'>
             <h3
               className={cn(
@@ -166,15 +169,26 @@ export default async function Page({
           <div className='col-span-24 aspect-[9/10] lg:col-span-18 lg:-col-end-3 lg:aspect-[16/9]'>
             <ZoomImageDialog
               dialogTrigger={
-                <Image
-                  className='h-full w-full object-cover lg:object-contain'
-                  src={images.b1.src}
-                  alt='Project Visual'
-                  loading='lazy'
-                  aspectRatio={images.b1.width / images.b1.height}
-                  placeholder='blur'
-                  blurDataURL={images.b1.blurDataURL}
-                />
+                <>
+                  <Image
+                    className='hidden h-full w-full object-cover sm:block lg:object-contain'
+                    src={images.b1.src}
+                    alt='Project Visual'
+                    loading='lazy'
+                    aspectRatio={images.b1.width / images.b1.height}
+                    placeholder='blur'
+                    blurDataURL={images.b1.blurDataURL}
+                  />
+                  <Image
+                    className='block h-full w-full object-contain sm:hidden'
+                    src={images.b1Mobile.src}
+                    alt='Project Visual'
+                    loading='lazy'
+                    aspectRatio={images.b1Mobile.width / images.b1Mobile.height}
+                    placeholder='blur'
+                    blurDataURL={images.b1Mobile.blurDataURL}
+                  />
+                </>
               }
               dialogContent={
                 <Image
@@ -243,7 +257,8 @@ export default async function Page({
         mediaId='1qwipsnwiv'
         thumbnail='/img/thumbnail-murat-kader.jpg'
         portraitImage='/img/murat-kader-portrait.png'
-        personName={t('quotes.architecture.personName')}
+        portraitImageMobile='/img/murat-kader-portrait.png'
+        personName='Murat Kader'
         personTitle={t('quotes.architecture.personTitle')}
         sidebarText={t('quotes.architecture.sidebarText')}
         primaryColor={colors['bricky-brick']}
@@ -254,8 +269,13 @@ export default async function Page({
         quote={t('quotes.interior.quote')}
         mediaId='k7c3eyfiwe'
         thumbnail='/img/thumbnail-toners.jpg'
-        portraitImage='/img/toner-portrait.png'
-        personName={t('quotes.interior.personName')}
+        portraitImage='/img/toners-portrait.png'
+        portraitImageMobile='/img/toners-portrait-mobile.png'
+        personName={
+          <>
+            Mustafa & <br className='block xl:hidden' /> Emre Toner
+          </>
+        }
         personTitle={t('quotes.interior.personTitle')}
         sidebarText={t('quotes.interior.sidebarText')}
         primaryColor={colors['white']}
@@ -266,19 +286,26 @@ export default async function Page({
         mediaId='lw6zlx5v5y'
         thumbnail='/img/thumbnail-aktas.jpg'
         portraitImage='/img/aktas-portrait.png'
-        personName={t('quotes.landscape.personName')}
+        portraitImageMobile='/img/aktas-portrait-mobile.png'
+        personName={
+          <>
+            Cemil Aktaş <br className='block xl:hidden' /> Pınar Kesim Aktaş
+          </>
+        }
         personTitle={t('quotes.landscape.personTitle')}
         sidebarText={t('quotes.landscape.sidebarText')}
         primaryColor={colors['army-canvas']}
         secondaryColor={colors['white']}
         hasBg={true}
+        portraitClassName='w-[65%]'
       />
       <QuoteWithVideo
         quote={t('quotes.structural.quote')}
         mediaId='zmn4yqnamk'
         thumbnail='/img/thumbnail-melih-bulgur.jpg'
         portraitImage='/img/melih-bulgur-portrait.png'
-        personName={t('quotes.structural.personName')}
+        portraitImageMobile='/img/melih-bulgur-portrait-mobile.png'
+        personName='Melih Bulgur'
         personTitle={t('quotes.structural.personTitle')}
         sidebarText={t('quotes.structural.sidebarText')}
         primaryColor={colors['birch-strain']}

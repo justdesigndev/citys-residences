@@ -13,7 +13,9 @@ export interface QuoteWithVideoProps {
   quote: string
   mediaId: string
   portraitImage?: string
-  personName?: string
+  portraitImageMobile?: string
+  portraitClassName?: string
+  personName?: React.ReactNode
   personTitle?: string
   sidebarText?: string
   primaryColor?: string
@@ -27,6 +29,8 @@ export function QuoteWithVideo({
   quote,
   mediaId,
   portraitImage,
+  portraitImageMobile,
+  portraitClassName,
   personName,
   personTitle,
   sidebarText,
@@ -40,39 +44,45 @@ export function QuoteWithVideo({
     <section
       className={cn(
         'relative z-10 grid min-h-screen grid-cols-24 overflow-hidden',
-        hasBg &&
-          'bg-[url(/svg/murat-kader-bg.svg)] bg-contain bg-right-bottom bg-no-repeat bg-blend-soft-light',
         className
       )}
       style={{ backgroundColor: primaryColor }}
     >
+      {hasBg && (
+        <div
+          className={cn(
+            'pointer-events-none absolute -bottom-28 right-0 aspect-[16/16] w-3/4 lg:w-3/4 2xl:w-[64%]',
+            'bg-[url(/svg/murat-kader-bg.svg)] bg-contain bg-right-bottom bg-no-repeat mix-blend-soft-light'
+          )}
+        />
+      )}
       {/* quote and person name and title */}
-      <div className='col-span-24 flex items-center justify-between px-8 pt-28 lg:col-span-16 lg:col-start-6 lg:px-0 lg:pt-48'>
-        <h2
+      <div className='col-span-24 flex items-center justify-between px-8 pt-28 lg:col-span-16 lg:col-start-5 lg:px-0 lg:pt-48 2xl:pt-64'>
+        <p
           className={cn(
             'relative',
             'text-left font-primary font-[400]',
-            'w-[80%] lg:w-[50vw]',
-            'text-2xl/snug lg:text-4xl/snug'
+            'w-[70%] lg:w-[50vw] xl:w-[45%] 2xl:w-[40%]',
+            'text-2xl/snug lg:text-4xl/snug xl:text-4xl/snug 2xl:text-4xl/snug'
           )}
           style={{ color: secondaryColor }}
         >
-          <span className='absolute left-0 top-0 z-20 block -translate-y-[140%]'>
+          <span className='absolute left-0 top-0 z-20 block size-16 -translate-y-[140%] lg:size-20'>
             <QuotesIcon
-              size={64}
+              className='size-full'
               weight='thin'
-              style={{ color: secondaryColor }}
+              style={{ color: secondaryColor, transform: 'rotateY(180deg)' }}
             />
           </span>
           <GsapSplitText type='lines' stagger={0.1} duration={1.5}>
             {quote}
           </GsapSplitText>
-        </h2>
+        </p>
         {/* person name and title desktop */}
         <div className='mt-auto hidden text-right lg:block'>
           {personName && (
             <h3
-              className='font-primary text-xl font-[400] lg:text-2xl'
+              className='font-primary text-xl/tight font-[400] lg:text-2xl/tight xl:text-xl/tight xl:font-[500] 2xl:text-2xl/tight'
               style={{ color: secondaryColor }}
             >
               {personName}
@@ -80,7 +90,7 @@ export function QuoteWithVideo({
           )}
           {personTitle && (
             <p
-              className='mt-1 font-primary text-sm font-[300] lg:text-2xl'
+              className='mt-1 font-primary text-sm font-[300] lg:mt-1 lg:text-2xl/tight xl:text-xl/tight xl:font-[200] 2xl:text-2xl/tight'
               style={{ color: secondaryColor }}
             >
               {personTitle}
@@ -89,8 +99,8 @@ export function QuoteWithVideo({
         </div>
       </div>
       {/* video */}
-      <div className='col-span-24 border border-red-400 px-8 pb-0 pt-8 lg:col-span-16 lg:col-start-6 lg:px-0 lg:pb-16 lg:pt-16 xl:col-start-5'>
-        <div className='group relative aspect-[16/9] cursor-pointer overflow-hidden rounded-sm border border-blue-400 text-red-400'>
+      <div className='col-span-24 px-8 pb-12 pt-8 lg:col-span-16 lg:col-start-6 lg:px-0 lg:pb-28 lg:pt-16 xl:col-start-5'>
+        <div className='group relative aspect-[16/8] cursor-pointer overflow-hidden rounded-md 2xl:rounded-lg'>
           <FullScreenVideoDialog
             dialogTrigger={
               <Image
@@ -102,15 +112,15 @@ export function QuoteWithVideo({
             }
             mediaId={mediaId}
           />
-          <span className='pointer-events-none absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 text-white transition-transform duration-300 ease-in-out group-hover:scale-125'>
-            <PlayCircleIcon size={120} weight='fill' />
+          <span className='pointer-events-none absolute left-1/2 top-1/2 z-50 size-16 -translate-x-1/2 -translate-y-1/2 text-white transition-transform duration-300 ease-in-out group-hover:scale-125 xl:size-24'>
+            <PlayCircleIcon className='size-full' weight='fill' />
           </span>
         </div>
         {/* person name and title mobile */}
-        <div className='mr-auto mt-12 inline-flex flex-col lg:mt-24 lg:hidden'>
+        <div className='mr-auto mt-20 inline-flex flex-col lg:hidden'>
           {personName && (
             <h3
-              className='max-w-[35vw] font-primary text-base/tight font-[500]'
+              className='max-w-[35vw] font-primary text-sm/tight font-[500] md:text-lg/tight'
               style={{ color: secondaryColor }}
             >
               {personName}
@@ -118,7 +128,7 @@ export function QuoteWithVideo({
           )}
           {personTitle && (
             <p
-              className='font-primary text-sm font-[300]'
+              className='font-primary text-xs font-[300] md:text-base/tight'
               style={{ color: secondaryColor }}
             >
               {personTitle}
@@ -127,24 +137,34 @@ export function QuoteWithVideo({
         </div>
       </div>
       {/* portrait image */}
-      <div className='aspect-square pointer-events-none absolute -right-4 bottom-0 z-50 h-[35%] w-full lg:right-0 lg:h-[35%] xl:h-2/4'>
+      <div
+        className={cn(
+          'aspect-square pointer-events-none absolute bottom-0 right-0 z-50 h-full w-[80%] lg:w-[60%] xl:w-[40%]',
+          portraitClassName
+        )}
+      >
         <Image
           src={portraitImage || ''}
-          alt={personName || 'Portrait'}
+          alt={'Architect Portrait'}
           fill
-          className='object-contain object-right-bottom'
+          className='hidden object-contain object-right-bottom xl:block'
+        />
+        <Image
+          src={portraitImageMobile || ''}
+          alt={'Architect Portrait'}
+          fill
+          className='block object-contain object-right-bottom xl:hidden'
         />
       </div>
       {/* blueprint icon and sidebar text */}
-      <div className='absolute right-6 top-8 flex flex-col items-center justify-end gap-2 lg:right-24 lg:top-24'>
+      <div className='absolute right-6 top-10 flex flex-col items-center justify-end gap-2 lg:right-16 lg:top-28 lg:gap-4'>
         <BlueprintIcon
-          size={28}
+          className='size-7 rotate-90 lg:size-12 2xl:size-16'
           weight='thin'
-          className='rotate-90'
           style={{ color: secondaryColor }}
         />
         <div
-          className='writing-mode-vertical font-primary text-base font-[400] lg:text-4xl'
+          className='writing-mode-vertical font-primary text-base font-[400] lg:text-3xl 2xl:text-4xl'
           style={{ color: secondaryColor }}
         >
           <span className='rotate-90 transform whitespace-nowrap'>
