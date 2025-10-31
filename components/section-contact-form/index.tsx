@@ -31,7 +31,9 @@ export function SectionContactForm({
                 'lg:max-w-sm xl:max-w-md 2xl:max-w-lg 3xl:max-w-lg'
               )}
             >
-              {t.rich('contact.description', {})}
+              {t.rich('contact.description', {
+                br: () => <br />,
+              })}
             </p>
           </div>
           <div className='col-span-12 pb-12 lg:col-span-18 lg:col-start-6 xl:pb-0'>
