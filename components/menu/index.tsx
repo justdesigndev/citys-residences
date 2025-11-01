@@ -137,11 +137,7 @@ export function Menu() {
           <CaretRightIcon className='size-full' weight='thin' />
           <span className='sr-only'>Close</span>
         </button>
-        <div className='flex justify-between gap-24'>
-          <div className='flex lg:items-end'>
-            <MenuNavList />
-          </div>
-        </div>
+        <MenuNavList />
         <div className='mt-12 flex flex-col items-end justify-between gap-16 lg:mt-auto lg:flex-row'>
           <div className='mr-auto flex gap-4'>
             <FacebookLogoIcon

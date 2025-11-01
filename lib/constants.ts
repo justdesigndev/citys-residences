@@ -135,7 +135,7 @@ type NavigationConfigItem = {
 }
 
 export const navigationConfig: Record<string, NavigationConfigItem> = {
-  '/': {
+  '/home': {
     titleKey: 'navigation.home',
     id: 'home',
     order: 1,
@@ -147,12 +147,12 @@ export const navigationConfig: Record<string, NavigationConfigItem> = {
     order: 2,
     mainRoute: true,
   },
-  // '/location': {
-  //   titleKey: 'navigation.location',
-  //   id: 'location',
-  //   order: 3,
-  //   mainRoute: true,
-  // },
+  '/location': {
+    titleKey: 'navigation.location',
+    id: 'location',
+    order: 3,
+    mainRoute: true,
+  },
   '/residences': {
     titleKey: 'navigation.residences',
     id: 'residences',
@@ -177,12 +177,12 @@ export const navigationConfig: Record<string, NavigationConfigItem> = {
     order: 7,
     mainRoute: false,
   },
-  // '/citys-psm': {
-  //   titleKey: 'navigation.citysPsm',
-  //   id: 'citys-psm',
-  //   order: 8,
-  //   mainRoute: false,
-  // },
+  '/citys-ksm': {
+    titleKey: 'navigation.citysPsm',
+    id: 'citys-ksm',
+    order: 8,
+    mainRoute: false,
+  },
   '/citys-istanbul-avm': {
     titleKey: 'navigation.citysIstanbul',
     id: 'citys-istanbul-avm',
