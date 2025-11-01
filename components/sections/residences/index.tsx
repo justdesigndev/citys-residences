@@ -52,6 +52,9 @@ export default async function Page({
         title={t('pageTitle.title')}
         description={t('pageTitle.description')}
         id={navigationConfig['/residences']?.id as string}
+        stopColor1={colors['white']}
+        stopColor2={colors['bricky-brick']}
+        bgClassName='opacity-50'
       />
       <section
         className={cn(
@@ -110,10 +113,7 @@ export default async function Page({
             </GsapSplitText>
           </p>
         </div>
-        <div
-          className="pointer-events-none absolute inset-0 z-0 bg-[url('/svg/bg-footer.svg')] bg-cover bg-left-bottom bg-no-repeat"
-          style={{ mixBlendMode: 'overlay' }}
-        />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[url('/svg/bg-footer.svg')] bg-cover bg-left-bottom bg-no-repeat mix-blend-overlay" />
       </section>
       <section className='aspect-1 overflow-hidden lg:aspect-[16/7]'>
         <AspectCover ratio={residencesBanner.aspect()}>
@@ -123,24 +123,24 @@ export default async function Page({
           />
         </AspectCover>
       </section>
-      <section
-        className={cn('relative overflow-hidden bg-white pt-16 lg:pt-36')}
-      >
-        <div className='flex flex-col items-center justify-center gap-6 px-8 lg:gap-6 lg:px-0'>
+      <section className={cn('relative overflow-hidden bg-white')}>
+        <div className='flex flex-col items-center justify-center gap-6 px-8 py-24 lg:gap-6 lg:px-0 lg:pt-36'>
           <h2
             className={cn(
               'text-center font-primary font-[400] text-black',
-              'text-3xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
+              'text-4xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-7xl/tight',
+              'max-w-[90%]'
             )}
           >
-            <GsapSplitText type='chars' stagger={0.01} duration={1}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1}>
               {t('types.title')}
             </GsapSplitText>
           </h2>
           <p
             className={cn(
               'text-center font-primary font-[300] text-black',
-              'lg:text-2xl/text-xl/snug xl:text-2xl/text-xl/snug 2xl:text-2xl/text-xl/snug text-xl/snug'
+              'text-xl/snug lg:text-2xl/snug xl:text-2xl/snug 2xl:text-3xl/snug',
+              'max-w-[80%] xl:max-w-[50%] 3xl:max-w-[45%]'
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>

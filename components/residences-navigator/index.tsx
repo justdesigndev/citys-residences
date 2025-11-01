@@ -74,7 +74,7 @@ export function ResidencesNavigator() {
 
   return (
     <div className={cn('mt-12 flex flex-col gap-16 lg:mt-24')}>
-      <div className='grid grid-cols-3 flex-wrap items-stretch justify-center gap-x-4 gap-y-4 px-16 lg:flex lg:px-0 xl:gap-2.5 2xl:gap-3.5'>
+      <div className='grid grid-cols-3 grid-rows-3 flex-wrap items-stretch justify-center gap-x-4 gap-y-4 px-16 lg:flex lg:px-0 xl:gap-2.5 2xl:gap-3.5'>
         {options.map(option => {
           const isSelected = selectedValue === option.id
           return (
@@ -82,10 +82,9 @@ export function ResidencesNavigator() {
               key={option.id}
               onClick={() => handleOptionClick(option.id)}
               className={cn(
-                'aspect-[1] cursor-pointer px-1 pt-4',
+                'aspect-[1/1] cursor-pointer px-1 pt-4',
                 'flex flex-shrink-0 flex-col items-center justify-start rounded-md',
                 'transition-all duration-200',
-                'lg:size-16 xl:size-20 xl:py-4 2xl:size-[6rem] 2xl:py-5 3xl:size-[6.5rem]',
                 {
                   'bg-bricky-brick text-white': isSelected,
                   'border border-bricky-brick bg-bricky-brick text-white hover:bg-white hover:text-bricky-brick':

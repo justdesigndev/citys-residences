@@ -17,6 +17,7 @@ interface CitysMembersClubProps {
     description?: string
     mediaId?: string
     thumbnail?: string
+    aspectRatio?: number
   }>
 }
 
@@ -34,18 +35,31 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
         }
         description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
         id={navigationConfig['/citys-members-club']?.id as string}
+        stopColor1={colors['white']}
+        stopColor2={colors['blue-shimmer']}
+        bgClassName='mix-blend-soft-light'
       />
-      {data.map(item => (
-        <RepetitiveSectionsWrapper
-          key={item.id}
-          componentType={item.componentType}
-          title={item.title}
-          subtitle={item.subtitle}
-          description={item.description}
-          mediaId={item.mediaId}
-          thumbnail={item.thumbnail}
-        />
-      ))}
+      <div
+        style={
+          {
+            '--bg-color': colors['blue-shimmer'],
+            '--text-color': colors.black,
+          } as React.CSSProperties
+        }
+      >
+        {data.map(item => (
+          <RepetitiveSectionsWrapper
+            key={item.id}
+            componentType={item.componentType}
+            title={item.title}
+            subtitle={item.subtitle}
+            description={item.description}
+            mediaId={item.mediaId}
+            thumbnail={item.thumbnail}
+            videoAspectRatio={item.aspectRatio}
+          />
+        ))}
+      </div>
       <section
         className={cn(
           'relative flex items-center justify-center overflow-hidden',

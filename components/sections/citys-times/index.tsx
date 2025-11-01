@@ -65,9 +65,9 @@ export async function CitysTimes() {
           )}
         ></div>
         <SvgBgC
-          stopColor1={'transparent'}
-          stopColor2={colors.white}
-          className='absolute left-1/2 top-1/2 z-0 h-full w-auto -translate-x-1/2 -translate-y-1/2 lg:h-auto lg:w-full'
+          stopColor1={'#3D4151'}
+          stopColor2={'#0F1A2C'}
+          className='absolute left-1/2 top-1/2 z-10 h-full w-auto -translate-x-1/2 -translate-y-1/2 mix-blend-soft-light lg:h-auto lg:w-full'
         />
         <div className='z-20 flex flex-col items-center justify-center gap-6 lg:gap-6'>
           <div className='relative z-10 flex items-center justify-center py-24 lg:py-24'>

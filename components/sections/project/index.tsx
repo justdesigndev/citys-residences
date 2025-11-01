@@ -45,6 +45,9 @@ export default async function Page({
         title={t('pageTitle.title')}
         description={t('pageTitle.description')}
         id={navigationConfig['/project']?.id as string}
+        stopColor1={colors['white']}
+        stopColor2={colors['bricky-brick']}
+        bgClassName='opacity-50'
       />
       <section className='relative h-screen overflow-hidden lg:h-[60vw] xl:h-[45vw]'>
         <AspectCover ratio={projectBanner.aspect()}>

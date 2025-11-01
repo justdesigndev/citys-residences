@@ -5,6 +5,7 @@ import { GsapSplitText } from '@/components/gsap-split-text'
 import { LazyWistiaPlayer } from '../wistia-player-lazy'
 import { useState, useEffect } from 'react'
 import { AspectCover } from '../aspect-cover'
+import { FadeInOnScroll } from '../animations/fade-in-on-scroll'
 
 export interface CenterVideoTextProps {
   title: string
@@ -48,7 +49,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
               )}
             >
               <GsapSplitText
-                type='lines'
+                type='chars'
                 stagger={0.01}
                 duration={1.5}
                 html={sanitizedTitle}
@@ -70,23 +71,25 @@ export function CenterVideoText(props: CenterVideoTextProps) {
             </h4>
           </div>
         </div>
-        <div className='col-span-24 px-8 pb-20 lg:col-span-10 lg:px-0 lg:pb-16 lg:pl-24 lg:pt-24 xl:col-span-8 xl:pb-24 xl:pl-16 xl:pr-0 xl:pt-44'>
-          <article
-            className={cn(
-              'text-left font-primary font-[300]',
-              'text-base/normal xl:text-lg/normal',
-              'max-w-[90%] md:max-w-[55vw] xl:max-w-none',
-              'prose-2xl'
-            )}
-            dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-          >
-            {/* <GsapSplitText
+        <div className='col-span-24 px-8 pb-20 lg:col-span-10 lg:px-0 lg:pb-16 lg:pl-24 lg:pt-24 xl:col-span-8 xl:px-16 xl:pb-24 xl:pt-44'>
+          <FadeInOnScroll delay={0.25}>
+            <article
+              className={cn(
+                'text-left font-primary font-[300]',
+                'text-base/[1.25] xl:text-lg/[1.25]',
+                'max-w-[90%] md:max-w-[55vw] xl:max-w-none',
+                'prose-2xl prose-p:m-0'
+              )}
+              dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+            >
+              {/* <GsapSplitText
               type='lines'
               stagger={0.01}
               duration={1.5}
               html={sanitizedDescription}
             /> */}
-          </article>
+            </article>
+          </FadeInOnScroll>
         </div>
       </div>
       <div className='relative z-30 grid grid-cols-24'>

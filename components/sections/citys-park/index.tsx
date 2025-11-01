@@ -30,6 +30,9 @@ export default function CitysPark({ data }: CitysParkProps) {
         title="CITY'S PARK"
         description='Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha...'
         id={navigationConfig['/citys-park']?.id as string}
+        stopColor1={colors['white']}
+        stopColor2={colors['army-canvas']}
+        bgClassName='mix-blend-soft-light opacity-50'
       />
       <div
         style={
