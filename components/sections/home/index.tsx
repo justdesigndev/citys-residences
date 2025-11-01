@@ -85,7 +85,7 @@ export default async function Page({
           >
             <span
               className={cn(
-                'whitespace-nowrap font-suisse-intl font-[500] text-white',
+                'whitespace-nowrap font-primary font-[500] text-white',
                 'text-2xl/[1.15] sm:text-4xl/[1.15] lg:text-5xl/[1.15] xl:text-5xl/[1.15] 2xl:text-5xl/[1.15] 3xl:text-5xl/[1.15]',
                 'flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-0'
               )}
@@ -97,16 +97,11 @@ export default async function Page({
             </span>
             <span
               className={cn(
-                'text-center font-copperplate font-[700] text-white',
-                'text-3xl/[1] sm:text-5xl/[1.15] lg:text-5xl/[1] xl:text-5xl/[1] 2xl:text-5xl/[1] 3xl:text-6xl/[1]',
-                'block translate-y-1 leading-[1]'
+                'whitespace-nowrap text-center font-primary font-[500] text-white',
+                'text-2xl/[1.15] sm:text-4xl/[1.15] lg:text-5xl/[1.15] xl:text-5xl/[1.15] 2xl:text-5xl/[1.15] 3xl:text-5xl/[1.15]'
               )}
             >
-              CITY
-              <span className='font-roboto-slab font-[400] leading-[0.5]'>
-                &apos;
-              </span>
-              S
+              CITY&apos;S
             </span>
           </div>
         </div>
