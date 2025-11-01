@@ -58,13 +58,13 @@ export default async function Page({
       />
       <section
         className={cn(
-          'pb-24 pt-16 lg:pb-48',
-          'relative min-h-svh overflow-hidden bg-bricky-brick',
+          'pb-24 pt-16 lg:pb-40',
+          'relative overflow-hidden bg-bricky-brick',
           'before:absolute before:bottom-0 before:left-0 before:top-0 before:z-20 before:h-full before:w-[20vw] before:bg-gradient-to-r before:from-bricky-brick before:to-transparent',
           'after:absolute after:bottom-0 after:right-0 after:top-0 after:z-20 after:h-full after:w-[20vw] after:bg-gradient-to-l after:from-bricky-brick after:to-transparent'
         )}
       >
-        <div className='relative z-10 flex items-center justify-center py-16 lg:py-32'>
+        <div className='relative z-10 flex items-center justify-center py-16 lg:py-28'>
           <AutoScrollCarousel
             options={{ loop: true, dragFree: true }}
             emblaSlideClassname='items-start'
@@ -93,11 +93,11 @@ export default async function Page({
           <h2
             className={cn(
               'text-center font-primary font-[400] text-white',
-              'text-3xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-6xl/tight',
+              'text-3xl/tight md:text-4xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-7xl/tight',
               'w-[80vw] lg:w-auto'
             )}
           >
-            <GsapSplitText type='chars' stagger={0.02} duration={1}>
+            <GsapSplitText type='lines' stagger={0.01} duration={1}>
               {t('hero.title')}
             </GsapSplitText>
           </h2>
@@ -105,7 +105,7 @@ export default async function Page({
             className={cn(
               'text-center font-primary font-[300] text-white',
               'text-xl/snug lg:text-2xl/snug xl:text-2xl/snug 2xl:text-3xl/snug',
-              'w-[90vw] md:w-[60vw] lg:w-[60vw] xl:w-[40vw] 2xl:w-[40vw] 3xl:w-[40vw]'
+              'w-[90vw] md:w-[60vw] lg:w-[60vw] xl:w-[40vw] 2xl:w-[40vw] 3xl:w-[35vw]'
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>
@@ -123,13 +123,13 @@ export default async function Page({
           />
         </AspectCover>
       </section>
-      <section className={cn('relative overflow-hidden bg-white')}>
-        <div className='flex flex-col items-center justify-center gap-6 px-8 py-24 lg:gap-6 lg:px-0 lg:pt-36'>
+      <section className='relative overflow-hidden bg-white'>
+        <div className='flex flex-col items-center justify-center gap-6 px-8 py-16 lg:gap-6 lg:px-0 lg:py-24 xl:pt-36'>
           <h2
             className={cn(
               'text-center font-primary font-[400] text-black',
               'text-4xl/tight lg:text-5xl/tight xl:text-6xl/tight 2xl:text-7xl/tight',
-              'max-w-[90%]'
+              'max-w-[95%]'
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>
@@ -140,7 +140,7 @@ export default async function Page({
             className={cn(
               'text-center font-primary font-[300] text-black',
               'text-xl/snug lg:text-2xl/snug xl:text-2xl/snug 2xl:text-3xl/snug',
-              'max-w-[80%] xl:max-w-[50%] 3xl:max-w-[45%]'
+              'max-w-[90%] xl:max-w-[50%] 3xl:max-w-[45%]'
             )}
           >
             <GsapSplitText type='lines' stagger={0.01} duration={1}>

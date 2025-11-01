@@ -1,7 +1,6 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-
 import { HouseSimpleIcon } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { Image } from '@/components/image'
@@ -12,57 +11,57 @@ export function ResidencesNavigator() {
   const options = [
     {
       id: '1',
-      label: '1+1',
+      label: '1 + 1',
       src: '/img/residences/1+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '2',
-      label: '2+1',
+      label: '2 + 1',
       src: '/img/residences/2+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '3',
-      label: '3+1',
+      label: '3 + 1',
       src: '/img/residences/3+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '4',
-      label: '4+1',
+      label: '4 + 1',
       src: '/img/residences/4+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '5',
-      label: '5+1',
+      label: '5 + 1',
       src: '/img/residences/4+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '6',
-      label: '6+1',
+      label: '6 + 1',
       src: '/img/residences/4+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '7',
       label: t('citysParkHouses'),
       src: '/img/residences/1+1/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '8',
       label: t('terraceHouses'),
       src: '/img/residences/terrace-houses/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
     {
       id: '9',
       label: t('penthouse'),
       src: '/img/residences/terrace-houses/interior.jpg',
-      icon: <HouseSimpleIcon size={40} weight='thin' />,
+      icon: <HouseSimpleIcon className='size-full' weight='regular' />,
     },
   ]
 
@@ -73,8 +72,8 @@ export function ResidencesNavigator() {
   }
 
   return (
-    <div className={cn('mt-12 flex flex-col gap-16 lg:mt-24')}>
-      <div className='grid grid-cols-3 grid-rows-3 flex-wrap items-stretch justify-center gap-x-4 gap-y-4 px-16 lg:flex lg:px-0 xl:gap-2.5 2xl:gap-3.5'>
+    <div className='flex flex-col gap-16 lg:gap-24'>
+      <div className='flex flex-wrap items-center justify-center gap-x-3 gap-y-3 px-8 md:px-16 lg:flex lg:px-40 xl:gap-2.5 xl:px-0 2xl:gap-3.5'>
         {options.map(option => {
           const isSelected = selectedValue === option.id
           return (
@@ -82,8 +81,8 @@ export function ResidencesNavigator() {
               key={option.id}
               onClick={() => handleOptionClick(option.id)}
               className={cn(
-                'aspect-[1/1] cursor-pointer px-1 pt-4',
-                'flex flex-shrink-0 flex-col items-center justify-start rounded-md',
+                'aspect-[1/1] size-24 cursor-pointer px-1 pt-3',
+                'flex flex-shrink-0 flex-col items-center justify-start gap-1 rounded-md',
                 'transition-all duration-200',
                 {
                   'bg-bricky-brick text-white': isSelected,
@@ -96,17 +95,17 @@ export function ResidencesNavigator() {
               aria-label={`Select ${option.label}`}
               type='button'
             >
-              <div className='mb-1 flex items-center justify-center'>
+              <div className='mb-1 flex size-8 items-center justify-center'>
                 {option.icon}
               </div>
-              <span className={cn('font-[300 ] text-sm/tight')}>
+              <span className={cn('text-sm/[1.1] font-[300]')}>
                 {option.label}
               </span>
             </button>
           )
         })}
       </div>
-      <div className='relative aspect-[16/16] lg:aspect-[16/9]'>
+      <div className='relative aspect-[16/16] lg:aspect-[16/7]'>
         {options.map(option => {
           return (
             <div
