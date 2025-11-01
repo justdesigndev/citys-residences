@@ -4,7 +4,6 @@ import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
 import { SvgBgC } from '@/components/svgs/svg-bg-c'
 import { navigationConfig } from '@/lib/constants'
-import { colors } from '@/styles/config.mjs'
 
 export interface PageTitleProps {
   title: React.ReactNode
