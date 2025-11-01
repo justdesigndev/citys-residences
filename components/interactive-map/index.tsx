@@ -7,7 +7,7 @@ import {
   HospitalIcon,
   TrainIcon,
 } from '@phosphor-icons/react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { memo, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -72,7 +72,9 @@ const MemoizedTitle = memo(() => {
   const t = useTranslations('project.map')
   return (
     <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
-      {t('title')}
+      {t.rich('title', {
+        br: () => <br />,
+      })}
     </GsapSplitText>
   )
 })
