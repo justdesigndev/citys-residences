@@ -7,15 +7,13 @@ import { GsapSplitText } from '@/components/gsap-split-text'
 import { IconCollab } from '@/components/icons'
 import { Image } from '@/components/image'
 import { SectionContactForm } from '@/components/section-contact-form'
+import { SectionSetter } from '@/components/section-setter'
 import { VideoWithText } from '@/components/video-with-text'
-// import { WistiaPlayerWrapper } from '@/components/wistia-player'
+import { VimeoPlayer } from '@/components/vimeo-player'
 import { liveMore, livePeacefully, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
 
-// import heroVideoPoster from '@/public/img/poster-hero.jpg'
-import { SectionSetter } from '@/components/section-setter'
-import { VimeoPlayer } from '@/components/vimeo-player'
 import liveMorePoster from '@/public/img/thumbnail-live-more.jpg'
 import livePeacefullyPoster from '@/public/img/thumbnail-live-peacefully.jpg'
 
@@ -40,26 +38,6 @@ export default async function Page({
         id={navigationConfig['/']?.id}
       >
         <ScaleOut>
-          {/* <div className='pointer-events-none relative h-svh w-full'>
-            <WistiaPlayerWrapper
-              mediaId='e2tew1zhxj'
-              muted
-              autoplay
-              preload='auto'
-              qualityMin={1080}
-              swatch={false}
-              bigPlayButton={false}
-              silentAutoplay='allow'
-              endVideoBehavior='loop'
-              controlsVisibleOnLoad={false}
-              playBarControl={false}
-              volumeControl={false}
-              settingsControl={false}
-              transparentLetterbox={true}
-              customPoster={heroVideoPoster.src}
-              posterPriority={true}
-            />
-          </div> */}
           <div className='pointer-events-none relative hidden h-screen w-full xl:block'>
             <VimeoPlayer
               poster='/img/poster-hero.jpg'
@@ -140,7 +118,7 @@ export default async function Page({
                   </GsapSplitText>
                   <span className='sr-only'>YAŞAMA</span>
                 </article>
-                <FadeInOnScroll delay={0.5}>
+                <FadeInOnScroll delay={0.25}>
                   <article className='relative h-16 w-screen lg:h-24 xl:h-32 2xl:h-36'>
                     <Image
                       src='/img/sanati.png'
@@ -170,7 +148,7 @@ export default async function Page({
                   </GsapSplitText>
                   <span className='sr-only'>THE</span>
                 </article>
-                <FadeInOnScroll delay={0.5}>
+                <FadeInOnScroll delay={0.25}>
                   <article className='relative h-16 w-screen lg:h-24 xl:h-32 2xl:h-36'>
                     <Image
                       src='/img/art.png'
@@ -198,7 +176,6 @@ export default async function Page({
                 </article>
               </div>
             )}
-
             <article
               className={cn(
                 'flex flex-shrink-0',
