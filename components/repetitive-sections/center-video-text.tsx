@@ -79,7 +79,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
                 'text-left font-primary font-[300]',
                 'text-base/[1.25] xl:text-lg/[1.25]',
                 'max-w-[90%] md:max-w-[55vw] xl:max-w-none',
-                'prose-2xl prose-p:m-0'
+                'prose-2xl prose-p:m-0 prose-ul:list-disc'
               )}
               dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
             >
