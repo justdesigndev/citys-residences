@@ -65,10 +65,11 @@ export const StickySidebar: React.FC = () => {
                 'text-left font-primary font-[500] text-white lg:tracking-[0.4em]',
                 'flex-col items-center justify-center',
                 'transition-all duration-300 ease-out',
-                {
-                  'text-[0.9rem]': activeSection === item.id,
-                  'text-[0.8rem]': activeSection !== item.id,
-                }
+                'text-[0.8rem]'
+                // {
+                //   'text-[0.8rem]': activeSection === item.id,
+                //   'text-[0.8rem]': activeSection !== item.id,
+                // }
               )}
               type='button'
             >
