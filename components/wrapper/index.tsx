@@ -1,13 +1,12 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import type { themeNames } from '@/styles/config.mjs'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
+import { Footer } from '@/components/footer'
+import { Header } from '@/components/header'
 import { SmoothScroll } from '@/components/smooth-scroll'
-import { Header } from '../header'
-import { Footer } from '../footer'
 
 interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: (typeof themeNames)[number]
