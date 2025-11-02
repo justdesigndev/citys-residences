@@ -20,8 +20,8 @@ import { Link } from '@/components/utility/link'
 import { useNavigation } from '@/hooks/useNavigation'
 import { Locale, routing } from '@/i18n/routing'
 import { getNavigationItems, navigationConfig } from '@/lib/constants'
-import { colors } from '@/styles/config.mjs'
 import { useUiStore } from '@/lib/store/ui'
+import { colors } from '@/styles/config.mjs'
 
 export function Footer() {
   const t = useTranslations('common')
@@ -29,7 +29,7 @@ export function Footer() {
   const locale = useLocale()
   const navigationItems = getNavigationItems(t, locale as Locale)
   const { handleNavClick } = useNavigation()
-  const { isMenuOpen, setIsMenuOpen, setIsModalContactFormOpen } = useUiStore()
+  const { setIsMenuOpen, setIsModalContactFormOpen } = useUiStore()
 
   const footerItems = {
     menu: navigationItems,
