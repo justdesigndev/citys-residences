@@ -81,22 +81,22 @@
             "title": "Book an Appointment",
             "inputs": {
                 "name": {
-                    "placeholder": "Name",
-                    "label": "Name",
+                    "label": "Name*",
+                    "placeholder": "Enter your name",
                     "errors": {
                         "required": "Required field"
                     }
                 },
                 "surname": {
-                    "placeholder": "Surname",
-                    "label": "Surname",
+                    "label": "Surname*",
+                    "placeholder": "Enter your surname",
                     "errors": {
                         "required": "Required field"
                     }
                 },
                 "phone": {
-                    "placeholder": "Telephone Number",
-                    "label": "Telephone Number",
+                    "label": "Telephone Number*",
+                    "placeholder": "Enter your telephone number",
                     "errors": {
                         "required": "Please enter a valid telephone number",
                         "min": "Telephone number must be at least 8 characters long",
@@ -104,36 +104,35 @@
                     }
                 },
                 "email": {
-                    "placeholder": "Email Address",
-                    "label": "Email Address",
+                    "label": "Email Address*",
+                    "placeholder": "Enter your email address",
                     "errors": {
                         "required": "Required field",
                         "email": "Please enter a valid email address"
                     }
                 },
                 "residenceType": {
-                    "placeholder": "Preferred Residence Type",
-                    "label": "Preferred Residence Type",
+                    "label": "Preferred Residence Type*",
+                    "placeholder": "Enter your preferred residence type",
                     "errors": {
                         "required": "Required field"
                     }
                 },
                 "howDidYouHearAboutUs": {
                     "placeholder": "How did you hear about us?",
-                    "label": "How did you hear about us?",
+                    "label": "How did you hear about us?*",
                     "errors": {
                         "required": "Required field"
                     },
                     "options": {
                         "reference": "Reference",
-                        "projectVisit": "Shopping Mall / Project Area Visit",
-                        "internetSocialMedia": "Internet / Social Media",
-                        "billboard": "Billboard",
-                        "newspaperMagazine": "Newspaper / Magazine"
+                        "projectVisit": "Shopping Mall / Stand Area Visit",
+                        "internetSocialMedia": "Social Media / Digital",
+                        "billboard": "Outdoor Advertising"
                     }
                 },
                 "contactPreference": {
-                    "placeholder": "Contact Preference",
+                    "placeholder": "Preferred Contact Method*",
                     "errors": {
                         "required": "Required field"
                     }
@@ -400,7 +399,7 @@
         "kvkk": "Personal Data Protection (KVKK)",
         "commercialElectronicMessage": "Commercial Electronic Message Information Text",
         "explicitConsent": "Explicit Consent Text",
-        "kvkRelatedInformation": "Information Text Regarding KVKK",
+        "kvkRelatedInformation": "PDPL",
         "cookiePolicy": "Cookie Policy",
         "scrollToTop": "Explore Again",
         "salesOffice": "Sales Office",

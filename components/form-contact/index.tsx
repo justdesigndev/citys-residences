@@ -42,7 +42,7 @@ const getFormSchema = (translations: FormTranslations) => {
   // Ensure contactPreference exists with fallback
   const contactPreferenceTranslations = translations?.inputs
     ?.contactPreference || {
-    placeholder: 'Contact Preference',
+    placeholder: 'Preferred Contact Method',
     errors: { required: 'Required field' },
   }
 
@@ -110,7 +110,7 @@ const FormInput = ({
     name={name}
     render={({ field }) => (
       <FormItem>
-        <FormLabel className='block font-[300] leading-none text-white lg:text-sm 2xl:text-lg'>
+        <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
           {label}
         </FormLabel>
         <FormControl>
@@ -269,7 +269,7 @@ export function ContactForm({ translations }: FormContactProps) {
     },
   })
 
-  const iconSize = 'size-5 xl:size-6 2xl:size-7 3xl:size-8'
+  const iconSize = 'size-6 xl:size-6 2xl:size-7 3xl:size-8'
 
   const residenceTypeOptions = useMemo(
     () => [
@@ -358,7 +358,7 @@ export function ContactForm({ translations }: FormContactProps) {
   const contactPreferenceTranslations = useMemo(
     () =>
       translations?.inputs?.contactPreference || {
-        placeholder: 'Contact Preference',
+        placeholder: 'Preferred Contact Method',
         errors: { required: 'Required field' },
       },
     [translations.inputs.contactPreference]
@@ -369,7 +369,7 @@ export function ContactForm({ translations }: FormContactProps) {
       form.setValue('consentElectronicMessage', checked)
 
       if (checked) {
-        // If checked, select all contact preference options
+        // If checked, select all Preferred Contact Method options
         const allContactPreferenceLabels = contactPreferenceOptions
           .map(opt => opt.label)
           .join(',')
@@ -377,7 +377,7 @@ export function ContactForm({ translations }: FormContactProps) {
           shouldValidate: false,
         })
       } else {
-        // If unchecked, clear all contact preference options
+        // If unchecked, clear all Preferred Contact Method options
         form.setValue('contactPreference', '', {
           shouldValidate: false,
         })
@@ -433,12 +433,12 @@ export function ContactForm({ translations }: FormContactProps) {
       })
 
       if (ids.length > 0) {
-        // If at least one contact preference is selected, check consentElectronicMessage
+        // If at least one Preferred Contact Method is selected, check consentElectronicMessage
         form.setValue('consentElectronicMessage', true, {
           shouldValidate: false,
         })
       } else {
-        // If all contact preferences are unselected, uncheck consentElectronicMessage
+        // If all Preferred Contact Methods are unselected, uncheck consentElectronicMessage
         form.setValue('consentElectronicMessage', false, {
           shouldValidate: false,
         })
@@ -559,7 +559,7 @@ export function ContactForm({ translations }: FormContactProps) {
                   <FormItem>
                     <FormControl>
                       <MultiSelectCheckboxes
-                        title={`${contactPreferenceTranslations.placeholder}*`}
+                        title={`${contactPreferenceTranslations.placeholder}`}
                         selectedValues={
                           contactPreferenceValue
                             ? contactPreferenceOptions
@@ -690,7 +690,8 @@ export function ContactForm({ translations }: FormContactProps) {
                   className={cn(
                     'relative flex flex-shrink-0 items-center justify-center overflow-hidden',
                     'bg-gradient-submit-button text-white transition-all duration-500 group-hover:text-bleeding-crimson',
-                    'size-[3.5rem] p-2 xl:size-16 2xl:size-20 3xl:size-24',
+                    'size-[3.5rem] xl:size-16 2xl:size-20 3xl:size-24',
+                    'p-3 xl:p-4 3xl:p-6',
                     'before:absolute before:inset-0 before:bg-gradient-submit-button-hover before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100'
                   )}
                 >

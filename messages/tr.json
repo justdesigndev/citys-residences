@@ -126,10 +126,9 @@
                     },
                     "options": {
                         "reference": "Referans",
-                        "projectVisit": "Avm / Proje Alanı",
-                        "internetSocialMedia": "İnternet / Sosyal Medya",
-                        "billboard": "Billboard",
-                        "newspaperMagazine": "Gazete / Dergi"
+                        "projectVisit": "AVM / Stand Alanı",
+                        "internetSocialMedia": "S. Medya / Dijital",
+                        "billboard": "Açıkhava"
                     }
                 },
                 "contactPreference": {

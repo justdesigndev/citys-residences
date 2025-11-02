@@ -239,9 +239,9 @@ const config: Config = {
         'gradient-button-hover':
           'linear-gradient(313.15deg, #F57C67 3.02%, #E0533A 100%), linear-gradient(150.88deg, #E65A2E -48.76%, #99170F 135.57%)',
         'gradient-submit-button':
-          'linear-gradient(135deg, #F57C67 0%, #E0533A 100%)',
+          'linear-gradient(135deg, #E55A2E 0%, #E0533A 100%)',
         'gradient-submit-button-hover':
-          'linear-gradient(135deg, #E55A2E 0%, #FFFFFF 100%)',
+          'linear-gradient(135deg, #F57C67 0%, #E0533A 100%)',
         'gradient-soft-light':
           'linear-gradient(146.41deg, rgba(198, 198, 198, 0) 22.01%, #FFFFFF 242.33%)',
         'gradient-sidebar':

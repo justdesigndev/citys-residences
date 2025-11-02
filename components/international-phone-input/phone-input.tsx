@@ -120,11 +120,12 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
       >
         <SelectTrigger
           className={cn(
-            'h-12 w-20 lg:h-14 lg:w-24 xl:h-14',
+            'h-12 w-12 lg:h-14 lg:w-16 xl:h-14',
             'cursor-pointer rounded-none border-b border-white font-[300]',
             'text-white placeholder:text-white/90',
             'text-sm lg:text-sm 2xl:text-lg',
-            '[&>svg]:size-5 [&>svg]:text-white'
+            '[&>svg]:size-4 [&>svg]:text-white',
+            'p-0'
           )}
         >
           <SelectValue placeholder='Code'>
@@ -141,7 +142,8 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
           'rounded-none border-b border-white font-[300]',
           'text-white placeholder:text-tangerine-flake',
           'placeholder:text-sm xl:placeholder:text-sm 2xl:placeholder:text-lg',
-          'text-sm lg:text-sm xl:text-sm 2xl:text-lg'
+          'text-sm lg:text-sm xl:text-sm 2xl:text-lg',
+          'pl-2'
         )}
         placeholder={
           phoneInput.country.format?.toString().replace(/\S/g, 'X') ||

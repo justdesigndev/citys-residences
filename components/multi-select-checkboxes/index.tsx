@@ -67,9 +67,9 @@ export const MultiSelectCheckboxes = forwardRef<
     return (
       <div className={cn('space-y-2.5 lg:space-y-5', className)}>
         {title && (
-          <h3 className='font-primary text-base font-[300] text-white lg:text-sm xl:text-lg 2xl:text-lg'>
+          <label className='font-primary text-base font-[400] text-white lg:text-sm xl:text-lg 2xl:text-lg'>
             {title}
-          </h3>
+          </label>
         )}
         <div className='flex flex-wrap justify-start gap-2 xl:gap-2.5 2xl:gap-3.5'>
           {options.map(option => {
@@ -93,24 +93,22 @@ export const MultiSelectCheckboxes = forwardRef<
                 aria-label={`Select ${option.label}`}
                 type='button'
               >
-                <div className='flex flex-col items-center justify-center gap-1'>
-                  <div className='flex items-center justify-center'>
-                    {option.icon}
-                  </div>
+                <span className='flex flex-col items-center justify-center gap-1'>
+                  {option.icon}
                   <span
                     className={cn(
                       'font-[300]',
                       textSize === 'sm' &&
                         'text-[0.6rem]/[1.1] lg:text-[1.1rem]/[1.1] xl:text-sm/tight 2xl:text-sm/tight 3xl:text-sm/tight',
                       textSize === 'md' &&
-                        'text-[0.7rem]/[1.1] lg:text-[0.7rem]/[1.1] xl:text-[0.7rem]/[1.1] 2xl:text-sm/tight 3xl:text-sm/tight',
+                        'text-[0.7rem]/[1.1] lg:text-[0.7rem]/[1.1] xl:text-[0.7rem]/[1.1] 2xl:text-sm/tight 3xl:text-base/tight',
                       textSize === 'lg' &&
                         'text-[1rem]/[1.1] lg:text-[1.1rem]/[1.1] xl:text-sm/tight 2xl:text-[1.15rem]/tight 3xl:text-[1.25rem]/tight'
                     )}
                   >
                     {option.label}
                   </span>
-                </div>
+                </span>
               </button>
             )
           })}
