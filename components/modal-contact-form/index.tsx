@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
 import { useLenis } from 'lenis/react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
 import { ContactForm } from '@/components/form-contact'
@@ -18,7 +18,7 @@ export function ModalContactForm() {
   const stickyBadgeRef = useRef<HTMLButtonElement>(null)
   const overlayRef = useRef<HTMLButtonElement>(null)
   const formRef = useRef<HTMLDivElement>(null)
-
+  const locale = useLocale()
   const t = useTranslations('contact')
   const commonT = useTranslations('common')
   const lenis = useLenis()
@@ -238,20 +238,23 @@ export function ModalContactForm() {
         <button
           className={cn(
             'group',
-            'h-52 w-12 lg:w-16 xl:h-60 xl:w-16 2xl:h-72 2xl:w-20 3xl:w-16',
             'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-[0%] lg:-translate-y-1/2',
             'font-primary font-[500] tracking-[0.2em] text-white',
             'text-sm xl:text-base 2xl:text-xl',
-            'flex cursor-pointer items-center justify-center',
-            'relative overflow-hidden bg-gradient-button-hover transition-all duration-300',
+            'flex items-center justify-center',
+            'relative cursor-pointer overflow-hidden bg-gradient-button-hover',
             'before:absolute before:inset-0 before:bg-gradient-button before:opacity-0',
             'before:transition-opacity before:duration-300 hover:before:opacity-100',
-            'transition-opacity duration-300 ease-in-out',
+            'transition-all duration-300 ease-in-out',
             {
               'pointer-events-none opacity-0':
                 !isInquiryVisible || isModalContactFormOpen,
               'pointer-events-auto opacity-100':
                 isInquiryVisible && !isModalContactFormOpen,
+              'h-52 w-12 lg:w-16 xl:h-60 xl:w-16 2xl:h-72 2xl:w-20 3xl:w-16':
+                locale === 'tr',
+              'h-72 w-12 lg:w-16 xl:h-80 xl:w-16 2xl:h-96 2xl:w-20 3xl:w-16':
+                locale === 'en',
             }
           )}
           onClick={() => setIsModalContactFormOpen(!isModalContactFormOpen)}
