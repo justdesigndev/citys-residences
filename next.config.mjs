@@ -2,6 +2,7 @@
 
 import createMDX from '@next/mdx'
 import createNextIntlPlugin from 'next-intl/plugin'
+import bundleAnalyzer from '@next/bundle-analyzer'
 
 const withNextIntl = createNextIntlPlugin()
 const withMDX = createMDX({
@@ -9,6 +10,9 @@ const withMDX = createMDX({
     remarkPlugins: [],
     rehypePlugins: [],
   },
+})
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
 })
 
 const nextConfig = {
@@ -68,4 +72,4 @@ const nextConfig = {
   },
 }
 
-export default withNextIntl(withMDX(nextConfig))
+export default withBundleAnalyzer(withNextIntl(withMDX(nextConfig)))

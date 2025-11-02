@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@darkroom.engineering/hamo": "^0.6.46",
@@ -62,6 +63,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.1",
     "@tailwindcss/typography": "^0.5.16",
     "@types/google-libphonenumber": "^7.4.30",
     "@types/node": "^20",
