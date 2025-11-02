@@ -82,7 +82,7 @@ const Link: React.ForwardRefRenderFunction<HTMLAnchorElement, LinkProps> = (
       aria-label={ariaLabel}
       className={cn('cursor-pointer', className)}
       passHref={isAnchor}
-      scroll={scroll}
+      scroll={isAnchor ? false : scroll}
       {...props}
     >
       {children}

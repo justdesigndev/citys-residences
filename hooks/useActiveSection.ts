@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useSectionStore } from '@/lib/store/sections'
-import { useHash } from './useHash'
 
 interface UseActiveSectionCallbacks {
   onEnter?: (section: string) => void
@@ -11,8 +10,7 @@ interface UseActiveSectionCallbacks {
 }
 
 /**
- * Combines hash-based navigation (link clicks) with scroll-based section detection
- * Returns the active section ID, prioritizing hash over scroll detection
+ * Returns the active section ID based on scroll-based section detection
  *
  * @example
  * ```tsx
@@ -30,20 +28,10 @@ export function useActiveSection(callbacks?: UseActiveSectionCallbacks): string
 export function useActiveSection(
   callbacks?: UseActiveSectionCallbacks
 ): string {
-  const hash = useHash()
   const { currentSection, previousSection } = useSectionStore()
-  const prevHashRef = useRef<string | null>(null)
 
-  // If there's a hash (from link click), use that
-  // Otherwise, use the section detected by scrolling
-  const activeSection = hash || currentSection
-
-  // Update previous hash reference for hash-based navigation
-  useEffect(() => {
-    if (hash) {
-      prevHashRef.current = hash
-    }
-  }, [hash])
+  // Use the section detected by scrolling (from store)
+  const activeSection = currentSection
 
   // Handle callbacks on section changes
   useEffect(() => {
@@ -75,11 +63,10 @@ export function useActiveSection(
  * @returns Object with current and previous section IDs
  */
 export function useActiveSectionWithPrevious() {
-  const hash = useHash()
   const { currentSection, previousSection } = useSectionStore()
 
   return {
-    current: hash || currentSection,
+    current: currentSection,
     previous: previousSection,
   }
 }

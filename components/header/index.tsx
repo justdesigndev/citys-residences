@@ -8,13 +8,13 @@ import { useLenis } from 'lenis/react'
 import { ArrowLeft } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { ListIcon } from '@phosphor-icons/react'
 
 import { Logo } from '@/components/icons'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Menu } from '@/components/menu'
 import { useUiStore } from '@/lib/store/ui'
 import { colors } from '@/styles/config.mjs'
-import { ListIcon } from '@phosphor-icons/react'
 
 export function Header({ nonHome = false }: { nonHome?: boolean }) {
   const lenis = useLenis()
@@ -24,10 +24,6 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
     atTop: true,
   })
   const pathname = usePathname()
-
-  useEffect(() => {
-    return isMenuOpen ? lenis?.stop() : lenis?.start()
-  }, [lenis, isMenuOpen])
 
   useEffect(() => {
     setIsMenuOpen(false)

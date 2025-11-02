@@ -279,40 +279,26 @@
         }
     },
     "citys-park": {
-        "title1": "Şehrin kalbinde, sizi yavaşlatan,",
-        "subtitle1": "yaşamın en özel hali...",
-        "title2": "Yaşam Yeniden Tasarlandı: CITY'S",
-        "videoTitle": "PEYZAJ MİMARI ANLATIYOR...",
-        "items": {
-            "i1": {
-                "title": "City's Lounge",
-                "text": "City's Lounge, günlük buluşmalardan özel davetlere kadar her anınıza uyum sağlayan ayrıcalıklı bir sosyal alandır; ister doğanın içinde bir masa etrafında buluşun, ister zarif bir etkinliğe ev sahipliği yapın."
-            },
-            "i2": {
-                "title": "Havuz X Bar",
-                "text": "City's Residences atmosferinde, günün ritmine uyum sağlayan bir kaçış: serinlik, güneş ve sohbet istediğiniz her an sizinle."
-            },
-            "i3": {
-                "title": "Çocuk Parkları",
-                "text": "Oyun, doğa ve hayal gücü bir arada; çocukların özgürce büyüdüğü alanlar."
-            },
-            "i4": {
-                "title": "Yürüyüş Parkurları",
-                "text": "Gökyüzü kadar geniş bir hareket alanı; nefesinizi ve ritminizi doğaya bırakın."
-            },
-            "i5": {
-                "title": "Açık Spor Alanları",
-                "text": "Açıkhavada kendinle buluşmanın en doğal hali."
-            },
-            "i6": {
-                "title": "Açıkhava Meydanları",
-                "text": "Birlikte olmanın bir plana ihtiyaç duymadığı, hayatın akışında paylaşılan zamanlara ayrılmış mekanlar."
-            }
-        }
+        "description": "Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha..."
     },
     "citys-living": {
-        "title": "Yaşam Yeniden Tasarlandı: CITY'S",
-        "subtitle": "Artık her şey daha kolay..."
+        "description": "Artık her şey daha kolay..."
+    },
+    "sticky-sidebar": {
+        "home": "ANASAYFA",
+        "project": "PROJE",
+        "residences": "DAİRELER",
+        "citysPark": "CITY'S PARK",
+        "citysMembersClub": "MEMBERS CLUB",
+        "citysLiving": "CITY'S LIVING",
+        "citysIstanbulAvm": "CITY'S İSTANBUL AVM"
+    },
+    "citys-members-club": {
+        "description": "Sanat, spor ve sosyal ayrıcalıkların buluştuğu, özel bir yaşam alanı.",
+        "card": {
+            "title": "Her an daha özel.",
+            "subtitle": "City's Members Club"
+        }
     },
     "citys-istanbul-avm": {
         "title": {
@@ -381,9 +367,9 @@
             "location": "Konum",
             "citysPark": "City's Park",
             "citysMembersClub": "City's Members Club",
-            "citysLifePrivileges": "City's Living",
+            "citysLiving": "City's Living",
             "citysIstanbul": "City's İstanbul AVM",
-            "citysPsm": "City's PSM",
+            "citysKsm": "City's KSM",
             "citysTimes": "City's Times",
             "project": "Proje"
         },

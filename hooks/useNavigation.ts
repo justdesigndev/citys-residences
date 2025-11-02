@@ -1,28 +1,29 @@
 'use client'
 
+import { useUiStore } from '@/lib/store/ui'
+import { useSectionStore } from '@/lib/store/sections'
 import { useLenis } from 'lenis/react'
 
 export function useNavigation() {
+  const { setIsMenuOpen } = useUiStore()
+  const { setCurrentSection } = useSectionStore()
   const lenis = useLenis()
 
-  const handleNavClick = (e: React.MouseEvent, itemId: string) => {
-    if (itemId === 'home') {
-      e.preventDefault()
-      // Scroll to home section without adding hash
-      const homeElement = document.getElementById('home')
-      if (homeElement && lenis) {
-        lenis.scrollTo('#home', {
-          duration: 1.2,
-          easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          onComplete: () => {
-            // Remove hash from URL
-            window.history.replaceState(null, '', window.location.pathname)
-          },
-        })
-      }
-      return true // Indicates the click was handled
+  const handleNavClick = (itemId: string) => {
+    // Close menu if it's open
+    setIsMenuOpen(false)
+
+    // Update the active section in store
+    setCurrentSection(itemId)
+
+    // Scroll to the target section with Lenis smooth scroll
+    const targetElement = document.getElementById(itemId)
+    if (targetElement && lenis) {
+      lenis.scrollTo(targetElement, {
+        duration: 1.2,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      })
     }
-    return false // Indicates the click was not handled by us
   }
 
   return { handleNavClick }

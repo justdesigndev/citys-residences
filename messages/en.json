@@ -237,80 +237,27 @@
             "description": "Live more fully with a new life design that brings together sports, art, culture, shopping, entertainment, and much more."
         }
     },
-    "citys-life": {
-        "items": {
-            "i1": {
-                "title": "Resepsiyon & Concierge Hizmetleri",
-                "spot": "Günün her anında destek",
-                "text": "Rezervasyonlardan günlük ihtiyaçlara kadar her detayı sizin yerinize düşünen bir yaşam destek sistemi."
-            },
-            "i2": {
-                "title": "Vale & Otopark Hizmetleri",
-                "spot": "Aracınız için her zaman bir yer var",
-                "text": "City's Residences'da konfor sadece evin içinde değil; aracınızı bıraktığınız ilk anda başlar."
-            },
-            "i3": {
-                "title": "Kargo Teslim Servisi",
-                "spot": "Gelen her paket doğru adrese ulaşır",
-                "text": "Kargolarınız profesyonel ekip tarafından teslim alınır ve size güvenle ulaştırılır."
-            },
-            "i4": {
-                "title": "Justwork | Office Campus",
-                "spot": "Çalışmak, evinizden uzaklaşmadan mümkün",
-                "text": "Günlük, haftalık veya dönemsel çalışma ihtiyaçlarınıza uyum sağlayan modern ofis alanları bir adım uzağınızda."
-            },
-            "i5": {
-                "title": "Just Stay | Modern Konaklama Deneyimi",
-                "spot": "Misafirleriniz için ev konforunda, otel şıklığında kısa konaklama seçenekleri",
-                "text": "Seyahat eden dostlarınız ve yakınlarınız için, City's ruhunu yansıtan bir misafirlik deneyimi."
-            },
-            "i6": {
-                "title": "Just Events",
-                "spot": "Hayatı kutlamak için her zaman bir alan var",
-                "text": "Özel etkinlikler, davetler ve sosyal buluşmalar için tasarlanmış esnek etkinlik alanları."
-            },
-            "i7": {
-                "title": "Pet Hotel & Pet Hospital",
-                "spot": "Evcil dostlarınız da bu yaşamın bir parçası",
-                "text": "Pet Hotel ve Pet Hospital hizmetleriyle, onların konforu ve sağlığı da City's Living ayrıcalıkları arasında."
-            }
-        }
-    },
     "citys-park": {
-        "title1": "In the heart of the city,",
-        "subtitle1": "the most special state of life that slows you down...",
-        "title2": "Life Redesigned: CITY'S",
-        "videoTitle": "Landscape: A Sanctuary Design",
-        "items": {
-            "i1": {
-                "title": "CITY'S LOUNGE",
-                "text": "City’s Lounge, günlük buluşmalardan özel davetlere kadar her anınıza uyum sağlayan ayrıcalıklı bir sosyal alandır; ister doğanın içinde bir masa etrafında buluşun, ister zarif bir etkinliğe ev sahipliği yapın."
-            },
-            "i2": {
-                "title": "HAVUZ X BAR",
-                "text": "City’s Residences atmosferinde, günün ritmine uyum sağlayan bir kaçış: serinlik, güneş ve sohbet istediğiniz her an sizinle."
-            },
-            "i3": {
-                "title": "ÇOCUK PARKLARI",
-                "text": "Oyun, doğa ve hayal gücü bir arada; çocukların özgürce büyüdüğü alanlar."
-            },
-            "i4": {
-                "title": "YÜRÜYÜŞ PARKURLARI",
-                "text": "Gökyüzü kadar geniş bir hareket alanı; nefesinizi ve ritminizi doğaya bırakın."
-            },
-            "i5": {
-                "title": "AÇIK SPOR ALANLARI",
-                "text": "Açıkhavada kendinle buluşmanın en doğal hali."
-            },
-            "i6": {
-                "title": "AÇIKHAVA MEYDANLARI",
-                "text": "Birlikte olmanın bir plana ihtiyaç duymadığı, hayatın akışında paylaşılan zamanlara mekanlar."
-            }
-        }
+        "description": "In the heart of the city, a green oasis that slows you down…"
     },
     "citys-living": {
-        "title": "Life Redesigned: CITY'S",
-        "subtitle": "Everything is easier now..."
+        "description": "Now, everything is easier."
+    },
+    "sticky-sidebar": {
+        "home": "HOME",
+        "project": "PROJECT",
+        "residences": "RESIDENCES",
+        "citysPark": "CITY'S PARK",
+        "citysMembersClub": "MEMBERS CLUB",
+        "citysLiving": "CITY'S LIVING",
+        "citysIstanbulAvm": "CITY'S ISTANBUL MALL"
+    },
+    "citys-members-club": {
+        "description": "Where art, sports, and social privileges converge in an exclusive living space.",
+        "card": {
+            "title": "Every moment, more special.",
+            "subtitle": "City's Members Club"
+        }
     },
     "citys-istanbul-avm": {
         "title": {
@@ -379,9 +326,9 @@
             "location": "Location",
             "citysPark": "City's Park",
             "citysMembersClub": "City's Members Club",
-            "citysLifePrivileges": "City's Living Privileges",
+            "citysLiving": "City's Living",
             "citysIstanbul": "City's Istanbul Shopping Mall",
-            "citysPsm": "City's PSM",
+            "citysKsm": "City's KSM",
             "citysTimes": "City's Times",
             "project": "Project"
         },

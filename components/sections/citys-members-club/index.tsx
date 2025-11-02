@@ -1,12 +1,14 @@
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { PageTitle } from '@/components/page-title'
 import {
-  RepetitiveSectionsWrapper,
   ComponentType,
+  RepetitiveSectionsWrapper,
 } from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { SectionSetter } from '@/components/section-setter'
 import { navigationConfig } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { colors } from '@/styles/config.mjs'
+import { useTranslations } from 'next-intl'
 
 interface CitysMembersClubProps {
   data: Array<{
@@ -22,8 +24,12 @@ interface CitysMembersClubProps {
 }
 
 export default function CitysMembersClub({ data }: CitysMembersClubProps) {
+  const t = useTranslations('citys-members-club')
+
   return (
-    <>
+    <SectionSetter
+      sectionId={navigationConfig['/citys-members-club']?.id as string}
+    >
       <PageTitle
         primaryColor={colors['blue-shimmer']}
         secondaryColor={colors.black}
@@ -33,7 +39,7 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
             <span className='block'>MEMBERS CLUB</span>
           </>
         }
-        description='Sanat, spor ve sosyal ayrıcalıkların buluştuğu,özel bir yaşam alanı.'
+        description={t('description')}
         id={navigationConfig['/citys-members-club']?.id as string}
         stopColor1={colors['white']}
         stopColor2={colors['blue-shimmer']}
@@ -75,7 +81,7 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
             )}
           >
             <GsapSplitText type='chars' stagger={0.02} duration={1}>
-              Her an daha özel.
+              {t('card.title')}
             </GsapSplitText>
           </h2>
           <p
@@ -86,11 +92,11 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
             )}
           >
             <GsapSplitText type='chars' stagger={0.02} duration={1}>
-              City&apos;s Members Club
+              {t('card.subtitle')}
             </GsapSplitText>
           </p>
         </div>
       </section>
-    </>
+    </SectionSetter>
   )
 }

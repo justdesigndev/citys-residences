@@ -3,8 +3,10 @@ import {
   RepetitiveSectionsWrapper,
   ComponentType,
 } from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { SectionSetter } from '@/components/section-setter'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
+import { useTranslations } from 'next-intl'
 
 interface CitysParkProps {
   data: Array<{
@@ -22,13 +24,15 @@ interface CitysParkProps {
 }
 
 export default function CitysPark({ data }: CitysParkProps) {
+  const t = useTranslations('citys-park')
+
   return (
-    <>
+    <SectionSetter sectionId={navigationConfig['/citys-park']?.id as string}>
       <PageTitle
         primaryColor={colors['army-canvas']}
         secondaryColor={colors.white}
         title="CITY'S PARK"
-        description='Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha...'
+        description={t('description')}
         id={navigationConfig['/citys-park']?.id as string}
         stopColor1={colors['white']}
         stopColor2={colors['army-canvas']}
@@ -55,6 +59,6 @@ export default function CitysPark({ data }: CitysParkProps) {
           />
         ))}
       </div>
-    </>
+    </SectionSetter>
   )
 }

@@ -118,6 +118,7 @@ export type NavigationMetadata = {
   id: string
   order: number
   mainRoute: boolean
+  isOnSidebar: boolean
   sections?: {
     [key: string]: {
       label: string
@@ -132,68 +133,79 @@ type NavigationConfigItem = {
   id: string
   order: number
   mainRoute: boolean
+  isOnSidebar: boolean // Controls if section appears in sticky sidebar
 }
 
 export const navigationConfig: Record<string, NavigationConfigItem> = {
-  '/home': {
+  '/': {
     titleKey: 'navigation.home',
     id: 'home',
     order: 1,
     mainRoute: true,
+    isOnSidebar: true,
   },
   '/project': {
     titleKey: 'navigation.project',
     id: 'project',
     order: 2,
     mainRoute: true,
+    isOnSidebar: true,
   },
   '/location': {
     titleKey: 'navigation.location',
     id: 'location',
     order: 3,
     mainRoute: true,
+    isOnSidebar: false, // Not a separate section, just map in project
   },
   '/residences': {
     titleKey: 'navigation.residences',
     id: 'residences',
     order: 4,
     mainRoute: true,
+    isOnSidebar: true,
   },
   '/citys-park': {
     titleKey: 'navigation.citysPark',
     id: 'citys-park',
     order: 5,
     mainRoute: false,
+    isOnSidebar: true, // Commented out in main page
   },
   '/citys-members-club': {
     titleKey: 'navigation.citysMembersClub',
     id: 'citys-members-club',
     order: 6,
     mainRoute: false,
+    isOnSidebar: true, // Commented out in main page
   },
   '/citys-living': {
-    titleKey: 'navigation.citysLifePrivileges',
+    titleKey: 'navigation.citysLiving',
     id: 'citys-living',
     order: 7,
     mainRoute: false,
+    isOnSidebar: true, // Commented out in main page
   },
   '/citys-ksm': {
-    titleKey: 'navigation.citysPsm',
+    titleKey: 'navigation.citysKsm',
     id: 'citys-ksm',
     order: 8,
     mainRoute: false,
+    isOnSidebar: false, // Not rendered on main page
   },
   '/citys-istanbul-avm': {
     titleKey: 'navigation.citysIstanbul',
     id: 'citys-istanbul-avm',
     order: 9,
     mainRoute: false,
+    isOnSidebar: true,
   },
   '/citys-times': {
     titleKey: 'navigation.citysTimes',
     id: 'citys-times',
     order: 10,
     mainRoute: false,
+    isOnSidebar: false,
   },
 }
 
@@ -207,6 +219,7 @@ function getNavigationRoutes() {
       id: config!.id,
       order: config!.order,
       mainRoute: config!.mainRoute,
+      isOnSidebar: config!.isOnSidebar,
     }))
     .sort((a, b) => a.order - b.order)
 }
@@ -220,6 +233,7 @@ export const getNavigationItems = (t: (key: any) => string, locale: Locale) =>
     id: item.id,
     order: item.order,
     mainRoute: item.mainRoute,
+    isOnSidebar: item.isOnSidebar,
   }))
 
 export const getNavigationItem = (

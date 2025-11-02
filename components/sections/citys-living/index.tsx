@@ -1,10 +1,12 @@
 import { PageTitle } from '@/components/page-title'
 import {
-  RepetitiveSectionsWrapper,
   ComponentType,
+  RepetitiveSectionsWrapper,
 } from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { SectionSetter } from '@/components/section-setter'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
+import { useTranslations } from 'next-intl'
 
 interface CitysLivingProps {
   data: Array<{
@@ -20,8 +22,10 @@ interface CitysLivingProps {
 }
 
 export default function CitysLiving({ data }: CitysLivingProps) {
+  const t = useTranslations('citys-living')
+
   return (
-    <>
+    <SectionSetter sectionId={navigationConfig['/citys-living']?.id as string}>
       <PageTitle
         primaryColor={colors['verve-violet']}
         secondaryColor={colors.white}
@@ -31,7 +35,7 @@ export default function CitysLiving({ data }: CitysLivingProps) {
             <span className='block'>LIVING</span>
           </>
         }
-        description='Artık her şey daha kolay.'
+        description={t('description')}
         id={navigationConfig['/citys-living']?.id as string}
         stopColor1={colors['white']}
         stopColor2={colors['verve-violet']}
@@ -58,6 +62,6 @@ export default function CitysLiving({ data }: CitysLivingProps) {
           />
         ))}
       </div>
-    </>
+    </SectionSetter>
   )
 }

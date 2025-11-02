@@ -3,7 +3,6 @@
 import { gsap } from '@/components/gsap'
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
-import { useLenis } from 'lenis/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
@@ -29,7 +28,6 @@ export function Menu() {
   const overlayRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const animationTL = useRef<gsap.core.Timeline>()
-  const lenis = useLenis()
 
   // useClickAway(menuRef, e => {
   //   if (!open) return
@@ -78,14 +76,12 @@ export function Menu() {
     () => {
       if (isMenuOpen) {
         animationTL.current?.play()
-        lenis?.stop()
       } else {
         animationTL.current?.reverse()
-        lenis?.start()
       }
     },
     {
-      dependencies: [isMenuOpen, lenis],
+      dependencies: [isMenuOpen],
     }
   )
 

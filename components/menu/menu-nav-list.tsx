@@ -1,34 +1,22 @@
 'use client'
 
-import { useState } from 'react'
-import { Link } from '@/components/utility/link'
+import { AspectCover } from '@/components/aspect-cover'
+import { Image } from '@/components/image'
+import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
 import { useNavigation } from '@/hooks/useNavigation'
 import { Locale } from '@/i18n/routing'
-import {
-  getNavigationItems,
-  navigationConfig,
-  projectBanner,
-} from '@/lib/constants'
-import { useUiStore } from '@/lib/store/ui'
+import { getNavigationItems, projectBanner } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { AnimatePresence, motion } from 'motion/react'
 import { useLocale, useTranslations } from 'next-intl'
-import { Image } from '@/components/image'
-import { motion, AnimatePresence } from 'motion/react'
-import { AspectCover } from '@/components/aspect-cover'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
+import { useState } from 'react'
 
 export function MenuNavList() {
-  const { setIsMenuOpen } = useUiStore()
   const { handleNavClick } = useNavigation()
   const t = useTranslations('common')
   const tMenu = useTranslations('menu')
   const locale = useLocale()
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
-
-  const handleClick = (e: React.MouseEvent, itemId: string) => {
-    handleNavClick(e, itemId)
-    setIsMenuOpen(false)
-  }
 
   const menuMedia = {
     home: {
@@ -115,29 +103,16 @@ export function MenuNavList() {
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
-                    {item.id === navigationConfig['/']?.id ? (
-                      <Link
-                        href='/'
-                        className={cn(
-                          'block font-primary font-[300] text-white transition-all duration-300',
-                          opacityClass
-                        )}
-                        onClick={e => handleClick(e, item.id)}
-                      >
-                        {item.title}
-                      </Link>
-                    ) : (
-                      <Link
-                        href={`#${item.id}`}
-                        className={cn(
-                          'block font-primary font-[300] text-white transition-all duration-300',
-                          opacityClass
-                        )}
-                        onClick={e => handleClick(e, item.id)}
-                      >
-                        {item.title}
-                      </Link>
-                    )}
+                    <button
+                      onClick={() => handleNavClick(item.id as string)}
+                      className={cn(
+                        'cursor-pointer text-left font-primary font-[300] text-white transition-all duration-300',
+                        opacityClass
+                      )}
+                      type='button'
+                    >
+                      {item.title}
+                    </button>
                   </li>
                 )
               })}
@@ -157,16 +132,16 @@ export function MenuNavList() {
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                   >
-                    <Link
-                      href={`#${item.id}`}
+                    <button
+                      onClick={() => handleNavClick(item.id as string)}
                       className={cn(
-                        'block font-primary font-[300] text-white transition-all duration-300',
+                        'cursor-pointer text-left font-primary font-[300] text-white transition-all duration-300',
                         opacityClass
                       )}
-                      onClick={e => handleClick(e, item.id)}
+                      type='button'
                     >
                       {item.title}
-                    </Link>
+                    </button>
                   </li>
                 )
               })}
@@ -206,6 +181,22 @@ export function MenuNavList() {
                           menuMedia[hoveredItem as keyof typeof menuMedia]?.src
                         }
                         aspect={projectBanner.aspect()}
+                        autoplay
+                        muted
+                        preload='metadata'
+                        swatch={false}
+                        bigPlayButton={false}
+                        silentAutoplay='allow'
+                        endVideoBehavior='loop'
+                        controlsVisibleOnLoad={false}
+                        playBarControl={false}
+                        volumeControl={false}
+                        settingsControl={false}
+                        transparentLetterbox={true}
+                        roundedPlayer={0}
+                        fullscreenControl={false}
+                        playbackRateControl={false}
+                        playPauseControl={false}
                       />
                     </AspectCover>
                   )}
@@ -224,7 +215,7 @@ export function MenuNavList() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className='font-primary text-base font-[300] text-white'>
+                  <p className='text-left font-primary text-base font-[300] text-white'>
                     {tMenu.rich(getMenuTextKey(hoveredItem), {
                       br: () => <br />,
                     })}

@@ -1,66 +1,39 @@
 'use client'
 
-import { useLenis } from 'lenis/react'
-import { cn } from '@/lib/utils'
-import React, { useState } from 'react'
+import { cn, toAllUppercase } from '@/lib/utils'
+import { useLocale, useTranslations } from 'next-intl'
+import React, { useMemo } from 'react'
 
-import { Link } from '@/components/utility/link'
-import { navigationConfig } from '@/lib/constants'
+import { ScrollableBox } from '@/components/utility/scrollable-box'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useNavigation } from '@/hooks/useNavigation'
-import { ScrollableBox } from '../utility/scrollable-box'
+import { Locale } from '@/i18n/routing'
+import { getNavigationItems } from '@/lib/constants'
+import { useUiStore } from '@/lib/store/ui'
 
 export const StickySidebar: React.FC = () => {
   const activeSection = useActiveSection()
   const { handleNavClick } = useNavigation()
-  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false)
+  const t = useTranslations('common')
+  const locale = useLocale()
+  const { isStickySidebarVisible } = useUiStore()
 
-  useLenis(({ scroll, limit }) => {
-    // Hide when scrolled past the available scroll distance
-    // limit represents the maximum scroll distance (document height - viewport height)
-    setIsScrolledToBottom(scroll >= limit - window.innerHeight)
-  })
-
-  const items = [
-    {
-      label: 'ANASAYFA',
-      href: '/',
-      id: navigationConfig['/']?.id,
-    },
-    {
-      label: 'PROJE',
-      href: '/project',
-      id: navigationConfig['/project']?.id,
-    },
-    {
-      label: 'RESIDENCES',
-      href: '/residences',
-      id: navigationConfig['/residences']?.id,
-    },
-    // {
-    //   label: "CITY'S PARK",
-    //   href: '/citys-park',
-    //   id: navigationConfig['/citys-park']?.id,
-    // },
-    // {
-    //   label: 'MEMBERS CLUB',
-    //   href: '/citys-members-club',
-    //   id: navigationConfig['/citys-members-club']?.id,
-    // },
-    // {
-    //   label: "CITY'S LIVING",
-    //   href: '/citys-living',
-    //   id: navigationConfig['/citys-living']?.id,
-    // },
-    {
-      label: "CITY'S ISTANBUL AVM",
-      href: '/citys-istanbul-avm',
-      id: navigationConfig['/citys-istanbul-avm']?.id,
-    },
-  ]
+  // Get only items that should appear in sidebar
+  const items = useMemo(
+    () =>
+      getNavigationItems(t, locale as Locale)
+        .filter(item => item.isOnSidebar)
+        .map(item => ({
+          label: item.title,
+          href: item.href,
+          id: item.id,
+        })),
+    [t, locale]
+  )
 
   return (
     <>
+      {/* desktop */}
       <div
         className={cn(
           'pointer-events-auto z-[var(--z-sticky-menu)] mix-blend-difference',
@@ -68,45 +41,48 @@ export const StickySidebar: React.FC = () => {
           'fixed left-8 top-1/2 xl:left-16',
           '-translate-y-[40%]',
           'opacity-100 transition-opacity duration-300 ease-in-out',
-          isScrolledToBottom && 'pointer-events-none opacity-0'
+          !isStickySidebarVisible && 'pointer-events-none opacity-0'
         )}
       >
         {items.map(item => (
           <div
             className={cn(
-              'relative h-[5vw] w-48 flex-shrink-0 transition-all duration-300 ease-in-out',
+              'relative',
+              'h-20 w-48',
+              'flex-shrink-0 transition-all duration-300 ease-in-out',
               'before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-white before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
               'hover:before:w-1',
               {
                 'before:w-[3px]': activeSection === item.id,
               }
             )}
-            key={item.href}
+            key={item.id}
           >
-            <Link
-              href={item.id === 'home' ? '/' : `#${item.id as string}`}
-              onClick={e => handleNavClick(e, item.id as string)}
+            <button
+              onClick={() => handleNavClick(item.id as string)}
               className={cn(
                 'absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer',
-                'font-primary font-[700] text-white lg:tracking-[0.4em]',
+                'text-left font-primary font-[500] text-white lg:tracking-[0.4em]',
                 'flex-col items-center justify-center',
                 'transition-all duration-300 ease-out',
                 {
-                  'text-[0.7rem]': activeSection === item.id,
-                  'text-[0.6rem]': activeSection !== item.id,
+                  'text-[0.9rem]': activeSection === item.id,
+                  'text-[0.8rem]': activeSection !== item.id,
                 }
               )}
+              type='button'
             >
-              {item.label}
-            </Link>
+              {toAllUppercase(item.label)}
+            </button>
           </div>
         ))}
       </div>
+      {/* mobile */}
       <div
         className={cn(
           'fixed bottom-4 left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen mix-blend-difference lg:hidden',
-          'before:bg-gradient-sidebar before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-[100%]',
-          isScrolledToBottom && 'pointer-events-none opacity-0'
+          'before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-[100%] before:bg-gradient-sidebar',
+          !isStickySidebarVisible && 'pointer-events-none opacity-0'
         )}
       >
         <ScrollableBox
@@ -131,12 +107,11 @@ export const StickySidebar: React.FC = () => {
                     'before:h-[3px]': activeSection === item.id,
                   }
                 )}
-                key={item.href}
+                key={item.id}
                 data-nav-id={item.id}
               >
-                <Link
-                  href={item.id === 'home' ? '/' : `#${item.id as string}`}
-                  onClick={e => handleNavClick(e, item.id as string)}
+                <button
+                  onClick={() => handleNavClick(item.id as string)}
                   className={cn(
                     'whitespace-nowrap font-primary font-[700] tracking-[0.2em] text-white',
                     'cursor-pointer flex-col items-center justify-center px-8',
@@ -146,9 +121,10 @@ export const StickySidebar: React.FC = () => {
                       'text-[0.6rem]': activeSection !== item.id,
                     }
                   )}
+                  type='button'
                 >
                   {item.label}
-                </Link>
+                </button>
               </div>
             ))}
           </div>

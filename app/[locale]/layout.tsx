@@ -5,7 +5,6 @@ import { StyleVariables } from '@/lib/style-variables'
 import { colors, themes } from '@/styles/config.mjs'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
-import { Roboto_Slab } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { GSAP } from '@/components/gsap'
@@ -15,18 +14,6 @@ import { RealViewport } from '@/components/real-viewport'
 import { Scroller } from '@/components/scroller'
 import { StickySidebar } from '@/components/sticky-sidebar'
 import { WebChat } from '@/components/web-chat'
-
-// const montserrat = Montserrat({
-//   subsets: ['latin'],
-//   variable: '--font-montserrat',
-//   weight: ['500'],
-// })
-
-const robotoSlab = Roboto_Slab({
-  subsets: ['latin'],
-  variable: '--font-roboto-slab',
-  weight: ['400'],
-})
 
 const suisseIntl = localFont({
   src: [
@@ -77,17 +64,6 @@ const suisseIntl = localFont({
     // },
   ],
   variable: '--font-suisse-intl',
-})
-
-const copperplate = localFont({
-  src: [
-    {
-      path: './fonts/copperplate/Copperplate-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-copperplate',
 })
 
 export async function generateMetadata({
@@ -156,13 +132,11 @@ export default async function LocaleLayout({
         <link rel='preconnect' href='https://embedwistia-a.akamaihd.net' />
         <link rel='dns-prefetch' href='https://fast.wistia.com' />
       </head>
-      <body
-        className={`${robotoSlab.variable} ${suisseIntl.variable} ${copperplate.variable} antialiased`}
-      >
+      <body className={`${suisseIntl.variable} antialiased`}>
         {/* Hidden element for webchat to detect language */}
-        {/* <span id='selectedLanguage' style={{ display: 'none' }}>
+        <span id='selectedLanguage' className='hidden'>
           {locale}
-        </span> */}
+        </span>
         <RealViewport />
         {/* <Preloader /> */}
         <NextIntlClientProvider messages={messages}>

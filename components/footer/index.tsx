@@ -13,13 +13,13 @@ import {
   YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { useLocale, useTranslations } from 'next-intl'
-import { Fragment, useEffect } from 'react'
+import { useEffect } from 'react'
 
 import { Logo } from '@/components/icons'
 import { Link } from '@/components/utility/link'
 import { useNavigation } from '@/hooks/useNavigation'
 import { Locale, routing } from '@/i18n/routing'
-import { getNavigationItems, navigationConfig } from '@/lib/constants'
+import { getNavigationItems } from '@/lib/constants'
 import { useUiStore } from '@/lib/store/ui'
 import { colors } from '@/styles/config.mjs'
 import { useIntersectionObserver } from 'hamo'
@@ -29,8 +29,12 @@ export function Footer() {
   const locale = useLocale()
   const navigationItems = getNavigationItems(t, locale as Locale)
   const { handleNavClick } = useNavigation()
-  const { setIsMenuOpen, setIsModalContactFormOpen, setIsInquiryVisible } =
-    useUiStore()
+  const {
+    setIsMenuOpen,
+    setIsModalContactFormOpen,
+    setIsInquiryVisible,
+    setIsStickySidebarVisible,
+  } = useUiStore()
   const [footerRef, entry] = useIntersectionObserver()
 
   useEffect(() => {
@@ -38,10 +42,12 @@ export function Footer() {
 
     if (entry.isIntersecting) {
       setIsInquiryVisible(false)
+      setIsStickySidebarVisible(false)
     } else {
       setIsInquiryVisible(true)
+      setIsStickySidebarVisible(true)
     }
-  }, [entry, setIsInquiryVisible])
+  }, [entry, setIsInquiryVisible, setIsStickySidebarVisible])
 
   const footerItems = {
     menu: navigationItems,
@@ -114,52 +120,36 @@ export function Footer() {
               <div className='flex flex-col gap-4 lg:gap-6 xl:gap-8'>
                 {getNavigationItems(t, locale as Locale)
                   .filter(item => item.mainRoute)
-                  .map(item => {
-                    return (
-                      <Fragment key={item.id}>
-                        {item.id === navigationConfig['/']?.id ? (
-                          <Link
-                            href='/'
-                            className={cn(
-                              'block font-primary font-[300] text-white transition-colors duration-300',
-                              item.mainRoute &&
-                                'text-xl sm:text-2xl lg:text-3xl xl:text-2xl'
-                            )}
-                            onClick={e => handleNavClick(e, item.id)}
-                          >
-                            {item.title}
-                          </Link>
-                        ) : (
-                          <Link
-                            href={'#' + item.id}
-                            className={cn(
-                              'block font-primary font-[300] text-white transition-colors duration-300',
-                              item.mainRoute &&
-                                'text-xl sm:text-2xl lg:text-3xl xl:text-2xl'
-                            )}
-                            onClick={e => handleNavClick(e, item.id)}
-                          >
-                            {item.title}
-                          </Link>
-                        )}
-                      </Fragment>
-                    )
-                  })}
+                  .map(item => (
+                    <button
+                      key={item.id}
+                      className={cn(
+                        'cursor-pointer text-left font-primary font-[300] text-white transition-colors duration-300',
+                        item.mainRoute &&
+                          'text-xl sm:text-2xl lg:text-3xl xl:text-2xl'
+                      )}
+                      onClick={() => handleNavClick(item.id)}
+                      type='button'
+                    >
+                      {item.title}
+                    </button>
+                  ))}
               </div>
               <div className='flex flex-col gap-4 lg:gap-6 xl:gap-8'>
                 {getNavigationItems(t, locale as Locale)
                   .filter(item => !item.mainRoute)
                   .map(item => (
-                    <Link
+                    <button
                       key={item.id}
-                      href={'#' + item.href}
                       className={cn(
-                        'block font-primary text-sm font-[300] text-white transition-colors duration-300 sm:text-base',
+                        'cursor-pointer text-left font-primary text-sm font-[300] text-white transition-colors duration-300 sm:text-base',
                         item.mainRoute && 'text-4xl'
                       )}
+                      onClick={() => handleNavClick(item.id)}
+                      type='button'
                     >
                       {item.title}
-                    </Link>
+                    </button>
                   ))}
               </div>
             </div>
