@@ -31,11 +31,8 @@ export function Wrapper({
   return (
     <>
       <Header />
-      <div className='transition-wrapper'>
-        <main
-          className={cn(className, 'main', 'z-[var(--z-content)]')}
-          {...props}
-        >
+      <div className='transition-wrapper z-[var(--z-content)]'>
+        <main className={className} {...props}>
           {children}
           {/* <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script> */}
         </main>

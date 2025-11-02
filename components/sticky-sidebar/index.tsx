@@ -81,13 +81,19 @@ export const StickySidebar: React.FC = () => {
       {/* mobile */}
       <div
         className={cn(
-          'fixed bottom-4 left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen mix-blend-difference lg:hidden',
+          'fixed bottom-4 left-4 right-4 z-[var(--z-sticky-menu)] mix-blend-difference lg:hidden',
           'before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-[100%] before:bg-gradient-sidebar',
+          !isStickySidebarVisible && 'pointer-events-none opacity-0'
+        )}
+      ></div>
+      <div
+        className={cn(
+          'fixed bottom-4 left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen mix-blend-difference lg:hidden',
           !isStickySidebarVisible && 'pointer-events-none opacity-0'
         )}
       >
         <ScrollableBox
-          className='mr-8'
+          className='w-screen'
           orientation='horizontal'
           scrollTo={activeSection ? `[data-nav-id="${activeSection}"]` : null}
         >
@@ -101,7 +107,7 @@ export const StickySidebar: React.FC = () => {
             {items.map(item => (
               <div
                 className={cn(
-                  'relative h-8 w-auto flex-shrink-0 transition-all duration-300 ease-in-out first:ml-8 last:mr-16',
+                  'relative h-8 w-auto flex-shrink-0 transition-all duration-300 ease-in-out',
                   'before:absolute before:bottom-0 before:left-0 before:h-0 before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
                   'hover:before:w-1',
                   {
@@ -111,6 +117,10 @@ export const StickySidebar: React.FC = () => {
                 key={item.id}
                 data-nav-id={item.id}
               >
+                {/* <div
+                  className='pointer-events-none absolute left-1/2 top-1/2 h-px w-px -translate-x-1/2 -translate-y-1/2'
+                  data-nav-id={item.id}
+                ></div> */}
                 <button
                   onClick={() => handleNavClick(item.id as string)}
                   className={cn(
