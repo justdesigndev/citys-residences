@@ -13,7 +13,7 @@ import {
   YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { useLocale, useTranslations } from 'next-intl'
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect } from 'react'
 
 import { Logo } from '@/components/icons'
 import { Link } from '@/components/utility/link'
@@ -41,7 +41,7 @@ export function Footer() {
     } else {
       setIsInquiryVisible(true)
     }
-  }, [entry])
+  }, [entry, setIsInquiryVisible])
 
   const footerItems = {
     menu: navigationItems,
