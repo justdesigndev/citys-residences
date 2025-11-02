@@ -153,7 +153,8 @@ export const navigationConfig: Record<string, NavigationConfigItem> = {
   },
   '/location': {
     titleKey: 'navigation.location',
-    id: 'location',
+    // id: 'location',
+    id: 'home',
     order: 3,
     mainRoute: true,
     isOnSidebar: false, // Not a separate section, just map in project
@@ -188,7 +189,8 @@ export const navigationConfig: Record<string, NavigationConfigItem> = {
   },
   '/citys-ksm': {
     titleKey: 'navigation.citysKsm',
-    id: 'citys-ksm',
+    // id: 'citys-ksm',
+    id: 'home',
     order: 8,
     mainRoute: false,
     isOnSidebar: false, // Not rendered on main page
@@ -328,3 +330,5 @@ export const citysTimesBanner: WistiaMedia = {
   },
   mediaId: 'luxxfpk3x3',
 }
+
+export const scrollDelay = 0.2

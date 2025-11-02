@@ -31,15 +31,17 @@ export function Wrapper({
   return (
     <>
       <Header />
-      <main
-        className={cn(className, 'wrapper', 'z-[var(--z-content)]')}
-        {...props}
-        style={{ zIndex: 'var(--z-content)' }}
-      >
-        {children}
-        {/* <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script> */}
-      </main>
-      <Footer />
+      <div className='transition-wrapper'>
+        <main
+          className={cn(className, 'main', 'z-[var(--z-content)]')}
+          {...props}
+        >
+          {children}
+          {/* <Script id="theme-script">{`document.documentElement.setAttribute('data-theme', '${theme}');`}</Script> */}
+        </main>
+        <Footer />
+      </div>
+
       {lenis && <SmoothScroll root />}
     </>
   )

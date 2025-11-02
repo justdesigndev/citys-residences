@@ -13,8 +13,8 @@
   --lvh-calc: calc(var(--lvh, 1vh) * 100);
 
   @include-media ('tablet') {
-    --header-height: tablet-vw(84px);
-    --header-height-slim: tablet-vw(64px);
+    --header-height: tablet-vw(65px);
+    --header-height-slim: tablet-vw(120px);
   }
 
   @include-media ('desktop') {
@@ -281,3 +281,7 @@ body {
     background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
   }
 }
+
+/* * {
+  outline: 1px solid red !important;
+} */

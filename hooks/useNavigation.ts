@@ -4,6 +4,7 @@ import { useUiStore } from '@/lib/store/ui'
 import { useSectionStore } from '@/lib/store/sections'
 import { useLenis } from 'lenis/react'
 import gsap from 'gsap'
+import { scrollDelay } from '@/lib/constants'
 
 export function useNavigation() {
   const { setIsMenuOpen } = useUiStore()
@@ -11,7 +12,14 @@ export function useNavigation() {
   const lenis = useLenis()
 
   const handleNavClick = (itemId: string) => {
-    gsap.to('body', {
+    const element = document.querySelector('.transition-wrapper')
+
+    if (!element) {
+      console.error('Transition wrapper element not found')
+      return
+    }
+
+    gsap.to(element, {
       opacity: 0,
       duration: 0.4,
       onComplete: () => {
@@ -25,9 +33,10 @@ export function useNavigation() {
         const targetElement = document.getElementById(itemId)
         if (targetElement && lenis) {
           lenis.scrollTo(targetElement, { immediate: true })
-          gsap.to('body', {
+          gsap.to(element, {
             opacity: 1,
             duration: 0.4,
+            delay: scrollDelay,
           })
         }
       },

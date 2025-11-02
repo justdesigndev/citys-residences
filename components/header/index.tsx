@@ -1,7 +1,7 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { initialScroll } from '@/lib/constants'
+import { initialScroll, navigationConfig } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import Lenis from 'lenis'
 import { useLenis } from 'lenis/react'
@@ -15,8 +15,10 @@ import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Menu } from '@/components/menu'
 import { useUiStore } from '@/lib/store/ui'
 import { colors } from '@/styles/config.mjs'
+import { useNavigation } from '@/hooks/useNavigation'
 
 export function Header({ nonHome = false }: { nonHome?: boolean }) {
+  const { handleNavClick } = useNavigation()
   const lenis = useLenis()
   const { isMenuOpen, setIsMenuOpen } = useUiStore()
   const [scrollState, setScrollState] = useState({
@@ -66,12 +68,15 @@ export function Header({ nonHome = false }: { nonHome?: boolean }) {
           'pointer-events-none h-[var(--header-height-slim)] bg-transparent'
         )}
       >
-        <div className='z-[var(--z-header-content)] flex flex-1 items-stretch justify-between px-6 lg:px-0'>
-          <div className='2xl:size-46 pointer-events-auto size-28 xl:size-32 3xl:size-40'>
-            <Link href='/' scroll={initialScroll} aria-label='Home'>
-              <Logo fill={colors.white} />
-            </Link>
-          </div>
+        <div className='z-[var(--z-header-content)] flex flex-1 items-center justify-between px-6 lg:px-0'>
+          <button
+            className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
+            aria-label='Home'
+            onClick={() => handleNavClick(navigationConfig['/'].id as string)}
+            type='button'
+          >
+            <Logo fill={colors.white} />
+          </button>
           <div className='pointer-events-auto ml-auto flex cursor-pointer items-center gap-2 lg:gap-6'>
             <LocaleSwitcher />
             {!nonHome ? (

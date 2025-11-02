@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
 import { SvgBgC } from '@/components/svgs/svg-bg-c'
-import { navigationConfig } from '@/lib/constants'
+import { navigationConfig, scrollDelay } from '@/lib/constants'
 
 export interface PageTitleProps {
   title: React.ReactNode
@@ -73,7 +73,12 @@ export function PageTitle(props: PageTitleProps) {
             )}
             style={{ color: secondaryColor }}
           >
-            <GsapSplitText type='chars' stagger={0.02} duration={1}>
+            <GsapSplitText
+              type='lines'
+              stagger={0.01}
+              duration={1}
+              delay={scrollDelay}
+            >
               {title}
             </GsapSplitText>
           </h2>
@@ -85,7 +90,12 @@ export function PageTitle(props: PageTitleProps) {
             )}
             style={{ color: secondaryColor }}
           >
-            <GsapSplitText type='lines' stagger={0.01} duration={1}>
+            <GsapSplitText
+              type='lines'
+              stagger={0.01}
+              duration={1.25}
+              delay={scrollDelay}
+            >
               {description}
             </GsapSplitText>
           </p>
