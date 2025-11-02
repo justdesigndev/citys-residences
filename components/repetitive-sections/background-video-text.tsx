@@ -62,7 +62,7 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             </h3>
             <h4
               className={cn(
-                'font-primary font-[300]',
+                'font-primary font-[200]',
                 'text-xl/tight xl:text-4xl/tight 2xl:text-4xl/tight',
                 'md:max-w-[60vw]'
               )}
