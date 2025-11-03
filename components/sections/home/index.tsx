@@ -40,7 +40,7 @@ export default async function Page({
         <ScaleOut>
           <div className='pointer-events-none relative hidden h-screen w-full xl:block'>
             <VimeoPlayer
-              poster='/img/poster-hero.jpg'
+              poster='/img/desktop-hero-poster.jpg'
               src='https://player.vimeo.com/progressive_redirect/playback/1130616578/rendition/1080p/file.mp4?loc=external&log_user=0&signature=4c84b12cfbf4f5ae9ef7087bd4cc4277a815c1235d739ebda936132a2a46214b'
             />
           </div>
@@ -97,8 +97,8 @@ export default async function Page({
       </section>
       <div
         className={cn(
-          'relative z-20 bg-white',
-          'after:absolute after:left-0 after:top-0 after:z-20 after:h-[70px] after:w-full after:bg-gradient-to-b after:from-black/70 after:to-transparent lg:after:hidden'
+          'relative z-20 bg-white'
+          // 'after:absolute after:left-0 after:top-0 after:z-20 after:h-[70px] after:w-full after:bg-gradient-to-b after:from-black/70 after:to-transparent lg:after:hidden'
         )}
       >
         <SectionSetter sectionId={navigationConfig['/']?.id || ''} />
