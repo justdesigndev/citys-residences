@@ -60,7 +60,7 @@ export async function CitysTimes() {
           />
         </AspectCover>
       </section>
-      <div
+      <section
         className={cn(
           'relative z-30 flex min-h-lvh items-center justify-center overflow-hidden bg-trapped-darkness lg:min-h-[120vh]',
           'before:absolute before:left-0 before:top-0 before:z-10 before:h-3/6 before:w-full before:bg-gradient-to-b before:from-trapped-darkness before:to-transparent',
@@ -95,7 +95,10 @@ export async function CitysTimes() {
             // 'after:bg-gradient-citys-times z-10 after:absolute after:inset-0'
           )}
         >
-          <div className='relative z-10 flex w-screen items-center justify-center py-24 lg:py-24'>
+          <div
+            className='relative z-10 flex w-screen items-center justify-center py-24 lg:py-24'
+            id={navigationConfig['/citys-times']?.id as string}
+          >
             <AutoScrollCarousel
               options={{ loop: true, dragFree: true }}
               emblaSlideClassname='items-start'
@@ -163,7 +166,7 @@ export async function CitysTimes() {
           </div>
           <ScrollToTop className='py-24' />
         </div>
-      </div>
+      </section>
     </SectionSetter>
   )
 }
