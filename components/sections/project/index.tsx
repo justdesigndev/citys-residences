@@ -62,13 +62,14 @@ export default async function Page({
       </section>
       <InteractiveMap />
       <div className='gap-y-8 py-12'>
+        {/* block and parking entrances text*/}
         <section className='grid grid-cols-24 gap-y-4 px-8 py-8 lg:px-0 lg:py-16 xl:py-36'>
           <div className='col-span-24 flex lg:col-span-9 lg:col-start-6 xl:col-span-8 xl:col-start-7'>
             <h3
               className={cn(
                 'lg:ml-auto',
                 'text-left font-primary font-[400] text-black',
-                'text-3xl/[1.15] lg:text-4xl/[1.15] xl:text-6xl/[1.15]'
+                'text-3xl/[1.15] lg:text-4xl/[1.15] xl:text-5xl/[1.15] 2xl:text-6xl/[1.15] 3xl:text-6xl/[1.15]'
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
@@ -76,21 +77,23 @@ export default async function Page({
               </GsapSplitText>
             </h3>
           </div>
-          <div className='col-span-24 lg:col-span-9 lg:px-16 xl:col-span-8'>
+          <div className='col-span-24 lg:col-span-9 lg:px-16 xl:col-span-8 2xl:px-20'>
             <p
               className={cn(
                 'text-left font-primary font-[300] text-black',
-                'text-base/snug lg:text-base/snug xl:text-2xl/snug'
+                'text-base/snug lg:text-base/snug xl:text-xl/snug 2xl:text-xl/snug 3xl:text-2xl/snug',
+                'prose'
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
                 {t('sections.blockParking.p1')}
-                <br />
+                <p></p>
                 {t('sections.blockParking.p2')}
               </GsapSplitText>
             </p>
           </div>
         </section>
+        {/* blok ve otopark girişleri images*/}
         <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-4 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-8'>
           <div className='col-span-24 aspect-[16/9] lg:col-span-8 lg:col-start-7'>
             <ZoomImageDialog
@@ -143,12 +146,18 @@ export default async function Page({
             />
           </div>
         </section>
-        <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-8'>
+        {/* green spaces text*/}
+        <section
+          className={cn(
+            'grid grid-cols-24 gap-x-0 gap-y-6 lg:gap-x-4 lg:gap-y-0',
+            'px-8 py-8 pb-24 pt-12 lg:px-0 xl:pb-0 xl:pt-44'
+          )}
+        >
           <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center'>
             <h3
               className={cn(
                 'text-left font-primary font-[400] text-black',
-                'text-3xl/tight lg:text-4xl/tight xl:text-6xl/tight'
+                'text-3xl/[1.15] lg:text-4xl/[1.15] xl:text-5xl/[1.15] 2xl:text-6xl/[1.15] 3xl:text-6xl/[1.15]'
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
@@ -156,11 +165,13 @@ export default async function Page({
               </GsapSplitText>
             </h3>
           </div>
-          <div className='col-span-24 lg:col-span-8 lg:pl-24'>
+          <div className='col-span-24 lg:col-span-8 lg:px-20'>
             <p
               className={cn(
                 'text-left font-primary font-[300] text-black',
-                'text-base/snug lg:text-base/snug xl:text-2xl/snug'
+                'text-base/snug lg:text-base/snug xl:text-xl/snug 2xl:text-xl/snug 3xl:text-2xl/snug',
+                'prose',
+                'max-w-[90%] 2xl:max-w-[65%]'
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
@@ -169,7 +180,10 @@ export default async function Page({
             </p>
           </div>
         </section>
-        <section className='grid grid-cols-24 px-8 py-4 lg:px-0 lg:py-20'>
+        {/* green spaces images*/}
+        <section
+          className={cn('grid grid-cols-24', 'px-8 py-12 lg:px-0 lg:py-20')}
+        >
           <div className='col-span-24 aspect-[9/10] lg:col-span-18 lg:-col-end-3 lg:aspect-[16/9]'>
             <ZoomImageDialog
               dialogTrigger={
@@ -204,12 +218,13 @@ export default async function Page({
             />
           </div>
         </section>
-        <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-8'>
-          <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center lg:pl-24'>
+        {/* architects say text*/}
+        <section className='grid grid-cols-24 gap-x-0 gap-y-6 px-8 py-8 lg:gap-x-4 lg:gap-y-0 lg:px-0 lg:py-8 xl:pb-0 xl:pt-32'>
+          <div className='col-span-24 flex justify-start lg:col-span-8 lg:col-start-7 lg:justify-center lg:pl-24 xl:pl-44'>
             <h3
               className={cn(
                 'text-left font-primary font-[400] text-black',
-                'text-3xl/[1.15] lg:text-4xl/[1.15] xl:text-6xl/[1.15]'
+                'text-3xl/[1.15] lg:text-4xl/[1.15] xl:text-5xl/[1.15] 2xl:text-6xl/[1.15] 3xl:text-6xl/[1.15]'
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
@@ -217,11 +232,12 @@ export default async function Page({
               </GsapSplitText>
             </h3>
           </div>
-          <div className='col-span-24 lg:col-span-8 lg:pl-24'>
+          <div className='col-span-24 lg:col-span-8 lg:pl-24 xl:px-24'>
             <p
               className={cn(
                 'text-left font-primary font-[300] text-black',
-                'text-base/snug lg:text-base/snug xl:text-2xl/snug'
+                'text-base/snug lg:text-base/snug xl:text-xl/snug 2xl:text-xl/snug 3xl:text-2xl/snug',
+                'max-w-[90%]'
               )}
             >
               <GsapSplitText type='lines' stagger={0.01} duration={1.5}>
