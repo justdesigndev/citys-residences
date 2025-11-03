@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
+import { useIntersectionObserver } from 'hamo'
 
 interface VimeoPlayerProps {
   src: string
@@ -15,10 +16,14 @@ export function VimeoPlayer({
   poster,
   onLoadedData,
 }: VimeoPlayerProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
+  // Intersection observer to play/pause video based on visibility
+  const [intersectionRef, entry] = useIntersectionObserver({
+    threshold: 0.5, // Video needs to be at least 50% visible
+  })
 
+  // Initial autoplay on mount/load
   useEffect(() => {
-    const video = videoRef.current
+    const video = entry?.target as HTMLVideoElement | undefined
     if (!video) return
 
     // Force play on mount (some browsers need this)
@@ -46,11 +51,30 @@ export function VimeoPlayer({
     return () => {
       video.removeEventListener('loadeddata', handleLoadedData)
     }
-  }, [onLoadedData])
+  }, [entry?.target, onLoadedData])
+
+  // Handle play/pause based on intersection (but don't interfere with initial load)
+  useEffect(() => {
+    const video = entry?.target as HTMLVideoElement | undefined
+    if (!video || !entry) return
+
+    // Only manage visibility-based play/pause after initial load
+    if (video.readyState < 3) return
+
+    if (entry.isIntersecting) {
+      // Play video when intersecting
+      video.play().catch(error => {
+        console.log('Play prevented:', error)
+      })
+    } else {
+      // Pause video when not intersecting
+      video.pause()
+    }
+  }, [entry])
 
   return (
     <video
-      ref={videoRef}
+      ref={intersectionRef}
       className={className}
       src={src}
       poster={poster}
