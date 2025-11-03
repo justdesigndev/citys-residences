@@ -303,9 +303,14 @@
             "searchPlaceholder": "Mağaza arayın"
         },
         "buttons": {
-            "viewAll": "Tümünü Gör"
+            "viewAll": "Tümünü Gör",
+            "search": "ARA"
         },
-        "loading": "Yükleniyor..."
+        "loading": "Yükleniyor...",
+        "noResults": {
+            "title": "Arama kriterlerinize uygun sonuç bulunamadı.",
+            "subtitle": "Lütfen filtrelerinizi değiştirip tekrar deneyin."
+        }
     },
     "citys-times": {
         "title": "CITY’S TIMES",

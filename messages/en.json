@@ -262,9 +262,14 @@
             "searchPlaceholder": "Search for a store"
         },
         "buttons": {
-            "viewAll": "View All"
+            "viewAll": "View All",
+            "search": "SEARCH"
         },
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "noResults": {
+            "title": "No results found for your search criteria.",
+            "subtitle": "Please change your filters and try again."
+        }
     },
     "citys-times": {
         "title": "CITY’S TIMES",
@@ -312,7 +317,7 @@
             "citysPark": "City's Park",
             "citysMembersClub": "Members Club",
             "citysLiving": "City's Living",
-            "citysIstanbulAvm": "City's Istanbul Shopping Mall",
+            "citysIstanbulAvm": "City's Istanbul Mall",
             "citysPsm": "City's PSM",
             "citysTimes": "City's Times",
             "project": "Project"

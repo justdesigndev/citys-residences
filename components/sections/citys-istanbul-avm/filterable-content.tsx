@@ -81,7 +81,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
   }
 
   return (
-    <div className='grid min-h-screen grid-cols-24 gap-y-8'>
+    <div className='grid grid-cols-24 items-start gap-y-8'>
       <div className='col-span-24 px-8 lg:col-span-19 lg:col-start-5'>
         <FilterForm
           form={form}
@@ -91,7 +91,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
           isLoading={loading}
         />
       </div>
-      <div className='col-span-24 px-8 lg:col-span-19 lg:col-start-5'>
+      <div className='col-span-24 min-h-[50vh] px-8 lg:col-span-19 lg:col-start-5'>
         {loading && <LoadingSpinner message={t('loading')} />}
         <AnimatePresence mode='wait'>
           {!loading && (
@@ -160,11 +160,10 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                     transition={{ duration: 0.4 }}
                   >
                     <p className='font-primary text-lg text-gray-500'>
-                      {noResultsMessage ||
-                        'Arama kriterlerinize uygun sonuç bulunamadı.'}
+                      {noResultsMessage || t('noResults.title')}
                     </p>
                     <p className='mt-2 font-primary text-sm text-gray-400'>
-                      Lütfen filtrelerinizi değiştirip tekrar deneyin.
+                      {t('noResults.subtitle')}
                     </p>
                   </motion.div>
                 )}

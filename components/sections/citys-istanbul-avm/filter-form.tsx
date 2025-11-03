@@ -222,16 +222,15 @@ export function FilterForm({
             render={() => (
               <FormItem>
                 <FormControl>
-                  <div className='relative h-16 w-full'>
-                    <span className='pointer-events-none absolute bottom-0 right-0 top-0 flex h-full w-16 items-center justify-center bg-gradient-appointment-reversed text-white'>
-                      <MagnifyingGlassIcon size={24} />
-                    </span>
+                  <div className='relative flex h-16 w-full items-stretch gap-4 lg:gap-8'>
                     <Input
                       name='keyword'
                       value={searchValue}
                       placeholder={t('filters.searchPlaceholder')}
                       className={cn(
-                        'h-full rounded-none border-x-0 border-b border-t-0 border-bricky-brick font-primary font-[300] text-bricky-brick placeholder:text-lg placeholder:text-bricky-brick'
+                        'z-20',
+                        'h-full rounded-none border-x-0 border-b border-t-0 border-bricky-brick',
+                        'font-primary font-[300] text-bricky-brick placeholder:text-lg placeholder:text-bricky-brick'
                       )}
                       onChange={e => {
                         const newValue = e.target.value
@@ -248,6 +247,12 @@ export function FilterForm({
                       }}
                       disabled={isLoading}
                     />
+                    <span className='pointer-events-none z-30 flex h-full items-center justify-center gap-2 bg-gradient-button px-4'>
+                      <span className='hidden px-6 font-primary text-lg font-[400] text-white lg:block'>
+                        {t('buttons.search')}
+                      </span>
+                      <MagnifyingGlassIcon className='size-8 text-white' />
+                    </span>
                   </div>
                 </FormControl>
               </FormItem>
