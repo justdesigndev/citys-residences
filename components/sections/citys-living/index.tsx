@@ -37,9 +37,7 @@ export default function CitysLiving({ data }: CitysLivingProps) {
         }
         description={t('description')}
         id={navigationConfig['/citys-living']?.id as string}
-        stopColor1={colors['white']}
-        stopColor2={colors['verve-violet']}
-        bgClassName='mix-blend-soft-light opacity-50'
+        bgImage='/img/backgrounds/verve-violet.png'
       />
       <div
         style={

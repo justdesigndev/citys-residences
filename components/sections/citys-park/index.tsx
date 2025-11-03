@@ -36,9 +36,7 @@ export default function CitysPark({ data }: CitysParkProps) {
           br: () => <br className='hidden lg:block' />,
         })}
         id={navigationConfig['/citys-park']?.id as string}
-        stopColor1={colors['white']}
-        stopColor2={colors['army-canvas']}
-        bgClassName='mix-blend-soft-light opacity-50'
+        bgImage='/img/backgrounds/citys-park.png'
       />
       <div
         style={

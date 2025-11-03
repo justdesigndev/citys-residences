@@ -48,9 +48,7 @@ export default async function Page({
           strong: chunks => <strong className='font-[500]'>{chunks}</strong>,
         })}
         id={navigationConfig['/project']?.id as string}
-        stopColor1={colors['white']}
-        stopColor2={colors['bricky-brick']}
-        bgClassName='opacity-50'
+        bgImage='/img/backgrounds/red.png'
       />
       <section className='relative h-screen overflow-hidden lg:h-[60vw] xl:h-[45vw]'>
         <AspectCover ratio={projectBanner.aspect()}>
@@ -78,7 +76,7 @@ export default async function Page({
             </h3>
           </div>
           <div className='col-span-24 lg:col-span-9 lg:px-16 xl:col-span-8 2xl:px-20'>
-            <p
+            <article
               className={cn(
                 'text-left font-primary font-[300] text-black',
                 'text-base/snug lg:text-base/snug xl:text-xl/snug 2xl:text-xl/snug 3xl:text-2xl/snug',
@@ -90,7 +88,7 @@ export default async function Page({
                 <p></p>
                 {t('sections.blockParking.p2')}
               </GsapSplitText>
-            </p>
+            </article>
           </div>
         </section>
         {/* blok ve otopark girişleri images*/}

@@ -43,9 +43,7 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
           br: () => <br className='hidden lg:block' />,
         })}
         id={navigationConfig['/citys-members-club']?.id as string}
-        stopColor1={colors['white']}
-        stopColor2={colors['blue-shimmer']}
-        bgClassName='mix-blend-soft-light'
+        bgImage='/img/backgrounds/blue-shimmer.png'
       />
       <div
         style={

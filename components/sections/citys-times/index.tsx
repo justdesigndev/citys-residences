@@ -5,19 +5,18 @@ import {
   XLogoIcon,
   YoutubeLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
+import { getTranslations } from 'next-intl/server'
 
+import { AspectCover } from '@/components/aspect-cover'
+import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
+import { Image } from '@/components/image'
+import { ScrollToTop } from '@/components/scroll-to-top'
 import { SectionSetter } from '@/components/section-setter'
+import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
 import { citysTimesBanner, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-import { ScrollToTop } from '@/components/scroll-to-top'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
-import { SvgBgC } from '@/components/svgs/svg-bg-c'
-import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
-import { Image } from '@/components/image'
-import { AspectCover } from '@/components/aspect-cover'
-import { getTranslations } from 'next-intl/server'
 
 const ImageCard = ({ src }: { src: string }) => (
   <div className='aspect-[9/12] w-[200px] lg:w-[260px]'>
@@ -78,11 +77,21 @@ export async function CitysTimes() {
             'after:absolute after:bottom-0 after:right-0 after:top-0 after:z-20 after:h-full after:w-[20vw] after:bg-gradient-to-l after:from-trapped-darkness after:to-transparent'
           )}
         ></div>
-        <SvgBgC
-          stopColor1={'#3D4151'}
-          stopColor2={'#0F1A2C'}
-          className='absolute left-1/2 top-1/2 z-10 h-full w-auto -translate-x-1/2 -translate-y-1/2 mix-blend-soft-light lg:h-auto lg:w-full'
-        />
+        <div
+          className={cn(
+            'pointer-events-none',
+            'absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2',
+            'size-[300%] md:size-[200%] xl:size-[250%] 2xl:size-[250%] 3xl:size-[200%]'
+          )}
+        >
+          <Image
+            src='/img/backgrounds/night.png'
+            alt='Citys Times Background'
+            fill
+            className={cn('object-contain object-center')}
+            loading='lazy'
+          />
+        </div>
         <div className='z-20 flex flex-col items-center justify-center gap-6 lg:gap-6'>
           <div className='relative z-10 flex items-center justify-center py-24 lg:py-24'>
             <AutoScrollCarousel

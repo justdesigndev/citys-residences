@@ -66,9 +66,7 @@ export default async function Page({
         title={t('pageTitle.title')}
         description={t('pageTitle.description')}
         id={navigationConfig['/residences']?.id as string}
-        stopColor1={colors['white']}
-        stopColor2={colors['bricky-brick']}
-        bgClassName='opacity-50'
+        bgImage='/img/backgrounds/red.png'
       />
       <section
         className={cn(

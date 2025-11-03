@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
-import { SvgBgC } from '@/components/svgs/svg-bg-c'
+import { Image } from '@/components/image'
 import { navigationConfig, scrollDelay } from '@/lib/constants'
 
 export interface PageTitleProps {
@@ -15,9 +15,7 @@ export interface PageTitleProps {
   primaryColor?: string
   secondaryColor?: string
   tertiaryColor?: string
-  stopColor1?: string
-  stopColor2?: string
-  bgClassName?: string
+  bgImage: string
 }
 
 export function PageTitle(props: PageTitleProps) {
@@ -29,9 +27,7 @@ export function PageTitle(props: PageTitleProps) {
     primaryColor,
     secondaryColor,
     tertiaryColor,
-    stopColor1,
-    stopColor2,
-    bgClassName,
+    bgImage,
   } = props
   return (
     <div
@@ -53,7 +49,7 @@ export function PageTitle(props: PageTitleProps) {
         id={id}
         style={{ backgroundColor: primaryColor }}
       >
-        <SvgBgC
+        {/* <SvgBgC
           stopColor1={stopColor1 as string}
           stopColor2={stopColor2 as string}
           className={cn(
@@ -61,7 +57,22 @@ export function PageTitle(props: PageTitleProps) {
             'size-[300%] md:size-[200%] xl:size-[250%] 2xl:size-[250%] 3xl:size-[230%]',
             bgClassName
           )}
-        />
+        /> */}
+        <div
+          className={cn(
+            'pointer-events-none',
+            'absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2',
+            'size-[300%] md:size-[200%] xl:size-[250%] 2xl:size-[250%] 3xl:size-[230%]'
+          )}
+        >
+          <Image
+            src={bgImage}
+            alt='Page Title Background'
+            fill
+            className={cn('object-contain object-center')}
+            loading='lazy'
+          />
+        </div>
         <div className='z-40 flex flex-shrink-0 flex-col items-center justify-center gap-6 lg:gap-6'>
           <span className='size-24 lg:size-20'>
             <LogoSlim fill={secondaryColor} />

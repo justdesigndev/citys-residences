@@ -170,8 +170,8 @@
                 }
             },
             "submit": {
-                "default": "RANDEVU OLUŞTUR",
-                "sending": "RANDEVU OLUŞTURULUYOR..."
+                "default": "FORMU GÖNDER",
+                "sending": "FORM GÖNDERİLİYOR..."
             },
             "messages": {
                 "error": "Form gönderilirken hata oluştu",
