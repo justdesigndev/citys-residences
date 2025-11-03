@@ -187,20 +187,12 @@ export const navigationConfig: Record<string, NavigationConfigItem> = {
     mainRoute: false,
     isOnSidebar: true, // Commented out in main page
   },
-  '/citys-ksm': {
-    titleKey: 'navigation.citysKsm',
-    // id: 'citys-ksm',
-    id: 'home',
+  '/citys-psm': {
+    titleKey: 'navigation.citysPsm',
+    id: 'citys-psm',
     order: 8,
     mainRoute: false,
-    isOnSidebar: false, // Not rendered on main page
-  },
-  '/citys-istanbul-avm': {
-    titleKey: 'navigation.citysIstanbul',
-    id: 'citys-istanbul-avm',
-    order: 9,
-    mainRoute: false,
-    isOnSidebar: true,
+    isOnSidebar: false,
   },
   '/citys-times': {
     titleKey: 'navigation.citysTimes',
@@ -208,6 +200,13 @@ export const navigationConfig: Record<string, NavigationConfigItem> = {
     order: 10,
     mainRoute: false,
     isOnSidebar: false,
+  },
+  '/citys-istanbul-avm': {
+    titleKey: 'navigation.citysIstanbulAvm',
+    id: 'citys-istanbul-avm',
+    order: 9,
+    mainRoute: false,
+    isOnSidebar: true,
   },
 }
 
@@ -337,11 +336,11 @@ export const scrollDelay = 0.2
 
 export const menuMedia = {
   home: {
-    src: projectBanner.mediaId,
+    src: 'cbtt3ltrww',
     type: 'video',
   },
   project: {
-    src: projectBanner.mediaId,
+    src: '6we4wer32m',
     type: 'video',
   },
   location: {
@@ -349,7 +348,7 @@ export const menuMedia = {
     type: 'image',
   },
   residences: {
-    src: projectBanner.mediaId,
+    src: 'gsnj8686dr',
     type: 'video',
   },
   'citys-park': {
@@ -364,8 +363,8 @@ export const menuMedia = {
     src: '/img/menu/citys-living.jpg',
     type: 'image',
   },
-  'citys-ksm': {
-    src: projectBanner.mediaId,
+  'citys-psm': {
+    src: 'b6gl0633j1',
     type: 'video',
   },
   'citys-istanbul-avm': {
@@ -388,7 +387,7 @@ export const getMenuTextKey = (itemId: string): string => {
     'citys-park': 'citysPark',
     'citys-members-club': 'citysMembersClub',
     'citys-living': 'citysLiving',
-    'citys-ksm': 'citysKsm',
+    'citys-psm': 'citysPsm',
     'citys-istanbul-avm': 'citysIstanbulAvm',
     'citys-times': 'citysTimes',
   }

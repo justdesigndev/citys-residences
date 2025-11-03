@@ -61,15 +61,14 @@ export const StickySidebar: React.FC = () => {
             <button
               onClick={() => handleNavClick(item.id as string)}
               className={cn(
-                'absolute left-4 top-1/2 flex -translate-y-1/2 cursor-pointer',
+                'absolute left-8 top-1/2 flex -translate-y-1/2 cursor-pointer',
                 'text-left font-primary font-[500] text-white lg:tracking-[0.4em]',
                 'flex-col items-center justify-center',
                 'transition-all duration-300 ease-out',
-                'text-[0.8rem]'
-                // {
-                //   'text-[0.8rem]': activeSection === item.id,
-                //   'text-[0.8rem]': activeSection !== item.id,
-                // }
+                {
+                  'text-[0.8rem]': activeSection === item.id,
+                  'text-[0.7rem]': activeSection !== item.id,
+                }
               )}
               type='button'
             >

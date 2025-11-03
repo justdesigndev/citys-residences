@@ -46,7 +46,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
             <h3
               className={cn(
                 'font-primary font-[400]',
-                'text-3xl/tight xl:text-6xl/tight 2xl:text-6xl/tight'
+                'text-3xl/[1.1] xl:text-6xl/[1.1] 2xl:text-6xl/[1.1]'
               )}
             >
               <GsapSplitText
@@ -59,7 +59,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
             <h4
               className={cn(
                 'font-primary font-[200]',
-                'text-xl/tight xl:text-4xl/tight 2xl:text-4xl/tight',
+                'text-xl/snug xl:text-4xl/snug 2xl:text-4xl/snug',
                 'md:max-w-[50vw]'
               )}
             >
@@ -77,7 +77,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
             <article
               className={cn(
                 'text-left font-primary font-[300]',
-                'text-base/[1.25] xl:text-lg/[1.25]',
+                'text-base/[1.25] xl:text-[17px]/[1.25]',
                 'max-w-[90%] md:max-w-[55vw] xl:max-w-none',
                 'prose-2xl prose-p:m-0 prose-ul:list-disc'
               )}

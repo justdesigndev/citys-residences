@@ -43,7 +43,10 @@ export default async function Page({
         secondaryColor={colors['bricky-brick']}
         tertiaryColor={colors['bricky-brick']}
         title={t('pageTitle.title')}
-        description={t('pageTitle.description')}
+        description={t.rich('pageTitle.description', {
+          br: () => <br className='hidden lg:block' />,
+          strong: chunks => <strong className='font-[500]'>{chunks}</strong>,
+        })}
         id={navigationConfig['/project']?.id as string}
         stopColor1={colors['white']}
         stopColor2={colors['bricky-brick']}
@@ -260,7 +263,7 @@ export default async function Page({
         sidebarText={t('quotes.architecture.sidebarText')}
         primaryColor={colors['bricky-brick']}
         secondaryColor={colors['white']}
-        hasBg={true}
+        hasBg
       />
       <QuoteWithVideo
         quote={t('quotes.interior.quote')}
@@ -277,6 +280,7 @@ export default async function Page({
         sidebarText={t('quotes.interior.sidebarText')}
         primaryColor={colors['white']}
         secondaryColor={colors['bricky-brick']}
+        hasBg={false}
       />
       <QuoteWithVideo
         quote={t('quotes.landscape.quote')}
@@ -293,7 +297,7 @@ export default async function Page({
         sidebarText={t('quotes.landscape.sidebarText')}
         primaryColor={colors['army-canvas']}
         secondaryColor={colors['white']}
-        hasBg={true}
+        hasBg={false}
         portraitClassName='w-[65%]'
       />
       <QuoteWithVideo
@@ -307,7 +311,7 @@ export default async function Page({
         sidebarText={t('quotes.structural.sidebarText')}
         primaryColor={colors['birch-strain']}
         secondaryColor={colors['white']}
-        hasBg={true}
+        hasBg={false}
       />
     </SectionSetter>
   )

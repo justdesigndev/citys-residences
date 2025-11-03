@@ -8,7 +8,7 @@
     "project": {
         "pageTitle": {
             "title": "PROJECT",
-            "description": "A mixed-use living project thoughtfully designed in every detail."
+            "description": "<strong>A mixed-use living project</strong> <br></br> thoughtfully designed in every detail."
         },
         "map": {
             "title": "At the <br></br> heart of life.",
@@ -189,22 +189,7 @@
         "section1": {
             "title1": "THE ART",
             "title2": "OF LIVING",
-            "title3": "Managing time is the art of turning life into a masterpiece",
-            "p1": {
-                "title": "LIVE<br>MORE</br>PEACEFULLY",
-                "description": "Peace is the privilege of living in harmony with generous nature and endless security in quiet luxurious architecture.",
-                "button": "EXPLORE"
-            },
-            "p2": {
-                "title": "LIVE<br>MORE</br>FULLY",
-                "description": "Being able to dedicate time to yourself and your loved ones at the heart of life is transforming life into art.",
-                "button": "EXPLORE"
-            },
-            "p3": {
-                "title": "LIVE<br>MORE</br>RICHLY",
-                "description": "A life where sports, art, entertainment and more come together makes every moment precious.",
-                "button": "EXPLORE"
-            }
+            "title3": "Managing time is the art of turning life into a masterpiece."
         },
         "section2": {
             "title1": "YAŞAMIN",
@@ -238,7 +223,7 @@
         }
     },
     "citys-park": {
-        "description": "In the heart of the city, a green oasis that slows you down…"
+        "description": "In the heart of the city, <br></br> a green oasis that slows you down…"
     },
     "citys-living": {
         "description": "Now, everything is easier."
@@ -315,7 +300,7 @@
         "citysPark": "A morning coffee, a small lunchtime meeting, an impromptu evening celebration... Gather around a table with friends in nature, or host an unforgettable event under the lights. No formality, just your rhythm, your space...",
         "citysMembersClub": "A morning coffee, a small lunchtime meeting, an impromptu evening celebration... Gather around a table with friends in nature, or host an unforgettable event under the lights. No formality, just your rhythm, your space...",
         "citysLiving": "Everything is easier now...",
-        "citysKsm": "Everything is easier now...",
+        "citysPsm": "Everything is easier now...",
         "citysIstanbulAvm": "Experience world-renowned prestigious brands within a few steps, meet the fresh coffee aroma, take a break at gourmet flavor stops; meet art, culture, entertainment, and leave the day's hustle peacefully behind...",
         "citysTimes": "Live More... <br></br> Live More Peacefully... <br></br> Live More Fully..."
     },
@@ -325,10 +310,10 @@
             "residences": "Residences",
             "location": "Location",
             "citysPark": "City's Park",
-            "citysMembersClub": "City's Members Club",
+            "citysMembersClub": "Members Club",
             "citysLiving": "City's Living",
-            "citysIstanbul": "City's Istanbul Shopping Mall",
-            "citysKsm": "City's KSM",
+            "citysIstanbulAvm": "City's Istanbul Shopping Mall",
+            "citysPsm": "City's PSM",
             "citysTimes": "City's Times",
             "project": "Project"
         },

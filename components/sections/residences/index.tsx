@@ -34,8 +34,22 @@ export default async function Page({
 }) {
   const images = [
     {
-      src: '/img/residences/1+1/interior.jpg',
-      alt: '1+1 Interior',
+      src: '/img/residences/slider/1.jpg',
+    },
+    {
+      src: '/img/residences/slider/2.jpg',
+    },
+    {
+      src: '/img/residences/slider/3.jpg',
+    },
+    {
+      src: '/img/residences/slider/4.jpg',
+    },
+    {
+      src: '/img/residences/slider/5.jpg',
+    },
+    {
+      src: '/img/residences/slider/6.jpg',
     },
   ]
 
@@ -70,16 +84,7 @@ export default async function Page({
             emblaSlideClassname='items-start'
             slideSpacing='2rem'
           >
-            {[
-              ...images,
-              ...images,
-              ...images,
-              ...images,
-              ...images,
-              ...images,
-              ...images,
-              ...images,
-            ].map((image, index) => (
+            {[...images, ...images].map((image, index) => (
               <div
                 key={index}
                 className={cn('relative', index % 2 === 0 && 'mt-16')}

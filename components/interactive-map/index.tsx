@@ -4,12 +4,12 @@ import { cn } from '@/lib/utils'
 import {
   BankIcon,
   GraduationCapIcon,
-  HospitalIcon,
+  LetterCircleHIcon,
   TrainIcon,
 } from '@phosphor-icons/react'
 import { AnimatePresence, motion } from 'motion/react'
-import { memo, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { memo, useState } from 'react'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
@@ -43,14 +43,14 @@ const locations: LocationItem[] = [
     name: 'memorial-atasehir',
     distance: '1 km',
     map: 'map-6.jpg',
-    icon: <HospitalIcon className='size-full' weight='thin' />,
+    icon: <LetterCircleHIcon className='size-full' weight='thin' />,
   },
   {
     id: 'acibadem-atasehir',
     name: 'acibadem-atasehir',
     distance: '4 km',
     map: 'map-2.jpg',
-    icon: <HospitalIcon className='size-full' weight='thin' />,
+    icon: <LetterCircleHIcon className='size-full' weight='thin' />,
   },
   {
     id: 'fenerbahce-university',

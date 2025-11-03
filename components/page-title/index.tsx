@@ -63,13 +63,13 @@ export function PageTitle(props: PageTitleProps) {
           )}
         />
         <div className='z-40 flex flex-shrink-0 flex-col items-center justify-center gap-6 lg:gap-6'>
-          <span className='size-24 lg:size-24'>
+          <span className='size-24 lg:size-20'>
             <LogoSlim fill={secondaryColor} />
           </span>
           <h2
             className={cn(
               'text-center font-primary font-[500]',
-              'text-3xl/tight tracking-[0.4em] lg:text-5xl/tight xl:text-4xl/tight 2xl:text-4xl/tight'
+              'text-3xl/tight tracking-[0.4em] lg:text-5xl/tight xl:text-4xl/tight 2xl:text-5xl/tight'
             )}
             style={{ color: secondaryColor }}
           >
@@ -85,8 +85,8 @@ export function PageTitle(props: PageTitleProps) {
           <p
             className={cn(
               'text-center font-primary font-[300]',
-              'text-xl/snug lg:text-2xl/snug xl:text-2xl/snug 2xl:text-3xl/snug',
-              'w-[90vw] md:w-[60vw] lg:w-[60vw] xl:w-[40vw] 2xl:w-[40vw] 3xl:w-[40vw]'
+              'text-xl/snug lg:text-2xl/snug xl:text-2xl/snug 2xl:text-2xl/snug',
+              'w-[90vw] md:w-[60vw] lg:w-[60vw] xl:w-[40vw] 2xl:w-[40vw] 3xl:w-[35vw]'
             )}
             style={{ color: secondaryColor }}
           >

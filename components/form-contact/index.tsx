@@ -683,7 +683,7 @@ export function ContactForm({ translations }: FormContactProps) {
                 disabled={mutation.isPending}
                 className='group relative flex w-full items-center justify-between lg:ml-auto lg:w-auto lg:justify-end'
               >
-                <span className='whitespace-nowrap pr-4 text-sm tracking-[0.4em] text-white lg:text-lg xl:pr-6 xl:text-sm 2xl:pr-8 2xl:text-lg'>
+                <span className='whitespace-nowrap pr-4 text-sm font-[500] tracking-[0.2em] text-white lg:text-lg xl:pr-6 xl:text-base 2xl:pr-8 2xl:text-lg'>
                   {translations.submit.default}
                 </span>
                 <span

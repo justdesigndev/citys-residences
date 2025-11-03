@@ -32,7 +32,9 @@ export default function CitysPark({ data }: CitysParkProps) {
         primaryColor={colors['army-canvas']}
         secondaryColor={colors.white}
         title="CITY'S PARK"
-        description={t('description')}
+        description={t.rich('description', {
+          br: () => <br className='hidden lg:block' />,
+        })}
         id={navigationConfig['/citys-park']?.id as string}
         stopColor1={colors['white']}
         stopColor2={colors['army-canvas']}

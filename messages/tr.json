@@ -8,7 +8,7 @@
     "project": {
         "pageTitle": {
             "title": "PROJE",
-            "description": "Her köşesi özenle düşünülmüş bir karma yaşam projesi."
+            "description": "Her köşesi özenle düşünülmüş bir <br></br> <strong>karma yaşam projesi.</strong>"
         },
         "map": {
             "title": "Yaşamın tam merkezinde.",
@@ -191,22 +191,7 @@
         "section1": {
             "title1": "YAŞAMA",
             "title2": "SANATI",
-            "title3": "Zamanı yönetmek yaşamı sanata dönüştürmektir",
-            "p1": {
-                "title": "DAHA<br></br> HUZURLU YAŞA",
-                "description": "Farklı ve zamansız mimarinin, doğanın cömertliği ile buluştuğu mekanlarda güven içinde, <br></br> daha huzurlu yaşa.",
-                "button": "İNCELE"
-            },
-            "p2": {
-                "title": "DAHA ÇOK<br></br>YAŞA",
-                "description": "Hayatın tam merkezinde, zamanı kendinize ve sevdiklerinize ayırarak keyifle, yaşamı sanata dönüştürerek <br></br> daha çok yaşa.",
-                "button": "İNCELE"
-            },
-            "p3": {
-                "title": "DAHA DOLU<br></br>YAŞA",
-                "description": "Spor, sanat, kültür, alışveriş, eğlence ve çok daha fazlasını bir araya getiren yeni bir yaşam dizaynı ile <br></br> daha dolu yaşa.",
-                "button": "İNCELE"
-            }
+            "title3": "Zamanı yönetmek yaşamı sanata dönüştürmektir."
         },
         "section2": {
             "title1": "YAŞAMIN",
@@ -279,7 +264,7 @@
         }
     },
     "citys-park": {
-        "description": "Şehrin kalbinde, sizi yavaşlatan, yeşil bir vaha..."
+        "description": "Şehrin kalbinde, sizi yavaşlatan, <br></br> yeşil bir vaha..."
     },
     "citys-living": {
         "description": "Artık her şey daha kolay..."
@@ -356,20 +341,20 @@
         "citysPark": "Sabah bir kahve, öğlen küçük bir toplantı, akşamüstü spontane bir kutlama... Doğanın içinde arkadaşlarınla bir masaya kurul, ya da ışıkların altında unutulmaz bir etkinlik düzenle. Resmiyet yok, sadece senin ritmin, senin alanın...",
         "citysMembersClub": "Sabah bir kahve, öğlen küçük bir toplantı, akşamüstü spontane bir kutlama... Doğanın içinde arkadaşlarınla bir masaya kurul, ya da ışıkların altında unutulmaz bir etkinlik düzenle. Resmiyet yok, sadece senin ritmin, senin alanın...",
         "citysLiving": "Artık her şey daha kolay...",
-        "citysKsm": "Artık her şey daha kolay...",
+        "citysPsm": "Artık her şey daha kolay...",
         "citysIstanbulAvm": "Dünyaca tanınan seçkin markalara bir kaç adımda ulaşır, taze bir kahve kokusuyla tanışır, gurme lezzet duraklarında soluklanır; sanat, kültür, eğlenceyle buluşur, günün koşturmacasını sakince geride bırakırsın...",
         "citysTimes": "Daha Çok Yaşa... <br></br> Daha Huzurlu Yaşa... <br></br> Daha Dolu Yaşa..."
     },
     "common": {
         "navigation": {
             "home": "Anasayfa",
-            "residences": "Daireler",
+            "residences": "Residences",
             "location": "Konum",
             "citysPark": "City's Park",
-            "citysMembersClub": "City's Members Club",
+            "citysMembersClub": "Members Club",
             "citysLiving": "City's Living",
-            "citysIstanbul": "City's İstanbul AVM",
-            "citysKsm": "City's KSM",
+            "citysIstanbulAvm": "City's İstanbul AVM",
+            "citysPsm": "City's PSM",
             "citysTimes": "City's Times",
             "project": "Proje"
         },
