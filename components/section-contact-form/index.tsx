@@ -1,9 +1,13 @@
+'use client'
+
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
+import { ContactFormSuccessScreen } from '@/components/contact-form-success-screen'
 import { ContactForm } from '@/components/form-contact'
 import { FormTranslations } from '@/types'
-import { useTranslations } from 'next-intl'
 
 export function SectionContactForm({
   formTranslations,
@@ -11,11 +15,34 @@ export function SectionContactForm({
   formTranslations: FormTranslations
 }) {
   const t = useTranslations()
+  const [isFormSuccess, setIsFormSuccess] = useState(true)
+
+  const handleFormSuccess = () => {
+    setIsFormSuccess(true)
+  }
+
+  useEffect(() => {
+    if (isFormSuccess) {
+      const timer = setTimeout(() => {
+        return
+        setIsFormSuccess(false)
+      }, 3000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [isFormSuccess])
+
   return (
-    <section className='bg-gradient-appointment py-16 xl:py-40'>
+    <section className='relative bg-gradient-appointment py-16 xl:py-40'>
+      <ContactFormSuccessScreen isVisible={isFormSuccess} />
       <FadeInOnScroll delay={0.25}>
-        <div className='grid grid-cols-12 px-8 lg:col-start-4 lg:grid-cols-24 lg:px-16'>
-          <div className='col-span-12 mb-12 lg:col-span-18 lg:col-start-6 lg:mb-16'>
+        <div
+          className={cn(
+            'grid grid-cols-24 px-8 lg:col-start-4 lg:px-16',
+            isFormSuccess && 'pointer-events-none opacity-0'
+          )}
+        >
+          <div className='col-span-24 mb-12 lg:col-span-18 lg:col-start-6 lg:mb-16'>
             <h3
               className={cn(
                 'mb-4 font-primary font-[400] text-white lg:mb-4',
@@ -36,8 +63,11 @@ export function SectionContactForm({
               })}
             </p>
           </div>
-          <div className='col-span-12 pb-12 lg:col-span-18 lg:col-start-6 xl:pb-0'>
-            <ContactForm translations={formTranslations} />
+          <div className='col-span-24 pb-12 lg:col-span-18 lg:col-start-6 xl:pb-0'>
+            <ContactForm
+              translations={formTranslations}
+              onSuccess={handleFormSuccess}
+            />
           </div>
         </div>
       </FadeInOnScroll>

@@ -175,9 +175,10 @@ const useFormMessage = (timeout = 5000): UseFormMessage => {
 
 interface FormContactProps {
   translations: FormTranslations
+  onSuccess?: () => void
 }
 
-export function ContactForm({ translations }: FormContactProps) {
+export function ContactForm({ translations, onSuccess }: FormContactProps) {
   const { showMessage } = useFormMessage()
   const t = useTranslations()
   const locale = useLocale()
@@ -200,7 +201,7 @@ export function ContactForm({ translations }: FormContactProps) {
       countryCode: '',
       phone: '',
       email: '',
-      residenceType: '',
+      residenceType: '2+1',
       howDidYouHearAboutUs: '',
       contactPreference: '',
       consent: false,
@@ -245,6 +246,7 @@ export function ContactForm({ translations }: FormContactProps) {
         form.reset()
         form.clearErrors()
         showMessage('success', 'Form submitted successfully')
+        onSuccess?.()
       } else {
         showMessage('error', result.message)
       }
@@ -271,41 +273,68 @@ export function ContactForm({ translations }: FormContactProps) {
 
   const iconSize = 'size-6 xl:size-6 2xl:size-7 3xl:size-8'
 
-  const residenceTypeOptions = useMemo(
-    () => [
+  const residenceTypeOptions = useMemo(() => {
+    const selectedLabels = residenceTypeValue
+      ? residenceTypeValue.split(',').map(label => label.trim())
+      : []
+
+    const createIcon = (label: string) => {
+      const isSelected = selectedLabels.includes(label)
+      return (
+        <span className='relative inline-block'>
+          <HouseSimpleIcon
+            className={cn(
+              iconSize,
+              'transition-opacity duration-300',
+              isSelected ? 'opacity-0' : 'opacity-100'
+            )}
+            weight='thin'
+          />
+          <HouseSimpleIcon
+            className={cn(
+              iconSize,
+              'absolute inset-0 transition-opacity duration-300',
+              isSelected ? 'opacity-100' : 'opacity-0'
+            )}
+            weight='fill'
+          />
+        </span>
+      )
+    }
+
+    return [
       {
         id: '1+1',
         label: '1+1',
-        icon: <HouseSimpleIcon className={iconSize} />,
+        icon: createIcon('1+1'),
       },
       {
         id: '2+1',
         label: '2+1',
-        icon: <HouseSimpleIcon className={iconSize} />,
+        icon: createIcon('2+1'),
       },
       {
         id: '3+1',
         label: '3+1',
-        icon: <HouseSimpleIcon className={iconSize} />,
+        icon: createIcon('3+1'),
       },
       {
         id: '4+1',
         label: '4+1',
-        icon: <HouseSimpleIcon className={iconSize} />,
+        icon: createIcon('4+1'),
       },
       {
         id: '5+1',
         label: '5+1',
-        icon: <HouseSimpleIcon className={iconSize} />,
+        icon: createIcon('5+1'),
       },
       {
         id: '6+1',
         label: '6+1',
-        icon: <HouseSimpleIcon className={iconSize} />,
+        icon: createIcon('6+1'),
       },
-    ],
-    []
-  )
+    ]
+  }, [residenceTypeValue])
 
   const howDidYouHearAboutUsOptions = useMemo(
     () => [
@@ -313,23 +342,23 @@ export function ContactForm({ translations }: FormContactProps) {
         id: 'internetSocialMedia',
         label:
           translations.inputs.howDidYouHearAboutUs.options.internetSocialMedia,
-        icon: <DeviceMobileCameraIcon className={iconSize} />,
+        icon: <DeviceMobileCameraIcon className={iconSize} weight='thin' />,
       },
       {
         id: 'billboard',
         label: translations.inputs.howDidYouHearAboutUs.options.billboard,
-        icon: <PresentationIcon className={iconSize} />,
+        icon: <PresentationIcon className={iconSize} weight='thin' />,
       },
 
       {
         id: 'projectVisit',
         label: translations.inputs.howDidYouHearAboutUs.options.projectVisit,
-        icon: <StorefrontIcon className={iconSize} />,
+        icon: <StorefrontIcon className={iconSize} weight='thin' />,
       },
       {
         id: 'reference',
         label: translations.inputs.howDidYouHearAboutUs.options.reference,
-        icon: <UserIcon className={iconSize} />,
+        icon: <UserIcon className={iconSize} weight='thin' />,
       },
     ],
     [translations.inputs.howDidYouHearAboutUs.options]
@@ -340,17 +369,17 @@ export function ContactForm({ translations }: FormContactProps) {
       {
         id: 'sms',
         label: translations.inputs.contactPreferenceOptions?.sms,
-        icon: <ChatCenteredTextIcon className={iconSize} />,
+        icon: <ChatCenteredTextIcon className={iconSize} weight='thin' />,
       },
       {
         id: 'email',
         label: translations.inputs.contactPreferenceOptions?.email,
-        icon: <EnvelopeOpenIcon className={iconSize} />,
+        icon: <EnvelopeOpenIcon className={iconSize} weight='thin' />,
       },
       {
         id: 'phone',
         label: translations.inputs.contactPreferenceOptions?.phone,
-        icon: <DeviceMobileCameraIcon className={iconSize} />,
+        icon: <DeviceMobileCameraIcon className={iconSize} weight='thin' />,
       },
     ],
     [translations.inputs.contactPreferenceOptions]

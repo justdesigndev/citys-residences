@@ -178,6 +178,12 @@
                     "title": "Thank You for Your Interest",
                     "description": "A representative from our sales team will contact you shortly. We look forward to speaking with you and sharing details about this special project.",
                     "button": "Return to Page"
+                },
+                "thankYou": {
+                    "title": "Thank You.",
+                    "message1": "Your appointment request has successfully reached our team.",
+                    "message2": "We will contact you shortly.",
+                    "followUs": "Follow us on social media."
                 }
             }
         }

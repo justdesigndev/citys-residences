@@ -180,6 +180,12 @@
                     "title": "İlginiz İçin Teşekkür Ederiz",
                     "description": "Satış ekibimizden bir temsilcimiz en kısa sürede sizinle iletişime geçecektir. Bu özel proje hakkında sizinle görüşmek ve detayları paylaşmak için sabırsızlanıyoruz.",
                     "button": "Sayfaya Dön"
+                },
+                "thankYou": {
+                    "title": "Teşekkürler.",
+                    "message1": "Randevu talebiniz ekibimize başarıyla ulaştı.",
+                    "message2": "En kısa sürede sizinle iletişime geçeceğiz.",
+                    "followUs": "Bizi sosyal medyada takip et."
                 }
             }
         }

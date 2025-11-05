@@ -84,12 +84,16 @@ export const MultiSelectCheckboxes = forwardRef<
                   'size-[80px] lg:size-[5.25rem] xl:size-[5rem] 2xl:size-[6rem] 3xl:size-[6.85rem]',
                   'cursor-pointer rounded-md px-0.5 py-3.5 xl:py-4 2xl:py-4 3xl:py-5',
                   'transition-all duration-200',
+                  'outline-none focus:outline-none focus-visible:outline-none',
+                  'select-none active:scale-95',
+                  'touch-manipulation',
                   {
                     'bg-white text-bricky-brick': isSelected,
-                    'border border-tangerine-flake text-white hover:border-tangerine-flake/40 hover:bg-white/10':
+                    'border border-tangerine-flake text-white hover:border-tangerine-flake/40':
                       !isSelected,
                   }
                 )}
+                style={{ WebkitTapHighlightColor: 'transparent' }}
                 aria-label={`Select ${option.label}`}
                 type='button'
               >
