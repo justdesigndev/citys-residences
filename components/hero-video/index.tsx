@@ -96,7 +96,7 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
         mobileSize='100vw'
         className={cn(
           'hidden lg:block',
-          'absolute inset-0 z-20 h-full w-full object-cover grayscale-[80%]',
+          'absolute inset-0 z-20 h-full w-full object-cover',
           'transition-opacity duration-300 ease-in-out',
           {
             'pointer-events-none opacity-100': !isPlaying,
@@ -113,7 +113,7 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
         mobileSize='100vw'
         className={cn(
           'block lg:hidden',
-          'absolute inset-0 z-20 h-full w-full object-cover grayscale-[80%]',
+          'absolute inset-0 z-20 h-full w-full object-cover',
           'transition-opacity duration-300 ease-in-out',
           {
             'pointer-events-none opacity-100': !isPlaying,
