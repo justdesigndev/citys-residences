@@ -20,7 +20,6 @@ export const StickySidebar: React.FC = () => {
   const { ref, slider } = useSmooothy({
     infinite: false,
     snap: true,
-    dragSensitivity: 0.005,
     setOffset: ({ wrapperWidth }) => {
       return wrapperWidth / 2 // Center the active slide
     },
@@ -108,6 +107,7 @@ export const StickySidebar: React.FC = () => {
       <div
         className={cn(
           'fixed bottom-[4%] left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen overflow-x-hidden mix-blend-difference focus:outline-none lg:hidden',
+          'px-[calc(50%-20vw)]', // Padding to allow items to center (50% - half of item width)
           !isStickySidebarVisible && 'pointer-events-none opacity-0'
         )}
         ref={ref}
@@ -116,7 +116,7 @@ export const StickySidebar: React.FC = () => {
           <div
             key={item.id}
             className={cn(
-              'relative h-8',
+              'relative h-8 w-[40vw]',
               'flex shrink-0 items-center justify-center',
               'before:absolute before:bottom-0 before:left-0 before:h-0 before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
               {
