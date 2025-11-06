@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import { Image } from '../image'
+import { cn } from '@/lib/utils'
 
 type HeroVideoProps = {
   desktopSources: { src: string; type: string }[]
@@ -28,6 +30,7 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [shouldLoad, setShouldLoad] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     const checkViewport = () => setIsMobile(window.innerWidth <= 768)
@@ -70,29 +73,56 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
   const sources = isMobile ? mobileSources : desktopSources
 
   return (
-    <video
-      ref={videoRef}
-      className={className}
-      poster={poster}
-      playsInline
-      muted={muted}
-      loop={loop}
-      preload={shouldLoad ? 'auto' : 'none'}
-      controls={false}
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        opacity: 0,
-        transition: 'opacity 0.6s ease',
-      }}
-      onPlay={e => {
-        ;(e.target as HTMLVideoElement).style.opacity = '1'
-      }}
-    >
-      {shouldLoad &&
-        sources.map((s, i) => <source key={i} src={s.src} type={s.type} />)}
-    </video>
+    <>
+      <video
+        ref={videoRef}
+        className={cn(className, 'z-10 h-full w-full object-cover')}
+        poster={poster}
+        playsInline
+        muted={muted}
+        loop={loop}
+        preload={shouldLoad ? 'auto' : 'none'}
+        controls={false}
+        onPlay={() => setIsPlaying(true)}
+      >
+        {shouldLoad &&
+          sources.map((s, i) => <source key={i} src={s.src} type={s.type} />)}
+      </video>
+      <Image
+        src={desktopPoster}
+        alt='Hero Video Poster'
+        fill
+        desktopSize='100vw'
+        mobileSize='100vw'
+        className={cn(
+          'hidden lg:block',
+          'absolute inset-0 z-20 h-full w-full object-cover grayscale-[80%]',
+          'transition-opacity duration-300 ease-in-out',
+          {
+            'pointer-events-none opacity-100': !isPlaying,
+            'pointer-events-auto opacity-0': isPlaying,
+          }
+        )}
+        priority
+      />
+      <Image
+        src={mobilePoster}
+        alt='Hero Video Poster'
+        fill
+        desktopSize='100vw'
+        mobileSize='100vw'
+        className={cn(
+          'block lg:hidden',
+          'absolute inset-0 z-20 h-full w-full object-cover grayscale-[80%]',
+          'transition-opacity duration-300 ease-in-out',
+          {
+            'pointer-events-none opacity-100': !isPlaying,
+            'pointer-events-auto opacity-0': isPlaying,
+          }
+        )}
+        priority
+      />
+    </>
   )
 }
 
