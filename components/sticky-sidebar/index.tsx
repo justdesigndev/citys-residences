@@ -2,11 +2,11 @@
 
 import { cn, toAllUppercase } from '@/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
-import { ScrollableBox } from '@/components/utility/scrollable-box'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useNavigation } from '@/hooks/useNavigation'
+import { useSmooothy } from '@/hooks/useSmooothy'
 import { Locale } from '@/i18n/routing'
 import { getNavigationItems } from '@/lib/constants'
 import { useUiStore } from '@/lib/store/ui'
@@ -17,6 +17,14 @@ export const StickySidebar: React.FC = () => {
   const t = useTranslations('common')
   const locale = useLocale()
   const { isStickySidebarVisible } = useUiStore()
+  const { ref, slider } = useSmooothy({
+    infinite: false,
+    snap: true,
+    dragSensitivity: 0.005,
+    setOffset: ({ wrapperWidth }) => {
+      return wrapperWidth / 2 // Center the active slide
+    },
+  })
 
   // Get only items that should appear in sidebar
   const items = useMemo(
@@ -30,6 +38,16 @@ export const StickySidebar: React.FC = () => {
         })),
     [t, locale]
   )
+
+  // Slide to active section when it changes
+  useEffect(() => {
+    if (!slider || !activeSection) return
+
+    const activeIndex = items.findIndex(item => item.id === activeSection)
+    if (activeIndex !== -1) {
+      slider.goToIndex(activeIndex)
+    }
+  }, [activeSection, slider, items])
 
   return (
     <>
@@ -82,65 +100,48 @@ export const StickySidebar: React.FC = () => {
       {/* mobile */}
       <div
         className={cn(
-          'fixed bottom-4 left-4 right-4 z-[var(--z-sticky-menu)] mix-blend-difference lg:hidden',
+          'fixed bottom-[4%] left-4 right-4 z-[var(--z-sticky-menu)] mix-blend-difference lg:hidden',
           'before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-[100%] before:bg-gradient-sidebar',
           !isStickySidebarVisible && 'pointer-events-none opacity-0'
         )}
       ></div>
       <div
         className={cn(
-          'fixed bottom-4 left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen mix-blend-difference lg:hidden',
+          'fixed bottom-[4%] left-0 right-0 z-[var(--z-sticky-menu)] flex w-screen overflow-x-hidden mix-blend-difference focus:outline-none lg:hidden',
           !isStickySidebarVisible && 'pointer-events-none opacity-0'
         )}
+        ref={ref}
       >
-        <ScrollableBox
-          className='w-screen'
-          orientation='horizontal'
-          scrollTo={activeSection ? `[data-nav-id="${activeSection}"]` : null}
-        >
+        {items.map(item => (
           <div
+            key={item.id}
             className={cn(
-              'pointer-events-auto relative',
-              'flex flex-row lg:hidden',
-              'opacity-100 transition-opacity duration-300 ease-in-out'
+              'relative h-8',
+              'flex shrink-0 items-center justify-center',
+              'before:absolute before:bottom-0 before:left-0 before:h-0 before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
+              {
+                'before:h-[3px]': activeSection === item.id,
+              }
             )}
           >
-            {items.map(item => (
-              <div
-                className={cn(
-                  'relative h-8 w-auto flex-shrink-0 transition-all duration-300 ease-in-out',
-                  'before:absolute before:bottom-0 before:left-0 before:h-0 before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-all before:duration-300 before:ease-in-out before:content-[""]',
-                  'hover:before:w-1',
-                  {
-                    'before:h-[3px]': activeSection === item.id,
-                  }
-                )}
-                key={item.id}
-                data-nav-id={item.id}
-              >
-                {/* <div
-                  className='pointer-events-none absolute left-1/2 top-1/2 h-px w-px -translate-x-1/2 -translate-y-1/2'
-                  data-nav-id={item.id}
-                ></div> */}
-                <button
-                  onClick={() => handleNavClick(item.id as string)}
-                  className={cn(
-                    'whitespace-nowrap font-primary font-[700] tracking-[0.2em] text-white',
-                    'cursor-pointer flex-col items-center justify-center px-8',
-                    'transition-all duration-300 ease-out',
-                    {
-                      'text-[0.7rem]': activeSection === item.id,
-                      'text-[0.6rem]': activeSection !== item.id,
-                    }
-                  )}
-                  type='button'
-                >
-                  {toAllUppercase(item.label)}
-                </button>
-              </div>
-            ))}
+            <button
+              onClick={() => handleNavClick(item.id as string)}
+              className={cn(
+                'whitespace-nowrap font-primary font-[700] tracking-[0.2em] text-white',
+                'flex-col items-center justify-center',
+                'transition-all duration-300 ease-out',
+                'cursor-pointer px-8',
+                {
+                  'text-[0.7rem]': activeSection === item.id,
+                  'text-[0.6rem]': activeSection !== item.id,
+                }
+              )}
+              type='button'
+            >
+              {toAllUppercase(item.label)}
+            </button>
           </div>
-        </ScrollableBox>
+        ))}
       </div>
     </>
   )
