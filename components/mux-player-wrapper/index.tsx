@@ -49,7 +49,6 @@ export const MuxPlayerWrapper = React.forwardRef<
       (ref as React.RefObject<MuxPlayerRefAttributes>) || internalRef
     const containerRef = useRef<HTMLDivElement>(null)
     const [isInViewport, setIsInViewport] = useState(false)
-    const [isPlayerReady, setIsPlayerReady] = useState(false)
 
     // Scroll optimization state
     const [isScrolling, setIsScrolling] = useState(false)
@@ -189,7 +188,7 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle play/pause based on viewport visibility
     useEffect(() => {
-      if (!playOnViewport || !isPlayerReady) {
+      if (!playOnViewport || !shouldLoadVideo) {
         return
       }
 
@@ -199,17 +198,37 @@ export const MuxPlayerWrapper = React.forwardRef<
       }
 
       if (isInViewport) {
-        console.log('🎬 Video entering viewport - playing')
-        player.play().catch(error => {
-          console.warn('Play was prevented:', error)
-        })
+        console.log('🎬 Video entering viewport - attempting to play')
+
+        // Try to play with retry logic for mobile
+        const attemptPlay = (retries = 3) => {
+          player.play().catch(error => {
+            console.warn(`Play was prevented (${retries} retries left):`, error)
+
+            // Retry after a short delay if we have retries left
+            if (retries > 0) {
+              setTimeout(() => {
+                if (isInViewport && playerRef.current) {
+                  attemptPlay(retries - 1)
+                }
+              }, 500)
+            }
+          })
+        }
+
+        // Small delay to ensure player is fully initialized on mobile
+        setTimeout(() => {
+          if (isInViewport && playerRef.current) {
+            attemptPlay()
+          }
+        }, 100)
       } else {
         console.log('⏸️ Video leaving viewport - pausing')
         player.pause()
       }
       // playerRef is a ref object and is stable across renders
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isInViewport, playOnViewport, isPlayerReady])
+    }, [isInViewport, playOnViewport, shouldLoadVideo])
 
     // Initial autoplay for non-viewport mode
     useEffect(() => {
@@ -232,7 +251,6 @@ export const MuxPlayerWrapper = React.forwardRef<
     // Handle when player is ready
     const handleCanPlay = (e: CustomEvent) => {
       console.log('✅ Player ready (canplay event)')
-      setIsPlayerReady(true)
       if (onCanPlay) {
         onCanPlay(e)
       }
@@ -255,7 +273,7 @@ export const MuxPlayerWrapper = React.forwardRef<
             loop
             playsInline // Required for iOS autoplay
             // Performance and loading settings
-            preload={preload}
+            preload={playOnViewport ? 'metadata' : preload} // Use metadata for manual control
             streamType={streamType}
             startTime={startTime}
             // Resolution settings
@@ -263,11 +281,16 @@ export const MuxPlayerWrapper = React.forwardRef<
             minResolution={minResolution}
             // Disable user interactions for background video
             nohotkeys
+            // Mobile-specific attributes
+            disableTracking={false}
             // Event handlers
             onCanPlay={handleCanPlay}
             onPlay={onPlay}
             onEnded={onEnded}
             onError={onError}
+            onLoadStart={() => console.log('📹 Video load started')}
+            onLoadedMetadata={() => console.log('📊 Video metadata loaded')}
+            onLoadedData={() => console.log('📦 Video data loaded')}
             {...muxPlayerProps}
           />
         )}
