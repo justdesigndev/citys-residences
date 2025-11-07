@@ -59,11 +59,11 @@ export const MuxPlayerWrapper = React.forwardRef<
     const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
     const loadDelayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-    // Scroll detection for optimization
+    // Scroll detection for optimization (including touch events for mobile)
     useEffect(() => {
       if (!enableScrollOptimization) return
 
-      const handleScroll = () => {
+      const handleScrollOrTouch = () => {
         setIsScrolling(true)
 
         // Clear existing scroll timeout
@@ -77,10 +77,36 @@ export const MuxPlayerWrapper = React.forwardRef<
         }, 150) // Consider scrolling stopped after 150ms of no scroll events
       }
 
-      window.addEventListener('scroll', handleScroll, { passive: true })
+      const handleTouchEnd = () => {
+        // On touch end, use a slightly longer delay to account for momentum scrolling
+        setIsScrolling(true)
+
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current)
+        }
+
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsScrolling(false)
+        }, 300) // Longer delay for touch devices to account for momentum
+      }
+
+      // Add scroll listener (fires on desktop and mobile)
+      window.addEventListener('scroll', handleScrollOrTouch, { passive: true })
+
+      // Add touch listeners for mobile devices
+      window.addEventListener('touchstart', handleScrollOrTouch, {
+        passive: true,
+      })
+      window.addEventListener('touchmove', handleScrollOrTouch, {
+        passive: true,
+      })
+      window.addEventListener('touchend', handleTouchEnd, { passive: true })
 
       return () => {
-        window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('scroll', handleScrollOrTouch)
+        window.removeEventListener('touchstart', handleScrollOrTouch)
+        window.removeEventListener('touchmove', handleScrollOrTouch)
+        window.removeEventListener('touchend', handleTouchEnd)
         if (scrollTimeoutRef.current) {
           clearTimeout(scrollTimeoutRef.current)
         }
