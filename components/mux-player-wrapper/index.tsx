@@ -47,6 +47,7 @@ export const MuxPlayerWrapper = React.forwardRef<
       (ref as React.RefObject<MuxPlayerRefAttributes>) || internalRef
     const containerRef = useRef<HTMLDivElement>(null)
     const [isInViewport, setIsInViewport] = useState(false)
+    const [isPlayerReady, setIsPlayerReady] = useState(false)
 
     // Intersection Observer for viewport-based play/pause
     useEffect(() => {
@@ -67,6 +68,8 @@ export const MuxPlayerWrapper = React.forwardRef<
         },
         {
           threshold: viewportThreshold,
+          // Check immediately on mount
+          rootMargin: '0px',
         }
       )
 
@@ -79,7 +82,7 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle play/pause based on viewport visibility
     useEffect(() => {
-      if (!playOnViewport) {
+      if (!playOnViewport || !isPlayerReady) {
         return
       }
 
@@ -99,7 +102,7 @@ export const MuxPlayerWrapper = React.forwardRef<
       }
       // playerRef is a ref object and is stable across renders
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isInViewport, playOnViewport])
+    }, [isInViewport, playOnViewport, isPlayerReady])
 
     // Initial autoplay for non-viewport mode
     useEffect(() => {
@@ -118,6 +121,15 @@ export const MuxPlayerWrapper = React.forwardRef<
       // playerRef is a ref object and is stable across renders
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [playbackId, playOnViewport])
+
+    // Handle when player is ready
+    const handleCanPlay = (e: CustomEvent) => {
+      console.log('✅ Player ready (canplay event)')
+      setIsPlayerReady(true)
+      if (onCanPlay) {
+        onCanPlay(e)
+      }
+    }
 
     return (
       <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
@@ -143,7 +155,7 @@ export const MuxPlayerWrapper = React.forwardRef<
           // Disable user interactions for background video
           nohotkeys
           // Event handlers
-          onCanPlay={onCanPlay}
+          onCanPlay={handleCanPlay}
           onPlay={onPlay}
           onEnded={onEnded}
           onError={onError}

@@ -73,8 +73,8 @@ export default function MuxPlayerTestPage() {
               playbackId={video.playbackId as string}
               style={{ aspectRatio: video.aspect() as number }}
               // placeholder={video.placeholder}
-              // poster={video.placeholder}
-              thumbnailTime={0.01}
+              poster={video.placeholder}
+              playOnViewport
             />
           </div>
         ))}
