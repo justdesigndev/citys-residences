@@ -143,16 +143,19 @@ export function Menu() {
           <div className='mr-auto flex gap-4'>
             <FacebookLogoIcon
               weight='fill'
-              className='size-9 text-white xl:size-8'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
             />
             <InstagramLogoIcon
               weight='fill'
-              className='size-9 text-white xl:size-8'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
             />
-            <XLogoIcon weight='fill' className='size-9 text-white xl:size-8' />
+            <XLogoIcon
+              weight='fill'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+            />
             <YoutubeLogoIcon
               weight='fill'
-              className='size-9 text-white xl:size-8'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
             />
           </div>
           {/* buttons */}

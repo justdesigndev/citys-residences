@@ -180,7 +180,7 @@ export function MenuNavList() {
                     : 'pointer-events-none opacity-0'
                 )}
               >
-                <p className='text-left font-primary text-sm font-[300] text-white 3xl:text-base'>
+                <p className='text-left font-primary text-sm font-[300] text-white xl:text-base 3xl:text-xl'>
                   {tMenu.rich(getMenuTextKey(itemId), {
                     br: () => <br />,
                   })}
