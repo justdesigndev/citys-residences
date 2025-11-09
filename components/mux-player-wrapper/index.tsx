@@ -1,5 +1,25 @@
 'use client'
 
+/**
+ * MuxPlayerWrapper - Enhanced video player with viewport detection and scroll optimization
+ *
+ * Features:
+ * - Viewport-based play/pause control using GSAP ScrollTrigger
+ * - Scroll optimization with delayed loading
+ * - Animated placeholder transition (shown only on initial load before first play)
+ * - Video resumes from last position when returning to viewport (no placeholder re-display)
+ * - Mobile-optimized autoplay
+ *
+ * Technical Notes:
+ * - Uses @gsap/react's useGSAP hook for proper React integration
+ * - Plugins registered at module level: gsap.registerPlugin(useGSAP, ScrollTrigger)
+ * - Automatic cleanup prevents memory leaks with multiple instances
+ * - React Strict Mode compatible (no double-registration issues)
+ * - Scoped ScrollTriggers don't interfere with each other
+ *
+ * @see README.md for complete documentation
+ */
+
 import './styles.css'
 
 import React, { useRef, useEffect, useState } from 'react'
@@ -7,13 +27,14 @@ import React, { useRef, useEffect, useState } from 'react'
 import MuxPlayer from '@mux/mux-player-react/lazy'
 import type { MuxPlayerRefAttributes } from '@mux/mux-player-react'
 import { cn } from '@/lib/utils'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// Register ScrollTrigger
+// Register GSAP plugins (required even when using useGSAP)
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(useGSAP, ScrollTrigger)
 }
 
 interface MuxPlayerWrapperProps extends React.ComponentProps<typeof MuxPlayer> {
@@ -21,6 +42,7 @@ interface MuxPlayerWrapperProps extends React.ComponentProps<typeof MuxPlayer> {
   viewportThreshold?: number
   scrollDelay?: number // Delay in milliseconds before loading video after scroll stops
   enableScrollOptimization?: boolean // Enable scroll-aware lazy loading
+  debug?: boolean // Enable debug console logging
 }
 
 export const MuxPlayerWrapper = React.forwardRef<
@@ -45,8 +67,9 @@ export const MuxPlayerWrapper = React.forwardRef<
       streamType = 'on-demand',
       playOnViewport = false,
       viewportThreshold = 0,
-      scrollDelay = 1500, // Default 1.5 seconds
+      scrollDelay = 500, // Default 1.5 seconds
       enableScrollOptimization = false,
+      debug = false,
       ...muxPlayerProps
     },
     ref
@@ -60,95 +83,102 @@ export const MuxPlayerWrapper = React.forwardRef<
     const [isScrolling, setIsScrolling] = useState(false)
     const [isInViewport, setIsInViewport] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [hasPlayedOnce, setHasPlayedOnce] = useState(false) // Track if video has played at least once
     const [shouldAttemptPlay, setShouldAttemptPlay] = useState(false)
     const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
     const loadDelayTimeoutRef = useRef<NodeJS.Timeout | null>(null)
     const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
 
-    // GSAP ScrollTrigger for viewport detection
-    useEffect(() => {
-      if (!containerRef.current) return
-      if (!playOnViewport && !enableScrollOptimization) return
+    // GSAP ScrollTrigger for viewport detection using useGSAP hook
+    useGSAP(
+      () => {
+        if (!playOnViewport && !enableScrollOptimization) return
 
-      const element = containerRef.current
-
-      // Create ScrollTrigger instance
-      scrollTriggerRef.current = ScrollTrigger.create({
-        trigger: element,
-        start: `top ${100 - viewportThreshold * 100}%`,
-        end: `bottom ${viewportThreshold * 100}%`,
-        onEnter: () => {
-          console.log('👁️ ScrollTrigger: Entering viewport')
-          setIsInViewport(true)
-        },
-        onLeave: () => {
-          console.log('👁️ ScrollTrigger: Leaving viewport (bottom)')
-          setIsInViewport(false)
-        },
-        onEnterBack: () => {
-          console.log('👁️ ScrollTrigger: Entering viewport (scrolling back)')
-          setIsInViewport(true)
-        },
-        onLeaveBack: () => {
-          console.log('👁️ ScrollTrigger: Leaving viewport (top)')
-          setIsInViewport(false)
-        },
-        onRefresh: self => {
-          // Check if element is already in viewport on mount/refresh
-          if (self.isActive) {
-            console.log('👁️ ScrollTrigger: Already in viewport on mount')
+        // Create ScrollTrigger instance
+        scrollTriggerRef.current = ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: `top ${100 - viewportThreshold * 100}%`,
+          end: `bottom ${viewportThreshold * 100}%`,
+          onEnter: () => {
+            if (debug) console.log('👁️ ScrollTrigger: Entering viewport')
             setIsInViewport(true)
+          },
+          onLeave: () => {
+            if (debug)
+              console.log('👁️ ScrollTrigger: Leaving viewport (bottom)')
+            setIsInViewport(false)
+          },
+          onEnterBack: () => {
+            if (debug)
+              console.log(
+                '👁️ ScrollTrigger: Entering viewport (scrolling back)'
+              )
+            setIsInViewport(true)
+          },
+          onLeaveBack: () => {
+            if (debug) console.log('👁️ ScrollTrigger: Leaving viewport (top)')
+            setIsInViewport(false)
+          },
+          markers: true,
+        })
+
+        // Check immediately if element is in viewport (check specific instance, not global refresh)
+        if (scrollTriggerRef.current.isActive) {
+          if (debug)
+            console.log('👁️ ScrollTrigger: Already in viewport on mount')
+          setIsInViewport(true)
+        }
+      },
+      {
+        scope: containerRef,
+        dependencies: [
+          playOnViewport,
+          viewportThreshold,
+          enableScrollOptimization,
+          debug,
+        ],
+      }
+    )
+
+    // Scroll detection using ScrollTrigger update callback with useGSAP
+    useGSAP(
+      () => {
+        if (!enableScrollOptimization) return
+
+        const handleScroll = () => {
+          setIsScrolling(true)
+
+          // Clear existing scroll timeout
+          if (scrollTimeoutRef.current) {
+            clearTimeout(scrollTimeoutRef.current)
           }
-        },
-        markers: process.env.NODE_ENV === 'development',
-      })
 
-      // Check immediately if element is in viewport
-      ScrollTrigger.refresh()
-
-      return () => {
-        if (scrollTriggerRef.current) {
-          scrollTriggerRef.current.kill()
-        }
-      }
-    }, [playOnViewport, viewportThreshold, enableScrollOptimization])
-
-    // Scroll detection using ScrollTrigger update callback
-    useEffect(() => {
-      if (!enableScrollOptimization) return
-
-      const handleScroll = () => {
-        setIsScrolling(true)
-
-        // Clear existing scroll timeout
-        if (scrollTimeoutRef.current) {
-          clearTimeout(scrollTimeoutRef.current)
+          // Set new timeout to detect when scrolling stops
+          scrollTimeoutRef.current = setTimeout(() => {
+            if (debug) console.log('⏸️ Scrolling stopped')
+            setIsScrolling(false)
+          }, 200) // Detect scroll stop after 200ms
         }
 
-        // Set new timeout to detect when scrolling stops
-        scrollTimeoutRef.current = setTimeout(() => {
-          console.log('⏸️ Scrolling stopped')
-          setIsScrolling(false)
-        }, 200) // Detect scroll stop after 200ms
-      }
+        // Create a global ScrollTrigger to detect any scroll
+        // Note: useGSAP automatically cleans up ScrollTriggers on unmount
+        ScrollTrigger.create({
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom bottom',
+          onUpdate: () => {
+            handleScroll()
+          },
+        })
 
-      // Create a global ScrollTrigger to detect any scroll
-      const scrollDetector = ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom bottom',
-        onUpdate: () => {
-          handleScroll()
-        },
-      })
-
-      return () => {
-        if (scrollTimeoutRef.current) {
-          clearTimeout(scrollTimeoutRef.current)
+        return () => {
+          if (scrollTimeoutRef.current) {
+            clearTimeout(scrollTimeoutRef.current)
+          }
         }
-        scrollDetector.kill()
-      }
-    }, [enableScrollOptimization])
+      },
+      { dependencies: [enableScrollOptimization, debug] }
+    )
 
     // Handle delayed video play when in viewport and not scrolling
     useEffect(() => {
@@ -158,13 +188,16 @@ export const MuxPlayerWrapper = React.forwardRef<
         return
       }
 
-      console.log('📊 Video Play State:', {
-        isInViewport,
-        isScrolling,
-        shouldAttemptPlay,
-        isPlaying,
-        hasTimer: !!loadDelayTimeoutRef.current,
-      })
+      if (debug) {
+        console.log('📊 Video Play State:', {
+          isInViewport,
+          isScrolling,
+          shouldAttemptPlay,
+          isPlaying,
+          hasPlayedOnce,
+          hasTimer: !!loadDelayTimeoutRef.current,
+        })
+      }
 
       // Clear any existing delay timeout
       if (loadDelayTimeoutRef.current) {
@@ -173,18 +206,23 @@ export const MuxPlayerWrapper = React.forwardRef<
 
       // If video is in viewport and not scrolling, start delay timer
       if (isInViewport && !isScrolling && !shouldAttemptPlay) {
-        console.log(
-          `⏱️ User stopped on video - starting ${scrollDelay}ms delay before playing`
-        )
+        if (debug) {
+          console.log(
+            `⏱️ User stopped on video - starting ${scrollDelay}ms delay before playing`
+          )
+        }
         loadDelayTimeoutRef.current = setTimeout(() => {
-          console.log('✅ Delay complete - attempting to play video')
+          if (debug) console.log('✅ Delay complete - attempting to play video')
           setShouldAttemptPlay(true)
         }, scrollDelay)
       }
 
       // If scrolling started again or left viewport, cancel the timer
       if ((isScrolling || !isInViewport) && loadDelayTimeoutRef.current) {
-        console.log('❌ Canceling play attempt (scrolling or out of viewport)')
+        if (debug)
+          console.log(
+            '❌ Canceling play attempt (scrolling or out of viewport)'
+          )
         clearTimeout(loadDelayTimeoutRef.current)
         loadDelayTimeoutRef.current = null
       }
@@ -199,8 +237,10 @@ export const MuxPlayerWrapper = React.forwardRef<
       isScrolling,
       shouldAttemptPlay,
       isPlaying,
+      hasPlayedOnce,
       scrollDelay,
       enableScrollOptimization,
+      debug,
     ])
 
     // Handle play/pause based on shouldAttemptPlay
@@ -212,19 +252,19 @@ export const MuxPlayerWrapper = React.forwardRef<
       const player = playerRef.current
 
       if (!player) {
-        console.log('⚠️ Player ref not available yet')
+        if (debug) console.log('⚠️ Player ref not available yet')
         return
       }
 
       if (shouldAttemptPlay && isInViewport) {
         // Attempt to play the video
-        console.log('🎬 Attempting to play video')
+        if (debug) console.log('🎬 Attempting to play video')
         player.play().catch(error => {
-          console.warn('Play was prevented:', error)
+          if (debug) console.warn('Play was prevented:', error)
         })
       } else if (!isInViewport) {
         // Video left viewport, pause it
-        console.log('⏸️ Video leaving viewport - pausing')
+        if (debug) console.log('⏸️ Video leaving viewport - pausing')
         player.pause()
         setShouldAttemptPlay(false) // Reset play attempt
         setIsPlaying(false) // Reset playing state
@@ -244,7 +284,7 @@ export const MuxPlayerWrapper = React.forwardRef<
       if (player) {
         // Try to play the video
         player.play().catch(error => {
-          console.warn('Autoplay was prevented:', error)
+          if (debug) console.warn('Autoplay was prevented:', error)
         })
       }
       // playerRef is a ref object and is stable across renders
@@ -253,7 +293,7 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle when player is ready
     const handleCanPlay = (e: CustomEvent) => {
-      console.log('✅ Player ready (canplay event)')
+      if (debug) console.log('✅ Player ready (canplay event)')
       if (onCanPlay) {
         onCanPlay(e)
       }
@@ -261,8 +301,10 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle when video starts playing - this triggers placeholder fadeout
     const handlePlay = (e: CustomEvent) => {
-      console.log('▶️ Video started playing - fading out placeholder')
+      if (debug)
+        console.log('▶️ Video started playing - fading out placeholder')
       setIsPlaying(true)
+      setHasPlayedOnce(true) // Mark that video has played at least once
       if (onPlay) {
         onPlay(e)
       }
@@ -270,7 +312,7 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle when video is paused
     const handlePause = () => {
-      console.log('⏸️ Video paused')
+      if (debug) console.log('⏸️ Video paused')
       setIsPlaying(false)
     }
 
@@ -306,15 +348,17 @@ export const MuxPlayerWrapper = React.forwardRef<
           onPause={handlePause}
           onEnded={onEnded}
           onError={onError}
-          onLoadStart={() => console.log('📹 Video load started')}
-          onLoadedMetadata={() => console.log('📊 Video metadata loaded')}
-          onLoadedData={() => console.log('📦 Video data loaded')}
+          onLoadStart={() => debug && console.log('📹 Video load started')}
+          onLoadedMetadata={() =>
+            debug && console.log('📊 Video metadata loaded')
+          }
+          onLoadedData={() => debug && console.log('📦 Video data loaded')}
           {...muxPlayerProps}
         />
 
-        {/* Placeholder overlays video and fades out when video starts playing */}
+        {/* Placeholder overlays video and fades out when video starts playing for the first time */}
         <AnimatePresence>
-          {enableScrollOptimization && !isPlaying && (
+          {enableScrollOptimization && !hasPlayedOnce && (
             <motion.div
               key='placeholder'
               initial={{ opacity: 1 }}

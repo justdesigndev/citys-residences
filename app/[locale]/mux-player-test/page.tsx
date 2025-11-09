@@ -1,5 +1,4 @@
 import { MuxPlayerWrapper } from '@/components/mux-player-wrapper'
-import { Wrapper } from '@/components/wrapper'
 import {
   heroVideo,
   liveMore,
@@ -50,7 +49,10 @@ export default function MuxPlayerTestPage() {
     // },
   ]
   return (
-    <Wrapper>
+    <>
+      <div className='flex h-screen w-full items-center justify-center bg-blue-800'>
+        <h1 className='text-4xl font-bold text-white'>HERO</h1>
+      </div>
       <div className='flex min-h-screen flex-col gap-96 bg-green-400'>
         {/* 84 videos */}
         {[
@@ -78,13 +80,14 @@ export default function MuxPlayerTestPage() {
               poster={video.placeholder}
               loading='viewport'
               enableScrollOptimization={true}
-              scrollDelay={300} // 0.5 seconds
+              scrollDelay={500} // 0.5 seconds
               playOnViewport={true}
-              viewportThreshold={0.75} // 75% visible
+              viewportThreshold={0} // 75% visible
+              debug={index === 0} // Only enable debug for first video
             />
           </div>
         ))}
       </div>
-    </Wrapper>
+    </>
   )
 }
