@@ -81,7 +81,7 @@ export default function MuxPlayerTestPage() {
               poster={video.placeholder}
               loading='viewport'
               enableScrollOptimization={true}
-              scrollDelay={300} // 300 ms
+              scrollDelay={0} // 300 ms
               playOnViewport={true}
               viewportThreshold={0} // 75% visible
               debug={index === 0} // Only enable debug for first video
