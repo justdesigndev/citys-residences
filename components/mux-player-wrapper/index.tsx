@@ -99,6 +99,8 @@ export const MuxPlayerWrapper = React.forwardRef<
     // Debug refs (no re-renders)
     const debugVelocityRef = useRef<HTMLDivElement>(null)
     const debugStatusRef = useRef<HTMLDivElement>(null)
+    const debugUpdateScheduled = useRef(false)
+    const currentVelocityRef = useRef(0)
 
     // Velocity threshold to consider as "active scrolling"
     const velocityThreshold = 1.5
@@ -160,18 +162,29 @@ export const MuxPlayerWrapper = React.forwardRef<
         if (!enableScrollOptimization) return
         lenisRef.current = lenis
 
-        // Update debug display directly without re-rendering
-        if (debug && debugVelocityRef.current && debugStatusRef.current) {
-          const velocity = Math.abs(lenis.velocity || 0)
-          debugVelocityRef.current.textContent = velocity.toFixed(3)
+        // Update velocity ref and schedule a batched DOM update using RAF
+        if (debug) {
+          currentVelocityRef.current = Math.abs(lenis.velocity || 0)
 
-          const isActiveScrolling = velocity > velocityThreshold
-          debugStatusRef.current.textContent = isActiveScrolling
-            ? '🔄 Active Scrolling'
-            : '✅ Low/Stopped'
-          debugStatusRef.current.style.color = isActiveScrolling
-            ? '#ff4444'
-            : '#44ff44'
+          // Schedule update only if not already scheduled (throttle to animation frame)
+          if (!debugUpdateScheduled.current) {
+            debugUpdateScheduled.current = true
+            requestAnimationFrame(() => {
+              if (debugVelocityRef.current && debugStatusRef.current) {
+                const velocity = currentVelocityRef.current
+                debugVelocityRef.current.textContent = velocity.toFixed(3)
+
+                const isActiveScrolling = velocity > velocityThreshold
+                debugStatusRef.current.textContent = isActiveScrolling
+                  ? '🔄 Active Scrolling'
+                  : '✅ Low/Stopped'
+                debugStatusRef.current.style.color = isActiveScrolling
+                  ? '#ff4444'
+                  : '#44ff44'
+              }
+              debugUpdateScheduled.current = false
+            })
+          }
         }
       },
       [enableScrollOptimization, debug, velocityThreshold]
@@ -421,6 +434,8 @@ export const MuxPlayerWrapper = React.forwardRef<
                 zIndex: 99999,
                 pointerEvents: 'none',
                 border: '3px solid #00ff00',
+                willChange: 'contents',
+                contain: 'layout style paint',
               } as React.CSSProperties
             }
           >
@@ -431,7 +446,11 @@ export const MuxPlayerWrapper = React.forwardRef<
             </div>
             <div
               ref={debugVelocityRef}
-              style={{ fontSize: '32px', color: '#00ff00' }}
+              style={{
+                fontSize: '32px',
+                color: '#00ff00',
+                willChange: 'contents',
+              }}
             >
               0.000
             </div>
@@ -444,6 +463,7 @@ export const MuxPlayerWrapper = React.forwardRef<
                 marginTop: '8px',
                 fontSize: '14px',
                 color: '#44ff44',
+                willChange: 'contents',
               }}
             >
               ✅ Low/Stopped
