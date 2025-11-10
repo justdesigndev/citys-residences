@@ -51,7 +51,6 @@ interface MuxPlayerWrapperProps extends React.ComponentProps<typeof MuxPlayer> {
   scrollDelay?: number // Time in milliseconds video must be in viewport before playing
   enableScrollOptimization?: boolean // Enable time-based scroll optimization
   debug?: boolean // Enable debug console logging
-  order?: string // Debug identifier for tracking specific video instances
 }
 
 export const MuxPlayerWrapper = React.forwardRef<
@@ -79,7 +78,6 @@ export const MuxPlayerWrapper = React.forwardRef<
       scrollDelay = 500, // Default 500ms
       enableScrollOptimization = false,
       debug = false,
-      order,
       ...muxPlayerProps
     },
     ref
@@ -94,16 +92,8 @@ export const MuxPlayerWrapper = React.forwardRef<
     const [hasPlayedOnce, setHasPlayedOnce] = useState(false) // Track if video has played at least once
     const [shouldAttemptPlay, setShouldAttemptPlay] = useState(false)
     const [isPlayerReady, setIsPlayerReady] = useState(false)
-    const [debugLogs, setDebugLogs] = useState<string[]>([])
     const viewportTimerRef = useRef<NodeJS.Timeout | null>(null)
     const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
-
-    // Add log to on-screen debug display
-    const addDebugLog = (message: string) => {
-      if (!debug) return
-      console.log(message)
-      setDebugLogs(prev => [...prev.slice(-4), message]) // Keep last 5 logs
-    }
 
     // GSAP ScrollTrigger for viewport detection using useGSAP hook
     useGSAP(
@@ -116,27 +106,22 @@ export const MuxPlayerWrapper = React.forwardRef<
           start: `top ${100 - viewportThreshold * 100}%`,
           end: `bottom ${viewportThreshold * 100}%`,
           onEnter: () => {
-            addDebugLog(`[${order}] 👁️ Entering viewport`)
             setIsInViewport(true)
           },
           onLeave: () => {
-            addDebugLog(`[${order}] ⬇️ Leaving (bottom)`)
             setIsInViewport(false)
           },
           onEnterBack: () => {
-            addDebugLog(`[${order}] ⬆️ Entering (back)`)
             setIsInViewport(true)
           },
           onLeaveBack: () => {
-            addDebugLog(`[${order}] ⬆️ Leaving (top)`)
             setIsInViewport(false)
           },
-          markers: debug,
+          markers: false,
         })
 
         // Check immediately if element is in viewport (check specific instance, not global refresh)
         if (scrollTriggerRef.current.isActive) {
-          addDebugLog(`[${order}] 👁️ Already in viewport`)
           setIsInViewport(true)
         }
       },
@@ -172,7 +157,6 @@ export const MuxPlayerWrapper = React.forwardRef<
 
       // If video has already played once, play immediately when entering viewport (no scroll delay)
       if (isInViewport && hasPlayedOnce) {
-        addDebugLog(`[${order}] ✅ Played before - immediate`)
         setShouldAttemptPlay(true)
         return
       }
@@ -180,7 +164,6 @@ export const MuxPlayerWrapper = React.forwardRef<
       // If not in viewport, reset play state if needed
       if (!isInViewport) {
         if (shouldAttemptPlay) {
-          addDebugLog(`[${order}] ❌ Left viewport`)
           setShouldAttemptPlay(false)
         }
         return
@@ -188,10 +171,7 @@ export const MuxPlayerWrapper = React.forwardRef<
 
       // If video hasn't played yet and is in viewport, start simple timer
       if (!hasPlayedOnce) {
-        addDebugLog(`[${order}] ⏱️ Timer ${scrollDelay}ms`)
-
         viewportTimerRef.current = setTimeout(() => {
-          addDebugLog(`[${order}] ✅ Timer done`)
           setShouldAttemptPlay(true)
         }, scrollDelay)
       }
@@ -226,22 +206,16 @@ export const MuxPlayerWrapper = React.forwardRef<
       const player = playerRef.current
 
       if (!player) {
-        addDebugLog(`[${order}] ⚠️ No player ref`)
         return
       }
 
       // Attempt to play the video with iOS-specific handling
-      addDebugLog(`[${order}] 🎬 Playing...`)
-
       const attemptPlay = () => {
-        player.play().catch(error => {
-          addDebugLog(`[${order}] ❌ Play blocked`)
-          if (debug) console.warn(`[${order}] Error:`, error)
+        player.play().catch(() => {
           // iOS sometimes needs a slight delay or retry
           setTimeout(() => {
-            player.play().catch(retryError => {
-              addDebugLog(`[${order}] ❌ Retry failed`)
-              if (debug) console.warn(`[${order}] Retry error:`, retryError)
+            player.play().catch(() => {
+              // Silent fail after retry
             })
           }, 100)
         })
@@ -260,7 +234,6 @@ export const MuxPlayerWrapper = React.forwardRef<
 
       const player = playerRef.current
       if (player && player.paused === false) {
-        if (debug) console.log(`[${order}] ⏸️ Video leaving viewport - pausing`)
         player.pause()
         setShouldAttemptPlay(false)
       }
@@ -278,8 +251,8 @@ export const MuxPlayerWrapper = React.forwardRef<
       const player = playerRef.current
       if (player) {
         // Try to play the video
-        player.play().catch(error => {
-          if (debug) console.warn(`[${order}] Autoplay was prevented:`, error)
+        player.play().catch(() => {
+          // Silent fail
         })
       }
       // playerRef is a ref object and is stable across renders
@@ -288,7 +261,6 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle when player is ready
     const handleCanPlay = (e: CustomEvent) => {
-      addDebugLog(`[${order}] ✅ canplay`)
       setIsPlayerReady(true)
       if (onCanPlay) {
         onCanPlay(e)
@@ -297,20 +269,17 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle when video metadata is loaded (iOS-friendly alternative)
     const handleLoadedMetadata = () => {
-      addDebugLog(`[${order}] 📊 metadata`)
       // On iOS, metadata loaded is often more reliable than canplay
       setIsPlayerReady(true)
     }
 
     // Handle when video data is loaded
     const handleLoadedData = () => {
-      addDebugLog(`[${order}] 📦 data`)
       setIsPlayerReady(true)
     }
 
     // Handle when video starts playing - this triggers placeholder fadeout
     const handlePlay = (e: CustomEvent) => {
-      addDebugLog(`[${order}] ▶️ PLAYING!`)
       setHasPlayedOnce(true) // Mark that video has played at least once
       if (onPlay) {
         onPlay(e)
@@ -319,7 +288,7 @@ export const MuxPlayerWrapper = React.forwardRef<
 
     // Handle when video is paused
     const handlePause = () => {
-      addDebugLog(`[${order}] ⏸️ Paused`)
+      // Silent
     }
 
     return (
@@ -359,9 +328,6 @@ export const MuxPlayerWrapper = React.forwardRef<
             onPause={handlePause}
             onEnded={onEnded}
             onError={onError}
-            onLoadStart={() =>
-              debug && console.log(`[${order}] 📹 Video load started`)
-            }
             {...muxPlayerProps}
           />
 
@@ -388,49 +354,6 @@ export const MuxPlayerWrapper = React.forwardRef<
             )}
           </AnimatePresence>
         </div>
-
-        {/* On-screen debug display for mobile */}
-        {debug && debugLogs.length > 0 && (
-          <div
-            style={{
-              position: 'fixed',
-              bottom: '20px',
-              right: '20px',
-              backgroundColor: 'rgba(0, 0, 0, 0.95)',
-              color: '#00ff00',
-              padding: '12px 16px',
-              borderRadius: '8px',
-              fontSize: '12px',
-              fontFamily: 'monospace',
-              zIndex: 99999,
-              maxWidth: '90vw',
-              border: '2px solid #00ff00',
-              boxShadow: '0 4px 12px rgba(0, 255, 0, 0.3)',
-            }}
-          >
-            <div
-              style={{ fontWeight: 'bold', marginBottom: '8px', color: '#fff' }}
-            >
-              📱 Debug Log
-            </div>
-            {debugLogs.map((log, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: '4px 0',
-                  borderBottom:
-                    i < debugLogs.length - 1
-                      ? '1px solid rgba(0, 255, 0, 0.2)'
-                      : 'none',
-                  fontSize: '11px',
-                  lineHeight: '1.4',
-                }}
-              >
-                {log}
-              </div>
-            ))}
-          </div>
-        )}
       </>
     )
   }

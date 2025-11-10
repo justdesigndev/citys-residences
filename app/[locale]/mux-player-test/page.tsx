@@ -84,8 +84,6 @@ export default function MuxPlayerTestPage() {
               scrollDelay={0} // 300 ms
               playOnViewport={true}
               viewportThreshold={0} // 75% visible
-              debug // Only enable debug for first video
-              order={`video-${index + 1}`}
             />
           </div>
         ))}
