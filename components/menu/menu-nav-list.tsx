@@ -1,8 +1,6 @@
 'use client'
 
-import { AspectCover } from '@/components/aspect-cover'
 import { Image } from '@/components/image'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
 import { useNavigation } from '@/hooks/useNavigation'
 import { Locale } from '@/i18n/routing'
 import {
@@ -12,8 +10,10 @@ import {
   navigationConfig,
 } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import MuxPlayer from '@mux/mux-player-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { AspectCover } from '../aspect-cover'
 
 export function MenuNavList() {
   const { handleNavClick } = useNavigation()
@@ -139,25 +139,22 @@ export function MenuNavList() {
                 )}
                 {media.type === 'video' && (
                   <AspectCover ratio={getAspectRatio(itemId)}>
-                    <WistiaPlayerWrapper
-                      mediaId={media.src}
-                      aspect={getAspectRatio(itemId)}
-                      autoplay
+                    <MuxPlayer
+                      className='h-full w-full object-cover'
+                      playbackId={media.src}
+                      preload='auto'
+                      autoPlay
                       muted
-                      preload='metadata'
-                      swatch={false}
-                      bigPlayButton={false}
-                      silentAutoplay='allow'
-                      endVideoBehavior='loop'
-                      controlsVisibleOnLoad={false}
-                      playBarControl={false}
-                      volumeControl={false}
-                      settingsControl={false}
-                      transparentLetterbox={true}
-                      roundedPlayer={0}
-                      fullscreenControl={false}
-                      playbackRateControl={false}
-                      playPauseControl={false}
+                      loop
+                      playsInline
+                      streamType='on-demand'
+                      thumbnailTime={0}
+                      style={
+                        {
+                          aspectRatio: getAspectRatio(itemId),
+                          '--media-object-fit': 'cover',
+                        } as React.CSSProperties
+                      }
                     />
                   </AspectCover>
                 )}

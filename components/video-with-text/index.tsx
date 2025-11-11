@@ -1,9 +1,8 @@
 import { cn } from '@/lib/utils'
 import { ReactNode } from 'react'
 
+import { AutoplayVideo } from '@/components/autoplay-video'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
-import { AspectCover } from '../aspect-cover'
 
 interface VideoWithTextProps {
   className?: string
@@ -18,7 +17,7 @@ interface VideoWithTextProps {
 }
 
 export function VideoWithText(props: VideoWithTextProps) {
-  const { mediaId, title, description, className, customPoster, aspect } = props
+  const { mediaId, title, description, className, aspect } = props
 
   return (
     <div
@@ -30,8 +29,7 @@ export function VideoWithText(props: VideoWithTextProps) {
       )}
     >
       <div className='absolute inset-0 h-full w-full'>
-        <AspectCover ratio={aspect || 16 / 9}>
-          <WistiaPlayerWrapper
+        {/* <WistiaPlayerWrapper
             mediaId={mediaId}
             autoplay
             muted
@@ -50,8 +48,26 @@ export function VideoWithText(props: VideoWithTextProps) {
             fullscreenControl={false}
             playbackRateControl={false}
             playPauseControl={false}
-          />
-        </AspectCover>
+          /> */}
+        <AutoplayVideo
+          className='h-full w-full object-cover'
+          playbackId={mediaId}
+          autoPlay
+          muted
+          loop
+          playsInline
+          streamType='on-demand'
+          style={
+            {
+              aspectRatio: aspect,
+              '--media-object-fit': 'cover',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+          thumbnailTime={0}
+          minResolution='1080p'
+          loading='page'
+        />
       </div>
       <div
         className={cn(

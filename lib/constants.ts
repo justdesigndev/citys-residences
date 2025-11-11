@@ -70,42 +70,6 @@ export const countryPhoneCodes = {
   ],
 }
 
-export const muratKaderVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1076668374/rendition/1080p/file.mp4?loc=external&log_user=0&signature=9cb5431c29179de45c2a9528e203a341f2aa92b6c95641659f2de5e74791354f'
-
-export const mainVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1096833227/rendition/1080p/file.mp4?loc=external&log_user=0&signature=e0ad4624c50728e0a3625c1c69c5f6a1459202f6b91fae8b5678201fd7181b5d'
-
-export const kolajVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1069860586/rendition/1080p/file.mp4?loc=external&log_user=0&signature=93ffcc3ffcfe4a4ca2624cdbaef95fab5777741b7c5ab98d9e3f9bddf9f6062a'
-
-export const locationVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1076654767/rendition/1080p/file.mp4?loc=external&log_user=0&signature=e051d94ef10aad5d5d1e207d6eb90156b96b1813ae50304a8b0cd0cf1d361fb9'
-
-export const mustafaTonerVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1076668805/rendition/1080p/file.mp4?loc=external&log_user=0&signature=07ec8e59081ba6f5ddd518f08fb4101cbb62b5164e9eb3b299de7a4ab94afc4c'
-
-export const melihBulgurVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1076669668/rendition/1080p/file.mp4?loc=external&log_user=0&signature=6c1df00cb3eb08578ce6ec9b08be5b2149abe995908dec33a8939cd2eff8506c'
-
-export const pinarVeCemilAktasVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1076669307/rendition/1080p/file.mp4?loc=external&log_user=0&signature=7ae58e9ab6d78fb58ee636c7702acb47f7202f7f7a129974894b28abecc11ba6'
-
-export const residencesVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1094341762/rendition/1080p/file.mp4?loc=external&log_user=0&signature=a1f5bd2a23cc5274e9f246ac320cd3995270f1e304eb92e6f1b2ed21c945ca9a'
-
-export const citysLifeVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1094342078/rendition/1080p/file.mp4?loc=external&log_user=0&signature=378b7d6a3a88fb46dd4b7a5180b208ee90be202ad37d858d4f2124f65bc87d64'
-
-export const citysParkVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1094342685/rendition/1080p/file.mp4?loc=external&log_user=0&signature=4fc9f6ec58c5d656752a416e12db6fc6705dd889f6df9d27acd0a829aa34dbaa'
-
-export const membersClubVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1094342384/rendition/1080p/file.mp4?loc=external&log_user=0&signature=3fd50cf28bdac362b7bdb1ea7c44fd8b41fb25c521c03b9f693e388fabf59059'
-
-export const citysIstanbulAvmVideo =
-  'https://player.vimeo.com/progressive_redirect/playback/1090029618/rendition/1080p/file.mp4?loc=external&log_user=0&signature=f1d3f003fc9827566caaea65487458e20ce21ad51846208b95045b77f6875b34'
-
 export const citysIstanbulAvmGoogleMaps =
   'https://maps.app.goo.gl/2hSJUsgo2U198Kqq9'
 
@@ -288,14 +252,14 @@ function calculateRatio(width: number, height: number): number {
   return ratio
 }
 
-export type WistiaMedia = {
+export type Media = {
   name: string
   aspect: () => number
   mediaId: string
   muxSrc?: string
 }
 
-export const heroVideo: WistiaMedia = {
+export const heroVideo: Media = {
   name: 'hero',
   aspect: () => {
     return calculateRatio(16, 9)
@@ -303,23 +267,24 @@ export const heroVideo: WistiaMedia = {
   mediaId: 'e2tew1zhxj',
   muxSrc: 'xFW02Bl3KwJGCzmUUbAwE5NC5WJW01hIqmm7heGEYx2NM',
 }
-export const livePeacefully: WistiaMedia = {
+
+export const livePeacefully: Media = {
   name: 'daha huzurlu yaşa',
   aspect: () => {
     return calculateRatio(1280, 852)
   },
   mediaId: 'dxd0f32sha',
-  muxSrc: 'pxjInQvAxDX1k9yliHBx5dCvMXviNgIp7ZyH6Mq10118',
+  muxSrc: 'y1KN58bThKtP2SOOn8wNl27K3nx01RbSvIcWB3lFycug',
 }
-export const liveMore: WistiaMedia = {
+export const liveMore: Media = {
   name: 'daha dolu yaşa',
   aspect: () => {
     return calculateRatio(1920, 1198)
   },
   mediaId: 'cpkxfmdyvb',
-  muxSrc: 'jrEYRr00yZNMG4gmK6KMuOtiRXODWk9CNW1DX3iBe02ls',
+  muxSrc: 'Qj00KNCUeq1hO00Ad2Xk402XRGm8ekmqNfsGOamzsVVcQ00',
 }
-export const projectBanner: WistiaMedia = {
+export const projectBanner: Media = {
   name: 'proje banner',
   aspect: () => {
     return calculateRatio(1920, 896)
@@ -327,7 +292,7 @@ export const projectBanner: WistiaMedia = {
   mediaId: 'p4l0a63nut',
   muxSrc: 'fWSlJj9pskvE7rWRKuNLVIY2vQyAOD02NFSNdPwpDLuE',
 }
-export const residencesBanner: WistiaMedia = {
+export const residencesBanner: Media = {
   name: 'daireler banner',
   aspect: () => {
     return calculateRatio(1920, 1088)
@@ -335,15 +300,15 @@ export const residencesBanner: WistiaMedia = {
   mediaId: '4g5plgua2p',
   muxSrc: 'cSjhDoPNBkNtVNwRuAvtWKE9BbGko7zA2Db5FR2oRq4',
 }
-export const citysIstanbulAvmBanner: WistiaMedia = {
+export const citysIstanbulAvmBanner: Media = {
   name: 'citys istanbul avm banner',
   aspect: () => {
     return calculateRatio(1920, 1026)
   },
   mediaId: 'a5b5zn9o9x',
-  muxSrc: 'PRCpFw01qx5orN0016GzvlcoV2VUHo8QwDib6jsIjmbow',
+  muxSrc: 'shU3xvk8cSjG1S3PJaTeSs9LOogQ301jz8JYJ6F5600to',
 }
-export const citysTimesBanner: WistiaMedia = {
+export const citysTimesBanner: Media = {
   name: 'citys times banner',
   aspect: () => {
     return calculateRatio(1920, 848)
@@ -356,14 +321,14 @@ export const scrollDelay = 0.2
 
 export const menuMedia = {
   home: {
-    src: 'cbtt3ltrww',
+    src: 't02RQRZKvwDfeT4fx8geKsf2DJbYycekKIfuNVlN5Pxg',
     type: 'video',
     aspect: () => {
       return calculateRatio(960, 448)
     },
   },
   project: {
-    src: '6we4wer32m',
+    src: '6e1qY5YeSpFR5OMpJ1QlA6yClBrZ9OMIFsFsxD01UQeQ',
     type: 'video',
     aspect: () => {
       return calculateRatio(640, 366)
@@ -374,7 +339,7 @@ export const menuMedia = {
     type: 'image',
   },
   residences: {
-    src: 'gsnj8686dr',
+    src: 'BXqqdjWdoD43nAxkBRFYXyxrYhjlAhoF3la4FVKWO5E',
     type: 'video',
     aspect: () => {
       return calculateRatio(960, 444)
@@ -393,7 +358,7 @@ export const menuMedia = {
     type: 'image',
   },
   'citys-psm': {
-    src: 'b6gl0633j1',
+    src: 'nOlgN01VRX02T6miPEV9yI01KaJT4VG7vxSKIbw9nEIsEw',
     type: 'video',
     aspect: () => {
       return calculateRatio(640, 400)

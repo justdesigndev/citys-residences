@@ -6,19 +6,18 @@ import { Image } from '@/components/image'
 import { InteractiveMap } from '@/components/interactive-map'
 import { PageTitle } from '@/components/page-title'
 import { QuoteWithVideo } from '@/components/quote-with-video'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
 import { navigationConfig, projectBanner } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
 import a1 from '@/public/img/project/a-1.jpg'
 import a2 from '@/public/img/project/a-2.jpg'
-import b1 from '@/public/img/project/b-1.jpg'
 import b1Mobile from '@/public/img/project/b-1-mobile.jpg'
+import b1 from '@/public/img/project/b-1.jpg'
 
+import { AutoplayVideo } from '@/components/autoplay-video'
+import { SectionSetter } from '@/components/section-setter'
 import a1Zoom from '@/public/img/project/a-1-zoom.jpg'
 import a2Zoom from '@/public/img/project/a-2-zoom.jpg'
-import { SectionSetter } from '@/components/section-setter'
-import { AspectCover } from '@/components/aspect-cover'
 import { getTranslations } from 'next-intl/server'
 
 const images = {
@@ -51,12 +50,31 @@ export default async function Page({
         bgImage='/img/backgrounds/red.png'
       />
       <section className='relative h-screen overflow-hidden lg:h-[60vw] xl:h-[45vw]'>
-        <AspectCover ratio={projectBanner.aspect()}>
+        {/* <AspectCover ratio={projectBanner.aspect()}>
           <WistiaPlayerWrapper
             mediaId={projectBanner.mediaId}
             aspect={projectBanner.aspect()}
           />
-        </AspectCover>
+        </AspectCover> */}
+        <AutoplayVideo
+          className='h-full w-full object-cover'
+          playbackId={projectBanner.muxSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          streamType='on-demand'
+          style={
+            {
+              aspectRatio: projectBanner.aspect(),
+              '--media-object-fit': 'cover',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+          thumbnailTime={0}
+          minResolution='1080p'
+          loading='page'
+        />
       </section>
       <InteractiveMap />
       <div className='gap-y-8 py-12'>

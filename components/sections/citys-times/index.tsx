@@ -7,17 +7,16 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 import { getTranslations } from 'next-intl/server'
 
-import { AspectCover } from '@/components/aspect-cover'
 import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
 import { Image } from '@/components/image'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { SectionSetter } from '@/components/section-setter'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
+import { fetchCitysTimes } from '@/lib/api/queries'
 import { citysTimesBanner, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-import { fetchCitysTimes } from '@/lib/api/queries'
+import { AutoplayVideo } from '@/components/autoplay-video'
 
 const ImageCard = ({ src }: { src: string }) => (
   <div className='relative aspect-[9/12] w-[200px] lg:w-[260px] 2xl:w-[320px]'>
@@ -53,12 +52,32 @@ export default async function CitysTimes({ locale }: { locale?: string }) {
   return (
     <SectionSetter sectionId={navigationConfig['/citys-times']?.id as string}>
       <section className='relative h-screen overflow-hidden lg:h-[45vw]'>
-        <AspectCover ratio={citysTimesBanner.aspect()}>
+        {/* <AspectCover ratio={citysTimesBanner.aspect()}>
           <WistiaPlayerWrapper
             mediaId={citysTimesBanner.mediaId}
             aspect={citysTimesBanner.aspect()}
           />
-        </AspectCover>
+        </AspectCover> */}
+        <AutoplayVideo
+          className='h-full w-full object-cover'
+          playbackId={citysTimesBanner.muxSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          streamType='on-demand'
+          style={
+            {
+              aspectRatio: citysTimesBanner.aspect(),
+              '--media-object-fit': 'cover',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+          thumbnailTime={0}
+          minResolution='1080p'
+          loading='page'
+          nohotkeys
+        />
       </section>
       <section
         className={cn(

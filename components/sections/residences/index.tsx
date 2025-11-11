@@ -2,18 +2,17 @@ import { cn } from '@/lib/utils'
 import { getMessages, getTranslations } from 'next-intl/server'
 
 import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
+import { AutoplayVideo } from '@/components/autoplay-video'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
 import { PageTitle } from '@/components/page-title'
 import { ResidencesNavigator } from '@/components/residences-navigator'
 import { SectionContactForm } from '@/components/section-contact-form'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
+import { SectionSetter } from '@/components/section-setter'
+import { fetchResidencesSlider } from '@/lib/api/queries'
 import { navigationConfig, residencesBanner } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
-import { SectionSetter } from '@/components/section-setter'
-import { AspectCover } from '@/components/aspect-cover'
-import { fetchResidencesSlider } from '@/lib/api/queries'
 
 const ImageCard = ({ src, alt }: { src: string; alt: string }) => (
   <div className='relative aspect-[9/12] w-[200px] lg:w-[350px]'>
@@ -117,12 +116,32 @@ export default async function Page({
         />
       </section>
       <section className='aspect-1 overflow-hidden lg:aspect-[16/7]'>
-        <AspectCover ratio={residencesBanner.aspect()}>
+        {/* <AspectCover ratio={residencesBanner.aspect()}>
           <WistiaPlayerWrapper
             mediaId={residencesBanner.mediaId}
             aspect={residencesBanner.aspect()}
           />
-        </AspectCover>
+        </AspectCover> */}
+        <AutoplayVideo
+          className='h-full w-full object-cover'
+          playbackId={residencesBanner.muxSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          streamType='on-demand'
+          style={
+            {
+              aspectRatio: residencesBanner.aspect(),
+              '--media-object-fit': 'cover',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+          thumbnailTime={0}
+          minResolution='1080p'
+          loading='page'
+          nohotkeys
+        />
       </section>
       <section className='relative overflow-hidden bg-white'>
         <div className='flex flex-col items-center justify-center gap-6 px-8 py-16 lg:gap-6 lg:px-0 lg:py-24 xl:pt-36'>

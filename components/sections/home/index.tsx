@@ -14,8 +14,8 @@ import { liveMore, livePeacefully, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
 
-import liveMorePoster from '@/public/img/thumbnail-live-more.jpg'
-import livePeacefullyPoster from '@/public/img/thumbnail-live-peacefully.jpg'
+// import liveMorePoster from '@/public/img/thumbnail-live-more.jpg'
+// import livePeacefullyPoster from '@/public/img/thumbnail-live-peacefully.jpg'
 
 export default async function Page({
   params: { locale },
@@ -197,10 +197,8 @@ export default async function Page({
           </div>
         </section>
         <VideoWithText
-          className='xl:aspect-[1280/852]'
           aspect={livePeacefully.aspect()}
-          customPoster={livePeacefullyPoster.src}
-          mediaId='dxd0f32sha'
+          mediaId={livePeacefully.muxSrc as string}
           title={t.rich('livePeacefully.title', {
             strong: chunks => <strong>{chunks}</strong>,
           })}
@@ -208,10 +206,8 @@ export default async function Page({
         />
         <SectionContactForm formTranslations={formTranslations} />
         <VideoWithText
-          className='xl:aspect-[1920/1198]'
           aspect={liveMore.aspect()}
-          customPoster={liveMorePoster.src}
-          mediaId='cpkxfmdyvb'
+          mediaId={liveMore.muxSrc as string}
           title={t.rich('liveFully.title', {
             strong: chunks => <strong>{chunks}</strong>,
           })}

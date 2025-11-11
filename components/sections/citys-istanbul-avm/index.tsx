@@ -1,12 +1,12 @@
-import { BrandsContainer } from '@/components/sections/citys-istanbul-avm/brands-container'
-import { WistiaPlayerWrapper } from '@/components/wistia-player-wrapper'
-import { fetchBrands } from '@/lib/api/queries'
-import { colors } from '@/styles/config.mjs'
-import { PageTitle } from '@/components/page-title'
-import { citysIstanbulAvmBanner, navigationConfig } from '@/lib/constants'
-import { SectionSetter } from '@/components/section-setter'
-import { AspectCover } from '@/components/aspect-cover'
 import { getTranslations } from 'next-intl/server'
+
+import { AutoplayVideo } from '@/components/autoplay-video'
+import { PageTitle } from '@/components/page-title'
+import { SectionSetter } from '@/components/section-setter'
+import { BrandsContainer } from '@/components/sections/citys-istanbul-avm/brands-container'
+import { fetchBrands } from '@/lib/api/queries'
+import { citysIstanbulAvmBanner, navigationConfig } from '@/lib/constants'
+import { colors } from '@/styles/config.mjs'
 
 export default async function Page() {
   const brandsResponse = await fetchBrands()
@@ -35,12 +35,31 @@ export default async function Page() {
         bgImage='/img/backgrounds/aqua-belt.png'
       />
       <section className='h-screen overflow-hidden lg:h-[45vw]'>
-        <AspectCover ratio={citysIstanbulAvmBanner.aspect()}>
+        {/* <AspectCover ratio={citysIstanbulAvmBanner.aspect()}>
           <WistiaPlayerWrapper
             mediaId={citysIstanbulAvmBanner.mediaId}
             aspect={citysIstanbulAvmBanner.aspect()}
           />
-        </AspectCover>
+        </AspectCover> */}
+        <AutoplayVideo
+          className='h-full w-full object-cover'
+          playbackId={citysIstanbulAvmBanner.muxSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          streamType='on-demand'
+          style={
+            {
+              aspectRatio: citysIstanbulAvmBanner.aspect(),
+              '--media-object-fit': 'cover',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+          thumbnailTime={0}
+          minResolution='1080p'
+          loading='page'
+        />
       </section>
       <section className='section-container px-8 py-8 lg:px-0 lg:py-24'>
         <BrandsContainer initialBrands={brands.items || []} />
