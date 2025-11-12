@@ -206,7 +206,7 @@ export function ModalContactForm() {
       {/* Form */}
       <div
         className={cn(
-          'fixed bottom-0 right-0 top-0',
+          'fixed right-0 top-0',
           'h-full w-full translate-x-[100%] lg:w-[85vw]',
           'bg-gradient-appointment',
           'z-[var(--z-modal-contact-form)]'
@@ -238,7 +238,7 @@ export function ModalContactForm() {
         <button
           className={cn(
             'group',
-            'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-[0%] lg:-translate-y-1/2',
+            'absolute bottom-0 left-0 top-1/2 -translate-x-full -translate-y-1/2',
             'font-primary font-[500] tracking-[0.2em] text-white',
             'text-sm xl:text-base 2xl:text-xl',
             'flex items-center justify-center',
