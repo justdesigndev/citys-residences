@@ -6,7 +6,8 @@ import { cn } from '@/lib/utils'
 import { EmblaOptionsType } from 'embla-carousel'
 import AutoScroll from 'embla-carousel-auto-scroll'
 import useEmblaCarousel from 'embla-carousel-react'
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode, useCallback, useEffect } from 'react'
+import { useIntersectionObserver } from 'hamo'
 
 type PropType = {
   children: ReactNode | ReactNode[]
@@ -28,13 +29,36 @@ export function AutoScrollCarousel({
   slideSpacing = '1rem',
 }: PropType) {
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    AutoScroll({ playOnInit: true, speed: 2, stopOnInteraction: false }),
+    AutoScroll({ playOnInit: false, speed: 2, stopOnInteraction: false }),
   ])
+
+  const [setViewportRef, entry] = useIntersectionObserver({
+    rootMargin: '1000px',
+    threshold: 0,
+  })
+
+  const setEmblaViewportRef = useCallback(
+    (node: HTMLElement | null) => {
+      emblaRef(node)
+      setViewportRef(node ?? undefined)
+    },
+    [emblaRef, setViewportRef]
+  )
 
   useEffect(() => {
     const autoScroll = emblaApi?.plugins()?.autoScroll
     if (!autoScroll) return
-  }, [emblaApi])
+
+    if (entry?.isIntersecting) {
+      autoScroll.play()
+    } else {
+      autoScroll.stop()
+    }
+
+    return () => {
+      autoScroll.stop()
+    }
+  }, [emblaApi, entry])
 
   const slides = React.Children.toArray(children)
 
@@ -45,7 +69,7 @@ export function AutoScrollCarousel({
     >
       <div
         className={cn(s.emblaViewport, emblaViewportClassname)}
-        ref={emblaRef}
+        ref={setEmblaViewportRef}
       >
         <div className={cn(s.emblaContainer, emblaContainerClassname)}>
           {slides.map((slide, index) => (
