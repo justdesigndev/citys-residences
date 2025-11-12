@@ -280,6 +280,7 @@ const MuxPlayerWrapperComponent = ({
           onPause={handlePause}
           onEnded={onEnded}
           onError={onError}
+          minResolution='720p'
           {...muxPlayerProps}
         />
 
