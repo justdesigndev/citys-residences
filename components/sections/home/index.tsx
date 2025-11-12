@@ -173,7 +173,7 @@ export default async function Page({
             )}
             <article
               className={cn(
-                'flex flex-shrink-0',
+                'flex flex-shrink-0 justify-center xl:justify-start',
                 'w-[70%] xl:w-[400px]',
                 'font-primary font-[200] text-black',
                 'text-lg/normal lg:text-2xl/normal xl:text-3xl/normal',
