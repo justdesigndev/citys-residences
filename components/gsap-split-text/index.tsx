@@ -1,6 +1,8 @@
 'use client'
 
 import { ScrollTrigger, SplitText, gsap, useGSAP } from '@/components/gsap'
+import { breakpoints } from '@/styles/config.mjs'
+import { useWindowSize } from 'hamo'
 import { useRef } from 'react'
 
 if (typeof window !== 'undefined') {
@@ -22,11 +24,15 @@ export function GsapSplitText(props: GsapSplitTextProps) {
     type = 'lines',
     ...rest
   } = props
+  const { width } = useWindowSize()
+  const isMobile = !width || width < breakpoints.breakpointMobile
+  const baseStyle = { opacity: isMobile ? 1 : 0 }
   const animationRef = useRef<GSAPTween>()
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
+      if (isMobile) return
       if (!ref.current) return
 
       // Set initial opacity
@@ -90,7 +96,16 @@ export function GsapSplitText(props: GsapSplitTextProps) {
       }
     },
     {
-      dependencies: [type, stagger, duration, ease, html, children, rest],
+      dependencies: [
+        type,
+        stagger,
+        duration,
+        ease,
+        html,
+        children,
+        rest,
+        isMobile,
+      ],
       revertOnUpdate: true,
     }
   )
@@ -100,14 +115,14 @@ export function GsapSplitText(props: GsapSplitTextProps) {
       <span
         className='split'
         ref={ref}
-        style={{ opacity: 0 }}
+        style={baseStyle}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     )
   }
 
   return (
-    <span className='split' ref={ref} style={{ opacity: 0 }}>
+    <span className='split' ref={ref} style={baseStyle}>
       {children}
     </span>
   )
