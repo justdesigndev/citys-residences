@@ -1,11 +1,12 @@
 'use client'
 
-import { type CSSProperties } from 'react'
+import { type CSSProperties, useEffect } from 'react'
 
 import { cn } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import { useLocale, useTranslations } from 'next-intl'
 
+import { ScrollTrigger } from '@/components/gsap'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
 import { PageTitle } from '@/components/page-title'
@@ -53,6 +54,18 @@ export default function CitysMembersClub() {
   const messageStyle: CSSProperties = {
     color: 'var(--text-color)',
   }
+
+  useEffect(() => {
+    if (isFetching || errorMessage) {
+      return
+    }
+
+    const frame = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [isFetching, errorMessage, items.length])
 
   return (
     <SectionSetter sectionId={sectionId}>

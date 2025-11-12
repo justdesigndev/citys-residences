@@ -1,7 +1,8 @@
 'use client'
 
-import { type CSSProperties } from 'react'
+import { type CSSProperties, useEffect } from 'react'
 
+import { ScrollTrigger } from '@/components/gsap'
 import { PageTitle } from '@/components/page-title'
 import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { SectionSetter } from '@/components/section-setter'
@@ -44,6 +45,18 @@ export default function CitysLiving() {
   const errorMessage = isError
     ? (error?.message ?? "Failed to load City's Living content.")
     : null
+
+  useEffect(() => {
+    if (isFetching || errorMessage) {
+      return
+    }
+
+    const frame = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [isFetching, errorMessage, items.length])
 
   return (
     <SectionSetter sectionId={sectionId}>
