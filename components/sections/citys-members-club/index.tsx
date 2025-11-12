@@ -1,37 +1,61 @@
+'use client'
+
+import { type CSSProperties } from 'react'
+
 import { cn } from '@/lib/utils'
-import { useTranslations } from 'next-intl'
+import { useQuery } from '@tanstack/react-query'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
 import { PageTitle } from '@/components/page-title'
-import {
-  ComponentType,
-  RepetitiveSectionsWrapper,
-} from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { SectionSetter } from '@/components/section-setter'
+import {
+  fetchCitysMembersClubData,
+  type CitysMembersClubData,
+} from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
-interface CitysMembersClubProps {
-  data: Array<{
-    id: string | number
-    componentType: ComponentType
-    title?: string
-    subtitle?: string
-    description?: string
-    mediaId?: string
-    thumbnail?: string
-    aspectRatio?: number
-  }>
-}
+type CitysMembersClubQueryResult = CitysMembersClubData[]
 
-export default function CitysMembersClub({ data }: CitysMembersClubProps) {
+export default function CitysMembersClub() {
   const t = useTranslations('citys-members-club')
+  const locale = useLocale()
+  const sectionId = navigationConfig['/citys-members-club']?.id as string
+
+  const {
+    data: items = [],
+    isFetching,
+    isError,
+    error,
+  } = useQuery<CitysMembersClubQueryResult, Error>({
+    queryKey: ['citys-members-club', locale],
+    queryFn: async () => {
+      const response = await fetchCitysMembersClubData(locale)
+
+      if (!response.success || !response.data) {
+        throw new Error(
+          response.error ?? "Failed to load City's Members Club content."
+        )
+      }
+
+      return response.data
+    },
+    staleTime: 60 * 60 * 1000, // 1 hour, matches ISR cache
+  })
+
+  const errorMessage = isError
+    ? (error?.message ?? "Failed to load City's Members Club content.")
+    : null
+
+  const messageStyle: CSSProperties = {
+    color: 'var(--text-color)',
+  }
 
   return (
-    <SectionSetter
-      sectionId={navigationConfig['/citys-members-club']?.id as string}
-    >
+    <SectionSetter sectionId={sectionId}>
       <PageTitle
         primaryColor={colors['blue-shimmer']}
         secondaryColor={colors.black}
@@ -44,7 +68,7 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
         description={t.rich('description', {
           br: () => <span className='hidden lg:block' />,
         })}
-        id={navigationConfig['/citys-members-club']?.id as string}
+        id={sectionId}
         bgImage='/img/backgrounds/blue-shimmer.png'
       />
       <div
@@ -52,21 +76,39 @@ export default function CitysMembersClub({ data }: CitysMembersClubProps) {
           {
             '--bg-color': colors['blue-shimmer'],
             '--text-color': colors.black,
-          } as React.CSSProperties
+          } as CSSProperties
         }
       >
-        {data.map(item => (
-          <RepetitiveSectionsWrapper
-            key={item.id}
-            componentType={item.componentType}
-            title={item.title}
-            subtitle={item.subtitle}
-            description={item.description}
-            mediaId={item.mediaId}
-            thumbnail={item.thumbnail}
-            videoAspectRatio={item.aspectRatio}
-          />
-        ))}
+        {isFetching && (
+          <div
+            className='py-16 text-center font-primary text-base opacity-80'
+            style={messageStyle}
+          >
+            Loading...
+          </div>
+        )}
+        {!isFetching && errorMessage && (
+          <div
+            className='py-16 text-center font-primary text-base opacity-80'
+            style={messageStyle}
+          >
+            {errorMessage}
+          </div>
+        )}
+        {!isFetching &&
+          !errorMessage &&
+          items.map(item => (
+            <RepetitiveSectionsWrapper
+              key={item.id}
+              componentType={item.componentType}
+              title={item.title}
+              subtitle={item.subtitle}
+              description={item.description}
+              mediaId={item.mediaId}
+              thumbnail={item.thumbnail}
+              videoAspectRatio={item.aspectRatio}
+            />
+          ))}
       </div>
       <section
         className={cn(

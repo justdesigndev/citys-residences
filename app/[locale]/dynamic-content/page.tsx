@@ -1,25 +1,27 @@
-import CitysLiving from '@/components/sections/citys-living'
-import CitysMembersClub from '@/components/sections/citys-members-club'
-import CitysPark from '@/components/sections/citys-park'
-import { Wrapper } from '@/components/wrapper'
-import {
-  fetchCitysLivingData,
-  fetchCitysMembersClubData,
-  fetchCitysParkData,
-} from '@/lib/api/queries'
+import dynamic from 'next/dynamic'
 
-export default async function Page({ params }: { params: { locale: string } }) {
-  const citysParkData = await fetchCitysParkData(params.locale)
-  const citysParkDataItems = citysParkData.data || []
-  const citysMembersClubData = await fetchCitysMembersClubData(params.locale)
-  const citysMembersClubDataItems = citysMembersClubData.data || []
-  const citysLivingData = await fetchCitysLivingData(params.locale)
-  const citysLivingDataItems = citysLivingData.data || []
+import { Wrapper } from '@/components/wrapper'
+
+const CitysPark = dynamic(() => import('@/components/sections/citys-park'), {
+  ssr: false,
+})
+const CitysMembersClub = dynamic(
+  () => import('@/components/sections/citys-members-club'),
+  { ssr: false }
+)
+const CitysLiving = dynamic(
+  () => import('@/components/sections/citys-living'),
+  {
+    ssr: false,
+  }
+)
+
+export default function Page() {
   return (
     <Wrapper>
-      <CitysPark data={citysParkDataItems} />
-      <CitysMembersClub data={citysMembersClubDataItems} />
-      <CitysLiving data={citysLivingDataItems} />
+      <CitysPark />
+      <CitysMembersClub />
+      <CitysLiving />
     </Wrapper>
   )
 }

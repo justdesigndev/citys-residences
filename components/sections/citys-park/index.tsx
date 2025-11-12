@@ -1,33 +1,49 @@
+'use client'
+
+import { type CSSProperties } from 'react'
+
+import { useQuery } from '@tanstack/react-query'
+import { useLocale, useTranslations } from 'next-intl'
+
 import { PageTitle } from '@/components/page-title'
-import {
-  ComponentType,
-  RepetitiveSectionsWrapper,
-} from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { SectionSetter } from '@/components/section-setter'
+import { fetchCitysParkData, type CitysParkData } from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-import { useTranslations } from 'next-intl'
 
-interface CitysParkProps {
-  data: Array<{
-    id: string | number
-    componentType: ComponentType
-    width?: number
-    height?: number
-    aspectRatio?: number
-    title?: string
-    subtitle?: string
-    description?: string
-    mediaId?: string
-    thumbnail?: string
-  }>
-}
+type CitysParkQueryResult = CitysParkData[]
 
-export default function CitysPark({ data }: CitysParkProps) {
+export default function CitysPark() {
   const t = useTranslations('citys-park')
+  const locale = useLocale()
+  const sectionId = navigationConfig['/citys-park']?.id as string
+
+  const {
+    data: items = [],
+    isFetching,
+    isError,
+    error,
+  } = useQuery<CitysParkQueryResult, Error>({
+    queryKey: ['citys-park', locale],
+    queryFn: async () => {
+      const response = await fetchCitysParkData(locale)
+
+      if (!response.success || !response.data) {
+        throw new Error(response.error ?? "Failed to load City's Park content.")
+      }
+
+      return response.data
+    },
+    staleTime: 60 * 60 * 1000, // mirror ISR duration (1 hour)
+  })
+
+  const errorMessage = isError
+    ? (error?.message ?? "Failed to load City's Park content.")
+    : null
 
   return (
-    <SectionSetter sectionId={navigationConfig['/citys-park']?.id as string}>
+    <SectionSetter sectionId={sectionId}>
       <PageTitle
         primaryColor={colors['army-canvas']}
         secondaryColor={colors.white}
@@ -35,7 +51,7 @@ export default function CitysPark({ data }: CitysParkProps) {
         description={t.rich('description', {
           br: () => <span className='hidden lg:block' />,
         })}
-        id={navigationConfig['/citys-park']?.id as string}
+        id={sectionId}
         bgImage='/img/backgrounds/green.png'
       />
       <div
@@ -43,21 +59,33 @@ export default function CitysPark({ data }: CitysParkProps) {
           {
             '--bg-color': colors['army-canvas'],
             '--text-color': colors.white,
-          } as React.CSSProperties
+          } as CSSProperties
         }
       >
-        {data.map(item => (
-          <RepetitiveSectionsWrapper
-            key={item.id}
-            componentType={item.componentType}
-            title={item.title}
-            subtitle={item.subtitle}
-            description={item.description}
-            mediaId={item.mediaId}
-            videoAspectRatio={item.aspectRatio}
-            thumbnail={item.thumbnail}
-          />
-        ))}
+        {isFetching && (
+          <div className='py-16 text-center font-primary text-base text-white opacity-80'>
+            Loading...
+          </div>
+        )}
+        {!isFetching && errorMessage && (
+          <div className='py-16 text-center font-primary text-base text-white opacity-80'>
+            {errorMessage}
+          </div>
+        )}
+        {!isFetching &&
+          !errorMessage &&
+          items.map(item => (
+            <RepetitiveSectionsWrapper
+              key={item.id}
+              componentType={item.componentType}
+              title={item.title}
+              subtitle={item.subtitle}
+              description={item.description}
+              mediaId={item.mediaId}
+              videoAspectRatio={item.aspectRatio}
+              thumbnail={item.thumbnail}
+            />
+          ))}
       </div>
     </SectionSetter>
   )

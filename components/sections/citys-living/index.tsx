@@ -1,31 +1,52 @@
+'use client'
+
+import { type CSSProperties } from 'react'
+
 import { PageTitle } from '@/components/page-title'
-import {
-  ComponentType,
-  RepetitiveSectionsWrapper,
-} from '@/components/repetitive-sections/repetitive-sections-wrapper'
+import { RepetitiveSectionsWrapper } from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { SectionSetter } from '@/components/section-setter'
+import { fetchCitysLivingData, type CitysLivingData } from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-import { useTranslations } from 'next-intl'
+import { useQuery } from '@tanstack/react-query'
+import { useLocale, useTranslations } from 'next-intl'
 
-interface CitysLivingProps {
-  data: Array<{
-    id: string | number
-    componentType: ComponentType
-    title?: string
-    subtitle?: string
-    description?: string
-    mediaId?: string
-    thumbnail?: string
-    aspectRatio?: number
-  }>
-}
+type CitysLivingItem = CitysLivingData & { aspectRatio?: number }
 
-export default function CitysLiving({ data }: CitysLivingProps) {
+type CitysLivingQueryResult = CitysLivingItem[]
+
+export default function CitysLiving() {
   const t = useTranslations('citys-living')
+  const locale = useLocale()
+  const sectionId = navigationConfig['/citys-living']?.id as string
+
+  const {
+    data: items = [],
+    isFetching,
+    isError,
+    error,
+  } = useQuery<CitysLivingQueryResult, Error>({
+    queryKey: ['citys-living', locale],
+    queryFn: async () => {
+      const response = await fetchCitysLivingData(locale)
+
+      if (!response.success || !response.data) {
+        throw new Error(
+          response.error ?? "Failed to load City's Living content."
+        )
+      }
+
+      return response.data as CitysLivingQueryResult
+    },
+    staleTime: 60 * 60 * 1000, // align with ISR cache duration
+  })
+
+  const errorMessage = isError
+    ? (error?.message ?? "Failed to load City's Living content.")
+    : null
 
   return (
-    <SectionSetter sectionId={navigationConfig['/citys-living']?.id as string}>
+    <SectionSetter sectionId={sectionId}>
       <PageTitle
         primaryColor={colors['verve-violet']}
         secondaryColor={colors.white}
@@ -36,7 +57,7 @@ export default function CitysLiving({ data }: CitysLivingProps) {
           </>
         }
         description={t('description')}
-        id={navigationConfig['/citys-living']?.id as string}
+        id={sectionId}
         bgImage='/img/backgrounds/verve-violet.png'
       />
       <div
@@ -44,21 +65,33 @@ export default function CitysLiving({ data }: CitysLivingProps) {
           {
             '--bg-color': colors['verve-violet'],
             '--text-color': colors.white,
-          } as React.CSSProperties
+          } as CSSProperties
         }
       >
-        {data.map(item => (
-          <RepetitiveSectionsWrapper
-            key={item.id}
-            componentType={item.componentType}
-            title={item.title}
-            subtitle={item.subtitle}
-            description={item.description}
-            mediaId={item.mediaId}
-            thumbnail={item.thumbnail}
-            videoAspectRatio={item.aspectRatio}
-          />
-        ))}
+        {isFetching && (
+          <div className='py-16 text-center font-primary text-base text-white opacity-80'>
+            Loading...
+          </div>
+        )}
+        {!isFetching && errorMessage && (
+          <div className='py-16 text-center font-primary text-base text-white opacity-80'>
+            {errorMessage}
+          </div>
+        )}
+        {!isFetching &&
+          !errorMessage &&
+          items.map(item => (
+            <RepetitiveSectionsWrapper
+              key={item.id}
+              componentType={item.componentType}
+              title={item.title}
+              subtitle={item.subtitle}
+              description={item.description}
+              mediaId={item.mediaId}
+              thumbnail={item.thumbnail}
+              videoAspectRatio={item.aspectRatio}
+            />
+          ))}
       </div>
     </SectionSetter>
   )
