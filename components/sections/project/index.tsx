@@ -62,10 +62,12 @@ export default async function Page({
             {
               aspectRatio: projectBanner.aspect(),
               '--media-object-fit': 'cover',
+              '--media-object-position': 'center',
               '--controls': 'none',
             } as React.CSSProperties
           }
-          thumbnailTime={0}
+          placeholder={projectBanner.thumbnail}
+          startTime={0}
         />
       </section>
       <InteractiveMap />

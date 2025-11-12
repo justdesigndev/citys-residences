@@ -12,12 +12,11 @@ interface VideoWithTextProps {
   description?: ReactNode
   titleHtml?: string
   descriptionHtml?: string
-  customPoster?: string
   aspect?: number
 }
 
 export function VideoWithText(props: VideoWithTextProps) {
-  const { mediaId, title, description, className, aspect } = props
+  const { mediaId, title, description, className, aspect, thumbnail } = props
 
   return (
     <div
@@ -29,37 +28,19 @@ export function VideoWithText(props: VideoWithTextProps) {
       )}
     >
       <div className='absolute inset-0 h-full w-full'>
-        {/* <WistiaPlayerWrapper
-            mediaId={mediaId}
-            autoplay
-            muted
-            swatch={false}
-            bigPlayButton={false}
-            silentAutoplay='allow'
-            endVideoBehavior='loop'
-            controlsVisibleOnLoad={false}
-            playBarControl={false}
-            volumeControl={false}
-            settingsControl={false}
-            transparentLetterbox={true}
-            customPoster={customPoster}
-            aspect={aspect || 16 / 9}
-            roundedPlayer={0}
-            fullscreenControl={false}
-            playbackRateControl={false}
-            playPauseControl={false}
-          /> */}
         <AutoplayVideo
           playbackId={mediaId}
           style={
             {
               aspectRatio: aspect,
               '--media-object-fit': 'cover',
+              '--media-object-position': 'center',
               '--controls': 'none',
             } as React.CSSProperties
           }
-          thumbnailTime={0}
           minResolution='720p'
+          placeholder={thumbnail}
+          startTime={0}
         />
       </div>
       <div

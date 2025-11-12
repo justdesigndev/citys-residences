@@ -189,6 +189,7 @@ export default async function Page({
         <VideoWithText
           aspect={livePeacefully.aspect()}
           mediaId={livePeacefully.muxSrc as string}
+          thumbnail={livePeacefully.thumbnail}
           title={t.rich('livePeacefully.title', {
             strong: chunks => <strong>{chunks}</strong>,
           })}
@@ -198,6 +199,7 @@ export default async function Page({
         <VideoWithText
           aspect={liveMore.aspect()}
           mediaId={liveMore.muxSrc as string}
+          thumbnail={liveMore.thumbnail}
           title={t.rich('liveFully.title', {
             strong: chunks => <strong>{chunks}</strong>,
           })}

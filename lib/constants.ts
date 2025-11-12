@@ -276,7 +276,10 @@ export const livePeacefully: Media = {
   },
   mediaId: 'dxd0f32sha',
   muxSrc: 'y1KN58bThKtP2SOOn8wNl27K3nx01RbSvIcWB3lFycug',
+  thumbnail:
+    'https://image.mux.com/y1KN58bThKtP2SOOn8wNl27K3nx01RbSvIcWB3lFycug/thumbnail.png?width=1920&time=0',
 }
+
 export const liveMore: Media = {
   name: 'daha dolu yaşa',
   aspect: () => {
@@ -284,7 +287,10 @@ export const liveMore: Media = {
   },
   mediaId: 'cpkxfmdyvb',
   muxSrc: 'Qj00KNCUeq1hO00Ad2Xk402XRGm8ekmqNfsGOamzsVVcQ00',
+  thumbnail:
+    'https://image.mux.com/Qj00KNCUeq1hO00Ad2Xk402XRGm8ekmqNfsGOamzsVVcQ00/thumbnail.png?width=1920&time=0',
 }
+
 export const projectBanner: Media = {
   name: 'proje banner',
   aspect: () => {
@@ -292,7 +298,10 @@ export const projectBanner: Media = {
   },
   mediaId: 'p4l0a63nut',
   muxSrc: 'fWSlJj9pskvE7rWRKuNLVIY2vQyAOD02NFSNdPwpDLuE',
+  thumbnail:
+    'https://image.mux.com/fWSlJj9pskvE7rWRKuNLVIY2vQyAOD02NFSNdPwpDLuE/thumbnail.png?width=1920&time=0',
 }
+
 export const residencesBanner: Media = {
   name: 'daireler banner',
   aspect: () => {
@@ -310,6 +319,8 @@ export const citysIstanbulAvmBanner: Media = {
   },
   mediaId: 'a5b5zn9o9x',
   muxSrc: 'shU3xvk8cSjG1S3PJaTeSs9LOogQ301jz8JYJ6F5600to',
+  thumbnail:
+    'https://image.mux.com/shU3xvk8cSjG1S3PJaTeSs9LOogQ301jz8JYJ6F5600to/thumbnail.png?width=1920&time=0',
 }
 export const citysTimesBanner: Media = {
   name: 'citys times banner',
@@ -318,6 +329,8 @@ export const citysTimesBanner: Media = {
   },
   mediaId: 'luxxfpk3x3',
   muxSrc: 'NB02x73haYbyN18zmvgUntrAutAeqhWaZGf8gkUYUkmA',
+  thumbnail:
+    'https://image.mux.com/NB02x73haYbyN18zmvgUntrAutAeqhWaZGf8gkUYUkmA/thumbnail.png?width=1920&time=0',
 }
 
 export const scrollDelay = 0.2
