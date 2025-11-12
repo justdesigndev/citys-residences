@@ -115,21 +115,19 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                         transition={{ duration: 0.3 }}
                         layout
                       >
-                        <div className='cursor-pointer'>
-                          <div
-                            className={cn(
-                              'relative aspect-[1/1] w-full overflow-hidden',
-                              'flex items-center justify-center'
-                            )}
-                          >
-                            <Image
-                              src={brand.logo}
-                              alt={brand.name}
-                              className='object-contain'
-                              fill
-                              loading='lazy'
-                            />
-                          </div>
+                        <div
+                          className={cn(
+                            'relative aspect-[1/1] w-full overflow-hidden',
+                            'flex items-center justify-center'
+                          )}
+                        >
+                          <Image
+                            src={brand.logo}
+                            alt={brand.name}
+                            className='object-contain'
+                            fill
+                            loading='lazy'
+                          />
                         </div>
                       </motion.div>
                     )
