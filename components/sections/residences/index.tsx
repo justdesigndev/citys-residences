@@ -115,13 +115,7 @@ export default async function Page({
           priority={false}
         />
       </section>
-      <section className='aspect-1 overflow-hidden lg:aspect-[16/7]'>
-        {/* <AspectCover ratio={residencesBanner.aspect()}>
-          <WistiaPlayerWrapper
-            mediaId={residencesBanner.mediaId}
-            aspect={residencesBanner.aspect()}
-          />
-        </AspectCover> */}
+      <section className='relative aspect-1 overflow-hidden lg:aspect-[16/7]'>
         <AutoplayVideo
           className='absolute inset-0 h-full w-full'
           playbackId={residencesBanner.muxSrc}

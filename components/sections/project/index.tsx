@@ -50,12 +50,6 @@ export default async function Page({
         bgImage='/img/backgrounds/red.png'
       />
       <section className='relative h-screen overflow-hidden lg:h-[60vw] xl:h-[45vw]'>
-        {/* <AspectCover ratio={projectBanner.aspect()}>
-          <WistiaPlayerWrapper
-            mediaId={projectBanner.mediaId}
-            aspect={projectBanner.aspect()}
-          />
-        </AspectCover> */}
         <AutoplayVideo
           playbackId={projectBanner.muxSrc}
           style={
