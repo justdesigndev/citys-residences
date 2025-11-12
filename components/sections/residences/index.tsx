@@ -123,6 +123,7 @@ export default async function Page({
           />
         </AspectCover> */}
         <AutoplayVideo
+          className='absolute inset-0 h-full w-full'
           playbackId={residencesBanner.muxSrc}
           style={
             {
