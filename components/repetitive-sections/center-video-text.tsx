@@ -4,9 +4,8 @@ import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
-import { AspectCover } from '@/components/aspect-cover'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import { LazyWistiaPlayer } from '@/components/wistia-player-lazy'
+import MuxPlayerWrapper from '../mux-player-wrapper'
 
 export interface CenterVideoTextProps {
   title: string
@@ -23,6 +22,8 @@ export function CenterVideoText(props: CenterVideoTextProps) {
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
+
+  console.log('CenterVideoText', videoAspectRatio, mediaId, thumbnail)
 
   useEffect(() => {
     // Dynamically import DOMPurify only on client side
@@ -94,8 +95,8 @@ export function CenterVideoText(props: CenterVideoTextProps) {
         </div>
       </div>
       <div className='relative z-30 grid grid-cols-24'>
-        <div className='!pointer-events-none col-span-24 aspect-[16/19] overflow-hidden lg:col-span-16 lg:col-start-6 lg:aspect-[16/9] xl:col-start-5'>
-          <AspectCover ratio={videoAspectRatio || 16 / 9}>
+        <div className='col-span-24 aspect-[16/19] overflow-hidden lg:col-span-16 lg:col-start-6 lg:aspect-[16/9] xl:col-start-5'>
+          {/* <AspectCover ratio={videoAspectRatio || 16 / 9}>
             <LazyWistiaPlayer
               muted
               autoplay
@@ -117,7 +118,41 @@ export function CenterVideoText(props: CenterVideoTextProps) {
               playPauseControl={false}
               aspect={videoAspectRatio}
             />
-          </AspectCover>
+          </AspectCover> */}
+          {/* <MuxPlayer
+            className='h-full w-full object-cover'
+            playbackId={mediaId}
+            preload='auto'
+            autoPlay
+            muted
+            loop
+            playsInline
+            streamType='on-demand'
+            thumbnailTime={0}
+            style={
+              {
+                aspectRatio: videoAspectRatio as number,
+                '--media-object-fit': 'cover',
+                '--controls': 'none',
+              } as React.CSSProperties
+            }
+          /> */}
+          <MuxPlayerWrapper
+            playbackId={mediaId}
+            style={
+              {
+                aspectRatio: videoAspectRatio as number,
+                '--media-object-fit': 'cover',
+                '--media-object-position': 'center',
+                '--controls': 'none',
+              } as React.CSSProperties
+            }
+            placeholder={thumbnail}
+            poster={thumbnail}
+            loading='viewport'
+            scrollDelay={200}
+            viewportThreshold={0}
+          />
         </div>
       </div>
     </section>

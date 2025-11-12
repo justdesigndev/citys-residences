@@ -4,9 +4,8 @@ import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
-import { AspectCover } from '@/components/aspect-cover'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import { LazyWistiaPlayer } from '@/components/wistia-player-lazy'
+import MuxPlayerWrapper from '@/components/mux-player-wrapper'
 
 export interface BackgroundVideoTextProps {
   title: string
@@ -33,6 +32,8 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
       setSanitizedTitle(DOMPurify.sanitize(title))
     })
   }, [description, subtitle, title])
+
+  console.log('BackgroundVideoText', videoAspectRatio, mediaId, thumbnail)
 
   return (
     <section
@@ -98,8 +99,8 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
           </FadeInOnScroll>
         </div>
       </div>
-      <div className='!pointer-events-none absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
-        <AspectCover ratio={videoAspectRatio || 16 / 9}>
+      <div className='absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
+        {/* <AspectCover ratio={videoAspectRatio || 16 / 9}>
           <LazyWistiaPlayer
             muted
             autoplay
@@ -121,7 +122,41 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             playPauseControl={false}
             aspect={videoAspectRatio}
           />
-        </AspectCover>
+        </AspectCover> */}
+        <MuxPlayerWrapper
+          playbackId={mediaId}
+          style={
+            {
+              aspectRatio: videoAspectRatio as number,
+              '--media-object-fit': 'cover',
+              '--media-object-position': 'center',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+          placeholder={thumbnail}
+          poster={thumbnail}
+          loading='viewport'
+          scrollDelay={200}
+          viewportThreshold={0}
+        />
+        {/* <MuxPlayer
+          className='h-full w-full object-cover'
+          playbackId={mediaId}
+          preload='auto'
+          autoPlay
+          muted
+          loop
+          playsInline
+          streamType='on-demand'
+          thumbnailTime={0}
+          style={
+            {
+              aspectRatio: videoAspectRatio as number,
+              '--media-object-fit': 'cover',
+              '--controls': 'none',
+            } as React.CSSProperties
+          }
+        /> */}
       </div>
     </section>
   )

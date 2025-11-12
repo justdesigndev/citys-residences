@@ -38,6 +38,11 @@ const nextConfig = {
         hostname: 'embed-ssl.wistia.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'image.mux.com',
+        pathname: '**',
+      },
     ],
   },
   webpack: (config, { isServer }) => {

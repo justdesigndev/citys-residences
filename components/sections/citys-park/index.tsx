@@ -1,7 +1,7 @@
 import { PageTitle } from '@/components/page-title'
 import {
-  RepetitiveSectionsWrapper,
   ComponentType,
+  RepetitiveSectionsWrapper,
 } from '@/components/repetitive-sections/repetitive-sections-wrapper'
 import { SectionSetter } from '@/components/section-setter'
 import { navigationConfig } from '@/lib/constants'

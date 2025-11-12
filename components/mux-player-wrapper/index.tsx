@@ -38,7 +38,7 @@
 
 import './styles.css'
 
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef } from 'react'
 // import MuxPlayer from '@mux/mux-player-react'
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
@@ -46,7 +46,6 @@ import type { MuxPlayerRefAttributes } from '@mux/mux-player-react'
 import MuxPlayer from '@mux/mux-player-react/lazy'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { AnimatePresence, motion } from 'motion/react'
 
 // Register GSAP plugins (required even when using useGSAP)
 if (typeof window !== 'undefined') {
@@ -83,7 +82,7 @@ const MuxPlayerWrapperComponent = ({
   )
 
   // Scroll optimization state
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false) // Track if video has played at least once
+  // const [hasPlayedOnce, setHasPlayedOnce] = useState(false) // Track if video has played at least once
   const isInViewportRef = useRef(false)
   const isPlayerReadyRef = useRef(false)
   const hasPendingPlayRef = useRef(false)
@@ -244,7 +243,7 @@ const MuxPlayerWrapperComponent = ({
   const handlePlay = useCallback(
     (e: CustomEvent) => {
       hasPlayedOnceRef.current = true
-      setHasPlayedOnce(true) // Mark that video has played at least once
+      // setHasPlayedOnce(true) // Mark that video has played at least once
       clearViewportTimer()
       if (onPlay) {
         onPlay(e)
@@ -285,7 +284,7 @@ const MuxPlayerWrapperComponent = ({
         />
 
         {/* Placeholder overlays video and fades out when video starts playing for the first time */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {!hasPlayedOnce && placeholder && (
             <motion.div
               key='placeholder'
@@ -294,16 +293,16 @@ const MuxPlayerWrapperComponent = ({
               transition={{ duration: 0.5, ease: 'easeInOut' }}
               className='absolute inset-0 z-10 outline-dashed -outline-offset-8 outline-red-500'
             >
-              {/* <Image
+              <Image
                 src={placeholder as string}
                 alt='Video placeholder'
                 fill
                 className='object-cover object-center'
                 loading='lazy'
-              /> */}
+              />
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
     </>
   )
