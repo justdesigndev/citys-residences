@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import "lenis/dist/lenis.css"
+import 'lenis/dist/lenis.css'
 
-import { LenisRef, ReactLenis } from "lenis/react"
-import { useRef } from "react"
-import { useTempus } from "tempus/react"
+import { LenisRef, ReactLenis } from 'lenis/react'
+import { useRef } from 'react'
+import { useTempus } from 'tempus/react'
 
 export function SmoothScroll({ root }: { root: boolean }) {
   const lenisRef = useRef<LenisRef>(null)
@@ -36,8 +36,8 @@ export function SmoothScroll({ root }: { root: boolean }) {
       ref={lenisRef}
       root={root}
       options={{
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        // duration: 1.2,
+        // easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         autoRaf: false,
         anchors: true,
       }}
