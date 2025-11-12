@@ -128,10 +128,12 @@ export default async function Page({
             {
               aspectRatio: residencesBanner.aspect(),
               '--media-object-fit': 'cover',
+              '--media-object-position': 'center',
               '--controls': 'none',
             } as React.CSSProperties
           }
-          thumbnailTime={0}
+          placeholder={residencesBanner.thumbnail}
+          startTime={0}
         />
       </section>
       <section className='relative overflow-hidden bg-white'>

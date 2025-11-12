@@ -257,6 +257,7 @@ export type Media = {
   aspect: () => number
   mediaId: string
   muxSrc?: string
+  thumbnail?: string
 }
 
 export const heroVideo: Media = {
@@ -299,6 +300,8 @@ export const residencesBanner: Media = {
   },
   mediaId: '4g5plgua2p',
   muxSrc: 'cSjhDoPNBkNtVNwRuAvtWKE9BbGko7zA2Db5FR2oRq4',
+  thumbnail:
+    'https://image.mux.com/cSjhDoPNBkNtVNwRuAvtWKE9BbGko7zA2Db5FR2oRq4/thumbnail.png?width=1920&time=0',
 }
 export const citysIstanbulAvmBanner: Media = {
   name: 'citys istanbul avm banner',
