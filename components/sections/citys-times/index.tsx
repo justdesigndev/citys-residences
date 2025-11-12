@@ -8,6 +8,7 @@ import {
 import { getTranslations } from 'next-intl/server'
 
 import { AutoScrollCarousel } from '@/components/auto-scroll-carousel'
+import { AutoplayVideo } from '@/components/autoplay-video'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { LogoSlim } from '@/components/icons'
 import { Image } from '@/components/image'
@@ -16,7 +17,6 @@ import { SectionSetter } from '@/components/section-setter'
 import { fetchCitysTimes } from '@/lib/api/queries'
 import { citysTimesBanner, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-import { AutoplayVideo } from '@/components/autoplay-video'
 
 const ImageCard = ({ src }: { src: string }) => (
   <div className='relative aspect-[9/12] w-[200px] lg:w-[260px] 2xl:w-[320px]'>
@@ -52,18 +52,14 @@ export default async function CitysTimes({ locale }: { locale?: string }) {
   return (
     <SectionSetter sectionId={navigationConfig['/citys-times']?.id as string}>
       <section className='relative h-screen overflow-hidden lg:h-[45vw]'>
-        {/* <AspectCover ratio={citysTimesBanner.aspect()}>
-          <WistiaPlayerWrapper
-            mediaId={citysTimesBanner.mediaId}
-            aspect={citysTimesBanner.aspect()}
-          />
-        </AspectCover> */}
         <AutoplayVideo
+          className='absolute inset-0 h-full w-full'
           playbackId={citysTimesBanner.muxSrc}
           style={
             {
               aspectRatio: citysTimesBanner.aspect(),
               '--media-object-fit': 'cover',
+              '--media-object-position': 'center',
               '--controls': 'none',
             } as React.CSSProperties
           }
