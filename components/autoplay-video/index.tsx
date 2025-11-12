@@ -1,9 +1,8 @@
 'use client'
 
-import type { MuxPlayerRefAttributes } from '@mux/mux-player-react'
 import MuxPlayer from '@mux/mux-player-react/lazy'
 
-import { useEffect, useRef, type ComponentPropsWithoutRef } from 'react'
+import { type ComponentPropsWithoutRef } from 'react'
 
 type MuxPlayerLazyProps = ComponentPropsWithoutRef<typeof MuxPlayer>
 
@@ -17,50 +16,51 @@ export function AutoplayVideo({
   intersectionThreshold = 0.25,
   ...props
 }: AutoplayVideoProps) {
-  const playerRef = useRef<MuxPlayerRefAttributes>(null)
+  console.log('props', viewportOptimization, intersectionThreshold)
+  // const playerRef = useRef<MuxPlayerRefAttributes>(null)
 
-  useEffect(() => {
-    if (!viewportOptimization) return
+  // useEffect(() => {
+  //   if (!viewportOptimization) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const playerEl = playerRef.current
-        if (!playerEl) return
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       const playerEl = playerRef.current
+  //       if (!playerEl) return
 
-        const isAboveThreshold =
-          (entry?.intersectionRatio ?? 0) >= intersectionThreshold
+  //       const isAboveThreshold =
+  //         (entry?.intersectionRatio ?? 0) >= intersectionThreshold
 
-        if (isAboveThreshold) {
-          playerEl.play() // if you want auto-resume
-          return
-        }
+  //       if (isAboveThreshold) {
+  //         playerEl.play() // if you want auto-resume
+  //         return
+  //       }
 
-        // pause when out of viewport or below threshold
-        playerEl.pause()
-      },
-      {
-        root: null,
-        threshold: intersectionThreshold, // trigger when 25% visible
-      }
-    )
+  //       // pause when out of viewport or below threshold
+  //       playerEl.pause()
+  //     },
+  //     {
+  //       root: null,
+  //       threshold: intersectionThreshold, // trigger when 25% visible
+  //     }
+  //   )
 
-    const target = playerRef.current
+  //   const target = playerRef.current
 
-    if (target) {
-      observer.observe(target)
-    }
+  //   if (target) {
+  //     observer.observe(target)
+  //   }
 
-    return () => {
-      if (target) {
-        observer.unobserve(target)
-      }
-      observer.disconnect()
-    }
-  }, [intersectionThreshold, viewportOptimization])
+  //   return () => {
+  //     if (target) {
+  //       observer.unobserve(target)
+  //     }
+  //     observer.disconnect()
+  //   }
+  // }, [intersectionThreshold, viewportOptimization])
 
   return (
     <MuxPlayer
-      ref={playerRef}
+      // ref={playerRef}
       autoPlay
       muted
       loop
