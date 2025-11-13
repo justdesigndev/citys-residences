@@ -31,7 +31,7 @@ const MuxPlayerWrapperComponent = ({
   onError,
   streamType = 'on-demand',
   viewportThreshold = 0,
-  scrollDelay = 800,
+  scrollDelay = 2000,
   customPlaceholder,
   ...muxPlayerProps
 }: MuxPlayerWrapperProps) => {
