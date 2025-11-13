@@ -22,7 +22,8 @@ export function FullWidthSingleVideo(props: FullWidthSingleVideoProps) {
             '--controls': 'none',
           } as React.CSSProperties
         }
-        placeholder={thumbnail}
+        // placeholder={thumbnail}
+        customPlaceholder={thumbnail}
         startTime={0}
       />
     </section>

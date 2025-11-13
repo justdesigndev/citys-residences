@@ -97,7 +97,8 @@ export function FullWidthVideoText(props: FullWidthVideoTextProps) {
               '--controls': 'none',
             } as React.CSSProperties
           }
-          placeholder={thumbnail}
+          // placeholder={thumbnail}
+          customPlaceholder={thumbnail}
           startTime={0}
         />
       </div>

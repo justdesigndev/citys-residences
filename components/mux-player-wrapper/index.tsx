@@ -46,15 +46,12 @@ const MuxPlayerWrapperComponent = ({
   )
 
   // Scroll optimization state
-  const [hasPlayedOnce, setHasPlayedOnce] = useState(false) // Track if video has played at least once
   const isInViewportRef = useRef(false)
   const isPlayerReadyRef = useRef(false)
   const hasPendingPlayRef = useRef(false)
   const hasPlayedOnceRef = useRef(false)
   const viewportTimerRef = useRef<NodeJS.Timeout | null>(null)
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
-
-  console.log('hasPlayedOnce', hasPlayedOnce)
 
   // Memoize viewport callbacks to prevent ScrollTrigger recreations
   const handleViewportEnter = useCallback(() => {
@@ -108,6 +105,8 @@ const MuxPlayerWrapperComponent = ({
     }
 
     viewportTimerRef.current = setTimeout(() => {
+      // Render player after scrollDelay and fade out placeholder
+      setShowPlayer(true)
       hasPendingPlayRef.current = true
       attemptPlay()
     }, scrollDelay)
@@ -205,11 +204,13 @@ const MuxPlayerWrapperComponent = ({
     }
   }, [attemptPlay])
 
-  // Handle when video starts playing - this triggers placeholder fadeout
+  // State to control when to render the player (after scrollDelay)
+  const [showPlayer, setShowPlayer] = useState(!customPlaceholder)
+
+  // Handle when video starts playing
   const handlePlay = useCallback(
     (e: CustomEvent) => {
       hasPlayedOnceRef.current = true
-      setHasPlayedOnce(true) // Mark that video has played at least once
       clearViewportTimer()
       if (onPlay) {
         onPlay(e)
@@ -226,37 +227,17 @@ const MuxPlayerWrapperComponent = ({
   return (
     <>
       <div ref={containerRef} className='relative h-full w-full'>
-        {/* Video player - always rendered (has lazy loading built-in) */}
-        <MuxPlayer
-          ref={handlePlayerRef}
-          playbackId={playbackId}
-          // No native autoplay - we control playback via viewport detection
-          muted
-          loop
-          playsInline // Required for iOS autoplay
-          streamType={streamType}
-          // Event handlers
-          onCanPlay={handleCanPlay}
-          onLoadedMetadata={handleLoadedMetadata}
-          onLoadedData={handleLoadedData}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onEnded={onEnded}
-          onError={onError}
-          minResolution='540p'
-          {...muxPlayerProps}
-        />
-
-        {/* Placeholder overlays video and fades out when video starts playing for the first time */}
+        {/* Placeholder - shown initially, fades out when player renders */}
         {customPlaceholder && (
           <AnimatePresence>
-            {!hasPlayedOnce && customPlaceholder && (
+            {!showPlayer && (
               <motion.div
                 key='placeholder'
                 initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5, ease: 'easeInOut' }}
-                className='absolute inset-0 z-10 outline-dashed -outline-offset-8 outline-red-500'
+                className='absolute inset-0 z-10'
               >
                 <Image
                   src={customPlaceholder as string}
@@ -264,10 +245,44 @@ const MuxPlayerWrapperComponent = ({
                   fill
                   className='object-cover object-center'
                   loading='lazy'
+                  style={{
+                    filter: 'grayscale(100%)',
+                  }}
                 />
               </motion.div>
             )}
           </AnimatePresence>
+        )}
+
+        {/* Player - only rendered after scrollDelay */}
+        {showPlayer && (
+          <motion.div
+            key='player'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className='absolute inset-0'
+          >
+            <MuxPlayer
+              ref={handlePlayerRef}
+              playbackId={playbackId}
+              // No native autoplay - we control playback via viewport detection
+              muted
+              loop
+              playsInline // Required for iOS autoplay
+              streamType={streamType}
+              // Event handlers
+              onCanPlay={handleCanPlay}
+              onLoadedMetadata={handleLoadedMetadata}
+              onLoadedData={handleLoadedData}
+              onPlay={handlePlay}
+              onPause={handlePause}
+              onEnded={onEnded}
+              onError={onError}
+              minResolution='540p'
+              {...muxPlayerProps}
+            />
+          </motion.div>
         )}
       </div>
     </>

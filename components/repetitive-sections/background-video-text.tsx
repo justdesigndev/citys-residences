@@ -101,7 +101,8 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
               '--controls': 'none',
             } as React.CSSProperties
           }
-          placeholder={thumbnail}
+          // placeholder={thumbnail}
+          customPlaceholder={thumbnail}
           startTime={0}
         />
       </div>
