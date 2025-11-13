@@ -10,10 +10,6 @@ type HeroVideoProps = {
   mobileVideoId: string
   desktopPoster: string
   mobilePoster: string
-  autoPlay?: boolean
-  loop?: boolean
-  muted?: boolean
-  preloadDistance?: number
 }
 
 const HeroVideo: React.FC<HeroVideoProps> = ({
@@ -22,28 +18,11 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
   desktopPoster,
   mobilePoster,
 }) => {
-  console.log('hero-video', desktopPoster, mobilePoster)
-
   const { width: windowWidth } = useWindowSize(100)
-
   const isMobile = windowWidth && windowWidth < breakpoints.breakpointMobile
 
   return (
     <>
-      {/* <video
-        ref={videoRef}
-        className={cn(className, 'z-10 h-full w-full object-cover')}
-        poster={poster}
-        playsInline
-        muted={muted}
-        loop={loop}
-        preload={shouldLoad ? 'auto' : 'none'}
-        controls={false}
-        onPlay={() => setIsPlaying(true)}
-      >
-        {shouldLoad &&
-          sources.map((s, i) => <source key={i} src={s.src} type={s.type} />)}
-      </video> */}
       {isMobile && (
         <MuxPlayer
           className='relative block h-screen w-full lg:hidden'
@@ -54,11 +33,12 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
           loop
           muted
           streamType='on-demand'
-          thumbnailTime={0}
           minResolution='480p'
+          startTime={0}
+          placeholder={mobilePoster}
           style={
             {
-              aspectRatio: 9 / 16,
+              aspectRatio: 1920 / 1080,
               '--media-object-fit': 'cover',
               '--media-object-position': 'center bottom',
               '--controls': 'none',
@@ -76,11 +56,12 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
           loop
           muted
           streamType='on-demand'
-          thumbnailTime={0}
           minResolution='720p'
+          startTime={0}
+          placeholder={desktopPoster}
           style={
             {
-              aspectRatio: 16 / 9,
+              aspectRatio: 560 / 966,
               '--media-object-fit': 'cover',
               '--media-object-position': 'center bottom',
               '--controls': 'none',

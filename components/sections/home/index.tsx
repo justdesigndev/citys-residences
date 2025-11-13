@@ -42,8 +42,8 @@ export default async function Page({
           <HeroVideo
             desktopVideoId='xFW02Bl3KwJGCzmUUbAwE5NC5WJW01hIqmm7heGEYx2NM'
             mobileVideoId='Hg9dD402dgbmsAX3VwXFX3EW49jlP02cYMUZGOkL69aAY'
-            desktopPoster='/img/desktop-hero-poster.jpg'
-            mobilePoster='/img/mobile-hero-poster.jpg'
+            desktopPoster='https://image.mux.com/xFW02Bl3KwJGCzmUUbAwE5NC5WJW01hIqmm7heGEYx2NM/thumbnail.webp?width=1920&time=0'
+            mobilePoster='https://image.mux.com/Hg9dD402dgbmsAX3VwXFX3EW49jlP02cYMUZGOkL69aAY/thumbnail.webp?width=560&time=0'
           />
         </ScaleOut>
         <div
