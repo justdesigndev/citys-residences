@@ -63,7 +63,8 @@ export default async function CitysTimes({ locale }: { locale?: string }) {
               '--controls': 'none',
             } as React.CSSProperties
           }
-          thumbnailTime={0}
+          placeholder={citysTimesBanner.thumbnail}
+          startTime={0}
           minResolution='720p'
         />
       </section>
