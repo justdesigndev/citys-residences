@@ -1,52 +1,16 @@
 'use client'
 
-/**
- * MuxPlayerWrapper - Viewport-controlled video player with scroll optimization
- *
- * Features:
- * - Always uses viewport-based play/pause control via GSAP ScrollTrigger
- * - Automatic scroll optimization with time-based delay
- * - Plays video after being in viewport for scrollDelay duration (default: 500ms)
- * - Mobile-optimized: works perfectly with scroll inertia
- * - Animated placeholder transition (shown only on initial load before first play)
- * - Video resumes from last position when returning to viewport (no placeholder re-display)
- * - Zero preload strategy: videos only load when entering viewport
- *
- * Scroll Optimization:
- * - Timer starts immediately when video enters viewport
- * - Plays video after scrollDelay milliseconds if still in viewport
- * - Timer cancels if video leaves viewport before delay completes
- * - Once played, video starts immediately on re-entry (no delay)
- * - No velocity checking - just simple time-based logic
- * - Works reliably on all devices
- *
- * Performance:
- * - preload='none' prevents network congestion with multiple videos
- * - Memoized callbacks prevent unnecessary re-renders
- * - Component wrapped with React.memo for optimal performance
- * - Perfect for pages with 50+ videos
- *
- * Technical Notes:
- * - Uses @gsap/react's useGSAP hook for proper React integration
- * - Plugins registered at module level: gsap.registerPlugin(useGSAP, ScrollTrigger)
- * - Automatic cleanup prevents memory leaks with multiple instances
- * - React Strict Mode compatible (no double-registration issues)
- * - Scoped ScrollTriggers don't interfere with each other
- *
- * @see README.md for complete documentation
- */
-
 import './styles.css'
 
 import React, { useCallback, useRef, useState } from 'react'
 // import MuxPlayer from '@mux/mux-player-react'
+import { Image } from '@/components/image'
 import { useGSAP } from '@gsap/react'
 import type { MuxPlayerRefAttributes } from '@mux/mux-player-react'
 import MuxPlayer from '@mux/mux-player-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { AnimatePresence, motion } from 'motion/react'
-import { Image } from '../image'
 
 // Register GSAP plugins (required even when using useGSAP)
 if (typeof window !== 'undefined') {
@@ -67,7 +31,7 @@ const MuxPlayerWrapperComponent = ({
   onError,
   streamType = 'on-demand',
   viewportThreshold = 0,
-  scrollDelay = 500,
+  scrollDelay = 800,
   customPlaceholder,
   ...muxPlayerProps
 }: MuxPlayerWrapperProps) => {
@@ -264,6 +228,7 @@ const MuxPlayerWrapperComponent = ({
       <div ref={containerRef} className='relative h-full w-full'>
         {/* Video player - always rendered (has lazy loading built-in) */}
         <MuxPlayer
+          className='hidden lg:block'
           ref={handlePlayerRef}
           playbackId={playbackId}
           // No native autoplay - we control playback via viewport detection
@@ -312,7 +277,4 @@ const MuxPlayerWrapperComponent = ({
 
 MuxPlayerWrapperComponent.displayName = 'MuxPlayerWrapper'
 
-// Memoize the component to prevent unnecessary re-renders when props haven't changed
-export const MuxPlayerWrapper = React.memo(MuxPlayerWrapperComponent)
-
-export default MuxPlayerWrapper
+export { MuxPlayerWrapperComponent as MuxPlayerWrapper }

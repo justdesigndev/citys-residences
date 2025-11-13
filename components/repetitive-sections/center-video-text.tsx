@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import MuxPlayerWrapper from '../mux-player-wrapper'
+import { MuxPlayerWrapper } from '@/components/mux-player-wrapper'
 
 export interface CenterVideoTextProps {
   title: string
@@ -81,60 +81,12 @@ export function CenterVideoText(props: CenterVideoTextProps) {
                 'prose-2xl prose-p:m-0 prose-ul:list-disc'
               )}
               dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-            >
-              {/* <GsapSplitText
-              type='lines'
-              stagger={0.01}
-              duration={1.5}
-              html={sanitizedDescription}
-            /> */}
-            </article>
+            ></article>
           </FadeInOnScroll>
         </div>
       </div>
       <div className='relative z-30 grid grid-cols-24'>
         <div className='col-span-24 aspect-[16/19] overflow-hidden lg:col-span-16 lg:col-start-6 lg:aspect-[16/9] xl:col-start-5'>
-          {/* <AspectCover ratio={videoAspectRatio || 16 / 9}>
-            <LazyWistiaPlayer
-              muted
-              autoplay
-              preload='metadata'
-              swatch={false}
-              bigPlayButton={false}
-              silentAutoplay='allow'
-              endVideoBehavior='loop'
-              controlsVisibleOnLoad={false}
-              playBarControl={false}
-              volumeControl={false}
-              settingsControl={false}
-              transparentLetterbox={true}
-              mediaId={mediaId}
-              customPoster={thumbnail}
-              roundedPlayer={0}
-              fullscreenControl={false}
-              playbackRateControl={false}
-              playPauseControl={false}
-              aspect={videoAspectRatio}
-            />
-          </AspectCover> */}
-          {/* <MuxPlayer
-            className='h-full w-full object-cover'
-            playbackId={mediaId}
-            preload='auto'
-            autoPlay
-            muted
-            loop
-            playsInline
-            streamType='on-demand'
-            thumbnailTime={0}
-            style={
-              {
-                aspectRatio: videoAspectRatio as number,
-                '--media-object-fit': 'cover',
-                '--controls': 'none',
-              } as React.CSSProperties
-            }
-          /> */}
           <MuxPlayerWrapper
             playbackId={mediaId}
             style={
@@ -147,9 +99,6 @@ export function CenterVideoText(props: CenterVideoTextProps) {
             }
             placeholder={thumbnail}
             startTime={0}
-            // poster={thumbnail}
-            scrollDelay={200}
-            viewportThreshold={0}
           />
         </div>
       </div>

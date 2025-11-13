@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import MuxPlayerWrapper from '@/components/mux-player-wrapper'
+import { MuxPlayerWrapper } from '@/components/mux-player-wrapper'
 
 export interface BackgroundVideoTextProps {
   title: string
@@ -103,9 +103,6 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
           }
           placeholder={thumbnail}
           startTime={0}
-          // poster={thumbnail}
-          scrollDelay={200}
-          viewportThreshold={0}
         />
       </div>
     </section>
