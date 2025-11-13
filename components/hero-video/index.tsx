@@ -2,8 +2,9 @@
 
 import { breakpoints } from '@/styles/config.mjs'
 import MuxPlayer from '@mux/mux-player-react'
-import { useWindowSize } from 'hamo'
-import React from 'react'
+import type { MuxPlayerRefAttributes } from '@mux/mux-player-react'
+import { useIntersectionObserver, useWindowSize } from 'hamo'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 type HeroVideoProps = {
   desktopVideoId: string
@@ -20,11 +21,40 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
 }) => {
   const { width: windowWidth } = useWindowSize(100)
   const isMobile = windowWidth && windowWidth < breakpoints.breakpointMobile
+  const playerRef = useRef<MuxPlayerRefAttributes | null>(null)
+  const [setIntersectionRef, entry] = useIntersectionObserver({
+    root: null,
+    rootMargin: '200px 0px 200px 0px',
+    threshold: 0,
+  })
+
+  const setPlayerRef = useCallback(
+    (node: MuxPlayerRefAttributes | null) => {
+      playerRef.current = node
+      setIntersectionRef(node ?? undefined)
+    },
+    [setIntersectionRef]
+  )
+
+  useEffect(() => {
+    const player = playerRef.current
+    if (!player) {
+      return
+    }
+
+    if (entry?.isIntersecting) {
+      player.play().catch(() => undefined)
+      return
+    }
+
+    player.pause()
+  }, [entry])
 
   return (
     <>
       {isMobile && (
         <MuxPlayer
+          ref={setPlayerRef}
           className='relative block h-screen w-full lg:hidden'
           playbackId={mobileVideoId}
           preload='auto'
@@ -48,6 +78,7 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
       )}
       {!isMobile && (
         <MuxPlayer
+          ref={setPlayerRef}
           className='relative hidden h-screen w-full lg:block'
           playbackId={desktopVideoId}
           preload='auto'
