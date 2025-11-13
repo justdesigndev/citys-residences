@@ -1,6 +1,17 @@
 import { cn } from '@/lib/utils'
+import dynamic from 'next/dynamic'
+import { getTranslations } from 'next-intl/server'
 
-import { ZoomImageDialog } from '@/components/dialogs/zoom-image-dialog'
+const ZoomImageDialog = dynamic(
+  () =>
+    import('@/components/dialogs/zoom-image-dialog').then(
+      module => module.ZoomImageDialog
+    ),
+  {
+    ssr: false,
+  }
+)
+
 import { GsapSplitText } from '@/components/gsap-split-text'
 import { Image } from '@/components/image'
 import { InteractiveMap } from '@/components/interactive-map'
@@ -18,7 +29,6 @@ import { AutoplayVideo } from '@/components/autoplay-video'
 import { SectionSetter } from '@/components/section-setter'
 import a1Zoom from '@/public/img/project/a-1-zoom.jpg'
 import a2Zoom from '@/public/img/project/a-2-zoom.jpg'
-import { getTranslations } from 'next-intl/server'
 
 const images = {
   a1,

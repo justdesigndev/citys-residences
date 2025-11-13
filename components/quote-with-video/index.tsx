@@ -7,7 +7,17 @@ import {
   PlayCircleIcon,
   QuotesIcon,
 } from '@phosphor-icons/react/dist/ssr'
-import { FullScreenVideoDialog } from '@/components/dialogs/full-screen-video-dialog'
+import dynamic from 'next/dynamic'
+
+const FullScreenVideoDialog = dynamic(
+  () =>
+    import('@/components/dialogs/full-screen-video-dialog').then(
+      module => module.FullScreenVideoDialog
+    ),
+  {
+    ssr: false,
+  }
+)
 
 export interface QuoteWithVideoProps {
   quote: string

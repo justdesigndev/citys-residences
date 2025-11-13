@@ -39,8 +39,6 @@ export function FullScreenVideoDialog({
           </DialogDescription>
         </VisuallyHidden>
         <div className='relative flex aspect-[16/9] max-h-[100vh] w-screen flex-col xl:w-[80vw]'>
-          {/* <WistiaPlayerWrapper className='h-full w-full' mediaId={mediaId} /> */}
-          {/* <WistiaPlayer className='h-full w-full' mediaId={mediaId} /> */}
           <MuxPlayer
             className='h-full w-full object-cover'
             playbackId={mediaId}
