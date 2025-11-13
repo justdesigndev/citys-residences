@@ -43,7 +43,11 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
     }
 
     if (entry?.isIntersecting) {
-      player.play().catch(() => undefined)
+      // Only call play() if video is paused or not playing
+      // This prevents resetting the video if it's already playing
+      if (player.paused) {
+        player.play().catch(() => undefined)
+      }
       return
     }
 
