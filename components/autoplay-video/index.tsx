@@ -59,6 +59,7 @@ export function AutoplayVideo({
       loop
       playsInline
       streamType='on-demand'
+      placeholder=''
       {...props}
     />
   )

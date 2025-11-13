@@ -11,6 +11,8 @@ import MuxPlayer from '@mux/mux-player-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { AnimatePresence, motion } from 'motion/react'
+import { useWindowSize } from 'hamo'
+import { breakpoints } from '@/styles/config.mjs'
 
 // Register GSAP plugins (required even when using useGSAP)
 if (typeof window !== 'undefined') {
@@ -35,6 +37,12 @@ const MuxPlayerWrapperComponent = ({
   customPlaceholder,
   ...muxPlayerProps
 }: MuxPlayerWrapperProps) => {
+  const { width: windowWidth } = useWindowSize(100)
+  const isMobile = windowWidth && windowWidth < breakpoints.breakpointMobile
+
+  const minResolution = isMobile ? '480p' : '720p'
+  const maxResolution = isMobile ? '720p' : '1080p'
+
   const playerRef = useRef<MuxPlayerRefAttributes | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -173,10 +181,17 @@ const MuxPlayerWrapperComponent = ({
     }
   )
 
+  // State to control when to show the player (after scrollDelay)
+  const [showPlayer, setShowPlayer] = useState(!customPlaceholder)
+  // State to control when player is ready and placeholder can fade out
+  const [isPlayerReadyForDisplay, setIsPlayerReadyForDisplay] = useState(false)
+
   // Handle when player is ready - memoized to prevent recreating on every render
   const handleCanPlay = useCallback(
     (e: CustomEvent) => {
       isPlayerReadyRef.current = true
+      // Mark player as ready for display, which will trigger placeholder fade out
+      setIsPlayerReadyForDisplay(true)
       if (hasPendingPlayRef.current && isInViewportRef.current) {
         attemptPlay()
       }
@@ -191,21 +206,26 @@ const MuxPlayerWrapperComponent = ({
   const handleLoadedMetadata = useCallback(() => {
     // On iOS, metadata loaded is often more reliable than canplay
     isPlayerReadyRef.current = true
+    // Mark player as ready for display
+    if (!isPlayerReadyForDisplay) {
+      setIsPlayerReadyForDisplay(true)
+    }
     if (hasPendingPlayRef.current && isInViewportRef.current) {
       attemptPlay()
     }
-  }, [attemptPlay])
+  }, [attemptPlay, isPlayerReadyForDisplay])
 
   // Handle when video data is loaded
   const handleLoadedData = useCallback(() => {
     isPlayerReadyRef.current = true
+    // Mark player as ready for display
+    if (!isPlayerReadyForDisplay) {
+      setIsPlayerReadyForDisplay(true)
+    }
     if (hasPendingPlayRef.current && isInViewportRef.current) {
       attemptPlay()
     }
-  }, [attemptPlay])
-
-  // State to control when to render the player (after scrollDelay)
-  const [showPlayer, setShowPlayer] = useState(!customPlaceholder)
+  }, [attemptPlay, isPlayerReadyForDisplay])
 
   // Handle when video starts playing
   const handlePlay = useCallback(
@@ -224,44 +244,21 @@ const MuxPlayerWrapperComponent = ({
     // Silent
   }, [])
 
+  // Determine if placeholder should be shown
+  const shouldShowPlaceholder =
+    customPlaceholder && (!showPlayer || !isPlayerReadyForDisplay)
+
   return (
     <>
       <div ref={containerRef} className='relative h-full w-full'>
-        {/* Placeholder - shown initially, fades out when player renders */}
-        {customPlaceholder && (
-          <AnimatePresence>
-            {!showPlayer && (
-              <motion.div
-                key='placeholder'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
-                className='absolute inset-0 z-10'
-              >
-                <Image
-                  src={customPlaceholder as string}
-                  alt='Video placeholder'
-                  fill
-                  className='object-cover object-center'
-                  loading='lazy'
-                  style={{
-                    filter: 'grayscale(100%)',
-                  }}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
-
-        {/* Player - only rendered after scrollDelay */}
+        {/* Player - conditionally rendered after scrollDelay */}
         {showPlayer && (
           <motion.div
             key='player'
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: isPlayerReadyForDisplay ? 1 : 0 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className='absolute inset-0'
+            className='absolute inset-0 z-0'
           >
             <MuxPlayer
               ref={handlePlayerRef}
@@ -279,10 +276,39 @@ const MuxPlayerWrapperComponent = ({
               onPause={handlePause}
               onEnded={onEnded}
               onError={onError}
-              minResolution='540p'
+              minResolution={minResolution}
+              maxResolution={maxResolution}
               {...muxPlayerProps}
+              poster=''
             />
           </motion.div>
+        )}
+
+        {/* Placeholder - fades out only when player is ready */}
+        {customPlaceholder && (
+          <AnimatePresence>
+            {shouldShowPlaceholder && (
+              <motion.div
+                key='placeholder'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                className='absolute inset-0 z-10'
+              >
+                <Image
+                  src={customPlaceholder as string}
+                  alt='Video placeholder'
+                  fill
+                  className='object-cover object-center'
+                  loading='lazy'
+                  style={{
+                    filter: 'grayscale(20%)',
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         )}
       </div>
     </>
