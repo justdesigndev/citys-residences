@@ -34,7 +34,7 @@ export function MenuNavList() {
       <nav className='flex items-start justify-center lg:justify-start'>
         <div
           className={cn(
-            'flex w-full flex-col items-stretch gap-2 lg:gap-12 xl:gap-6 2xl:gap-8 3xl:gap-10'
+            'flex w-full flex-col items-stretch gap-4 lg:gap-12 xl:gap-6 2xl:gap-8 3xl:gap-10'
           )}
         >
           <ul className='flex flex-col gap-2 lg:gap-6 xl:gap-3 2xl:gap-4'>
@@ -77,7 +77,7 @@ export function MenuNavList() {
                 )
               })}
           </ul>
-          <ul className='flex flex-col gap-4 lg:gap-6 xl:gap-3 2xl:gap-3'>
+          <ul className='flex flex-col gap-3 lg:gap-6 xl:gap-3 2xl:gap-3'>
             {getNavigationItems(t, locale as Locale)
               .filter(item => !item.mainRoute)
               .map(item => {

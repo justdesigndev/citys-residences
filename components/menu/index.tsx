@@ -21,9 +21,12 @@ import {
   YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { MenuNavList } from './menu-nav-list'
+import { useWindowSize } from 'hamo'
+import { breakpoints } from '@/styles/config.mjs'
 
 export function Menu() {
   const t = useTranslations('common')
+  const { width: windowWidth } = useWindowSize(100)
   const { isMenuOpen, setIsMenuOpen, setIsModalContactFormOpen } = useUiStore()
   const overlayRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -138,7 +141,9 @@ export function Menu() {
           <CaretRightIcon className='size-full' weight='thin' />
           <span className='sr-only'>Close</span>
         </button>
-        <MenuNavList />
+        {windowWidth && windowWidth < breakpoints.breakpointTablet && (
+          <MenuNavList />
+        )}
         <div className='mt-12 flex flex-1 flex-col items-end justify-between lg:mt-auto lg:flex-row xl:mt-auto xl:gap-36'>
           <div className='mr-auto flex gap-4'>
             <FacebookLogoIcon
