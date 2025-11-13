@@ -11,6 +11,7 @@ import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { useQuery } from '@tanstack/react-query'
 import { useLocale, useTranslations } from 'next-intl'
+import { LoadingSpinner } from '@/components/loading-spinner'
 
 type CitysLivingItem = CitysLivingData & { aspectRatio?: number }
 
@@ -82,8 +83,8 @@ export default function CitysLiving() {
         }
       >
         {isFetching && (
-          <div className='h-[50vh] text-center font-primary text-base text-white opacity-80'>
-            ...
+          <div className='flex h-[50vh] items-center justify-center bg-white text-black'>
+            <LoadingSpinner />
           </div>
         )}
         {!isFetching && errorMessage && (

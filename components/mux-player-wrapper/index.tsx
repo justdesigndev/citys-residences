@@ -42,7 +42,7 @@ import React, { useCallback, useRef, useState } from 'react'
 // import MuxPlayer from '@mux/mux-player-react'
 import { useGSAP } from '@gsap/react'
 import type { MuxPlayerRefAttributes } from '@mux/mux-player-react'
-import MuxPlayer from '@mux/mux-player-react/lazy'
+import MuxPlayer from '@mux/mux-player-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { AnimatePresence, motion } from 'motion/react'
@@ -280,7 +280,6 @@ const MuxPlayerWrapperComponent = ({
           onEnded={onEnded}
           onError={onError}
           minResolution='540p'
-          loading='viewport'
           {...muxPlayerProps}
         />
 

@@ -12,6 +12,7 @@ import { SectionSetter } from '@/components/section-setter'
 import { fetchCitysParkData, type CitysParkData } from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
+import { LoadingSpinner } from '@/components/loading-spinner'
 
 type CitysParkQueryResult = CitysParkData[]
 
@@ -55,6 +56,10 @@ export default function CitysPark() {
     return () => cancelAnimationFrame(frame)
   }, [isFetching, errorMessage, items.length])
 
+  const hasItems = items.length > 0
+  const showLoadingPlaceholder = isFetching && !hasItems
+  const showErrorWithoutData = !hasItems && !!errorMessage && !isFetching
+
   return (
     <SectionSetter sectionId={sectionId}>
       <PageTitle
@@ -75,18 +80,25 @@ export default function CitysPark() {
           } as CSSProperties
         }
       >
-        {isFetching && (
-          <div className='h-[50vh] text-center font-primary text-base text-white opacity-80'>
-            ...
+        {showLoadingPlaceholder && (
+          <div className='flex h-[50vh] items-center justify-center bg-white text-black'>
+            <LoadingSpinner />
           </div>
         )}
-        {!isFetching && errorMessage && (
+        {showErrorWithoutData && (
           <div className='py-16 text-center font-primary text-base text-white opacity-80'>
             {errorMessage}
           </div>
         )}
-        {!isFetching &&
-          !errorMessage &&
+        {hasItems && errorMessage && (
+          <div
+            role='alert'
+            className='pb-10 text-center font-primary text-sm text-white/80'
+          >
+            {errorMessage}
+          </div>
+        )}
+        {hasItems &&
           items.map(item => (
             <RepetitiveSectionsWrapper
               key={item.id}

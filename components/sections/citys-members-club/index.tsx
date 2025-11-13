@@ -18,6 +18,7 @@ import {
 } from '@/lib/api/queries'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
+import { LoadingSpinner } from '@/components/loading-spinner'
 
 type CitysMembersClubQueryResult = CitysMembersClubData[]
 
@@ -93,11 +94,8 @@ export default function CitysMembersClub() {
         }
       >
         {isFetching && (
-          <div
-            className='h-[50vh] text-center font-primary text-base opacity-80'
-            style={messageStyle}
-          >
-            ...
+          <div className='flex h-[50vh] items-center justify-center bg-white text-black'>
+            <LoadingSpinner />
           </div>
         )}
         {!isFetching && errorMessage && (
