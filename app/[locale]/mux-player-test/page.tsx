@@ -107,7 +107,6 @@ export default async function MuxPlayerTestPage() {
             <MuxPlayerWrapper
               playbackId={video.playbackId as string}
               style={{ aspectRatio: video.aspect() as number }}
-              placeholder={video.placeholder}
               scrollDelay={200}
               viewportThreshold={0}
             />
