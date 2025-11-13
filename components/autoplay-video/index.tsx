@@ -1,24 +1,25 @@
 'use client'
 
-import { MuxPlayerRefAttributes } from '@mux/mux-player-react'
-import MuxPlayer from '@mux/mux-player-react/lazy'
+import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react'
 
+import { useIntersectionObserver } from 'hamo'
 import {
   useCallback,
   useEffect,
   useRef,
   type ComponentPropsWithoutRef,
 } from 'react'
-import { useIntersectionObserver } from 'hamo'
 
 type MuxPlayerLazyProps = ComponentPropsWithoutRef<typeof MuxPlayer>
 
 interface AutoplayVideoProps extends MuxPlayerLazyProps {
   intersectionThreshold?: number
+  className?: string
 }
 
 export function AutoplayVideo({
   intersectionThreshold = 0,
+  className,
   ...props
 }: AutoplayVideoProps) {
   const playerRef = useRef<MuxPlayerRefAttributes | null>(null)
@@ -52,12 +53,12 @@ export function AutoplayVideo({
 
   return (
     <MuxPlayer
+      className={className}
       ref={setPlayerRef}
       muted
       loop
       playsInline
       streamType='on-demand'
-      loading='viewport'
       {...props}
     />
   )
