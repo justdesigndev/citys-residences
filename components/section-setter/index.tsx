@@ -30,8 +30,9 @@ export function SectionSetter({
   useGSAP(() => {
     ScrollTrigger.create({
       trigger: ref.current,
-      start: 'top 50%', // Trigger when section reaches 50% of viewport
-      end: 'bottom 50%', // End when section leaves 50% of viewport
+      start: 'top+=200px center',
+      end: 'bottom center',
+      markers: true,
       onEnter: () => {
         sectionStore.setCurrentSection(sectionId)
         onEnter?.(sectionId)
