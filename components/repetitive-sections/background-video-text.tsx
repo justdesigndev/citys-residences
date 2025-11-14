@@ -22,8 +22,7 @@ export interface BackgroundVideoTextProps {
 }
 
 export function BackgroundVideoText(props: BackgroundVideoTextProps) {
-  const { title, subtitle, description, mediaId, thumbnail, videoAspectRatio } =
-    props
+  const { title, subtitle, description, mediaId, videoAspectRatio } = props
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
@@ -96,12 +95,7 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
         </div>
       </div>
       <div className='absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
-        <OptimizedVideo
-          playbackId={mediaId}
-          scrollDelay={1500}
-          placeholder={thumbnail}
-          aspectRatio={videoAspectRatio}
-        />
+        <OptimizedVideo playbackId={mediaId} aspectRatio={videoAspectRatio} />
       </div>
     </section>
   )

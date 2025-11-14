@@ -1,22 +1,27 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import { Image } from '@/components/image'
+import { cn } from '@/lib/utils'
+import { breakpoints } from '@/styles/config.mjs'
+import { useWindowSize } from 'hamo'
+import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   playbackId: string
-  placeholder?: string
-  scrollDelay?: number // <--- you keep this!
   aspectRatio?: number // e.g. 16/9, 4/3, 1/1
 }
 
-export function OptimizedVideo({
-  playbackId,
-  placeholder,
-  scrollDelay = 0,
-  aspectRatio,
-}: Props) {
+const SCROLL_DELAY = 1500
+
+export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
   const ref = useRef<HTMLVideoElement>(null)
+  const { width: windowWidth } = useWindowSize(100)
+  const isMobile =
+    typeof windowWidth === 'number' &&
+    windowWidth < breakpoints.breakpointMobile
+
+  const thumbnail = `https://image.mux.com/${playbackId}/thumbnail.webp?width=${isMobile ? 768 : 1920}&time=0`
+
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
@@ -24,7 +29,7 @@ export function OptimizedVideo({
     if (!video) return
 
     const attach = () => {
-      video.dataset.scrollDelay = String(scrollDelay)
+      video.dataset.scrollDelay = String(SCROLL_DELAY)
       window.__videoObserver?.observe(video)
     }
 
@@ -42,47 +47,44 @@ export function OptimizedVideo({
       clearInterval(id)
       window.__videoObserver?.unobserve(video)
     }
-  }, [scrollDelay])
+  }, [])
 
   return (
     <div
       className='relative h-full w-full'
       style={aspectRatio ? { aspectRatio: String(aspectRatio) } : undefined}
     >
-      {!ready && placeholder && (
+      {thumbnail && (
         <Image
-          src={placeholder}
+          src={thumbnail}
           alt='Video Thumbnail'
           fill
           mobileSize='100vw'
           desktopSize='100vw'
-          className='object-cover opacity-100 transition-opacity duration-500'
+          className={cn('object-cover transition-opacity duration-500', {
+            'opacity-100': !ready,
+            'opacity-0': ready,
+          })}
+          style={{
+            filter: 'grayscale(20%)',
+          }}
         />
       )}
-
       <video
         ref={ref}
+        poster={thumbnail}
         muted
         loop
         playsInline
-        preload='metadata'
+        preload='none'
         onLoadedData={() => {
-          console.log('VIDEO LOADED', playbackId)
           setReady(true)
         }}
-        className={`h-full w-full object-cover transition-opacity duration-500 ${
-          ready ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={cn('h-full w-full object-cover')}
       >
         <source
           src={`https://stream.mux.com/${playbackId}/highest.mp4`}
           type='video/mp4'
-          media='(max-width: 767px)'
-        />
-        <source
-          src={`https://stream.mux.com/${playbackId}/highest.mp4`}
-          type='video/mp4'
-          media='(min-width: 768px)'
         />
       </video>
     </div>

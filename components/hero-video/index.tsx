@@ -1,8 +1,9 @@
 'use client'
 
-import { breakpoints } from '@/styles/config.mjs'
-import { useIntersectionObserver, useWindowSize } from 'hamo'
-import React, { useCallback, useEffect, useRef } from 'react'
+import { useIntersectionObserver } from 'hamo'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Image } from '../image'
+import { cn } from '@/lib/utils'
 
 type HeroVideoProps = {
   desktopVideoId?: string
@@ -17,11 +18,11 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
   desktopVideoId,
   mobileVideoId,
 }) => {
-  const { width: windowWidth } = useWindowSize(100)
-  const isMobile = windowWidth && windowWidth < breakpoints.breakpointMobile
-  const mobileVideoRef = useRef<HTMLVideoElement | null>(null)
-  const desktopVideoRef = useRef<HTMLVideoElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const [hasPlayed, setHasPlayed] = useState(false)
+  const [isVideoReady, setIsVideoReady] = useState(false)
+
   const [setIntersectionRef, entry] = useIntersectionObserver({
     root: null,
     rootMargin: '200px 0px 200px 0px',
@@ -36,107 +37,211 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
     [setIntersectionRef]
   )
 
+  // Handle video play/pause based on intersection
   useEffect(() => {
-    // Get the currently active video based on screen size
-    const activeVideo = isMobile
-      ? mobileVideoRef.current
-      : desktopVideoRef.current
-
-    if (!activeVideo) {
+    if (!videoRef.current || !isVideoReady) {
       return
     }
 
     // Only pause if we explicitly know the element is NOT intersecting
     // Don't pause if entry is null/undefined (initial state)
     if (entry && !entry.isIntersecting) {
-      activeVideo.pause()
+      videoRef.current.pause()
       return
     }
 
     // Play if intersecting (or if entry is null initially, let autoplay handle it)
-    if (entry?.isIntersecting && activeVideo.paused) {
-      activeVideo.play().catch(() => undefined)
+    if (entry?.isIntersecting && videoRef.current.paused) {
+      const playPromise = videoRef.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Autoplay was prevented or failed
+          console.warn('Video play failed:', error)
+        })
+      }
     }
-  }, [entry, isMobile])
+  }, [entry, isVideoReady])
 
+  // Ensure video plays when it becomes ready and is in view
   useEffect(() => {
-    if (isMobile) {
-      mobileVideoRef.current?.play().catch(() => undefined)
-    } else {
-      desktopVideoRef.current?.play().catch(() => undefined)
+    if (!videoRef.current || !isVideoReady) {
+      return
     }
-  }, [isMobile])
+
+    // If video is ready and should be visible, try to play
+    if (!entry || entry.isIntersecting) {
+      if (videoRef.current.paused) {
+        const playPromise = videoRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.warn('Video autoplay failed:', error)
+          })
+        }
+      }
+    }
+  }, [isVideoReady, entry])
+
+  // Force video to load when sources are available
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Ensure video loads when component mounts or sources change
+    if (desktopVideoId || mobileVideoId) {
+      // Only call load if video hasn't started loading yet
+      if (video.readyState === 0) {
+        video.load()
+      }
+    }
+  }, [desktopVideoId, mobileVideoId])
+
+  // Fallback: Try to play video after a delay if it hasn't started
+  useEffect(() => {
+    if (!videoRef.current) return
+
+    const timeoutId = setTimeout(() => {
+      const video = videoRef.current
+      if (!video) return
+
+      // If video is ready or has some data loaded, and it's paused, try to play
+      if ((video.readyState >= 2 || isVideoReady) && video.paused) {
+        // Only play if in viewport (or intersection observer hasn't fired yet)
+        if (!entry || entry.isIntersecting) {
+          const playPromise = video.play()
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // Silently fail - autoplay might be blocked
+            })
+          }
+        }
+      }
+    }, 500) // Try after 500ms
+
+    return () => clearTimeout(timeoutId)
+  }, [isVideoReady, entry])
 
   const commonVideoProps = {
-    preload: 'auto' as const,
+    preload: 'auto',
     autoPlay: true,
     playsInline: true,
     loop: true,
     muted: true,
-    style: {
-      objectFit: 'cover',
-      objectPosition: 'center bottom',
-    } as React.CSSProperties,
   }
+
+  // Handle video ready state
+  const handleLoadedData = useCallback(() => {
+    setIsVideoReady(true)
+    // Try to play once video is loaded if it's in view
+    const video = videoRef.current
+    if (video && video.paused) {
+      // Check if video should be playing based on intersection
+      const shouldPlay = !entry || entry.isIntersecting
+      if (shouldPlay) {
+        const playPromise = video.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.warn('Video autoplay failed on load:', error)
+          })
+        }
+      }
+    }
+  }, [entry])
+
+  const handleCanPlay = useCallback(() => {
+    setIsVideoReady(true)
+    // Also try to play when video can play
+    const video = videoRef.current
+    if (video && video.paused) {
+      const shouldPlay = !entry || entry.isIntersecting
+      if (shouldPlay) {
+        const playPromise = video.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Silently fail - autoplay might be blocked
+          })
+        }
+      }
+    }
+  }, [entry])
+
+  const handlePlay = useCallback(() => {
+    setHasPlayed(true)
+  }, [])
+
+  // Handle source changes (when media queries match different sources)
+  const handleLoadedMetadata = useCallback(() => {
+    setIsVideoReady(true)
+  }, [])
+
+  // Set up video ref callback to attach event listeners
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    video.addEventListener('loadeddata', handleLoadedData)
+    video.addEventListener('loadedmetadata', handleLoadedMetadata)
+    video.addEventListener('canplay', handleCanPlay)
+    video.addEventListener('play', handlePlay)
+
+    // Check if video is already ready
+    if (video.readyState >= 2) {
+      setIsVideoReady(true)
+    }
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData)
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      video.removeEventListener('canplay', handleCanPlay)
+      video.removeEventListener('play', handlePlay)
+    }
+  }, [handleLoadedData, handleLoadedMetadata, handleCanPlay, handlePlay])
 
   return (
     <div ref={setContainerRef} className='relative h-screen w-full'>
       <video
-        ref={mobileVideoRef}
+        ref={videoRef}
         {...commonVideoProps}
-        src={`https://stream.mux.com/${mobileVideoId}/highest.mp4`}
-        className='relative block h-screen w-full lg:hidden'
-        poster={mobilePoster}
-        style={{
-          ...commonVideoProps.style,
-          aspectRatio: 560 / 966,
-        }}
-      />
-      <video
-        ref={desktopVideoRef}
-        {...commonVideoProps}
-        src={`https://stream.mux.com/${desktopVideoId}/highest.mp4`}
-        className='relative hidden h-screen w-full lg:block'
-        poster={desktopPoster}
-        style={{
-          ...commonVideoProps.style,
-          aspectRatio: 1920 / 1080,
-        }}
-      />
-      {/* <Image
-        src={desktopPoster}
-        alt='Hero Video Poster'
-        fill
-        desktopSize='100vw'
-        mobileSize='100vw'
-        className={cn(
-          'hidden lg:block',
-          'absolute inset-0 z-20 h-full w-full object-cover',
-          'transition-opacity duration-300 ease-in-out',
-          {
-            'pointer-events-none opacity-100': !isPlaying,
-            'pointer-events-auto opacity-0': isPlaying,
-          }
+        className='relative h-screen w-full object-cover object-bottom'
+      >
+        {mobileVideoId && (
+          <source
+            src={`https://stream.mux.com/${mobileVideoId}/highest.mp4`}
+            media='(max-width: 799px)'
+            type='video/mp4'
+          />
         )}
-        priority
-      />
+        {desktopVideoId && (
+          <source
+            src={`https://stream.mux.com/${desktopVideoId}/highest.mp4`}
+            media='(min-width: 800px)'
+            type='video/mp4'
+          />
+        )}
+      </video>
       <Image
+        className={cn(
+          'absolute inset-0 z-20 h-full w-full object-cover object-bottom transition-opacity duration-300 ease-in-out xl:hidden',
+          hasPlayed && 'pointer-events-none opacity-0'
+        )}
         src={mobilePoster}
         alt='Hero Video Poster'
         fill
         desktopSize='100vw'
         mobileSize='100vw'
-        className={cn(
-          'block lg:hidden',
-          'absolute inset-0 z-20 h-full w-full object-cover',
-          'transition-opacity duration-300 ease-in-out',
-          {
-            'pointer-events-none opacity-100': !isPlaying,
-            'pointer-events-auto opacity-0': isPlaying,
-          }
-        )}
         priority
-      /> */}
+      />
+      <Image
+        className={cn(
+          'absolute inset-0 z-20 hidden h-full w-full object-cover object-bottom transition-opacity duration-300 ease-in-out xl:block',
+          hasPlayed && 'pointer-events-none opacity-0'
+        )}
+        src={desktopPoster}
+        alt='Hero Video Poster'
+        fill
+        desktopSize='100vw'
+        mobileSize='100vw'
+        priority
+      />
     </div>
   )
 }
