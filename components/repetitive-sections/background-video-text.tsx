@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import { MuxPlayerWrapper } from '@/components/mux-player-wrapper'
+import { OptimizedVideo } from '../optimized-video'
 
 export interface BackgroundVideoTextProps {
   title: string
@@ -17,8 +17,7 @@ export interface BackgroundVideoTextProps {
 }
 
 export function BackgroundVideoText(props: BackgroundVideoTextProps) {
-  const { title, subtitle, description, mediaId, thumbnail, videoAspectRatio } =
-    props
+  const { title, subtitle, description, mediaId, thumbnail } = props
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
@@ -91,7 +90,7 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
         </div>
       </div>
       <div className='absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
-        <MuxPlayerWrapper
+        {/* <MuxPlayerWrapper
           playbackId={mediaId}
           style={
             {
@@ -103,6 +102,11 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
           }
           // placeholder={thumbnail}
           customPlaceholder={thumbnail}
+        /> */}
+        <OptimizedVideo
+          playbackId={mediaId}
+          scrollDelay={1500}
+          placeholder={thumbnail}
         />
       </div>
     </section>

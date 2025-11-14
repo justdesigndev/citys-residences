@@ -7,11 +7,19 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import localFont from 'next/font/local'
 
+// Extend Window interface to include custom video observer
+declare global {
+  interface Window {
+    __videoObserver?: IntersectionObserver
+  }
+}
+
 import { GSAP } from '@/components/gsap'
 import { ModalContactForm } from '@/components/modal-contact-form'
+import { Preloader, PreloaderClient } from '@/components/preloader'
 import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
-import { Preloader, PreloaderClient } from '@/components/preloader'
+import { VideoObserverInitializer } from '@/components/video-observer'
 // import { WebChat } from '@/components/web-chat'
 
 const suisseIntl = localFont({
@@ -133,6 +141,7 @@ export default async function LocaleLayout({
           {locale}
         </span>
         <RealViewport />
+        <VideoObserverInitializer />
         <Preloader />
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
