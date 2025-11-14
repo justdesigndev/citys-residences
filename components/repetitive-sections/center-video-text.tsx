@@ -2,10 +2,15 @@
 
 import { cn } from '@/lib/utils'
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
-import { OptimizedVideo } from '../optimized-video'
+
+const OptimizedVideo = dynamic(
+  () => import('@/components/optimized-video').then(mod => mod.OptimizedVideo),
+  { ssr: false }
+)
 
 export interface CenterVideoTextProps {
   title: string
@@ -17,7 +22,8 @@ export interface CenterVideoTextProps {
 }
 
 export function CenterVideoText(props: CenterVideoTextProps) {
-  const { title, subtitle, description, mediaId, thumbnail } = props
+  const { title, subtitle, description, mediaId, thumbnail, videoAspectRatio } =
+    props
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
@@ -86,23 +92,11 @@ export function CenterVideoText(props: CenterVideoTextProps) {
       </div>
       <div className='relative z-30 grid grid-cols-24'>
         <div className='col-span-24 aspect-[16/19] overflow-hidden lg:col-span-16 lg:col-start-6 lg:aspect-[16/9] xl:col-start-5'>
-          {/* <MuxPlayerWrapper
-              playbackId={mediaId}
-              style={
-                {
-                  aspectRatio: videoAspectRatio as number,
-                  '--media-object-fit': 'cover',
-                  '--media-object-position': 'center',
-                  '--controls': 'none',
-                } as React.CSSProperties
-              }
-              // placeholder={thumbnail}
-              customPlaceholder={thumbnail}
-            /> */}
           <OptimizedVideo
             playbackId={mediaId}
             scrollDelay={1500}
             placeholder={thumbnail}
+            aspectRatio={videoAspectRatio}
           />
         </div>
       </div>

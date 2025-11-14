@@ -7,12 +7,14 @@ interface Props {
   playbackId: string
   placeholder?: string
   scrollDelay?: number // <--- you keep this!
+  aspectRatio?: number // e.g. 16/9, 4/3, 1/1
 }
 
 export function OptimizedVideo({
   playbackId,
   placeholder,
   scrollDelay = 0,
+  aspectRatio,
 }: Props) {
   const ref = useRef<HTMLVideoElement>(null)
   const [ready, setReady] = useState(false)
@@ -43,7 +45,10 @@ export function OptimizedVideo({
   }, [scrollDelay])
 
   return (
-    <div className='relative h-full w-full'>
+    <div
+      className='relative h-full w-full'
+      style={aspectRatio ? { aspectRatio: String(aspectRatio) } : undefined}
+    >
       {!ready && placeholder && (
         <Image
           src={placeholder}

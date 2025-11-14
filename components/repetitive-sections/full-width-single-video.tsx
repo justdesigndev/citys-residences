@@ -1,4 +1,9 @@
-import { OptimizedVideo } from '../optimized-video'
+import dynamic from 'next/dynamic'
+
+const OptimizedVideo = dynamic(
+  () => import('@/components/optimized-video').then(mod => mod.OptimizedVideo),
+  { ssr: false }
+)
 
 export interface FullWidthSingleVideoProps {
   mediaId: string
@@ -7,28 +12,16 @@ export interface FullWidthSingleVideoProps {
 }
 
 export function FullWidthSingleVideo(props: FullWidthSingleVideoProps) {
-  const { mediaId, thumbnail } = props
+  const { mediaId, thumbnail, videoAspectRatio } = props
 
   return (
     <section className='relative aspect-[16/14] overflow-hidden lg:aspect-[16/7]'>
       {/* <div className='absolute left-0 top-0'>FullWidthSingleVideo</div> */}
-      {/* <MuxPlayerWrapper
-          playbackId={mediaId}
-          style={
-            {
-              aspectRatio: videoAspectRatio as number,
-              '--media-object-fit': 'cover',
-              '--media-object-position': 'center',
-              '--controls': 'none',
-            } as React.CSSProperties
-          }
-          // placeholder={thumbnail}
-          customPlaceholder={thumbnail}
-        /> */}
       <OptimizedVideo
         playbackId={mediaId}
         scrollDelay={1500}
         placeholder={thumbnail}
+        aspectRatio={videoAspectRatio}
       />
     </section>
   )
