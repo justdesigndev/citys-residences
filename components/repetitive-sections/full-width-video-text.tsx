@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
@@ -22,8 +22,7 @@ export interface FullWidthVideoTextProps {
 }
 
 export function FullWidthVideoText(props: FullWidthVideoTextProps) {
-  const { title, subtitle, description, mediaId, thumbnail, videoAspectRatio } =
-    props
+  const { title, subtitle, description, mediaId, videoAspectRatio } = props
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
@@ -92,12 +91,7 @@ export function FullWidthVideoText(props: FullWidthVideoTextProps) {
         </div>
       </div>
       <div className='col-span-24 aspect-[16/19] overflow-hidden xl:aspect-[16/7]'>
-        <OptimizedVideo
-          playbackId={mediaId}
-          scrollDelay={1500}
-          placeholder={thumbnail}
-          aspectRatio={videoAspectRatio}
-        />
+        <OptimizedVideo playbackId={mediaId} aspectRatio={videoAspectRatio} />
       </div>
     </section>
   )

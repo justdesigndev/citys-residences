@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
@@ -22,8 +22,7 @@ export interface CenterVideoTextProps {
 }
 
 export function CenterVideoText(props: CenterVideoTextProps) {
-  const { title, subtitle, description, mediaId, thumbnail, videoAspectRatio } =
-    props
+  const { title, subtitle, description, mediaId, videoAspectRatio } = props
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
@@ -92,12 +91,7 @@ export function CenterVideoText(props: CenterVideoTextProps) {
       </div>
       <div className='relative z-30 grid grid-cols-24'>
         <div className='col-span-24 aspect-[16/19] overflow-hidden lg:col-span-16 lg:col-start-6 lg:aspect-[16/9] xl:col-start-5'>
-          <OptimizedVideo
-            playbackId={mediaId}
-            scrollDelay={1500}
-            placeholder={thumbnail}
-            aspectRatio={videoAspectRatio}
-          />
+          <OptimizedVideo playbackId={mediaId} aspectRatio={videoAspectRatio} />
         </div>
       </div>
     </section>
