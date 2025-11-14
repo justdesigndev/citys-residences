@@ -9,14 +9,10 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 import dynamic from 'next/dynamic'
 
-const FullScreenVideoDialog = dynamic(
-  () =>
-    import('@/components/dialogs/full-screen-video-dialog').then(
-      module => module.FullScreenVideoDialog
-    ),
-  {
-    ssr: false,
-  }
+const FullScreenVideoDialog = dynamic(() =>
+  import('@/components/dialogs/full-screen-video-dialog').then(
+    module => module.FullScreenVideoDialog
+  )
 )
 
 export interface QuoteWithVideoProps {
@@ -118,6 +114,8 @@ export function QuoteWithVideo({
                 alt='Thumbnail'
                 fill
                 className='object-cover object-center'
+                desktopSize='80vw'
+                mobileSize='90vw'
               />
             }
             mediaId={mediaId}
@@ -158,12 +156,16 @@ export function QuoteWithVideo({
           alt={'Architect Portrait'}
           fill
           className='hidden object-contain object-right-bottom xl:block'
+          desktopSize='30vw'
+          mobileSize='50vw'
         />
         <Image
           src={portraitImageMobile || ''}
           alt={'Architect Portrait'}
           fill
           className='block object-contain object-right-bottom xl:hidden'
+          desktopSize='30vw'
+          mobileSize='50vw'
         />
       </div>
       {/* blueprint icon and sidebar text */}

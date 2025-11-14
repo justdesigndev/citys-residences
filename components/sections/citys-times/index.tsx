@@ -25,8 +25,8 @@ const ImageCard = ({ src }: { src: string }) => (
       alt='Citys Times Images'
       fill
       desktopSize='90vw'
-      mobileSize='30vw'
-      className='object-cover'
+      mobileSize='80vw'
+      className='object-cover object-center'
     />
   </div>
 )

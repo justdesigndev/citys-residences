@@ -21,8 +21,8 @@ const ImageCard = ({ src, alt }: { src: string; alt: string }) => (
       alt={alt}
       fill
       desktopSize='90vw'
-      mobileSize='30vw'
-      className='object-cover'
+      mobileSize='80vw'
+      className='object-cover object-center'
     />
   </div>
 )
