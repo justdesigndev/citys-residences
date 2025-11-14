@@ -19,7 +19,9 @@ export const StickySidebar: React.FC = () => {
   const { ref, slider } = useSmooothy({
     infinite: false,
     snap: true,
-    dragSensitivity: 10,
+    dragSensitivity: 0.005,
+    speedDecay: 0.85,
+    lerpFactor: 0.3,
     setOffset: ({ wrapperWidth }) => {
       return wrapperWidth / 2 // Center the active slide
     },
