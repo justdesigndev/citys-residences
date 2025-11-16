@@ -1,6 +1,5 @@
 'use client'
 
-import { AutoplayVideo } from '@/components/autoplay-video'
 import { Image } from '@/components/image'
 import { useNavigation } from '@/hooks/useNavigation'
 import { Locale } from '@/i18n/routing'
@@ -25,13 +24,13 @@ export function MenuNavList() {
   const locale = useLocale()
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
-  const getAspectRatio = (itemId: string): number => {
-    const media = menuMedia[itemId as keyof typeof menuMedia]
-    if (media && 'aspect' in media && typeof media.aspect === 'function') {
-      return media.aspect()
-    }
-    return 16 / 9
-  }
+  // const getAspectRatio = (itemId: string): number => {
+  //   const media = menuMedia[itemId as keyof typeof menuMedia]
+  //   if (media && 'aspect' in media && typeof media.aspect === 'function') {
+  //     return media.aspect()
+  //   }
+  //   return 16 / 9
+  // }
 
   return (
     <div className='flex w-full items-start justify-between gap-32 3xl:gap-40'>
@@ -143,9 +142,22 @@ export function MenuNavList() {
                     />
                   )}
                   {media.type === 'video' && (
-                    <AutoplayVideo
-                      playbackId={media.src}
-                      aspectRatio={getAspectRatio(itemId)}
+                    // <AutoplayVideo
+                    //   playbackId={media.src}
+                    //   aspectRatio={getAspectRatio(itemId)}
+                    // />
+                    <video
+                      poster={media.src}
+                      className={cn(
+                        'absolute inset-0 h-full w-full object-cover object-center'
+                      )}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload='none'
+                      disablePictureInPicture
+                      controlsList='nodownload noplaybackrate'
                     />
                   )}
                 </div>
