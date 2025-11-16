@@ -68,7 +68,7 @@ export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
         style={{
           filter: 'grayscale(20%)',
         }}
-        loading='lazy'
+        // loading='lazy'
       />
       <video
         ref={ref}
