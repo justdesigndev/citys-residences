@@ -99,88 +99,132 @@ type NavigationConfigItem = {
   mainRoute: boolean
   isOnSidebar: boolean
   disabled: boolean
+  hasOwnRoute: boolean
+  isExternal: boolean
+  href: string
 }
 
 export const navigationConfig: Record<string, NavigationConfigItem> = {
   '/': {
     titleKey: 'navigation.home',
+    href: '/',
     id: 'home',
     order: 1,
     mainRoute: true,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/project': {
     titleKey: 'navigation.project',
+    href: '/project',
     id: 'project',
     order: 2,
     mainRoute: true,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/location': {
     titleKey: 'navigation.location',
+    href: '/location',
     id: 'location',
     order: 3,
     mainRoute: true,
     isOnSidebar: false,
     disabled: true,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/residences': {
     titleKey: 'navigation.residences',
+    href: '/residences',
     id: 'residences',
     order: 4,
     mainRoute: true,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/citys-park': {
     titleKey: 'navigation.citysPark',
+    href: '/citys-park',
     id: 'citys-park',
     order: 5,
     mainRoute: false,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/citys-members-club': {
     titleKey: 'navigation.citysMembersClub',
+    href: '/citys-members-club',
     id: 'citys-members-club',
     order: 6,
     mainRoute: false,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/citys-living': {
     titleKey: 'navigation.citysLiving',
+    href: '/citys-living',
     id: 'citys-living',
     order: 7,
     mainRoute: false,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/citys-psm': {
     titleKey: 'navigation.citysPsm',
+    href: '/citys-psm',
     id: 'citys-psm',
     order: 8,
     mainRoute: false,
     isOnSidebar: false,
     disabled: true,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/citys-times': {
     titleKey: 'navigation.citysTimes',
+    href: '/citys-times',
     id: 'citys-times',
     order: 10,
     mainRoute: false,
     isOnSidebar: false,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
   },
   '/citys-istanbul-avm': {
     titleKey: 'navigation.citysIstanbulAvm',
+    href: '/citys-istanbul-avm',
     id: 'citys-istanbul-avm',
     order: 9,
     mainRoute: false,
     isOnSidebar: true,
     disabled: false,
+    hasOwnRoute: false,
+    isExternal: false,
+  },
+  '/citys-dna': {
+    titleKey: 'navigation.citysDna',
+    href: '/citys-dna',
+    id: 'citys-dna',
+    order: 10,
+    mainRoute: true,
+    isOnSidebar: false,
+    disabled: false,
+    hasOwnRoute: true,
+    isExternal: true,
   },
 }
 
@@ -196,6 +240,9 @@ function getNavigationRoutes() {
       mainRoute: config!.mainRoute,
       isOnSidebar: config!.isOnSidebar,
       disabled: config!.disabled,
+      hasOwnRoute: config!.hasOwnRoute,
+      isExternal: config!.isExternal,
+      href: config!.href,
     }))
     .sort((a, b) => a.order - b.order)
 }
@@ -211,6 +258,8 @@ export const getNavigationItems = (t: (key: any) => string, locale: Locale) =>
     mainRoute: item.mainRoute,
     isOnSidebar: item.isOnSidebar,
     disabled: item.disabled,
+    hasOwnRoute: item.hasOwnRoute,
+    isExternal: item.isExternal,
   }))
 
 export const getNavigationItem = (
@@ -258,6 +307,8 @@ export type Media = {
   mediaId: string
   muxSrc?: string
   thumbnail?: string
+  muxSrcMobile?: string
+  thumbnailMobile?: string
 }
 
 export const heroVideo: Media = {
@@ -320,9 +371,12 @@ export const citysIstanbulAvmBanner: Media = {
     return calculateRatio(1920, 1026)
   },
   mediaId: 'a5b5zn9o9x',
-  muxSrc: 'shU3xvk8cSjG1S3PJaTeSs9LOogQ301jz8JYJ6F5600to',
+  muxSrc: 'hLCddwmtOdUZ3vvZFqxAXvwusE9f8M3qg5KDXqVBGHY',
+  muxSrcMobile: 'dMs3k8j02Rre5EE02b4VjR8ygDa01t7ZeISDdMFDSoemYE',
   thumbnail:
-    'https://image.mux.com/shU3xvk8cSjG1S3PJaTeSs9LOogQ301jz8JYJ6F5600to/thumbnail.webp?width=1920&time=0',
+    'https://image.mux.com/hLCddwmtOdUZ3vvZFqxAXvwusE9f8M3qg5KDXqVBGHY/thumbnail.webp?width=1920&time=0',
+  thumbnailMobile:
+    'https://image.mux.com/dMs3k8j02Rre5EE02b4VjR8ygDa01t7ZeISDdMFDSoemYE/thumbnail.webp?width=560&time=0',
 }
 export const citysTimesBanner: Media = {
   name: 'citys times banner',
@@ -390,6 +444,61 @@ export const menuMedia = {
     src: '/img/menu/citys-times.jpg',
     type: 'image',
   },
+  'citys-dna': {
+    src: '/img/menu/dna.jpg',
+    type: 'image',
+  },
+}
+
+export const dnaMedia = {
+  'dna-1': {
+    src: 'HFvdWmDDl02T005KHSCaIwQ00GCBn202lspPDUhKzVr4DbI',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-2': {
+    src: 'XjHLxIZovbD7edp5ri4UGMGjq43kV6jWRdLYvoZQfFI',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-3': {
+    src: '3Pbo7b7jOZLGxnIRSkGYezI14n588ufsDuFoaflVhQ00',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-4': {
+    src: 'yMNk302xcu2ceaM8GIU3NNshg8CQXDVGSiqipmoUHB900',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-5': {
+    src: 'FMwvqj6iY7d00E8hJ9Qua2iA4lVMM4U02pqL1b7c7fY6Q',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-6': {
+    src: 'ghOISWG5ze784tt38k5OM8uSpAUmOV8Aj6jAFJxRd5M',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-7': {
+    src: 'GRpTm02jkYX4KE7barTAKhXhflf5DRuNv8FNNgxAhPUI',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
+  'dna-8': {
+    src: 'bEp02GRfCI900shhm7LqLDnaPddl701CcD2XgjfjVaC01Pg',
+    aspect: () => {
+      return calculateRatio(1920, 1080)
+    },
+  },
 }
 
 // Get menu text key from item ID
@@ -405,6 +514,7 @@ export const getMenuTextKey = (itemId: string): string => {
     'citys-psm': 'citysPsm',
     'citys-istanbul-avm': 'citysIstanbulAvm',
     'citys-times': 'citysTimes',
+    'citys-dna': 'citysDna',
   }
   return keyMap[itemId] || itemId
 }
