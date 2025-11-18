@@ -61,7 +61,7 @@ export function LocaleSwitcherSelect({ children, label, className }: Props) {
       <Select value={locale} onValueChange={onValueChange} disabled={isPending}>
         <SelectTrigger
           className={cn(
-            'bg-transparent font-primary text-base font-[400] text-white [&>svg]:size-5',
+            'bg-transparent font-primary text-base font-[400] text-white [&>svg]:size-4',
             className
           )}
         >
