@@ -12,6 +12,16 @@ import { Locale, useLocale } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { ReactNode, useTransition } from 'react'
 
+const LOCALE_COOKIE = 'LOCALE'
+
+/**
+ * Set locale cookie on client side
+ */
+function setLocaleCookie(locale: string) {
+  const maxAge = 60 * 60 * 24 * 365 // 1 year
+  document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${maxAge}; SameSite=Lax`
+}
+
 type Props = {
   children: ReactNode
   defaultValue: string
@@ -28,6 +38,10 @@ export function LocaleSwitcherSelect({ children, label, className }: Props) {
 
   function onValueChange(value: string) {
     const nextLocale = value as Locale
+
+    // Set cookie immediately for better UX
+    setLocaleCookie(nextLocale)
+
     startTransition(() => {
       router.replace(
         // @ts-expect-error -- TypeScript will validate that only known `params`
