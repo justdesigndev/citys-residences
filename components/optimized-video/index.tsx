@@ -79,12 +79,7 @@ export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
         fill
         mobileSize='100vw'
         desktopSize='100vw'
-        className={cn(
-          'object-cover opacity-100 transition-opacity duration-500',
-          {
-            'opacity-0': ready,
-          }
-        )}
+        className={cn('z-10 object-cover')}
         style={{
           filter: 'grayscale(10%)',
         }}
@@ -100,7 +95,14 @@ export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
         onLoadedData={() => {
           setReady(true)
         }}
-        className={s.video}
+        className={cn(
+          s.video,
+          'relative z-20 transition-opacity duration-500',
+          {
+            'opacity-0': !ready,
+            'opacity-100': ready,
+          }
+        )}
         style={
           {
             '--aspect-ratio': aspectRatio,
