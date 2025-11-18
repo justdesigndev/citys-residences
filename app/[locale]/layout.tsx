@@ -10,7 +10,6 @@ import localFont from 'next/font/local'
 import { GSAP } from '@/components/gsap'
 import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
-import { VideoObserverInitializer } from '@/components/video-observer'
 
 const suisseIntl = localFont({
   src: [
@@ -128,7 +127,7 @@ export default async function LocaleLayout({
       </head>
       <body className={`${suisseIntl.variable} antialiased`}>
         <RealViewport />
-        <VideoObserverInitializer />
+        {/* <VideoObserverInitializer /> */}
         {/* <Preloader /> */}
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
