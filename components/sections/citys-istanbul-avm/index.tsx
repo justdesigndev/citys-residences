@@ -37,6 +37,7 @@ export default async function Page() {
       <section className='relative h-screen overflow-hidden lg:h-[45vw]'>
         <AutoplayVideo
           playbackId={citysIstanbulAvmBanner.muxSrc}
+          mobilePlaybackId={citysIstanbulAvmBanner.muxSrcMobile}
           aspectRatio={citysIstanbulAvmBanner.aspect()}
         />
       </section>
