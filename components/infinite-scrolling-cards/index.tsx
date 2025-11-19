@@ -259,6 +259,7 @@ export const InfiniteScrollingCards: React.FC<InfiniteScrollingCardsProps> = ({
                 fill
                 className='gsap-img h-full w-full object-cover'
                 sizes='90vw'
+                priority
               />
               <div className='absolute left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-primary text-2xl font-medium text-white'>
                 {item.text}
