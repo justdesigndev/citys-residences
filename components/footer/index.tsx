@@ -302,7 +302,10 @@ export function Footer() {
                       })}
                     </span>
                   </button>
-                  <button className='border-radius-gradient flex aspect-[14/16] flex-col px-2 py-4 sm:gap-6 lg:px-4 lg:py-6'>
+                  <Link
+                    href={`https://wa.me/+9002162666600`}
+                    className='border-radius-gradient flex aspect-[14/16] flex-col px-2 py-4 sm:gap-6 lg:px-4 lg:py-6'
+                  >
                     <HeadsetIcon
                       weight='thin'
                       className='z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
@@ -312,7 +315,7 @@ export function Footer() {
                         br: () => <br />,
                       })}
                     </span>
-                  </button>
+                  </Link>
                   <Link
                     href='https://goo.gl/maps/X5VuQBQmZF2r9WZ17'
                     className='border-radius-gradient flex aspect-[14/16] flex-col px-2 py-4 sm:gap-6 lg:px-4 lg:py-6'
