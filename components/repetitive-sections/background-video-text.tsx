@@ -1,8 +1,9 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import Balancer from 'react-wrap-balancer'
 
 import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
@@ -72,25 +73,27 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             >
               <GsapSplitText
                 type='lines'
-                stagger={0.01}
+                stagger={0.02}
                 duration={1.5}
                 html={sanitizedSubtitle}
               ></GsapSplitText>
             </h4>
           </div>
         </div>
-        <div className='col-span-24 px-8 pb-20 lg:col-span-10 lg:px-0 lg:pb-16 lg:pl-24 lg:pt-24 xl:col-span-8 xl:px-16 xl:pb-24 xl:pt-44'>
+        <div className='col-span-24 px-8 pb-20 lg:col-span-10 lg:px-0 lg:pb-16 lg:pl-24 lg:pt-24 xl:col-span-8 xl:px-12 xl:pb-24 xl:pt-44'>
           <FadeInOnScroll delay={0.25}>
-            <article
-              className={cn(
-                'text-left font-primary font-[300]',
-                'text-base/[1.25] xl:text-[17px]/[1.25]',
-                'max-w-[90%] md:max-w-[50vw] xl:max-w-none',
-                'prose-2xl prose-p:m-0 prose-ul:list-disc'
-              )}
-              style={{ color: 'var(--white)' }}
-              dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-            ></article>
+            <Balancer>
+              <article
+                className={cn(
+                  'text-left font-primary font-[300]',
+                  'text-base/[1.25] xl:text-[17px]/[1.25]',
+                  'max-w-[90%] md:max-w-[50vw] xl:max-w-none',
+                  'prose-2xl prose-p:m-0 prose-ul:list-disc'
+                )}
+                style={{ color: 'var(--white)' }}
+                dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+              ></article>
+            </Balancer>
           </FadeInOnScroll>
         </div>
       </div>
