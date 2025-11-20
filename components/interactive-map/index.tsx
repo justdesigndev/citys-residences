@@ -83,7 +83,9 @@ MemoizedTitle.displayName = 'MemoizedTitle'
 
 export function InteractiveMap() {
   const t = useTranslations('project.map')
-  const [hoveredLocation, setHoveredLocation] = useState<string | null>(null)
+  const [hoveredLocation, setHoveredLocation] = useState<string | null>(
+    'kozyatagi-metro'
+  )
 
   return (
     <div className='grid grid-cols-1 gap-4 overflow-hidden lg:gap-8 xl:min-h-[110vh] xl:grid-cols-24'>
