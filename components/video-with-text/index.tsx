@@ -13,10 +13,12 @@ interface VideoWithTextProps {
   titleHtml?: string
   descriptionHtml?: string
   aspect?: number
+  horizontalPosition?: number
 }
 
 export function VideoWithText(props: VideoWithTextProps) {
-  const { mediaId, title, description, className, aspect } = props
+  const { mediaId, title, description, className, aspect, horizontalPosition } =
+    props
 
   return (
     <div
@@ -27,7 +29,11 @@ export function VideoWithText(props: VideoWithTextProps) {
         className
       )}
     >
-      <AutoplayVideo playbackId={mediaId} aspectRatio={aspect} />
+      <AutoplayVideo
+        playbackId={mediaId}
+        aspectRatio={aspect}
+        horizontalPosition={horizontalPosition}
+      />
       <div
         className={cn(
           'absolute bottom-[10%] left-1/2 z-50 -translate-x-1/2 xl:bottom-[15%]'

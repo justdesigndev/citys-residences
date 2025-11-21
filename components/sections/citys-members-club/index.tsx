@@ -55,6 +55,7 @@ export default async function CitysMembersClub({
             description={item.description}
             mediaId={item.mediaId}
             videoAspectRatio={item.aspectRatio}
+            horizontalPosition={item.horizontalPosition}
           />
         ))}
       </div>

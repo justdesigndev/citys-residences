@@ -11,9 +11,14 @@ import { useEffect, useRef, useState } from 'react'
 interface Props {
   playbackId: string
   aspectRatio?: number // e.g. 16/9, 4/3, 1/1
+  horizontalPosition?: number
 }
 
-export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
+export function OptimizedVideo({
+  playbackId,
+  aspectRatio,
+  horizontalPosition,
+}: Props) {
   const ref = useRef<HTMLVideoElement>(null)
   const observer = useRef<IntersectionObserver | null>(null)
   const { width: windowWidth } = useWindowSize(100)
@@ -79,10 +84,13 @@ export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
         fill
         mobileSize='100vw'
         desktopSize='100vw'
-        className={cn('z-10 object-cover')}
-        style={{
-          filter: 'grayscale(10%)',
-        }}
+        className={cn(s.thumbnail, 'z-10')}
+        style={
+          {
+            '--aspect-ratio': aspectRatio,
+            '--horizontal-position': `${horizontalPosition ?? 50}%`,
+          } as React.CSSProperties
+        }
         // loading='lazy'
       />
       <video
@@ -97,7 +105,8 @@ export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
         }}
         className={cn(
           s.video,
-          'relative z-20 transition-opacity duration-500',
+          'relative z-20',
+          'transition-opacity duration-500',
           {
             'opacity-0': !ready,
             'opacity-100': ready,
@@ -106,6 +115,7 @@ export function OptimizedVideo({ playbackId, aspectRatio }: Props) {
         style={
           {
             '--aspect-ratio': aspectRatio,
+            '--horizontal-position': `${horizontalPosition ?? 50}%`,
           } as React.CSSProperties
         }
       >

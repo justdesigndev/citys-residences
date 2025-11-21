@@ -20,10 +20,18 @@ export interface BackgroundVideoTextProps {
   mediaId: string
   thumbnail?: string
   videoAspectRatio?: number
+  horizontalPosition?: number
 }
 
 export function BackgroundVideoText(props: BackgroundVideoTextProps) {
-  const { title, subtitle, description, mediaId, videoAspectRatio } = props
+  const {
+    title,
+    subtitle,
+    description,
+    mediaId,
+    videoAspectRatio,
+    horizontalPosition,
+  } = props
   const [sanitizedDescription, setSanitizedDescription] = useState(description)
   const [sanitizedSubtitle, setSanitizedSubtitle] = useState(subtitle)
   const [sanitizedTitle, setSanitizedTitle] = useState(title)
@@ -54,7 +62,8 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             <h3
               className={cn(
                 'font-primary font-[400]',
-                'text-3xl/[1.1] xl:text-6xl/[1.1] 2xl:text-6xl/[1.1]'
+                'text-4xl/[1.1] xl:text-6xl/[1.1] 2xl:text-6xl/[1.1]',
+                'max-w-[100%] lg:max-w-none'
               )}
             >
               <GsapSplitText
@@ -66,8 +75,8 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             </h3>
             <h4
               className={cn(
-                'font-primary font-[200]',
-                'text-xl/snug xl:text-4xl/snug 2xl:text-4xl/snug',
+                'font-primary font-[300] xl:font-[200]',
+                'text-xl/[1.3] xl:text-4xl/[1.3] 2xl:text-4xl/[1.3]',
                 'md:max-w-[60vw]'
               )}
             >
@@ -85,8 +94,8 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
             <Balancer>
               <article
                 className={cn(
-                  'text-left font-primary font-[300]',
-                  'text-base/[1.25] xl:text-[17px]/[1.25]',
+                  'text-left font-primary font-[200] xl:font-[300]',
+                  'text-[15px]/[1.25] xl:text-[17px]/[1.25]',
                   'max-w-[90%] md:max-w-[50vw] xl:max-w-none',
                   'prose-2xl prose-p:m-0 prose-ul:list-disc'
                 )}
@@ -98,7 +107,11 @@ export function BackgroundVideoText(props: BackgroundVideoTextProps) {
         </div>
       </div>
       <div className='absolute inset-0 bottom-0 left-0 right-0 top-0 z-10'>
-        <OptimizedVideo playbackId={mediaId} aspectRatio={videoAspectRatio} />
+        <OptimizedVideo
+          playbackId={mediaId}
+          aspectRatio={videoAspectRatio}
+          horizontalPosition={horizontalPosition}
+        />
       </div>
     </section>
   )

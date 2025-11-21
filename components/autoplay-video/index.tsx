@@ -20,6 +20,7 @@ interface AutoplayVideoProps {
   mobilePlaybackId?: string
   aspectRatio?: number
   enableFullscreen?: boolean
+  horizontalPosition?: number
 }
 
 export function AutoplayVideo({
@@ -27,6 +28,7 @@ export function AutoplayVideo({
   mobilePlaybackId,
   aspectRatio,
   enableFullscreen = false,
+  horizontalPosition,
 }: AutoplayVideoProps) {
   const { width: windowWidth } = useWindowSize(100)
   const isMobile =
@@ -87,6 +89,7 @@ export function AutoplayVideo({
       style={
         {
           '--aspect-ratio': aspectRatio,
+          '--horizontal-position': `${horizontalPosition ?? 50}%`,
         } as React.CSSProperties
       }
       muted

@@ -11,6 +11,7 @@ export interface CitysMembersClubData {
   subtitle?: string
   description?: string
   aspectRatio?: number
+  horizontalPosition?: number
 }
 
 // Cached for 1 hour via fetchCitysData helper

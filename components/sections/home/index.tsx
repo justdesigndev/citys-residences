@@ -204,6 +204,7 @@ export default async function Page({
             strong: chunks => <strong>{chunks}</strong>,
           })}
           description={t('liveFully.description')}
+          horizontalPosition={70}
         />
       </div>
     </SectionSetter>

@@ -3,5 +3,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: var(--horizontal-position) 50%;
+
+  @include-media ('tablet') {
+    object-position: 50% 50%;
+  }
+}
+
+.thumbnail {
+  aspect-ratio: var(--aspect-ratio);
+  filter: grayscale(10%);
+  object-fit: cover;
+  object-position: var(--horizontal-position) 50%;
+
+  @include-media ('tablet') {
+    object-position: 50% 50%;
+  }
 }

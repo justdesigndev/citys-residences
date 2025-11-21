@@ -32,6 +32,7 @@ export interface RepetitiveSectionsWrapperProps {
   description?: string
   mediaId?: string
   videoAspectRatio?: number
+  horizontalPosition?: number
 }
 
 /* ---------------------------------------------
@@ -72,6 +73,7 @@ export function RepetitiveSectionsWrapper({
   description,
   mediaId,
   videoAspectRatio,
+  horizontalPosition,
 }: RepetitiveSectionsWrapperProps) {
   if (!componentType || !mediaId) return null
 
@@ -89,6 +91,7 @@ export function RepetitiveSectionsWrapper({
     mediaId,
     thumbnail: getThumbnailUrl(mediaId),
     videoAspectRatio,
+    horizontalPosition,
   }
 
   if (requiresText) {

@@ -46,6 +46,7 @@ export default async function CitysPark({ items, locale }: CitysParkProps) {
             description={item.description}
             mediaId={item.mediaId}
             videoAspectRatio={item.aspectRatio}
+            horizontalPosition={item.horizontalPosition}
           />
         ))}
       </div>

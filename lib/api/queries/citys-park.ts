@@ -13,6 +13,7 @@ export interface CitysParkData {
   title?: string
   subtitle?: string
   description?: string
+  horizontalPosition?: number
 }
 
 // Cached for 1 hour via fetchCitysData helper

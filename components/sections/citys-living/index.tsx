@@ -49,6 +49,7 @@ export default async function CitysLiving({ items, locale }: CitysLivingProps) {
             description={item.description}
             mediaId={item.mediaId}
             videoAspectRatio={item.aspectRatio}
+            horizontalPosition={item.horizontalPosition}
           />
         ))}
       </div>
