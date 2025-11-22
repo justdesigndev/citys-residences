@@ -80,7 +80,7 @@ export function PageTitle(props: PageTitleProps) {
           <h2
             className={cn(
               'text-center font-primary font-[500]',
-              'text-3xl/tight tracking-[0.4em] lg:text-5xl/tight xl:text-4xl/tight 2xl:text-5xl/tight'
+              'text-2xl/tight tracking-[0.4em] lg:text-5xl/tight xl:text-4xl/tight 2xl:text-5xl/tight'
             )}
             style={{ color: secondaryColor }}
           >
