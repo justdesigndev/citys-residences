@@ -2,7 +2,7 @@
 
 import { Link as LocalizedLink } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
-import { ListIcon } from '@phosphor-icons/react'
+import { ArrowCircleLeftIcon, ListIcon } from '@phosphor-icons/react'
 import { useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { Logo } from '@/components/icons'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Menu } from '@/components/menu'
+import { useNavigation } from '@/hooks/useNavigation'
 import { Locale, Pathnames } from '@/i18n/routing'
 import { navigationConfig } from '@/lib/constants'
 import { useUiStore } from '@/lib/store/ui'
@@ -20,6 +21,7 @@ export interface HeaderProps {
 }
 
 export function Header({ withNavigation = true }: HeaderProps) {
+  const { handleNavClick } = useNavigation()
   const { isMenuOpen, setIsMenuOpen } = useUiStore()
   const pathname = usePathname()
   const locale = useLocale()
@@ -38,15 +40,46 @@ export function Header({ withNavigation = true }: HeaderProps) {
         )}
       >
         <div className='z-[var(--z-header-content)] flex flex-1 items-center justify-between px-6 lg:px-0'>
-          <LocalizedLink
-            href={navigationConfig['/'].href as Pathnames}
-            className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
-            aria-label='Home'
-            locale={locale as Locale}
-          >
-            <Logo fill={colors.white} />
-          </LocalizedLink>
+          <>
+            {!withNavigation && (
+              <LocalizedLink
+                href={navigationConfig['/'].href as Pathnames}
+                className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
+                aria-label='Home'
+                locale={locale as Locale}
+              >
+                <Logo fill={colors.white} />
+              </LocalizedLink>
+            )}
+            {withNavigation && (
+              <button
+                onClick={() =>
+                  handleNavClick(navigationConfig['/'].id as string)
+                }
+                className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
+                aria-label='Home'
+              >
+                <Logo fill={colors.white} />
+              </button>
+            )}
+          </>
           <div className='pointer-events-auto ml-auto flex cursor-pointer items-center gap-2 lg:gap-6'>
+            {!withNavigation && (
+              <LocalizedLink
+                href={navigationConfig['/'].href as Pathnames}
+                className='group flex items-center gap-2'
+                aria-label='Home'
+                locale={locale as Locale}
+              >
+                <ArrowCircleLeftIcon
+                  className='group-hover:animate-bounce-x size-5 text-white'
+                  weight='regular'
+                />
+                <span className='base font-primary font-[400] leading-none text-white'>
+                  ANASAYFA
+                </span>
+              </LocalizedLink>
+            )}
             <LocaleSwitcher />
             {withNavigation && (
               <button

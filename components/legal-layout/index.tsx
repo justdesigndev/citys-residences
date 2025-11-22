@@ -1,17 +1,25 @@
+'use client'
+
+import { Link as LocalizedLink } from '@/i18n/navigation'
 import { ReactNode } from 'react'
+import { useLocale } from 'next-intl'
 
 import { Logo } from '@/components/icons'
 import { LegalTableOfContents } from '@/components/legal-table-of-contents'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { Link } from '@/components/utility/link'
+import { Locale, Pathnames } from '@/i18n/routing'
+import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
+import { ArrowCircleLeftIcon } from '@phosphor-icons/react'
 
 export interface LegalLayoutProps {
   children: ReactNode
 }
 
 export function LegalLayout({ children }: LegalLayoutProps) {
+  const locale = useLocale()
   return (
     <>
       <section className='section-container grid min-h-screen grid-cols-24'>
@@ -26,6 +34,20 @@ export function LegalLayout({ children }: LegalLayoutProps) {
                 <Logo fill={colors.black} />
               </Link>
               <div className='flex items-center justify-end py-4 lg:hidden xl:py-28 xl:pl-20'>
+                <LocalizedLink
+                  href={navigationConfig['/'].href as Pathnames}
+                  className='group flex items-center gap-2'
+                  aria-label='Home'
+                  locale={locale as Locale}
+                >
+                  <ArrowCircleLeftIcon
+                    className='group-hover:animate-bounce-x size-5 text-white'
+                    weight='regular'
+                  />
+                  <span className='base font-primary font-[400] text-white'>
+                    ANASAYFA
+                  </span>
+                </LocalizedLink>
                 <LocaleSwitcher className='text-black' />
               </div>
             </div>

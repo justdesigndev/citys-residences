@@ -1,8 +1,8 @@
 .video {
   aspect-ratio: var(--aspect-ratio);
-  object-position: var(--horizontal-position) 50%;
+  object-position: var(--horizontal-position) var(--vertical-position);
 
   @include-media ('tablet') {
-    object-position: 50% 50%;
+    object-position: 50% var(--vertical-position);
   }
 }

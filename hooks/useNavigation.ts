@@ -17,13 +17,13 @@ export function useNavigation() {
       return
     }
 
+    // Close menu if it's open
+    setIsMenuOpen(false)
+
     gsap.to(element, {
       opacity: 1,
       duration: 0.4,
       onComplete: () => {
-        // Close menu if it's open
-        setIsMenuOpen(false)
-
         // Scroll to the target section with Lenis smooth scroll
         const targetElement = document.getElementById(itemId)
         if (targetElement && lenis) {
