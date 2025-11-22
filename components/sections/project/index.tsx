@@ -340,7 +340,7 @@ export default async function Page({
           mediaIdTurkish: 'mLJCKzl700KKCbhHSdsjKoe02wBdIqCtu3IqmjNPDp6og',
           thumbnail: '/img/thumbnail-toners.jpg',
           portraitImage: '/img/toners-portrait.png',
-          portraitImageMobile: '/img/toners-portrait-mobile.png',
+          portraitImageMobile: '/img/toners-portrait.png',
           personName: (
             <>
               Mustafa & <span className='block xl:hidden' /> Emre Toner
