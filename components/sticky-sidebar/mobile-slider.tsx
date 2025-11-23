@@ -64,24 +64,37 @@ export const MobileSlider: React.FC<MobileSliderProps> = ({
       dragFree: true,
       loop: false,
       dragThreshold: 20,
-      duration: 60, // Standard snap duration
+      duration: 40,
     }),
     []
   )
 
   const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions)
+  const itemIndexMap = useMemo(() => {
+    const map = new Map<string, number>()
+    items.forEach((item, index) => map.set(item.id, index))
+    return map
+  }, [items])
 
   useEffect(() => {
     if (!emblaApi) return
 
-    emblaApi.on('select', () => {
-      console.log(
-        'Current snap point:',
-        emblaApi.selectedScrollSnap(),
-        'of',
-        emblaApi.scrollSnapList().length
-      )
-    })
+    const logSelectedSnap = () => {
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(
+          'Current snap point:',
+          emblaApi.selectedScrollSnap(),
+          'of',
+          emblaApi.scrollSnapList().length
+        )
+      }
+    }
+
+    emblaApi.on('select', logSelectedSnap)
+
+    return () => {
+      emblaApi.off('select', logSelectedSnap)
+    }
   }, [emblaApi])
 
   // Expose emblaApi to parent
@@ -92,17 +105,24 @@ export const MobileSlider: React.FC<MobileSliderProps> = ({
   }, [emblaApi, onEmblaApiReady])
 
   // Scroll to active section when it changes
-  // Embla's align: 'center' option automatically centers slides
   useEffect(() => {
     if (!emblaApi || !activeSection) return
 
-    const activeIndex = items.findIndex(item => item.id === activeSection)
-    if (activeIndex !== -1) {
+    const activeIndex = itemIndexMap.get(activeSection)
+    if (typeof activeIndex === 'number') {
       if (emblaApi.selectedScrollSnap() !== activeIndex) {
         emblaApi.scrollTo(activeIndex)
       }
     }
-  }, [activeSection, emblaApi, items])
+  }, [activeSection, emblaApi, itemIndexMap])
+
+  const handleSlideClick = useCallback(
+    (itemId: string, slideIndex: number) => {
+      emblaApi?.scrollTo(slideIndex)
+      handleNavClick(itemId)
+    },
+    [emblaApi, handleNavClick]
+  )
 
   // Set container ref callback
   const setContainerRef = useCallback(
@@ -110,6 +130,23 @@ export const MobileSlider: React.FC<MobileSliderProps> = ({
       containerRef.current = node
     },
     [containerRef]
+  )
+
+  const handleSetItemRef = useCallback(
+    (id: string, node: HTMLElement | null) => {
+      const refs = itemRefs.current
+      if (!refs) return
+
+      if (node) {
+        if (refs.get(id) !== node) {
+          refs.set(id, node)
+        }
+        return
+      }
+
+      refs.delete(id)
+    },
+    [itemRefs]
   )
 
   return (
@@ -120,36 +157,32 @@ export const MobileSlider: React.FC<MobileSliderProps> = ({
         className={cn(
           'fixed bottom-[2%] left-8 right-8 z-[var(--z-sticky-menu)] mix-blend-difference lg:hidden',
           'before:absolute before:bottom-0 before:left-0 before:h-[1px] before:w-[100%] before:bg-gradient-sidebar',
-          !isStickySidebarVisible && 'pointer-events-none opacity-0'
+          (!isStickySidebarVisible || !emblaApi) &&
+            'pointer-events-none opacity-0'
         )}
       ></div>
       {/* Embla viewport */}
       <div
         className={cn(
-          'fixed bottom-[2%] left-0 right-0 z-[var(--z-sticky-menu)] w-full overflow-hidden mix-blend-difference focus:outline-none lg:hidden',
-          !isStickySidebarVisible && 'pointer-events-none opacity-0'
+          'fixed bottom-[2%] left-0 right-0 z-[var(--z-sticky-menu)] w-full overflow-hidden mix-blend-difference transition-opacity duration-300 focus:outline-none lg:hidden',
+          (!isStickySidebarVisible || !emblaApi) &&
+            'pointer-events-none opacity-0'
         )}
         ref={emblaRef}
       >
         {/* Embla container */}
         <div
-          className='pinch-zoom -ml-4 flex touch-pan-y items-center'
+          className='pinch-zoom -ml-6 flex touch-pan-y items-center'
           ref={setContainerRef}
         >
-          {items.map(item => (
+          {items.map((item, index) => (
             <div
               key={item.id}
-              ref={el => {
-                if (el) {
-                  itemRefs.current?.set(item.id, el)
-                } else {
-                  itemRefs.current?.delete(item.id)
-                }
-              }}
-              className='relative flex min-w-0 flex-none items-center justify-center pl-4'
+              ref={el => handleSetItemRef(item.id, el)}
+              className='relative flex min-w-0 flex-none items-center justify-center pl-6'
             >
               <button
-                onClick={() => handleNavClick(item.id as string)}
+                onClick={() => handleSlideClick(item.id, index)}
                 className={cn(
                   'relative',
                   'whitespace-nowrap font-primary font-[600] tracking-[0.2em] text-white',
@@ -159,7 +192,7 @@ export const MobileSlider: React.FC<MobileSliderProps> = ({
                   'before:pointer-events-none before:absolute before:bottom-0 before:left-0 before:h-[4px] before:w-full before:bg-white before:backdrop-blur-[54px] before:transition-opacity before:duration-500 before:ease-in-out before:content-[""]',
                   {
                     'text-[9px] opacity-100': activeSection === item.id,
-                    'text-[8px] opacity-70': activeSection !== item.id,
+                    'text-[9px] opacity-60': activeSection !== item.id,
                     'before:opacity-100': activeSection === item.id,
                     'before:opacity-0': activeSection !== item.id,
                   }
