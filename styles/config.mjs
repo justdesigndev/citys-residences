@@ -22,6 +22,7 @@ const colors = {
   'tangerine-flake': '#E57C5C',
   'bleeding-crimson': '#99170F',
   'birch-strain': '#DDB760',
+  'tangerine-cream': '#ffa386',
 }
 
 const themes = {

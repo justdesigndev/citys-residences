@@ -455,7 +455,8 @@
         "createAppointment": "Book an <br></br> Appointment",
         "speakWithRepresentative": "Talk to a<br></br>Representative",
         "getDirections": "Get <br></br> Directions",
-        "exploreAgain": "Explore Again"
+        "exploreAgain": "Explore Again",
+        "legalDisclaimer": "City’s Residences is a registered trademark of Hayat A.Ş. All usage rights, operational activities, and representation of the brand are carried out by CITYS GAYRİMENKUL A.Ş. with consent."
     },
     "countries": {
         "AD": "Andorra",

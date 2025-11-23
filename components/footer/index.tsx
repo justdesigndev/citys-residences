@@ -352,28 +352,42 @@ export function Footer() {
           className={cn(
             'order-3 lg:order-2',
             'mt-8 lg:mt-auto',
-            'col-span-24 lg:col-span-21 lg:col-start-3 xl:col-span-21 xl:col-start-3 2xl:col-span-20 2xl:col-start-4',
-            'text-sm text-white/90 2xl:text-base',
+            'col-span-24 lg:col-span-22 lg:col-start-2 xl:col-span-21 xl:col-start-3 2xl:col-span-20 2xl:col-start-4',
+            'text-tangerine-cream text-sm 2xl:text-base',
             'font-primary font-[300]'
           )}
         >
           <span className='flex flex-col gap-4 text-center lg:gap-0 lg:text-left'>
             <span>{t('copyrightYear')}</span>
             <span>{t('copyrightText')}</span>
+            <span className='mt-8 opacity-70'>{t('copyright')}</span>
           </span>
         </div>
         <div
           className={cn(
             'order-2 lg:order-3',
             'mt-8 lg:mt-auto',
-            'col-span-24 lg:col-span-21 lg:col-start-3 xl:col-span-21 xl:col-start-3 2xl:col-span-19 2xl:col-start-4',
-            'flex flex-col gap-4 lg:flex-row xl:justify-between',
-            'text-sm text-white/90 2xl:text-base',
-            'font-primary font-[300]'
+            'col-span-24 lg:col-span-22 lg:col-start-2 xl:col-span-21 xl:col-start-3 2xl:col-span-19 2xl:col-start-4',
+            'flex flex-col items-center gap-4 lg:flex-row lg:items-end xl:justify-between'
           )}
         >
-          <span className='hidden lg:inline'>{t('copyright')}</span>
-          <span className='flex flex-col flex-wrap items-center justify-center gap-6 md:gap-6 lg:ml-auto lg:flex-row lg:items-start lg:gap-6'>
+          <span
+            className={cn(
+              'hidden lg:block',
+              'text-tangerine-cream text-left text-[8px]/[1.3]',
+              'font-primary font-[300]',
+              'lg:max-w-48 xl:max-w-96'
+            )}
+          >
+            {t('legalDisclaimer')}
+          </span>
+          <span
+            className={cn(
+              'flex flex-col flex-wrap items-center justify-center gap-6 md:gap-6 lg:ml-auto lg:flex-row lg:items-start lg:gap-6',
+              'text-tangerine-cream text-left text-sm 2xl:text-base',
+              'font-primary font-[300]'
+            )}
+          >
             {footerItems.legal.map((item, i) => (
               <Link
                 target='_blank'
@@ -386,6 +400,18 @@ export function Footer() {
               </Link>
             ))}
           </span>
+        </div>
+        {/* mobile */}
+        <div
+          className={cn(
+            'block lg:hidden',
+            'order-4 lg:order-3',
+            'col-span-24 px-12 sm:px-48',
+            'text-tangerine-cream text-center text-[8px]/[1.3]',
+            'font-primary font-[300]'
+          )}
+        >
+          {t('legalDisclaimer')}
         </div>
       </div>
     </footer>

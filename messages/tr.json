@@ -482,7 +482,7 @@
         "legal": "KVKK",
         "copyright": "Tüm hakları saklıdır.",
         "copyrightYear": "2025 ©",
-        "copyrightText": "City's Residences İstanbul Tüm hakları saklıdır.",
+        "copyrightText": "City's Residences İstanbul",
         "kvkk": "KVKK",
         "commercialElectronicMessage": "Ticari Elektronik İleti Aydınlatma Metni",
         "explicitConsent": "Açık Rıza Metni",
@@ -495,7 +495,8 @@
         "salesOfficeAddress3": "34752 Ataşehir, İstanbul",
         "createAppointment": "Randevu <br></br> Oluştur",
         "speakWithRepresentative": "Temsilciyle <br></br> Görüş",
-        "getDirections": "Yol <br></br> Tarifi Al"
+        "getDirections": "Yol <br></br> Tarifi Al",
+        "legalDisclaimer": "City’s Residences, Hayat A.Ş.'nin tescilli bir markasıdır. Markanın tüm kullanım hakları, operasyonel faaliyetleri ve temsiliyeti, muvafakatname ile CITYS GAYRİMENKUL A.Ş. tarafından yürütülmektedir."
     },
     "countries": {
         "AD": "Andorra",
