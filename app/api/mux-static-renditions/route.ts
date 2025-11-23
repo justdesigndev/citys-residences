@@ -90,7 +90,7 @@ type ResolutionResult =
 async function createStaticRenditions(
   assetId: string
 ): Promise<ResolutionResult[]> {
-  const resolutions = ['highest', '480p', '1080p']
+  const resolutions = ['highest']
   const results: ResolutionResult[] = []
 
   for (const resolution of resolutions) {
@@ -152,6 +152,24 @@ type ReportItem =
 
 export async function GET(request: Request) {
   try {
+    // Only allow localhost access - block production usage
+    const url = new URL(request.url)
+    const hostname = url.hostname
+
+    // Check if request is from localhost (127.0.0.1 or localhost)
+    const isLocalhost =
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1' ||
+      hostname === '::1' ||
+      hostname.startsWith('127.')
+
+    if (!isLocalhost) {
+      return NextResponse.json(
+        { error: 'This endpoint is only available on localhost.' },
+        { status: 403 }
+      )
+    }
+
     // Get limit from query parameter (default: process all assets)
     const { searchParams } = new URL(request.url)
     const limitParam = searchParams.get('limit')
