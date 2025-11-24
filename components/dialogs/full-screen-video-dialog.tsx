@@ -1,25 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
-import { VisuallyHidden } from '@/components/ui/visually-hidden'
+import { useEffect, useRef, useState } from 'react'
 import MuxPlayer from '@mux/mux-player-react/lazy'
+import type MuxPlayerElement from '@mux/mux-player'
 import { colors } from '@/styles/config.mjs'
 import { useLenis } from 'lenis/react'
-import { cn } from '@/lib/utils'
+import { XIcon } from '@phosphor-icons/react'
 
 interface FullScreenVideoDialogProps {
   dialogTrigger?: React.ReactNode
   mediaId: string
   aspectRatio?: number // Optional aspect ratio (width/height). If not provided, video will maintain natural aspect ratio
   onOpenChange?: (open: boolean) => void
+}
+
+interface SafariVideoElement extends HTMLVideoElement {
+  webkitEnterFullscreen?: () => void
 }
 
 export function FullScreenVideoDialog({
@@ -29,67 +25,103 @@ export function FullScreenVideoDialog({
   onOpenChange,
 }: FullScreenVideoDialogProps) {
   const lenis = useLenis()
-  const [open, setOpen] = useState(false)
-
-  const handleOpenChange = (newOpen: boolean) => {
-    setOpen(newOpen)
-    onOpenChange?.(newOpen)
-  }
+  const playerRef = useRef<MuxPlayerElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isFullscreen, setIsFullscreen] = useState(false)
 
   useEffect(() => {
-    if (open) {
+    const handleFullscreenChange = () => {
+      const isFs = !!document.fullscreenElement
+      setIsFullscreen(isFs)
+      onOpenChange?.(isFs)
+
+      if (!isFs && playerRef.current) {
+        playerRef.current.pause()
+      }
+    }
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange)
+    }
+  }, [onOpenChange])
+
+  useEffect(() => {
+    if (isFullscreen) {
       lenis?.stop()
     } else {
       lenis?.start()
     }
-  }, [open, lenis])
+  }, [isFullscreen, lenis])
+
+  const handleTriggerClick = async () => {
+    if (playerRef.current) {
+      playerRef.current.muted = false
+      try {
+        await playerRef.current.play()
+        if (containerRef.current?.requestFullscreen) {
+          await containerRef.current.requestFullscreen()
+        } else if (playerRef.current.requestFullscreen) {
+          await playerRef.current.requestFullscreen()
+        } else if (
+          (playerRef.current.media as unknown as SafariVideoElement)
+            ?.webkitEnterFullscreen
+        ) {
+          ;(
+            playerRef.current.media as unknown as SafariVideoElement
+          ).webkitEnterFullscreen?.()
+        }
+      } catch (err) {
+        console.error('Failed to enter fullscreen', err)
+      }
+    }
+  }
+
+  const handleClose = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen()
+    }
+  }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
-      {dialogTrigger && <DialogTrigger asChild>{dialogTrigger}</DialogTrigger>}
-      <DialogContent className='z-[var(--z-modal)] flex flex-col items-center justify-center'>
-        <VisuallyHidden>
-          <DialogTitle>Video Player</DialogTitle>
-          <DialogDescription>
-            Full-screen video player for viewing media content
-          </DialogDescription>
-        </VisuallyHidden>
-        <div
-          className={cn(
-            'relative',
-            'flex flex-col items-center justify-center',
-            'max-h-[95vh] max-w-[100vw] xl:max-w-[90vw]',
-            'h-full w-[100vw]'
-          )}
+    <>
+      <div
+        onClick={handleTriggerClick}
+        className='h-full w-full cursor-pointer'
+      >
+        {dialogTrigger}
+      </div>
+      <div
+        ref={containerRef}
+        className='group fixed bottom-0 right-0 z-[9999] h-0 w-0 overflow-hidden opacity-0 transition-opacity duration-500 [&:fullscreen]:h-full [&:fullscreen]:w-full [&:fullscreen]:opacity-100'
+      >
+        <button
+          onClick={handleClose}
+          className='absolute right-5 top-5 z-50 hidden rounded-full bg-black/50 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/70 group-[:fullscreen]:block group-[:fullscreen]:animate-in group-[:fullscreen]:fade-in group-[:fullscreen]:zoom-in-95'
+        >
+          <XIcon size={24} />
+        </button>
+        <MuxPlayer
+          ref={playerRef}
+          className='h-full w-full'
+          playbackId={mediaId}
+          playsInline
+          streamType='on-demand'
           style={
             {
               aspectRatio: aspectRatio,
+              '--media-object-fit': 'contain',
+              '--fullscreen-button': 'none',
+              '--pip-button': 'none',
             } as React.CSSProperties
           }
-        >
-          <MuxPlayer
-            className='h-full w-full'
-            playbackId={mediaId}
-            autoPlay
-            playsInline
-            streamType='on-demand'
-            style={
-              {
-                aspectRatio: aspectRatio,
-                '--media-object-fit': 'contain',
-                '--pip-button': 'none',
-                width: '100%',
-                height: '100%',
-              } as React.CSSProperties
-            }
-            thumbnailTime={3}
-            loading='viewport'
-            accentColor={colors['tangerine-flake']}
-            primaryColor={colors['white']}
-            secondaryColor={colors['transparent']}
-          />
-        </div>
-      </DialogContent>
-    </Dialog>
+          thumbnailTime={3}
+          loading='viewport'
+          accentColor={colors['tangerine-flake']}
+          primaryColor={colors['white']}
+          secondaryColor={colors['transparent']}
+        />
+      </div>
+    </>
   )
 }
