@@ -120,6 +120,7 @@ export function FullScreenVideoDialog({
           accentColor={colors['tangerine-flake']}
           primaryColor={colors['white']}
           secondaryColor={colors['transparent']}
+          preload='none'
         />
       </div>
     </>

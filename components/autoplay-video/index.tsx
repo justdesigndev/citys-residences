@@ -11,10 +11,12 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Image } from '@/components/image'
 
-const FullScreenVideoDialog = dynamic(() =>
-  import('@/components/dialogs/full-screen-video-dialog').then(
-    module => module.FullScreenVideoDialog
-  )
+const FullScreenVideoDialog = dynamic(
+  () =>
+    import('@/components/dialogs/full-screen-video-dialog').then(
+      module => module.FullScreenVideoDialog
+    ),
+  { ssr: false }
 )
 
 interface AutoplayVideoProps {
