@@ -171,6 +171,19 @@ export async function fetchBrands(
 
     const responseData = response.data
 
+    // Handle case where API returns an object indicating failure (e.g. { success: false, message: "..." })
+    // The API might return an object instead of an array when no results are found
+    const errorResponse = responseData as unknown as {
+      success: boolean
+      message?: string
+    }
+    if (!Array.isArray(responseData) && errorResponse?.success === false) {
+      return {
+        success: false,
+        message: errorResponse.message || 'Marka bulunamadı',
+      }
+    }
+
     // Handle case when no brands are found (if API returns success: false)
     if (Array.isArray(responseData) && responseData.length === 0) {
       const emptyData: BrandsResponse = {

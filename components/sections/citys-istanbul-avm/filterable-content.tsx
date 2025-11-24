@@ -9,7 +9,10 @@ import { z } from 'zod'
 
 import { Image } from '@/components/image'
 import { FilterForm } from '@/components/sections/citys-istanbul-avm/filter-form'
-import { ErrorMessage, LoadingSpinner } from '@/components/ui/loading-states'
+import {
+  ErrorMessage,
+  LoadingSpinnerWithText,
+} from '@/components/ui/loading-states'
 import {
   useAvmData,
   useAvmSubCategories,
@@ -67,9 +70,17 @@ export function FilterableContent({ brands }: FilterableContentProps) {
 
   // Use React Query for brands with filters
   const brandsQuery = useBrands(filters)
+
+  const hasFilters =
+    !!filters.category ||
+    !!filters.subCategory ||
+    !!filters.floor ||
+    !!filters.keyword
+
   const filteredBrands = brandsQuery.isLoading
     ? []
-    : brandsQuery.data?.data?.items || brands
+    : brandsQuery.data?.data?.items || (hasFilters ? [] : brands)
+
   const noResultsMessage = brandsQuery.data?.message
 
   // Use React Query for subcategories
@@ -92,7 +103,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
         />
       </div>
       <div className='col-span-24 min-h-[50vh] px-8 lg:col-span-19 lg:col-start-5'>
-        {loading && <LoadingSpinner message={t('loading')} />}
+        {loading && <LoadingSpinnerWithText message={t('loading')} />}
         <AnimatePresence mode='wait'>
           {!loading && (
             <motion.div
@@ -100,7 +111,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               <div className='grid grid-cols-3 items-start gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-5 lg:gap-4'>
                 <AnimatePresence>
@@ -112,7 +123,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.25 }}
                         layout
                       >
                         <div
@@ -155,7 +166,7 @@ export function FilterableContent({ brands }: FilterableContentProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <p className='font-primary text-lg text-gray-500'>
                       {noResultsMessage || t('noResults.title')}
