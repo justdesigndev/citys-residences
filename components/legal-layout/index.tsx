@@ -1,71 +1,79 @@
 'use client'
 
 import { Link as LocalizedLink } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
+import { ArrowCircleLeftIcon, FilesIcon } from '@phosphor-icons/react'
+import { useLocale, useTranslations } from 'next-intl'
 import { ReactNode } from 'react'
-import { useLocale } from 'next-intl'
 
 import { Logo } from '@/components/icons'
 import { LegalTableOfContents } from '@/components/legal-table-of-contents'
 import { LocaleSwitcher } from '@/components/locale-switcher'
-import { SmoothScroll } from '@/components/smooth-scroll'
+// import { SmoothScroll } from '@/components/smooth-scroll'
 import { Link } from '@/components/utility/link'
 import { Locale, Pathnames } from '@/i18n/routing'
 import { navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
-import { ArrowCircleLeftIcon } from '@phosphor-icons/react'
 
 export interface LegalLayoutProps {
   children: ReactNode
 }
 
 export function LegalLayout({ children }: LegalLayoutProps) {
+  const t = useTranslations('common')
   const locale = useLocale()
   return (
     <>
-      <section className='section-container grid min-h-screen grid-cols-24'>
-        <div className='col-span-24 px-8 lg:col-span-8 lg:pl-8 lg:pr-8 xl:col-span-6 xl:px-0'>
-          <div className='sticky top-8 flex flex-col xl:gap-y-20'>
-            <div className='flex items-center justify-between'>
-              <Link
-                href='/'
-                className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
-                aria-label='Home'
-              >
-                <Logo fill={colors.black} />
-              </Link>
-              <div className='flex items-center justify-end py-4 lg:hidden xl:py-28 xl:pl-20'>
-                <LocalizedLink
-                  href={navigationConfig['/'].href as Pathnames}
-                  className='group flex items-center gap-2'
-                  aria-label='Home'
-                  locale={locale as Locale}
-                >
-                  <ArrowCircleLeftIcon
-                    className='group-hover:animate-bounce-x size-5 text-white'
-                    weight='regular'
-                  />
-                  <span className='base font-primary font-[400] text-white'>
-                    ANASAYFA
-                  </span>
-                </LocalizedLink>
-                <LocaleSwitcher className='text-black' />
-              </div>
-            </div>
-            <div className='xl-pr-16 border-b border-gray-500 py-12 lg:border-b-0 lg:border-r lg:pr-8 xl:py-0'>
-              <LegalTableOfContents />
-            </div>
-          </div>
-        </div>
-        <div className='col-span-24 px-8 lg:col-span-16 lg:px-8 xl:col-span-18 xl:px-0'>
-          <div className='hidden items-center justify-end py-4 lg:flex lg:py-8 xl:py-28 xl:pl-20'>
+      <section className='section-container flex h-auto flex-col gap-y-0 xl:h-screen xl:max-h-screen xl:gap-y-8'>
+        <div className='flex h-28 flex-shrink-0 items-center justify-between px-8 xl:h-48'>
+          <Link
+            href='/'
+            className='2xl:size-46 pointer-events-auto block size-28 flex-shrink-0 xl:size-32 3xl:size-40'
+            aria-label='Home'
+          >
+            <Logo fill={colors.black} />
+          </Link>
+          <div className='flex items-center justify-end py-4 xl:py-4 xl:pl-20'>
+            <LocalizedLink
+              href={navigationConfig['/'].href as Pathnames}
+              className='group mr-2 flex items-center gap-2'
+              aria-label='Home'
+              locale={locale as Locale}
+            >
+              <ArrowCircleLeftIcon
+                className='size-5 text-black group-hover:animate-bounce-x'
+                weight='regular'
+              />
+              <span className='base font-primary font-[400] uppercase leading-none text-black'>
+                {t('navigation.home')}
+              </span>
+            </LocalizedLink>
             <LocaleSwitcher className='text-black' />
           </div>
-          <div className='prose-sm pb-24 pt-12 font-primary xl:prose-base xl:pl-20 xl:pt-0 [&_ul]:list-disc [&_ul]:pl-6'>
+        </div>
+        <div className='grid min-h-0 flex-grow grid-cols-24'>
+          <div className='col-span-24 flex h-full flex-col border-black/80 px-8 xl:col-span-7 xl:border-b-0 xl:border-r'>
+            <div className='mb-8 border-b border-gray-500 py-6 pr-8 xl:mb-0 xl:border-b-0 xl:py-0'>
+              <LegalTableOfContents />
+            </div>
+            <FilesIcon
+              className='mb-12 mt-auto hidden size-24 text-black xl:block'
+              weight='thin'
+            />
+          </div>
+          <div
+            className={cn(
+              'col-span-24 xl:col-span-17',
+              'px-8 xl:px-16',
+              'flex min-h-0 flex-1 flex-col',
+              'prose-sm font-primary leading-[1.5] xl:prose-base xl:pt-0 [&_h1]:my-0 [&_h1]:py-0 [&_ul]:list-disc'
+            )}
+          >
             {children}
           </div>
         </div>
       </section>
-      <SmoothScroll root />
+      {/* <SmoothScroll root /> */}
     </>
   )
 }
