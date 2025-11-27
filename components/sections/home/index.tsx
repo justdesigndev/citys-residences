@@ -10,6 +10,7 @@ import { Image } from '@/components/image'
 import { SectionContactForm } from '@/components/section-contact-form'
 import { SectionSetter } from '@/components/section-setter'
 import { VideoWithText } from '@/components/video-with-text'
+import { getCountries } from '@/lib/api/countries'
 import { liveMore, livePeacefully, navigationConfig } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 import { FormTranslations } from '@/types'
@@ -29,6 +30,7 @@ export default async function Page({
   const messages = await getMessages({ locale })
   type ContactMessages = { contact: { form: FormTranslations } }
   const formTranslations = (messages as unknown as ContactMessages).contact.form
+  const countries = getCountries()
 
   return (
     <SectionSetter sectionId={navigationConfig['/']?.id as string}>
@@ -198,7 +200,10 @@ export default async function Page({
           })}
           description={t('livePeacefully.description')}
         />
-        <SectionContactForm formTranslations={formTranslations} />
+        <SectionContactForm
+          formTranslations={formTranslations}
+          countries={countries}
+        />
         <VideoWithText
           aspect={liveMore.aspect()}
           mediaId={liveMore.muxSrc as string}

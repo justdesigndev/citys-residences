@@ -12,6 +12,11 @@ import { SmoothScroll } from '@/components/smooth-scroll'
 import { StickySidebar } from '@/components/sticky-sidebar'
 import { WebChat } from '@/components/web-chat'
 
+interface CountryData {
+  isoCode: string
+  name: string
+}
+
 interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: (typeof themeNames)[number]
   lenis?: boolean
@@ -20,6 +25,7 @@ interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   headerWithNavigation?: boolean
   contactForm?: boolean
   footer?: boolean
+  countries?: CountryData[]
 }
 
 export function Wrapper({
@@ -31,6 +37,7 @@ export function Wrapper({
   headerWithNavigation = true,
   footer = true,
   contactForm = true,
+  countries = [],
   ...props
 }: WrapperProps) {
   const pathname = usePathname()
@@ -51,7 +58,7 @@ export function Wrapper({
         </main>
         {footer && <Footer />}
       </div>
-      {contactForm && <ModalContactForm />}
+      {contactForm && <ModalContactForm countries={countries} />}
       {stickySidebar && <StickySidebar />}
       {lenis && <SmoothScroll root />}
       {/* Hidden element for webchat to detect language */}

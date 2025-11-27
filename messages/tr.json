@@ -130,6 +130,22 @@
                         "email": "Lütfen geçerli bir e-posta adresi giriniz"
                     }
                 },
+                "country": {
+                    "label": "Ülke*",
+                    "placeholder": "Ülke seçiniz",
+                    "errors": {
+                        "required": "Zorunlu alan"
+                    }
+                },
+                "city": {
+                    "label": "Şehir*",
+                    "placeholder": "Şehir seçiniz",
+                    "placeholderSelectCountry": "Önce ülke seçiniz",
+                    "placeholderLoading": "Yükleniyor...",
+                    "errors": {
+                        "required": "Zorunlu alan"
+                    }
+                },
                 "residenceType": {
                     "label": "İlgilendiğiniz konut tipi*",
                     "placeholder": "İlgilendiğiniz konut tipi",

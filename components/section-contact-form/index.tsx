@@ -9,10 +9,17 @@ import { ContactForm } from '@/components/form-contact'
 import { useFadeoutWithTimeout } from '@/hooks/useFadeoutWithTimeout'
 import { FormTranslations } from '@/types'
 
+interface CountryData {
+  isoCode: string
+  name: string
+}
+
 export function SectionContactForm({
   formTranslations,
+  countries,
 }: {
   formTranslations: FormTranslations
+  countries: CountryData[]
 }) {
   const t = useTranslations()
   const [isFormSuccess, handleFormSuccess] = useFadeoutWithTimeout(3000)
@@ -51,6 +58,7 @@ export function SectionContactForm({
           <div className='col-span-24 pb-12 lg:col-span-18 lg:col-start-6 xl:pb-0'>
             <ContactForm
               translations={formTranslations}
+              countries={countries}
               onSuccess={handleFormSuccess}
             />
           </div>

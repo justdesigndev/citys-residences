@@ -14,6 +14,7 @@ import {
   fetchCitysLivingData,
   fetchCitysMembersClubData,
 } from '@/lib/api/queries'
+import { getCountries } from '@/lib/api/countries'
 
 export default async function Page({ params }: { params: { locale: string } }) {
   // Fetch all data server-side
@@ -23,8 +24,10 @@ export default async function Page({ params }: { params: { locale: string } }) {
     fetchCitysMembersClubData(params.locale),
   ])
 
+  const countries = getCountries()
+
   return (
-    <Wrapper>
+    <Wrapper countries={countries}>
       <Home params={params} />
       <ProjectSection params={params} />
       <ResidencesSection params={params} />

@@ -238,6 +238,18 @@ export interface FormTranslations {
       label: string
       errors: { required: string; email: string }
     }
+    country: {
+      placeholder: string
+      label: string
+      errors: { required: string }
+    }
+    city: {
+      placeholder: string
+      placeholderSelectCountry: string
+      placeholderLoading: string
+      label: string
+      errors: { required: string }
+    }
     residenceType: {
       placeholder: string
       label: string

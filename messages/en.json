@@ -130,6 +130,22 @@
                         "email": "Please enter a valid email address"
                     }
                 },
+                "country": {
+                    "label": "Country*",
+                    "placeholder": "Select country",
+                    "errors": {
+                        "required": "Required field"
+                    }
+                },
+                "city": {
+                    "label": "City*",
+                    "placeholder": "Select city",
+                    "placeholderSelectCountry": "Select country first",
+                    "placeholderLoading": "Loading...",
+                    "errors": {
+                        "required": "Required field"
+                    }
+                },
                 "residenceType": {
                     "label": "Preferred Type*",
                     "placeholder": "Enter your preferred type",

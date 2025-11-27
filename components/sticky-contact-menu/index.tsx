@@ -15,7 +15,16 @@ import { ScrollableBox } from '@/components/utility/scrollable-box'
 import { useVisibilityStore } from '@/lib/store/visibility'
 import { FormTranslations } from '@/types'
 
-export function StickyContactMenu() {
+interface CountryData {
+  isoCode: string
+  name: string
+}
+
+interface StickyContactMenuProps {
+  countries: CountryData[]
+}
+
+export function StickyContactMenu({ countries }: StickyContactMenuProps) {
   const t = useTranslations('contact')
   const ref = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -49,6 +58,24 @@ export function StickyContactMenu() {
         errors: {
           required: t('form.inputs.email.errors.required'),
           email: t('form.inputs.email.errors.email'),
+        },
+      },
+      country: {
+        label: t('form.inputs.country.label'),
+        placeholder: t('form.inputs.country.placeholder'),
+        errors: {
+          required: t('form.inputs.country.errors.required'),
+        },
+      },
+      city: {
+        label: t('form.inputs.city.label'),
+        placeholder: t('form.inputs.city.placeholder'),
+        placeholderSelectCountry: t(
+          'form.inputs.city.placeholderSelectCountry'
+        ),
+        placeholderLoading: t('form.inputs.city.placeholderLoading'),
+        errors: {
+          required: t('form.inputs.city.errors.required'),
         },
       },
       residenceType: {
@@ -189,7 +216,10 @@ export function StickyContactMenu() {
                 br: () => <br className='hidden bt:block' />,
               })}
             </p>
-            <ContactForm translations={formTranslations} />
+            <ContactForm
+              translations={formTranslations}
+              countries={countries}
+            />
           </ScrollableBox>
         </div>
       </div>

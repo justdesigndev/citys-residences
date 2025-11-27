@@ -16,7 +16,16 @@ import { useFadeoutWithTimeout } from '@/hooks/useFadeoutWithTimeout'
 import { useUiStore } from '@/lib/store/ui'
 import { FormTranslations } from '@/types'
 
-export function ModalContactForm() {
+interface CountryData {
+  isoCode: string
+  name: string
+}
+
+interface ModalContactFormProps {
+  countries: CountryData[]
+}
+
+export function ModalContactForm({ countries }: ModalContactFormProps) {
   const stickyBadgeRef = useRef<HTMLButtonElement>(null)
   const overlayRef = useRef<HTMLButtonElement>(null)
   const formRef = useRef<HTMLDivElement>(null)
@@ -57,6 +66,24 @@ export function ModalContactForm() {
         errors: {
           required: t('form.inputs.email.errors.required'),
           email: t('form.inputs.email.errors.email'),
+        },
+      },
+      country: {
+        label: t('form.inputs.country.label'),
+        placeholder: t('form.inputs.country.placeholder'),
+        errors: {
+          required: t('form.inputs.country.errors.required'),
+        },
+      },
+      city: {
+        label: t('form.inputs.city.label'),
+        placeholder: t('form.inputs.city.placeholder'),
+        placeholderSelectCountry: t(
+          'form.inputs.city.placeholderSelectCountry'
+        ),
+        placeholderLoading: t('form.inputs.city.placeholderLoading'),
+        errors: {
+          required: t('form.inputs.city.errors.required'),
         },
       },
       residenceType: {
@@ -286,6 +313,7 @@ export function ModalContactForm() {
               </p>
               <ContactForm
                 translations={formTranslations}
+                countries={countries}
                 onSuccess={handleFormSuccess}
               />
             </div>

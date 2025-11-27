@@ -11,7 +11,7 @@ import {
   StorefrontIcon,
   UserIcon,
 } from '@phosphor-icons/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useLocale, useTranslations } from 'next-intl'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { Control, useForm } from 'react-hook-form'
@@ -33,10 +33,28 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Link } from '@/components/utility/link'
 import { submitContactForm } from '@/lib/api/submit-contact-form'
 import { cn, isPhoneValid } from '@/lib/utils'
 import { FormTranslations } from '@/types'
+
+interface CountryData {
+  isoCode: string
+  name: string
+}
+
+interface StateData {
+  isoCode: string
+  name: string
+  countryCode: string
+}
 
 const getFormSchema = (translations: FormTranslations) => {
   // Ensure contactPreference exists with fallback
@@ -68,6 +86,12 @@ const getFormSchema = (translations: FormTranslations) => {
       .string()
       .min(1, { message: translations.inputs.email.errors.required })
       .email({ message: translations.inputs.email.errors.email }),
+    country: z
+      .string()
+      .min(1, { message: translations.inputs.country.errors.required }),
+    city: z
+      .string()
+      .min(1, { message: translations.inputs.city.errors.required }),
     residenceType: z
       .string()
       .min(1, { message: translations.inputs.residenceType.errors.required }),
@@ -175,13 +199,55 @@ const useFormMessage = (timeout = 5000): UseFormMessage => {
 
 interface FormContactProps {
   translations: FormTranslations
+  countries: CountryData[]
   onSuccess?: () => void
 }
 
-export function ContactForm({ translations, onSuccess }: FormContactProps) {
+export function ContactForm({
+  translations,
+  countries,
+  onSuccess,
+}: FormContactProps) {
   const { showMessage } = useFormMessage()
   const t = useTranslations()
   const locale = useLocale()
+
+  // Track selected country code for fetching cities
+  const [selectedCountryCode, setSelectedCountryCode] = useState<string>('')
+
+  // Fetch cities/states when country changes
+  const { data: citiesData, isLoading: isCitiesLoading } = useQuery({
+    queryKey: ['cities', selectedCountryCode],
+    queryFn: async () => {
+      if (!selectedCountryCode) return { states: [] }
+      const response = await fetch(
+        `/api/cities?countryCode=${selectedCountryCode}`
+      )
+      if (!response.ok) throw new Error('Failed to fetch cities')
+      return response.json() as Promise<{ states: StateData[] }>
+    },
+    enabled: !!selectedCountryCode,
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+  })
+
+  // Localize and sort countries
+  const localizedCountries = useMemo(() => {
+    const displayNames = new Intl.DisplayNames([locale], { type: 'region' })
+    return countries
+      .map(country => ({
+        ...country,
+        localizedName: displayNames.of(country.isoCode) || country.name,
+      }))
+      .sort((a, b) => a.localizedName.localeCompare(b.localizedName, locale))
+  }, [countries, locale])
+
+  // Sort cities alphabetically
+  const sortedCities = useMemo(() => {
+    if (!citiesData?.states) return []
+    return [...citiesData.states].sort((a, b) =>
+      a.name.localeCompare(b.name, locale)
+    )
+  }, [citiesData?.states, locale])
 
   const residenceTypeDropdownRef = useRef<MultiSelectCheckboxesRef>(null)
   const howDidYouHearAboutUsDropdownRef = useRef<MultiSelectCheckboxesRef>(null)
@@ -191,6 +257,7 @@ export function ContactForm({ translations, onSuccess }: FormContactProps) {
     residenceTypeDropdownRef.current?.reset()
     howDidYouHearAboutUsDropdownRef.current?.reset()
     contactPreferenceDropdownRef.current?.reset()
+    setSelectedCountryCode('')
   }
 
   const form = useForm<FormValues>({
@@ -201,6 +268,8 @@ export function ContactForm({ translations, onSuccess }: FormContactProps) {
       countryCode: '',
       phone: '',
       email: '',
+      country: '',
+      city: '',
       residenceType: '2+1',
       howDidYouHearAboutUs: '',
       contactPreference: '',
@@ -499,8 +568,8 @@ export function ContactForm({ translations, onSuccess }: FormContactProps) {
           noValidate
         >
           <div className='grid grid-cols-12 items-start gap-y-12 xl:grid-cols-24'>
-            {/* name and surname */}
-            <div className='col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
+            {/* name - surname - phone - email */}
+            <div className='order-1 col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
               <div className='flex grid-flow-col flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-6'>
                 <FormInput
                   label={translations.inputs.name.label}
@@ -530,41 +599,120 @@ export function ContactForm({ translations, onSuccess }: FormContactProps) {
                   />
                 </div>
               </div>
-              <div className='grid grid-cols-1 gap-6 pr-0 md:pr-72 lg:gap-4 xl:pr-40'>
-                <FormField
-                  control={form.control}
-                  name='residenceType'
-                  render={() => (
-                    <FormItem>
-                      <FormControl>
-                        <MultiSelectCheckboxes
-                          title={translations.inputs.residenceType.label}
-                          selectedValues={
-                            residenceTypeValue
-                              ? residenceTypeOptions
-                                  .filter(opt =>
-                                    residenceTypeValue
-                                      .split(',')
-                                      .includes(opt.label)
-                                  )
-                                  .map(opt => opt.id)
-                              : []
-                          }
-                          options={residenceTypeOptions}
-                          onChange={handleResidenceType}
-                          ref={residenceTypeDropdownRef}
-                          textSize='lg'
-                          textClassName='tracking-[0.25em]'
-                        />
-                      </FormControl>
-                      <FormMessage className='text-tangerine-flake' />
-                    </FormItem>
-                  )}
-                />
+              <div className='grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6'>
+                <div className='col-span-1'>
+                  <FormField
+                    control={form.control}
+                    name='country'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
+                          {translations.inputs.country.label}
+                        </FormLabel>
+                        <FormControl>
+                          <Select
+                            value={field.value}
+                            onValueChange={value => {
+                              // Find the country by localized name
+                              const selectedCountry = localizedCountries.find(
+                                c => c.localizedName === value
+                              )
+                              if (selectedCountry) {
+                                setSelectedCountryCode(selectedCountry.isoCode)
+                                field.onChange(value)
+                                // Clear city when country changes
+                                form.setValue('city', '')
+                              }
+                            }}
+                          >
+                            <SelectTrigger
+                              className={cn(
+                                'h-12 px-0 lg:h-14 xl:h-14',
+                                'rounded-none border-b border-white bg-transparent font-[300] text-white',
+                                'text-sm lg:text-sm xl:text-sm 2xl:text-lg',
+                                !field.value && 'text-tangerine-flake'
+                              )}
+                            >
+                              <SelectValue
+                                placeholder={
+                                  translations.inputs.country.placeholder
+                                }
+                              />
+                            </SelectTrigger>
+                            <SelectContent className='z-[500] max-h-60 rounded-none border border-white bg-white text-black'>
+                              {localizedCountries.map(country => (
+                                <SelectItem
+                                  key={country.isoCode}
+                                  value={country.localizedName}
+                                >
+                                  {country.localizedName}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage className='text-tangerine-flake' />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className='col-span-1'>
+                  <FormField
+                    control={form.control}
+                    name='city'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
+                          {translations.inputs.city.label}
+                        </FormLabel>
+                        <FormControl>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            disabled={!selectedCountryCode || isCitiesLoading}
+                          >
+                            <SelectTrigger
+                              className={cn(
+                                'h-12 px-0 lg:h-14 xl:h-14',
+                                'rounded-none border-b border-white bg-transparent font-[300] text-white',
+                                'text-sm lg:text-sm xl:text-sm 2xl:text-lg',
+                                'disabled:opacity-50',
+                                !field.value && 'text-tangerine-flake'
+                              )}
+                            >
+                              <SelectValue
+                                placeholder={
+                                  isCitiesLoading
+                                    ? translations.inputs.city
+                                        .placeholderLoading
+                                    : !selectedCountryCode
+                                      ? translations.inputs.city
+                                          .placeholderSelectCountry
+                                      : translations.inputs.city.placeholder
+                                }
+                              />
+                            </SelectTrigger>
+                            <SelectContent className='z-[500] max-h-60 rounded-none border border-white bg-white text-black'>
+                              {sortedCities.map(city => (
+                                <SelectItem
+                                  key={city.isoCode}
+                                  value={city.name}
+                                >
+                                  {city.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage className='text-tangerine-flake' />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
             </div>
-            {/* how did you hear about us */}
-            <div className='col-span-12 space-y-8 xl:col-span-9'>
+            {/* how did you hear about us - contact preference */}
+            <div className='order-3 col-span-12 space-y-8 xl:order-2 xl:col-span-9'>
               <FormField
                 control={form.control}
                 name='howDidYouHearAboutUs'
@@ -622,8 +770,43 @@ export function ContactForm({ translations, onSuccess }: FormContactProps) {
                 )}
               />
             </div>
+            {/* residence type */}
+            <div className='order-2 col-span-12 space-y-8 xl:order-3 xl:col-span-24 xl:pr-20'>
+              <div className='grid grid-cols-1 gap-6 pr-0 md:pr-72 lg:gap-4 xl:pr-40'>
+                <FormField
+                  control={form.control}
+                  name='residenceType'
+                  render={() => (
+                    <FormItem>
+                      <FormControl>
+                        <MultiSelectCheckboxes
+                          title={translations.inputs.residenceType.label}
+                          selectedValues={
+                            residenceTypeValue
+                              ? residenceTypeOptions
+                                  .filter(opt =>
+                                    residenceTypeValue
+                                      .split(',')
+                                      .includes(opt.label)
+                                  )
+                                  .map(opt => opt.id)
+                              : []
+                          }
+                          options={residenceTypeOptions}
+                          onChange={handleResidenceType}
+                          ref={residenceTypeDropdownRef}
+                          textSize='lg'
+                          textClassName='tracking-[0.25em]'
+                        />
+                      </FormControl>
+                      <FormMessage className='text-tangerine-flake' />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
             {/* consent */}
-            <div className='col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
+            <div className='order-4 col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
               <div className='space-y-5'>
                 <div className='space-y-3'>
                   <FormField
@@ -718,7 +901,7 @@ export function ContactForm({ translations, onSuccess }: FormContactProps) {
               </div>
             </div>
             {/* submit button */}
-            <div className='col-span-12 flex space-y-8 xl:col-span-9 2xl:pr-20'>
+            <div className='order-5 col-span-12 flex space-y-8 xl:col-span-9 2xl:pr-20'>
               <button
                 type='submit'
                 disabled={mutation.isPending}
