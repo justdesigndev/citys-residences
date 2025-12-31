@@ -110,6 +110,10 @@ export function ModalContactForm({ countries }: ModalContactFormProps) {
           billboard: t('form.inputs.howDidYouHearAboutUs.options.billboard'),
         },
       },
+      profession: {
+        label: t('form.inputs.profession.label'),
+        placeholder: t('form.inputs.profession.placeholder'),
+      },
       contactPreference: {
         placeholder: t('form.inputs.contactPreference.placeholder'),
         errors: {
@@ -121,7 +125,6 @@ export function ModalContactForm({ countries }: ModalContactFormProps) {
         email: t('form.inputs.contactPreferenceOptions.email'),
         phone: t('form.inputs.contactPreferenceOptions.phone'),
       },
-      message: { placeholder: t('form.inputs.message.placeholder') },
       consent: {
         placeholder: '', // This is handled by ConsentCheckboxes component with t.rich()
         errors: {

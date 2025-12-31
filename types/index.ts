@@ -261,6 +261,10 @@ export interface FormTranslations {
       errors: { required: string }
       options: Record<string, string>
     }
+    profession: {
+      placeholder: string
+      label: string
+    }
     contactPreference: { placeholder: string; errors: { required: string } }
     contactPreferenceOptions: {
       sms: string
@@ -275,7 +279,6 @@ export interface FormTranslations {
     consentSms: { placeholder: string }
     consentEmail: { placeholder: string }
     consentPhone: { placeholder: string }
-    message: { placeholder: string }
   }
   submit: {
     default: string

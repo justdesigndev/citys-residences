@@ -12,6 +12,7 @@ import {
   Select,
   SelectContent,
   SelectGroup,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
@@ -78,23 +79,37 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  const sortedCountries = React.useMemo(() => {
+    return [...defaultCountries].sort((a, b) => {
+      const countryA = parseCountry(a)
+      const countryB = parseCountry(b)
+      if (countryA.iso2 === 'tr') return -1
+      if (countryB.iso2 === 'tr') return 1
+      return 0
+    })
+  }, [])
+
   const countryOptions = (
     <>
-      {defaultCountries.map((c, index) => {
+      {sortedCountries.map((c, index) => {
         const country = parseCountry(c)
         // Get localized country name, fallback to original name if translation not found
         const localizedCountryName = getCountryName(
           country.iso2,
           country.name.toString()
         )
+        const isTurkey = country.iso2 === 'tr'
+
         return (
-          <SelectItem
-            className='cursor-pointer px-4 py-2 font-primary text-base focus:bg-neutral-50 focus:text-neutral-950 bt:text-sm'
-            key={`${index}-${country.iso2}-${country.dialCode}`}
-            value={country.iso2}
-          >
-            {`${localizedCountryName} (+${country.dialCode.toString()})`}
-          </SelectItem>
+          <React.Fragment key={`${index}-${country.iso2}-${country.dialCode}`}>
+            <SelectItem
+              className='cursor-pointer px-4 py-2 font-primary text-base focus:bg-neutral-50 focus:text-neutral-950 bt:text-sm'
+              value={country.iso2}
+            >
+              {`${localizedCountryName} (+${country.dialCode.toString()})`}
+            </SelectItem>
+            {isTurkey && <SelectSeparator className='bg-neutral-200' />}
+          </React.Fragment>
         )
       })}
     </>

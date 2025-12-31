@@ -62,6 +62,10 @@ const suisseIntl = localFont({
   variable: '--font-suisse-intl',
 })
 
+export const viewport = {
+  themeColor: '#ffffff',
+}
+
 export async function generateMetadata({
   params: { locale },
 }: {
@@ -72,7 +76,6 @@ export async function generateMetadata({
   return {
     title: t('title'),
     description: t('description'),
-    themeColor: '#ffffff',
     verification: {
       google: 'google918f2bcab83a8f97',
     },

@@ -16,9 +16,16 @@ export const getUtmParameter = (param: string) => {
 
 const phoneUtil = PhoneNumberUtil.getInstance()
 
-export const isPhoneValid = (phone: string) => {
+export const isPhoneValid = (phone: string, countryCode?: string) => {
   try {
     if (!phone || phone.trim() === '') return false
+    if (countryCode) {
+      // If country code is provided, we can validate more specifically
+      // but parseAndKeepRawInput handles both + prefixed and local numbers if country is known
+      return phoneUtil.isValidNumber(
+        phoneUtil.parseAndKeepRawInput(phone, countryCode.startsWith('+') ? undefined : countryCode)
+      )
+    }
     return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone))
   } catch {
     return false

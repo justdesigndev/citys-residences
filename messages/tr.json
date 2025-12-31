@@ -166,6 +166,10 @@
                         "billboard": "Açıkhava"
                     }
                 },
+                "profession": {
+                    "label": "Meslek",
+                    "placeholder": "Mesleğinizi yazınız"
+                },
                 "contactPreference": {
                     "label": "İletişim Tercihiniz*",
                     "placeholder": "İletişim Tercihiniz",
@@ -177,10 +181,6 @@
                     "sms": "SMS WhatsApp",
                     "email": "E-posta",
                     "phone": "Telefon"
-                },
-                "message": {
-                    "label": "Mesajınız*",
-                    "placeholder": "Mesajınız"
                 },
                 "consent": {
                     "placeholder": "citysresidences.com uygulaması kapsamında paylaşacağım kişisel verilere ilişkin <legal1>Kişisel Verilerin Korunmasına İlişkin Aydınlatma Metni</legal1>’ni, <legal2>Açık Rıza Metni</legal2>’ni, <legal3>Ticari Elektronik İleti Aydınlatma Metni</legal3>’ni okudum, kabul ediyorum.",

@@ -33,13 +33,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Combobox, ComboboxOption } from '@/components/ui/combobox'
 import { Link } from '@/components/utility/link'
 import { submitContactForm } from '@/lib/api/submit-contact-form'
 import { cn, isPhoneValid } from '@/lib/utils'
@@ -98,6 +92,7 @@ const getFormSchema = (translations: FormTranslations) => {
     howDidYouHearAboutUs: z.string().min(1, {
       message: translations.inputs.howDidYouHearAboutUs.errors.required,
     }),
+    profession: z.string().optional(),
     contactPreference: z
       .string()
       .min(1, { message: contactPreferenceTranslations.errors.required }),
@@ -272,6 +267,7 @@ export function ContactForm({
       city: '',
       residenceType: '2+1',
       howDidYouHearAboutUs: '',
+      profession: '',
       contactPreference: '',
       consent: false,
       consentElectronicMessage: false,
@@ -601,118 +597,145 @@ export function ContactForm({
               </div>
               <div className='grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-6'>
                 <div className='col-span-1'>
+                  <FormInput
+                    label={translations.inputs.profession.label}
+                    control={form.control}
+                    name='profession'
+                    placeholder={translations.inputs.profession.placeholder}
+                  />
+                </div>
+                <div className='col-span-1 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-4'>
                   <FormField
                     control={form.control}
                     name='country'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
-                          {translations.inputs.country.label}
-                        </FormLabel>
-                        <FormControl>
-                          <Select
-                            value={field.value}
-                            onValueChange={value => {
-                              // Find the country by localized name
-                              const selectedCountry = localizedCountries.find(
-                                c => c.localizedName === value
-                              )
-                              if (selectedCountry) {
-                                setSelectedCountryCode(selectedCountry.isoCode)
-                                field.onChange(value)
-                                // Clear city when country changes
-                                form.setValue('city', '')
+                    render={({ field }) => {
+                      const turkeyCountry = localizedCountries.find(
+                        c => c.isoCode === 'TR'
+                      )
+                      const turkeyOption: ComboboxOption | undefined =
+                        turkeyCountry
+                          ? {
+                              value: turkeyCountry.localizedName,
+                              label: turkeyCountry.localizedName,
+                            }
+                          : undefined
+
+                      const countryOptions: ComboboxOption[] =
+                        localizedCountries
+                          .filter(c => c.isoCode !== 'TR')
+                          .map(c => ({
+                            value: c.localizedName,
+                            label: c.localizedName,
+                          }))
+
+                      return (
+                        <FormItem>
+                          <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
+                            {translations.inputs.country.label}
+                          </FormLabel>
+                          <FormControl>
+                            <Combobox
+                              options={countryOptions}
+                              priorityOptions={
+                                turkeyOption ? [turkeyOption] : []
                               }
-                            }}
-                          >
-                            <SelectTrigger
-                              className={cn(
-                                'h-12 px-0 lg:h-14 xl:h-14',
-                                'rounded-none border-b border-white bg-transparent font-[300] text-white',
-                                'text-sm lg:text-sm xl:text-sm 2xl:text-lg',
-                                !field.value && 'text-tangerine-flake'
-                              )}
-                            >
-                              <SelectValue
-                                placeholder={
-                                  translations.inputs.country.placeholder
+                              value={field.value}
+                              onValueChange={value => {
+                                const selectedCountry = localizedCountries.find(
+                                  c => c.localizedName === value
+                                )
+                                if (selectedCountry) {
+                                  setSelectedCountryCode(
+                                    selectedCountry.isoCode
+                                  )
+                                  field.onChange(value)
+                                  form.setValue('city', '')
                                 }
-                              />
-                            </SelectTrigger>
-                            <SelectContent className='z-[500] max-h-60 rounded-none border border-white bg-white text-black'>
-                              {localizedCountries.map(country => (
-                                <SelectItem
-                                  key={country.isoCode}
-                                  value={country.localizedName}
-                                >
-                                  {country.localizedName}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage className='text-tangerine-flake' />
-                      </FormItem>
-                    )}
+                              }}
+                              placeholder={
+                                translations.inputs.country.placeholder
+                              }
+                              searchPlaceholder={
+                                translations.inputs.country.placeholder
+                              }
+                              emptyMessage='No country found.'
+                              contentClassName='max-h-[300px]'
+                            />
+                          </FormControl>
+                          <FormMessage className='text-tangerine-flake' />
+                        </FormItem>
+                      )
+                    }}
                   />
-                </div>
-                <div className='col-span-1'>
                   <FormField
                     control={form.control}
                     name='city'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
-                          {translations.inputs.city.label}
-                        </FormLabel>
-                        <FormControl>
-                          <Select
-                            value={field.value}
-                            onValueChange={field.onChange}
-                            disabled={!selectedCountryCode || isCitiesLoading}
-                          >
-                            <SelectTrigger
-                              className={cn(
-                                'h-12 px-0 lg:h-14 xl:h-14',
-                                'rounded-none border-b border-white bg-transparent font-[300] text-white',
-                                'text-sm lg:text-sm xl:text-sm 2xl:text-lg',
-                                'disabled:opacity-50',
-                                !field.value && 'text-tangerine-flake'
-                              )}
-                            >
-                              <SelectValue
-                                placeholder={
-                                  isCitiesLoading
+                    render={({ field }) => {
+                      const istanbulCity = sortedCities.find(
+                        city =>
+                          city.name.toLowerCase() === 'istanbul' ||
+                          city.name.toLowerCase() === 'i̇stanbul'
+                      )
+                      const istanbulOption: ComboboxOption | undefined =
+                        istanbulCity
+                          ? {
+                              value: istanbulCity.name,
+                              label: istanbulCity.name,
+                            }
+                          : undefined
+
+                      const cityOptions: ComboboxOption[] = sortedCities
+                        .filter(city => {
+                          const cityNameLower = city.name.toLowerCase()
+                          return (
+                            cityNameLower !== 'istanbul' &&
+                            cityNameLower !== 'i̇stanbul'
+                          )
+                        })
+                        .map(city => ({
+                          value: city.name,
+                          label: city.name,
+                        }))
+
+                      return (
+                        <FormItem>
+                          <FormLabel className='block font-[400] leading-none text-white lg:text-sm 2xl:text-lg'>
+                            {translations.inputs.city.label}
+                          </FormLabel>
+                          <FormControl>
+                            <Combobox
+                              options={cityOptions}
+                              priorityOptions={
+                                istanbulOption ? [istanbulOption] : []
+                              }
+                              value={field.value}
+                              onValueChange={field.onChange}
+                              disabled={!selectedCountryCode || isCitiesLoading}
+                              placeholder={
+                                isCitiesLoading
+                                  ? translations.inputs.city.placeholderLoading
+                                  : !selectedCountryCode
                                     ? translations.inputs.city
-                                        .placeholderLoading
-                                    : !selectedCountryCode
-                                      ? translations.inputs.city
-                                          .placeholderSelectCountry
-                                      : translations.inputs.city.placeholder
-                                }
-                              />
-                            </SelectTrigger>
-                            <SelectContent className='z-[500] max-h-60 rounded-none border border-white bg-white text-black'>
-                              {sortedCities.map(city => (
-                                <SelectItem
-                                  key={city.isoCode}
-                                  value={city.name}
-                                >
-                                  {city.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </FormControl>
-                        <FormMessage className='text-tangerine-flake' />
-                      </FormItem>
-                    )}
+                                        .placeholderSelectCountry
+                                    : translations.inputs.city.placeholder
+                              }
+                              searchPlaceholder={
+                                translations.inputs.city.placeholder
+                              }
+                              emptyMessage='No city found.'
+                              contentClassName='max-h-[300px]'
+                            />
+                          </FormControl>
+                          <FormMessage className='text-tangerine-flake' />
+                        </FormItem>
+                      )
+                    }}
                   />
                 </div>
               </div>
             </div>
             {/* how did you hear about us - contact preference */}
-            <div className='order-3 col-span-12 space-y-8 xl:order-2 xl:col-span-9'>
+            <div className='order-4 col-span-12 space-y-8 xl:order-2 xl:col-span-9'>
               <FormField
                 control={form.control}
                 name='howDidYouHearAboutUs'
@@ -806,7 +829,7 @@ export function ContactForm({
               </div>
             </div>
             {/* consent */}
-            <div className='order-4 col-span-12 space-y-8 xl:col-span-15 xl:pr-20'>
+            <div className='order-5 col-span-12 space-y-8 xl:order-5 xl:col-span-15 xl:pr-20'>
               <div className='space-y-5'>
                 <div className='space-y-3'>
                   <FormField
@@ -901,7 +924,7 @@ export function ContactForm({
               </div>
             </div>
             {/* submit button */}
-            <div className='order-5 col-span-12 flex space-y-8 xl:col-span-9 2xl:pr-20'>
+            <div className='order-6 col-span-12 flex space-y-8 xl:order-6 xl:col-span-9 2xl:pr-20'>
               <button
                 type='submit'
                 disabled={mutation.isPending}

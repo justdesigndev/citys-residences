@@ -166,6 +166,10 @@
                         "billboard": "Outdoor Advertising"
                     }
                 },
+                "profession": {
+                    "label": "Profession",
+                    "placeholder": "Enter your profession"
+                },
                 "contactPreference": {
                     "placeholder": "Preferred Contact Method*",
                     "errors": {
@@ -176,9 +180,6 @@
                     "sms": "SMS WhatsApp",
                     "email": "Email",
                     "phone": "Phone"
-                },
-                "message": {
-                    "placeholder": "Message"
                 },
                 "consent": {
                     "placeholder": "I have read and accept the <legal1>Personal Data Protection Disclosure Text</legal1>, <legal2>Explicit Consent Text</legal2>, and <legal3>Commercial Electronic Message Disclosure Text</legal3> regarding the personal data I will share within the scope of the citysresidences.com application.",
