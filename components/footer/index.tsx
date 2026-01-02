@@ -10,6 +10,7 @@ import {
   MapPinAreaIcon,
   MapPinPlusIcon,
   PhoneCallIcon,
+  TiktokLogoIcon,
   XLogoIcon,
   YoutubeLogoIcon,
 } from '@phosphor-icons/react'
@@ -26,6 +27,7 @@ import {
   citysIstanbulAvmGoogleMaps,
   getNavigationItems,
   navigationConfig,
+  socialMedia,
 } from '@/lib/constants'
 import { useUiStore } from '@/lib/store/ui'
 import { colors } from '@/styles/config.mjs'
@@ -278,22 +280,46 @@ export function Footer() {
               </div>
               {/* social icons desktop */}
               <div className='order-4 mx-auto hidden gap-4 lg:order-3 lg:ml-0 lg:flex'>
-                <FacebookLogoIcon
-                  weight='fill'
-                  className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
-                />
-                <InstagramLogoIcon
-                  weight='fill'
-                  className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
-                />
-                <XLogoIcon
-                  weight='fill'
-                  className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
-                />
-                <YoutubeLogoIcon
-                  weight='fill'
-                  className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
-                />
+                <Link
+                  href={socialMedia.facebook}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <FacebookLogoIcon
+                    weight='fill'
+                    className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
+                  />
+                </Link>
+                <Link
+                  href={socialMedia.instagram}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <InstagramLogoIcon
+                    weight='fill'
+                    className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
+                  />
+                </Link>
+                <Link
+                  href={socialMedia.x}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <XLogoIcon
+                    weight='fill'
+                    className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
+                  />
+                </Link>
+                <Link
+                  href={socialMedia.tiktok}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <TiktokLogoIcon
+                    weight='fill'
+                    className='size-9 cursor-pointer text-white transition-opacity duration-300 hover:opacity-50'
+                  />
+                </Link>
               </div>
               {/* buttons */}
               <div className='order-3 flex flex-col gap-6 lg:order-4'>

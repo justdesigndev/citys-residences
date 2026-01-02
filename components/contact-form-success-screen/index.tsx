@@ -1,15 +1,17 @@
 'use client'
 
+import { socialMedia } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import {
   CheckIcon,
   FacebookLogoIcon,
   InstagramLogoIcon,
+  TiktokLogoIcon,
   XLogoIcon,
-  YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 interface ContactFormSuccessScreenProps {
   isVisible: boolean
@@ -73,30 +75,46 @@ export function ContactFormSuccessScreen({
               </p>
               {/* Social Media Icons */}
               <div className='mx-auto flex gap-2 lg:gap-5 xl:ml-0 xl:mr-auto'>
-                <div className='size-12 rounded-md border border-tangerine-flake p-3 lg:size-16'>
+                <Link
+                  href={socialMedia.facebook}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   <FacebookLogoIcon
                     weight='fill'
                     className='size-full cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
                   />
-                </div>
-                <div className='size-12 rounded-md border border-tangerine-flake p-3 lg:size-16'>
+                </Link>
+                <Link
+                  href={socialMedia.instagram}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   <InstagramLogoIcon
                     weight='fill'
                     className='size-full cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
                   />
-                </div>
-                <div className='size-12 rounded-md border border-tangerine-flake p-3 lg:size-16'>
+                </Link>
+                <Link
+                  href={socialMedia.x}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   <XLogoIcon
                     weight='fill'
                     className='size-full cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
                   />
-                </div>
-                <div className='size-12 rounded-md border border-tangerine-flake p-3 lg:size-16'>
-                  <YoutubeLogoIcon
+                </Link>
+                <Link
+                  href={socialMedia.tiktok}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <TiktokLogoIcon
                     weight='fill'
                     className='size-full cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
                   />
-                </div>
+                </Link>
               </div>
             </div>
           </div>

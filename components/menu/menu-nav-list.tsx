@@ -1,18 +1,18 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import {
   CalendarPlusIcon,
   FacebookLogoIcon,
   HeadsetIcon,
   InstagramLogoIcon,
   MapPinPlusIcon,
+  TiktokLogoIcon,
   XLogoIcon,
-  YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { useWindowSize } from 'hamo'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { cn } from '@/lib/utils'
 
 import { Image } from '@/components/image'
 import { Link } from '@/components/utility/link'
@@ -26,6 +26,7 @@ import {
   getNavigationItems,
   menuMedia,
   navigationConfig,
+  socialMedia,
 } from '@/lib/constants'
 import { useUiStore } from '@/lib/store/ui'
 import { breakpoints } from '@/styles/config.mjs'
@@ -220,22 +221,46 @@ export function MenuNavList() {
           </ul>
           {/* desktop */}
           <div className='mr-auto mt-auto hidden gap-4 xl:flex'>
-            <FacebookLogoIcon
-              weight='fill'
-              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-            />
-            <InstagramLogoIcon
-              weight='fill'
-              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-            />
-            <XLogoIcon
-              weight='fill'
-              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-            />
-            <YoutubeLogoIcon
-              weight='fill'
-              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-            />
+            <Link
+              href={socialMedia.facebook}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <FacebookLogoIcon
+                weight='fill'
+                className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+              />
+            </Link>
+            <Link
+              href={socialMedia.instagram}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <InstagramLogoIcon
+                weight='fill'
+                className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+              />
+            </Link>
+            <Link
+              href={socialMedia.x}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <XLogoIcon
+                weight='fill'
+                className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+              />
+            </Link>
+            <Link
+              href={socialMedia.tiktok}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <TiktokLogoIcon
+                weight='fill'
+                className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+              />
+            </Link>
           </div>
         </div>
       </nav>
@@ -360,22 +385,42 @@ export function MenuNavList() {
         </div>
         {/* mobile */}
         <div className='mr-auto flex gap-4 xl:hidden'>
-          <FacebookLogoIcon
-            weight='fill'
-            className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-          />
-          <InstagramLogoIcon
-            weight='fill'
-            className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-          />
-          <XLogoIcon
-            weight='fill'
-            className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-          />
-          <YoutubeLogoIcon
-            weight='fill'
-            className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
-          />
+          <Link
+            href={socialMedia.facebook}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FacebookLogoIcon
+              weight='fill'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+            />
+          </Link>
+          <Link
+            href={socialMedia.instagram}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <InstagramLogoIcon
+              weight='fill'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+            />
+          </Link>
+          <Link href={socialMedia.x} target='_blank' rel='noopener noreferrer'>
+            <XLogoIcon
+              weight='fill'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+            />
+          </Link>
+          <Link
+            href={socialMedia.tiktok}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <TiktokLogoIcon
+              weight='fill'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+            />
+          </Link>
         </div>
       </div>
     </div>

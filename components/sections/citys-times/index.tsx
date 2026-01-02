@@ -3,7 +3,7 @@ import {
   FacebookLogoIcon,
   InstagramLogoIcon,
   XLogoIcon,
-  YoutubeLogoIcon,
+  TiktokLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
 import { getTranslations } from 'next-intl/server'
 
@@ -15,8 +15,13 @@ import { Image } from '@/components/image'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { SectionSetter } from '@/components/section-setter'
 import { fetchCitysTimes } from '@/lib/api/queries'
-import { citysTimesBanner, navigationConfig } from '@/lib/constants'
+import {
+  citysTimesBanner,
+  navigationConfig,
+  socialMedia,
+} from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
+import Link from 'next/link'
 
 const ImageCard = ({ src }: { src: string }) => (
   <div className='relative aspect-[9/12] w-[200px] lg:w-[260px] 2xl:w-[320px]'>
@@ -136,30 +141,46 @@ export default async function CitysTimes({ locale }: { locale?: string }) {
             </GsapSplitText>
           </p>
           <div className='mt-4 flex gap-6 lg:mt-16'>
-            <div className='flex items-center justify-center'>
+            <Link
+              href={socialMedia.facebook}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <FacebookLogoIcon
                 weight='fill'
                 className='size-8 text-white lg:size-12'
               />
-            </div>
-            <div className='flex items-center justify-center'>
+            </Link>
+            <Link
+              href={socialMedia.instagram}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <InstagramLogoIcon
                 weight='fill'
                 className='size-8 text-white lg:size-12'
               />
-            </div>
-            <div className='flex items-center justify-center'>
+            </Link>
+            <Link
+              href={socialMedia.x}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               <XLogoIcon
                 weight='fill'
                 className='size-8 text-white lg:size-12'
               />
-            </div>
-            <div className='flex items-center justify-center'>
-              <YoutubeLogoIcon
+            </Link>
+            <Link
+              href={socialMedia.tiktok}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <TiktokLogoIcon
                 weight='fill'
                 className='size-8 text-white lg:size-12'
               />
-            </div>
+            </Link>
           </div>
           <ScrollToTop className='py-24' />
         </div>

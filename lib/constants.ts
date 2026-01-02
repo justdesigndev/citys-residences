@@ -72,7 +72,7 @@ export const countryPhoneCodes = {
 }
 
 export const citysIstanbulAvmGoogleMaps =
-  'https://maps.app.goo.gl/R2mE9iNws7GrVDZg8'
+  'https://maps.app.goo.gl/eUTacrxtNttsvMav5?g_st=ipc'
 
 // Navigation metadata for routes that should appear in navigation
 // Keys MUST exist in routing.pathnames (type-safe!)
@@ -514,4 +514,11 @@ export const getMenuTextKey = (itemId: string): string => {
     'citys-dna': 'citysDna',
   }
   return keyMap[itemId] || itemId
+}
+
+export const socialMedia = {
+  facebook: 'https://www.facebook.com/profile.php?id=61574032204752',
+  instagram: 'https://www.instagram.com/citysresidences',
+  x: 'https://www.x.com/citysresidences',
+  tiktok: 'https://www.tiktok.com/@citysresidences',
 }
