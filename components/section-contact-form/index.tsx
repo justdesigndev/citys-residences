@@ -26,7 +26,7 @@ export function SectionContactForm({
 
   return (
     <section className='relative bg-gradient-appointment py-16 xl:py-40'>
-      <ContactFormSuccessScreen isVisible={isFormSuccess} />
+      <ContactFormSuccessScreen isVisible={isFormSuccess} centered />
       <FadeInOnScroll delay={0.25}>
         <div
           className={cn(
