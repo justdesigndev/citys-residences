@@ -455,6 +455,7 @@
         },
         "imageAlt": "City's Residences İç Mekanları",
         "navigator": {
+            "comingSoon": "ÇOK YAKINDA",
             "labels": {
                 "citysParkHouses": "City's Park Evleri",
                 "terraceHouses": "Teras Evler",

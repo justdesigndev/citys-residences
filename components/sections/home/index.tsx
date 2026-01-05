@@ -82,18 +82,6 @@ export default async function Page({
             </span>
           </div>
         </div>
-        <div className='absolute bottom-[20%] left-1/2 z-50 size-12 -translate-x-1/2 lg:bottom-[8%] xl:size-16 2xl:size-16'>
-          <div className='relative size-full animate-bounce-translate'>
-            <Image
-              src='/svg/scroll-down.svg'
-              alt='Scroll Down'
-              fill
-              className='object-contain'
-              priority
-            />
-          </div>
-          <span className='sr-only'>Scroll Down</span>
-        </div>
       </section>
       <div
         className={cn(

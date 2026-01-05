@@ -3,10 +3,11 @@
 import { Image } from '@/components/image'
 import { cn } from '@/lib/utils'
 import { HouseSimpleIcon } from '@phosphor-icons/react'
+import { useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
 
 export function ResidencesNavigator() {
-  // const t = useTranslations('residences.navigator.labels')
+  const t = useTranslations('residences.navigator')
   const [selectedValue, setSelectedValue] = useState<string>('2')
 
   const options = useMemo(() => {
@@ -38,48 +39,56 @@ export function ResidencesNavigator() {
         label: '1+1',
         src: '/img/residences/1+1/interior.jpg',
         icon: createIcon('1'),
+        disabled: false,
       },
       {
         id: '2',
         label: '2+1',
         src: '/img/residences/2+1/interior.jpg',
         icon: createIcon('2'),
+        disabled: false,
       },
       {
         id: '3',
         label: '3+1',
-        src: '/img/residences/2+1/interior.jpg',
+        src: '/img/residences/3+1/interior.jpg',
         icon: createIcon('3'),
+        disabled: false,
       },
       {
         id: '4',
         label: '3,5+1',
-        src: '/img/residences/2+1/interior.jpg',
+        src: '/img/residences/1+1/interior.jpg',
         icon: createIcon('4'),
+        disabled: true,
       },
       {
         id: '5',
         label: '4+1',
-        src: '/img/residences/3+1/interior.jpg',
+        src: '/img/residences/2+1/interior.jpg',
         icon: createIcon('5'),
+        disabled: true,
       },
       {
         id: '6',
         label: '4,5+1',
         src: '/img/residences/3+1/interior.jpg',
         icon: createIcon('6'),
+        disabled: true,
       },
       {
         id: '7',
         label: '5+1',
-        src: '/img/residences/3+1/interior.jpg',
+        src: '/img/residences/1+1/interior.jpg',
         icon: createIcon('7'),
+        disabled: true,
       },
       {
         id: '8',
         label: '5,5+1',
-        src: '/img/residences/4+1/interior.jpg',
+        src: '/img/residences/2+1/interior.jpg',
         icon: createIcon('8'),
+        disabled: true,
       },
       // {
       //   id: '7',
@@ -142,7 +151,7 @@ export function ResidencesNavigator() {
           )
         })}
       </div>
-      <div className='relative aspect-[16/16] lg:aspect-[16/7]'>
+      <div className='relative aspect-[16/16] overflow-hidden lg:aspect-[16/6]'>
         {options.map(option => {
           return (
             <div
@@ -162,8 +171,20 @@ export function ResidencesNavigator() {
                 fill
                 desktopSize='100vw'
                 mobileSize='100vw'
-                className='object-cover'
+                className={cn(
+                  'object-cover object-bottom transition-all duration-300',
+                  {
+                    'scale-110 blur-lg': option.disabled,
+                  }
+                )}
               />
+              {option.disabled && (
+                <div className='absolute inset-0 flex items-center justify-center bg-black/20'>
+                  <span className='text-3xl font-medium text-white drop-shadow-lg lg:text-5xl'>
+                    {t('comingSoon')}
+                  </span>
+                </div>
+              )}
             </div>
           )
         })}

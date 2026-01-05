@@ -45,7 +45,7 @@ export function Header({ withNavigation = true }: HeaderProps) {
             {!withNavigation && (
               <LocalizedLink
                 href={navigationConfig['/'].href as Pathnames}
-                className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
+                className='2xl:size-46 pointer-events-auto block size-28 translate-y-2 xl:size-32 3xl:size-40'
                 aria-label='Home'
                 locale={locale as Locale}
               >
@@ -57,7 +57,7 @@ export function Header({ withNavigation = true }: HeaderProps) {
                 onClick={() =>
                   handleNavClick(navigationConfig['/'].id as string)
                 }
-                className='2xl:size-46 pointer-events-auto block size-28 xl:size-32 3xl:size-40'
+                className='2xl:size-46 pointer-events-auto block size-28 translate-y-2 xl:size-32 3xl:size-40'
                 aria-label='Home'
               >
                 <Logo fill={colors.white} />

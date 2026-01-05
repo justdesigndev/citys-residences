@@ -1,20 +1,21 @@
+import { ScrollDown } from '@/components/scroll-down'
 import { Wrapper } from '@/components/wrapper'
 
+import CitysIstanbulAvm from '@/components/sections/citys-istanbul-avm'
+import CitysLiving from '@/components/sections/citys-living'
+import CitysMembersClub from '@/components/sections/citys-members-club'
+import CitysPark from '@/components/sections/citys-park'
+import CitysTimes from '@/components/sections/citys-times'
 import Home from '@/components/sections/home'
 import ProjectSection from '@/components/sections/project'
 import ResidencesSection from '@/components/sections/residences'
-import CitysTimes from '@/components/sections/citys-times'
-import CitysPark from '@/components/sections/citys-park'
-import CitysMembersClub from '@/components/sections/citys-members-club'
-import CitysLiving from '@/components/sections/citys-living'
-import CitysIstanbulAvm from '@/components/sections/citys-istanbul-avm'
 
+import { getCountries } from '@/lib/api/countries'
 import {
-  fetchCitysParkData,
   fetchCitysLivingData,
   fetchCitysMembersClubData,
+  fetchCitysParkData,
 } from '@/lib/api/queries'
-import { getCountries } from '@/lib/api/countries'
 
 export default async function Page({ params }: { params: { locale: string } }) {
   // Fetch all data server-side
@@ -27,24 +28,27 @@ export default async function Page({ params }: { params: { locale: string } }) {
   const countries = getCountries()
 
   return (
-    <Wrapper countries={countries}>
-      <Home params={params} />
-      <ProjectSection params={params} />
-      <ResidencesSection params={params} />
-      <CitysPark
-        items={parkData.success ? parkData.data || [] : []}
-        locale={params.locale}
-      />
-      <CitysMembersClub
-        items={membersClubData.success ? membersClubData.data || [] : []}
-        locale={params.locale}
-      />
-      <CitysLiving
-        items={livingData.success ? livingData.data || [] : []}
-        locale={params.locale}
-      />
-      <CitysIstanbulAvm />
-      <CitysTimes locale={params.locale} />
-    </Wrapper>
+    <>
+      <Wrapper countries={countries}>
+        <Home params={params} />
+        <ProjectSection params={params} />
+        <ResidencesSection params={params} />
+        <CitysPark
+          items={parkData.success ? parkData.data || [] : []}
+          locale={params.locale}
+        />
+        <CitysMembersClub
+          items={membersClubData.success ? membersClubData.data || [] : []}
+          locale={params.locale}
+        />
+        <CitysLiving
+          items={livingData.success ? livingData.data || [] : []}
+          locale={params.locale}
+        />
+        <CitysIstanbulAvm />
+        <CitysTimes locale={params.locale} />
+      </Wrapper>
+      <ScrollDown />
+    </>
   )
 }

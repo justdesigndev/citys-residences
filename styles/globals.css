@@ -30,6 +30,7 @@
   --z-header-content: z-stack();
   --z-sticky-menu: z-stack();
   --z-webchat: z-stack();
+  --z-scroll-down: z-stack();
   --z-modal-overlay: z-stack();
   --z-modal-contact-form: z-stack();
   --z-modal: z-stack();
@@ -111,30 +112,35 @@ body {
 
 .blur-bg {
   background: hsla(0, 0%, 15%, 0.8);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   mask-image: hsla(0, 0%, 15%, 0.8);
 }
 
 .blur-bg-bricky-brick {
   background: hsla(10, 66%, 43%, 0.9);
+  -webkit-backdrop-filter: blur(70px);
   backdrop-filter: blur(70px);
   mask-image: hsla(10, 66%, 43%, 0.9);
 }
 
 .blur-bg-bricky-brick-light {
   background: hsla(10, 66%, 43%, 0.7);
+  -webkit-backdrop-filter: blur(70px);
   backdrop-filter: blur(70px);
   mask-image: hsla(10, 66%, 43%, 0.7);
 }
 
 .blur-bg-bricky-brick-lighter {
   background: hsla(10, 66%, 43%, 0.2);
+  -webkit-backdrop-filter: blur(70px);
   backdrop-filter: blur(70px);
   mask-image: hsla(10, 66%, 43%, 0.2);
 }
 
 .blur-bg-white {
   background: hsla(0, 0%, 98%, 0.1);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   mask-image: hsla(0, 0%, 98%, 0.1);
 }
@@ -143,6 +149,7 @@ body {
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+  -webkit-backdrop-filter: blur(200px);
   backdrop-filter: blur(200px);
 }
 
@@ -184,12 +191,14 @@ body {
 
   @include-media ('tablet') {
     background: hsla(10, 66%, 43%, 0.2);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     mask-image: hsla(10, 66%, 43%, 0.2);
   }
 
   @include-media ('desktop') {
     background: hsla(10, 66%, 43%, 0.2);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     mask-image: hsla(10, 66%, 43%, 0.2);
   }
