@@ -232,17 +232,23 @@ export function Footer() {
                   <h3 className='font-primary text-xl font-[400] text-white xl:text-2xl'>
                     {t('salesOffice')}
                   </h3>
-                  <div className='flex size-14 shrink-0 cursor-pointer items-center justify-center bg-bricky-brick text-white transition-colors duration-300 hover:bg-bricky-brick/80 sm:size-16 lg:size-20'>
+                  <Link
+                    href={citysIstanbulAvmGoogleMaps}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex size-14 shrink-0 cursor-pointer items-center justify-center bg-bricky-brick text-white transition-colors duration-300 hover:bg-bricky-brick/80 sm:size-16 lg:size-20'
+                  >
                     <MapPinAreaIcon
                       size={24}
-                      className='sm:size-[26px] lg:size-[30px]'
-                      pointerEvents='none'
+                      className='pointer-events-none sm:size-[26px] lg:size-[30px]'
                     />
-                  </div>
+                  </Link>
                 </div>
                 <Link
-                  href='https://goo.gl/maps/X5VuQBQmZF2r9WZ17'
-                  className='-mt-6 flex flex-col gap-1 text-white sm:-mt-8'
+                  href={citysIstanbulAvmGoogleMaps}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='-mt-6 mr-auto flex flex-col items-start gap-1 text-white sm:-mt-8'
                 >
                   <p className='font-primary text-sm/[1.2] font-[300] xl:text-base'>
                     {t('salesOfficeAddress1')}
@@ -261,15 +267,17 @@ export function Footer() {
                   <h3 className='font-primary text-xl font-[400] text-white xl:text-2xl'>
                     {t('contact')}
                   </h3>
-                  <div className='flex size-14 shrink-0 cursor-pointer items-center justify-center bg-bricky-brick text-white transition-colors duration-300 hover:bg-bricky-brick/80 sm:size-16 lg:size-20'>
+                  <Link
+                    href='tel:+902162666600'
+                    className='flex size-14 shrink-0 cursor-pointer items-center justify-center bg-bricky-brick text-white transition-colors duration-300 hover:bg-bricky-brick/80 sm:size-16 lg:size-20'
+                  >
                     <PhoneCallIcon
                       size={24}
-                      className='sm:size-[26px] lg:size-[30px]'
-                      pointerEvents='none'
+                      className='pointer-events-none sm:size-[26px] lg:size-[30px]'
                     />
-                  </div>
+                  </Link>
                 </div>
-                <div className='-mt-6 flex flex-col gap-1 text-white sm:-mt-8'>
+                <div className='-mt-6 mr-auto flex flex-col items-start gap-1 text-white sm:-mt-8'>
                   <Link
                     href='mailto:info@citysresidences.com'
                     className='block font-primary text-sm/[1.2] font-[300] xl:text-base'
@@ -337,7 +345,7 @@ export function Footer() {
                   >
                     <CalendarPlusIcon
                       weight='thin'
-                      className='z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
+                      className='pointer-events-none z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
                     />
                     <span className='z-10 mt-auto text-left font-primary text-xs font-[400] leading-tight text-white lg:text-sm 2xl:text-base'>
                       {t.rich('createAppointment', {
@@ -351,7 +359,7 @@ export function Footer() {
                   >
                     <HeadsetIcon
                       weight='thin'
-                      className='z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
+                      className='pointer-events-none z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
                     />
                     <span className='z-10 mt-auto text-left font-primary text-xs font-[400] leading-tight text-white lg:text-sm 2xl:text-base'>
                       {t.rich('speakWithRepresentative', {
@@ -365,7 +373,7 @@ export function Footer() {
                   >
                     <MapPinPlusIcon
                       weight='thin'
-                      className='z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
+                      className='pointer-events-none z-10 size-8 text-white sm:h-8 sm:w-8 lg:h-9 lg:w-9'
                     />
                     <span className='z-10 mt-auto text-left font-primary text-xs font-[400] leading-tight text-white lg:text-sm 2xl:text-base'>
                       {t.rich('getDirections', {
