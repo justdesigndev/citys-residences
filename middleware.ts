@@ -66,11 +66,16 @@ export default function middleware(req: NextRequest) {
   // Use cookie if it exists, otherwise fall back to geo detection
   const finalLocale = userHasPreference ? userPref : detectedLocale
 
-  const redirectUrl = new URL(`/${finalLocale}${path}${nextUrl.search}`, req.url)
-  const redirectResponse = NextResponse.redirect(redirectUrl)
+  // Build the redirect path - avoid double slashes and trailing slash issues
+  const pathWithoutTrailingSlash = path === '/' ? '' : path
+  const redirectPath = `/${finalLocale}${pathWithoutTrailingSlash}${nextUrl.search}`
+  
+  const redirectUrl = new URL(redirectPath, req.url)
+  // Use 308 (permanent redirect) for better SEO - avoids 307 temporary redirect
+  const redirectResponse = NextResponse.redirect(redirectUrl, 308)
   
   // Add pathname header for canonical URL generation (after redirect)
-  redirectResponse.headers.set('x-pathname', `/${finalLocale}${path}`)
+  redirectResponse.headers.set('x-pathname', `/${finalLocale}${pathWithoutTrailingSlash || '/'}`)
 
   return redirectResponse
 }
