@@ -44,6 +44,28 @@
   --z-contact-form-success-screen: z-stack();
 }
 
+////////
+
+html {
+  --scrollbar-gutter: 0px;
+  scrollbar-gutter: stable; /* This is needed to prevent the scrollbar from jumping */
+
+  &.lenis-stopped {
+    --scrollbar-gutter: var(--scrollbar-width);
+  }
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+html.overflow-hidden {
+  overflow: hidden;
+  touch-action: none;
+}
+
+////////
+
 /* Core styles that shouldn't be reset */
 body {
   min-height: 100vh;
