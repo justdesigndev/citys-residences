@@ -1,4 +1,3 @@
-import { ScrollDown } from '@/components/scroll-down'
 import { Wrapper } from '@/components/wrapper'
 
 import CitysIstanbulAvm from '@/components/sections/citys-istanbul-avm'
@@ -48,7 +47,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
         <CitysIstanbulAvm />
         <CitysTimes locale={params.locale} />
       </Wrapper>
-      <ScrollDown />
+      {/* <ScrollDown /> */}
     </>
   )
 }
