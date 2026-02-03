@@ -15,6 +15,7 @@ import {
   fetchCitysMembersClubData,
   fetchCitysParkData,
 } from '@/lib/api/queries'
+import { ScrollDown } from '@/components/scroll-down'
 
 export default async function Page({ params }: { params: { locale: string } }) {
   // Fetch all data server-side
@@ -47,7 +48,7 @@ export default async function Page({ params }: { params: { locale: string } }) {
         <CitysIstanbulAvm />
         <CitysTimes locale={params.locale} />
       </Wrapper>
-      {/* <ScrollDown /> */}
+      <ScrollDown />
     </>
   )
 }

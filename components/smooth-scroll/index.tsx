@@ -3,11 +3,16 @@
 import 'lenis/dist/lenis.css'
 
 import { LenisRef, ReactLenis } from 'lenis/react'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTempus } from 'tempus/react'
 
 export function SmoothScroll({ root }: { root: boolean }) {
   const lenisRef = useRef<LenisRef>(null)
+  const [isAndroid, setIsAndroid] = useState(false)
+
+  useEffect(() => {
+    setIsAndroid(/Android/i.test(navigator.userAgent))
+  }, [])
 
   // useFrame((time: number) => {
   //   if (!lenisRef.current) return
@@ -30,6 +35,10 @@ export function SmoothScroll({ root }: { root: boolean }) {
       lenisRef.current.lenis.raf(time)
     }
   })
+
+  if (isAndroid) {
+    return null
+  }
 
   return (
     <ReactLenis
