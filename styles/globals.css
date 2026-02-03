@@ -44,7 +44,7 @@
   --z-contact-form-success-screen: z-stack();
 }
 
-////////
+/* //////// */
 
 html {
   --scrollbar-gutter: 0px;
@@ -64,7 +64,7 @@ html.overflow-hidden {
   touch-action: none;
 }
 
-////////
+/* //////// */
 
 /* Core styles that shouldn't be reset */
 body {
