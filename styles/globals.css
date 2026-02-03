@@ -46,6 +46,17 @@
 
 /* //////// */
 
+html,
+body {
+  -ms-overflow-style: none; /* IE/Edge legacy */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Edge */
+}
+
 html {
   --scrollbar-gutter: 0px;
   scrollbar-gutter: stable; /* This is needed to prevent the scrollbar from jumping */
