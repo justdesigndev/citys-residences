@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
-import { FadeInOnScroll } from '@/components/animations/fade-in-on-scroll'
 import { GsapSplitText } from '@/components/gsap-split-text'
 import Balancer from 'react-wrap-balancer'
 
@@ -86,19 +85,17 @@ export function CenterVideoText(props: CenterVideoTextProps) {
           </div>
         </div>
         <div className='col-span-24 px-8 pb-20 lg:col-span-10 lg:px-0 lg:pb-16 lg:pl-24 lg:pt-24 xl:col-span-8 xl:px-12 xl:pb-24 xl:pt-44'>
-          <FadeInOnScroll delay={0.25}>
-            <Balancer>
-              <article
-                className={cn(
-                  'text-left font-primary font-[200] xl:font-[300]',
-                  'text-[15px]/[1.25] xl:text-[17px]/[1.25]',
-                  'max-w-[90%] md:max-w-[55vw] xl:max-w-none',
-                  'prose-2xl prose-p:m-0 prose-ul:list-disc'
-                )}
-                dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-              ></article>
-            </Balancer>
-          </FadeInOnScroll>
+          <Balancer>
+            <article
+              className={cn(
+                'text-left font-primary font-[200] xl:font-[300]',
+                'text-[15px]/[1.25] xl:text-[17px]/[1.25]',
+                'max-w-[90%] md:max-w-[55vw] xl:max-w-none',
+                'prose-2xl prose-p:m-0 prose-ul:list-disc'
+              )}
+              dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+            ></article>
+          </Balancer>
         </div>
       </div>
       <div className='relative z-30 grid grid-cols-24'>
