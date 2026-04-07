@@ -9,7 +9,7 @@ import localFont from 'next/font/local'
 import Script from 'next/script'
 import { headers } from 'next/headers'
 
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/next'
 import { JsonLd } from '@/components/json-ld'
 
 import { GSAP } from '@/components/gsap'
