@@ -1,6 +1,16 @@
 import { FormValues } from '@/components/form-contact'
 import { getUtmParameter } from '@/lib/utils'
 
+const WEBSITE_BY_HOSTNAME: Record<string, string> = {
+  'justwork.citysresidences.com': 'justwork',
+  'allianz.citysresidences.com': 'allianz',
+  'allianztower.citysresidences.com': 'allianztower',
+}
+
+function getWebsiteValue(hostname: string) {
+  return WEBSITE_BY_HOSTNAME[hostname.toLowerCase()] ?? ''
+}
+
 export async function submitContactForm(data: FormValues, locale: string) {
   const formData = new FormData()
 
@@ -19,6 +29,7 @@ export async function submitContactForm(data: FormValues, locale: string) {
 
   // Add complete URL to formData
   formData.append('url', window.location.href)
+  formData.append('website', getWebsiteValue(window.location.hostname))
 
   const response = await fetch(
     'https://panel.citysresidences.com/api/lead.php',
