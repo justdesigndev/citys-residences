@@ -15,8 +15,9 @@ import { JsonLd } from '@/components/json-ld'
 import { GSAP } from '@/components/gsap'
 import { ReactQueryProvider } from '@/components/react-query-provider'
 import { RealViewport } from '@/components/real-viewport'
+import { VariantProvider } from '@/components/variant-provider'
 import { generateCanonicalUrl } from '@/lib/utils'
-import { isStandVariant } from '@/lib/variant'
+import { getVariant, isStandVariant } from '@/lib/variant'
 
 const suisseIntl = localFont({
   src: [
@@ -161,9 +162,10 @@ export default async function LocaleLayout({
   params: { locale: string }
 }>) {
   const messages = await getMessages()
+  const variant = getVariant()
 
   return (
-    <html lang={locale}>
+    <html lang={locale} data-variant={variant}>
       <head>
         <StyleVariables colors={colors} themes={themes} />
         <JsonLd locale={locale} />
@@ -218,8 +220,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* <Preloader /> */}
         <NextIntlClientProvider messages={messages}>
           <ReactQueryProvider>
-            {children}
-            {/* <PreloaderClient /> */}
+            <VariantProvider value={variant}>
+              {children}
+              {/* <PreloaderClient /> */}
+            </VariantProvider>
           </ReactQueryProvider>
         </NextIntlClientProvider>
         <GSAP scrollTrigger={true} />

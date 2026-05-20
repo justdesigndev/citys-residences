@@ -16,6 +16,7 @@ import { useState } from 'react'
 
 import { Image } from '@/components/image'
 import { Link } from '@/components/utility/link'
+import { useIsStand } from '@/components/variant-provider'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useNavigation } from '@/hooks/useNavigation'
 import { Link as LocalizedLink } from '@/i18n/navigation'
@@ -42,6 +43,11 @@ export function MenuNavList() {
   const locale = useLocale()
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const { setIsMenuOpen, setIsModalContactFormOpen } = useUiStore()
+  const isStand = useIsStand()
+
+  const navigationItems = getNavigationItems(t, locale as Locale).filter(
+    item => !(isStand && item.id === 'citys-times')
+  )
 
   function handleAppointment() {
     setIsMenuOpen(false)
@@ -60,7 +66,7 @@ export function MenuNavList() {
             className='flex flex-col gap-1 lg:gap-6 xl:gap-3 2xl:gap-4'
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            {getNavigationItems(t, locale as Locale)
+            {navigationItems
               .filter(item => item.mainRoute)
               .map(item => {
                 const isHovered = !isMobile && hoveredItem === item.id
@@ -142,7 +148,7 @@ export function MenuNavList() {
             className='flex flex-col gap-2 lg:gap-6 xl:gap-3 2xl:gap-3'
             onMouseLeave={() => !isMobile && setHoveredItem(null)}
           >
-            {getNavigationItems(t, locale as Locale)
+            {navigationItems
               .filter(item => !item.mainRoute)
               .map(item => {
                 const isHovered = !isMobile && hoveredItem === item.id
