@@ -9,6 +9,7 @@ import { PageTitle } from '@/components/page-title'
 import { ResidencesNavigator } from '@/components/residences-navigator'
 import { SectionContactForm } from '@/components/section-contact-form'
 import { SectionSetter } from '@/components/section-setter'
+import { HideOnStand } from '@/components/variant-gate'
 import { getCountries } from '@/lib/api/countries'
 import { fetchResidencesSlider } from '@/lib/api/queries'
 import { navigationConfig, residencesBanner } from '@/lib/constants'
@@ -170,10 +171,12 @@ export default async function Page({
         </div>
         <ResidencesNavigator />
       </section>
-      <SectionContactForm
-        formTranslations={formTranslations}
-        countries={countries}
-      />
+      <HideOnStand>
+        <SectionContactForm
+          formTranslations={formTranslations}
+          countries={countries}
+        />
+      </HideOnStand>
     </SectionSetter>
   )
 }
