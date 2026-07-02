@@ -19,6 +19,7 @@ import { InteractiveMap } from '@/components/interactive-map'
 import { PageTitle } from '@/components/page-title'
 import { QuoteWithVideo } from '@/components/quote-with-video'
 import { SectionSetter } from '@/components/section-setter'
+import { HideOnStand } from '@/components/variant-gate'
 import { navigationConfig, projectBanner } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
 
@@ -461,96 +462,98 @@ export default async function Page({
         </section>
       </div>
       {/* architecture sections */}
-      {[
-        {
-          quote: t('quotes.architecture.quote'),
-          mediaIdEnglish: 'N9eXnPt4OOZmLsn6bWJ7pxZlIBSC018m4vMUcLzQVZqE',
-          mediaIdTurkish: 'tDjMbuCzuO9iJCH901CkmX1KxMf00pr8ugfUKCNr018Zmw',
-          thumbnail: '/img/thumbnail-murat-kader.jpg',
-          portraitImage: '/img/murat-kader-portrait.png',
-          portraitImageMobile: '/img/murat-kader-portrait.png',
-          personName: 'Murat Kader' as React.ReactNode,
-          personTitle: t('quotes.architecture.personTitle'),
-          sidebarText: t('quotes.architecture.sidebarText'),
-          primaryColor: colors['bricky-brick'],
-          secondaryColor: colors['white'],
-          hasBg: true,
-          videoAspectRatio: 16 / 9,
-        },
-        {
-          quote: t('quotes.interior.quote'),
-          mediaIdEnglish: 'UPzJmVAv6HRQf3hdeV1Wk8vlo8aqP6RaDYScTU5gYCQ',
-          mediaIdTurkish: 'mLJCKzl700KKCbhHSdsjKoe02wBdIqCtu3IqmjNPDp6og',
-          thumbnail: '/img/thumbnail-toners.jpg',
-          portraitImage: '/img/toners-portrait.png',
-          portraitImageMobile: '/img/toners-portrait.png',
-          personName: (
-            <>
-              Mustafa & <span className='block xl:hidden' /> Emre Toner
-            </>
-          ) as React.ReactNode,
-          personTitle: t('quotes.interior.personTitle'),
-          sidebarText: t('quotes.interior.sidebarText'),
-          primaryColor: colors['white'],
-          secondaryColor: colors['bricky-brick'],
-          hasBg: false,
-          videoAspectRatio: 16 / 9,
-        },
-        {
-          quote: t('quotes.landscape.quote'),
-          mediaIdEnglish: 'hLh4GfAaEr1s7vbeA15K9r4LSLTJ1aclt4qDKX9WcXA',
-          mediaIdTurkish: 'iiovQu22t3dx6FSfG5m2zhMOrrONjfXhQeDS01NqzMtI',
-          thumbnail: '/img/thumbnail-aktas.jpg',
-          portraitImage: '/img/aktas-portrait.png',
-          portraitImageMobile: '/img/aktas-portrait-mobile.png',
-          personName: (
-            <>
-              Cemil Aktaş, <span className='block xl:hidden' /> Pınar Kesim
-              Aktaş
-            </>
-          ) as React.ReactNode,
-          personTitle: t('quotes.landscape.personTitle'),
-          sidebarText: t('quotes.landscape.sidebarText'),
-          primaryColor: colors['army-canvas'],
-          secondaryColor: colors['white'],
-          hasBg: false,
-          portraitClassName: 'w-[65%]',
-          videoAspectRatio: 16 / 9,
-        },
-        {
-          quote: t('quotes.structural.quote'),
-          mediaIdEnglish: 'nyvu3BXeoXcwEMNYlz2FrgPIwEckN3cvfMKSnneO9Og',
-          mediaIdTurkish: 'CFIFTz5N8wsl6VdwWBpKfeVg2TAgykGz9Xtjf700Dx2w',
-          thumbnail: '/img/thumbnail-melih-bulgur.jpg',
-          portraitImage: '/img/melih-bulgur-portrait.png',
-          portraitImageMobile: '/img/melih-bulgur-portrait-mobile.png',
-          personName: 'Melih Bulgur' as React.ReactNode,
-          personTitle: t('quotes.structural.personTitle'),
-          sidebarText: t('quotes.structural.sidebarText'),
-          primaryColor: colors['birch-strain'],
-          secondaryColor: colors['white'],
-          hasBg: false,
-          videoAspectRatio: 16 / 9,
-        },
-      ].map(quoteData => (
-        <QuoteWithVideo
-          key={quoteData.mediaIdEnglish}
-          quote={quoteData.quote}
-          mediaIdEnglish={quoteData.mediaIdEnglish}
-          mediaIdTurkish={quoteData.mediaIdTurkish}
-          thumbnail={quoteData.thumbnail}
-          portraitImage={quoteData.portraitImage}
-          portraitImageMobile={quoteData.portraitImageMobile}
-          personName={quoteData.personName}
-          personTitle={quoteData.personTitle}
-          sidebarText={quoteData.sidebarText}
-          primaryColor={quoteData.primaryColor}
-          secondaryColor={quoteData.secondaryColor}
-          hasBg={quoteData.hasBg}
-          portraitClassName={quoteData.portraitClassName}
-          videoAspectRatio={quoteData.videoAspectRatio}
-        />
-      ))}
+      <HideOnStand>
+        {[
+          {
+            quote: t('quotes.architecture.quote'),
+            mediaIdEnglish: 'N9eXnPt4OOZmLsn6bWJ7pxZlIBSC018m4vMUcLzQVZqE',
+            mediaIdTurkish: 'tDjMbuCzuO9iJCH901CkmX1KxMf00pr8ugfUKCNr018Zmw',
+            thumbnail: '/img/thumbnail-murat-kader.jpg',
+            portraitImage: '/img/murat-kader-portrait.png',
+            portraitImageMobile: '/img/murat-kader-portrait.png',
+            personName: 'Murat Kader' as React.ReactNode,
+            personTitle: t('quotes.architecture.personTitle'),
+            sidebarText: t('quotes.architecture.sidebarText'),
+            primaryColor: colors['bricky-brick'],
+            secondaryColor: colors['white'],
+            hasBg: true,
+            videoAspectRatio: 16 / 9,
+          },
+          {
+            quote: t('quotes.interior.quote'),
+            mediaIdEnglish: 'UPzJmVAv6HRQf3hdeV1Wk8vlo8aqP6RaDYScTU5gYCQ',
+            mediaIdTurkish: 'mLJCKzl700KKCbhHSdsjKoe02wBdIqCtu3IqmjNPDp6og',
+            thumbnail: '/img/thumbnail-toners.jpg',
+            portraitImage: '/img/toners-portrait.png',
+            portraitImageMobile: '/img/toners-portrait.png',
+            personName: (
+              <>
+                Mustafa & <span className='block xl:hidden' /> Emre Toner
+              </>
+            ) as React.ReactNode,
+            personTitle: t('quotes.interior.personTitle'),
+            sidebarText: t('quotes.interior.sidebarText'),
+            primaryColor: colors['white'],
+            secondaryColor: colors['bricky-brick'],
+            hasBg: false,
+            videoAspectRatio: 16 / 9,
+          },
+          {
+            quote: t('quotes.landscape.quote'),
+            mediaIdEnglish: 'hLh4GfAaEr1s7vbeA15K9r4LSLTJ1aclt4qDKX9WcXA',
+            mediaIdTurkish: 'iiovQu22t3dx6FSfG5m2zhMOrrONjfXhQeDS01NqzMtI',
+            thumbnail: '/img/thumbnail-aktas.jpg',
+            portraitImage: '/img/aktas-portrait.png',
+            portraitImageMobile: '/img/aktas-portrait-mobile.png',
+            personName: (
+              <>
+                Cemil Aktaş, <span className='block xl:hidden' /> Pınar Kesim
+                Aktaş
+              </>
+            ) as React.ReactNode,
+            personTitle: t('quotes.landscape.personTitle'),
+            sidebarText: t('quotes.landscape.sidebarText'),
+            primaryColor: colors['army-canvas'],
+            secondaryColor: colors['white'],
+            hasBg: false,
+            portraitClassName: 'w-[65%]',
+            videoAspectRatio: 16 / 9,
+          },
+          {
+            quote: t('quotes.structural.quote'),
+            mediaIdEnglish: 'nyvu3BXeoXcwEMNYlz2FrgPIwEckN3cvfMKSnneO9Og',
+            mediaIdTurkish: 'CFIFTz5N8wsl6VdwWBpKfeVg2TAgykGz9Xtjf700Dx2w',
+            thumbnail: '/img/thumbnail-melih-bulgur.jpg',
+            portraitImage: '/img/melih-bulgur-portrait.png',
+            portraitImageMobile: '/img/melih-bulgur-portrait-mobile.png',
+            personName: 'Melih Bulgur' as React.ReactNode,
+            personTitle: t('quotes.structural.personTitle'),
+            sidebarText: t('quotes.structural.sidebarText'),
+            primaryColor: colors['birch-strain'],
+            secondaryColor: colors['white'],
+            hasBg: false,
+            videoAspectRatio: 16 / 9,
+          },
+        ].map(quoteData => (
+          <QuoteWithVideo
+            key={quoteData.mediaIdEnglish}
+            quote={quoteData.quote}
+            mediaIdEnglish={quoteData.mediaIdEnglish}
+            mediaIdTurkish={quoteData.mediaIdTurkish}
+            thumbnail={quoteData.thumbnail}
+            portraitImage={quoteData.portraitImage}
+            portraitImageMobile={quoteData.portraitImageMobile}
+            personName={quoteData.personName}
+            personTitle={quoteData.personTitle}
+            sidebarText={quoteData.sidebarText}
+            primaryColor={quoteData.primaryColor}
+            secondaryColor={quoteData.secondaryColor}
+            hasBg={quoteData.hasBg}
+            portraitClassName={quoteData.portraitClassName}
+            videoAspectRatio={quoteData.videoAspectRatio}
+          />
+        ))}
+      </HideOnStand>
     </SectionSetter>
   )
 }
