@@ -2,11 +2,22 @@
 
 import 'lenis/dist/lenis.css'
 
+import { useIsStand } from '@/components/variant-provider'
 import { LenisRef, ReactLenis } from 'lenis/react'
 import { useRef } from 'react'
 import { useTempus } from 'tempus/react'
 
 export function SmoothScroll({ root }: { root: boolean }) {
+  const isStand = useIsStand()
+
+  if (isStand) {
+    return <StandSmoothScroll root={root} />
+  }
+
+  return <DefaultSmoothScroll root={root} />
+}
+
+function DefaultSmoothScroll({ root }: { root: boolean }) {
   const lenisRef = useRef<LenisRef>(null)
 
   // useFrame((time: number) => {
@@ -40,6 +51,23 @@ export function SmoothScroll({ root }: { root: boolean }) {
         // easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         autoRaf: false,
         anchors: true,
+      }}
+    />
+  )
+}
+
+function StandSmoothScroll({ root }: { root: boolean }) {
+  return (
+    <ReactLenis
+      root={root}
+      options={{
+        autoRaf: false,
+        anchors: { immediate: true },
+        duration: 0,
+        lerp: 1,
+        overscroll: false,
+        smoothWheel: false,
+        syncTouch: false,
       }}
     />
   )
