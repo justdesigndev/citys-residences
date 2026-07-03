@@ -66,6 +66,11 @@ html {
   }
 }
 
+html[data-variant='stand'],
+html[data-variant='stand'] body {
+  overscroll-behavior: none;
+}
+
 * {
   scrollbar-width: thin;
 }
