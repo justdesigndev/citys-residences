@@ -1,0 +1,86 @@
+name: Sync Vercel deployment repository
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-vercel-deployment
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: '20'
+  TARGET_REPOSITORY: justdesigndev/citys-residences
+  TARGET_BRANCH: main
+
+jobs:
+  validate:
+    if: github.repository == 'armagansenol/citys-residences'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run tsc -- --noEmit
+
+      - name: Build
+        run: npm run build
+
+  sync:
+    if: >-
+      github.repository == 'armagansenol/citys-residences' &&
+      needs.validate.result == 'success'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate deployment key
+        env:
+          DEPLOY_KEY: ${{ secrets.JUSTDESIGN_DEPLOY_KEY }}
+        run: |
+          if [ -z "$DEPLOY_KEY" ]; then
+            echo "JUSTDESIGN_DEPLOY_KEY is not configured" >&2
+            exit 1
+          fi
+
+      - name: Configure SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.JUSTDESIGN_DEPLOY_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+
+      - name: Merge into deployment repository
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add deployment "git@github.com:${TARGET_REPOSITORY}.git"
+          git fetch deployment "$TARGET_BRANCH"
+          git switch --create deployment-main FETCH_HEAD
+          git merge --no-ff --no-edit "$SOURCE_SHA"
+          git push deployment "HEAD:${TARGET_BRANCH}"
