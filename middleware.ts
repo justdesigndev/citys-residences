@@ -13,19 +13,6 @@ export default function middleware(req: NextRequest) {
   // Current requested path
   const path = nextUrl.pathname
 
-  // Redirect contact pages to citysresidences.com
-  const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path
-  if (
-    normalizedPath === '/iletisim' ||
-    normalizedPath === '/contact' ||
-    normalizedPath === '/tr/iletisim' ||
-    normalizedPath === '/en/iletisim' ||
-    normalizedPath === '/tr/contact' ||
-    normalizedPath === '/en/contact'
-  ) {
-    return NextResponse.redirect('https://citysresidences.com', 301)
-  }
-
   const localeInPath = path.split('/')[1]
 
   // If URL already contains a locale
