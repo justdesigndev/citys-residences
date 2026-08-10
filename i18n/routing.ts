@@ -6,6 +6,10 @@ export const routing = defineRouting({
   localePrefix: 'always',
   pathnames: {
     '/': '/',
+    '/contact': {
+      tr: '/iletisim',
+      en: '/contact',
+    },
     '/pdpl': {
       tr: '/kvkk',
       en: '/pdpl',
