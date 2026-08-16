@@ -68,6 +68,7 @@ const schemas = {
           'https://www.instagram.com/citysresidences',
           'https://x.com/citysresidences',
           'https://www.tiktok.com/@citysresidences',
+          'https://www.youtube.com/@citys.residences',
         ],
       },
       {
@@ -151,6 +152,7 @@ const schemas = {
           'https://www.instagram.com/citysresidences',
           'https://x.com/citysresidences',
           'https://www.tiktok.com/@citysresidences',
+          'https://www.youtube.com/@citys.residences',
         ],
       },
       {

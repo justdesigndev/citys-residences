@@ -8,6 +8,7 @@ import {
   InstagramLogoIcon,
   TiktokLogoIcon,
   XLogoIcon,
+  YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
@@ -126,6 +127,17 @@ export function ContactFormSuccessScreen({
                   className='size-8'
                 >
                   <TiktokLogoIcon
+                    weight='fill'
+                    className='size-full cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+                  />
+                </Link>
+                <Link
+                  href={socialMedia.youtube}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='size-8'
+                >
+                  <YoutubeLogoIcon
                     weight='fill'
                     className='size-full cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
                   />
