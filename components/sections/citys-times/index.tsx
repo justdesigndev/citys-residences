@@ -4,6 +4,7 @@ import {
   InstagramLogoIcon,
   XLogoIcon,
   TiktokLogoIcon,
+  YoutubeLogoIcon,
 } from '@phosphor-icons/react/dist/ssr'
 import { getTranslations } from 'next-intl/server'
 
@@ -177,6 +178,16 @@ export default async function CitysTimes({ locale }: { locale?: string }) {
               rel='noopener noreferrer'
             >
               <TiktokLogoIcon
+                weight='fill'
+                className='size-8 text-white lg:size-12'
+              />
+            </Link>
+            <Link
+              href={socialMedia.youtube}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <YoutubeLogoIcon
                 weight='fill'
                 className='size-8 text-white lg:size-12'
               />

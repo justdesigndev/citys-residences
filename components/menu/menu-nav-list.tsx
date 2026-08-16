@@ -9,6 +9,7 @@ import {
   MapPinPlusIcon,
   TiktokLogoIcon,
   XLogoIcon,
+  YoutubeLogoIcon,
 } from '@phosphor-icons/react'
 import { useWindowSize } from 'hamo'
 import { useLocale, useTranslations } from 'next-intl'
@@ -267,6 +268,16 @@ export function MenuNavList() {
                 className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
               />
             </Link>
+            <Link
+              href={socialMedia.youtube}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <YoutubeLogoIcon
+                weight='fill'
+                className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+              />
+            </Link>
           </div>
         </div>
       </nav>
@@ -423,6 +434,16 @@ export function MenuNavList() {
             rel='noopener noreferrer'
           >
             <TiktokLogoIcon
+              weight='fill'
+              className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
+            />
+          </Link>
+          <Link
+            href={socialMedia.youtube}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <YoutubeLogoIcon
               weight='fill'
               className='size-9 cursor-pointer text-white transition-colors duration-300 hover:text-bricky-brick'
             />
