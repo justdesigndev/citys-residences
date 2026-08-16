@@ -521,4 +521,5 @@ export const socialMedia = {
   instagram: 'https://www.instagram.com/citysresidences',
   x: 'https://www.x.com/citysresidences',
   tiktok: 'https://www.tiktok.com/@citysresidences',
+  youtube: 'https://www.youtube.com/@citys.residences',
 }
