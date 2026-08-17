@@ -17,9 +17,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    serverComponentsExternalPackages: ['country-state-city'],
-  },
   redirects: async () => {
     return [
       {
