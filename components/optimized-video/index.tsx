@@ -30,36 +30,27 @@ export function OptimizedVideo({
   const videoSrc = `https://stream.mux.com/${playbackId}/highest.mp4`
 
   const [ready, setReady] = useState(false)
+  // Whether the <source> element is mounted. A <video> with a src-less
+  // <source> child keeps WebKit's media resource selection pending; with ~45
+  // of these mounting at once (CMS card sections), Safari's main thread
+  // stalls for ~30s, freezing Lenis/GSAP and delaying the hero video. So the
+  // element stays completely source-less until it approaches the viewport.
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
     const video = ref.current
     if (!video) return
 
-    // Store src in data attribute
-    video.dataset.src = videoSrc
-
     observer.current = new IntersectionObserver(
       entries => {
         for (const entry of entries) {
-          if (!video) continue
-
           if (entry.isIntersecting) {
-            // 👉 LOAD + PLAY
-            const source = video.querySelector('source')
-            if (source && !source.src) {
-              source.src = video.dataset.src || ''
-              video.load()
-            }
-            video.play().catch(() => {})
+            // 👉 LOAD + PLAY (source mounts via `active`, effect below plays)
+            setActive(true)
           } else {
-            // 👉 UNLOAD to free memory
+            // 👉 UNLOAD to free memory (source unmounts via `active`)
             video.pause()
-            const source = video.querySelector('source')
-            if (source && source.src) {
-              source.removeAttribute('src')
-              video.load()
-              setReady(false) // Reset ready state when unloaded
-            }
+            setActive(false)
           }
         }
       },
@@ -75,6 +66,22 @@ export function OptimizedVideo({
       observer.current?.disconnect()
     }
   }, [videoSrc])
+
+  useEffect(() => {
+    const video = ref.current
+    if (!video) return
+
+    if (active) {
+      // Source element just mounted: pick it up and start playback
+      video.load()
+      video.play().catch(() => {})
+    } else if (video.currentSrc) {
+      // Source element just unmounted: re-run selection to detach and free
+      video.load()
+      setReady(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active])
 
   return (
     <div className='relative h-full w-full bg-gray-200'>
@@ -119,8 +126,8 @@ export function OptimizedVideo({
           } as React.CSSProperties
         }
       >
-        {/* src will be set by IntersectionObserver when intersecting */}
-        <source type='video/mp4' />
+        {/* source is mounted only when the video approaches the viewport */}
+        {active && <source src={videoSrc} type='video/mp4' />}
       </video>
     </div>
   )
