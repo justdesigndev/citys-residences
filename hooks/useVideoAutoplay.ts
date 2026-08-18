@@ -10,19 +10,20 @@ export const useVideoAutoplay = ({
   dependencies = [],
 }: UseVideoAutoplayProps) => {
   const [hasPlayed, setHasPlayed] = useState(false)
-  const fallbackTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-
-  const clearFallback = useCallback(() => {
-    if (fallbackTimeoutRef.current) {
-      clearTimeout(fallbackTimeoutRef.current)
-      fallbackTimeoutRef.current = null
-    }
-  }, [])
+  const prevDepsRef = useRef<unknown[] | null>(null)
 
   const attemptPlay = useCallback(
     (reason: string = 'manual') => {
       const video = videoRef.current
       if (!video) return
+
+      // Safari: play() on an element with no data (readyState 0) while its
+      // load is being (re)started can wedge WebKit's media pipeline for ~30s,
+      // freezing rAF and with it Lenis/GSAP/ScrollTrigger. Native `autoplay`
+      // covers the initial start; only rescue once data exists, except for
+      // explicit user gestures which are always safe.
+      if (video.readyState === 0 && reason !== 'user-interaction') return
+      if (!video.paused) return
 
       if (!video.muted) {
         video.muted = true
@@ -32,10 +33,7 @@ export const useVideoAutoplay = ({
 
       if (playPromise && typeof playPromise.then === 'function') {
         playPromise
-          .then(() => {
-            setHasPlayed(true)
-            clearFallback()
-          })
+          .then(() => setHasPlayed(true))
           .catch(error => {
             // Only log if it's not an AbortError (common when loading)
             if (error.name !== 'AbortError') {
@@ -47,86 +45,66 @@ export const useVideoAutoplay = ({
           })
       } else {
         setHasPlayed(true)
-        clearFallback()
       }
     },
-    [videoRef, clearFallback]
+    [videoRef]
   )
 
-  const scheduleAttempt = useCallback(
-    (delay = 250, reason: string = 'retry') => {
-      clearFallback()
-      fallbackTimeoutRef.current = setTimeout(() => {
-        attemptPlay(reason)
-      }, delay)
-    },
-    [attemptPlay, clearFallback]
-  )
-
-  // Reset whenever dependencies (sources) change
+  // Reload only when the sources actually change after the initial mount.
+  // The initial load is already driven by `preload`/`autoplay` in the SSR
+  // HTML; calling load() over it aborts Safari's in-flight fetch and stalls
+  // playback for tens of seconds.
   useEffect(() => {
+    const prev = prevDepsRef.current
+    prevDepsRef.current = dependencies
+
+    // Initial mount, or re-run with identical sources (e.g. React StrictMode
+    // double-effects): nothing to reload.
+    if (prev === null) return
+    const changed =
+      prev.length !== dependencies.length ||
+      dependencies.some((dep, i) => !Object.is(dep, prev[i]))
+    if (!changed) return
+
     const video = videoRef.current
     if (!video) return
 
     setHasPlayed(false)
-    video.currentTime = 0
     video.load()
-
-    if (video.readyState >= 2) {
-      scheduleAttempt(0, 'ready-state')
-    } else {
-      scheduleAttempt(150, 'source-change')
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoRef, scheduleAttempt, ...dependencies])
+  }, [videoRef, ...dependencies])
 
   // Core video event handling
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
 
-    const handlePlay = () => {
-      setHasPlayed(true)
-      clearFallback()
-    }
-    const handleLoadedData = () => attemptPlay('loadeddata')
+    const handlePlay = () => setHasPlayed(true)
     const handleCanPlay = () => attemptPlay('canplay')
-    const handleCanPlayThrough = () => attemptPlay('canplaythrough')
-    const handleLoadedMetadata = () => attemptPlay('loadedmetadata')
-    const handleWaiting = () => scheduleAttempt(200, 'waiting')
-    const handleStalled = () => scheduleAttempt(200, 'stalled')
-    const handleSuspend = () => scheduleAttempt(200, 'suspend')
+    const handleLoadedData = () => attemptPlay('loadeddata')
 
     video.addEventListener('play', handlePlay)
-    video.addEventListener('loadeddata', handleLoadedData)
     video.addEventListener('canplay', handleCanPlay)
-    video.addEventListener('canplaythrough', handleCanPlayThrough)
-    video.addEventListener('loadedmetadata', handleLoadedMetadata)
-    video.addEventListener('waiting', handleWaiting)
-    video.addEventListener('stalled', handleStalled)
-    video.addEventListener('suspend', handleSuspend)
+    video.addEventListener('loadeddata', handleLoadedData)
 
-    if (video.readyState >= 2) {
-      scheduleAttempt(0, 'initial-readyState')
+    if (!video.paused) {
+      setHasPlayed(true)
+    } else if (video.readyState >= 2) {
+      attemptPlay('initial-readyState')
     }
 
     return () => {
       video.removeEventListener('play', handlePlay)
-      video.removeEventListener('loadeddata', handleLoadedData)
       video.removeEventListener('canplay', handleCanPlay)
-      video.removeEventListener('canplaythrough', handleCanPlayThrough)
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata)
-      video.removeEventListener('waiting', handleWaiting)
-      video.removeEventListener('stalled', handleStalled)
-      video.removeEventListener('suspend', handleSuspend)
+      video.removeEventListener('loadeddata', handleLoadedData)
     }
-  }, [videoRef, attemptPlay, scheduleAttempt, clearFallback])
+  }, [videoRef, attemptPlay])
 
-  // Retry on visibility change
+  // Retry when the tab becomes visible again
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        scheduleAttempt(0, 'visibilitychange')
+        attemptPlay('visibilitychange')
       }
     }
 
@@ -134,9 +112,9 @@ export const useVideoAutoplay = ({
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [scheduleAttempt])
+  }, [attemptPlay])
 
-  // User interaction fallback
+  // User interaction fallback (covers autoplay-blocked cases, e.g. Low Power Mode)
   useEffect(() => {
     const events: Array<keyof DocumentEventMap> = [
       'pointerdown',
@@ -160,9 +138,6 @@ export const useVideoAutoplay = ({
       })
     }
   }, [attemptPlay])
-
-  // Cleanup fallback on unmount
-  useEffect(() => clearFallback, [clearFallback])
 
   return { hasPlayed, attemptPlay }
 }

@@ -3,6 +3,7 @@
 import s from './styles.module.css'
 
 import { cn } from '@/lib/utils'
+import { useStartupSettled } from '@/hooks/useStartupSettled'
 import { breakpoints } from '@/styles/config.mjs'
 import { PlayCircleIcon } from '@phosphor-icons/react'
 import { useIntersectionObserver, useWindowSize } from 'hamo'
@@ -51,6 +52,9 @@ export function AutoplayVideo({
   const wasPlayingBeforeDialogRef = useRef(false)
   const [ready, setReady] = useState(false)
   const [shouldLoadDialog, setShouldLoadDialog] = useState(false)
+  // Thumbnails stay lazy through startup, then switch to eager so they all
+  // warm in the background — fast scrolling must find them already loaded.
+  const thumbnailsWarm = useStartupSettled()
 
   const [setIntersectionRef, entry] = useIntersectionObserver({
     root: null,
@@ -107,6 +111,7 @@ export function AutoplayVideo({
             '--vertical-position': `${verticalPosition ?? 50}%`,
           } as React.CSSProperties
         }
+        loading={thumbnailsWarm ? 'eager' : 'lazy'}
       />
       <video
         ref={playerRef}

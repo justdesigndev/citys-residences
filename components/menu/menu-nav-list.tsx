@@ -13,7 +13,7 @@ import {
 } from '@phosphor-icons/react'
 import { useWindowSize } from 'hamo'
 import { useLocale, useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Image } from '@/components/image'
 import { Link } from '@/components/utility/link'
@@ -43,8 +43,28 @@ export function MenuNavList() {
   const tMenu = useTranslations('menu')
   const locale = useLocale()
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
-  const { setIsMenuOpen, setIsModalContactFormOpen } = useUiStore()
+  const { isMenuOpen, setIsMenuOpen, setIsModalContactFormOpen } = useUiStore()
   const isStand = useIsStand()
+
+  // The hover-preview videos autoplay hidden behind the closed menu, exactly
+  // as they always have — but mounting them at page load (autoplay overrides
+  // preload="none") made 4 videos download and spin up decoders during
+  // startup, which contributes to stalling Safari's media pipeline while the
+  // hero video initializes. Mount them once startup has settled, or as soon
+  // as the menu opens, whichever comes first: hovering a nav item always
+  // finds them already playing mid-loop, identical to the old experience.
+  const [videosEnabled, setVideosEnabled] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVideosEnabled(true), 4000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      setVideosEnabled(true)
+    }
+  }, [isMenuOpen])
 
   const navigationItems = getNavigationItems(t, locale as Locale).filter(
     item => !(isStand && item.id === 'citys-times')
@@ -306,11 +326,7 @@ export function MenuNavList() {
                         desktopSize='20vw'
                       />
                     )}
-                    {media.type === 'video' && (
-                      // <AutoplayVideo
-                      //   playbackId={media.src}
-                      //   aspectRatio={getAspectRatio(itemId)}
-                      // />
+                    {media.type === 'video' && videosEnabled && (
                       <video
                         poster={`https://image.mux.com/${media.src}/thumbnail.webp?width=560&time=0`}
                         src={`https://stream.mux.com/${media.src}/highest.mp4`}

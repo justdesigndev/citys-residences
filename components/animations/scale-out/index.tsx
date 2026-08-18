@@ -40,7 +40,7 @@ export function ScaleOut({ children }: ScaleOutProps) {
       animation: tl,
       id: `scale-out`,
       trigger: scaleOut,
-      start: () => `bottom top+=${scaleOut.getBoundingClientRect().height + scaleOut.getBoundingClientRect().top}px`,
+      start: "top top",
       end: "bottom top",
       pin: true,
       pinSpacing: false,
