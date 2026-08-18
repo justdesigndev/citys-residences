@@ -131,57 +131,6 @@
                         "email": "Please enter a valid email address"
                     }
                 },
-                "country": {
-                    "label": "Country*",
-                    "placeholder": "Select country",
-                    "errors": {
-                        "required": "Required field"
-                    }
-                },
-                "city": {
-                    "label": "City*",
-                    "placeholder": "Select city",
-                    "placeholderSelectCountry": "Select country first",
-                    "placeholderLoading": "Loading...",
-                    "errors": {
-                        "required": "Required field"
-                    }
-                },
-                "residenceType": {
-                    "label": "Preferred Type*",
-                    "placeholder": "Enter your preferred type",
-                    "errors": {
-                        "required": "Required field"
-                    }
-                },
-                "howDidYouHearAboutUs": {
-                    "placeholder": "How did you hear about us?",
-                    "label": "How did you hear about us?*",
-                    "errors": {
-                        "required": "Required field"
-                    },
-                    "options": {
-                        "reference": "Reference",
-                        "projectVisit": "Mall / Stand Area Visit",
-                        "internetSocialMedia": "Social Media / Digital",
-                        "billboard": "Outdoor Advertising"
-                    }
-                },
-                "profession": {
-                    "label": "Profession",
-                    "placeholder": "Enter your profession"
-                },
-                "contactPreference": {
-                    "placeholder": "Preferred Contact Method*",
-                    "errors": {
-                        "required": "Required field"
-                    }
-                },
-                "contactPreferenceOptions": {
-                    "sms": "SMS WhatsApp",
-                    "email": "Email",
-                    "phone": "Phone"
-                },
                 "consent": {
                     "placeholder": "I have read and accept the <legal1>Personal Data Protection Disclosure Text</legal1>, <legal2>Explicit Consent Text</legal2>, and <legal3>Commercial Electronic Message Disclosure Text</legal3> regarding the personal data I will share within the scope of the citysresidences.com application.",
                     "errors": {
@@ -189,10 +138,7 @@
                     }
                 },
                 "consentElectronicMessage": {
-                    "placeholder": "<legal4>I consent</legal4> to receiving commercial electronic messages.",
-                    "errors": {
-                        "required": "Required field, please select at least one of the options below"
-                    }
+                    "placeholder": "<legal4>I consent</legal4> to receiving commercial electronic messages."
                 },
                 "consentSms": {
                     "placeholder": "SMS"

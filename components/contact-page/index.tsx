@@ -8,17 +8,11 @@ import { FormTranslations } from '@/types'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
-interface CountryData {
-  isoCode: string
-  name: string
-}
-
 interface ContactPageProps {
   formTranslations: FormTranslations
-  countries: CountryData[]
 }
 
-export function ContactPage({ formTranslations, countries }: ContactPageProps) {
+export function ContactPage({ formTranslations }: ContactPageProps) {
   const t = useTranslations()
   const locale = useLocale()
   const [isFormSuccess, handleFormSuccess] = useFadeoutWithTimeout(3000)
@@ -51,7 +45,6 @@ export function ContactPage({ formTranslations, countries }: ContactPageProps) {
 
         <ContactForm
           translations={formTranslations}
-          countries={countries}
           onSuccess={handleFormSuccess}
         />
       </div>
