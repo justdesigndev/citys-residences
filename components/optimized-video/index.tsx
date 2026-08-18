@@ -4,6 +4,7 @@ import s from './styles.module.css'
 
 import { Image } from '@/components/image'
 import { cn } from '@/lib/utils'
+import { useStartupSettled } from '@/hooks/useStartupSettled'
 import { breakpoints } from '@/styles/config.mjs'
 import { useWindowSize } from 'hamo'
 import { useEffect, useRef, useState } from 'react'
@@ -30,6 +31,9 @@ export function OptimizedVideo({
   const videoSrc = `https://stream.mux.com/${playbackId}/highest.mp4`
 
   const [ready, setReady] = useState(false)
+  // Thumbnails stay lazy through startup, then switch to eager so they all
+  // warm in the background — fast scrolling must find them already loaded.
+  const thumbnailsWarm = useStartupSettled()
   // Whether the <source> element is mounted. A <video> with a src-less
   // <source> child keeps WebKit's media resource selection pending; with ~45
   // of these mounting at once (CMS card sections), Safari's main thread
@@ -98,7 +102,7 @@ export function OptimizedVideo({
             '--horizontal-position': `${horizontalPosition ?? 50}%`,
           } as React.CSSProperties
         }
-        // loading='lazy'
+        loading={thumbnailsWarm ? 'eager' : 'lazy'}
       />
       <video
         ref={ref}
