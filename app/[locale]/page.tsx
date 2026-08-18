@@ -9,7 +9,6 @@ import Home from '@/components/sections/home'
 import ProjectSection from '@/components/sections/project'
 import ResidencesSection from '@/components/sections/residences'
 
-import { getCountries } from '@/lib/api/countries'
 import {
   fetchCitysLivingData,
   fetchCitysMembersClubData,
@@ -26,11 +25,9 @@ export default async function Page({ params }: { params: { locale: string } }) {
     fetchCitysMembersClubData(params.locale),
   ])
 
-  const countries = getCountries()
-
   return (
     <>
-      <Wrapper countries={countries}>
+      <Wrapper>
         <Home params={params} />
         <ProjectSection params={params} />
         <ResidencesSection params={params} />

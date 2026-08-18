@@ -10,7 +10,6 @@ import { ResidencesNavigator } from '@/components/residences-navigator'
 import { SectionContactForm } from '@/components/section-contact-form'
 import { SectionSetter } from '@/components/section-setter'
 import { HideOnStand } from '@/components/variant-gate'
-import { getCountries } from '@/lib/api/countries'
 import { fetchResidencesSlider } from '@/lib/api/queries'
 import { navigationConfig, residencesBanner } from '@/lib/constants'
 import { colors } from '@/styles/config.mjs'
@@ -49,7 +48,6 @@ export default async function Page({
   const t = await getTranslations({ locale, namespace: 'residences' })
   type ContactMessages = { contact: { form: FormTranslations } }
   const formTranslations = (messages as unknown as ContactMessages).contact.form
-  const countries = getCountries()
 
   return (
     <SectionSetter sectionId={navigationConfig['/residences']?.id as string}>
@@ -172,10 +170,7 @@ export default async function Page({
         <ResidencesNavigator />
       </section>
       <HideOnStand>
-        <SectionContactForm
-          formTranslations={formTranslations}
-          countries={countries}
-        />
+        <SectionContactForm formTranslations={formTranslations} />
       </HideOnStand>
     </SectionSetter>
   )

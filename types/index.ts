@@ -238,44 +238,8 @@ export interface FormTranslations {
       label: string
       errors: { required: string; email: string }
     }
-    country: {
-      placeholder: string
-      label: string
-      errors: { required: string }
-    }
-    city: {
-      placeholder: string
-      placeholderSelectCountry: string
-      placeholderLoading: string
-      label: string
-      errors: { required: string }
-    }
-    residenceType: {
-      placeholder: string
-      label: string
-      errors: { required: string }
-    }
-    howDidYouHearAboutUs: {
-      placeholder: string
-      label: string
-      errors: { required: string }
-      options: Record<string, string>
-    }
-    profession: {
-      placeholder: string
-      label: string
-    }
-    contactPreference: { placeholder: string; errors: { required: string } }
-    contactPreferenceOptions: {
-      sms: string
-      email: string
-      phone: string
-    }
     consent: { placeholder: string; errors: { required: string } }
-    consentElectronicMessage: {
-      placeholder: string
-      errors: { required: string }
-    }
+    consentElectronicMessage: { placeholder: string }
     consentSms: { placeholder: string }
     consentEmail: { placeholder: string }
     consentPhone: { placeholder: string }
