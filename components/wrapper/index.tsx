@@ -14,11 +14,6 @@ import { StickySidebar } from '@/components/sticky-sidebar'
 import { WebChat } from '@/components/web-chat'
 import { useUiStore } from '@/lib/store/ui'
 
-interface CountryData {
-  isoCode: string
-  name: string
-}
-
 interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: (typeof themeNames)[number]
   lenis?: boolean
@@ -27,7 +22,6 @@ interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   headerWithNavigation?: boolean
   contactForm?: boolean
   footer?: boolean
-  countries?: CountryData[]
 }
 
 export function Wrapper({
@@ -39,7 +33,6 @@ export function Wrapper({
   headerWithNavigation = true,
   footer = true,
   contactForm = true,
-  countries = [],
   ...props
 }: WrapperProps) {
   const pathname = usePathname()
@@ -72,7 +65,7 @@ export function Wrapper({
         </main>
         {footer && <Footer />}
       </div>
-      {contactForm && <ModalContactForm countries={countries} />}
+      {contactForm && <ModalContactForm />}
       {stickySidebar && <StickySidebar />}
       {lenis && <SmoothScroll root />}
       {/* Hidden element for webchat to detect language */}

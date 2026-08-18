@@ -15,16 +15,7 @@ import { ScrollableBox } from '@/components/utility/scrollable-box'
 import { useVisibilityStore } from '@/lib/store/visibility'
 import { FormTranslations } from '@/types'
 
-interface CountryData {
-  isoCode: string
-  name: string
-}
-
-interface StickyContactMenuProps {
-  countries: CountryData[]
-}
-
-export function StickyContactMenu({ countries }: StickyContactMenuProps) {
+export function StickyContactMenu() {
   const t = useTranslations('contact')
   const ref = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -60,63 +51,6 @@ export function StickyContactMenu({ countries }: StickyContactMenuProps) {
           email: t('form.inputs.email.errors.email'),
         },
       },
-      country: {
-        label: t('form.inputs.country.label'),
-        placeholder: t('form.inputs.country.placeholder'),
-        errors: {
-          required: t('form.inputs.country.errors.required'),
-        },
-      },
-      city: {
-        label: t('form.inputs.city.label'),
-        placeholder: t('form.inputs.city.placeholder'),
-        placeholderSelectCountry: t(
-          'form.inputs.city.placeholderSelectCountry'
-        ),
-        placeholderLoading: t('form.inputs.city.placeholderLoading'),
-        errors: {
-          required: t('form.inputs.city.errors.required'),
-        },
-      },
-      residenceType: {
-        label: t('form.inputs.residenceType.label'),
-        placeholder: t('form.inputs.residenceType.placeholder'),
-        errors: {
-          required: t('form.inputs.residenceType.errors.required'),
-        },
-      },
-      howDidYouHearAboutUs: {
-        label: t('form.inputs.howDidYouHearAboutUs.label'),
-        placeholder: t('form.inputs.howDidYouHearAboutUs.placeholder'),
-        errors: {
-          required: t('form.inputs.howDidYouHearAboutUs.errors.required'),
-        },
-        options: {
-          reference: t('form.inputs.howDidYouHearAboutUs.options.reference'),
-          projectVisit: t(
-            'form.inputs.howDidYouHearAboutUs.options.projectVisit'
-          ),
-          internetSocialMedia: t(
-            'form.inputs.howDidYouHearAboutUs.options.internetSocialMedia'
-          ),
-          billboard: t('form.inputs.howDidYouHearAboutUs.options.billboard'),
-        },
-      },
-      profession: {
-        label: t('form.inputs.profession.label'),
-        placeholder: t('form.inputs.profession.placeholder'),
-      },
-      contactPreference: {
-        placeholder: t('form.inputs.contactPreference.placeholder'),
-        errors: {
-          required: t('form.inputs.contactPreference.errors.required'),
-        },
-      },
-      contactPreferenceOptions: {
-        sms: t('form.inputs.contactPreferenceOptions.sms'),
-        email: t('form.inputs.contactPreferenceOptions.email'),
-        phone: t('form.inputs.contactPreferenceOptions.phone'),
-      },
       consent: {
         placeholder: '', // This is handled by ConsentCheckboxes component with t.rich()
         errors: {
@@ -125,9 +59,6 @@ export function StickyContactMenu({ countries }: StickyContactMenuProps) {
       },
       consentElectronicMessage: {
         placeholder: '', // This is handled by ConsentCheckboxes component with t.rich()
-        errors: {
-          required: t('form.inputs.consentElectronicMessage.errors.required'),
-        },
       },
       consentSms: {
         placeholder: t('form.inputs.consentSms.placeholder'),
@@ -219,10 +150,7 @@ export function StickyContactMenu({ countries }: StickyContactMenuProps) {
                 br: () => <br className='hidden bt:block' />,
               })}
             </p>
-            <ContactForm
-              translations={formTranslations}
-              countries={countries}
-            />
+            <ContactForm translations={formTranslations} />
           </ScrollableBox>
         </div>
       </div>
