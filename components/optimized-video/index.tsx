@@ -4,6 +4,7 @@ import s from './styles.module.css'
 
 import { Image } from '@/components/image'
 import { cn } from '@/lib/utils'
+import { useCrossfadeLoop } from '@/hooks/useCrossfadeLoop'
 import { useStartupSettled } from '@/hooks/useStartupSettled'
 import { breakpoints } from '@/styles/config.mjs'
 import { useWindowSize } from 'hamo'
@@ -20,7 +21,7 @@ export function OptimizedVideo({
   aspectRatio,
   horizontalPosition,
 }: Props) {
-  const ref = useRef<HTMLVideoElement>(null)
+  const crossfade = useCrossfadeLoop()
   const observer = useRef<IntersectionObserver | null>(null)
   const { width: windowWidth } = useWindowSize(100)
   const isMobile =
@@ -34,26 +35,26 @@ export function OptimizedVideo({
   // Thumbnails stay lazy through startup, then switch to eager so they all
   // warm in the background — fast scrolling must find them already loaded.
   const thumbnailsWarm = useStartupSettled()
-  // Whether the <source> element is mounted. A <video> with a src-less
+  // Whether the <source> elements are mounted. A <video> with a src-less
   // <source> child keeps WebKit's media resource selection pending; with ~45
   // of these mounting at once (CMS card sections), Safari's main thread
   // stalls for ~30s, freezing Lenis/GSAP and delaying the hero video. So the
-  // element stays completely source-less until it approaches the viewport.
+  // elements stay completely source-less until they approach the viewport.
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    const video = ref.current
+    const video = crossfade.primaryRef.current
     if (!video) return
 
     observer.current = new IntersectionObserver(
       entries => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            // 👉 LOAD + PLAY (source mounts via `active`, effect below plays)
+            // 👉 LOAD + PLAY (sources mount via `active`, effect below plays)
             setActive(true)
           } else {
-            // 👉 UNLOAD to free memory (source unmounts via `active`)
-            video.pause()
+            // 👉 UNLOAD to free memory (sources unmount via `active`)
+            crossfade.pauseAll()
             setActive(false)
           }
         }
@@ -69,19 +70,21 @@ export function OptimizedVideo({
     return () => {
       observer.current?.disconnect()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoSrc])
 
   useEffect(() => {
-    const video = ref.current
+    const video = crossfade.primaryRef.current
     if (!video) return
 
     if (active) {
-      // Source element just mounted: pick it up and start playback
+      // Source elements just mounted: pick them up and start playback (the
+      // standby element is loaded by the crossfade machinery when needed)
       video.load()
-      video.play().catch(() => {})
+      crossfade.playActive()
     } else if (video.currentSrc) {
-      // Source element just unmounted: re-run selection to detach and free
-      video.load()
+      // Source elements just unmounted: re-run selection to detach and free
+      crossfade.loadAll()
       setReady(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,35 +107,43 @@ export function OptimizedVideo({
         }
         loading={thumbnailsWarm ? 'eager' : 'lazy'}
       />
-      <video
-        ref={ref}
-        poster={undefined}
-        muted
-        loop
-        playsInline
-        preload='none'
-        onLoadedData={() => {
-          setReady(true)
-        }}
+      {/* Two stacked elements dissolve into each other across the loop
+          point (useCrossfadeLoop); the wrapper keeps the original
+          thumbnail fade-in behavior */}
+      <div
         className={cn(
-          s.video,
-          'relative z-20',
+          'relative z-20 h-full w-full',
           'transition-opacity duration-500',
           {
             'opacity-0': !ready,
             'opacity-100': ready,
           }
         )}
-        style={
-          {
-            '--aspect-ratio': aspectRatio,
-            '--horizontal-position': `${horizontalPosition ?? 50}%`,
-          } as React.CSSProperties
-        }
       >
-        {/* source is mounted only when the video approaches the viewport */}
-        {active && <source src={videoSrc} type='video/mp4' />}
-      </video>
+        {[crossfade.primaryRef, crossfade.secondaryRef].map((ref, i) => (
+          <video
+            key={i}
+            ref={ref}
+            poster={undefined}
+            muted
+            loop
+            playsInline
+            preload='none'
+            onLoadedData={i === 0 ? () => setReady(true) : undefined}
+            className={cn(s.video, i === 0 ? 'relative' : 'absolute inset-0')}
+            style={
+              {
+                '--aspect-ratio': aspectRatio,
+                '--horizontal-position': `${horizontalPosition ?? 50}%`,
+                transition: 'opacity 400ms linear',
+              } as React.CSSProperties
+            }
+          >
+            {/* sources are mounted only when the video approaches the viewport */}
+            {active && <source src={videoSrc} type='video/mp4' />}
+          </video>
+        ))}
+      </div>
     </div>
   )
 }
