@@ -3,6 +3,7 @@
 import s from './styles.module.css'
 
 import { cn } from '@/lib/utils'
+import { useCrossfadeLoop } from '@/hooks/useCrossfadeLoop'
 import { useStartupSettled } from '@/hooks/useStartupSettled'
 import { breakpoints } from '@/styles/config.mjs'
 import { PlayCircleIcon } from '@phosphor-icons/react'
@@ -46,7 +47,7 @@ export function AutoplayVideo({
     : playbackId
   const poster = `https://image.mux.com/${activePlaybackId}/thumbnail.webp?width=${isMobile ? 560 : 1920}&time=0`
 
-  const playerRef = useRef<HTMLVideoElement | null>(null)
+  const crossfade = useCrossfadeLoop()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const hasLoadedRef = useRef(false)
   const wasPlayingBeforeDialogRef = useRef(false)
@@ -71,10 +72,11 @@ export function AutoplayVideo({
   )
 
   useEffect(() => {
-    const el = playerRef.current
+    const el = crossfade.primaryRef.current
     if (!el || (!playbackId && !mobilePlaybackId)) return
 
-    // Lazy load video sources when intersecting
+    // Lazy load video sources when intersecting (the standby element is
+    // loaded later by the crossfade machinery, shortly before it is needed)
     if (entry?.isIntersecting) {
       if (!hasLoadedRef.current) {
         hasLoadedRef.current = true
@@ -89,11 +91,11 @@ export function AutoplayVideo({
 
     // auto play / pause behavior
     if (entry && !entry.isIntersecting) {
-      el.pause()
-    } else if (entry?.isIntersecting && el.paused) {
-      el.play().catch(() => {})
+      crossfade.pauseAll()
+    } else if (entry?.isIntersecting && crossfade.getActive()?.paused) {
+      crossfade.playActive()
     }
-  }, [entry, playbackId, mobilePlaybackId, enableFullscreen, shouldLoadDialog])
+  }, [entry, playbackId, mobilePlaybackId, enableFullscreen, shouldLoadDialog, crossfade])
 
   const videoContent = (
     <>
@@ -113,69 +115,78 @@ export function AutoplayVideo({
         }
         loading={thumbnailsWarm ? 'eager' : 'lazy'}
       />
-      <video
-        ref={playerRef}
-        poster={undefined}
-        onLoadedData={() => setReady(true)}
+      {/* Two stacked elements dissolve into each other across the loop
+          point (useCrossfadeLoop); the wrapper keeps the original
+          thumbnail fade-in behavior */}
+      <div
         className={cn(
-          s.video,
-          'absolute inset-0 h-full w-full object-cover object-center',
-          'z-20 transition-opacity duration-500',
-          {
-            'opacity-0': !ready,
-            'opacity-100': ready,
-          },
+          'absolute inset-0 z-20 transition-opacity duration-500',
+          ready ? 'opacity-100' : 'opacity-0',
           enableFullscreen && 'cursor-pointer'
         )}
-        style={
-          {
-            '--aspect-ratio': aspectRatio,
-            '--horizontal-position': `${horizontalPosition ?? 50}%`,
-            '--vertical-position': `${verticalPosition ?? 50}%`,
-          } as React.CSSProperties
-        }
-        muted
-        loop
-        playsInline
-        preload='none'
-        disablePictureInPicture
-        controlsList='nodownload noplaybackrate'
       >
-        {(mobilePlaybackId || playbackId) && (
-          <source
-            src={`https://stream.mux.com/${mobilePlaybackId || playbackId}/highest.mp4`}
-            media='(max-width: 799px)'
-            type='video/mp4'
-          />
-        )}
-        {playbackId && (
-          <source
-            src={`https://stream.mux.com/${playbackId}/highest.mp4`}
-            media='(min-width: 800px)'
-            type='video/mp4'
-          />
-        )}
-      </video>
+        {[crossfade.primaryRef, crossfade.secondaryRef].map((ref, i) => (
+          <video
+            key={i}
+            ref={ref}
+            poster={undefined}
+            onLoadedData={i === 0 ? () => setReady(true) : undefined}
+            className={cn(
+              s.video,
+              'absolute inset-0 h-full w-full object-cover object-center'
+            )}
+            style={
+              {
+                '--aspect-ratio': aspectRatio,
+                '--horizontal-position': `${horizontalPosition ?? 50}%`,
+                '--vertical-position': `${verticalPosition ?? 50}%`,
+                transition: 'opacity 400ms linear',
+              } as React.CSSProperties
+            }
+            muted
+            loop
+            playsInline
+            preload='none'
+            disablePictureInPicture
+            controlsList='nodownload noplaybackrate'
+          >
+            {(mobilePlaybackId || playbackId) && (
+              <source
+                src={`https://stream.mux.com/${mobilePlaybackId || playbackId}/highest.mp4`}
+                media='(max-width: 799px)'
+                type='video/mp4'
+              />
+            )}
+            {playbackId && (
+              <source
+                src={`https://stream.mux.com/${playbackId}/highest.mp4`}
+                media='(min-width: 800px)'
+                type='video/mp4'
+              />
+            )}
+          </video>
+        ))}
+      </div>
     </>
   )
 
   const handleDialogOpenChange = useCallback(
     (isOpen: boolean) => {
-      const el = playerRef.current
+      const el = crossfade.getActive()
       if (!el) return
 
       if (isOpen) {
         // Dialog is opening - pause the main video and remember if it was playing
         wasPlayingBeforeDialogRef.current = !el.paused
-        el.pause()
+        crossfade.pauseAll()
       } else {
         // Dialog is closing - resume if it was playing and still intersecting
         if (wasPlayingBeforeDialogRef.current && entry?.isIntersecting) {
-          el.play().catch(() => {})
+          crossfade.playActive()
         }
       }
     },
-    [entry]
+    [entry, crossfade]
   )
 
   const container = (
